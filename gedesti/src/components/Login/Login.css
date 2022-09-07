@@ -1,0 +1,9 @@
+.login{
+    min-height: 100%;
+    margin: 20px;
+}
+
+.login header{
+    display: flex;
+    justify-content: end;
+}

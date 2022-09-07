@@ -1,0 +1,17 @@
+
+.texto-vizualizarDemanda{
+    margin: 50px 0px 2px 50px;
+    font-size: 11px;
+}
+
+.texto-demanda{
+    margin: 2px 0px 2px 49px;
+    font-size: 22px;
+}
+
+.traço-abaixo-texto{
+    margin: 2px 0px 30px 50px;
+    height: 1px;
+    width: 35px;
+    background-color: var(--azulclaro);
+}

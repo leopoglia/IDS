@@ -1,0 +1,92 @@
+form {
+    width: 45%;
+    margin: auto;
+    margin-top: 80px;
+}
+
+form header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between !important;
+}
+
+form header h1 {
+    display: flex;
+    align-items: center;
+    color: var(--grey59);
+}
+
+form header h1::before {
+    background-color: var(--bluelight);
+    content: '';
+    position: absolute;
+    width: 35px;
+    height: 2px;
+    margin-top: 30px;
+}
+
+form header h1::after {
+    content: '';
+    width: 18px;
+    height: 18px;
+    background-image: url('../../../../public/imgs/logo.png');
+    background-size: 100%;
+    margin-left: 5px;
+}
+
+form header img {
+    width: 50px;
+}
+
+form main {
+    margin: 20px 0;
+    color: var(--grey59);
+}
+
+form main #email,
+main #password {
+    width: 100%;
+    height: 40px;
+    margin: 2px 0 15px 0 !important;
+    padding-left: 45px;
+    padding-right: 10px;
+    border-radius: 3px;
+    border: 1px solid var(--greyC4);
+}
+
+form main .material-symbols-outlined {
+    position: absolute;
+    margin-left: -32px;
+    margin-top: 30px;
+}
+
+form main div:nth-child(2) span {
+    margin-left: -36px;
+}
+
+form main section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--p);
+}
+
+form main section div{
+    display: flex;
+}
+
+form main #checkbox {
+    margin: 0 10px 0 0;
+    width: 15px;
+    height: 15px;
+    border: 2px solid var(--greyC4) !important;
+}
+
+form footer input {
+    background-color: var(--blue);
+    color: var(--white);
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 3px;
+}

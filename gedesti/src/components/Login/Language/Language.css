@@ -1,0 +1,16 @@
+.language{
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.language img{
+    width: 40px;
+}
+
+.language span{
+    font-weight: bold;
+    color: var(--grey59);
+}

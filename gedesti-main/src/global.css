@@ -1,0 +1,29 @@
+*{
+    box-sizing: border-box;
+    font-family: "Helvetica";
+}
+
+body{
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.material-symbols-rounded{
+    user-select: none;
+}
+
+:root{
+    --azul: #00579D;
+    --branco: #FFFFFF; 
+    --azulclaro: #64C3D5;
+    --cinza1: #595959;
+    --cinza2: #C4C4C4;
+    --cinza3: #D9D9D9;
+    --cinza4: #E5E5E5;
+}
+
+@font-face {
+    font-family: "Helvetica";
+    src: url("../src/fonts/Helvetica.ttf");
+}

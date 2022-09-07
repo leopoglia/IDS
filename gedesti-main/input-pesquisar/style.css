@@ -1,0 +1,8 @@
+.botao-alterar-vizualizacao{
+    background-color: var(--azul);
+    border:0;
+    border-radius: 3px;
+    margin: 50px 50px 50px 50px;
+    height: 40px;
+    width: 40px;
+}

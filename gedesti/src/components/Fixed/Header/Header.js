@@ -1,5 +1,5 @@
 import "./Header.css"
-import Language from "../../Login/Language/Language"
+import Language from "../Language/Language"
 
 export default function Header() {
     return (

@@ -1,0 +1,39 @@
+nav {
+    width: 65px;
+    height: 100%;
+    position: fixed;
+    padding: 10px 10px;
+    background-color: var(--greyE5);
+}
+
+nav ul{
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    background-color: var(--greyD9);
+    color: var(--grey59);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav li .material-symbols-rounded {
+    font-size: 22px;
+}
+
+li:hover {
+    background-color: var(--greyC4);
+}
+
+.logout {
+    position: fixed;
+    bottom: 0;
+}

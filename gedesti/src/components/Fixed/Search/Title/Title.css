@@ -1,0 +1,17 @@
+.Title span {
+    font-size: 11px;
+}
+
+.Title h1 {
+    margin: 2px 0px 2px 49px;
+    font-size: 22px;
+}
+
+.Title h1::before {
+    background-color: var(--bluelight);
+    content: '';
+    position: absolute;
+    width: 35px;
+    height: 2px;
+    margin-top: 30px;
+}

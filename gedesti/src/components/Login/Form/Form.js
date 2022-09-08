@@ -6,19 +6,22 @@ export default function Form() {
         <form>
             <header>
                 <h1>Acesso ao <b>GEDESTI</b></h1>
+
+
+
                 <img src="../imgs/weg-blue.png" alt="" />
             </header>
 
             <main>
                 <div>
-                    <label for="email">Email</label>
+                    <label>Email</label>
                     <span className="material-symbols-outlined">alternate_email</span>
                     <input id="email" type="text" />
                 </div>
 
 
                 <div>
-                    <label for="password">Senha</label>
+                    <label>Senha</label>
                     <span className="material-symbols-outlined">key</span>
                     <input id="password" type="password" />
                 </div>
@@ -26,7 +29,7 @@ export default function Form() {
                 <section>
                     <div>
                         <input id="checkbox" type="checkbox" />
-                        <label for="checkbox">Lembrar-me</label>
+                        <label>Lembrar-me</label>
                     </div>
 
                     <a href='/'>Esqueceu a senha?</a>

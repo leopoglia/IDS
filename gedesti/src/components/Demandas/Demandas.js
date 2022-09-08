@@ -9,6 +9,10 @@ export default function Demandas() {
             <Header />
             <Nav />
 
+            <div className="container">
+                <Title />
+            </div>
+
         </div>
     );
 }

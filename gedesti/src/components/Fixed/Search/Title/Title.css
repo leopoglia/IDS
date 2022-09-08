@@ -1,9 +1,13 @@
+.Title {
+    color: var(--grey59);
+}
+
 .Title span {
     font-size: 11px;
 }
 
 .Title h1 {
-    margin: 2px 0px 2px 49px;
+    margin: 2px 0px 2px 49px;    
     font-size: 22px;
 }
 

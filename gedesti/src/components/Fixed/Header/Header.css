@@ -16,15 +16,17 @@
 
 .title,
 .left,
+.right,
 .left .logo,
-.title .flex ,
-nav div {
+.title .flex {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.left, .title, .title .flex {
+.left,
+.title,
+.title .flex {
     height: 100%;
 }
 
@@ -49,4 +51,11 @@ nav div {
 .title .material-symbols-outlined {
     margin-right: 10px;
     font-size: 22px;
+}
+
+.person {
+    background-color: var(--greyD9);
+    width: 35px;
+    height: 35px;
+    border-radius: 35px;
 }

@@ -11,6 +11,5 @@
 }
 
 .language span{
-    font-weight: bold;
-    color: var(--grey59);
+    color: var(--white);
 }

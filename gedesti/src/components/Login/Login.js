@@ -8,8 +8,10 @@ export default function Login() {
             <header>
                 <Language />
             </header>
-            
-            <Form></Form>
+
+            <div className="form">
+                <Form></Form>
+            </div>
         </div>
     );
 }

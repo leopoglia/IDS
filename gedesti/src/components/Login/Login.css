@@ -1,9 +1,14 @@
 .login {
     height: calc(100vh - 65px);
-    margin: 20px;
 }
 
-.login header {
+.login .header-login {
     display: flex;
     justify-content: end;
+    margin-top: 20px;
+}
+
+.login .form {
+    display: flex;
+    height: calc(100vh - 150px) !important;
 }

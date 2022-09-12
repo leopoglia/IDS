@@ -5,7 +5,7 @@ import Language from "../Fixed/Language/Language";
 export default function Login() {
     return (
         <div className="login">
-            <header>
+            <header className="header-login">
                 <Language />
             </header>
 

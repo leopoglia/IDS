@@ -2,7 +2,7 @@ import "./Nav.css"
 
 export default function Nav() {
     return (
-        <nav classNameName="nav">
+        <nav className="nav">
 
 
             <ul>

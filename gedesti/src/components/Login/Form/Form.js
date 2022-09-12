@@ -16,14 +16,14 @@ export default function Form() {
                 <div>
                     <label>Email</label>
                     <span className="material-symbols-outlined">alternate_email</span>
-                    <input id="email" type="text" />
+                    <input id="email" type="text" required />
                 </div>
 
 
                 <div>
                     <label>Senha</label>
                     <span className="material-symbols-outlined">key</span>
-                    <input id="password" type="password" />
+                    <input id="password" type="password" required />
                 </div>
 
                 <section>

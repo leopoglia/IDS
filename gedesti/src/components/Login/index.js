@@ -1,6 +1,6 @@
-import "./Login.css"
-import Form from "./Form/Form"
-import Language from "../Fixed/Language/Language";
+import "./style.css"
+import Form from "./Form"
+import Language from "../Fixed/Language";
 
 export default function Login() {
     return (

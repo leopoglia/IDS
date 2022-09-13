@@ -1,9 +1,9 @@
-import './Form.css';
+import './style.css';
 
 
 export default function Form() {
     return (
-        <form>
+        <form className="login-form">
             <header>
                 <h1>Acesso ao <b>GEDESTI</b></h1>
 

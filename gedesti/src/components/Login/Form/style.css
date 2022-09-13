@@ -1,20 +1,20 @@
-form {
+.login-form {
     margin: auto;
 }
 
-form header {
+.login-form header {
     display: flex;
     align-items: center;
     justify-content: space-between !important;
 }
 
-form header h1 {
+.login-form header h1 {
     display: flex;
     align-items: center;
     color: var(--grey59);
 }
 
-form header h1::before {
+.login-form header h1::before {
     background-color: var(--bluelight);
     content: '';
     position: absolute;
@@ -23,7 +23,7 @@ form header h1::before {
     margin-top: 30px;
 }
 
-form header h1::after {
+.login-form header h1::after {
     content: '';
     width: 18px;
     height: 18px;
@@ -32,16 +32,16 @@ form header h1::after {
     margin-left: 5px;
 }
 
-form header img {
+.login-form header img {
     width: 50px;
 }
 
-form main {
+.login-form main {
     margin: 20px 0;
     color: var(--grey59);
 }
 
-form main #email,
+.login-form main #email,
 main #password {
     width: 100%;
     height: 40px;
@@ -52,35 +52,35 @@ main #password {
     border: 1px solid var(--greyC4);
 }
 
-form main .material-symbols-outlined {
+.login-form main .material-symbols-outlined {
     position: absolute;
     margin-left: -32px;
     margin-top: 30px;
 }
 
-form main div:nth-child(2) span {
+.login-form main div:nth-child(2) span {
     margin-left: -36px;
 }
 
-form main section {
+.login-form main section {
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-size: var(--p);
 }
 
-form main section div{
+.login-form main section div{
     display: flex;
 }
 
-form main #checkbox {
+.login-form main #checkbox {
     margin: 0 10px 0 0;
     width: 15px;
     height: 15px;
     border: 2px solid var(--greyC4) !important;
 }
 
-form footer input {
+.login-form footer input {
     background-color: var(--blue);
     color: var(--white);
     width: 100%;
@@ -90,25 +90,25 @@ form footer input {
 }
 
 @media (min-width: 1024px){
-    form{
+    .login-form{
         width: 35%;
     }
 }
 
 @media (min-width: 768px) and (max-width: 1023px){
-    form{
+    .login-form{
         width: 35%;
     }
 }
 
 @media(max-width: 767px){
-    form{
+    .login-form{
         width: 75%;
     }
 }
 
 @media(max-width: 350px){
-    form{
+    .login-form{
         width: 100%;
     }
 }

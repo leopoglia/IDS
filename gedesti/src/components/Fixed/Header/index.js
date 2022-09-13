@@ -1,5 +1,5 @@
-import "./Header.css"
-import Language from "../Language/Language"
+import "./style.css"
+import Language from "../Language"
 
 export default function Header() {
     return (

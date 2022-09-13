@@ -1,4 +1,4 @@
-import "./Title.css"
+import "./style.css"
 
 export default function Title(props) {
     return (

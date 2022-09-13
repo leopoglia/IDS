@@ -1,10 +1,10 @@
 import "./Title.css"
 
-export default function Title() {
+export default function Title(props) {
     return (
         <div className="Title">
-            <span>Demandas | Visualizar Demanda</span>
-            <h1>Demanda 1</h1>
+            <span>{props.nav}</span>
+            <h1>{props.title}</h1>
         </div>
     );
 }

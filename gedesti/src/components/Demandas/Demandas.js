@@ -10,7 +10,7 @@ export default function Demandas() {
             <Nav />
 
             <div className="container">
-                <Title />
+                <Title nav="Demandas > Visualizar Demandas" title="Demandas" />
             </div>
 
         </div>

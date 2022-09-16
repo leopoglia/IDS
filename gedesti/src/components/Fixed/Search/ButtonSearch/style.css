@@ -1,12 +1,16 @@
 .button-table-list {
     background-color: var(--blue);
     color: var(--white);
-    width: 45px;
-    height: 45px;
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    min-height: 42px;
+    margin-left: 10px;
     border: 0;
+    border-radius: 5px;
+    cursor: pointer;
 
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 5px;
 }

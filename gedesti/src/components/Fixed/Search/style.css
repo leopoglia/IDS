@@ -4,6 +4,9 @@
     justify-content: space-between;
 }
 
+.search{
+    margin-bottom: 20px;
+}
 
 .input-search {
     width: 70%;

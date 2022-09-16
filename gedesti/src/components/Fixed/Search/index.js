@@ -11,12 +11,12 @@ export default function Search(props) {
                 <ButtonTableList icon="table_rows" />
 
                 <div className="input-search">
-                    <span class="material-symbols-outlined">search</span>
+                    <span className="material-symbols-outlined">search</span>
                     <input type="text" placeholder="Buscar por solicitação" required />
                 </div>
 
                 <button className="criar-demanda">
-                    <span class="material-symbols-outlined">
+                    <span className="material-symbols-outlined">
                         add
                     </span>
                     Criar demanda

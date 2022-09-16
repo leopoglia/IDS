@@ -23,7 +23,7 @@ export default function Header() {
             <div className="right">
                 <Language />
 
-                <img className="person" src="" alt="" />
+                <img className="person" alt="" />
             </div>
 
         </header>

@@ -6,7 +6,7 @@ import Demanda from "./Demanda";
 
 export default function Demandas() {
     return (
-        <div className="Demandas">
+        <div className="demandas">
             <Header />
             <Nav />
 
@@ -15,7 +15,23 @@ export default function Demandas() {
 
 
                 <Demanda />
+                <Demanda />
+                <Demanda />
+                <Demanda />
+
+
+
+                <div className="navigator">
+                    <div className="current">1</div>
+                    <div>2</div>
+                    <div>3</div>
+                    <div>4</div>
+                    <div>{">"}</div>
+
+                </div>
             </div>
+
+
 
         </div>
     );

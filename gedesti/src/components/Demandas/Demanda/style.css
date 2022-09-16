@@ -1,6 +1,7 @@
 .demanda {
     width: 100%;
     height: 100px;
+    margin-top: 15px;
     border-radius: 5px;
     border: 1px solid var(--greyC4);
     color: var(--grey59);

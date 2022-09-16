@@ -16,8 +16,9 @@ export default function Demanda() {
                 <div>Solicitante: Nome do Solicitante</div>
                 <div>Data da solicitação: 27/04/2022</div>
                 <div>Situação: Backlog</div>
-
             </div>
+
+        
         </div>
     );
 }

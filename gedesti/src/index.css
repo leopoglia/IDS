@@ -39,6 +39,8 @@
   letter-spacing: 0.55px;
 }
 
+
+
 .container {
   margin-left: 65px;
   padding: 20px 80px;
@@ -99,4 +101,11 @@ input[type=checkbox]:checked {
 
 .material-symbols-outlined {
   user-select: none;
+}
+
+
+@media(max-width: 768px){
+  .container {
+    padding: 20px 20px;
+  }
 }

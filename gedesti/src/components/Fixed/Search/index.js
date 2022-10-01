@@ -8,7 +8,6 @@ export default function Search(props) {
             <Title nav={props.nav} title={props.title} />
 
             <div className="section">
-                <ButtonTableList icon="table_rows" />
 
                 <div className="input-search">
                     <span className="material-symbols-outlined">search</span>
@@ -22,7 +21,11 @@ export default function Search(props) {
                     Criar demanda
                 </button>
 
-                <ButtonTableList icon="filter_alt" />
+                <div className="btn-search">
+                    <ButtonTableList icon="table_rows" />
+
+                    <ButtonTableList icon="filter_alt" />
+                </div>
             </div>
         </div>
     );

@@ -5,9 +5,10 @@
     border-radius: 5px;
     border: 1px solid var(--greyC4);
     color: var(--grey59);
+
 }
 
-.demanda section{
+.demanda section {
     width: 100%;
     padding-right: 15px;
     display: flex;
@@ -35,36 +36,69 @@
     margin-top: 25px;
 }
 
-.demanda h1{
+.demanda h1 {
     font-size: var(--m);
     margin: 10px 15px !important;
 }
 
-.demanda .graphic{
+.demanda .graphic {
     width: 150px;
     height: 15px;
     border-radius: 50px;
     background-color: var(--greyD9);
 }
 
-.demanda .graphic .situation{
+.demanda .graphic .situation {
     width: 20%;
     height: 100%;
     background-color: var(--blue);
     border-radius: 20px;
 }
 
-.demanda .infos{
+.demanda .infos {
     display: flex;
     align-items: center;
-    margin-top: 10px;
+    height: 52.5px;
+    margin-top: 5px;
     margin-left: 5px;
+    padding-right: 5px;
+    overflow-y: hidden;
+    overflow-x: auto;
 }
 
-.demanda .infos div{
+.demanda .infos div {
+    display: flex;
+    align-items: center;
     font-size: var(--p);
     border: 1px solid var(--greyC4);
     border-radius: 3px;
     padding: 7px;
     margin-left: 10px;
+
+}
+
+.demanda .infos div p {
+    padding: 0px;
+    margin: 0px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    direction: ltr;
+    max-width: 250px;
+}
+
+.infos::-webkit-scrollbar {
+    width: 12px;
+    height: 5px;
+}
+
+.infos::-webkit-scrollbar-track {
+    background: var(--greyD9);
+    border-radius: 20px;
+}
+
+.infos::-webkit-scrollbar-thumb {
+    background-color: var(--greyC4);
+    border-radius: 20px;
 }

@@ -2,7 +2,6 @@ nav {
     width: 60px;
     height: 100%;
     position: fixed;
-    padding: 10px 10px;
     background-color: var(--greyE5);
 }
 
@@ -12,13 +11,10 @@ nav ul{
 }
 
 nav li {
-    width: 42px;
-    height: 42px;
+    width: 60px;
+    height: 60px;
     cursor: pointer;
-    background-color: var(--greyD9);
     color: var(--grey59);
-    border-radius: 5px;
-    margin-bottom: 10px;
     list-style: none;
     display: flex;
     align-items: center;
@@ -30,7 +26,7 @@ nav li .material-symbols-rounded {
 }
 
 li:hover {
-    background-color: var(--greyC4);
+    background-color: var(--greyD9);
 }
 
 .logout {

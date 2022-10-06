@@ -1,10 +1,62 @@
-.fundo-titulo{
+.background-title {
     margin-bottom: 20px;
 }
 
-.configuracao .caixa{
+.configuration{
+    color: var(--grey59);
+}
+
+.configuration .flex, .configuration .box .profile{
+    display: flex;
+    align-items: center;
+}
+
+.configuration .box {
     width: 100%;
-    height: 500px;
+    height: 100%;
     border: 1px solid var(--greyC4);
     border-radius: 5px;
+    padding: 20px;
+    padding-bottom: 30px;
+}
+
+.configuration .box .material-symbols-outlined{
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.configuration .box .picture-profile {
+    width: 90px;
+    height: 90px;
+    border-radius: 90px;
+}
+
+.configuration .box .email-name {
+    display: grid;
+    margin-left: 10px;
+}
+
+.configuration .box .email-name .name {
+    font-size: var(--g);
+}
+
+.configuration .box .email-name .email {
+    font-size: var(--m);
+}
+
+.configuration .box .change-configuration{
+    display: grid;
+    margin-top: 20px;
+    padding-top: 10px;
+    height: 50px;
+    border-top: 1px solid var(--greyC4);
+}
+
+.configuration .box .change-configuration .title-confuration{
+    font-size: var(--m);
+    font-weight: 600;
+}
+
+.configuration .box .change-configuration .subtitle-confuration{
+    margin-top: 6px;
 }

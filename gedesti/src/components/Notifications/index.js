@@ -2,23 +2,23 @@ import "./style.css"
 import Header from "../Fixed/Header"
 import Nav from "../Fixed/Nav"
 import Title from "../Fixed/Search/Title";
-import Notificacao from "./Notificacao";
+import Notification from "./Notification";
 
-export default function Notificacoes() {
+export default function Notifications() {
     return (
-        <div className="notificacoes">
+        <div className="notifications">
             <Header />
             <Nav />
 
             <div className="container">
-                <div className="fundo-titulo">
+                <div className="backgroud-title">
                     <Title nav="Notificações" title="Notificações" />
                 </div>
 
-                <Notificacao />
-                <Notificacao />
-                <Notificacao />
-                <Notificacao />
+                <Notification />
+                <Notification />
+                <Notification />
+                <Notification />
                
             </div>
 

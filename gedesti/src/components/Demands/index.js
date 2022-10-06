@@ -2,11 +2,11 @@ import "./style.css"
 import Header from "../Fixed/Header"
 import Nav from "../Fixed/Nav"
 import Search from "../Fixed/Search";
-import Demanda from "./Demanda";
+import Demand from "./Demand";
 
-export default function Demandas() {
+export default function Demands() {
     return (
-        <div className="demandas">
+        <div className="demands">
             <Header />
             <Nav />
 
@@ -14,10 +14,10 @@ export default function Demandas() {
                 <Search nav="Demandas > Visualizar Demandas" title="Demandas" />
 
 
-                <Demanda />
-                <Demanda />
-                <Demanda />
-                <Demanda />
+                <Demand />
+                <Demand />
+                <Demand />
+                <Demand />
 
 
 

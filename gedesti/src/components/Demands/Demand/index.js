@@ -1,9 +1,9 @@
 import "./style.css";
 import { useState } from "react";
 
-export default function Demanda() {
+export default function Demand() {
 
-    const [informacoes, setInformacoes] = useState(<div className="infos">
+    const [information, setInformation] = useState(<div className="infos">
         <div><p>Solicitante: Leonardo Heitor Poglia</p></div>
         <div><p>Data da solicitação: 27/04/2022</p></div>
         <div><p>Situação: Backlog</p></div>
@@ -11,7 +11,7 @@ export default function Demanda() {
 
 
     return (
-        <div className="demanda">
+        <div className="demand">
 
             <section>
                 <h1>Nome da Solicitação</h1>
@@ -21,7 +21,7 @@ export default function Demanda() {
                 </div>
             </section>
 
-            {informacoes}
+            {information}
 
 
         </div>

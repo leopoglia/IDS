@@ -1,7 +1,9 @@
 nav {
-    width: 60px;
-    height: 100%;
-    position: fixed;
+    width: 65px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    float: left;
     background-color: var(--greyE5);
 }
 
@@ -11,8 +13,8 @@ nav ul{
 }
 
 nav li {
-    width: 60px;
-    height: 60px;
+    width: 65px;
+    height: 65px;
     cursor: pointer;
     color: var(--grey59);
     list-style: none;

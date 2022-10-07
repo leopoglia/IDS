@@ -21,7 +21,7 @@ export default function Configuration() {
                         <div className="email-name">
                             <div className="flex">
                                 <span className="name">Jair Paulo Satig</span>
-                                <span class="material-symbols-outlined">
+                                <span className="material-symbols-outlined">
                                     edit
                                 </span>
                             </div>
@@ -32,7 +32,7 @@ export default function Configuration() {
                     <div className="change-configuration">
                         <div className="flex">
                             <span className="title-confuration">Senha</span>
-                            <span class="material-symbols-outlined">
+                            <span className="material-symbols-outlined">
                                 edit
                             </span>
                         </div>

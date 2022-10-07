@@ -1,0 +1,23 @@
+.progress-bar {
+    display: flex;
+    align-items: center;
+    width: 80%;
+}
+
+.progress-bar,
+.create-demands-1 .ellipse,
+.create-demands-1 .ellipse-current {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-bar .line {
+    width: 50%;
+    border-top: 4px solid var(--greyD9);
+    display: flex;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

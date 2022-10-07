@@ -5,7 +5,7 @@ export default function Notification() {
     return (
         <div className="notification">
             <div className="informations">
-                <span class="material-symbols-outlined">
+                <span className="material-symbols-outlined">
                     info
                 </span>
                 <span>Sua solicitação está sendo analisada</span>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./style.css"
 
 export default function Nav() {
@@ -13,37 +14,48 @@ export default function Nav() {
                 </li>
 
 
-                <li>
-                    <span className="material-symbols-outlined">
-                        folder_copy
-                    </span>
-                </li>
+                <Link to="/demands">
+                    <li>
+                        <span className="material-symbols-outlined">
+                            folder_copy
+                        </span>
+                    </li>
+                </Link>
 
-                <li>
-                    <span className="material-symbols-outlined">
-                        chat
-                    </span>
-                </li>
+                <Link to="/messages">
+                    <li>
+                        <span className="material-symbols-outlined">
+                            chat
+                        </span>
+                    </li>
+                </Link>
 
-                <li>
-                    <span className="material-symbols-outlined">
-                        notifications
-                    </span>
-                </li>
+                <Link to="/notifications">
+                    <li>
+                        <span className="material-symbols-outlined">
+                            notifications
+                        </span>
+                    </li>
+                </ Link>
 
-                <li>
-                    <span className="material-symbols-outlined">
-                        settings
-                    </span>
-                </li>
+                <Link to="/configuration">
+                    <li>
+                        <span className="material-symbols-outlined">
+                            settings
+                        </span>
+                    </li>
+                </Link>
 
-                <li className="logout">
-                    <span className="material-symbols-outlined">
-                        logout
-                    </span>
-                </li>
+                <Link to="/">
+                    <li className="logout">
+                        <span className="material-symbols-outlined">
+                            logout
+                        </span>
+                    </li>
+                </Link>
+
             </ul>
 
-        </nav>
+        </nav >
     );
 }

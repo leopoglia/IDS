@@ -1,0 +1,36 @@
+.create-demands-1 .background-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.create-demands-1 .progress-bar {
+    display: flex;
+    align-items: center;
+    width: 80%;
+}
+
+.create-demands-1 .progress-bar,
+.create-demands-1 .ellipse {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-demands-1 .progress-bar .line {
+    width: 100%;
+    border: 2px solid var(--greyD9);
+    display: flex;
+    align-items: center;
+}
+
+.create-demands-1 .ellipse {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: var(--greyD9);
+    position: absolute;
+}
+
+.create-demands-1 .progress-bar div:nth-child(3){
+    right: 0;
+}

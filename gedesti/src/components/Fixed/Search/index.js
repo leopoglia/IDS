@@ -1,6 +1,7 @@
 import "./style.css";
 import ButtonTableList from "./ButtonSearch";
 import Title from "./Title";
+import { Link } from "react-router-dom";
 
 export default function Search(props) {
     return (
@@ -14,12 +15,14 @@ export default function Search(props) {
                     <input type="text" placeholder="Buscar por solicitação" required />
                 </div>
 
-                <button className="criar-demanda">
-                    <span className="material-symbols-outlined">
-                        add
-                    </span>
-                    Criar demanda
-                </button>
+                <Link to="/create-demand/1">
+                    <button className="criar-demanda">
+                        <span className="material-symbols-outlined">
+                            add
+                        </span>
+                        Criar demanda
+                    </button>
+                </Link>
 
                 <div className="btn-search">
                     <ButtonTableList icon="table_rows" />

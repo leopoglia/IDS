@@ -1,13 +1,17 @@
 nav {
     width: 65px;
-    height: 100vh;
+    min-height: calc(100vh - 65px);
     position: sticky;
     top: 0;
     float: left;
     background-color: var(--greyE5);
 }
 
-nav ul{
+nav a {
+    text-decoration: none !important;
+}
+
+nav ul {
     padding: 0;
     margin: 0;
 }
@@ -32,6 +36,7 @@ li:hover {
 }
 
 .logout {
+    background-color: var(--greyE5);
     position: fixed;
     bottom: 0;
 }

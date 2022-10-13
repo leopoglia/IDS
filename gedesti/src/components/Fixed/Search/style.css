@@ -48,8 +48,8 @@
 }
 
 @media(max-width: 768px){
-    .search{
-        display: block;
+    .search, .background-title{
+        display: block !important;
     }
 
     .search .criar-demanda {

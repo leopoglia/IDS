@@ -3,6 +3,9 @@ import Header from "../../Fixed/Header"
 import Nav from "../../Fixed/Nav"
 import Title from "../../Fixed/Search/Title";
 import ProgressBar from "../ProgressBar";
+import Input from "../Input";
+import TextArea from "../TextArea";
+import ButtonAction from "../ButtonAction";
 
 export default function CreateDemands1() {
     return (
@@ -21,7 +24,19 @@ export default function CreateDemands1() {
 
                 <div className="box">
 
-            
+                    <Input label="Titulo" required="*"></Input>
+
+                    <TextArea label="Problema a ser resolvido (Situação atual)" required="*"></TextArea>
+
+                    <TextArea label="Proposta" required="*"></TextArea>
+
+                    <Input label="Centro de Custos" required="*"></Input>
+
+                </div>
+                
+                <div className="footer">
+                    <ButtonAction title="Voltar"></ButtonAction>
+                    <ButtonAction title="Avançar"></ButtonAction>
 
                 </div>
 

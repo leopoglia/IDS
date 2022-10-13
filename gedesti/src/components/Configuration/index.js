@@ -7,7 +7,7 @@ import Title from "../Fixed/Search/Title";
 export default function Configuration() {
     return (
         <div className="configuration">
-            <Header />
+            <Header icon="settings" title="Configuração" />
             <Nav />
 
             <div className="container">

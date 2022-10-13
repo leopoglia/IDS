@@ -8,7 +8,7 @@ import Message from "./Message";
 export default function Messages() {
     return (
         <div className="messages">
-            <Header />
+            <Header icon="chat" title="Mensagens" />
             <Nav />
 
             <div className="container">

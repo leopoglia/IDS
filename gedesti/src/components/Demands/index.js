@@ -7,7 +7,7 @@ import Demand from "./Demand";
 export default function Demands() {
     return (
         <div className="demands">
-            <Header />
+            <Header icon="folder_copy" title="Demandas" />
             <Nav />
 
             <div className="container">

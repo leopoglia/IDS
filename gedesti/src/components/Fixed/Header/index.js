@@ -1,7 +1,7 @@
 import "./style.css"
 import Language from "../Language"
 
-export default function Header() {
+export default function Header(props) {
     return (
         <header className="header">
 
@@ -11,9 +11,9 @@ export default function Header() {
                 <div className="title">
                     <div className="flex">
                         <span className="material-symbols-outlined">
-                            folder_copy
+                            {props.icon}
                         </span>
-                        <span>Demandas</span>
+                        <span>{props.title}</span>
                     </div>
 
                     <div className="trace" />

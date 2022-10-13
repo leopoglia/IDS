@@ -40,3 +40,9 @@
 .create-demands-1 .ellipse-current {
     background-color: var(--blue);
 }
+
+@media(max-width: 1050px){
+    .create-demands-1 .progress-bar{
+        width: 70%;
+    }
+}

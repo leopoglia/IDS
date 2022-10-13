@@ -50,7 +50,7 @@ main #password {
     padding-right: 10px;
     border-radius: 3px;
     border: none;
-    outline: 1px solid var(--greyC4);
+    outline: 1px solid var(--greyC4) !important;
 }
 
 .login-form main .material-symbols-outlined {

@@ -85,12 +85,8 @@ svg {
   font-weight: bold;
 }
 
-input[type=text]:focus,
-input[type=password]:focus,
-input[type=textarea],
-input[type=text]:valid,
-input[type=password]:valid {
-  outline: 2px solid var(--blue);
+input, textarea {
+  outline: none !important;
 }
 
 input[type=checkbox]:checked {
@@ -114,4 +110,6 @@ input[type=checkbox]:checked {
   .container {
     padding: 20px 20px;
   }
+
+
 }

@@ -7,7 +7,7 @@ import Notification from "./Notification";
 export default function Notifications() {
     return (
         <div className="notifications">
-            <Header />
+            <Header icon="notifications" title="Notificações" />
             <Nav />
 
             <div className="container">

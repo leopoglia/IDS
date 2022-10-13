@@ -21,3 +21,9 @@
     align-items: center;
     justify-content: space-between;
 }
+
+@media(max-width: 768px) {
+    .progress-bar {
+        width: 100% !important;
+    }
+}

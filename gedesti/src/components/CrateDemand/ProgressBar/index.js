@@ -2,9 +2,6 @@ import "./style.css"
 
 export default function ProgressBar(props) {
 
-
-
-
     return (
         <div className="progress-bar">
             <div className="ellipse-current">

@@ -9,6 +9,4 @@ export default function ButtonAction(props) {
             {button}
         </button>
     );
-
-
 }

@@ -1,3 +1,8 @@
+.background-title {
+    display: flex;
+    justify-content: space-between;
+}
+
 .progress-bar {
     display: flex;
     align-items: center;
@@ -20,6 +25,44 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.progress-bar {
+    display: flex;
+    align-items: center;
+    width: 80%;
+}
+
+.progress-bar,
+.progress-bar .ellipse,
+.progress-bar .ellipse-current {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-bar .line {
+    width: 50%;
+    border-top: 4px solid var(--greyD9);
+    display: flex;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.progress-bar .ellipse,
+.progress-bar .ellipse-current {
+    width: 50px;
+    min-width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: var(--greyD9);
+    color: var(--white);
+}
+
+.progress-bar .ellipse-current {
+    background-color: var(--blue);
 }
 
 @media(max-width: 768px) {

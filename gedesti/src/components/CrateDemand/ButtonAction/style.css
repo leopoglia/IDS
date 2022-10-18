@@ -1,0 +1,12 @@
+.button-action {
+    background-color: var(--blue);
+    width: 20%;
+    height: 40px;
+    border-radius: 3px;
+    border: none;
+    color: var(--white);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

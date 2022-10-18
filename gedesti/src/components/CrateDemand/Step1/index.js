@@ -10,7 +10,7 @@ import ButtonAction from "../ButtonAction";
 export default function CreateDemands1() {
     return (
         <div className="create-demands-1">
-            <Header />
+            <Header icon="folder_copy" title="Criar Demanda" />
             <Nav />
 
             <div className="container">
@@ -34,7 +34,7 @@ export default function CreateDemands1() {
 
                 </div>
                 
-                <div className="footer">
+                <div className="demands-footer">
                     <ButtonAction title="Voltar"></ButtonAction>
                     <ButtonAction title="Avançar"></ButtonAction>
 

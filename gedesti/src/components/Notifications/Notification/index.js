@@ -4,6 +4,7 @@ import "./style.css"
 export default function Notification() {
     return (
         <div className="notification">
+
             <div className="informations">
                 <span className="material-symbols-outlined">
                     info

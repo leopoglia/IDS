@@ -17,7 +17,7 @@
     justify-content: center;
 }
 
-.progress-bar .line {
+.progress-bar .line, .progress-bar .line-current {
     width: 50%;
     border-top: 4px solid var(--greyD9);
     display: flex;
@@ -25,6 +25,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.progress-bar .line-current {
+    border-top: 4px solid var(--blue);
 }
 
 .progress-bar {

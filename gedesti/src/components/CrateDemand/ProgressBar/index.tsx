@@ -1,6 +1,8 @@
 import "./style.css"
 
-export default function ProgressBar(props) {
+export default function ProgressBar(props: {
+    atual: string;
+}) {
 
     if (props.atual === "1") {
         return (
@@ -59,4 +61,7 @@ export default function ProgressBar(props) {
     }
 
 
+    return (
+        <></>
+    );
 }

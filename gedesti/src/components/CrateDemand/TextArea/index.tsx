@@ -1,6 +1,9 @@
 import "./style.css"
 
-export default function TextArea(props) {
+export default function TextArea(props: {
+    label: string;
+    required: string;
+}) {
 
     return (
         <div className="text-area">

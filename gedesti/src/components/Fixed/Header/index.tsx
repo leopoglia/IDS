@@ -1,7 +1,10 @@
 import "./style.css"
 import Language from "../Language"
 
-export default function Header(props) {
+export default function Header(props: {
+    icon: string;
+    title: string;
+  }) {
     return (
         <header className="header">
 

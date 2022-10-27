@@ -24,7 +24,7 @@ export default function CreateDemands2() {
 
                     <div className="flex">
                         <Input label="Valor Mensal" required="*" />
-                        <Input label="Descrição"></Input>
+                        <Input label="Descrição" required=""></Input>
                     </div>
                 </div>
 
@@ -34,7 +34,7 @@ export default function CreateDemands2() {
                     <div className="flex">
 
                         <Input label="Valor Mensal" required="*" />
-                        <Input label="Descrição"></Input>
+                        <Input label="Descrição" required=""></Input>
 
 
                         <div className="input-checkbox">
@@ -52,7 +52,7 @@ export default function CreateDemands2() {
 
                     <div className="flex">
                         <Input label="Valor Mensal" required="*" />
-                        <Input label="Descrição"></Input>
+                        <Input label="Descrição" required=""></Input>
 
                         <div className="input-checkbox">
                             <label>Requisitos de controles internos</label>
@@ -66,8 +66,8 @@ export default function CreateDemands2() {
                 </div>
 
                 <div className="demands-footer">
-                    <ButtonAction title="Voltar"></ButtonAction>
-                    <ButtonAction title="Avançar"></ButtonAction>
+                    <ButtonAction title="Voltar" click="voltar"></ButtonAction>
+                    <ButtonAction title="Avançar" click="avancar"></ButtonAction>
                 </div>
 
 

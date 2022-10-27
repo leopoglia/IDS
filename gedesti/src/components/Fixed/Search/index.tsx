@@ -3,7 +3,10 @@ import ButtonTableList from "./ButtonSearch";
 import Title from "./Title";
 import { Link } from "react-router-dom";
 
-export default function Search(props) {
+export default function Search(props: {
+    nav: string;
+    title: string;
+}) {
     return (
         <div className="search">
             <Title nav={props.nav} title={props.title} />

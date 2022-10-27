@@ -1,6 +1,9 @@
 import "./style.css"
 
-export default function Input(props) {
+export default function Input(props: {
+    label: string;
+    required: string;
+}) {
 
     return (
         <div className="input">

@@ -33,10 +33,10 @@ export default function CreateDemands1() {
                     <Input label="Centro de Custos" required="*"></Input>
 
                 </div>
-                
+
                 <div className="demands-footer">
-                    <ButtonAction title="Voltar"></ButtonAction>
-                    <ButtonAction title="Avançar"></ButtonAction>
+                    <ButtonAction title="Voltar" click="voltar"></ButtonAction>
+                    <ButtonAction title="Avançar" click="avancar"></ButtonAction>
 
                 </div>
 

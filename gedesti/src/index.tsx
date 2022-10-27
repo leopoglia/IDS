@@ -6,12 +6,11 @@ import reportWebVitals from './reportWebVitals';
 import Router from './routes';
 
 
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Router />
   </React.StrictMode>
-);
+)
+
 
 reportWebVitals();

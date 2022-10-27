@@ -2,7 +2,7 @@ import "./style.css"
 
 export default function ProgressBar(props) {
 
-    if (props.atual == "1") {
+    if (props.atual === "1") {
         return (
             <div className="progress-bar">
                 <div className="ellipse-current">
@@ -16,7 +16,7 @@ export default function ProgressBar(props) {
                 <div className="ellipse">3</div>
             </div>
         );
-    } else if (props.atual == "2") {
+    } else if (props.atual === "2") {
         return (
             <div className="progress-bar">
                 <div className="ellipse-current">
@@ -34,7 +34,7 @@ export default function ProgressBar(props) {
                 <div className="ellipse">3</div>
             </div>
         );
-    } else if (props.atual == "3") {
+    } else if (props.atual === "3") {
         return (
             <div className="progress-bar">
                 <div className="ellipse-current">

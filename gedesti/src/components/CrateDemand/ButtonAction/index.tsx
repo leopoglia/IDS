@@ -3,13 +3,16 @@ import { useState } from "react";
 
 export default function ButtonAction(props: {
     title: string
-    click: any
+    click: string
 }) {
-    const [button, setButton] = useState(props.title);
+
+    function redirectPage(click: string): void {
+        console.log(click)
+    }
 
     return (
-        <button className="button-action" onClick={props.click()}>
-            {button}
+        <button className="button-action" onClick={() => { redirectPage(props.click) }}>
+            {props.title}
         </button>
     );
 }

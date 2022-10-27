@@ -1,7 +1,7 @@
 import "./style.css"
-import Header from "../Fixed/Header"
-import Nav from "../Fixed/Nav"
-import Title from "../Fixed/Search/Title";
+import Header from "../../components/Fixed/Header"
+import Nav from "../../components/Fixed/Nav"
+import Title from "../../components/Fixed/Search/Title";
 
 
 export default function Configuration() {

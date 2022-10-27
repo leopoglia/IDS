@@ -27,8 +27,8 @@ export default function CreateDemands3() {
                 </div>
 
                 <div className="demands-footer">
-                    <ButtonAction title="Voltar" click="Voltar"></ButtonAction>
-                    <ButtonAction title="Avançar" click="Avancar"></ButtonAction>
+                    <ButtonAction title="Voltar" click="voltar"></ButtonAction>
+                    <ButtonAction title="Avançar" click="avancar"></ButtonAction>
                 </div>
             </div>
 

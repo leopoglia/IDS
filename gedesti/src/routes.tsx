@@ -4,7 +4,7 @@ import Form from './components/Login';
 import Demands from "./components/Demands";
 import Messages from "./components/Messages";
 import Notifications from "./components/Notifications";
-import Configuration from "./pages/Configuration";
+import Configuration from "./components/Configuration";
 import CreateDemands1 from "./components/CrateDemand/Step1";
 import CreateDemands2 from "./components/CrateDemand/Step2";
 import CreateDemands3 from "./components/CrateDemand/Step3";

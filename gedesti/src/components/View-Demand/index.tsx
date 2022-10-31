@@ -68,7 +68,7 @@ export default function ViewDemand() {
 
                     <hr />
 
-                    <div>
+                    <div className="">
 
                         <span>Valor Mensal: </span>
 
@@ -82,7 +82,13 @@ export default function ViewDemand() {
 
                     <hr />
 
-                    <span>Descrição</span>
+                    <div className="description">
+                        <span className="desc">Descrição</span>
+
+                        <span>
+                            Fusce sed facilisis velit. Donec dignissim neque id sem pulvinar ultrices. Curabitur faucibus mauris nec ante finibus tempus. Aliquam erat volutpat. Nulla in quam urna. Sed est lectus, viverra eu nibh sed, sollicitudin sagittis diam. Mauris venenatis accumsan lacus in porta. Aliquam suscipit et augue id finibus.
+                        </span>
+                    </div>
 
 
 

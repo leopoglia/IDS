@@ -22,3 +22,12 @@
 .view-demand hr {
     width: auto !important;
 }
+
+.view-demand .description {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.view-demand .description .desc {
+    margin-right: 25px;
+}

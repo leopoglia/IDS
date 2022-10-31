@@ -68,7 +68,7 @@ export default function ViewDemand() {
 
                     <hr />
 
-                    <div className="">
+                    <div>
 
                         <span>Valor Mensal: </span>
 
@@ -90,6 +90,32 @@ export default function ViewDemand() {
                         </span>
                     </div>
 
+
+                    <p className="title">Beneficio Potencial</p>
+
+                    <hr />
+
+                    <div>
+
+                        <span>Valor Mensal: </span>
+
+                        <span>R$50.000</span>
+
+                        <span>|</span>
+
+                        <span>Obrigação Legal: Sim</span>
+
+                    </div>
+
+                    <hr />
+
+                    <div className="description">
+                        <span className="desc">Descrição</span>
+
+                        <span>
+                            Fusce sed facilisis velit. Donec dignissim neque id sem pulvinar ultrices. Curabitur faucibus mauris nec ante finibus tempus. Aliquam erat volutpat. Nulla in quam urna. Sed est lectus, viverra eu nibh sed, sollicitudin sagittis diam. Mauris venenatis accumsan lacus in porta. Aliquam suscipit et augue id finibus.
+                        </span>
+                    </div>
 
 
                 </div>

@@ -68,15 +68,16 @@ export default function ViewDemand() {
 
                     <hr />
 
-                    <div>
+                    <div className="infos">
 
-                        <span>Valor Mensal: </span>
+                        <div>
+                            <span>Valor Mensal: </span>
 
-                        <span>R$50.000</span>
+                            <span>R$50.000</span>
 
-                        <span>|</span>
+                        </div>
 
-                        <span>Obrigação Legal: Sim</span>
+
 
                     </div>
 
@@ -95,13 +96,15 @@ export default function ViewDemand() {
 
                     <hr />
 
-                    <div>
+                    <div className="infos">
 
-                        <span>Valor Mensal: </span>
+                        <div>
+                            <span>Valor Mensal: </span>
 
-                        <span>R$50.000</span>
+                            <span>R$50.000</span>
 
-                        <span>|</span>
+                        </div>
+
 
                         <span>Obrigação Legal: Sim</span>
 

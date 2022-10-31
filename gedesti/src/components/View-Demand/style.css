@@ -31,3 +31,10 @@
 .view-demand .description .desc {
     margin-right: 25px;
 }
+
+.view-demand .infos{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

@@ -1,0 +1,8 @@
+.view-demand .box span {
+    font-size: var(--p);
+}
+
+.view-demand .box .title {
+    margin-top: 30px !important;
+    margin-left: 0px !important;
+}

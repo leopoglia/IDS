@@ -1,8 +1,24 @@
-.view-demand .box span {
+.view-demand .box div span {
     font-size: var(--p);
 }
 
 .view-demand .box .title {
     margin-top: 30px !important;
     margin-left: 0px !important;
+}
+
+.view-demand table {
+    width: 100%;
+    display: block;
+}
+
+.view-demand tr {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.view-demand hr {
+    width: auto !important;
 }

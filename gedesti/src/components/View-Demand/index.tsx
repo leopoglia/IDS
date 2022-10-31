@@ -21,30 +21,70 @@ export default function ViewDemand() {
 
                 <div className="box">
 
-                    <p>Situação a ser Resolvida (Situação Atual)</p>
+                    <div>
+                        <p>Situação a ser Resolvida (Situação Atual)</p>
 
-                    <span>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum eleifend quam vitae viverra. Nullam vulputate elit a ipsum porttitor gravida. Proin et vehicula velit. Donec eget nulla quis turpis placerat molestie a sed justo. Curabitur sit amet pellentesque metus. Donec dictum elit a libero aliquam aliquam. Nullam porttitor justo pharetra orci porttitor, id tristique diam pulvinar. Mauris facilisis, dolor et aliquam elementum, ex ligula ullamcorper tellus, a consequat purus augue at felis. Aliquam ante lectus, lobortis sit amet orci quis, porta lobortis turpis. Suspendisse aliquet vulputate sapien, non fringilla erat ultrices at. Proin elementum orci ut ante aliquet sollicitudin.
-                    </span>
+                        <span>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum eleifend quam vitae viverra. Nullam vulputate elit a ipsum porttitor gravida. Proin et vehicula velit. Donec eget nulla quis turpis placerat molestie a sed justo. Curabitur sit amet pellentesque metus. Donec dictum elit a libero aliquam aliquam. Nullam porttitor justo pharetra orci porttitor, id tristique diam pulvinar. Mauris facilisis, dolor et aliquam elementum, ex ligula ullamcorper tellus, a consequat purus augue at felis. Aliquam ante lectus, lobortis sit amet orci quis, porta lobortis turpis. Suspendisse aliquet vulputate sapien, non fringilla erat ultrices at. Proin elementum orci ut ante aliquet sollicitudin.
+                        </span>
 
-                    <p className="title">Proposta</p>
+                        <p className="title">Proposta</p>
 
-                    <span>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum eleifend quam vitae viverra. Nullam vulputate elit a ipsum porttitor gravida. Proin et vehicula velit. Donec eget nulla quis turpis placerat molestie a sed justo. Curabitur sit amet pellentesque metus. Donec dictum elit a libero aliquam aliquam. Nullam porttitor justo pharetra orci porttitor, id tristique diam pulvinar. Mauris facilisis, dolor et aliquam elementum, ex ligula ullamcorper tellus, a consequat purus augue at felis. Aliquam ante lectus, lobortis sit amet orci quis, porta lobortis turpis. Suspendisse aliquet vulputate sapien, non fringilla erat ultrices at. Proin elementum orci ut ante aliquet sollicitudin.
-                    </span>
+                        <span>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum eleifend quam vitae viverra. Nullam vulputate elit a ipsum porttitor gravida. Proin et vehicula velit. Donec eget nulla quis turpis placerat molestie a sed justo. Curabitur sit amet pellentesque metus. Donec dictum elit a libero aliquam aliquam. Nullam porttitor justo pharetra orci porttitor, id tristique diam pulvinar. Mauris facilisis, dolor et aliquam elementum, ex ligula ullamcorper tellus, a consequat purus augue at felis. Aliquam ante lectus, lobortis sit amet orci quis, porta lobortis turpis. Suspendisse aliquet vulputate sapien, non fringilla erat ultrices at. Proin elementum orci ut ante aliquet sollicitudin.
+                        </span>
+
+                    </div>
 
                     <p className="title">Centro de Custos</p>
 
                     <hr />
 
-                    <span>Codigo</span>
+                    <table>
+                        <tr>
+                            <td>Centro de Custos</td>
+                            <td>Nome do Centro de Custos</td>
 
-                    <span>Nome</span>
+                        </tr>
 
+                        <hr />
+
+
+                        <tr>
+                            <td>55435235345</td>
+                            <td>Centro de Custos WEG II</td>
+                        </tr>
+
+                        <hr />
+
+                        <tr>
+                            <td>55435235345</td>
+                            <td>Centro de Custos WEG II</td>
+                        </tr>
+                    </table>
+
+
+                    <p className="title">Beneficio Real</p>
 
                     <hr />
 
-                    <span>55435235345</span>
+                    <div>
+
+                        <span>Valor Mensal: </span>
+
+                        <span>R$50.000</span>
+
+                        <span>|</span>
+
+                        <span>Obrigação Legal: Sim</span>
+
+                    </div>
+
+                    <hr />
+
+                    <span>Descrição</span>
+
+
 
                 </div>
 

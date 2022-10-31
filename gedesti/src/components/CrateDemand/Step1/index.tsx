@@ -23,6 +23,8 @@ export default function CreateDemands1() {
 
 
                 <div className="box">
+                    <p>Informações Gerais</p>
+
 
                     <Input label="Titulo" required="*"></Input>
 

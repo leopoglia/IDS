@@ -11,3 +11,7 @@
     border-radius: 3px;
     border: 1px solid var(--greyC4);
 }
+
+.box label{
+    color: var(--grey3d);
+}

@@ -8,6 +8,7 @@ import Configuration from "./components/Configuration";
 import CreateDemands1 from "./components/CrateDemand/Step1";
 import CreateDemands2 from "./components/CrateDemand/Step2";
 import CreateDemands3 from "./components/CrateDemand/Step3";
+import ViewDemand from "./components/View-Demand";
 
 export default function Router() {
     return (
@@ -21,6 +22,8 @@ export default function Router() {
                 <Route path="/create-demand/1" element={<CreateDemands1 />} />
                 <Route path="/create-demand/2" element={<CreateDemands2 />} />
                 <Route path="/create-demand/3" element={<CreateDemands3 />} />
+                <Route path="/view-demand" element={<ViewDemand />} />
+
 
             </Routes>
         </BrowserRouter>

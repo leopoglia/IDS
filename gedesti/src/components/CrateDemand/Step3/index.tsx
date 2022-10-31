@@ -22,7 +22,15 @@ export default function CreateDemands3() {
 
                     <p>Anexos</p>
 
-                    <input type="file" />
+                    <div className="attachments">
+                        <input type="file" id="file" />
+                        <label htmlFor="file">
+                            <span className="material-symbols-outlined">
+                                upload_file
+                            </span>
+
+                            Enviar arquivo</label>
+                    </div>
 
                 </div>
 

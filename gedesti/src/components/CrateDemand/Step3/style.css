@@ -1,0 +1,23 @@
+.attachments input[type="file"] {
+    display: none;
+}
+
+.attachments label {
+    width: 250px;
+    height: 40px;
+    padding: 11px;
+    background-color: var(--blue);
+    border-radius: 3px;
+    color: var(--white);
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.attachments label .material-symbols-outlined{
+    margin-right: 5px;
+}

@@ -168,7 +168,12 @@ export default function ViewDemand() {
 
                         <p className="title">Anexos</p>
 
-                        <div className="attachment"></div>
+                        <div className="attachment">
+                            <div className="attachment-image">
+                                <img src="/attachment/pdf.png" alt="" />
+                            </div>
+                            <span>attachments.pdf</span>
+                        </div>
 
                     </div>
                 </div>

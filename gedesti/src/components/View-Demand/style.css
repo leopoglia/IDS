@@ -45,14 +45,27 @@
 }
 
 .view-demand .attachments .attachment {
-    background-color: var(--greyD9);
     cursor: pointer;
-    width: 70px;
-    height: 70px;
-    border-radius: 3px;
     margin-left: 0px !important;
+    width: 100px;
+    height: 80px;
+    padding: 5px;
+    border-radius: 3px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.view-demand .attachments .attachment span {
+    font-size: var(--pp) !important;
+}
+
+.view-demand .attachment .attachment-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .view-demand .attachments .attachment:hover {
-    background-color: var(--greyC4);
+    background-color: var(--greyF7);
 }

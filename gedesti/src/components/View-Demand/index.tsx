@@ -17,6 +17,13 @@ export default function ViewDemand() {
 
                     <Title nav="Demandas > Visualizar Demanda" title="Visualizar Demanda" />
 
+                    <button className="btn-primary">
+                        <span className="material-symbols-outlined">
+                            download
+                        </span>
+                        <span>Gerar PDF</span>
+                    </button>
+
                 </div>
 
                 <div className="box">

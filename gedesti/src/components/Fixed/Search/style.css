@@ -29,25 +29,7 @@
     margin: 9px 20px;
 }
 
-.search .criar-demanda {
-    background-color: var(--blue);
-    width: 200px;
-    height: 40px;
-    margin-left: 20px;
-    border-radius: 3px;
-    border: none;
-    color: var(--white);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.search .criar-demanda:hover {
-    background-color: var(--blue00);
-}
-
-.search a{
+.search a {
     text-decoration: none;
 }
 

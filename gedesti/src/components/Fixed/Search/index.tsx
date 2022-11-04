@@ -19,7 +19,7 @@ export default function Search(props: {
                 </div>
 
                 <Link to="/create-demand/1">
-                    <button className="criar-demanda">
+                    <button className="btn-primary">
                         <span className="material-symbols-outlined">
                             add
                         </span>

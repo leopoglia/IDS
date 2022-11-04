@@ -2,24 +2,20 @@ import "./style.css"
 import Header from "../Fixed/Header"
 import Nav from "../Fixed/Nav"
 import Title from "../Fixed/Search/Title";
-import Message from "./Message";
 
 
-export default function Messages() {
+export default function Message() {
     return (
         <div className="messages">
-            <Header icon="chat" title="Mensagens" />
+            <Header icon="chat" title="Mensagem" />
             <Nav />
 
             <div className="container">
                 <div className="backgroud-title">
-                    <Title nav="Mensagens" title="Mensagens" />
+                    <Title nav="Mensagens > Mensagem" title="Mensagem" />
                 </div>
 
-                <Message />
-                <Message />
-                <Message />
-                <Message />
+
 
             </div>
 

@@ -12,7 +12,6 @@ export default function Demand() {
 
     return (
         <div className="demand">
-
             <section>
                 <h1>Nome da Solicitação</h1>
 

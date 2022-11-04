@@ -1,8 +1,10 @@
 :root {
   --blue: #00579D;
   --bluelight: #64C3D5;
+  --blueF4: #F4FaFF;
   --grey3d: #3d3d3d;
   --grey59: #595959;
+  --greyF7: #F7F7F7;
   --greyE5: #E5E5E5;
   --greyC4: #C4C4C4;
   --greyD9: #D9D9D9;
@@ -86,7 +88,8 @@ svg {
   font-weight: bold;
 }
 
-input, textarea {
+input,
+textarea {
   outline: none !important;
 }
 

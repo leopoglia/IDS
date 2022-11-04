@@ -3,6 +3,7 @@ import Header from "../Fixed/Header"
 import Nav from "../Fixed/Nav"
 import Search from "../Fixed/Search";
 import Demand from "./Demand";
+import Footer from "../Fixed/Footer";
 
 export default function Demands() {
     return (
@@ -32,8 +33,10 @@ export default function Demands() {
                     <div>{">"}</div>
 
                 </div>
-            </div>
 
+                <Footer />
+
+            </div>
 
 
         </div>

@@ -5,7 +5,11 @@
     border-radius: 3px;
     border: 1px solid var(--greyC4);
     color: var(--grey59);
+    cursor: pointer;
+}
 
+.demand:hover {
+    background-color: var(--blueF4);
 }
 
 .demand section {
@@ -74,7 +78,6 @@
     border-radius: 3px;
     padding: 7px;
     margin-left: 10px;
-
 }
 
 .demand .infos div p {

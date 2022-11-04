@@ -21,7 +21,8 @@ export default function ViewDemand() {
 
                 <div className="box">
 
-                    <div>
+
+                    <div className="situation-current">
                         <p>Situação a ser Resolvida (Situação Atual)</p>
 
                         <span>
@@ -36,96 +37,145 @@ export default function ViewDemand() {
 
                     </div>
 
-                    <p className="title">Centro de Custos</p>
 
-                    <hr />
-
-                    <table>
-                        <tr>
-                            <td>Centro de Custos</td>
-                            <td>Nome do Centro de Custos</td>
-
-                        </tr>
+                    <div className="cust-center">
+                        <p className="title">Centro de Custos</p>
 
                         <hr />
 
+                        <table>
+                            <tr>
+                                <td>Centro de Custos</td>
+                                <td>Nome do Centro de Custos</td>
 
-                        <tr>
-                            <td>55435235345</td>
-                            <td>Centro de Custos WEG II</td>
-                        </tr>
+                            </tr>
+
+                            <hr />
+
+
+                            <tr>
+                                <td>55435235345</td>
+                                <td>Centro de Custos WEG II</td>
+                            </tr>
+
+                            <hr />
+
+                            <tr>
+                                <td>55435235345</td>
+                                <td>Centro de Custos WEG II</td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                    <div className="real-benefit">
+                        <p className="title">Beneficio Real</p>
 
                         <hr />
 
-                        <tr>
-                            <td>55435235345</td>
-                            <td>Centro de Custos WEG II</td>
-                        </tr>
-                    </table>
+                        <div className="infos">
+
+                            <div>
+                                <span>Valor Mensal: </span>
+
+                                <span>R$50.000</span>
+
+                            </div>
 
 
-                    <p className="title">Beneficio Real</p>
-
-                    <hr />
-
-                    <div className="infos">
-
-                        <div>
-                            <span>Valor Mensal: </span>
-
-                            <span>R$50.000</span>
 
                         </div>
 
+                        <hr />
 
+                        <div className="description">
+                            <span className="desc">Descrição</span>
 
-                    </div>
-
-                    <hr />
-
-                    <div className="description">
-                        <span className="desc">Descrição</span>
-
-                        <span>
-                            Fusce sed facilisis velit. Donec dignissim neque id sem pulvinar ultrices. Curabitur faucibus mauris nec ante finibus tempus. Aliquam erat volutpat. Nulla in quam urna. Sed est lectus, viverra eu nibh sed, sollicitudin sagittis diam. Mauris venenatis accumsan lacus in porta. Aliquam suscipit et augue id finibus.
-                        </span>
+                            <span>
+                                Fusce sed facilisis velit. Donec dignissim neque id sem pulvinar ultrices. Curabitur faucibus mauris nec ante finibus tempus. Aliquam erat volutpat. Nulla in quam urna. Sed est lectus, viverra eu nibh sed, sollicitudin sagittis diam. Mauris venenatis accumsan lacus in porta. Aliquam suscipit et augue id finibus.
+                            </span>
+                        </div>
                     </div>
 
 
-                    <p className="title">Beneficio Potencial</p>
+                    <div className="potential-benefit">
+                        <p className="title">Beneficio Potencial</p>
 
-                    <hr />
+                        <hr />
 
-                    <div className="infos">
+                        <div className="infos">
 
-                        <div>
-                            <span>Valor Mensal: </span>
+                            <div>
+                                <span>Valor Mensal: </span>
 
-                            <span>R$50.000</span>
+                                <span>R$50.000</span>
+
+                            </div>
+
+
+                            <span>Obrigação Legal: Sim</span>
 
                         </div>
 
+                        <hr />
 
-                        <span>Obrigação Legal: Sim</span>
+                        <div className="description">
+                            <span className="desc">Descrição</span>
 
-                    </div>
-
-                    <hr />
-
-                    <div className="description">
-                        <span className="desc">Descrição</span>
-
-                        <span>
-                            Fusce sed facilisis velit. Donec dignissim neque id sem pulvinar ultrices. Curabitur faucibus mauris nec ante finibus tempus. Aliquam erat volutpat. Nulla in quam urna. Sed est lectus, viverra eu nibh sed, sollicitudin sagittis diam. Mauris venenatis accumsan lacus in porta. Aliquam suscipit et augue id finibus.
-                        </span>
+                            <span>
+                                Fusce sed facilisis velit. Donec dignissim neque id sem pulvinar ultrices. Curabitur faucibus mauris nec ante finibus tempus. Aliquam erat volutpat. Nulla in quam urna. Sed est lectus, viverra eu nibh sed, sollicitudin sagittis diam. Mauris venenatis accumsan lacus in porta. Aliquam suscipit et augue id finibus.
+                            </span>
+                        </div>
                     </div>
 
 
+                    <div className="qualitative-benefit">
+                        <p className="title">Beneficio Qualitativo</p>
+
+                        <hr />
+
+                        <div className="infos">
+
+                            <div>
+                                <span>Valor Mensal: </span>
+
+                                <span>R$50.000</span>
+
+                            </div>
+
+
+                            <div>
+                                <span>Obrigação Legal: Sim</span>
+                            </div>
+
+                            <span>Requisitos de controles internos: Sim</span>
+
+                        </div>
+
+                        <hr />
+
+                        <div className="description">
+                            <span className="desc">Descrição</span>
+
+                            <span>
+                                Fusce sed facilisis velit. Donec dignissim neque id sem pulvinar ultrices. Curabitur faucibus mauris nec ante finibus tempus. Aliquam erat volutpat. Nulla in quam urna. Sed est lectus, viverra eu nibh sed, sollicitudin sagittis diam. Mauris venenatis accumsan lacus in porta. Aliquam suscipit et augue id finibus.
+                            </span>
+                        </div>
+                    </div>
+
+
+                    <div className="attachments">
+
+                        <p className="title">Anexos</p>
+
+                        <div className="attachment"></div>
+
+                    </div>
                 </div>
 
             </div>
 
 
-        </div>
+        </div >
     );
 }

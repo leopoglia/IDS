@@ -32,9 +32,27 @@
     margin-right: 25px;
 }
 
-.view-demand .infos{
+.view-demand .infos {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+}
+
+.view-demand .infos div {
+    border-right: 1px solid var(--greyC4);
+    padding-right: 20px;
+    margin-right: 25px;
+}
+
+.view-demand .attachments .attachment {
+    background-color: var(--greyD9);
+    cursor: pointer;
+    width: 70px;
+    height: 70px;
+    border-radius: 3px;
+    margin-left: 0px !important;
+}
+
+.view-demand .attachments .attachment:hover {
+    background-color: var(--greyC4);
 }

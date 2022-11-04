@@ -79,7 +79,7 @@
 }
 
 .messages .box-message .message-user {
-    max-width: 40%;
+    max-width: 35%;
     padding: 10px;
     margin-bottom: 20px;
     border-radius: 5px;
@@ -102,4 +102,33 @@
 
 .messages .box-message .message-user span {
     font-size: var(--p);
+}
+
+.messages .box-message .message-two {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.messages .box-message .message-two .message-user {
+    background-color: var(--greyF7);
+}
+
+.messages .box-message .message-two .message-user:hover {
+    background-color: var(--greyE5);
+}
+
+@media(max-width: 1140px) {
+    .messages .box-message .message-user {
+        max-width: 40%;
+    }
+}
+
+
+
+@media(max-width: 768px) {
+    .messages .box-message .message-user {
+        max-width: 100%;
+    }
 }

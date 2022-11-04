@@ -9,6 +9,11 @@
     color: var(--grey59);
     padding: 15px;
     margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.notification:hover{
+    background-color: var(--blueF4);
 }
 
 .notification .informations {

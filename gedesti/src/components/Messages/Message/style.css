@@ -6,7 +6,12 @@
     justify-content: space-between;
     border-bottom: 1px solid var(--greyC4);
     color: var(--grey59);
-    padding: 20px
+    padding: 20px;
+    cursor: pointer;
+}
+
+.message:hover{
+    background-color: var(--blueF4);
 }
 
 .message .profile {

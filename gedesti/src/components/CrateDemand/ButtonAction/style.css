@@ -1,14 +1,31 @@
-.button-action {
-    background-color: var(--blue);
+.button-action-back,
+.button-action-next {
     width: 15%;
     height: 40px;
     border-radius: 3px;
     border: none;
-    color: var(--white);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.button-action-back {
+    background-color: var(--greyD9);
+    color: var(--grey3d);
+}
+
+.button-action-back:hover {
+    background-color: var(--greyC4);
+}
+
+.button-action-next {
+    background-color: var(--blue);
+    color: var(--white);
+}
+
+.button-action-next:hover {
+    background-color: var(--blue00);
 }
 
 @media(max-width: 768px) {

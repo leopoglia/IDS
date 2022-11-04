@@ -46,7 +46,7 @@
     height: 4px;
     position: relative;
     border-radius: 8px 8px 0 0;
-    background-color: var(--bluelight);
+    background-color: var(--blue64);
 }
 
 .title .material-symbols-outlined {

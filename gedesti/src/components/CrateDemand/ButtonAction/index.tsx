@@ -31,9 +31,18 @@ export default function ButtonAction(props: {
         }
     }
 
-    return (
-        <button className="button-action" onClick={() => { redirectPage(props.click) }}>
-            {props.title}
-        </button>
-    );
+    if (props.click === "voltar") {
+
+        return (
+            <button className="button-action-back" onClick={() => { redirectPage(props.click) }}>
+                {props.title}
+            </button>
+        );
+    } else {
+        return (
+            <button className="button-action-next" onClick={() => { redirectPage(props.click) }}>
+                {props.title}
+            </button>
+        );
+    }
 }

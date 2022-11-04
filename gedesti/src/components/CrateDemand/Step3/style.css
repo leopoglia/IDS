@@ -21,3 +21,9 @@
 .attachments label .material-symbols-outlined{
     margin-right: 5px;
 }
+
+@media(max-width: 768px) {
+    .attachments label {
+        width: 100%;
+    }
+}

@@ -15,7 +15,7 @@
 }
 
 .login-form header h1::before {
-    background-color: var(--bluelight);
+    background-color: var(--blue64);
     content: '';
     position: absolute;
     width: 35px;

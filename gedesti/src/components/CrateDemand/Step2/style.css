@@ -36,26 +36,32 @@
     align-items: center;
 }
 
+
 .box .input-checkbox .checkbox input {
     width: 17px;
     height: 17px;
 }
 
-@media(max-width: 768px){
-    .box .flex{
+@media(max-width: 768px) {
+    .box .flex {
         display: block;
     }
 
-    #root>div>div>div:nth-child(2)>div>div:nth-child(2),
-    #root>div>div>div:nth-child(3)>div>div:nth-child(2),
-    #root>div>div>div:nth-child(4)>div>div:nth-child(2),
-    #root>div>div>div:nth-child(3)>div>div.input-checkbox,
-    #root>div>div>div:nth-child(4)>div>div.input-checkbox{
+    .box .flex .input,
+    .box .input-checkbox {
+        margin-left: 0px !important;
+    }
+
+    .box .input-checkbox{
+        width: 300px !important;
+    }
+
+    .box {
         margin-left: 0px;
         width: 100%;
     }
 
-    .box .input{
+    .box .input {
         width: 100% !important;
     }
 }

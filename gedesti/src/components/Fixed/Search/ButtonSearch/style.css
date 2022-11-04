@@ -14,3 +14,7 @@
     align-items: center;
     justify-content: center;
 }
+
+.button-table-list:hover {
+    background-color: var(--blue00);
+}

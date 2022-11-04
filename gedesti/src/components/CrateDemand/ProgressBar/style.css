@@ -31,6 +31,10 @@
     border-top: 4px solid var(--blue);
 }
 
+.progress-bar .line-current:hover{
+    border-top: 4px solid var(--blue00);
+}
+
 .progress-bar {
     display: flex;
     align-items: center;
@@ -67,6 +71,10 @@
 
 .progress-bar .ellipse-current {
     background-color: var(--blue);
+}
+
+.progress-bar .ellipse-current:hover{
+    background-color: var(--blue00);
 }
 
 @media(max-width: 768px) {

@@ -29,6 +29,20 @@ export default function Message() {
                     </div>
 
 
+
+                    <div className="message-user">
+                        <div className="message-content">
+                            <span className="message-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum eleifend quam vitae viverra. Nullam vulputate elit a ipsum porttitor gravida. Proin et vehicula velit. Donec eget nulla quis
+                            </span>
+
+
+                            <div className="message-time">
+                                <span >12:00</span>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div className="text-field">
 
                         <div className="input-message">

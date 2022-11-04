@@ -1,5 +1,5 @@
 .messages .box-message {
-    margin-top: 70px;
+    margin-top: 50px;
     color: var(--grey59);
 }
 
@@ -76,4 +76,30 @@
 .messages .box-message .send .material-symbols-outlined {
     font-size: 30px;
     margin-top: 6px;
+}
+
+.messages .box-message .message-user {
+    max-width: 40%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background-color: var(--greyE5);
+}
+
+.messages .box-message .message-user:hover {
+    background-color: var(--greyD9);
+}
+
+.messages .box-message .message-user .message-content {
+    display: grid;
+}
+
+.messages .box-message .message-user .message-time {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.messages .box-message .message-user span {
+    font-size: var(--p);
 }

@@ -15,7 +15,40 @@ export default function Message() {
                     <Title nav="Mensagens > Mensagem" title="Mensagem" />
                 </div>
 
+                <div className="box-message">
+                    <div className="profile">
+                        <img className="user-picture" src="https://media-exp1.licdn.com/dms/image/C5603AQGoPhhWyeL2-Q/profile-displayphoto-shrink_200_200/0/1516833080377?e=2147483647&v=beta&t=O_q0eYPuycqoRh8ACadEX5gQhrVbPnomvJKRFQTIycI" alt="" />
+                        <div className="message-name">
+                            <span className="username">Jair - Analista da demanda 01</span>
 
+                            <div className="online">
+                                <span>online</span>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className="text-field">
+
+                        <div className="input-message">
+                            <input type="text" placeholder="Envie sua mensagem" />
+                            <span className="material-symbols-outlined">
+                                add_reaction
+                            </span>
+
+                            <span className="material-symbols-outlined">
+                                attach_file
+                            </span>
+                        </div>
+
+                        <div className="send">
+                            <span className="material-symbols-outlined">
+                                send
+                            </span>
+                        </div>
+                    </div>
+                </div>
 
             </div>
 

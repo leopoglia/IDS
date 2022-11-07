@@ -55,7 +55,7 @@ main #password {
 .login-form main .material-symbols-outlined {
     position: absolute;
     margin-left: -32px;
-    margin-top: 30px;
+    margin-top: 32px;
 }
 
 .login-form main div:nth-child(2) span {

@@ -1,6 +1,7 @@
 :root {
   --blue: #00579D;
   --blue00: #0072C6;
+  --blue19: #1976d2;
   --blue64: #64C3D5;
   --blueF4: #F4FaFF;
   --grey3d: #3d3d3d;
@@ -15,6 +16,8 @@
   --m: 18px;
   --p: 14px;
   --pp: 11px;
+
+  --h: 45px;
 }
 
 @font-face {
@@ -45,7 +48,7 @@
 
 .container {
   margin-left: 65px;
-  padding: 20px 120px;
+  padding: 20px 130px;
 }
 
 body {
@@ -114,7 +117,7 @@ input[type=checkbox]:checked {
 .btn-primary {
   background-color: var(--blue);
   width: 200px;
-  height: 40px;
+  height: var(--h);
   margin-left: 20px;
   border-radius: 3px;
   border: none;
@@ -129,8 +132,16 @@ input[type=checkbox]:checked {
   background-color: var(--blue00);
 }
 
-.btn-primary .material-symbols-outlined{
+.btn-primary .material-symbols-outlined {
   margin-right: 5px;
+}
+
+.box .input input:hover {
+  border: 1px solid black;
+}
+
+.box .input input:focus {
+  border: 2px solid var(--blue19);
 }
 
 

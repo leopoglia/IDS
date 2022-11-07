@@ -8,11 +8,6 @@ nav,
     background-color: var(--greyE5);
 }
 
-* {
-    transition: 0.2s;
-
-}
-
 .nav-open {
     width: 185px;
 }
@@ -63,4 +58,32 @@ li:hover {
     background-color: var(--greyE5);
     position: fixed;
     bottom: 0;
+}
+
+@media(max-width: 768px) {
+
+    .nav-open {
+        width: 100%;
+        position: sticky;
+        z-index: 1;
+    }
+
+    .nav-open{
+        overflow: hidden !important;
+    }
+
+    nav li {
+        height: 65px;
+        width: 100%;
+    }
+
+    .nav-open .logout {
+        width: 100%;
+    }
+
+    nav li .material-symbols-rounded {
+        font-size: 22px;
+    }
+
+
 }

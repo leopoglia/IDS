@@ -11,15 +11,6 @@
     align-items: center;
 }
 
-/* Input Descrição Beneficios*/
-/* #root>div>div>div:nth-child(2)>div>div:nth-child(2),
-#root>div>div>div:nth-child(3)>div>div:nth-child(2),
-#root>div>div>div:nth-child(4)>div>div:nth-child(2),
-#root>div>div>div:nth-child(3)>div>div.input-checkbox,
-#root>div>div>div:nth-child(4)>div>div.input-checkbox {
-    margin-left: 20px;
-} */
-
 #root>div>div>div:nth-child(4)>div>div.input-checkbox {
     width: 650px;
 }
@@ -31,7 +22,7 @@
 }
 
 .box .input-checkbox .checkbox {
-    height: 40px;
+    height: var(--h);
     display: flex;
     align-items: center;
 }

@@ -7,7 +7,7 @@ export default function Nav() {
 
     const [nav, setNav] = useState(1);
 
-    if (nav == 1) {
+    if (nav === 1) {
         return (
             <nav className="nav">
                 <ul>

@@ -5,6 +5,7 @@ import Title from "../../Fixed/Search/Title";
 import ProgressBar from "../ProgressBar";
 import Input from "../Input";
 import ButtonAction from "../ButtonAction";
+import SelectCoin from "../SelectCoin";
 
 export default function CreateDemands2() {
     return (
@@ -24,6 +25,7 @@ export default function CreateDemands2() {
 
                     <div className="flex">
                         <Input label="Valor Mensal" required="*" />
+                        <SelectCoin />
                         <Input label="Descrição" required=""></Input>
                     </div>
                 </div>
@@ -34,6 +36,7 @@ export default function CreateDemands2() {
                     <div className="flex">
 
                         <Input label="Valor Mensal" required="*" />
+                        <SelectCoin />
                         <Input label="Descrição" required=""></Input>
 
 
@@ -52,6 +55,7 @@ export default function CreateDemands2() {
 
                     <div className="flex">
                         <Input label="Valor Mensal" required="*" />
+                        <SelectCoin />
                         <Input label="Descrição" required=""></Input>
 
                         <div className="input-checkbox">

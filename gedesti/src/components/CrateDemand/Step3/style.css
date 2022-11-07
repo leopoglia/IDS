@@ -4,7 +4,7 @@
 
 .attachments label {
     width: 250px;
-    height: 40px;
+    height: var(--h);
     padding: 11px;
     background-color: var(--blue);
     border-radius: 3px;

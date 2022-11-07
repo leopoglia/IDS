@@ -11,7 +11,7 @@
 }
 
 .header .left img {
-    width: 50px;
+    width: 40px;
 }
 
 .title,
@@ -33,7 +33,7 @@
 .title {
     width: auto;
     display: block;
-    margin-left: 80px;
+    margin-left: 130px;
 }
 
 .title .flex {
@@ -59,4 +59,10 @@
     width: 35px;
     height: 35px;
     border-radius: 35px;
+}
+
+@media(max-width: 768px){
+    .title{
+        margin-left: 20px;
+    }
 }

@@ -1,7 +1,7 @@
 .button-action-back,
 .button-action-next {
     width: 15%;
-    height: 40px;
+    height: var(--h);
     border-radius: 3px;
     border: none;
     cursor: pointer;

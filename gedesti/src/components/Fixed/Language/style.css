@@ -1,4 +1,4 @@
-.language{
+.language {
     width: 100px;
     display: flex;
     align-items: center;
@@ -6,10 +6,40 @@
     cursor: pointer;
 }
 
-.language img{
+.language img {
     width: 35px;
 }
 
-.language span{
+.language span {
     color: var(--white);
+}
+
+.language img {
+    border-radius: 2px;
+}
+
+.modal {
+    position: fixed;
+    width: 55px;
+    height: 110px;
+    border-radius: 3px;
+    background-color: var(--greyE5);
+    margin-top: 185px;
+    margin-left: -15px;
+    display: inline;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal .flag {
+    width: 100%;
+    height: 36.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal .flag:hover {
+    border-radius: 3px;
+    background-color: var(--greyD9);
 }

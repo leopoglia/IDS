@@ -44,7 +44,7 @@
 .login-form main #email,
 main #password {
     width: 100%;
-    height: 40px;
+    height: var(--h);
     margin: 2px 0 15px 0 !important;
     padding-left: 45px;
     padding-right: 10px;
@@ -85,7 +85,7 @@ main #password {
     background-color: var(--blue);
     color: var(--white);
     width: 100%;
-    height: 40px;
+    height: var(--h);
     border: none;
     border-radius: 3px;
 }

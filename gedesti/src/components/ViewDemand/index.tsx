@@ -3,6 +3,7 @@ import Header from "../Fixed/Header"
 import Nav from "../Fixed/Nav"
 import Title from "../Fixed/Search/Title";
 import ButtonActionAnalyst from "./ButtonActionAnalyst";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 
 
@@ -40,9 +41,11 @@ export default function ViewDemand() {
                                 <span>Reprovar</span>
                             </button>
 
-                            <button className="btn-primary">
-                                <span>Classificar</span>
-                            </button>
+                            <Link to="/rank-demand">
+                                <button className="btn-primary">
+                                    <span>Classificar</span>
+                                </button>
+                            </Link>
 
 
                             <ButtonActionAnalyst />

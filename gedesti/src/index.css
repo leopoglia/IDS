@@ -161,6 +161,11 @@ input[type=checkbox]:checked {
   background-color: var(--blue19);
 }
 
+.container a {
+  text-decoration: none !important;
+}
+
+
 input:hover,
 textarea:hover {
   border: 1px solid black !important;

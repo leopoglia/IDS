@@ -69,3 +69,7 @@
 .view-demand .attachments .attachment:hover {
     background-color: var(--greyF7);
 }
+
+.view-demand .btn-secondary {
+    margin-right: 15px !important;
+}

@@ -23,7 +23,7 @@
     position: fixed;
     width: 55px;
     height: 114px;
-    border-radius: 3px;
+    border-radius: 4px;
     background-color: var(--greyE5);
     margin-top: 185px;
     margin-left: -15px;
@@ -41,6 +41,6 @@
 }
 
 .modal .flag:hover {
-    border-radius: 3px;
+    border-radius: 4px;
     background-color: var(--greyD9);
 }

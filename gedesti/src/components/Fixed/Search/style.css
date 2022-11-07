@@ -11,6 +11,7 @@
 
 .input-search {
     width: 100%;
+    margin-right: 20px;
 }
 
 .search input {
@@ -19,7 +20,7 @@
     padding-left: 45px;
     padding-right: 10px;
     margin-left: 10px;
-    border-radius: 3px;
+    border-radius: 4px;
     border: 1px solid var(--greyC4);
 }
 
@@ -62,6 +63,10 @@
     .search .input-search .material-symbols-outlined {
         margin-top: 32px;
         margin-left: 10px;
+    }
+
+    .search .input-search{
+        margin-right: 0px;
     }
 }
 

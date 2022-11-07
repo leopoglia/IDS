@@ -2,8 +2,14 @@ import "./style.css"
 import Header from "../Fixed/Header"
 import Nav from "../Fixed/Nav"
 import Title from "../Fixed/Search/Title";
+import { useState } from "react";
+
 
 export default function ViewDemand() {
+
+    const [actionsDemand, setActionsDemand] = useState(2);
+
+
     return (
         <div className="view-demand">
 
@@ -17,12 +23,27 @@ export default function ViewDemand() {
 
                     <Title nav="Demandas > Visualizar Demanda" title="Visualizar Demanda" />
 
-                    <button className="btn-primary">
-                        <span className="material-symbols-outlined">
-                            download
-                        </span>
-                        <span>Gerar PDF</span>
-                    </button>
+                    {(actionsDemand === 1) ? (
+
+                        <button className="btn-primary">
+                            <span className="material-symbols-outlined">
+                                download
+                            </span>
+                            <span>Gerar PDF</span>
+                        </button>
+                    ) : (
+                        <div className="display-flex">
+
+                            <button className="btn-secondary">
+
+                                <span>Reprovar</span>
+                            </button>
+
+                            <button className="btn-primary">
+                                <span>Classificar</span>
+                            </button>
+                        </div>
+                    )}
 
                 </div>
 

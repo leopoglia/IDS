@@ -101,7 +101,7 @@ input[type=checkbox]:checked {
   outline: none;
 }
 
-.display-flex{
+.display-flex {
   display: flex;
 }
 
@@ -113,17 +113,18 @@ input[type=checkbox]:checked {
   width: 100%;
   height: 100%;
   border: 1px solid var(--greyC4);
-  border-radius: 3px;
+  border-radius: 4px;
   padding: 20px;
   margin-bottom: 15px;
 }
 
-.btn-primary {
+.btn-primary,
+.btn-secondary {
   background-color: var(--blue);
   width: 200px;
   height: var(--h);
-  margin-left: 20px;
-  border-radius: 3px;
+  border-radius: 4px;
+  font-size: var(--p) !important;
   border: none;
   color: var(--white);
   cursor: pointer;
@@ -131,6 +132,13 @@ input[type=checkbox]:checked {
   align-items: center;
   justify-content: center;
 }
+
+.btn-secondary {
+  background-color: var(--greyE5);
+  color: var(--grey59);
+  border: 1px solid var(--greyC4);
+}
+
 
 .btn-primary:hover {
   background-color: var(--blue00);

@@ -27,10 +27,12 @@
     align-items: center;
 }
 
+.box .input-checkbox{
+    margin-left: 15px;
+}
 
-.box .input-checkbox .checkbox input {
-    width: 17px;
-    height: 17px;
+.box .input-checkbox .requirements{
+    width: 250px;
 }
 
 @media(max-width: 768px) {

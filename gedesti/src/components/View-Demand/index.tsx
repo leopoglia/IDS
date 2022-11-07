@@ -2,6 +2,7 @@ import "./style.css"
 import Header from "../Fixed/Header"
 import Nav from "../Fixed/Nav"
 import Title from "../Fixed/Search/Title";
+import ButtonActionAnalyst from "./ButtonActionAnalyst";
 import { useState } from "react";
 
 
@@ -42,6 +43,9 @@ export default function ViewDemand() {
                             <button className="btn-primary">
                                 <span>Classificar</span>
                             </button>
+
+
+                            <ButtonActionAnalyst />
                         </div>
                     )}
 

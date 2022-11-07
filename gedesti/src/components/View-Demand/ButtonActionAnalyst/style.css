@@ -1,0 +1,30 @@
+.display-flex .btn-primary-unique {
+    margin-left: 15px !important;
+}
+
+.modal-analyst {
+    border: 2px solid var(--greyD9);
+    position: fixed;
+    width: 160px;
+    height: 120px;
+    border-radius: 4px;
+    background-color: var(--greyE5);
+    margin-top: 20px;
+    margin-left: -100px;
+    display: inline;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-analyst div{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    color: var(--grey59);
+}
+
+.modal-analyst div:hover{
+    background-color: var(--greyD9);
+}

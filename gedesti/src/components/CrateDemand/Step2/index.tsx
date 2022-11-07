@@ -6,6 +6,7 @@ import ProgressBar from "../ProgressBar";
 import Input from "../Input";
 import ButtonAction from "../ButtonAction";
 import SelectCoin from "../SelectCoin";
+import CheckBox from "../CheckBox";
 
 export default function CreateDemands2() {
     return (
@@ -43,8 +44,7 @@ export default function CreateDemands2() {
                         <div className="input-checkbox">
                             <label>Obrigação Legal</label>
                             <div className="checkbox">
-                                <input type="checkbox" />
-                                <span>Sim</span>
+                                <CheckBox />
                             </div>
                         </div>
                     </div>
@@ -59,10 +59,9 @@ export default function CreateDemands2() {
                         <Input label="Descrição" required=""></Input>
 
                         <div className="input-checkbox">
-                            <label>Requisitos de controles internos</label>
+                            <label className="requirements">Requisitos de controles internos</label>
                             <div className="checkbox">
-                                <input type="checkbox" />
-                                <span>Sim</span>
+                                <CheckBox />
                             </div>
                         </div>
                     </div>

@@ -101,6 +101,10 @@ input[type=checkbox]:checked {
   outline: none;
 }
 
+.display-flex{
+  display: flex;
+}
+
 .material-symbols-outlined {
   user-select: none;
 }
@@ -136,12 +140,12 @@ input[type=checkbox]:checked {
   margin-right: 5px;
 }
 
-.box .input input:hover {
-  border: 1px solid black;
+input:hover {
+  border: 1px solid black !important;
 }
 
-.box .input input:focus {
-  border: 2px solid var(--blue19);
+input:focus {
+  border: 2px solid var(--blue19) !important;
 }
 
 

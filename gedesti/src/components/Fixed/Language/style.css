@@ -19,9 +19,10 @@
 }
 
 .modal {
+    border: 2px solid var(--greyD9);
     position: fixed;
     width: 55px;
-    height: 110px;
+    height: 114px;
     border-radius: 3px;
     background-color: var(--greyE5);
     margin-top: 185px;

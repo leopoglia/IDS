@@ -18,19 +18,22 @@ export default function Search(props: {
                     <input type="text" placeholder="Buscar por solicitação" required />
                 </div>
 
-                <Link to="/create-demand/1">
-                    <button className="btn-primary">
-                        <span className="material-symbols-outlined">
-                            add
-                        </span>
-                        Criar demanda
-                    </button>
-                </Link>
 
-                <div className="btn-search">
-                    <ButtonTableList icon="table_rows" />
+                <div className="display-flex">
+                    <Link to="/create-demand/1">
+                        <button className="btn-primary">
+                            <span className="material-symbols-outlined">
+                                add
+                            </span>
+                            Criar demanda
+                        </button>
+                    </Link>
 
-                    <ButtonTableList icon="filter_alt" />
+                    <div className="btn-search">
+                        <ButtonTableList icon="table_rows" />
+
+                        <ButtonTableList icon="filter_alt" />
+                    </div>
                 </div>
             </div>
         </div>

@@ -105,6 +105,10 @@ input[type=checkbox]:checked {
   display: flex;
 }
 
+.display-grid {
+  display: grid;
+}
+
 .material-symbols-outlined {
   user-select: none;
 }

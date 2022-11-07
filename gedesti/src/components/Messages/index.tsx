@@ -3,6 +3,7 @@ import Header from "../Fixed/Header"
 import Nav from "../Fixed/Nav"
 import Title from "../Fixed/Search/Title";
 import Message from "./Message";
+import Footer from "../Fixed/Footer";
 
 
 export default function Messages() {
@@ -22,6 +23,9 @@ export default function Messages() {
                 <Message />
 
             </div>
+
+            <Footer />
+
 
         </div>
     );

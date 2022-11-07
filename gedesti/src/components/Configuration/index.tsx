@@ -2,6 +2,7 @@ import "./style.css"
 import Header from "../../components/Fixed/Header"
 import Nav from "../../components/Fixed/Nav"
 import Title from "../../components/Fixed/Search/Title";
+import Footer from "../Fixed/Footer";
 
 
 export default function Configuration() {
@@ -51,6 +52,8 @@ export default function Configuration() {
                 </div>
 
             </div>
+
+            <Footer />
 
         </div>
     );

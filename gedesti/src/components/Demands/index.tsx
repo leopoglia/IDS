@@ -16,14 +16,6 @@ export default function Demands() {
 
 
                 <Demand />
-                <Demand />
-                <Demand />
-                <Demand />
-                <Demand />
-                <Demand />
-                <Demand />
-
-
 
                 <div className="navigator">
                     <div className="current">1</div>

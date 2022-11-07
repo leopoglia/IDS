@@ -5,6 +5,7 @@ import Title from "../Fixed/Search/Title";
 import ButtonActionAnalyst from "./ButtonActionAnalyst";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import Footer from "../Fixed/Footer";
 
 
 export default function ViewDemand() {
@@ -36,10 +37,11 @@ export default function ViewDemand() {
                     ) : (
                         <div className="display-flex">
 
-                            <button className="btn-secondary">
-
-                                <span>Reprovar</span>
-                            </button>
+                            <Link to="/disapprove-demand">
+                                <button className="btn-secondary">
+                                    <span>Reprovar</span>
+                                </button>
+                            </Link>
 
                             <Link to="/rank-demand">
                                 <button className="btn-primary">
@@ -214,6 +216,8 @@ export default function ViewDemand() {
                 </div>
 
             </div>
+
+            <Footer />
 
 
         </div >

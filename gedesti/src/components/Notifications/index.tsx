@@ -3,6 +3,7 @@ import Header from "../Fixed/Header"
 import Nav from "../Fixed/Nav"
 import Title from "../Fixed/Search/Title";
 import Notification from "./Notification";
+import Footer from "../Fixed/Footer";
 
 export default function Notifications() {
     return (
@@ -22,8 +23,10 @@ export default function Notifications() {
                 <Notification />
                 <Notification />
                 <Notification />
-               
+
             </div>
+
+            <Footer />
 
         </div>
     );

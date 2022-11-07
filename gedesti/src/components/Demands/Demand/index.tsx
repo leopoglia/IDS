@@ -1,5 +1,6 @@
 import "./style.css";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Demand() {
 
@@ -11,18 +12,20 @@ export default function Demand() {
 
 
     return (
-        <div className="demand">
-            <section>
-                <h1>Nome da Solicitação</h1>
+        <Link to={"/view-demand"}>
+            <div className="demand">
+                <section>
+                    <h1>Nome da Solicitação</h1>
 
-                <div className="graphic">
-                    <div className="situation"></div>
-                </div>
-            </section>
+                    <div className="graphic">
+                        <div className="situation"></div>
+                    </div>
+                </section>
 
-            {information}
+                {information}
 
 
-        </div>
+            </div>
+        </Link>
     );
 }

@@ -1,6 +1,7 @@
 import "./style.css"
 import Form from "./Form"
 import Language from "../Fixed/Language";
+import Footer from "../Fixed/Footer";
 
 export default function Login() {
     return (
@@ -12,6 +13,9 @@ export default function Login() {
             <div className="form">
                 <Form></Form>
             </div>
+
+            <Footer />
+
         </div>
     );
 }

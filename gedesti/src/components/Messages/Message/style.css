@@ -8,6 +8,7 @@
     color: var(--grey59);
     padding: 20px;
     cursor: pointer;
+    font-weight: 400;
 }
 
 .message:hover{

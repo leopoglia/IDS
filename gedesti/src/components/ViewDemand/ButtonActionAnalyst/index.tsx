@@ -1,5 +1,6 @@
 import "./style.css"
 import { useState } from "react";
+import ModalActionAnalyst from "../ModalActionAnalyst";
 
 
 export default function ButtonActionAnalyst() {
@@ -16,25 +17,8 @@ export default function ButtonActionAnalyst() {
             </button>
 
             {modal && (
-                <div className="modal-analyst">
-                    <div>
-                        <span>
-                            Abrir conversa
-                        </span>
-                    </div>
-
-                    <div>
-                        <span>
-                            Baixar em PDF
-                        </span>
-                    </div>
-
-                    <div>
-                        <span>
-                            Histórico
-                        </span>
-                    </div>
-
+                <div className="modal-action-analyst">
+                    <ModalActionAnalyst />
                 </div>
             )}
         </div>

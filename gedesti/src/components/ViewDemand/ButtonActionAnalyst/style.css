@@ -16,7 +16,7 @@
     justify-content: center;
 }
 
-.modal-analyst div{
+.modal-analyst div {
     width: 100%;
     display: flex;
     align-items: center;
@@ -25,6 +25,13 @@
     color: var(--grey59);
 }
 
-.modal-analyst div:hover{
+.modal-analyst div:hover {
     background-color: var(--greyD9);
+}
+
+.modal-action-analyst {
+    position: absolute;
+    margin-left: -120px;
+    margin-right: 50px;
+    margin-top: 20px;
 }

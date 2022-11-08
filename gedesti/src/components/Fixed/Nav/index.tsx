@@ -1,11 +1,16 @@
 import { Link } from "react-router-dom";
 import "./style.css"
-import React, { useState } from 'react';
-
+import React, { useState } from 'react'
 
 export default function Nav() {
 
     const [nav, setNav] = useState(1);
+
+    const [open, setOpen] = React.useState(true);
+
+    const handleClick = () => {
+        setOpen(!open);
+    };
 
     if (nav === 1) {
         return (
@@ -23,13 +28,51 @@ export default function Nav() {
                             <span className="material-symbols-outlined">
                                 folder_copy
                             </span>
+
+                            <span className="material-symbols-outlined">
+                                arrow_drop_down
+                            </span>
+                        </li>
+                    </Link>
+
+                    <Link to="/proposal">
+                        <li>
+                            <span className="material-symbols-outlined">
+                                content_paste
+                            </span>
+
+                            <span className="material-symbols-outlined">
+                                arrow_drop_down
+                            </span>
+                        </li>
+                    </Link>
+
+                    <Link to="/agenda">
+                        <li>
+                            <span className="material-symbols-outlined">
+                                file_copy
+                            </span>
+                            <span className="material-symbols-outlined">
+                                arrow_drop_down
+                            </span>
+                        </li>
+                    </Link>
+
+                    <Link to="/minute">
+                        <li>
+                            <span className="material-symbols-outlined">
+                                description
+                            </span>
+                            <span className="material-symbols-outlined">
+                                arrow_drop_down
+                            </span>
                         </li>
                     </Link>
 
                     <Link to="/messages">
                         <li>
                             <span className="material-symbols-outlined">
-                                chat
+                                chat_bubble
                             </span>
                         </li>
                     </Link>
@@ -79,13 +122,54 @@ export default function Nav() {
                                 folder_copy
                             </span>
                             <span>Demanda</span>
+
+                            <span className="material-symbols-outlined">
+                                arrow_drop_down
+                            </span>
+                        </li>
+                    </Link>
+
+
+                    <Link to="/proposal">
+                        <li>
+                            <span className="material-symbols-outlined">
+                                content_paste
+                            </span>
+                            <span>Proposta</span>
+                            <span className="material-symbols-outlined">
+                                arrow_drop_down
+                            </span>
+                        </li>
+                    </Link>
+
+                    <Link to="/agenda">
+                        <li>
+                            <span className="material-symbols-outlined">
+                                file_copy
+                            </span>
+                            <span>Pauta</span>
+                            <span className="material-symbols-outlined">
+                                arrow_drop_down
+                            </span>
+                        </li>
+                    </Link>
+
+                    <Link to="/minute">
+                        <li>
+                            <span className="material-symbols-outlined">
+                                description
+                            </span>
+                            <span>Ata</span>
+                            <span className="material-symbols-outlined">
+                                arrow_drop_down
+                            </span>
                         </li>
                     </Link>
 
                     <Link to="/messages">
                         <li>
                             <span className="material-symbols-outlined">
-                                chat
+                                chat_bubble
                             </span>
                             <span>Mensagens</span>
                         </li>
@@ -120,6 +204,7 @@ export default function Nav() {
                     </Link>
 
                 </ul>
+
             </nav >
         );
     }

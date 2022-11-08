@@ -24,9 +24,10 @@ export default function Notifications() {
                 <Notification />
                 <Notification />
 
+                <Footer />
+
             </div>
 
-            <Footer />
 
         </div>
     );

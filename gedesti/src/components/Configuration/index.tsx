@@ -51,9 +51,11 @@ export default function Configuration() {
                     </div>
                 </div>
 
+                <Footer />
+
+
             </div>
 
-            <Footer />
 
         </div>
     );

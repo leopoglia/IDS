@@ -42,9 +42,10 @@ export default function DisapproveDemand() {
 
                 </div>
 
+                <Footer />
+
             </div>
 
-            <Footer />
         </div>
     );
 }

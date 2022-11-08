@@ -216,9 +216,11 @@ export default function ViewDemand() {
                     </div>
                 </div>
 
+                <Footer />
+
+
             </div>
 
-            <Footer />
 
 
         </div >

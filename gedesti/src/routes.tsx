@@ -13,6 +13,7 @@ import ViewDemand from "./components/ViewDemand";
 import RankDemand from "./components/RankDemand";
 import DisapproveDemand from "./components/DisapproveDemand";
 import ComplementDemand from "./components/ComplementDemand";
+import HistoricalDemand from "./components/HistoricalDemand";
 
 export default function Router() {
     return (
@@ -27,10 +28,11 @@ export default function Router() {
                 <Route path="/create-demand/1" element={<CreateDemands1 />} />
                 <Route path="/create-demand/2" element={<CreateDemands2 />} />
                 <Route path="/create-demand/3" element={<CreateDemands3 />} />
-                <Route path="/view-demand" element={<ViewDemand />} />
-                <Route path="/rank-demand/" element={<RankDemand />} />
-                <Route path="/disapprove-demand/" element={<DisapproveDemand />} />
-                <Route path="/complement-demand/" element={<ComplementDemand />} />
+                <Route path="/demand/view" element={<ViewDemand />} />
+                <Route path="/demand/rank" element={<RankDemand />} />
+                <Route path="/demand/disapprove" element={<DisapproveDemand />} />
+                <Route path="/demand/complement" element={<ComplementDemand />} />
+                <Route path="/demand/historical" element={<HistoricalDemand />} />
 
             </Routes>
         </BrowserRouter>

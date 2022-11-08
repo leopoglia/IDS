@@ -12,7 +12,7 @@ export default function Demand() {
 
 
     return (
-        <Link to={"/view-demand"}>
+        <Link to={"/demand/view"}>
             <div className="demand">
                 <section>
                     <h1>Nome da Solicitação</h1>

@@ -37,13 +37,13 @@ export default function ViewDemand() {
                     ) : (
                         <div className="display-flex">
 
-                            <Link to="/disapprove-demand">
+                            <Link to="/demand/disapprove">
                                 <button className="btn-secondary">
                                     <span>Reprovar</span>
                                 </button>
                             </Link>
 
-                            <Link to="/rank-demand">
+                            <Link to="/demand/rank">
                                 <button className="btn-primary">
                                     <span>Classificar</span>
                                 </button>

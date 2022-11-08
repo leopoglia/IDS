@@ -131,16 +131,21 @@ export default function Message() {
                         <div className="input-message">
                             <input type="text" placeholder="Envie sua mensagem" />
 
-                            <div className="add-reaction">
-                                <span className="material-symbols-outlined">
-                                    add_reaction
-                                </span>
-                            </div>
 
-                            <div className="attach_file">
-                                <span className="material-symbols-outlined">
-                                    attach_file
-                                </span>
+                            <div className="actions-message">
+
+                                <div className="add-reaction">
+                                    <span className="material-symbols-outlined">
+                                        add_reaction
+                                    </span>
+                                </div>
+
+                                <div className="attach_file">
+                                    <span className="material-symbols-outlined">
+                                        attach_file
+                                    </span>
+                                </div>
+
                             </div>
                         </div>
 

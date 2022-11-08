@@ -6,12 +6,6 @@ export default function Nav() {
 
     const [nav, setNav] = useState(1);
 
-    const [open, setOpen] = React.useState(true);
-
-    const handleClick = () => {
-        setOpen(!open);
-    };
-
     if (nav === 1) {
         return (
             <nav className="nav">
@@ -29,9 +23,7 @@ export default function Nav() {
                                 folder_copy
                             </span>
 
-                            <span className="material-symbols-outlined">
-                                arrow_drop_down
-                            </span>
+
                         </li>
                     </Link>
 
@@ -41,9 +33,7 @@ export default function Nav() {
                                 content_paste
                             </span>
 
-                            <span className="material-symbols-outlined">
-                                arrow_drop_down
-                            </span>
+
                         </li>
                     </Link>
 
@@ -52,9 +42,7 @@ export default function Nav() {
                             <span className="material-symbols-outlined">
                                 file_copy
                             </span>
-                            <span className="material-symbols-outlined">
-                                arrow_drop_down
-                            </span>
+
                         </li>
                     </Link>
 
@@ -63,9 +51,7 @@ export default function Nav() {
                             <span className="material-symbols-outlined">
                                 description
                             </span>
-                            <span className="material-symbols-outlined">
-                                arrow_drop_down
-                            </span>
+
                         </li>
                     </Link>
 
@@ -123,9 +109,7 @@ export default function Nav() {
                             </span>
                             <span>Demanda</span>
 
-                            <span className="material-symbols-outlined">
-                                arrow_drop_down
-                            </span>
+
                         </li>
                     </Link>
 
@@ -136,9 +120,7 @@ export default function Nav() {
                                 content_paste
                             </span>
                             <span>Proposta</span>
-                            <span className="material-symbols-outlined">
-                                arrow_drop_down
-                            </span>
+
                         </li>
                     </Link>
 
@@ -148,9 +130,7 @@ export default function Nav() {
                                 file_copy
                             </span>
                             <span>Pauta</span>
-                            <span className="material-symbols-outlined">
-                                arrow_drop_down
-                            </span>
+
                         </li>
                     </Link>
 
@@ -160,9 +140,7 @@ export default function Nav() {
                                 description
                             </span>
                             <span>Ata</span>
-                            <span className="material-symbols-outlined">
-                                arrow_drop_down
-                            </span>
+
                         </li>
                     </Link>
 

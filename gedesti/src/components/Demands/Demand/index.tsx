@@ -17,12 +17,22 @@ export default function Demand() {
                 <section>
                     <h1>Nome da Solicitação</h1>
 
-                    <div className="graphic">
-                        <div className="situation"></div>
+
+                    <div className="display-grid">
+                        <div className="graphic">
+                            <div className="situation"></div>
+                        </div>
+
                     </div>
+
                 </section>
 
-                {information}
+
+                <div className="display-flex">
+                    {information}
+
+                    <button className="btn-primary">Gerar Proposta</button>
+                </div>
 
 
             </div>

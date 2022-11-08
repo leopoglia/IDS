@@ -110,3 +110,13 @@
     background-color: var(--greyC4);
     border-radius: 20px;
 }
+
+
+.demand .display-flex {
+    justify-content: space-between;
+}
+
+.demand .display-flex button{
+    margin-right: 15px;
+    width: 150px;
+}

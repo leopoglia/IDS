@@ -2,5 +2,18 @@
     margin-left: 0px !important;
 }
 
-.box .display-grid div div {
+.box .attatchments-complements {
+    margin-top: 0px;
+}
+
+.complement-demand .display-grid {
+    margin-bottom: 10px;
+}
+
+.display-grid-select{
+    display: grid;
+}
+
+.box .attatchments-complements label {
+    margin-top: 5px;
 }

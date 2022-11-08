@@ -1,15 +1,18 @@
 import "./style.css"
 import Language from "../Language"
+import { Link } from "react-router-dom";
 
 export default function Header(props: {
     icon: string;
     title: string;
-  }) {
+}) {
     return (
         <header className="header">
 
             <div className="left">
-                <img src="../imgs/weg-white.png" alt="" />
+                <Link to="/demands">
+                    <img src="../imgs/weg-white.png" alt="" />
+                </Link>
 
                 <div className="title">
                     <div className="flex">

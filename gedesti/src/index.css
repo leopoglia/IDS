@@ -170,12 +170,14 @@ input[type=checkbox]:checked {
 }
 
 
-input:hover,
+input[type="text"]:hover,
+input[type="password"]:hover,
 textarea:hover {
   border: 1px solid black !important;
 }
 
-input:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
 textarea:focus {
   border: 2px solid var(--blue19) !important;
 }

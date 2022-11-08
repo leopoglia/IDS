@@ -18,7 +18,7 @@ export default function ComplementDemand() {
 
                 <div className="background-title">
 
-                    <Title nav="Demandas > Visualizar Demanda > Classificar Demanda" title="Classificar Demanda" />
+                    <Title nav="Demandas > Visualizar Demanda > Complementar Demanda" title="Complementar Demanda" />
 
                 </div>
 

@@ -78,7 +78,7 @@ export default function RankDemand() {
                     </button>
 
                     <button className="btn-primary">
-                        <span>Avançar</span>
+                        <span>Classificar</span>
                     </button>
 
 

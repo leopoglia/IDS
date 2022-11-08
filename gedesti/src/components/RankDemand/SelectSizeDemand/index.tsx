@@ -15,12 +15,14 @@ export default function SelectLabels() {
     return (
         <div>
 
-            <FormControl sx={{ m: 1, minWidth: "100%" }}>
+            <FormControl sx={{ minWidth: "100%", height: "60px" }}>
                 <Select
                     value={age}
                     onChange={handleChange}
                     displayEmpty
                     inputProps={{ 'aria-label': 'Without label' }}
+
+                    sx={{ height: '45px' }}
                 >
                     <MenuItem value="">
                         <em>None</em>

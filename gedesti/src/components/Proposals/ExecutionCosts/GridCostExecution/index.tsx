@@ -24,51 +24,47 @@ const StyledBox = styled(Box)(({ theme }) => ({
 const rows: GridRowsProp = [
     {
         id: 1,
-        expense: 'Light bill',
-        price: randomPrice(0, 1000),
-        dueAt: new Date(2021, 6, 8),
-        isPaid: false,
-        paymentMethod: '',
+        tipoDespesa: 'Light bill',
+        perilDespesa: randomPrice(0, 1000),
+        periodoExecucao: new Date(2021, 6, 8),
+        quantidadeHoras: false,
+        valorHora: '',
+        valorTotal: '',
     },
     {
         id: 2,
-        expense: 'Rent',
-        price: randomPrice(0, 1000),
-        dueAt: new Date(2021, 7, 1),
-        isPaid: false,
-        paymentMethod: '',
+        tipoDespesa: 'Rent',
+        perilDespesa: randomPrice(0, 1000),
+        periodoExecucao: new Date(2021, 7, 1),
+        quantidadeHoras: false,
+        valorHora: '',
+        valorTotal: '',
     },
     {
         id: 3,
-        expense: 'Car insurance',
-        price: randomPrice(0, 1000),
-        dueAt: new Date(2021, 7, 4),
-        isPaid: true,
-        paymentMethod: 'Wire transfer',
+        tipoDespesa: 'Car insurance',
+        perilDespesa: randomPrice(0, 1000),
+        periodoExecucao: new Date(2021, 7, 4),
+        quantidadeHoras: true,
+        valorHora: '',
+        valorTotal: '',
     },
-    {
-        id: 5,
-        expense: 'Caro insurance',
-        price: randomPrice(0, 1000),
-        dueAt: new Date(2021, 7, 4),
-        isPaid: true,
-        paymentMethod: 'Wire transfer',
-    },
+
 ];
 
 export default function ConditionalValidationGrid() {
     const columns: GridColumns = [
         {
-            field: 'expense',
+            field: 'tipoDespesa',
             headerName: 'Tipo de despesa',
             type: 'singleSelect',
-            width: 160,
+            width: 170,
             editable: true,
             valueOptions: ['Credit card', 'Wire transfer', 'Cash'],
 
         },
         {
-            field: 'price',
+            field: 'perilDespesa',
             headerName: 'Perfil da despesa ',
             type: 'singleSelect',
             width: 200,
@@ -76,31 +72,33 @@ export default function ConditionalValidationGrid() {
             valueOptions: ['Credit card', 'Wire transfer', 'Cash'],
         },
         {
-            field: 'dueAt',
-            headerName: 'Due at',
+            field: 'periodoExecucao',
+            headerName: 'Período de execução',
             type: 'date',
-            width: 120,
+            width: 170,
+            editable: true,
+        },
+
+        {
+            field: 'quantidadeHoras',
+            headerName: 'Quantidade de horas',
+            type: 'number',
+            width: 200,
             editable: true,
         },
         {
-            field: 'isPaid',
-            headerName: 'Is paid?',
-            type: 'boolean',
-            width: 140,
-            editable: true,
-        },
-        {
-            field: 'paymentMethod',
-            headerName: 'Payment method',
-            type: 'singleSelect',
-            valueOptions: ['Credit card', 'Wire transfer', 'Cash'],
+            field: 'valorHora',
+            headerName: 'Valor da hora',
+            type: 'number',
             width: 160,
             editable: true,
-            preProcessEditCellProps: (params) => {
-                const isPaidProps = params.otherFieldsProps!.isPaid;
-                const hasError = isPaidProps.value && !params.props.value;
-                return { ...params.props, error: hasError };
-            },
+        },
+        {
+            field: 'valorTotal',
+            headerName: 'Valor total',
+            type: 'number',
+            width: 200,
+            editable: true,
         },
     ];
 

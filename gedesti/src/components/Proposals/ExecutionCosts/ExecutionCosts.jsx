@@ -2,6 +2,7 @@ import Header from "../../Fixed/Header";
 import Nav from "../../Fixed/Nav";
 import Footer from "../../Fixed/Footer";
 import Title from "../../Fixed/Search/Title";
+import GridCostExecution from "../GridCostExecution";
 
 export default function ExecutionCosts() {
 
@@ -20,6 +21,10 @@ export default function ExecutionCosts() {
                 </div>
 
                 <div className="box">
+
+
+                    <GridCostExecution />
+
                 </div>
             </div>
 

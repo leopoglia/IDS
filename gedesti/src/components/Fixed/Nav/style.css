@@ -53,6 +53,10 @@ li:hover {
     background-color: var(--greyD9);
 }
 
+.nav-open .logout {
+    width: 185px;
+}
+
 .logout {
     width: 65px;
     background-color: var(--greyE5);

@@ -31,7 +31,9 @@ export default function Demand() {
                 <div className="display-flex">
                     {information}
 
-                    <button className="btn-primary">Gerar Proposta</button>
+                    <Link to="/proposal/execution-costs">
+                        <button className="btn-primary">Gerar Proposta</button>
+                    </Link>
                 </div>
 
 

@@ -1,11 +1,11 @@
 import "./style.css"
-import Header from "../Fixed/Header"
-import Nav from "../Fixed/Nav"
-import Title from "../Fixed/Search/Title";
+import Header from "../../Fixed/Header"
+import Nav from "../../Fixed/Nav"
+import Title from "../../Fixed/Search/Title";
 import ButtonActionAnalyst from "./ButtonActionAnalyst";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import Footer from "../Fixed/Footer";
+import Footer from "../../Fixed/Footer";
 
 
 export default function ViewDemand() {

@@ -98,7 +98,6 @@ export default function Nav() {
                         <span className="material-symbols-outlined">
                             menu
                         </span>
-                        <span>Menu</span>
                     </li>
 
 

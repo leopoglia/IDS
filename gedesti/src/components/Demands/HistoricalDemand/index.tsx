@@ -1,5 +1,5 @@
-import Header from "../Fixed/Header";
-import Nav from "../Fixed/Nav";
+import Header from "../../Fixed/Header";
+import Nav from "../../Fixed/Nav";
 
 export default function HistoricalDemand() {
     return (

@@ -1,8 +1,8 @@
 import "./style.css"
 import { useState } from "react";
-import Header from "../Fixed/Header";
-import Nav from "../Fixed/Nav";
-import Title from "../Fixed/Search/Title";
+import Header from "../../Fixed/Header";
+import Nav from "../../Fixed/Nav";
+import Title from "../../Fixed/Search/Title";
 import SelectSizeDemand from "./SelectSizeDemand";
 
 

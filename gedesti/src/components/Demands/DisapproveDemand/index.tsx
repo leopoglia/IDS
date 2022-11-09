@@ -1,7 +1,7 @@
-import Footer from "../Fixed/Footer";
-import Header from "../Fixed/Header";
-import Nav from "../Fixed/Nav";
-import Title from "../Fixed/Search/Title";
+import Footer from "../../Fixed/Footer";
+import Header from "../../Fixed/Header";
+import Nav from "../../Fixed/Nav";
+import Title from "../../Fixed/Search/Title";
 import "./style.css"
 
 export default function DisapproveDemand() {

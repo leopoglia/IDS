@@ -6,17 +6,18 @@ import Messages from "./components/Messages";
 import Message from "./components/Message/";
 import Notifications from "./components/Notifications";
 import Configuration from "./components/Configuration";
-import CreateDemands1 from "./components/CrateDemand/Step1";
-import CreateDemands2 from "./components/CrateDemand/Step2";
-import CreateDemands3 from "./components/CrateDemand/Step3";
-import ViewDemand from "./components/ViewDemand";
-import RankDemand from "./components/RankDemand";
-import DisapproveDemand from "./components/DisapproveDemand";
-import ComplementDemand from "./components/ComplementDemand";
-import HistoricalDemand from "./components/HistoricalDemand";
+import CreateDemands1 from "./components/Demands/CrateDemand/Step1";
+import CreateDemands2 from "./components/Demands/CrateDemand/Step2";
+import CreateDemands3 from "./components/Demands/CrateDemand/Step3";
+import ViewDemand from "./components/Demands/ViewDemand";
+import RankDemand from "./components/Demands/RankDemand";
+import DisapproveDemand from "./components/Demands/DisapproveDemand";
+import ComplementDemand from "./components/Demands/ComplementDemand";
+import HistoricalDemand from "./components/Demands/HistoricalDemand";
 import Proposals from "./components/Proposals";
 import Agendas from "./components/Agendas";
 import Minutes from "./components/Minutes";
+import ExecutionCosts from "./components/Proposals/ExecutionCosts/ExecutionCosts";
 
 export default function Router() {
     return (
@@ -39,6 +40,7 @@ export default function Router() {
                 <Route path="/proposals" element={<Proposals />} />
                 <Route path="/agendas" element={<Agendas />} />
                 <Route path="/minutes" element={<Minutes />} />
+                <Route path="/proposal/execution-costs" element={<ExecutionCosts />} />
 
 
             </Routes>

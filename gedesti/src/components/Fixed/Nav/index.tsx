@@ -27,7 +27,7 @@ export default function Nav() {
                         </li>
                     </Link>
 
-                    <Link to="/proposal">
+                    <Link to="/proposals">
                         <li>
                             <span className="material-symbols-outlined">
                                 content_paste
@@ -37,7 +37,7 @@ export default function Nav() {
                         </li>
                     </Link>
 
-                    <Link to="/agenda">
+                    <Link to="/agendas">
                         <li>
                             <span className="material-symbols-outlined">
                                 file_copy
@@ -46,7 +46,7 @@ export default function Nav() {
                         </li>
                     </Link>
 
-                    <Link to="/minute">
+                    <Link to="/minutes">
                         <li>
                             <span className="material-symbols-outlined">
                                 description
@@ -107,39 +107,39 @@ export default function Nav() {
                             <span className="material-symbols-outlined">
                                 folder_copy
                             </span>
-                            <span>Demanda</span>
+                            <span>Demandas</span>
 
 
                         </li>
                     </Link>
 
 
-                    <Link to="/proposal">
+                    <Link to="/proposals">
                         <li>
                             <span className="material-symbols-outlined">
                                 content_paste
                             </span>
-                            <span>Proposta</span>
+                            <span>Propostas</span>
 
                         </li>
                     </Link>
 
-                    <Link to="/agenda">
+                    <Link to="/agendas">
                         <li>
                             <span className="material-symbols-outlined">
                                 file_copy
                             </span>
-                            <span>Pauta</span>
+                            <span>Pautas</span>
 
                         </li>
                     </Link>
 
-                    <Link to="/minute">
+                    <Link to="/minutes">
                         <li>
                             <span className="material-symbols-outlined">
                                 description
                             </span>
-                            <span>Ata</span>
+                            <span>Atas</span>
 
                         </li>
                     </Link>

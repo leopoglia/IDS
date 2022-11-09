@@ -14,6 +14,9 @@ import RankDemand from "./components/RankDemand";
 import DisapproveDemand from "./components/DisapproveDemand";
 import ComplementDemand from "./components/ComplementDemand";
 import HistoricalDemand from "./components/HistoricalDemand";
+import Proposals from "./components/Proposals";
+import Agendas from "./components/Agendas";
+import Minutes from "./components/Minutes";
 
 export default function Router() {
     return (
@@ -33,6 +36,10 @@ export default function Router() {
                 <Route path="/demand/disapprove" element={<DisapproveDemand />} />
                 <Route path="/demand/complement" element={<ComplementDemand />} />
                 <Route path="/demand/historical" element={<HistoricalDemand />} />
+                <Route path="/proposals" element={<Proposals />} />
+                <Route path="/agendas" element={<Agendas />} />
+                <Route path="/minutes" element={<Minutes />} />
+
 
             </Routes>
         </BrowserRouter>

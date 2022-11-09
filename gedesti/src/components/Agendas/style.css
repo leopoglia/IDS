@@ -1,0 +1,29 @@
+
+.agendas .navigator, .agendas .navigator div{
+    display: flex;
+    align-items: center;
+}
+
+.agendas .navigator{
+    height: var(--h);
+    justify-content: flex-end;
+    margin-top: 25px;
+    color: var(--grey59);
+}
+
+.agendas .navigator div{
+    width: var(--h);
+    height: 100%;
+    justify-content: center;
+    border: 1px solid var(--greyC4);
+    border-radius: 4px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.agendas .navigator .current{
+    background-color: var(--blue);
+    color: var(--white);
+    border: none;
+}
+

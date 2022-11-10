@@ -1,4 +1,8 @@
-
+import Header from "../../Fixed/Header";
+import Nav from "../../Fixed/Nav";
+import Title from "../../Fixed/Search/Title";
+import ToggleButton from "./ToggleButton";
+import "./style.css"
 
 export default function EditProposalScope() {
     return (
@@ -18,9 +22,9 @@ export default function EditProposalScope() {
 
                     <div className="display-flex">
 
-                        <p>Scope of the project </p>
+                        <ToggleButton />
 
-                        <button className="btn-primary">Add expense</button>
+                        <button className="btn-primary">Salvar alterações</button>
 
                     </div>
 

@@ -18,6 +18,7 @@ import Proposals from "./components/Proposals";
 import Agendas from "./components/Agendas";
 import Minutes from "./components/Minutes";
 import ExecutionCosts from "./components/Proposals/ExecutionCosts/ExecutionCosts";
+import EditProposalScope from "./components/Proposals/EditProposalScope";
 
 export default function Router() {
     return (
@@ -41,6 +42,7 @@ export default function Router() {
                 <Route path="/agendas" element={<Agendas />} />
                 <Route path="/minutes" element={<Minutes />} />
                 <Route path="/proposal/execution-costs" element={<ExecutionCosts />} />
+                <Route path="/proposal/edit-scope" element={<EditProposalScope />} />
 
 
             </Routes>

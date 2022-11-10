@@ -12,7 +12,7 @@ export default function Proposals() {
             <Nav />
 
             <div className="container">
-                <Search nav="Propostas > Visualizar Propostas" title="Propostas" button="Criar Proposta" link="/proposal/create" />
+                <Search nav="Propostas > Visualizar Propostas" title="Propostas" button="Criar Proposta" link="/demands" />
 
 
                 <Proposal />

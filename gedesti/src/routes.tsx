@@ -41,14 +41,17 @@ export default function Router() {
                 <Route path="/demand/historical" element={<HistoricalDemand />} />
                 <Route path="/proposals" element={<Proposals />} />
                 <Route path="/proposal/view" element={<ViewDemand />} />
-                <Route path="/agendas" element={<Agendas />} />
-                <Route path="/agenda/view" element={<ViewDemand />} />
-                <Route path="/minutes" element={<Minutes />} />
-                <Route path="/minute/view" element={<ViewDemand />} />
                 <Route path="/proposal/execution-costs" element={<ExecutionCosts />} />
                 <Route path="/proposal/edit-scope" element={<EditProposalScope />} />
 
-                <Route path="/create-agenda/select-proposals" element={<SelectProposal />} />
+                
+                <Route path="/agendas" element={<Agendas />} />
+                <Route path="/agenda/view" element={<ViewDemand />} />
+                <Route path="/agenda/select-proposals" element={<SelectProposal />} />
+
+                <Route path="/minutes" element={<Minutes />} />
+                <Route path="/minute/view" element={<ViewDemand />} />
+
 
             </Routes>
         </BrowserRouter>

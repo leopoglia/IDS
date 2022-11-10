@@ -12,7 +12,7 @@ export default function Agendas() {
             <Nav />
 
             <div className="container">
-                <Search nav="Pautas > Visualizar Pautas" title="Pautas" button="Criar Pauta" link="/agenda/create" />
+                <Search nav="Pautas > Visualizar Pautas" title="Pautas" button="Criar Pauta" link="/agenda/select-proposals" />
 
 
                 <Agenda />

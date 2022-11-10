@@ -1,7 +1,6 @@
 import "./style.css"
 import Header from "../../Fixed/Header"
 import Nav from "../../Fixed/Nav"
-import Search from "../../Fixed/Search";
 import SelectProposal from "./SelectProposal";
 import Footer from "../../Fixed/Footer";
 import Title from "../../Fixed/Search/Title";

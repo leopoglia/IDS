@@ -12,7 +12,7 @@ export default function Demands() {
             <Nav />
 
             <div className="container">
-                <Search nav="Demandas > Visualizar Demandas" title="Demandas" />
+                <Search nav="Demandas > Visualizar Demandas" title="Demandas" button="Criar Demand" link="/demand/create/1" />
 
 
                 <Demand />

@@ -1,17 +1,17 @@
 
-.demands .navigator, .demands .navigator div{
+.proposals .navigator, .proposals .navigator div{
     display: flex;
     align-items: center;
 }
 
-.demands .navigator{
+.proposals .navigator{
     height: var(--h);
     justify-content: flex-end;
     margin-top: 25px;
     color: var(--grey59);
 }
 
-.demands .navigator div{
+.proposals .navigator div{
     width: var(--h);
     height: 100%;
     justify-content: center;
@@ -21,7 +21,7 @@
     cursor: pointer;
 }
 
-.demands .navigator .current{
+.proposals .navigator .current{
     background-color: var(--blue);
     color: var(--white);
     border: none;

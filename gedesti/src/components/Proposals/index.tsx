@@ -7,12 +7,12 @@ import Footer from "../Fixed/Footer";
 
 export default function Proposals() {
     return (
-        <div className="demands">
+        <div className="proposals">
             <Header icon="content_paste" title="Propostas" />
             <Nav />
 
             <div className="container">
-                <Search nav="Propostas > Visualizar Propostas" title="Propostas" />
+                <Search nav="Propostas > Visualizar Propostas" title="Propostas" button="Criar Proposta" link="/proposal/create" />
 
 
                 <Proposal />

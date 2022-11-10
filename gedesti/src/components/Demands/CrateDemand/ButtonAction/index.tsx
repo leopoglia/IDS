@@ -20,13 +20,13 @@ export default function ButtonAction(props: {
             if (click === "voltar") {
                 window.location.href = "/demand/create/1";
             } else if (click === "avancar") {
-                window.location.href = "/create-demand/3";
+                window.location.href = "/demand/create/3";
             }
-        } else if (window.location.pathname === "/create-demand/3") {
+        } else if (window.location.pathname === "/demand/create/3") {
             if (click === "voltar") {
-                window.location.href = "/create-demand/2";
+                window.location.href = "/demand/create/2";
             } else if (click === "avancar") {
-                window.location.href = "/create-demand/4";
+                window.location.href = "/demand/create/4";
             }
         }
     }

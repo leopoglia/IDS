@@ -108,7 +108,7 @@
 }
 
 .messages .box-message .send:hover {
-    background-color: var(--blue00);
+    background-color: var(--blue19);
 }
 
 .messages .box-message .send .material-symbols-outlined {

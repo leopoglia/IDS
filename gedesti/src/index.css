@@ -1,8 +1,9 @@
 :root {
   --blue: #00579D;
-  --blue00: #0072C6;
-  --blue19: #1976d2;
+  --blue00: #0090c5;
+  --blue44: #448dca;
   --blue64: #64C3D5;
+  --blue19: #1976d2;
   --blueF4: #F4FaFF;
   --grey3d: #3d3d3d;
   --grey59: #595959;
@@ -150,7 +151,7 @@ input[type=checkbox]:checked {
 
 
 .btn-primary:hover {
-  background-color: var(--blue00);
+  background-color: var(--blue19);
 }
 
 .btn-primary .material-symbols-outlined {

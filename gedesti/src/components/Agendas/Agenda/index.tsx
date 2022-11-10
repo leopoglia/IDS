@@ -17,14 +17,6 @@ export default function Agenda() {
                 <section>
                     <h1>Nome da Pauta</h1>
 
-
-                    <div className="display-grid">
-                        <div className="graphic">
-                            <div className="situation"></div>
-                        </div>
-
-                    </div>
-
                 </section>
 
 

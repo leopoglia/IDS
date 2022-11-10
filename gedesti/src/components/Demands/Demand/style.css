@@ -32,15 +32,6 @@
 }
 
 
-.demand h1::before {
-    background-color: var(--blue64);
-    content: '';
-    position: absolute;
-    width: 35px;
-    height: 2px;
-    margin-top: 25px;
-}
-
 .demand h1 {
     font-size: var(--m);
     margin: 10px 15px !important;
@@ -61,7 +52,7 @@
 }
 
 .demand .graphic .situation:hover {
-    background-color: var(--blue00);
+    background-color: var(--blue19);
 }
 
 .demand .infos {
@@ -116,7 +107,7 @@
     justify-content: space-between;
 }
 
-.demand .display-flex button{
+.demand .display-flex button {
     margin-right: 15px;
     width: 150px;
 }

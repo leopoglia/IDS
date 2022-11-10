@@ -1,4 +1,4 @@
-.demand {
+.proposal {
     width: 100%;
     height: 100px;
     margin-top: 15px;
@@ -9,11 +9,11 @@
     font-weight: 400;
 }
 
-.demand:hover {
+.proposal:hover {
     background-color: var(--blueF4);
 }
 
-.demand section {
+.proposal section {
     width: 100%;
     padding-right: 15px;
     display: flex;
@@ -21,9 +21,9 @@
     justify-content: space-between;
 }
 
-.demand::before {
+.proposal::before {
     content: '';
-    background-color: var(--blue);
+    background-color: var(--blue00);
     position: absolute;
     width: 6px;
     height: 100px;
@@ -32,39 +32,30 @@
 }
 
 
-.demand h1::before {
-    background-color: var(--blue64);
-    content: '';
-    position: absolute;
-    width: 35px;
-    height: 2px;
-    margin-top: 25px;
-}
-
-.demand h1 {
+.proposal h1 {
     font-size: var(--m);
     margin: 10px 15px !important;
 }
 
-.demand .graphic {
+.proposal .graphic {
     width: 150px;
     height: 15px;
     border-radius: 50px;
     background-color: var(--greyD9);
 }
 
-.demand .graphic .situation {
+.proposal .graphic .situation {
     width: 20%;
     height: 100%;
     background-color: var(--blue);
     border-radius: 20px;
 }
 
-.demand .graphic .situation:hover {
-    background-color: var(--blue00);
+.proposal .graphic .situation:hover {
+    background-color: var(--blue19);
 }
 
-.demand .infos {
+.proposal .infos {
     display: flex;
     align-items: center;
     height: 52.5px;
@@ -75,7 +66,7 @@
     overflow-x: auto;
 }
 
-.demand .infos div {
+.proposal .infos div {
     display: flex;
     align-items: center;
     font-size: var(--p);
@@ -85,7 +76,7 @@
     margin-left: 10px;
 }
 
-.demand .infos div p {
+.proposal .infos div p {
     padding: 0px;
     margin: 0px;
     display: inline-block;
@@ -112,11 +103,11 @@
 }
 
 
-.demand .display-flex {
+.proposal .display-flex {
     justify-content: space-between;
 }
 
-.demand .display-flex button{
+.proposal .display-flex button {
     margin-right: 15px;
     width: 150px;
 }

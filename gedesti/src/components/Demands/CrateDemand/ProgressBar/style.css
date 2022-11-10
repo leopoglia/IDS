@@ -32,7 +32,7 @@
 }
 
 .progress-bar .line-current:hover{
-    border-top: 4px solid var(--blue00);
+    border-top: 4px solid var(--blue19);
 }
 
 .progress-bar {
@@ -74,7 +74,7 @@
 }
 
 .progress-bar .ellipse-current:hover{
-    background-color: var(--blue00);
+    background-color: var(--blue19);
 }
 
 @media(max-width: 768px) {

@@ -7,18 +7,18 @@ export default function ButtonAction(props: {
 
     function redirectPage(click: string): void {
 
-        if (window.location.pathname === "/create-demand/1") {
+        if (window.location.pathname === "/demand/create/1") {
             if (click === "voltar") {
 
                 window.location.href = "/demands";
                 console.log(window.location.href)
 
             } else if (click === "avancar") {
-                window.location.href = "/create-demand/2";
+                window.location.href = "/demand/create/2";
             }
-        } else if (window.location.pathname === "/create-demand/2") {
+        } else if (window.location.pathname === "/demand/create/2") {
             if (click === "voltar") {
-                window.location.href = "/create-demand/1";
+                window.location.href = "/demand/create/1";
             } else if (click === "avancar") {
                 window.location.href = "/create-demand/3";
             }

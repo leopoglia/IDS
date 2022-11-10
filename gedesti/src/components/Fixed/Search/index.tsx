@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 export default function Search(props: {
     nav: string;
     title: string;
+    button?: string;
+    link?: any;
 }) {
     return (
         <div className="search">
@@ -20,12 +22,12 @@ export default function Search(props: {
 
 
                 <div className="display-flex">
-                    <Link to="/create-demand/1">
+                    <Link to={props.link}>
                         <button className="btn-primary">
                             <span className="material-symbols-outlined">
                                 add
                             </span>
-                            Criar demanda
+                            {props.button}
                         </button>
                     </Link>
 

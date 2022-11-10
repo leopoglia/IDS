@@ -23,22 +23,12 @@
 
 .agenda::before {
     content: '';
-    background-color: var(--blue);
+    background-color: var(--blue44);
     position: absolute;
     width: 6px;
     height: 100px;
     margin-top: -1px;
     border-radius: 4px 0 0 4px;
-}
-
-
-.agenda h1::before {
-    background-color: var(--blue64);
-    content: '';
-    position: absolute;
-    width: 35px;
-    height: 2px;
-    margin-top: 25px;
 }
 
 .agenda h1 {
@@ -61,7 +51,7 @@
 }
 
 .agenda .graphic .situation:hover {
-    background-color: var(--blue00);
+    background-color: var(--blue19);
 }
 
 .agenda .infos {
@@ -116,7 +106,7 @@
     justify-content: space-between;
 }
 
-.agenda .display-flex button{
+.agenda .display-flex button {
     margin-right: 15px;
     width: 150px;
 }

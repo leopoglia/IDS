@@ -19,6 +19,7 @@ import Agendas from "./components/Agendas";
 import Minutes from "./components/Minutes";
 import ExecutionCosts from "./components/Proposals/ExecutionCosts/ExecutionCosts";
 import EditProposalScope from "./components/Proposals/EditProposalScope";
+import SelectProposal from "./components/Proposals/SelectProposals";
 
 export default function Router() {
     return (
@@ -30,20 +31,24 @@ export default function Router() {
                 <Route path="/message" element={<Message />} />
                 <Route path="/notifications" element={<Notifications />} />
                 <Route path="/configuration" element={<Configuration />} />
-                <Route path="/create-demand/1" element={<CreateDemands1 />} />
-                <Route path="/create-demand/2" element={<CreateDemands2 />} />
-                <Route path="/create-demand/3" element={<CreateDemands3 />} />
+                <Route path="/demand/create/1" element={<CreateDemands1 />} />
+                <Route path="/demand/create/2" element={<CreateDemands2 />} />
+                <Route path="/demand/create/3" element={<CreateDemands3 />} />
                 <Route path="/demand/view" element={<ViewDemand />} />
                 <Route path="/demand/rank" element={<RankDemand />} />
                 <Route path="/demand/disapprove" element={<DisapproveDemand />} />
                 <Route path="/demand/complement" element={<ComplementDemand />} />
                 <Route path="/demand/historical" element={<HistoricalDemand />} />
                 <Route path="/proposals" element={<Proposals />} />
+                <Route path="/proposal/view" element={<ViewDemand />} />
                 <Route path="/agendas" element={<Agendas />} />
+                <Route path="/agenda/view" element={<ViewDemand />} />
                 <Route path="/minutes" element={<Minutes />} />
+                <Route path="/minute/view" element={<ViewDemand />} />
                 <Route path="/proposal/execution-costs" element={<ExecutionCosts />} />
                 <Route path="/proposal/edit-scope" element={<EditProposalScope />} />
 
+                <Route path="/create-agenda/select-proposals" element={<SelectProposal />} />
 
             </Routes>
         </BrowserRouter>

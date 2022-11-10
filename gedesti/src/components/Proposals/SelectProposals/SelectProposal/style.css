@@ -1,4 +1,4 @@
-.minute {
+.select-proposal {
     width: 100%;
     height: 100px;
     margin-top: 15px;
@@ -7,13 +7,18 @@
     color: var(--grey59);
     cursor: pointer;
     font-weight: 400;
+    display: flex;
 }
 
-.minute:hover {
+.select-proposal:hover {
     background-color: var(--blueF4);
 }
 
-.minute section {
+.select-proposal .display-grid {
+    width: 100%;
+}
+
+.select-proposal section {
     width: 100%;
     padding-right: 15px;
     display: flex;
@@ -21,9 +26,25 @@
     justify-content: space-between;
 }
 
-.minute::before {
+.select-proposal a{
+    font-weight: 500;
+    color: unset;
+}
+
+.select-proposal .checkbox{
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+}
+
+.select-proposal .checkbox input {
+    width: 30px;
+    height: 30px;
+}
+
+.select-proposal::before {
     content: '';
-    background-color: var(--blue64);
+    background-color: var(--blue00);
     position: absolute;
     width: 6px;
     height: 100px;
@@ -31,30 +52,31 @@
     border-radius: 4px 0 0 4px;
 }
 
-.minute h1 {
+
+.select-proposal h1 {
     font-size: var(--m);
     margin: 10px 15px !important;
 }
 
-.minute .graphic {
+.select-proposal .graphic {
     width: 150px;
     height: 15px;
     border-radius: 50px;
     background-color: var(--greyD9);
 }
 
-.minute .graphic .situation {
+.select-proposal .graphic .situation {
     width: 20%;
     height: 100%;
     background-color: var(--blue);
     border-radius: 20px;
 }
 
-.minute .graphic .situation:hover {
-    background-color: var(--blue00);
+.select-proposal .graphic .situation:hover {
+    background-color: var(--blue19);
 }
 
-.minute .infos {
+.select-proposal .infos {
     display: flex;
     align-items: center;
     height: 52.5px;
@@ -65,7 +87,7 @@
     overflow-x: auto;
 }
 
-.minute .infos div {
+.select-proposal .infos div {
     display: flex;
     align-items: center;
     font-size: var(--p);
@@ -75,7 +97,7 @@
     margin-left: 10px;
 }
 
-.minute .infos div p {
+.select-proposal .infos div p {
     padding: 0px;
     margin: 0px;
     display: inline-block;
@@ -102,11 +124,11 @@
 }
 
 
-.minute .display-flex {
+.select-proposal .display-flex {
     justify-content: space-between;
 }
 
-.minute .display-flex button {
+.select-proposal .display-flex button {
     margin-right: 15px;
     width: 150px;
 }

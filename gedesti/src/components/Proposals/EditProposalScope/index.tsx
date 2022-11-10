@@ -1,7 +1,6 @@
 import Header from "../../Fixed/Header";
 import Nav from "../../Fixed/Nav";
 import Title from "../../Fixed/Search/Title";
-import ToggleButton from "./ToggleButton";
 import "./style.css"
 
 export default function EditProposalScope() {
@@ -22,7 +21,6 @@ export default function EditProposalScope() {
 
                     <div className="display-flex">
 
-                        <ToggleButton />
 
                         <button className="btn-primary">Salvar alterações</button>
 

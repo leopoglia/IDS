@@ -12,18 +12,11 @@ export default function Minute() {
 
 
     return (
-        <Link to={"/demand/view"}>
-            <div className="demand">
+        <Link to={"/minute/view"}>
+            <div className="minute">
                 <section>
                     <h1>Nome da Ata</h1>
 
-
-                    <div className="display-grid">
-                        <div className="graphic">
-                            <div className="situation"></div>
-                        </div>
-
-                    </div>
 
                 </section>
 

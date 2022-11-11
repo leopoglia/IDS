@@ -201,6 +201,8 @@ export default function ViewDemand() {
                                 Fusce sed facilisis velit. Donec dignissim neque id sem pulvinar ultrices. Curabitur faucibus mauris nec ante finibus tempus. Aliquam erat volutpat. Nulla in quam urna. Sed est lectus, viverra eu nibh sed, sollicitudin sagittis diam. Mauris venenatis accumsan lacus in porta. Aliquam suscipit et augue id finibus.
                             </span>
                         </div>
+
+                        
                     </div>
 
 
@@ -223,48 +225,32 @@ export default function ViewDemand() {
 
                             <p>Classificação</p>
 
-                            <hr />
+
+                            <table>
+                                <hr />
+                                <tr>
+                                    <td>Tamanho</td>
+                                    <td>BU Solicitante</td>
+                                    <td>BU Beneficiada</td>
+                                    <td>Sessão do TI responsável</td>
+
+                                </tr>
+
+                                <hr />
 
 
-                            <div className="infos">
+                                <tr>
+                                    <td>Pequeno - 40 - 400 horas</td>
+                                    <td>WEG II</td>
+                                    <td>WEG Motores</td>
+                                    <td>Centro WEG</td>
 
-                                <span>Tamanho: </span>
+                                </tr>
 
-                                <span>Pequeno - 400 horas</span>
-
-
-                            </div>
-
-                            <hr />
-
-                            <div className="infos">
-
-                                <span>BU Solicitante: </span>
-
-                                <span>WEG Tintas</span>
-
-                            </div>
-
-                            <hr />
-
-                            <div className="infos">
-
-                                <span>BU Beneficiada: </span>
-
-                                <span>WEG Tintas</span>
-
-                            </div>
+                                <hr />
 
 
-                            <hr />
-
-                            <div className="infos">
-
-                                <span>Sessão do TI Responsável: </span>
-
-                                <span>TI Mains</span>
-
-                            </div>
+                            </table>
                         </div>
 
                     ) : ((stepDemand === 2) ? (

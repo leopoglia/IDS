@@ -3,6 +3,7 @@ import Nav from "../../Fixed/Nav";
 import Title from "../../Fixed/Search/Title";
 import "./style.css";
 import { Link } from "react-router-dom";
+import Input from "../../Demands/CrateDemand/Input";
 
 
 export default function CreateAgenda() {
@@ -25,10 +26,26 @@ export default function CreateAgenda() {
                         </Link>
                     </div>
 
+                    <div className="proposals-agenda">
+                        <div className="proposal-agenda">
+                            <p>Nome da Proposta</p>
+
+
+                        </div>
+
+                    </div>
+
+
+                    <div className="display-flex">
+                        <Input label="Nome da Pauta" required="*" />
+                        <Input label="Número" required="*" />
+                        <Input label="Ano" required="*" />
+                    </div>
+
 
                 </div>
             </div>
-
         </div>
+
     )
 }

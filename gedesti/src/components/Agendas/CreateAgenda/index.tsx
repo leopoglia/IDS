@@ -30,7 +30,11 @@ export default function CreateAgenda() {
                         <div className="proposal-agenda">
                             <p>Nome da Proposta</p>
 
-
+                            <div className="delete-proposal-agenda">
+                                <span className="material-symbols-outlined">
+                                    delete
+                                </span>
+                            </div>
                         </div>
 
                     </div>

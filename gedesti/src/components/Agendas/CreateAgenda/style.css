@@ -7,6 +7,10 @@
     margin-left: 20px !important
 }
 
+.create-agenda .proposals-agenda {
+    margin-top: 20px;
+}
+
 .create-agenda .proposal-agenda {
     width: 100%;
     height: 50px;
@@ -26,4 +30,21 @@
 
 .create-agenda .proposal-agenda p {
     margin-bottom: 0px;
+}
+
+.create-agenda .delete-proposal-agenda {
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    padding: 5px;
+    background-color: var(--greyF7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.create-agenda .delete-proposal-agenda:hover{
+    background-color: var(--greyC4);
+    color: var(--greyR9);
 }

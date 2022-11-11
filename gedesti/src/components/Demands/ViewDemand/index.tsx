@@ -10,7 +10,8 @@ import Footer from "../../Fixed/Footer";
 
 export default function ViewDemand() {
 
-    const [actionsDemand, setActionsDemand] = useState(2);
+    const [actionsDemand, setActionsDemand] = useState(1);
+    const [stepDemand, setStepDemand] = useState(1);
 
 
     return (
@@ -84,7 +85,6 @@ export default function ViewDemand() {
                             <tr>
                                 <td>Centro de Custos</td>
                                 <td>Nome do Centro de Custos</td>
-
                             </tr>
 
                             <hr />
@@ -101,6 +101,9 @@ export default function ViewDemand() {
                                 <td>55435235345</td>
                                 <td>Centro de Custos WEG II</td>
                             </tr>
+
+                            <hr />
+
                         </table>
                     </div>
 
@@ -214,7 +217,69 @@ export default function ViewDemand() {
                         </div>
 
                     </div>
+
+                    {(stepDemand === 1) ? (
+                        <div className="classification" >
+
+                            <p>Classificação</p>
+
+                            <hr />
+
+
+                            <div className="infos">
+
+                                <span>Tamanho: </span>
+
+                                <span>Pequeno - 400 horas</span>
+
+
+                            </div>
+
+                            <hr />
+
+                            <div className="infos">
+
+                                <span>BU Solicitante: </span>
+
+                                <span>WEG Tintas</span>
+
+                            </div>
+
+                            <hr />
+
+                            <div className="infos">
+
+                                <span>BU Beneficiada: </span>
+
+                                <span>WEG Tintas</span>
+
+                            </div>
+
+
+                            <hr />
+
+                            <div className="infos">
+
+                                <span>Sessão do TI Responsável: </span>
+
+                                <span>TI Mains</span>
+
+                            </div>
+                        </div>
+
+                    ) : ((stepDemand === 2) ? (
+
+                        <div className="actions" />
+                    ) : ((stepDemand === 3) ? (
+                        <div className="actions" />
+                    ) : (
+                        <div className="actions" />
+                    )))}
                 </div>
+
+
+
+
 
                 <Footer />
 

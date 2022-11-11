@@ -10,17 +10,28 @@
 .view-demand table {
     width: 100%;
     display: block;
+    overflow: auto;
 }
 
 .view-demand tr {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     text-align: center;
+    height: 35px;
+}
+
+.view-demand tr td {
+    min-width: 230px;
+    height: 100%;
+    border-right: 1px solid var(--greyC4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .view-demand hr {
     width: auto !important;
+    margin: 0px;
 }
 
 .view-demand .description {
@@ -34,8 +45,14 @@
 
 .view-demand .infos {
     width: 100%;
+    height: 35px;
     display: flex;
     align-items: center;
+}
+
+.view-demand .infos:hover,
+.view-demand tr:hover {
+    background-color: var(--greyF7);
 }
 
 .view-demand .infos div {
@@ -74,3 +91,6 @@
     margin-right: 15px !important;
 }
 
+.view-demand .classification {
+    margin-top: 30px !important;
+}

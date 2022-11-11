@@ -260,8 +260,33 @@ export default function ViewDemand() {
                     {(stepDemand === 2) ? (
 
                         <div className="complement" >
-                            <p>Despesas</p>
+                            <p>Complementos</p>
 
+                            <table>
+                                <hr />
+                                <tr>
+                                    <td>Prazo Execução</td>
+                                    <td>Código PPM</td>
+                                    <td>Link EPIC Jira</td>
+
+                                </tr>
+
+                                <hr />
+
+
+                                <tr>
+                                    <td>4 meses</td>
+                                    <td>98765432</td>
+                                    <td><a target="_blank" href="https://ctw2022.atlassian.net/jira/software/projects/P2/boards/1/roadmap?shared=&atlOrigin=eyJpIjoiNmQ5YjMzOWUyNWNmNGNiZTgyMmI2MGNjMTRmNmZiYjEiLCJwIjoiaiJ9">Abrir JIRA</a></td>
+
+                                </tr>
+
+                                <hr />
+
+
+                            </table>
+
+                            {/* 
                             <table>
                                 <hr />
                                 <tr>
@@ -293,7 +318,7 @@ export default function ViewDemand() {
                                 <hr />
 
 
-                            </table>
+                            </table> */}
 
                         </div>
 

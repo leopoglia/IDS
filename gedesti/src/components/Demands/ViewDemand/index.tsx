@@ -11,7 +11,7 @@ import Footer from "../../Fixed/Footer";
 export default function ViewDemand() {
 
     const [actionsDemand, setActionsDemand] = useState(1);
-    const [stepDemand, setStepDemand] = useState(1);
+    const [stepDemand, setStepDemand] = useState(2);
 
 
     return (
@@ -202,7 +202,7 @@ export default function ViewDemand() {
                             </span>
                         </div>
 
-                        
+
                     </div>
 
 
@@ -220,7 +220,7 @@ export default function ViewDemand() {
 
                     </div>
 
-                    {(stepDemand === 1) ? (
+                    {(stepDemand === 1 || stepDemand === 2) ? (
                         <div className="classification" >
 
                             <p>Classificação</p>
@@ -253,19 +253,54 @@ export default function ViewDemand() {
                             </table>
                         </div>
 
-                    ) : ((stepDemand === 2) ? (
-
-                        <div className="actions" />
-                    ) : ((stepDemand === 3) ? (
-                        <div className="actions" />
                     ) : (
-                        <div className="actions" />
-                    )))}
+                        <div className="null"></div>
+                    )}
+
+                    {(stepDemand === 2) ? (
+
+                        <div className="complement" >
+                            <p>Despesas</p>
+
+                            <table>
+                                <hr />
+                                <tr>
+                                    <td>Tipo</td>
+                                    <td>Perfil</td>
+                                    <td>Período de execução</td>
+                                    <td>Horas necessárias</td>
+                                    <td>Valor da hora</td>
+                                    <td>Centro de custos</td>
+                                    <td>Valor total</td>
+
+                                </tr>
+
+                                <hr />
+
+
+                                <tr>
+                                    <td>Externa</td>
+                                    <td>WEG II</td>
+                                    <td>WEG Motores</td>
+                                    <td>WEG</td>
+                                    <td>WEG</td>
+                                    <td>WEG</td>
+                                    <td>WEG</td>
+
+
+                                </tr>
+
+                                <hr />
+
+
+                            </table>
+
+                        </div>
+
+                    ) : (
+                        <div className="null"></div>
+                    )}
                 </div>
-
-
-
-
 
                 <Footer />
 

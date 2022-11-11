@@ -16,6 +16,13 @@
 .configuration .box .material-symbols-outlined {
     margin-left: 10px;
     cursor: pointer;
+    border-radius: 40px;
+    padding: 5px;
+    background-color: var(--greyF7);
+}
+
+.configuration .box .material-symbols-outlined:hover {
+    background-color: var(--greyD9);
 }
 
 .configuration .box .picture-profile {

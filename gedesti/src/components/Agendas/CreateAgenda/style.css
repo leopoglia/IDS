@@ -45,6 +45,6 @@
 }
 
 .create-agenda .delete-proposal-agenda:hover{
-    background-color: var(--greyC4);
+    background-color: var(--greyD9);
     color: var(--greyR9);
 }

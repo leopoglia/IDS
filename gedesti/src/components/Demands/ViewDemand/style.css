@@ -65,7 +65,7 @@
 
 .view-demand .infos:hover,
 .view-demand tr:hover {
-    background-color: var(--greyF7);
+    background-color: var(--blueF4);
 }
 
 .view-demand .infos div {

@@ -2,13 +2,29 @@ import "./style.css";
 import ButtonTableList from "./ButtonSearch";
 import Title from "./Title";
 import { Link } from "react-router-dom";
+import { SetStateAction, useState, useEffect } from "react";
 
-export default function Search(props: {
-    nav: string;
-    title: string;
-    button?: string;
-    link?: any;
-}) {
+export default function Search(props: any) {
+
+
+
+    const [data, setData] = useState(false);
+
+
+    const sendData = () => {
+
+        if (data === true) {
+            setData(false)
+        } else {
+            setData(true)
+        }
+
+        props.setTable(data);
+    }
+
+
+
+
     return (
         <div className="search">
             <Title nav={props.nav} title={props.title} />
@@ -31,8 +47,9 @@ export default function Search(props: {
                         </button>
                     </Link>
 
+
                     <div className="btn-search">
-                        <ButtonTableList icon="table_rows" />
+                        <ButtonTableList icon="table_rows" sendData={sendData} />
 
                         <ButtonTableList icon="filter_alt" />
                     </div>
@@ -40,4 +57,8 @@ export default function Search(props: {
             </div>
         </div>
     );
+}
+
+function sendData(data: any) {
+    throw new Error("Function not implemented.");
 }

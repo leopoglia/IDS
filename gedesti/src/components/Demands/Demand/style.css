@@ -1,4 +1,5 @@
-.demand {
+.demand,
+.demand-list {
     width: 100%;
     height: 100px;
     margin-top: 15px;
@@ -9,11 +10,22 @@
     font-weight: 400;
 }
 
-.demand:hover {
+.demand-list {
+    height: 70px;
+    border: 0px;
+    display: flex;
+    border-bottom: 1px solid var(--greyC4);
+    border-radius: 0;
+    margin-top: 0px;
+}
+
+.demand:hover,
+.demand-list:hover {
     background-color: var(--blueF4);
 }
 
-.demand section {
+.demand section,
+.demand-list section {
     width: 100%;
     padding-right: 15px;
     display: flex;
@@ -32,41 +44,51 @@
 }
 
 
-.demand h1 {
+.demand h1,
+.demand-list h1 {
     font-size: var(--m);
     margin: 10px 15px !important;
 }
 
-.demand .graphic {
+.demand .graphic,
+.demand-list .graphic {
     width: 150px;
     height: 15px;
     border-radius: 50px;
     background-color: var(--greyD9);
 }
 
-.demand .graphic .situation {
+.demand-list .graphic{
+    margin-right: 15px;
+}
+
+.demand .graphic .situation,
+.demand-list .graphic .situation {
     width: 20%;
     height: 100%;
     background-color: var(--blue);
     border-radius: 20px;
 }
 
-.demand .graphic .situation:hover {
+.demand .graphic .situation:hover,
+.demand-list .graphic .situation:hover {
     background-color: var(--blue19);
 }
 
-.demand .infos {
+.demand .infos,
+.demand-list .infos {
     display: flex;
     align-items: center;
     height: 52.5px;
     margin-top: 5px;
     margin-left: 5px;
-    padding-right: 5px;
+    padding-right: 20px;
     overflow-y: hidden;
     overflow-x: auto;
 }
 
-.demand .infos div {
+.demand .infos div,
+.demand-list .infos div {
     display: flex;
     align-items: center;
     font-size: var(--p);
@@ -76,7 +98,8 @@
     margin-left: 10px;
 }
 
-.demand .infos div p {
+.demand .infos div p,
+.demand-list .infos div p {
     padding: 0px;
     margin: 0px;
     display: inline-block;
@@ -86,6 +109,15 @@
     direction: ltr;
     max-width: 250px;
 }
+
+.demand-list .infos {
+    height: 100%;
+    margin-top: 0px;
+    margin-left: 0px;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
 
 .infos::-webkit-scrollbar {
     width: 12px;
@@ -103,11 +135,17 @@
 }
 
 
-.demand .display-flex {
+.demand .display-flex,
+.demand-list .display-flex {
     justify-content: space-between;
 }
 
-.demand .display-flex button {
+.demand-list .display-flex{
+    align-items: center;
+}
+
+.demand .display-flex button,
+.demand-list .display-flex button {
     margin-right: 15px;
     width: 150px;
 }

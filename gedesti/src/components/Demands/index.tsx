@@ -4,29 +4,36 @@ import Nav from "../Fixed/Nav"
 import Search from "../Fixed/Search";
 import Demand from "./Demand";
 import Footer from "../Fixed/Footer";
+import { useState } from "react";
 
 export default function Demands() {
+
+    const url = window.location.href.split("/");
+
+    console.log(url[3])
+
+    const [table, setTableList] = useState(false);
+
+    const setTable = () => {
+        setTableList(!table);
+    }
+
     return (
         <div className="demands">
             <Header icon="folder_copy" title="Demandas" />
             <Nav />
 
             <div className="container">
-                <Search nav="Demandas > Visualizar Demandas" title="Demandas" button="Criar Demand" link="/demand/create/1" />
+                <Search nav="Demandas > Visualizar Demandas" title="Demandas" button="Criar Demand" link="/demand/create/1" setTable={setTable} />
 
 
-                <Demand />
-                <Demand />
-                <Demand />
-                <Demand />
-                <Demand />
-                <Demand />
-                <Demand />
-                <Demand />
-
-            
-             
-             
+                <Demand listDirection={table} />
+                <Demand listDirection={table} />
+                <Demand listDirection={table} />
+                <Demand listDirection={table} />
+                <Demand listDirection={table} />
+                <Demand listDirection={table} />
+                <Demand listDirection={table} />
 
 
                 <div className="navigator">

@@ -7,15 +7,24 @@ export default function ButtonAction(props: {
     click: string
 }) {
 
-    console.log(props.click);
     const url = window.location.href.split("/");
 
     console.log(url[5]);
 
 
 
+    if (props.click === "voltar" && url[5] === "1") {
+        return (
+            <Link className="btn-secondary" to="/demands">
+                {props.title}
+            </Link>
+        );
+    }
 
-    if (props.click === "voltar") {
+
+
+
+    if (props.click === "voltar" && url[5] !== "1") {
         return (
             <Link className="btn-secondary" to={"/demand/create/" + (parseInt(url[5]) - 1)}>
                 {props.title}

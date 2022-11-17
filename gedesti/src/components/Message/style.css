@@ -57,7 +57,7 @@
 }
 
 .messages .box-message .input-message:hover {
-    border: 1px solid black;
+    border: 1px solid var(--grey3d);
 }
 
 .messages .box-message .input-message .material-symbols-outlined {

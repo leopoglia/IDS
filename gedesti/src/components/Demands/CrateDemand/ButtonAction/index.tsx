@@ -21,8 +21,6 @@ export default function ButtonAction(props: {
     }
 
 
-
-
     if (props.click === "voltar" && url[5] !== "1") {
         return (
             <Link className="btn-secondary" to={"/demand/create/" + (parseInt(url[5]) - 1)}>

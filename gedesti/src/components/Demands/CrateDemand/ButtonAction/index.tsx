@@ -1,48 +1,33 @@
-import "./style.css"
+import "./style.css";
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 export default function ButtonAction(props: {
     title: string
     click: string
 }) {
 
-    function redirectPage(click: string): void {
+    console.log(props.click);
+    const url = window.location.href.split("/");
 
-        if (window.location.pathname === "/demand/create/1") {
-            if (click === "voltar") {
+    console.log(url[5]);
 
-                window.location.href = "/demands";
-                console.log(window.location.href)
 
-            } else if (click === "avancar") {
-                window.location.href = "/demand/create/2";
-            }
-        } else if (window.location.pathname === "/demand/create/2") {
-            if (click === "voltar") {
-                window.location.href = "/demand/create/1";
-            } else if (click === "avancar") {
-                window.location.href = "/demand/create/3";
-            }
-        } else if (window.location.pathname === "/demand/create/3") {
-            if (click === "voltar") {
-                window.location.href = "/demand/create/2";
-            } else if (click === "avancar") {
-                window.location.href = "/demand/create/4";
-            }
-        }
-    }
+
 
     if (props.click === "voltar") {
-
         return (
-            <button className="btn-secondary" onClick={() => { redirectPage(props.click) }}>
+            <Link className="btn-secondary" to={"/demand/create/" + (parseInt(url[5]) - 1)}>
                 {props.title}
-            </button>
+            </Link>
         );
     } else {
         return (
-            <button className="btn-primary" onClick={() => { redirectPage(props.click) }}>
+            <Link className="btn-primary" to={"/demand/create/" + (parseInt(url[5]) + 1)}>
                 {props.title}
-            </button>
+            </Link>
         );
     }
 }
+
+

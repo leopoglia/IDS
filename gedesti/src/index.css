@@ -47,6 +47,11 @@
   letter-spacing: 0.55px;
 }
 
+
+#root{
+  min-height: 100vh;
+}
+
 .container {
   margin-left: 65px;
   padding: 20px 130px;

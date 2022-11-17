@@ -5,6 +5,7 @@ import Search from "../Fixed/Search";
 import Demand from "./Demand";
 import Footer from "../Fixed/Footer";
 import { useState } from "react";
+import Load from "../Fixed/Load";
 
 export default function Demands() {
 
@@ -39,10 +40,13 @@ export default function Demands() {
                     <Nav />
 
                     <div className="container">
-                        <Search nav="Demandas > Visualizar Demandas" title="Demandas" button="Criar Demand" link="/demand/create/1" setTable={setTable} />
+                        <Search nav="Demandas > Visualizar Demandas" title="Demandas" button="Criar Demanda" link="/demand/create/1" setTable={setTable} />
                         <Demand listDirection={table} />
                         {footer()}
                     </div>
+
+
+
                 </div>
 
             ) : (url[3] === "proposals") ? (

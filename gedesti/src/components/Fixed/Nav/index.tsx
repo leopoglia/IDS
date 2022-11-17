@@ -103,11 +103,12 @@ export default function Nav() {
 
                     <Link to="/demands">
                         <li>
-                            <span className="material-symbols-outlined">
-                                folder_copy
-                            </span>
-                            <span>Demandas</span>
-
+                            <div>
+                                <span className="material-symbols-outlined">
+                                    folder_copy
+                                </span>
+                                <span>Demandas</span>
+                            </div>
 
                         </li>
                     </Link>
@@ -115,68 +116,78 @@ export default function Nav() {
 
                     <Link to="/proposals">
                         <li>
-                            <span className="material-symbols-outlined">
-                                content_paste
-                            </span>
-                            <span>Propostas</span>
-
+                            <div>
+                                <span className="material-symbols-outlined">
+                                    content_paste
+                                </span>
+                                <span>Propostas</span>
+                            </div>
                         </li>
                     </Link>
 
                     <Link to="/agendas">
                         <li>
-                            <span className="material-symbols-outlined">
-                                file_copy
-                            </span>
-                            <span>Pautas</span>
-
+                            <div>
+                                <span className="material-symbols-outlined">
+                                    file_copy
+                                </span>
+                                <span>Pautas</span>
+                            </div>
                         </li>
                     </Link>
 
                     <Link to="/minutes">
                         <li>
-                            <span className="material-symbols-outlined">
-                                description
-                            </span>
-                            <span>Atas</span>
-
+                            <div>
+                                <span className="material-symbols-outlined">
+                                    description
+                                </span>
+                                <span>Atas</span>
+                            </div>
                         </li>
                     </Link>
 
                     <Link to="/messages">
                         <li>
-                            <span className="material-symbols-outlined">
-                                chat_bubble
-                            </span>
-                            <span>Mensagens</span>
+                            <div>
+                                <span className="material-symbols-outlined">
+                                    chat_bubble
+                                </span>
+                                <span>Mensagens</span>
+                            </div>
                         </li>
                     </Link>
 
                     <Link to="/notifications">
                         <li>
-                            <span className="material-symbols-outlined">
-                                notifications
-                            </span>
-                            <span>Notificações</span>
+                            <div>
+                                <span className="material-symbols-outlined">
+                                    notifications
+                                </span>
+                                <span>Notificações</span>
+                            </div>
                         </li>
                     </ Link>
 
                     <Link to="/configuration">
                         <li>
-                            <span className="material-symbols-outlined">
-                                settings
-                            </span>
-                            <span>Configurações</span>
+                            <div>
+                                <span className="material-symbols-outlined">
+                                    settings
+                                </span>
+                                <span>Configurações</span>
+                            </div>
                         </li>
                     </Link>
 
                     <Link to="/">
                         <li className="logout">
-                            <span className="material-symbols-outlined">
-                                logout
-                            </span>
-                            <span>Sair</span>
-
+                            <div>
+                                <span className="material-symbols-outlined">
+                                    logout
+                                </span>
+                                <span>Sair</span>
+                            </div>
                         </li>
                     </Link>
 

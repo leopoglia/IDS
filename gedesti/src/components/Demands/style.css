@@ -21,9 +21,16 @@
     cursor: pointer;
 }
 
+.navigator div:hover{
+    background-color: var(--blueF4);
+}
+
 .navigator .current{
     background-color: var(--blue);
     color: var(--white);
     border: none;
 }
 
+.navigator .current:hover{
+    background-color: var(--blue19) !important;; 
+}

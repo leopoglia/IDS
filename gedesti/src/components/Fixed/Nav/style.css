@@ -5,7 +5,7 @@ nav,
     position: sticky;
     top: 0;
     float: left;
-    background-color: var(--greyE5);
+    background-color: var(--greyF7);
 }
 
 nav {
@@ -53,7 +53,7 @@ nav ul {
 }
 
 .nav-open li div:hover {
-    background-color: var(--greyD9);
+    background-color: var(--greyE5);
 }
 
 nav .material-symbols-outlined {
@@ -88,7 +88,7 @@ nav li {
 
 
 nav li .material-symbols-outlined:hover {
-    background-color: var(--greyD9);
+    background-color: var(--greyE5);
 }
 
 .nav-open .logout {
@@ -97,7 +97,7 @@ nav li .material-symbols-outlined:hover {
 
 .logout {
     width: 65px;
-    background-color: var(--greyE5);
+    background-color: var(--greyF7);
     position: fixed;
     bottom: 0;
 }

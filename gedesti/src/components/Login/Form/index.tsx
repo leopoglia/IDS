@@ -1,4 +1,5 @@
 import './style.css';
+import { Link } from 'react-router-dom';
 
 
 export default function Form() {
@@ -37,7 +38,9 @@ export default function Form() {
             </main>
 
             <footer>
-                <input type="submit" value={"Acessar"} />
+                <Link to="/demands">
+                    <input type="submit" value={"Acessar"} />
+                </Link>
             </footer>
         </form>
     )

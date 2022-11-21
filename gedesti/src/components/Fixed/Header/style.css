@@ -39,6 +39,11 @@
 .title .flex {
     margin-bottom: -4px;
     padding: 0 15px;
+    cursor: pointer;
+}
+
+.title .flex:hover{
+    background-color: var(--blue19);
 }
 
 .title .trace {
@@ -54,11 +59,31 @@
     font-size: 22px;
 }
 
-.person {
+.header .person {
     background-color: var(--greyD9);
     width: 35px;
     height: 35px;
     border-radius: 35px;
+}
+
+.header .user{
+    display: flex;
+    padding: 5px 10px;
+    border-radius: 3px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.header .user:hover{
+    background-color: var(--blue19);
+}
+
+.header .username{
+    font-size: var(--p);
+}
+
+.right .display-grid{
+    margin-right: 10px;
 }
 
 @media(max-width: 768px){

@@ -85,8 +85,13 @@ main #password {
     color: var(--white);
     width: 100%;
     height: var(--h);
+    cursor: pointer;
     border: none;
     border-radius: 4px;
+}
+
+.login-form footer input:hover {
+    background-color: var(--blue19);
 }
 
 @media (min-width: 1024px){

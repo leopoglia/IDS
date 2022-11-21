@@ -52,6 +52,14 @@ nav ul {
     border-radius: 50px;
 }
 
+nav #current{
+    background-color: var(--greyE5) !important;
+}
+
+nav #current:hover{
+    background-color: var(--greyD9) !important;
+}
+
 .nav-open li div:hover {
     background-color: var(--greyE5);
 }

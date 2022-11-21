@@ -12,15 +12,28 @@
   --greyC4: #C4C4C4;
   --greyD9: #D9D9D9;
   --white: #FFFFFF;
-
+  --white2: #FFFFFF;
   --g: 22px;
   --m: 18px;
   --p: 14px;
   --pp: 11px;
-
   --h: 45px;
   --r: 4px;
 }
+/* 
+:root {
+  --white: rgb(30, 30, 30);
+  --white2: #d3d3d3;
+  --greyF7: rgb(37, 37, 38);
+  --greyE5: rgb(42, 45, 46);
+  --greyC4: rgb(48, 54, 61);
+  --blueF4: rgb(35, 35, 35);
+  --grey59: rgb(201, 209, 217);
+  --grey3d: rgb(255, 255, 255);
+  --greyD9: rgb(48, 54, 61);
+
+} */
+
 
 @font-face {
   font-family: "Helvetica";
@@ -51,6 +64,7 @@
 
 #root {
   min-height: 100vh;
+  background-color: var(--white);
 }
 
 .container {
@@ -102,6 +116,7 @@ svg {
 input,
 textarea {
   outline: none !important;
+  background-color: var(--white);
 }
 
 input[type=checkbox]:checked {

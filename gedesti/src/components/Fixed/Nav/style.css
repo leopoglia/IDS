@@ -1,19 +1,30 @@
 nav,
-.nav-open {
+.nav-open,
+#nav,
+#nav-open {
     width: 65px;
-    min-height: calc(100vh - 65px);
+    min-height: 100%;
     position: sticky;
     top: 0;
     float: left;
     background-color: var(--greyF7);
 }
 
-nav {
-    transition: 0s !important;
+#nav,
+#nav-open {
+    position: fixed;
+    margin-top: 65px;
+    z-index: -1;
+    transition: 0.1s;
 }
 
-.nav-open {
-    width: 190px;
+nav {
+    transition: 0.1s !important;
+}
+
+.nav-open,
+#nav-open {
+    width: 185px;
 }
 
 nav a {
@@ -25,21 +36,48 @@ nav ul {
     margin: 0;
 }
 
+nav li div {
+    max-width: 50px;
+    max-height: 50px;
+}
+
+nav .title-li {
+    font-size: 0px;
+}
+
+.nav-open .title-li {
+    font-size: 14px !important;
+}
+
+
+.nav-open li div {
+    max-width: 185px;
+}
+
 .nav-open li {
     justify-content: flex-start;
 }
 
 .nav-open li span {
     font-weight: 100;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    direction: ltr;
 }
 
 .nav-open .toggle {
     margin-left: 8px;
+
 }
 
 .nav-open .toggle .material-symbols-outlined {
     width: 50px;
     height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .nav-open li div {
@@ -49,15 +87,12 @@ nav ul {
     height: 50px;
     padding-left: 10px;
     margin-left: 11px;
-    border-radius: 50px;
+    border-radius: var(--r);
 }
 
-nav #current{
+nav #current {
     background-color: var(--greyE5) !important;
-}
-
-nav #current:hover{
-    background-color: var(--greyD9) !important;
+    border-radius: var(--r);
 }
 
 .nav-open li div:hover {
@@ -70,7 +105,7 @@ nav .material-symbols-outlined {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50px;
+    border-radius: var(--r);
 }
 
 .nav-open .material-symbols-outlined {
@@ -108,6 +143,7 @@ nav li .material-symbols-outlined:hover {
     background-color: var(--greyF7);
     position: fixed;
     bottom: 0;
+    transition: 0.1s !important;
 }
 
 @media(max-width: 768px) {

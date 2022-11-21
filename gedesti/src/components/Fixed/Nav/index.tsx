@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import "./style.css"
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 export default function Nav() {
 
-    const [nav, setNav] = useState(1);
+    const [nav, setNav] = useState("nav");
     const [current, setCurrent] = useState("current");
     const url = window.location.pathname.split("/")[1];
 
@@ -17,195 +17,131 @@ export default function Nav() {
 
     }
 
-
-    if (nav === 1) {
-        return (
-            <nav className="nav">
-                <ul>
-                    <li className="toggle" onClick={() => setNav(2)}>
-                        <span className="material-symbols-outlined" id={hover("toggle")}>
-                            menu
-                        </span>
-                    </li>
+    function toggleNav(): any {
 
 
-                    <Link to="/demands">
-                        <li>
-                            <span className="material-symbols-outlined" id={hover("demands")}>
+        if (nav === "nav") {
+
+            console.log(1)
+            console.log(nav)
+
+            setNav("nav-open");
+
+            console.log(nav)
+
+        } else {
+
+            setNav("nav");
+
+
+        }
+    }
+
+
+    return (
+        <nav className={nav}>
+            <div id={nav} />
+            <ul>
+                <li className="toggle" onClick={() => toggleNav()}>
+                    <span className="material-symbols-outlined">
+                        menu
+                    </span>
+                </li>
+
+
+                <Link to="/demands">
+                    <li>
+                        <div id={hover("demands")}>
+                            <span className="material-symbols-outlined">
                                 folder_copy
                             </span>
+                            <span className="title-li">Demandas</span>
+                        </div>
+
+                    </li>
+                </Link>
 
 
-                        </li>
-                    </Link>
-
-                    <Link to="/proposals">
-                        <li>
-                            <span className="material-symbols-outlined" id={hover("proposals")}>
+                <Link to="/proposals">
+                    <li>
+                        <div id={hover("proposals")}>
+                            <span className="material-symbols-outlined">
                                 content_paste
                             </span>
+                            <span className="title-li">Propostas</span>
+                        </div>
+                    </li>
+                </Link>
 
-
-                        </li>
-                    </Link>
-
-                    <Link to="/agendas">
-                        <li>
-                            <span className="material-symbols-outlined" id={hover("agendas")}>
+                <Link to="/agendas">
+                    <li>
+                        <div id={hover("agendas")}>
+                            <span className="material-symbols-outlined">
                                 file_copy
                             </span>
+                            <span className="title-li">Pautas</span>
+                        </div>
+                    </li>
+                </Link>
 
-                        </li>
-                    </Link>
-
-                    <Link to="/minutes">
-                        <li>
-                            <span className="material-symbols-outlined" id={hover("minutes")}>
+                <Link to="/minutes">
+                    <li>
+                        <div id={hover("minutes")}>
+                            <span className="material-symbols-outlined">
                                 description
                             </span>
+                            <span className="title-li">Atas</span>
+                        </div>
+                    </li>
+                </Link>
 
-                        </li>
-                    </Link>
-
-                    <Link to="/messages">
-                        <li>
-                            <span className="material-symbols-outlined" id={hover("messages")}>
+                <Link to="/messages">
+                    <li>
+                        <div id={hover("messages")}>
+                            <span className="material-symbols-outlined">
                                 chat_bubble
                             </span>
-                        </li>
-                    </Link>
+                            <span className="title-li">Mensagens</span>
+                        </div>
+                    </li>
+                </Link>
 
-                    <Link to="/notifications">
-                        <li>
-                            <span className="material-symbols-outlined" id={hover("notifications")}>
+                <Link to="/notifications">
+                    <li>
+                        <div id={hover("notifications")}>
+                            <span className="material-symbols-outlined">
                                 notifications
                             </span>
-                        </li>
-                    </ Link>
+                            <span className="title-li">Notificações</span>
+                        </div>
+                    </li>
+                </ Link>
 
-                    <Link to="/configuration">
-                        <li>
-                            <span className="material-symbols-outlined" id={hover("configuration")}>
+                <Link to="/configuration">
+                    <li>
+                        <div id={hover("configuration")}>
+                            <span className="material-symbols-outlined">
                                 settings
                             </span>
-                        </li>
-                    </Link>
+                            <span className="title-li">Configurações</span>
+                        </div>
+                    </li>
+                </Link>
 
-                    <Link to="/">
-                        <li className="logout">
+                <Link to="/">
+                    <li className="logout">
+                        <div>
                             <span className="material-symbols-outlined">
                                 logout
                             </span>
-                        </li>
-                    </Link>
-
-                </ul>
-            </nav >
-        );
-    } else {
-        return (
-            <nav className="nav-open">
-                <ul>
-                    <li className="toggle" onClick={() => setNav(1)}>
-                        <span className="material-symbols-outlined">
-                            menu
-                        </span>
+                            <span className="title-li">Sair</span>
+                        </div>
                     </li>
+                </Link>
 
+            </ul>
 
-                    <Link to="/demands">
-                        <li>
-                            <div id={hover("demands")}>
-                                <span className="material-symbols-outlined">
-                                    folder_copy
-                                </span>
-                                <span>Demandas</span>
-                            </div>
+        </nav >
+    );
 
-                        </li>
-                    </Link>
-
-
-                    <Link to="/proposals">
-                        <li>
-                            <div id={hover("proposals")}>
-                                <span className="material-symbols-outlined">
-                                    content_paste
-                                </span>
-                                <span>Propostas</span>
-                            </div>
-                        </li>
-                    </Link>
-
-                    <Link to="/agendas">
-                        <li>
-                            <div id={hover("agendas")}>
-                                <span className="material-symbols-outlined">
-                                    file_copy
-                                </span>
-                                <span>Pautas</span>
-                            </div>
-                        </li>
-                    </Link>
-
-                    <Link to="/minutes">
-                        <li>
-                            <div id={hover("minutes")}>
-                                <span className="material-symbols-outlined">
-                                    description
-                                </span>
-                                <span>Atas</span>
-                            </div>
-                        </li>
-                    </Link>
-
-                    <Link to="/messages">
-                        <li>
-                            <div id={hover("messages")}>
-                                <span className="material-symbols-outlined">
-                                    chat_bubble
-                                </span>
-                                <span>Mensagens</span>
-                            </div>
-                        </li>
-                    </Link>
-
-                    <Link to="/notifications">
-                        <li>
-                            <div id={hover("notifications")}>
-                                <span className="material-symbols-outlined">
-                                    notifications
-                                </span>
-                                <span>Notificações</span>
-                            </div>
-                        </li>
-                    </ Link>
-
-                    <Link to="/configuration">
-                        <li>
-                            <div id={hover("configuration")}>
-                                <span className="material-symbols-outlined">
-                                    settings
-                                </span>
-                                <span>Configurações</span>
-                            </div>
-                        </li>
-                    </Link>
-
-                    <Link to="/">
-                        <li className="logout">
-                            <div>
-                                <span className="material-symbols-outlined">
-                                    logout
-                                </span>
-                                <span>Sair</span>
-                            </div>
-                        </li>
-                    </Link>
-
-                </ul>
-
-            </nav >
-        );
-    }
 }

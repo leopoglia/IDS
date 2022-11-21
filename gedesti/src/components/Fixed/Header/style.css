@@ -59,13 +59,13 @@
     background-color: var(--greyD9);
     width: 35px;
     height: 35px;
-    border-radius: 35px;
+    border-radius: var(--r);
 }
 
 .header .user{
     display: flex;
     padding: 5px 10px;
-    border-radius: 3px;
+    border-radius: var(--r);
     align-items: center;
     cursor: pointer;
 }

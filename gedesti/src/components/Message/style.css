@@ -19,7 +19,7 @@
     max-height: 80px;
     height: 80px;
     background-color: var(--greyD9);
-    border-radius: 80px;
+    border-radius: var(--r);
 }
 
 .messages .box-message .message-name {
@@ -50,7 +50,7 @@
     width: 100%;
     height: var(--h);
     border: 1px solid var(--greyC4);
-    border-radius: 20px;
+    border-radius: var(--r);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -71,7 +71,7 @@
 .messages .box-message .input-message .actions-message {
     display: flex;
     position: relative;
-    margin-right: 10px;
+    margin-right: 6px;
 }
 
 .messages .box-message .input-message input {
@@ -102,7 +102,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 45px;
+    border-radius: var(--r);
     background-color: var(--blue);
     cursor: pointer;
 }
@@ -170,7 +170,7 @@
     min-height: 35px;
     height: 35px;
     margin-left: 5px;
-    border-radius: 30px;
+    border-radius: var(--r);
 }
 
 

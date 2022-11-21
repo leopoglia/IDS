@@ -16,7 +16,7 @@
 .configuration .box .material-symbols-outlined {
     margin-left: 10px;
     cursor: pointer;
-    border-radius: 40px;
+    border-radius: var(--r);
     padding: 5px;
     background-color: var(--greyF7);
 }
@@ -28,7 +28,7 @@
 .configuration .box .picture-profile {
     width: 90px;
     height: 90px;
-    border-radius: 90px;
+    border-radius: var(--r);
 }
 
 .configuration .box .picture-profile:hover {

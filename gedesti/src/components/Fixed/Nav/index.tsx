@@ -9,19 +9,7 @@ export default function Nav() {
     const url = window.location.pathname.split("/")[1];
 
     function hover(li: string): string {
-        if (url === li) {
-            return "current";
-        } else if (url === li) {
-            return "current";
-        } else if (url === li) {
-            return "current";
-        } else if (url === li) {
-            return "current";
-        } else if (url === li) {
-            return "current";
-        } else if (url === li) {
-            return "current";
-        } else if (url === li) {
+        if (url === li || url === li.substring(0, li.length - 1)) {
             return "current";
         } else {
             return "";

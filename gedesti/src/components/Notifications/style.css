@@ -2,8 +2,15 @@
     margin-bottom: 20px;
 }
 
-/* .bia{
+/* .bia, .barrier{
     position: absolute;
     bottom: 0;
     right: 0;
+    user-select: none;
+}
+
+.barrier{
+    width: 339px;
+    height: 536px;
+    z-index: 1;
 } */

@@ -356,15 +356,48 @@ export default function ViewDemand() {
 
                     </div>
                 </div>
-            ) : (
-                <div className="null">
-                    <p>Erro</p>
+            ) : url === "agenda" ? (
+                <div>
+                    <Header title="Visualizar Pauta" icon="visibility" />
+
+                    <Nav />
+
+                    <div className="container">
+
+
+                        <div className="background-title">
+
+                            <Title nav="Pautas > Visualizar Pauta" title="Visualizar Pauta" />
+                        </div>
+
+                        <div className="box"></div>
+
+                    </div>
                 </div>
+            ) : url === "minute" ? (
+                <div>
+                    <Header title="Visualizar Ata" icon="visibility" />
+
+                    <Nav />
+
+                    <div className="container">
+
+
+                        <div className="background-title">
+
+                            <Title nav="Atas > Visualizar Ata" title="Visualizar Ata" />
+                        </div>
+
+                        <div className="box"></div>
+
+                    </div>
+                </div>
+            ) : (
+                <div />
             )}
 
+
             <Footer />
-
-
 
 
         </div>

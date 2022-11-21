@@ -24,7 +24,7 @@ nav {
 
 .nav-open,
 #nav-open {
-    width: 185px;
+    width: 200px;
 }
 
 nav a {
@@ -135,7 +135,7 @@ nav li .material-symbols-outlined:hover {
 }
 
 .nav-open .logout {
-    width: 185px;
+    width: 200px;
 }
 
 .logout {
@@ -154,6 +154,10 @@ nav li .material-symbols-outlined:hover {
         z-index: 1;
     }
 
+    #nav-open {
+        width: 100%;
+    }
+
     .nav-open {
         overflow: hidden !important;
     }
@@ -161,6 +165,10 @@ nav li .material-symbols-outlined:hover {
     nav li {
         height: 65px;
         width: 100%;
+    }
+
+    nav li div {
+        max-width: none !important;
     }
 
     .nav-open .logout {

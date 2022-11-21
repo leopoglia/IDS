@@ -104,7 +104,7 @@
     align-items: center;
     font-size: var(--p);
     border: 1px solid var(--greyC4);
-    border-radius: 4px;
+    border-radius: var(--r);
     padding: 7px;
     margin-left: 10px;
 }

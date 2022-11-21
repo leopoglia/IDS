@@ -48,7 +48,7 @@ main #password {
     margin: 2px 0 15px 0 !important;
     padding-left: 45px;
     padding-right: 10px;
-    border-radius: 4px;
+    border-radius: var(--r);
     border: 1px solid var(--greyC4);
 }
 
@@ -87,7 +87,7 @@ main #password {
     height: var(--h);
     cursor: pointer;
     border: none;
-    border-radius: 4px;
+    border-radius: var(--r);
 }
 
 .login-form footer input:hover {

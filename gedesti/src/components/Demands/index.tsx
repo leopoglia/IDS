@@ -13,6 +13,12 @@ export default function Demands() {
 
     const [table, setTableList] = useState(false);
 
+    const [demands, setDemands] = useState([]);
+    const [proposals, setProposals] = useState([]);
+    const [agendas, setAgendas] = useState([]);
+    const [minutes, setMinutes] = useState([]);
+
+
     const footer = () => {
         return (
             <div>

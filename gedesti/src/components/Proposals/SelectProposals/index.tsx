@@ -1,4 +1,5 @@
 import "./style.css"
+import { Link } from "react-router-dom";
 import Header from "../../Fixed/Header"
 import Nav from "../../Fixed/Nav"
 import SelectProposal from "./SelectProposal";
@@ -7,7 +8,7 @@ import Title from "../../Fixed/Search/Title";
 
 export default function Proposals() {
     return (
-        <div className="demands">
+        <div className="proposals">
             <Header icon="content_paste" title="Selecionar Propostas" />
             <Nav />
 
@@ -18,7 +19,12 @@ export default function Proposals() {
 
                 <SelectProposal />
 
-        
+                <div className="display-flex-end">
+                    <Link to="/agenda/create-agenda">
+                        <button className="btn-primary">Adicionar</button>
+                    </Link>
+
+                </div>
 
                 <Footer />
 

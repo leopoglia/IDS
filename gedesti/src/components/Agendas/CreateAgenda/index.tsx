@@ -21,21 +21,43 @@ export default function CreateAgenda() {
 
                     <div className="display-flex">
                         <p>Propostas</p>
-                        <Link to="/agenda/select-proposals">
-                            <button className="btn-primary">Adicionar Proposta</button>
-                        </Link>
+
                     </div>
 
-                    <div className="proposals-agenda">
-                        <div className="proposal-agenda">
-                            <p>Nome da Proposta</p>
 
-                            <div className="delete-proposal-agenda">
-                                <span className="material-symbols-outlined">
-                                    delete
-                                </span>
+                    <div className="proposals-agenda">
+                        <div className="proposal">
+                            <div className="proposal-agenda">
+                                <p>Nome da Proposta</p>
+
+
+                                <div className="delete-proposal-agenda">
+                                    <span className="material-symbols-outlined">
+                                        delete
+                                    </span>
+
+
+                                </div>
+
+
+                            </div>
+
+
+                            <div className="check-box">
+
+                                <input type="checkbox" />
+
+                                <label>Ata Públicada</label>
+
                             </div>
                         </div>
+
+                        <div className="display-flex-end">
+                            <Link to="/agenda/select-proposals">
+                                <button className="btn-primary">Adicionar Proposta</button>
+                            </Link>
+                        </div>
+
 
                     </div>
 
@@ -48,6 +70,14 @@ export default function CreateAgenda() {
 
 
                 </div>
+
+
+                <div className="display-flex-end">
+                    <Link to="/agenda">
+                        <button className="btn-primary">Salvar</button>
+                    </Link>
+                </div>
+
             </div>
         </div>
 

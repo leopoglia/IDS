@@ -42,10 +42,6 @@
     cursor: pointer;
 }
 
-.title .flex:hover{
-    background-color: var(--blue19);
-}
-
 .title .trace {
     width: 100%;
     height: 4px;

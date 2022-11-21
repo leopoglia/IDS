@@ -7,7 +7,7 @@
     min-height: var(--h);
     margin-left: 10px;
     border: 0;
-    border-radius: 4px;
+    border-radius: var(--r);
     cursor: pointer;
 
     display: flex;

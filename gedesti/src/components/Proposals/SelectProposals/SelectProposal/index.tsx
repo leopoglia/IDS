@@ -31,8 +31,6 @@ export default function SelectProposal() {
             <div className="checkbox">
                 <input type="checkbox" name="" id="" />
             </div>
-
-
         </div>
     );
 }

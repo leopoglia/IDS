@@ -4,11 +4,25 @@ import { Link } from "react-router-dom";
 
 export default function Demand(props: any) {
 
-    const [information, setInformation] = useState(<div className="infos">
-        <div><p>Solicitante: Leonardo Heitor Poglia</p></div>
-        <div><p>Data da solicitação: 27/04/2022</p></div>
-        <div><p>Situação: Backlog</p></div>
-    </div>);
+    const information = () => {
+        return (
+            (<div className="infos">
+                <div><p>Solicitante: {props.requester}</p></div>
+                <div><p>Data da solicitação: {props.date}</p></div>
+                <div><p>Situação: {props.situation}</p></div>
+            </div>)
+        )
+    }
+
+    const btnGenerateProposal = () => {
+        if (props.situation === "Backlog") {
+            return (
+                <Link to="/proposal/execution-costs">
+                    <button className="btn-primary">Gerar Proposta</button>
+                </Link>
+            );
+        }
+    }
 
 
     if (props.listDirection === false) {
@@ -16,7 +30,7 @@ export default function Demand(props: any) {
             <Link to={"/demand/view"}>
                 <div className="demand">
                     <section>
-                        <h1>Nome da Solicitação</h1>
+                        <h1>{props.name}</h1>
 
 
                         <div className="display-grid">
@@ -30,11 +44,10 @@ export default function Demand(props: any) {
 
 
                     <div className="display-flex">
-                        {information}
+                        {information()}
 
-                        <Link to="/proposal/execution-costs">
-                            <button className="btn-primary">Gerar Proposta</button>
-                        </Link>
+                        {btnGenerateProposal()}
+
                     </div>
 
 
@@ -52,15 +65,15 @@ export default function Demand(props: any) {
 
 
                     <div className="display-flex">
-                        {information}
+                        {information()}
 
                         <div className="graphic">
                             <div className="situation"></div>
                         </div>
 
-                        <Link to="/proposal/execution-costs">
-                            <button className="btn-primary">Gerar Proposta</button>
-                        </Link>
+
+                        {btnGenerateProposal()}
+
                     </div>
 
                 </div>

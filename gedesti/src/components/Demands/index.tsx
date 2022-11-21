@@ -13,11 +13,19 @@ export default function Demands() {
 
     const [table, setTableList] = useState(false);
 
-    const [demands, setDemands] = useState([]);
-    const [proposals, setProposals] = useState([]);
-    const [agendas, setAgendas] = useState([]);
-    const [minutes, setMinutes] = useState([]);
-
+    const [demands] = useState([
+        { name: "Solicitação 001", requester: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "Backlog" },
+        { name: "Solicitação 002", requester: "Vytor Augusto Rosa", date: "21/11/2022", situation: "Backlog" }
+    ]);
+    const [proposals] = useState([
+        { name: "Proposta 001", requester: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "unallocated" },
+    ]);
+    const [agendas] = useState([
+        { name: "Pautas 001", requester: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "unallocated" },
+    ]);
+    const [minutes] = useState([
+        { name: "Ata 001", requester: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "unallocated" },
+    ]);
 
     const footer = () => {
         return (
@@ -44,24 +52,31 @@ export default function Demands() {
                 <div className="demands">
                     <Header icon="folder_copy" title="Demandas" />
                     <Nav />
-
                     <div className="container">
                         <Search nav="Demandas > Visualizar Demandas" title="Demandas" button="Criar Demanda" link="/demand/create/1" setTable={setTable} />
-                        <Demand listDirection={table} />
+                        {
+                            demands.map((val, index) => {
+                                return (
+                                    <Demand listDirection={table} name={val.name} requester={val.requester} date={val.date} situation={val.situation} />
+                                );
+                            })
+                        }
                         {footer()}
                     </div>
-
-
-
                 </div>
-
             ) : (url[3] === "proposals") ? (
                 <div className="proposals">
                     <Header icon="content_paste" title="Propostas" />
                     <Nav />
                     <div className="container">
                         <Search nav="Propostas > Visualizar Propostas" title="Propostas" button="Criar Proposta" link="/demands" setTable={setTable} />
-                        <Demand listDirection={table} />
+                        {
+                            proposals.map((val, index) => {
+                                return (
+                                    <Demand listDirection={table} name={val.name} requester={val.requester} date={val.date} situation={val.situation} />
+                                );
+                            })
+                        }
                         {footer()}
                     </div>
                 </div>
@@ -71,7 +86,13 @@ export default function Demands() {
                     <Nav />
                     <div className="container">
                         <Search nav="Pautas > Visualizar Pautas" title="Pautas" button="Criar Pauta" link="/agenda/create" setTable={setTable} />
-                        <Demand listDirection={table} />
+                        {
+                            agendas.map((val, index) => {
+                                return (
+                                    <Demand listDirection={table} name={val.name} requester={val.requester} date={val.date} situation={val.situation} />
+                                );
+                            })
+                        }
                         {footer()}
                     </div>
                 </div>
@@ -81,17 +102,18 @@ export default function Demands() {
                     <Nav />
                     <div className="container">
                         <Search nav="Atas > Visualizar Atas" title="Atas" button="Criar Ata" link="/minutes/create" setTable={setTable} />
-                        <Demand listDirection={table} />
+                        {
+                            minutes.map((val, index) => {
+                                return (
+                                    <Demand listDirection={table} name={val.name} requester={val.requester} date={val.date} situation={val.situation} />
+                                );
+                            })
+                        }
                         {footer()}
                     </div>
                 </div>
-            ) : (
-                <div className="null" />
-            )
+            ) : (<div className="null" />)
             }
-
         </div>
-
     )
-
 }

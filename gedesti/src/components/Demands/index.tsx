@@ -57,7 +57,7 @@ export default function Demands() {
                         {
                             demands.map((val, index) => {
                                 return (
-                                    <Demand listDirection={table} name={val.name} requester={val.requester} date={val.date} situation={val.situation} />
+                                    <Demand listDirection={table} name={val.name} requester={val.requester} date={val.date} situation={val.situation} type="demand" />
                                 );
                             })
                         }
@@ -73,7 +73,7 @@ export default function Demands() {
                         {
                             proposals.map((val, index) => {
                                 return (
-                                    <Demand listDirection={table} name={val.name} requester={val.requester} date={val.date} situation={val.situation} />
+                                    <Demand listDirection={table} name={val.name} requester={val.requester} date={val.date} situation={val.situation} type="proposal" />
                                 );
                             })
                         }
@@ -89,7 +89,7 @@ export default function Demands() {
                         {
                             agendas.map((val, index) => {
                                 return (
-                                    <Demand listDirection={table} name={val.name} requester={val.requester} date={val.date} situation={val.situation} />
+                                    <Demand listDirection={table} name={val.name} requester={val.requester} date={val.date} situation={val.situation} type="agenda" />
                                 );
                             })
                         }
@@ -101,11 +101,11 @@ export default function Demands() {
                     <Header icon="description" title="Atas" />
                     <Nav />
                     <div className="container">
-                        <Search nav="Atas > Visualizar Atas" title="Atas" button="Criar Ata" link="/minutes/create" setTable={setTable} />
+                        <Search nav="Atas > Visualizar Atas" title="Atas" button="Criar Ata" link="/minutes/create" setTable={setTable}  />
                         {
                             minutes.map((val, index) => {
                                 return (
-                                    <Demand listDirection={table} name={val.name} requester={val.requester} date={val.date} situation={val.situation} />
+                                    <Demand listDirection={table} name={val.name} requester={val.requester} date={val.date} situation={val.situation} type="minute" />
                                 );
                             })
                         }

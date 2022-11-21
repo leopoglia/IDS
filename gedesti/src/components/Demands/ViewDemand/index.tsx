@@ -10,9 +10,11 @@ import Footer from "../../Fixed/Footer";
 
 export default function ViewDemand() {
 
+    const url = window.location.href.split("/")[3];
     const [actionsDemand, setActionsDemand] = useState(1);
     const [stepDemand, setStepDemand] = useState(2);
 
+    console.log(url);
 
     return (
         <div className="view-demand">
@@ -21,272 +23,273 @@ export default function ViewDemand() {
 
             <Nav />
 
-            <div className="container">
+            {url === "demand" ? (
+                <div className="container">
 
-                <div className="background-title">
+                    <div className="background-title">
 
-                    <Title nav="Demandas > Visualizar Demanda" title="Visualizar Demanda" />
+                        <Title nav="Demandas > Visualizar Demanda" title="Visualizar Demanda" />
 
-                    {(actionsDemand === 1) ? (
+                        {(actionsDemand === 1) ? (
 
-                        <button className="btn-primary">
-                            <span className="material-symbols-outlined">
-                                download
-                            </span>
-                            <span>Gerar PDF</span>
-                        </button>
-                    ) : (
-                        <div className="display-flex">
+                            <button className="btn-primary">
+                                <span className="material-symbols-outlined">
+                                    download
+                                </span>
+                                <span>Gerar PDF</span>
+                            </button>
+                        ) : (
+                            <div className="display-flex">
 
-                            <Link to="/demand/disapprove">
-                                <button className="btn-secondary">
-                                    <span>Reprovar</span>
-                                </button>
-                            </Link>
+                                <Link to="/demand/disapprove">
+                                    <button className="btn-secondary">
+                                        <span>Reprovar</span>
+                                    </button>
+                                </Link>
 
-                            <Link to="/demand/rank">
-                                <button className="btn-primary">
-                                    <span>Classificar</span>
-                                </button>
-                            </Link>
-
-
-                            <ButtonActionAnalyst />
-                        </div>
-                    )}
-
-                </div>
-
-                <div className="box">
+                                <Link to="/demand/rank">
+                                    <button className="btn-primary">
+                                        <span>Classificar</span>
+                                    </button>
+                                </Link>
 
 
-                    <div className="situation-current">
-                        <p>Situação a ser Resolvida (Situação Atual)</p>
-
-                        <span>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum eleifend quam vitae viverra. Nullam vulputate elit a ipsum porttitor gravida. Proin et vehicula velit. Donec eget nulla quis turpis placerat molestie a sed justo. Curabitur sit amet pellentesque metus. Donec dictum elit a libero aliquam aliquam. Nullam porttitor justo pharetra orci porttitor, id tristique diam pulvinar. Mauris facilisis, dolor et aliquam elementum, ex ligula ullamcorper tellus, a consequat purus augue at felis. Aliquam ante lectus, lobortis sit amet orci quis, porta lobortis turpis. Suspendisse aliquet vulputate sapien, non fringilla erat ultrices at. Proin elementum orci ut ante aliquet sollicitudin.
-                        </span>
-
-                        <p className="title">Proposta</p>
-
-                        <span>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum eleifend quam vitae viverra. Nullam vulputate elit a ipsum porttitor gravida. Proin et vehicula velit. Donec eget nulla quis turpis placerat molestie a sed justo. Curabitur sit amet pellentesque metus. Donec dictum elit a libero aliquam aliquam. Nullam porttitor justo pharetra orci porttitor, id tristique diam pulvinar. Mauris facilisis, dolor et aliquam elementum, ex ligula ullamcorper tellus, a consequat purus augue at felis. Aliquam ante lectus, lobortis sit amet orci quis, porta lobortis turpis. Suspendisse aliquet vulputate sapien, non fringilla erat ultrices at. Proin elementum orci ut ante aliquet sollicitudin.
-                        </span>
-
-                    </div>
-
-
-                    <div className="cust-center">
-                        <p className="title">Centro de Custos</p>
-
-                        <hr />
-
-                        <table>
-                            <tr>
-                                <td>Centro de Custos</td>
-                                <td>Nome do Centro de Custos</td>
-                            </tr>
-
-                            <hr />
-
-
-                            <tr>
-                                <td>55435235345</td>
-                                <td>Centro de Custos WEG II</td>
-                            </tr>
-
-                            <hr />
-
-                            <tr>
-                                <td>55435235345</td>
-                                <td>Centro de Custos WEG II</td>
-                            </tr>
-
-                            <hr />
-
-                        </table>
-                    </div>
-
-
-                    <div className="real-benefit">
-                        <p className="title">Beneficio Real</p>
-
-                        <hr />
-
-                        <div className="infos">
-
-                            <div>
-                                <span>Valor Mensal: </span>
-
-                                <span>R$50.000</span>
-
+                                <ButtonActionAnalyst />
                             </div>
+                        )}
+
+                    </div>
+
+                    <div className="box">
 
 
-
-                        </div>
-
-                        <hr />
-
-                        <div className="description">
-                            <span className="desc">Descrição</span>
+                        <div className="situation-current">
+                            <p>Situação a ser Resolvida (Situação Atual)</p>
 
                             <span>
-                                Fusce sed facilisis velit. Donec dignissim neque id sem pulvinar ultrices. Curabitur faucibus mauris nec ante finibus tempus. Aliquam erat volutpat. Nulla in quam urna. Sed est lectus, viverra eu nibh sed, sollicitudin sagittis diam. Mauris venenatis accumsan lacus in porta. Aliquam suscipit et augue id finibus.
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum eleifend quam vitae viverra. Nullam vulputate elit a ipsum porttitor gravida. Proin et vehicula velit. Donec eget nulla quis turpis placerat molestie a sed justo. Curabitur sit amet pellentesque metus. Donec dictum elit a libero aliquam aliquam. Nullam porttitor justo pharetra orci porttitor, id tristique diam pulvinar. Mauris facilisis, dolor et aliquam elementum, ex ligula ullamcorper tellus, a consequat purus augue at felis. Aliquam ante lectus, lobortis sit amet orci quis, porta lobortis turpis. Suspendisse aliquet vulputate sapien, non fringilla erat ultrices at. Proin elementum orci ut ante aliquet sollicitudin.
                             </span>
-                        </div>
-                    </div>
 
-
-                    <div className="potential-benefit">
-                        <p className="title">Beneficio Potencial</p>
-
-                        <hr />
-
-                        <div className="infos">
-
-                            <div>
-                                <span>Valor Mensal: </span>
-
-                                <span>R$50.000</span>
-
-                            </div>
-
-
-                            <span>Obrigação Legal: Sim</span>
-
-                        </div>
-
-                        <hr />
-
-                        <div className="description">
-                            <span className="desc">Descrição</span>
+                            <p className="title">Proposta</p>
 
                             <span>
-                                Fusce sed facilisis velit. Donec dignissim neque id sem pulvinar ultrices. Curabitur faucibus mauris nec ante finibus tempus. Aliquam erat volutpat. Nulla in quam urna. Sed est lectus, viverra eu nibh sed, sollicitudin sagittis diam. Mauris venenatis accumsan lacus in porta. Aliquam suscipit et augue id finibus.
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum eleifend quam vitae viverra. Nullam vulputate elit a ipsum porttitor gravida. Proin et vehicula velit. Donec eget nulla quis turpis placerat molestie a sed justo. Curabitur sit amet pellentesque metus. Donec dictum elit a libero aliquam aliquam. Nullam porttitor justo pharetra orci porttitor, id tristique diam pulvinar. Mauris facilisis, dolor et aliquam elementum, ex ligula ullamcorper tellus, a consequat purus augue at felis. Aliquam ante lectus, lobortis sit amet orci quis, porta lobortis turpis. Suspendisse aliquet vulputate sapien, non fringilla erat ultrices at. Proin elementum orci ut ante aliquet sollicitudin.
                             </span>
+
                         </div>
-                    </div>
 
 
-                    <div className="qualitative-benefit">
-                        <p className="title">Beneficio Qualitativo</p>
+                        <div className="cust-center">
+                            <p className="title">Centro de Custos</p>
 
-                        <hr />
+                            <hr />
 
-                        <div className="infos">
+                            <table>
+                                <tr>
+                                    <td>Centro de Custos</td>
+                                    <td>Nome do Centro de Custos</td>
+                                </tr>
 
-                            <div>
-                                <span>Valor Mensal: </span>
+                                <hr />
 
-                                <span>R$50.000</span>
+
+                                <tr>
+                                    <td>55435235345</td>
+                                    <td>Centro de Custos WEG II</td>
+                                </tr>
+
+                                <hr />
+
+                                <tr>
+                                    <td>55435235345</td>
+                                    <td>Centro de Custos WEG II</td>
+                                </tr>
+
+                                <hr />
+
+                            </table>
+                        </div>
+
+
+                        <div className="real-benefit">
+                            <p className="title">Beneficio Real</p>
+
+                            <hr />
+
+                            <div className="infos">
+
+                                <div>
+                                    <span>Valor Mensal: </span>
+
+                                    <span>R$50.000</span>
+
+                                </div>
+
+
 
                             </div>
 
+                            <hr />
 
-                            <div>
+                            <div className="description">
+                                <span className="desc">Descrição</span>
+
+                                <span>
+                                    Fusce sed facilisis velit. Donec dignissim neque id sem pulvinar ultrices. Curabitur faucibus mauris nec ante finibus tempus. Aliquam erat volutpat. Nulla in quam urna. Sed est lectus, viverra eu nibh sed, sollicitudin sagittis diam. Mauris venenatis accumsan lacus in porta. Aliquam suscipit et augue id finibus.
+                                </span>
+                            </div>
+                        </div>
+
+
+                        <div className="potential-benefit">
+                            <p className="title">Beneficio Potencial</p>
+
+                            <hr />
+
+                            <div className="infos">
+
+                                <div>
+                                    <span>Valor Mensal: </span>
+
+                                    <span>R$50.000</span>
+
+                                </div>
+
+
                                 <span>Obrigação Legal: Sim</span>
+
                             </div>
 
-                            <span>Requisitos de controles internos: Sim</span>
+                            <hr />
 
-                        </div>
+                            <div className="description">
+                                <span className="desc">Descrição</span>
 
-                        <hr />
-
-                        <div className="description">
-                            <span className="desc">Descrição</span>
-
-                            <span>
-                                Fusce sed facilisis velit. Donec dignissim neque id sem pulvinar ultrices. Curabitur faucibus mauris nec ante finibus tempus. Aliquam erat volutpat. Nulla in quam urna. Sed est lectus, viverra eu nibh sed, sollicitudin sagittis diam. Mauris venenatis accumsan lacus in porta. Aliquam suscipit et augue id finibus.
-                            </span>
-                        </div>
-
-
-                    </div>
-
-
-                    <div className="attachments">
-
-
-                        <p className="title">Anexos</p>
-
-                        <div className="attachment">
-                            <div className="attachment-image">
-                                <img src="/attachment/pdf.png" alt="" />
+                                <span>
+                                    Fusce sed facilisis velit. Donec dignissim neque id sem pulvinar ultrices. Curabitur faucibus mauris nec ante finibus tempus. Aliquam erat volutpat. Nulla in quam urna. Sed est lectus, viverra eu nibh sed, sollicitudin sagittis diam. Mauris venenatis accumsan lacus in porta. Aliquam suscipit et augue id finibus.
+                                </span>
                             </div>
-                            <span>attachments.pdf</span>
                         </div>
 
-                    </div>
 
-                    {(stepDemand === 1 || stepDemand === 2) ? (
-                        <div className="classification" >
+                        <div className="qualitative-benefit">
+                            <p className="title">Beneficio Qualitativo</p>
 
-                            <p>Classificação</p>
+                            <hr />
 
+                            <div className="infos">
 
-                            <table>
-                                <hr />
-                                <tr>
-                                    <td>Tamanho</td>
-                                    <td>BU Solicitante</td>
-                                    <td>BU Beneficiada</td>
-                                    <td>Sessão do TI responsável</td>
+                                <div>
+                                    <span>Valor Mensal: </span>
 
-                                </tr>
+                                    <span>R$50.000</span>
 
-                                <hr />
+                                </div>
 
 
-                                <tr>
-                                    <td>Pequeno - 40 - 400 horas</td>
-                                    <td>WEG II</td>
-                                    <td>WEG Motores</td>
-                                    <td>Centro WEG</td>
+                                <div>
+                                    <span>Obrigação Legal: Sim</span>
+                                </div>
 
-                                </tr>
+                                <span>Requisitos de controles internos: Sim</span>
 
-                                <hr />
+                            </div>
+
+                            <hr />
+
+                            <div className="description">
+                                <span className="desc">Descrição</span>
+
+                                <span>
+                                    Fusce sed facilisis velit. Donec dignissim neque id sem pulvinar ultrices. Curabitur faucibus mauris nec ante finibus tempus. Aliquam erat volutpat. Nulla in quam urna. Sed est lectus, viverra eu nibh sed, sollicitudin sagittis diam. Mauris venenatis accumsan lacus in porta. Aliquam suscipit et augue id finibus.
+                                </span>
+                            </div>
 
 
-                            </table>
                         </div>
 
-                    ) : (
-                        <div className="null"></div>
-                    )}
 
-                    {(stepDemand === 2) ? (
-
-                        <div className="complement" >
-                            <p>Complementos</p>
-
-                            <table>
-                                <hr />
-                                <tr>
-                                    <td>Prazo Execução</td>
-                                    <td>Código PPM</td>
-                                    <td>Link EPIC Jira</td>
-
-                                </tr>
-
-                                <hr />
+                        <div className="attachments">
 
 
-                                <tr>
-                                    <td>4 meses</td>
-                                    <td>98765432</td>
-                                    <td><a target="_blank" href="https://ctw2022.atlassian.net/jira/software/projects/P2/boards/1/roadmap?shared=&atlOrigin=eyJpIjoiNmQ5YjMzOWUyNWNmNGNiZTgyMmI2MGNjMTRmNmZiYjEiLCJwIjoiaiJ9">Abrir JIRA</a></td>
+                            <p className="title">Anexos</p>
 
-                                </tr>
+                            <div className="attachment">
+                                <div className="attachment-image">
+                                    <img src="/attachment/pdf.png" alt="" />
+                                </div>
+                                <span>attachments.pdf</span>
+                            </div>
 
-                                <hr />
+                        </div>
+
+                        {(stepDemand === 1 || stepDemand === 2) ? (
+                            <div className="classification" >
+
+                                <p>Classificação</p>
 
 
-                            </table>
+                                <table>
+                                    <hr />
+                                    <tr>
+                                        <td>Tamanho</td>
+                                        <td>BU Solicitante</td>
+                                        <td>BU Beneficiada</td>
+                                        <td>Sessão do TI responsável</td>
 
-                            {/* 
+                                    </tr>
+
+                                    <hr />
+
+
+                                    <tr>
+                                        <td>Pequeno - 40 - 400 horas</td>
+                                        <td>WEG II</td>
+                                        <td>WEG Motores</td>
+                                        <td>Centro WEG</td>
+
+                                    </tr>
+
+                                    <hr />
+
+
+                                </table>
+                            </div>
+
+                        ) : (
+                            <div className="null"></div>
+                        )}
+
+                        {(stepDemand === 2) ? (
+
+                            <div className="complement" >
+                                <p>Complementos</p>
+
+                                <table>
+                                    <hr />
+                                    <tr>
+                                        <td>Prazo Execução</td>
+                                        <td>Código PPM</td>
+                                        <td>Link EPIC Jira</td>
+
+                                    </tr>
+
+                                    <hr />
+
+
+                                    <tr>
+                                        <td>4 meses</td>
+                                        <td>98765432</td>
+                                        <td><a target="_blank" href="https://ctw2022.atlassian.net/jira/software/projects/P2/boards/1/roadmap?shared=&atlOrigin=eyJpIjoiNmQ5YjMzOWUyNWNmNGNiZTgyMmI2MGNjMTRmNmZiYjEiLCJwIjoiaiJ9">Abrir JIRA</a></td>
+
+                                    </tr>
+
+                                    <hr />
+
+
+                                </table>
+
+                                {/* 
                             <table>
                                 <hr />
                                 <tr>
@@ -320,20 +323,24 @@ export default function ViewDemand() {
 
                             </table> */}
 
-                        </div>
+                            </div>
 
-                    ) : (
-                        <div className="null"></div>
-                    )}
+                        ) : (
+                            <div className="null"></div>
+                        )}
+                    </div>
                 </div>
+            ) : (
+                <div className="null"></div>
+            )}
 
-                <Footer />
+            <Footer />
 
 
-            </div>
+        </div>
 
 
 
-        </div >
     );
+
 }

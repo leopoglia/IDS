@@ -59,7 +59,7 @@
     background-color: var(--greyD9);
     width: 35px;
     height: 35px;
-    border-radius: var(--r);
+    border-radius: 80px;
 }
 
 .header .user{

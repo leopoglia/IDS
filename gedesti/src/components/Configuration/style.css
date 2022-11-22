@@ -28,7 +28,7 @@
 .configuration .box .picture-profile {
     width: 90px;
     height: 90px;
-    border-radius: var(--r);
+    border-radius: 80px;
 }
 
 .configuration .box .picture-profile:hover {

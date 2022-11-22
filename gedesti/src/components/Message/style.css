@@ -19,7 +19,7 @@
     max-height: 80px;
     height: 80px;
     background-color: var(--greyD9);
-    border-radius: var(--r);
+    border-radius: 80px;
 }
 
 .messages .box-message .message-name {

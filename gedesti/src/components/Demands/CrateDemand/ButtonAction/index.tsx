@@ -6,13 +6,10 @@ export default function ButtonAction(props: {
     click: string
 }) {
 
-    const url = window.location.href.split("/");
-
-    console.log(url[5]);
+    const url = window.location.href.split("/")[5];
 
 
-
-    if (props.click === "voltar" && url[5] === "1") {
+    if (props.click === "voltar" && url === "1") {
         return (
             <Link className="btn-secondary" to="/demands">
                 {props.title}
@@ -21,15 +18,15 @@ export default function ButtonAction(props: {
     }
 
 
-    if (props.click === "voltar" && url[5] !== "1") {
+    if (props.click === "voltar" && url !== "1") {
         return (
-            <Link className="btn-secondary" to={"/demand/create/" + (parseInt(url[5]) - 1)}>
+            <Link className="btn-secondary" to={"/demand/create/" + (parseInt(url) - 1)}>
                 {props.title}
             </Link>
         );
     } else {
         return (
-            <Link className="btn-primary" to={"/demand/create/" + (parseInt(url[5]) + 1)}>
+            <Link className="btn-primary" to={"/demand/create/" + (parseInt(url) + 1)}>
                 {props.title}
             </Link>
         );

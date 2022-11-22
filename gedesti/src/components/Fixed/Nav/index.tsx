@@ -21,19 +21,9 @@ export default function Nav() {
 
 
         if (nav === "nav") {
-
-            console.log(1)
-            console.log(nav)
-
             setNav("nav-open");
-
-            console.log(nav)
-
         } else {
-
             setNav("nav");
-
-
         }
     }
 

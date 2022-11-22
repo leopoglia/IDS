@@ -14,7 +14,6 @@ export default function ViewDemand() {
     const [actionsDemand, setActionsDemand] = useState(1);
     const [stepDemand, setStepDemand] = useState(2);
 
-    console.log(url);
 
     return (
         <div className="view-demand">

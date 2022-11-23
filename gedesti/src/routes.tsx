@@ -1,23 +1,23 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 
-import Form from './components/Login';
-import Demands from "./components/Demands/Demands";
-import Messages from "./components/Messages";
-import Message from "./components/Message/";
-import Notifications from "./components/Notifications";
-import Configuration from "./components/Configuration";
-import CreateDemands1 from "./components/Demands/CrateDemand/Step1";
-import CreateDemands2 from "./components/Demands/CrateDemand/Step2";
-import CreateDemands3 from "./components/Demands/CrateDemand/Step3";
-import ViewDemand from "./components/Demands/ViewDemand";
-import RankDemand from "./components/Demands/RankDemand";
-import DisapproveDemand from "./components/Demands/DisapproveDemand";
-import ComplementDemand from "./components/Demands/ComplementDemand";
-import HistoricalDemand from "./components/Demands/HistoricalDemand";
-import ExecutionCosts from "./components/Proposals/ExecutionCosts/ExecutionCosts";
-import EditProposalScope from "./components/Proposals/EditProposalScope";
-import SelectProposal from "./components/Proposals/SelectProposals";
-import CreateAgenda from "./components/Agendas/CreateAgenda";
+import Form from './components/Login/Login';
+import Demands from "./components/Solicitation/Demands/Demands";
+import Messages from "./components/Others/Messages";
+import Message from "./components/Others/Messages/Message";
+import Notifications from "./components/Others/Notifications";
+import Configuration from "./components/Others/Configuration";
+import CreateDemands1 from "./components/Solicitation/Demands/CrateDemand/Step1";
+import CreateDemands2 from "./components/Solicitation/Demands/CrateDemand/Step2";
+import CreateDemands3 from "./components/Solicitation/Demands/CrateDemand/Step3";
+import ViewDemand from "./components/Solicitation/Demands/ViewDemand";
+import RankDemand from "./components/Solicitation/Demands/RankDemand";
+import DisapproveDemand from "./components/Solicitation/Demands/DisapproveDemand";
+import ComplementDemand from "./components/Solicitation/Demands/ComplementDemand";
+import HistoricalDemand from "./components/Solicitation/Demands/HistoricalDemand";
+import ExecutionCosts from "./components/Solicitation/Proposals/ExecutionCosts/ExecutionCosts";
+import EditProposalScope from "./components/Solicitation/Proposals/EditProposalScope";
+import SelectProposal from "./components/Solicitation/Proposals/SelectProposals";
+import CreateAgenda from "./components/Solicitation/Agendas/CreateAgenda";
 
 export default function Router() {
     return (

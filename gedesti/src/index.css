@@ -167,13 +167,13 @@ input[type=checkbox]:checked {
 }
 
 .btn-secondary {
-  background-color: var(--greyE5);
+  background-color: var(--greyF7);
   color: var(--grey59);
   border: 1px solid var(--greyC4);
 }
 
 .btn-secondary:hover {
-  background-color: var(--greyD9);
+  background-color: var(--greyE5);
 }
 
 

@@ -11,7 +11,7 @@ import Footer from "../../Fixed/Footer";
 export default function ViewDemand() {
 
     const url = window.location.href.split("/")[3];
-    const [actionsDemand, setActionsDemand] = useState(1);
+    const [actionsDemand, setActionsDemand] = useState(2);
     const [stepDemand, setStepDemand] = useState(2);
 
 

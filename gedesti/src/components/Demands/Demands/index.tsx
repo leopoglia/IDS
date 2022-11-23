@@ -1,11 +1,11 @@
 import "./style.css"
-import Header from "../Fixed/Header"
-import Nav from "../Fixed/Nav"
-import Search from "../Fixed/Search";
-import Demand from "./Demand";
-import Footer from "../Fixed/Footer";
+import Header from "../../Fixed/Header"
+import Nav from "../../Fixed/Nav"
+import Search from "../../Fixed/Search";
+import Demand from "../Demand";
+import Footer from "../../Fixed/Footer";
 import { useState } from "react";
-import Load from "../Fixed/Load";
+import Load from "../../Fixed/Load";
 
 export default function Demands() {
 
@@ -101,7 +101,7 @@ export default function Demands() {
                     <Header icon="description" title="Atas" />
                     <Nav />
                     <div className="container">
-                        <Search nav="Atas > Visualizar Atas" title="Atas" button="Criar Ata" link="/minutes/create" setTable={setTable}  />
+                        <Search nav="Atas > Visualizar Atas" title="Atas" button="Criar Ata" link="/minutes/create" setTable={setTable} />
                         {
                             minutes.map((val, index) => {
                                 return (

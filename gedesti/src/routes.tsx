@@ -1,7 +1,7 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 
 import Form from './components/Login';
-import Demands from "./components/Demands";
+import Demands from "./components/Demands/Demands";
 import Messages from "./components/Messages";
 import Message from "./components/Message/";
 import Notifications from "./components/Notifications";

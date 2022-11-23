@@ -25,7 +25,7 @@ export default function Router() {
             <Routes>
                 <Route path="/" element={<Form />} />
                 <Route path="/messages" element={<Messages />} />
-                <Route path="/message" element={<Message />} />
+                <Route path="/messages/message" element={<Message />} />
                 <Route path="/notifications" element={<Notifications />} />
                 <Route path="/configuration" element={<Configuration />} />
 

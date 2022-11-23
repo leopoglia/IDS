@@ -95,6 +95,15 @@ nav #current {
     border-radius: var(--r);
 }
 
+#current .material-symbols-outlined {
+    font-variation-settings:
+      'FILL' 1,
+      'wght' 400,
+      'GRAD' -25,
+      'opsz' 50
+  }
+  
+
 .nav-open li div:hover {
     background-color: var(--greyE5);
 }

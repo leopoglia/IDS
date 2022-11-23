@@ -219,6 +219,14 @@ textarea:focus {
 }
 
 
+.material-symbols-outlined {
+  font-size: 24px;
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' -25,
+    'opsz' 50
+}
 
 @media(max-width: 768px) {
   .container {

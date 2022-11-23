@@ -43,7 +43,7 @@ export default function Nav() {
                     <li>
                         <div id={hover("demands")}>
                             <span className="material-symbols-outlined">
-                                folder_copy
+                                draft
                             </span>
                             <span className="title-li">Demandas</span>
                         </div>
@@ -56,7 +56,7 @@ export default function Nav() {
                     <li>
                         <div id={hover("proposals")}>
                             <span className="material-symbols-outlined">
-                                content_paste
+                                edit_document
                             </span>
                             <span className="title-li">Propostas</span>
                         </div>
@@ -67,7 +67,7 @@ export default function Nav() {
                     <li>
                         <div id={hover("agendas")}>
                             <span className="material-symbols-outlined">
-                                file_copy
+                                folder
                             </span>
                             <span className="title-li">Pautas</span>
                         </div>
@@ -78,7 +78,7 @@ export default function Nav() {
                     <li>
                         <div id={hover("minutes")}>
                             <span className="material-symbols-outlined">
-                                description
+                                file_present
                             </span>
                             <span className="title-li">Atas</span>
                         </div>

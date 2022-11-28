@@ -43,15 +43,15 @@
     border-radius: 4px 0 0 4px;
 }
 
-.proposals .demand::before{
+.proposals .demand::before {
     background-color: var(--blue00);
 }
 
-.agendas .demand::before{
+.agendas .demand::before {
     background-color: var(--blue44);
 }
 
-.minutes .demand::before{
+.minutes .demand::before {
     background-color: var(--blue64);
 }
 
@@ -69,7 +69,7 @@
     background-color: var(--greyD9);
 }
 
-.demand-list .graphic{
+.demand-list .graphic {
     margin-right: 15px;
 }
 
@@ -107,6 +107,15 @@
     border-radius: var(--r);
     padding: 7px;
     margin-left: 10px;
+}
+
+.demand .infos .requester,
+.demand-list .infos .requester {
+    min-width: 260px;
+    max-width: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .demand .infos div p,
@@ -151,7 +160,7 @@
     justify-content: space-between;
 }
 
-.demand-list .display-flex{
+.demand-list .display-flex {
     align-items: center;
 }
 

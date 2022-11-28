@@ -7,7 +7,7 @@ export default function Demand(props: any) {
     const information = () => {
         return (
             (<div className="infos">
-                <div><p>Solicitante: {props.requester}</p></div>
+                <div className="requester"><p>Solicitante: {props.requester}</p></div>
                 <div><p>Data da solicitação: {props.date}</p></div>
                 <div><p>Situação: {props.situation}</p></div>
             </div>)
@@ -26,7 +26,7 @@ export default function Demand(props: any) {
 
     if (props.listDirection === false) {
         return (
-            <Link to={"/"+ props.type + "/view"}>
+            <Link to={"/" + props.type + "/view"}>
                 <div className="demand">
                     <section>
                         <h1>{props.name}</h1>
@@ -55,7 +55,7 @@ export default function Demand(props: any) {
         );
     } else {
         return (
-            <Link to={"/"+ props.type + "/view"}>
+            <Link to={"/" + props.type + "/view"}>
                 <div className="demand-list">
                     <section>
                         <h1>Nome da Solicitação</h1>

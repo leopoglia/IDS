@@ -20,7 +20,7 @@ export default function Proposals() {
                 <SelectProposal />
 
                 <div className="display-flex-end">
-                    <Link to="/agenda/create-agenda">
+                    <Link to="/agenda/create">
                         <button className="btn-primary">Adicionar</button>
                     </Link>
 

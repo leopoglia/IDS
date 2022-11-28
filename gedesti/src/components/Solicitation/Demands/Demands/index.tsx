@@ -15,7 +15,7 @@ export default function Demands() {
 
     const [demands] = useState([
         { name: "Solicitação 001", requester: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "Backlog" },
-        { name: "Solicitação 002", requester: "Vytor Augusto Rosa", date: "21/11/2022", situation: "Backlog" }
+        { name: "Solicitação 002", requester: "Vytor Augusto Rosa", date: "21/11/2022", situation: "Sem situação" }
     ]);
     const [proposals] = useState([
         { name: "Proposta 001", requester: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "unallocated" },

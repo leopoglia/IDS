@@ -1,6 +1,6 @@
 import "./style.css";
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import Situation from "./Situation/index";
 
 export default function Demand(props: any) {
 
@@ -9,7 +9,7 @@ export default function Demand(props: any) {
             (<div className="infos">
                 <div className="requester"><p>Solicitante: {props.requester}</p></div>
                 <div><p>Data da solicitação: {props.date}</p></div>
-                <div><p>Situação: {props.situation}</p></div>
+                <div className="situation"><p>Situação: {props.situation}</p></div>
             </div>)
         )
     }
@@ -24,6 +24,7 @@ export default function Demand(props: any) {
         }
     }
 
+
     if (props.listDirection === false) {
         return (
             <Link to={"/" + props.type + "/view"}>
@@ -33,9 +34,8 @@ export default function Demand(props: any) {
 
 
                         <div className="display-grid">
-                            <div className="graphic">
-                                <div className="situation"></div>
-                            </div>
+
+                            <Situation situation={props.situation} />
 
                         </div>
 
@@ -46,7 +46,6 @@ export default function Demand(props: any) {
                         {information()}
 
                         {btnGenerateProposal()}
-
                     </div>
 
 
@@ -66,12 +65,8 @@ export default function Demand(props: any) {
                     <div className="display-flex">
                         {information()}
 
-                        <div className="graphic">
-                            <div className="situation"></div>
-                        </div>
+                        <Situation situation={props.situation} />
 
-
-                        {btnGenerateProposal()}
 
                     </div>
 

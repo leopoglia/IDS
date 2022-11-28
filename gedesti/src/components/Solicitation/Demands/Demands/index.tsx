@@ -15,7 +15,13 @@ export default function Demands() {
 
     const [demands] = useState([
         { name: "Solicitação 001", requester: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "Backlog" },
-        { name: "Solicitação 002", requester: "Vytor Augusto Rosa", date: "21/11/2022", situation: "Sem situação" }
+        { name: "Solicitação 002", requester: "Vytor Augusto Rosa", date: "21/11/2022", situation: "Assesment" },
+        { name: "Solicitação 002", requester: "Vytor Augusto Rosa", date: "21/11/2022", situation: "Business Case" },
+        { name: "Solicitação 002", requester: "Vytor Augusto Rosa", date: "21/11/2022", situation: "To-do" },
+        { name: "Solicitação 002", requester: "Vytor Augusto Rosa", date: "21/11/2022", situation: "Design and Build" },
+        { name: "Solicitação 002", requester: "Vytor Augusto Rosa", date: "21/11/2022", situation: "Cancelled" },
+        { name: "Solicitação 002", requester: "Vytor Augusto Rosa", date: "21/11/2022", situation: "Support" },
+        { name: "Solicitação 002", requester: "Vytor Augusto Rosa", date: "21/11/2022", situation: "Done" },
     ]);
     const [proposals] = useState([
         { name: "Proposta 001", requester: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "unallocated" },

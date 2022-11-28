@@ -118,6 +118,16 @@
     justify-content: center;
 }
 
+.demand .infos .situation,
+.demand-list .infos .situation{
+    min-width: 200px;
+    max-width: 210px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
 .demand .infos div p,
 .demand-list .infos div p {
     padding: 0px;

@@ -1,0 +1,88 @@
+.demand .graphic,
+.demand-list .graphic {
+    width: 150px;
+    height: 15px;
+    border-radius: 50px;
+    background-color: var(--greyD9);
+}
+
+.demand-list .graphic {
+    margin-right: 15px;
+}
+
+
+
+.graphic .situation-backlog,
+.graphic .situation-to-do,
+.graphic .situation-done,
+.graphic .situation-cancelled,
+.graphic .situation-assesment,
+.graphic .situation-support,
+.graphic .situation-design-and-build,
+.graphic .situation-business-case {
+    height: 100%;
+    background-color: var(--blue);
+    border-radius: 20px;
+}
+
+
+.graphic .situation-backlog {
+    width: 15%;
+}
+
+
+.graphic .situation-assesment {
+    width: 30%;
+}
+
+.graphic .situation-business-case {
+    width: 45%;
+}
+
+.graphic .situation-to-do {
+    width: 60%;
+}
+
+.graphic .situation-design-and-build {
+    width: 75%;
+}
+
+.graphic .situation-support,
+.graphic .situation-cancelled {
+    color: var(--grey3d);
+    background-color: var(--greyD9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--pp);
+}
+
+.graphic {
+    width: 100%;
+    background-color: var(--blue64);
+}
+
+
+.graphic .situation-backlog:hover,
+.graphic .situation-to-do:hover,
+.graphic .situation-done:hover,
+.graphic .situation-assesment:hover,
+.graphic .situation-design-and-build:hover,
+.graphic .situation-business-case:hover {
+    background-color: var(--blue19);
+}
+
+.graphic .situation-support:hover,
+.graphic .situation-cancelled:hover{
+    background-color: var(--greyC4);
+}
+
+
+.demand .infos .situation,
+.demand-list .infos .situation {
+    min-width: 200px;
+    max-width: 210px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -27,7 +27,7 @@ export default function Demands() {
         { name: "Proposta 001", requester: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "unallocated" },
     ]);
     const [agendas] = useState([
-        { name: "Pautas 001", requester: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "unallocated" },
+        { name: "Pauta 001", requester: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "unallocated" },
     ]);
     const [minutes] = useState([
         { name: "Ata 001", requester: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "unallocated" },

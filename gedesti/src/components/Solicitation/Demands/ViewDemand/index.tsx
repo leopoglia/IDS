@@ -14,6 +14,10 @@ export default function ViewDemand() {
     const [actionsDemand, setActionsDemand] = useState(2);
     const [stepDemand, setStepDemand] = useState(2);
 
+    const [demands] = useState([
+        { name: "Solicitação 001", requester: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "Backlog", current_situation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum eleifend quam vitae viverra. Nullam vulputate elit a ipsum porttitor gravida. Proin et vehicula velit. Donec eget nulla quis turpis placerat molestie a sed justo. Curabitur sit amet pellentesque metus. Donec dictum elit a libero aliquam aliquam. Nullam porttitor justo pharetra orci porttitor, id tristique diam pulvinar. Mauris facilisis, dolor et aliquam elementum, ex ligula ullamcorper tellus, a consequat purus augue at felis. Aliquam ante lectus, lobortis sit amet orci quis, porta lobortis turpis. Suspendisse aliquet vulputate sapien, non fringilla erat ultrices at. Proin elementum orci ut ante aliquet sollicitudin.", proposal: "Nunc maximus purus sit amet est lacinia condimentum. Praesent sodales leo a finibus semper. Nunc luctus libero fermentum varius imperdiet. Aliquam tellus leo, volutpat ac scelerisque eget, gravida in urna. Curabitur ac urna bibendum, faucibus eros quis, auctor nibh. Etiam auctor rhoncus velit. Nulla finibus fringilla magna, eu tempus nisl molestie sed. Vivamus efficitur dui at malesuada lobortis. Vestibulum ut nisi velit. Integer gravida lectus nisl, a malesuada metus iaculis id. Vivamus sit amet vestibulum arcu, at feugiat lectus. Phasellus felis sem, laoreet in neque vitae, convallis tincidunt neque. Donec aliquet mattis porta. Praesent luctus purus eget felis mattis, hendrerit fermentum risus efficitur. Mauris pharetra sit amet dolor quis maximus. Sed vel convallis felis." }
+    ]);
+
 
     return (
         <div className="view-demand">

@@ -24,6 +24,14 @@ export default function Demand(props: any) {
         }
     }
 
+    const situation = () => {
+        if (props.type == "demand") {
+            return (
+                <Situation situation={props.situation} />
+            );
+        }
+    }
+
 
     if (props.listDirection === false) {
         return (
@@ -35,8 +43,7 @@ export default function Demand(props: any) {
 
                         <div className="display-grid">
 
-                            <Situation situation={props.situation} />
-
+                            {situation()}
                         </div>
 
                     </section>
@@ -57,7 +64,7 @@ export default function Demand(props: any) {
             <Link to={"/" + props.type + "/view"}>
                 <div className="demand-list">
                     <section>
-                        <h1>Nome da Solicitação</h1>
+                        <h1>{props.name}</h1>
 
                     </section>
 
@@ -65,7 +72,7 @@ export default function Demand(props: any) {
                     <div className="display-flex">
                         {information()}
 
-                        <Situation situation={props.situation} />
+                        {situation()}
 
 
                     </div>

@@ -1,7 +1,7 @@
 import Header from "../../../Fixed/Header";
 import Nav from "../../../Fixed/Nav";
 import Title from "../../../Fixed/Search/Title";
-import TextArea from "../../Demands/CrateDemand/TextArea";
+import { Link } from "react-router-dom";
 import "./style.css"
 
 export default function EditProposalScope() {
@@ -27,7 +27,9 @@ export default function EditProposalScope() {
 
 
                     <div className="display-flex-end">
-                        <button className="btn-primary">Salvar alterações</button>
+                        <Link to="/proposals">
+                            <button className="btn-primary">Salvar alterações</button>
+                        </Link>
                     </div>
                 </div>
 

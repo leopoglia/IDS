@@ -107,3 +107,31 @@
 .view-demand .classification {
     margin-top: 30px !important;
 }
+
+.view-demand .proposal-view {
+    width: 100%;
+    border-radius: var(--r);
+    border: 1px solid var(--greyC4);
+    padding: 15px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.view-demand .proposal-view:hover {
+    background-color: var(--greyF7);
+}
+
+.view-demand .proposal-view p {
+    font-size: var(--m);
+}
+
+.view-demand .proposal-view-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.view-demand .proposal-view-buttons button {
+    margin-left: 15px;
+}

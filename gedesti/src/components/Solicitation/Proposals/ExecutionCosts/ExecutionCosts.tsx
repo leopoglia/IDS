@@ -4,6 +4,7 @@ import Footer from "../../../Fixed/Footer";
 import Title from "../../../Fixed/Search/Title";
 import GridCostExecution from "./GridCostExecution";
 import SelectCostExecution from "./SelectCostExecution";
+import { Link } from "react-router-dom";
 import "./style.css"
 
 export default function ExecutionCosts() {
@@ -48,7 +49,9 @@ export default function ExecutionCosts() {
 
                 <div className="demands-footer">
                     <button className="btn-secondary">Cancelar</button>
-                    <button className="btn-primary">Gerar proposta</button>
+                    <Link to="/proposal/edit-scope">
+                        <button className="btn-primary">Gerar proposta</button>
+                    </Link>
                 </div>
             </div>
 

@@ -8,12 +8,12 @@
 textarea {
     width: 100%;
     min-height: 150px;
+    border-radius: 2px;
     padding: 10px;
-    border-radius: var(--r);
     border: 1px solid var(--greyC4);
     resize: none;
 }
 
-.edit-proposal-scope .display-flex-end{
+.edit-proposal-scope .display-flex-end {
     margin-top: 10px;
 }

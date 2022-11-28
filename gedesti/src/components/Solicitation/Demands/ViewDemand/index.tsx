@@ -491,6 +491,10 @@ export default function ViewDemand() {
                             </div>
                         </div>
 
+                        <div className="display-flex-end">
+                            <button className="btn-primary">Finalizar</button>
+                        </div>
+
                     </div>
                 </div>
             ) : url === "minute" ? (

@@ -6,7 +6,7 @@ import ButtonActionAnalyst from "./ButtonActionAnalyst";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import Footer from "../../../Fixed/Footer";
-
+import Spinner from "../../../Fixed/Load";
 
 export default function ViewDemand() {
 
@@ -15,18 +15,34 @@ export default function ViewDemand() {
     const [stepDemand, setStepDemand] = useState(2);
 
     const [demands] = useState([
-        { name: "Solicitação 001", requester: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "Backlog", currentSituation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum eleifend quam vitae viverra. Nullam vulputate elit a ipsum porttitor gravida. Proin et vehicula velit. Donec eget nulla quis turpis placerat molestie a sed justo. Curabitur sit amet pellentesque metus. Donec dictum elit a libero aliquam aliquam. Nullam porttitor justo pharetra orci porttitor, id tristique diam pulvinar. Mauris facilisis, dolor et aliquam elementum, ex ligula ullamcorper tellus, a consequat purus augue at felis. Aliquam ante lectus, lobortis sit amet orci quis, porta lobortis turpis. Suspendisse aliquet vulputate sapien, non fringilla erat ultrices at. Proin elementum orci ut ante aliquet sollicitudin.", proposal: "Nunc maximus purus sit amet est lacinia condimentum. Praesent sodales leo a finibus semper. Nunc luctus libero fermentum varius imperdiet. Aliquam tellus leo, volutpat ac scelerisque eget, gravida in urna. Curabitur ac urna bibendum, faucibus eros quis, auctor nibh. Etiam auctor rhoncus velit. Nulla finibus fringilla magna, eu tempus nisl molestie sed. Vivamus efficitur dui at malesuada lobortis. Vestibulum ut nisi velit. Integer gravida lectus nisl, a malesuada metus iaculis id. Vivamus sit amet vestibulum arcu, at feugiat lectus. Phasellus felis sem, laoreet in neque vitae, convallis tincidunt neque. Donec aliquet mattis porta. Praesent luctus purus eget felis mattis, hendrerit fermentum risus efficitur. Mauris pharetra sit amet dolor quis maximus. Sed vel convallis felis.", costCenter: [{ number: "24342", name: "Nome do Centro de Custos" }] }
+        {
+            name: "Solicitação 001", requester: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "Backlog", currentSituation: "Situação a ser Resolvida", proposal: "Proposta",
+            costCenter: { number: "24342", name: "Nome do Centro de Custos" }, realBenefit: { monthlyValue: 500, description: "Descrição Beneficio Real" },
+            potentialBenefit: { monthlyValue: 500, description: "Descrição Beneficio Potencial", legalObligation: "Sim" }, qualitativeBenefit: { monthlyValue: 500, description: "Descrição Beneficio Qualitativo", legalObligation: "Sim", internalControlRequirements: true },
+            attachments: [{ name: "Anexo 1", link: "https://www.google.com.br" }], classification: { size: "Pequeno - 40 - 400 horas", buApplicant: "WEG II", buBeneficiary: "WEG Motores", responsibleITSession: "Centro WEG" },
+            complements: [{ executionDeadline: "4 meses", ppm: "98765432", epicJira: "https://ctw2022.atlassian.net/jira/software/projects/P2/boards/1/roadmap" }],
+        },
     ]);
+
+    const tr = (dataOne: any, dataTwo: any) => {
+        return (
+            <div>
+                <tr>
+                    <td>{dataOne}</td>
+                    <td>{dataTwo}</td>
+                </tr>
+                <hr />
+            </div>
+        )
+    }
+
 
 
     return (
         <div className="view-demand">
 
-
-
             {url === "demand" ? (
                 <div>
-
                     <Header title="Visualizar Demanda" icon="visibility" />
 
                     <Nav />
@@ -69,170 +85,121 @@ export default function ViewDemand() {
 
                         <div className="box">
 
-                            <div className="situation-current">
-                                <p>Solicitante</p>
-                                <span>Leonardo Heitor Poglia</span>
-                            </div>
 
-                            <div className="situation-current">
-                                <p className="title">Situação a ser Resolvida (Situação Atual)</p>
+                            {
+                                demands.map((val, index) => {
+                                    return (
 
-                                <span>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum eleifend quam vitae viverra. Nullam vulputate elit a ipsum porttitor gravida. Proin et vehicula velit. Donec eget nulla quis turpis placerat molestie a sed justo. Curabitur sit amet pellentesque metus. Donec dictum elit a libero aliquam aliquam. Nullam porttitor justo pharetra orci porttitor, id tristique diam pulvinar. Mauris facilisis, dolor et aliquam elementum, ex ligula ullamcorper tellus, a consequat purus augue at felis. Aliquam ante lectus, lobortis sit amet orci quis, porta lobortis turpis. Suspendisse aliquet vulputate sapien, non fringilla erat ultrices at. Proin elementum orci ut ante aliquet sollicitudin.
-                                </span>
+                                        <div>
+                                            <div className="situation-current">
+                                                <p>Solicitante</p>
+                                                <span>{val.requester}</span>
+                                            </div>
 
-                                <p className="title">Proposta</p>
+                                            <div className="situation-current">
+                                                <p className="title">Situação Atual</p>
+                                                <span>{val.currentSituation}</span>
+                                                <p className="title">Proposta</p>
+                                                <span>{val.proposal}</span>
 
-                                <span>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum eleifend quam vitae viverra. Nullam vulputate elit a ipsum porttitor gravida. Proin et vehicula velit. Donec eget nulla quis turpis placerat molestie a sed justo. Curabitur sit amet pellentesque metus. Donec dictum elit a libero aliquam aliquam. Nullam porttitor justo pharetra orci porttitor, id tristique diam pulvinar. Mauris facilisis, dolor et aliquam elementum, ex ligula ullamcorper tellus, a consequat purus augue at felis. Aliquam ante lectus, lobortis sit amet orci quis, porta lobortis turpis. Suspendisse aliquet vulputate sapien, non fringilla erat ultrices at. Proin elementum orci ut ante aliquet sollicitudin.
-                                </span>
+                                            </div>
 
-                            </div>
+                                            <div className="cust-center">
+                                                <p className="title">Centro de Custos</p>
+                                                <hr />
+                                                <table>
+                                                    {tr("Centro de Custos", "Nome do Centro de Custos")}
 
+                                                    {tr(val.costCenter.number, val.costCenter.name)}
+                                                </table>
+                                            </div>
 
-                            <div className="cust-center">
-                                <p className="title">Centro de Custos</p>
+                                            <div className="real-benefit">
+                                                <p className="title">Beneficio Real</p>
 
-                                <hr />
+                                                <hr />
 
-                                <table>
-                                    <tr>
-                                        <td>Centro de Custos</td>
-                                        <td>Nome do Centro de Custos</td>
-                                    </tr>
+                                                <div className="infos">
 
-                                    <hr />
+                                                    <div>
+                                                        <span>Valor Mensal: </span><span>{val.realBenefit.monthlyValue}</span>
+                                                    </div>
 
+                                                </div>
 
-                                    <tr>
-                                        <td>55435235345</td>
-                                        <td>Centro de Custos WEG II</td>
-                                    </tr>
+                                                <hr />
 
-                                    <hr />
+                                                <div className="description">
+                                                    <span className="desc">Descrição</span><span>{val.realBenefit.description}</span>
+                                                </div>
+                                            </div>
 
-                                    <tr>
-                                        <td>55435235345</td>
-                                        <td>Centro de Custos WEG II</td>
-                                    </tr>
 
-                                    <hr />
+                                            <div className="potential-benefit">
+                                                <p className="title">Beneficio Potencial</p>
 
-                                </table>
-                            </div>
+                                                <hr />
 
+                                                <div className="infos">
 
-                            <div className="real-benefit">
-                                <p className="title">Beneficio Real</p>
+                                                    <div>
+                                                        <span>Valor Mensal: </span><span>{val.potentialBenefit.monthlyValue}</span>
+                                                    </div>
 
-                                <hr />
+                                                    <span>Obrigação Legal: {val.potentialBenefit.legalObligation}</span>
 
-                                <div className="infos">
+                                                </div>
 
-                                    <div>
-                                        <span>Valor Mensal: </span>
+                                                <hr />
 
-                                        <span>R$50.000</span>
+                                                <div className="description">
+                                                    <span className="desc">Descrição</span><span>{val.potentialBenefit.description}</span>
+                                                </div>
+                                            </div>
 
-                                    </div>
+                                            <div className="qualitative-benefit">
+                                                <p className="title">Beneficio Qualitativo</p>
 
+                                                <hr />
 
+                                                <div className="infos">
 
-                                </div>
+                                                    <div>
+                                                        <span>Valor Mensal: </span><span>{val.qualitativeBenefit.monthlyValue}</span>
 
-                                <hr />
+                                                    </div>
 
-                                <div className="description">
-                                    <span className="desc">Descrição</span>
+                                                    <div>
+                                                        <span>Obrigação Legal: {val.qualitativeBenefit.legalObligation}</span>
+                                                    </div>
 
-                                    <span>
-                                        Fusce sed facilisis velit. Donec dignissim neque id sem pulvinar ultrices. Curabitur faucibus mauris nec ante finibus tempus. Aliquam erat volutpat. Nulla in quam urna. Sed est lectus, viverra eu nibh sed, sollicitudin sagittis diam. Mauris venenatis accumsan lacus in porta. Aliquam suscipit et augue id finibus.
-                                    </span>
-                                </div>
-                            </div>
+                                                    <span>Requisitos de controles internos: {val.qualitativeBenefit.internalControlRequirements}</span>
 
+                                                </div>
 
-                            <div className="potential-benefit">
-                                <p className="title">Beneficio Potencial</p>
+                                                <hr />
 
-                                <hr />
+                                                <div className="description">
+                                                    <span className="desc">Descrição</span><span>{val.qualitativeBenefit.description}</span>
+                                                </div>
+                                            </div>
 
-                                <div className="infos">
+                                            <div className="attachments">
 
-                                    <div>
-                                        <span>Valor Mensal: </span>
-
-                                        <span>R$50.000</span>
-
-                                    </div>
-
-
-                                    <span>Obrigação Legal: Sim</span>
-
-                                </div>
-
-                                <hr />
-
-                                <div className="description">
-                                    <span className="desc">Descrição</span>
-
-                                    <span>
-                                        Fusce sed facilisis velit. Donec dignissim neque id sem pulvinar ultrices. Curabitur faucibus mauris nec ante finibus tempus. Aliquam erat volutpat. Nulla in quam urna. Sed est lectus, viverra eu nibh sed, sollicitudin sagittis diam. Mauris venenatis accumsan lacus in porta. Aliquam suscipit et augue id finibus.
-                                    </span>
-                                </div>
-                            </div>
-
-
-                            <div className="qualitative-benefit">
-                                <p className="title">Beneficio Qualitativo</p>
-
-                                <hr />
-
-                                <div className="infos">
-
-                                    <div>
-                                        <span>Valor Mensal: </span>
-
-                                        <span>R$50.000</span>
-
-                                    </div>
-
-
-                                    <div>
-                                        <span>Obrigação Legal: Sim</span>
-                                    </div>
-
-                                    <span>Requisitos de controles internos: Sim</span>
-
-                                </div>
-
-                                <hr />
-
-                                <div className="description">
-                                    <span className="desc">Descrição</span>
-
-                                    <span>
-                                        Fusce sed facilisis velit. Donec dignissim neque id sem pulvinar ultrices. Curabitur faucibus mauris nec ante finibus tempus. Aliquam erat volutpat. Nulla in quam urna. Sed est lectus, viverra eu nibh sed, sollicitudin sagittis diam. Mauris venenatis accumsan lacus in porta. Aliquam suscipit et augue id finibus.
-                                    </span>
-                                </div>
-
-
-                            </div>
-
-
-                            <div className="attachments">
-
-
-                                <p className="title">Anexos</p>
-
-                                <div className="attachment">
-                                    <div className="attachment-image">
-                                        <img src="/attachment/pdf.png" alt="" />
-                                    </div>
-                                    <span>attachments.pdf</span>
-                                </div>
-
-                            </div>
+                                                <p className="title">Anexos</p>
+
+                                                <div className="attachment">
+                                                    <div className="attachment-image">
+                                                        <img src="/attachment/pdf.png" alt="" />
+                                                    </div>
+                                                    <span>attachments.pdf</span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    );
+                                })
+                            }
 
                             {(stepDemand === 1 || stepDemand === 2) ? (
                                 <div className="classification" >

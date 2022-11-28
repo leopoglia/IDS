@@ -56,7 +56,7 @@ export default function Nav() {
                     <li>
                         <div id={hover("proposals")}>
                             <span className="material-symbols-outlined">
-                                edit_document
+                                request_quote
                             </span>
                             <span className="title-li">Propostas</span>
                         </div>

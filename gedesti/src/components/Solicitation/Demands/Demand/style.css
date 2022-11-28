@@ -61,30 +61,6 @@
     margin: 10px 15px !important;
 }
 
-.demand .graphic,
-.demand-list .graphic {
-    width: 150px;
-    height: 15px;
-    border-radius: 50px;
-    background-color: var(--greyD9);
-}
-
-.demand-list .graphic {
-    margin-right: 15px;
-}
-
-.demand .graphic .situation,
-.demand-list .graphic .situation {
-    width: 20%;
-    height: 100%;
-    background-color: var(--blue);
-    border-radius: 20px;
-}
-
-.demand .graphic .situation:hover,
-.demand-list .graphic .situation:hover {
-    background-color: var(--blue19);
-}
 
 .demand .infos,
 .demand-list .infos {
@@ -117,16 +93,6 @@
     align-items: center;
     justify-content: center;
 }
-
-.demand .infos .situation,
-.demand-list .infos .situation{
-    min-width: 200px;
-    max-width: 210px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 
 .demand .infos div p,
 .demand-list .infos div p {

@@ -326,7 +326,122 @@ export default function ViewDemand() {
                             <Title nav="Propostas > Visualizar Proposta" title="Visualizar Proposta" />
                         </div>
 
-                        <div className="box"></div>
+                        <div className="box">
+                            {
+                                demands.map((val, index) => {
+                                    return (
+
+                                        <div>
+                                            <div className="situation-current">
+                                                <p>Solicitante</p>
+                                                <span>{val.requester}</span>
+                                            </div>
+
+                                            <div className="situation-current">
+                                                <p className="title">Situação Atual</p>
+                                                <span>{val.currentSituation}</span>
+                                                <p className="title">Proposta</p>
+                                                <span>{val.proposal}</span>
+
+                                            </div>
+
+                                            <div className="cust-center">
+                                                <p className="title">Centro de Custos</p>
+                                                <hr />
+                                                <table>
+                                                    {tr("Centro de Custos", "Nome do Centro de Custos")}
+
+                                                    {tr(val.costCenter.number, val.costCenter.name)}
+                                                </table>
+                                            </div>
+
+                                            <div className="real-benefit">
+                                                <p className="title">Beneficio Real</p>
+
+                                                <hr />
+
+                                                <div className="infos">
+
+                                                    <div>
+                                                        <span>Valor Mensal: </span><span>{val.realBenefit.monthlyValue}</span>
+                                                    </div>
+
+                                                </div>
+
+                                                <hr />
+
+                                                <div className="description">
+                                                    <span className="desc">Descrição</span><span>{val.realBenefit.description}</span>
+                                                </div>
+                                            </div>
+
+
+                                            <div className="potential-benefit">
+                                                <p className="title">Beneficio Potencial</p>
+
+                                                <hr />
+
+                                                <div className="infos">
+
+                                                    <div>
+                                                        <span>Valor Mensal: </span><span>{val.potentialBenefit.monthlyValue}</span>
+                                                    </div>
+
+                                                    <span>Obrigação Legal: {val.potentialBenefit.legalObligation}</span>
+
+                                                </div>
+
+                                                <hr />
+
+                                                <div className="description">
+                                                    <span className="desc">Descrição</span><span>{val.potentialBenefit.description}</span>
+                                                </div>
+                                            </div>
+
+                                            <div className="qualitative-benefit">
+                                                <p className="title">Beneficio Qualitativo</p>
+
+                                                <hr />
+
+                                                <div className="infos">
+
+                                                    <div>
+                                                        <span>Valor Mensal: </span><span>{val.qualitativeBenefit.monthlyValue}</span>
+
+                                                    </div>
+
+                                                    <div>
+                                                        <span>Obrigação Legal: {val.qualitativeBenefit.legalObligation}</span>
+                                                    </div>
+
+                                                    <span>Requisitos de controles internos: {val.qualitativeBenefit.internalControlRequirements}</span>
+
+                                                </div>
+
+                                                <hr />
+
+                                                <div className="description">
+                                                    <span className="desc">Descrição</span><span>{val.qualitativeBenefit.description}</span>
+                                                </div>
+                                            </div>
+
+                                            <div className="attachments">
+
+                                                <p className="title">Anexos</p>
+
+                                                <div className="attachment">
+                                                    <div className="attachment-image">
+                                                        <img src="/attachment/pdf.png" alt="" />
+                                                    </div>
+                                                    <span>attachments.pdf</span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    );
+                                })
+                            }
+                        </div>
 
                     </div>
                 </div>

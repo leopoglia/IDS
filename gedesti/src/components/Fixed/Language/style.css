@@ -6,7 +6,7 @@
     padding: 5px 10px;
     border-radius: var(--r);
     height: 45px;
-    margin-right: 15px;
+    margin-right: 20px;
 }
 
 .language img {
@@ -21,14 +21,15 @@
     border-radius: var(--r);
 }
 
-.modal {
+.language .modal {
     border: 1px solid var(--greyC4);
     position: absolute;
-    width: 55px;
+    width: 58px;
     height: 120px;
+    margin-left: 0px;
     border-radius: var(--r);
-    background-color: var(--greyF7);
-    margin-top: 185px;
+    margin-top: 200px;
+    background-color: var(--white);
     display: inline;
     align-items: center;
     justify-content: center;
@@ -39,7 +40,7 @@
 .modal .flag {
     width: 45px;
     height: 25px;
-    margin-left: 4px;
+    margin-left: 5.5px;
     border-radius: var(--r);
     padding: 18px;
     display: flex;

@@ -1,0 +1,55 @@
+.modal {
+    border: 1px solid var(--greyC4);
+    position: absolute;
+    width: 160px;
+    height: 52px;
+    border-radius: var(--r);
+    background-color: var(--white);
+    margin-top: 133px;
+    margin-left: -60px;
+    display: inline;
+    align-items: center;
+    justify-content: center;
+    padding-top: 8px;
+    box-shadow: rgba(0, 0, 0, 0.11) 0px 0px 4.475px 0px, rgba(0, 0, 0, 0.13) 0px 4.4px 9.9px 0px;
+}
+
+
+.header .person {
+    background-color: var(--greyD9);
+    width: 35px;
+    height: 35px;
+    border-radius: 80px;
+}
+
+.header .user {
+    display: flex;
+    padding: 5px 10px;
+    border-radius: var(--r);
+    align-items: center;
+    cursor: pointer;
+}
+
+.header .username {
+    font-size: var(--p);
+}
+
+.right .modal span {
+    color: var(--grey59);
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.right .modal .li {
+    margin-left: 10px;
+    width: 140px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: var(--r)
+}
+
+.right .modal .li:hover {
+    background-color: var(--greyE5);
+}

@@ -55,35 +55,13 @@
     font-size: 22px;
 }
 
-.header .person {
-    background-color: var(--greyD9);
-    width: 35px;
-    height: 35px;
-    border-radius: 80px;
-}
 
-.header .user{
-    display: flex;
-    padding: 5px 10px;
-    border-radius: var(--r);
-    align-items: center;
-    cursor: pointer;
-}
-
-.header .user:hover{
-    background-color: var(--blue19);
-}
-
-.header .username{
-    font-size: var(--p);
-}
-
-.right .display-grid{
+.right .display-grid {
     margin-right: 10px;
 }
 
-@media(max-width: 768px){
-    .title{
+@media(max-width: 768px) {
+    .title {
         margin-left: 20px;
     }
 }

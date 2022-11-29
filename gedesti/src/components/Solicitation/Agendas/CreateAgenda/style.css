@@ -59,7 +59,7 @@
 }
 
 .proposals-agenda .proposal .check-box {
-    width: 160px;
+    width: 230px;
     height: 50px;
     display: flex;
     align-items: center;
@@ -72,6 +72,6 @@
     margin-right: 10px;
 }
 
-.create-agenda .footer-btn .display-flex{
+.create-agenda .footer-btn .display-flex {
     justify-content: flex-end
 }

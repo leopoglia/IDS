@@ -8,7 +8,7 @@ export default function User() {
 
 
     return (
-        <div className="user">
+        <div className="user-component">
             <div className="user" onClick={() => setModal(!modal)}>
                 <div className="display-grid">
 

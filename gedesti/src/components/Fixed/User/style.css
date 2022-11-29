@@ -5,7 +5,7 @@
     height: 100px;
     border-radius: var(--r);
     background-color: var(--white);
-    margin-top: 181px;
+    margin-top: 18px;
     margin-left: -90px;
     display: inline;
     align-items: center;
@@ -59,6 +59,6 @@
     background-color: var(--greyE5);
 }
 
-.user a:hover{
+.user-component a:hover {
     text-decoration: none;
 }

@@ -1,5 +1,6 @@
 import './style.css'
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function User() {
 
@@ -21,23 +22,27 @@ export default function User() {
 
                 <div className="modal">
 
-                    <div className="li li-settings">
-                        <span className="material-symbols-outlined">
-                            settings
-                        </span>
-                        <span>
-                            Configurações
-                        </span>
-                    </div>
+                    <Link to="/configuration">
+                        <div className="li li-settings">
+                            <span className="material-symbols-outlined">
+                                settings
+                            </span>
+                            <span>
+                                Configurações
+                            </span>
+                        </div>
+                    </Link>
 
-                    <div className="li">
-                        <span className="material-symbols-outlined">
-                            logout
-                        </span>
-                        <span>
-                            Sair
-                        </span>
-                    </div>
+                    <Link to="/">
+                        <div className="li">
+                            <span className="material-symbols-outlined">
+                                logout
+                            </span>
+                            <span>
+                                Sair
+                            </span>
+                        </div>
+                    </Link>
 
                 </div>
             )}

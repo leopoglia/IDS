@@ -58,3 +58,7 @@
 .right .modal .li:hover {
     background-color: var(--greyE5);
 }
+
+.user a:hover{
+    text-decoration: none;
+}

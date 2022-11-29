@@ -25,8 +25,6 @@ export default function Language() {
             )}
 
 
-            <span className="material-symbols-outlined"   >expand_more</span>
-
             {
 
                 modal && (
@@ -34,15 +32,15 @@ export default function Language() {
 
                         {language === 'br' ? (
                             <div>
-                                <div className='flag' onClick={()=> setLanguage('es')}>
+                                <div className='flag' onClick={() => setLanguage('es')}>
                                     <img src="../flags/es.png" alt="" />
                                 </div>
 
-                                <div className='flag' onClick={()=> setLanguage('us')}>
+                                <div className='flag' onClick={() => setLanguage('us')}>
                                     <img src="../flags/us.png" alt="" />
                                 </div>
 
-                                <div className='flag' onClick={()=> setLanguage('cn')}>
+                                <div className='flag' onClick={() => setLanguage('cn')}>
                                     <img src="../flags/cn.png" alt="" />
                                 </div>
 
@@ -50,43 +48,43 @@ export default function Language() {
 
                         ) : language === 'es' ? (
                             <div>
-                                <div className='flag' onClick={()=> setLanguage('br')}>
+                                <div className='flag' onClick={() => setLanguage('br')}>
                                     <img src="../flags/br.png" alt="" />
                                 </div>
 
-                                <div className='flag' onClick={()=> setLanguage('us')}>
+                                <div className='flag' onClick={() => setLanguage('us')}>
                                     <img src="../flags/us.png" alt="" />
                                 </div>
 
-                                <div className='flag' onClick={()=> setLanguage('cn')}>
+                                <div className='flag' onClick={() => setLanguage('cn')}>
                                     <img src="../flags/cn.png" alt="" />
                                 </div>
                             </div>
                         ) : language === 'us' ? (
                             <div>
-                                <div className='flag' onClick={()=> setLanguage('br')}>
+                                <div className='flag' onClick={() => setLanguage('br')}>
                                     <img src="../flags/br.png" alt="" />
                                 </div>
 
-                                <div className='flag' onClick={()=> setLanguage('es')}>
+                                <div className='flag' onClick={() => setLanguage('es')}>
                                     <img src="../flags/es.png" alt="" />
                                 </div>
 
-                                <div className='flag' onClick={()=> setLanguage('cn')}>
+                                <div className='flag' onClick={() => setLanguage('cn')}>
                                     <img src="../flags/cn.png" alt="" />
                                 </div>
                             </div>
                         ) : language === 'cn' ? (
                             <div>
-                                <div className='flag' onClick={()=> setLanguage('br')}>
+                                <div className='flag' onClick={() => setLanguage('br')}>
                                     <img src="../flags/br.png" alt="" />
                                 </div>
 
-                                <div className='flag' onClick={()=> setLanguage('es')}>
+                                <div className='flag' onClick={() => setLanguage('es')}>
                                     <img src="../flags/es.png" alt="" />
                                 </div>
 
-                                <div className='flag' onClick={()=> setLanguage('us')}>
+                                <div className='flag' onClick={() => setLanguage('us')}>
                                     <img src="../flags/us.png" alt="" />
                                 </div>
                             </div>

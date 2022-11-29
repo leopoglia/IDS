@@ -4,9 +4,9 @@
     justify-content: center;
     cursor: pointer;
     padding: 5px 10px;
-    padding-right: 5px;
     border-radius: var(--r);
     height: 45px;
+    margin-right: 15px;
 }
 
 .language img {
@@ -29,11 +29,11 @@
     border-radius: var(--r);
     background-color: var(--greyF7);
     margin-top: 185px;
-    margin-left: -10px;
     display: inline;
     align-items: center;
     justify-content: center;
     padding-top: 5px;
+    box-shadow: rgba(0, 0, 0, 0.11) 0px 0px 4.475px 0px, rgba(0, 0, 0, 0.13) 0px 4.4px 9.9px 0px;
 }
 
 .modal .flag {

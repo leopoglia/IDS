@@ -4,5 +4,9 @@
     "password": "Senha",
     "remember-me": "Lembrar-me",
     "forgot-password": "Esqueceu sua senha?",
-    "login": "Entrar"
+    "login": "Entrar",
+    "demands": "Demandas",
+    "viewDemands": "Visualizar Demandas",
+    "createDemand": "Criar Demanda",
+    "search": "Buscar por solicitação"
 }

@@ -54,12 +54,8 @@ main #password {
 
 .login-form main .material-symbols-outlined {
     position: absolute;
-    margin-left: -32px;
-    margin-top: 32px;
-}
-
-.login-form main div:nth-child(2) span {
-    margin-left: -36px;
+    margin-left: 12px;
+    margin-top: 34px;
 }
 
 .login-form main section {
@@ -69,7 +65,7 @@ main #password {
     font-size: var(--p);
 }
 
-.login-form main section div{
+.login-form main section div {
     display: flex;
 }
 
@@ -80,7 +76,7 @@ main #password {
     border: 2px solid var(--greyC4) !important;
 }
 
-.login-form footer input {
+.login-form footer button {
     background-color: var(--blue);
     color: var(--white);
     width: 100%;
@@ -90,30 +86,30 @@ main #password {
     border-radius: var(--r);
 }
 
-.login-form footer input:hover {
+.login-form footer button:hover {
     background-color: var(--blue19);
 }
 
-@media (min-width: 1024px){
-    .login-form{
+@media (min-width: 1024px) {
+    .login-form {
         width: 35%;
     }
 }
 
-@media (min-width: 768px) and (max-width: 1023px){
-    .login-form{
+@media (min-width: 768px) and (max-width: 1023px) {
+    .login-form {
         width: 35%;
     }
 }
 
-@media(max-width: 767px){
-    .login-form{
+@media(max-width: 767px) {
+    .login-form {
         width: 75%;
     }
 }
 
-@media(max-width: 350px){
-    .login-form{
+@media(max-width: 350px) {
+    .login-form {
         width: 100%;
     }
 }

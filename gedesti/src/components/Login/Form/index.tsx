@@ -20,31 +20,31 @@ export default function Form() {
 
             <main>
                 <div>
-                    <label>Email</label>
                     <span className="material-symbols-outlined">alternate_email</span>
+                    <label>{t("email")}</label>
                     <input id="email" type="text" required />
                 </div>
 
 
                 <div>
-                    <label>Senha</label>
                     <span className="material-symbols-outlined">key</span>
+                    <label>{t("password")}</label>
                     <input id="password" type="password" required />
                 </div>
 
                 <section>
                     <div>
                         <input id="checkbox" type="checkbox" />
-                        <label>Lembrar-me</label>
+                        <label>{t("remember-me")}</label>
                     </div>
 
-                    <a href='/'>Esqueceu a senha?</a>
+                    <a href='/'>{t("forgot-password")}</a>
                 </section>
             </main>
 
             <footer>
                 <Link to="/demands">
-                    <input type="submit" value={"Acessar"} />
+                    <button type="submit">{t("login")}</button>
                 </Link>
             </footer>
         </form>

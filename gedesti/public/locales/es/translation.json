@@ -1,3 +1,8 @@
 {
-    "title": "Acceso al"
+    "title": "Acceso al",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "remember-me": "Recuérdame",
+    "forgot-password": "¿Olvidaste tu contraseña?",
+    "login": "Iniciar sesión"
 }

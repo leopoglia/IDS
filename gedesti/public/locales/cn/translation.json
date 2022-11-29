@@ -1,3 +1,8 @@
 {
-    "title": "進入"
+    "title": "訪問",
+    "email": "電子郵件",
+    "password": "密碼",
+    "remember-me": "記得我",
+    "forgot-password": "忘記密碼",
+    "login": "登錄"
 }

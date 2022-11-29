@@ -103,13 +103,34 @@ export default function ConditionalValidationGrid() {
     ];
 
     return (
-        <StyledBox>
-            <DataGrid
-                rows={rows}
-                columns={columns}
-                editMode="row"
-                experimentalFeatures={{ newEditingApi: true }}
-            />
-        </StyledBox>
+        <table>
+            <hr />
+            <tr>
+                <td>Tipo despesa</td>
+                <td>Perfil despesa</td>
+                <td>Período de execução</td>
+                <td>Horas necessárias</td>
+                <td>Valor da hora</td>
+                <td>Valor total</td>
+
+            </tr>
+
+            <hr />
+
+
+            <tr>
+                <td>Programador Júnior</td>
+                <td>Grande</td>
+                <td>20 dias</td>
+                <td>400 horas</td>
+                <td>50</td>
+                <td>1000</td>
+
+            </tr>
+
+            <hr />
+        </table>
+
+
     );
 }

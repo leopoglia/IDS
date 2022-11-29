@@ -29,7 +29,9 @@ export default function ExecutionCosts() {
                     <div className="display-flex">
                         <p>Custos de execução do projeto </p>
 
-                        <button className="btn-primary">Adicionar despesa</button>
+                        <Link to="add-expense">
+                            <button className="btn-primary">Adicionar despesa</button>
+                        </Link>
                     </div>
 
                     <GridCostExecution />

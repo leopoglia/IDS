@@ -8,7 +8,7 @@
 textarea {
     width: 100%;
     min-height: 150px;
-    border-radius: 2px;
+    border-radius: 4px;
     padding: 10px;
     border: 1px solid var(--greyC4);
     resize: none;
@@ -16,4 +16,12 @@ textarea {
 
 .edit-proposal-scope .display-flex-end {
     margin-top: 10px;
+}
+
+.edit-proposal-scope .paragraph {
+    margin-top: 10px;
+}
+
+.edit-proposal-scope .paragraph input {
+    margin-bottom: 10px;
 }

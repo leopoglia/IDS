@@ -21,6 +21,15 @@ export default function User() {
 
                 <div className="modal">
 
+                    <div className="li li-settings">
+                        <span className="material-symbols-outlined">
+                            settings
+                        </span>
+                        <span>
+                            Configurações
+                        </span>
+                    </div>
+
                     <div className="li">
                         <span className="material-symbols-outlined">
                             logout

@@ -17,6 +17,10 @@ export default function CommissionOpinion() {
 
                     <Title title="Commission Opinion" nav="Proposals > Commission Opinion" />
 
+
+                </div>
+
+                <div className="box">
                 </div>
             </div>
         </div>

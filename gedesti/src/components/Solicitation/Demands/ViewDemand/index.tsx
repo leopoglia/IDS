@@ -6,8 +6,6 @@ import ButtonActionAnalyst from "./ButtonActionAnalyst";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import Footer from "../../../Fixed/Footer";
-import Spinner from "../../../Fixed/Load";
-
 export default function ViewDemand() {
 
     const url = window.location.href.split("/")[3];
@@ -463,6 +461,7 @@ export default function ViewDemand() {
 
                             <p>Propostas</p>
 
+                    
                             <div className="proposal-view">
 
                                 <p>Nome da Proposta</p>
@@ -472,21 +471,9 @@ export default function ViewDemand() {
                                 </span>
 
                                 <div className="proposal-view-buttons">
-                                    <button className="btn-primary">Inserir parecer comissão</button>
-                                </div>
-                            </div>
-
-
-                            <div className="proposal-view">
-
-                                <p>Nome da Proposta</p>
-
-                                <span>
-                                    Nunc maximus purus sit amet est lacinia condimentum. Praesent sodales leo a finibus semper. Nunc luctus libero fermentum varius imperdiet. Aliquam tellus leo, volutpat ac scelerisque eget, gravida in urna. Curabitur ac urna bibendum, faucibus eros quis, auctor nibh. Etiam auctor rhoncus velit. Nulla finibus fringilla magna, eu tempus nisl molestie sed. Vivamus efficitur dui at malesuada lobortis.
-                                </span>
-
-                                <div className="proposal-view-buttons">
-                                    <button className="btn-primary">Inserir parecer comissão</button>
+                                    <Link to="/proposal/comission-opinion">
+                                        <button className="btn-primary">Inserir parecer comissão</button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

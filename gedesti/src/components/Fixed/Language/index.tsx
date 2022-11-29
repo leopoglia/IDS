@@ -1,13 +1,17 @@
 import './style.css'
 import React, { useState } from 'react'
+import { useTranslation } from "react-i18next";
+
 
 export default function Language() {
-
+    const { t, i18n } = useTranslation();
     const [language, setLanguage] = useState('br')
     const [modal, setModal] = useState(false)
 
-
-
+    const changeLanguage = (languages: any) => {
+        i18n.changeLanguage(languages);
+        setLanguage(languages)
+    }
 
 
     return (
@@ -16,14 +20,13 @@ export default function Language() {
                 <img src="../flags/br.png" alt="" />
             ) : language === 'es' ? (
                 <img src="../flags/es.png" alt="" />
-            ) : language === 'us' ? (
+            ) : language === 'en' ? (
                 <img src="../flags/us.png" alt="" />
             ) : language === 'cn' ? (
                 <img src="../flags/cn.png" alt="" />
             ) : (
                 <img src="../flags/br.png" alt="" />
             )}
-
 
             {
 
@@ -32,15 +35,15 @@ export default function Language() {
 
                         {language === 'br' ? (
                             <div>
-                                <div className='flag' onClick={() => setLanguage('es')}>
+                                <div className='flag' onClick={() => changeLanguage("es")}>
                                     <img src="../flags/es.png" alt="" />
                                 </div>
 
-                                <div className='flag' onClick={() => setLanguage('us')}>
+                                <div className='flag' onClick={() => changeLanguage('en')}>
                                     <img src="../flags/us.png" alt="" />
                                 </div>
 
-                                <div className='flag' onClick={() => setLanguage('cn')}>
+                                <div className='flag' onClick={() => changeLanguage('cn')}>
                                     <img src="../flags/cn.png" alt="" />
                                 </div>
 
@@ -48,43 +51,43 @@ export default function Language() {
 
                         ) : language === 'es' ? (
                             <div>
-                                <div className='flag' onClick={() => setLanguage('br')}>
+                                <div className='flag' onClick={() => changeLanguage('br')}>
                                     <img src="../flags/br.png" alt="" />
                                 </div>
 
-                                <div className='flag' onClick={() => setLanguage('us')}>
+                                <div className='flag' onClick={() => changeLanguage('en')}>
                                     <img src="../flags/us.png" alt="" />
                                 </div>
 
-                                <div className='flag' onClick={() => setLanguage('cn')}>
+                                <div className='flag' onClick={() => changeLanguage('cn')}>
                                     <img src="../flags/cn.png" alt="" />
                                 </div>
                             </div>
-                        ) : language === 'us' ? (
+                        ) : language === 'en' ? (
                             <div>
-                                <div className='flag' onClick={() => setLanguage('br')}>
+                                <div className='flag' onClick={() => changeLanguage('br')}>
                                     <img src="../flags/br.png" alt="" />
                                 </div>
 
-                                <div className='flag' onClick={() => setLanguage('es')}>
+                                <div className='flag' onClick={() => changeLanguage('es')}>
                                     <img src="../flags/es.png" alt="" />
                                 </div>
 
-                                <div className='flag' onClick={() => setLanguage('cn')}>
+                                <div className='flag' onClick={() => changeLanguage('cn')}>
                                     <img src="../flags/cn.png" alt="" />
                                 </div>
                             </div>
                         ) : language === 'cn' ? (
                             <div>
-                                <div className='flag' onClick={() => setLanguage('br')}>
+                                <div className='flag' onClick={() => changeLanguage('br')}>
                                     <img src="../flags/br.png" alt="" />
                                 </div>
 
-                                <div className='flag' onClick={() => setLanguage('es')}>
+                                <div className='flag' onClick={() => changeLanguage('es')}>
                                     <img src="../flags/es.png" alt="" />
                                 </div>
 
-                                <div className='flag' onClick={() => setLanguage('us')}>
+                                <div className='flag' onClick={() => changeLanguage('en')}>
                                     <img src="../flags/us.png" alt="" />
                                 </div>
                             </div>
@@ -101,3 +104,4 @@ export default function Language() {
         </div>
     )
 }
+

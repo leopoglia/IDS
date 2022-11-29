@@ -1,12 +1,17 @@
 import './style.css';
 import { Link } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
+
 
 
 export default function Form() {
+    const { t, i18n } = useTranslation();
+
+
     return (
         <form className="login-form">
             <header>
-                <h1>Acesso ao <b>GEDESTI</b></h1>
+                <h1>{t("title")}<b>GEDESTI</b></h1>
 
 
 

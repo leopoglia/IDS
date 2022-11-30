@@ -40,5 +40,7 @@
     "searchSoliciation": "Buscar por solicitação",
     "searchProposal": "Buscar por proposta",
     "searchAgenda": "Buscar por pauta",
-    "searchMinute": "Buscar por ata"
+    "searchMinute": "Buscar por ata",
+    "canceled": "Cancelada",
+    "support": "Suporte"
 }

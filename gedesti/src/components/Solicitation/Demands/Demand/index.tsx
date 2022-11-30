@@ -31,7 +31,7 @@ export default function Demand(props: any) {
         if (props.situation === "Backlog") {
             return (
                 <Link to="/proposal/execution-costs">
-                    <button className="btn-primary">Gerar Proposta</button>
+                    <button className="btn-primary">{t("generateProposal")}</button>
                 </Link>
             );
         }

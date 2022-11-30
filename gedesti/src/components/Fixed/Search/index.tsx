@@ -41,7 +41,7 @@ export default function Search(props: any) {
 
     return (
         <div className="search">
-            <Title nav={props.nav} title={props.title} />
+            <Title nav={props.title} title={props.title} />
 
             <div className="section">
 

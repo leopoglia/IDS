@@ -16,7 +16,7 @@ export default function Configuration() {
 
             <div className="container">
                 <div className="background-title">
-                    <Title nav="Configurações" title="configurations" />
+                    <Title nav="configurations" title="configurations" />
                 </div>
 
                 <div className="box">

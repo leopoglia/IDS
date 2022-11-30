@@ -40,5 +40,7 @@
     "searchSoliciation": "Search solicitation",
     "searchProposal": "Search proposal",
     "searchAgenda": "Search agenda",
-    "searchMinute": "Search minute"
+    "searchMinute": "Search minute",
+    "canceled": "Canceled",
+    "support": "Support"
 }

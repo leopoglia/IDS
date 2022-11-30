@@ -14,7 +14,7 @@ export default function Messages() {
 
             <div className="container">
                 <div className="backgroud-title">
-                    <Title nav="Mensagens" title="messages" />
+                    <Title nav="messages" title="messages" />
                 </div>
 
                 <Message />

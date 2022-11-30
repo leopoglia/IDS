@@ -40,5 +40,7 @@
     "searchSoliciation": "搜索請求",
     "searchProposal": "搜索提案",
     "searchAgenda": "搜索議程",
-    "searchMinute": "搜索會議記錄"
+    "searchMinute": "搜索會議記錄",
+    "canceled": "已取消",
+    "support": "支持"
 }

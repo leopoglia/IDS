@@ -1,6 +1,9 @@
 import "./style.css"
+import { useTranslation } from "react-i18next";
 
 export default function Situation(props: any) {
+
+    const { t, i18n } = useTranslation();
 
     const situation = () => {
         if (props.situation === "Backlog") {
@@ -14,9 +17,9 @@ export default function Situation(props: any) {
         } else if (props.situation === "Design and Build") {
             return (<div className="situation-design-and-build" />);
         } else if (props.situation === "Cancelled") {
-            return (<div className="situation-cancelled">Cancelado</div>);
+            return (<div className="situation-cancelled">{t("canceled")}</div>);
         } else if (props.situation === "Support") {
-            return (<div className="situation-support">Suporte</div>);
+            return (<div className="situation-support">{t("support")}</div>);
         } else if (props.situation === "Done") {
             return (<div className="situation-done" />);
         }

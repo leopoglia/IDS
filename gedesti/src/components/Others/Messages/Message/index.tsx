@@ -7,7 +7,7 @@ import Title from "../../../Fixed/Search/Title";
 export default function Message() {
     return (
         <div className="messages">
-            <Header icon="chat" title="Mensagem" />
+            <Header icon="chat" title="chat" />
             <Nav />
 
             <div className="container">

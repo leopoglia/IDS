@@ -8,7 +8,7 @@ import Footer from "../../Fixed/Footer";
 export default function Configuration() {
     return (
         <div className="configuration">
-            <Header icon="settings" title="Configuração" />
+            <Header icon="settings" title="configurations" />
             <Nav />
 
             <div className="container">

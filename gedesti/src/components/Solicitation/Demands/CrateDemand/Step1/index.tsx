@@ -10,7 +10,7 @@ import ButtonAction from "../ButtonAction";
 export default function CreateDemands1() {
     return (
         <div className="create-demands-1">
-            <Header icon="folder_copy" title="Criar Demanda" />
+            <Header icon="folder_copy" title="create-demand" />
             <Nav />
 
             <div className="container">

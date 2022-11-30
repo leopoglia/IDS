@@ -12,7 +12,7 @@ export default function Notifications() {
             {/* <div className="barrier"></div>
             <img className="bia" src="https://i.imgur.com/r004kLD.png"></img> */}
 
-            <Header icon="notifications" title="Notificações" />
+            <Header icon="notifications" title="notifications" />
             <Nav />
 
             <div className="container">

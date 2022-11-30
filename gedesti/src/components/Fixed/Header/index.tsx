@@ -11,11 +11,6 @@ export default function Header(props: {
 
     const { t, i18n } = useTranslation();
 
-    const title = () => {
-        if (props.title === "Demandas") {
-            return t("demands")
-        }
-    }
 
     return (
         <header className="header">
@@ -30,7 +25,7 @@ export default function Header(props: {
                         <span className="material-symbols-outlined">
                             {props.icon}
                         </span>
-                        <span>{title()}</span>
+                        <span>{t(props.title)}</span>
                     </div>
 
                     <div className="trace" />

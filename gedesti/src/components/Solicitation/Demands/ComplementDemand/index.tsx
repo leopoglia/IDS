@@ -8,7 +8,7 @@ export default function ComplementDemand() {
     return (
         <div className="complement-demand">
 
-            <Header icon="playlist_add" title="Complementar Demanda" />
+            <Header icon="playlist_add" title="complement-demand" />
 
             <Nav />
 

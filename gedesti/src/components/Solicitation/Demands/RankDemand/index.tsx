@@ -11,7 +11,7 @@ export default function RankDemand() {
 
     return (
         <div className="rank-demand">
-            <Header icon="bar_chart" title="Classificar Demanda" />
+            <Header icon="bar_chart" title="rankDemand" />
 
             <Nav />
 

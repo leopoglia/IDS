@@ -10,7 +10,7 @@ export default function CreateAgenda() {
 
     return (
         <div className="create-agenda">
-            <Header icon="file_copy" title="Criar Pauta" />
+            <Header icon="file_copy" title="createAgenda" />
             <Nav />
             <div className="container">
                 <div className="background-title">

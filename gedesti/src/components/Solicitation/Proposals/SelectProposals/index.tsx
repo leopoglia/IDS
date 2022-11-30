@@ -9,7 +9,7 @@ import Title from "../../../Fixed/Search/Title";
 export default function Proposals() {
     return (
         <div className="proposals">
-            <Header icon="content_paste" title="Selecionar Propostas" />
+            <Header icon="content_paste" title="selectProposals" />
             <Nav />
 
             <div className="container">
@@ -29,8 +29,6 @@ export default function Proposals() {
                 <Footer />
 
             </div>
-
-
         </div>
     );
 }

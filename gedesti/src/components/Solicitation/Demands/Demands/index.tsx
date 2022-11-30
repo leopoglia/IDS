@@ -59,7 +59,7 @@ export default function Demands() {
         <div>
             {(url[3] === "demands") ? (
                 <div className="demands">
-                    <Header icon="folder_copy" title="Demandas" />
+                    <Header icon="folder_copy" title="demands" />
                     <Nav />
                     <div className="container">
                         <Search nav="Demandas > Visualizar Demandas" title="Demandas" button="Criar Demanda" link="/demand/create/1" setTable={setTable} />
@@ -75,7 +75,7 @@ export default function Demands() {
                 </div>
             ) : (url[3] === "proposals") ? (
                 <div className="proposals">
-                    <Header icon="content_paste" title="Propostas" />
+                    <Header icon="content_paste" title="proposals" />
                     <Nav />
                     <div className="container">
                         <Search nav="Propostas > Visualizar Propostas" title="Propostas" button="Criar Proposta" link="/demands" setTable={setTable} />
@@ -91,7 +91,7 @@ export default function Demands() {
                 </div>
             ) : (url[3] === "agendas") ? (
                 <div className="agendas">
-                    <Header icon="file_copy" title="Pautas" />
+                    <Header icon="file_copy" title="agendas" />
                     <Nav />
                     <div className="container">
                         <Search nav="Pautas > Visualizar Pautas" title="Pautas" button="Criar Pauta" link="/agenda/create" setTable={setTable} />
@@ -107,7 +107,7 @@ export default function Demands() {
                 </div>
             ) : (url[3] === "minutes") ? (
                 <div className="minutes">
-                    <Header icon="description" title="Atas" />
+                    <Header icon="description" title="minutes" />
                     <Nav />
                     <div className="container">
                         <Search nav="Atas > Visualizar Atas" title="Atas" button="Criar Ata" link="/minutes/create" setTable={setTable} />

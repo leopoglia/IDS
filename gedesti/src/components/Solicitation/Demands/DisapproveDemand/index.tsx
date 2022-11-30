@@ -9,7 +9,7 @@ export default function DisapproveDemand() {
     return (
         <div className="disapprove-demand">
 
-            <Header icon="close" title="Reprovar Demanda" />
+            <Header icon="close" title="disapproveDemand" />
 
             <Nav />
 

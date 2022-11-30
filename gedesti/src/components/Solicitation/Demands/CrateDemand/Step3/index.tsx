@@ -8,7 +8,7 @@ import ButtonAction from "../ButtonAction";
 export default function CreateDemands3() {
     return (
         <div className="create-demands-3">
-            <Header icon="folder_copy" title="Criar Demanda" />
+            <Header icon="folder_copy" title="create-demand" />
             <Nav />
 
             <div className="container">

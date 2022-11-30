@@ -9,7 +9,7 @@ import Footer from "../../Fixed/Footer";
 export default function Messages() {
     return (
         <div className="messages">
-            <Header icon="chat" title="Mensagens" />
+            <Header icon="chat" title="messages" />
             <Nav />
 
             <div className="container">

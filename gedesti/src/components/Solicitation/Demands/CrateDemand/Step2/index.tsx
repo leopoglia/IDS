@@ -11,7 +11,7 @@ import CheckBox from "../CheckBox";
 export default function CreateDemands2() {
     return (
         <div className="create-demands-2">
-            <Header icon="folder_copy" title="Criar Demanda" />
+            <Header icon="folder_copy" title="create-demand" />
             <Nav />
 
             <div className="container">

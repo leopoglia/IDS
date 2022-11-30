@@ -26,6 +26,10 @@
     width: 45px;
 }
 
-.btn-center-cost span{
+.btn-center-cost span {
     margin: 0 !important;
+}
+
+.execution-costs .display-flex-end {
+    margin-top: 20px;
 }

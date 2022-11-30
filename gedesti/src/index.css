@@ -269,6 +269,27 @@ hr {
   margin: 0px;
 }
 
+.attachments label {
+  width: 250px;
+  height: var(--h);
+  padding: 11px;
+  background-color: var(--greyF7);
+  color: var(--grey59) !important;
+  border: 1px solid var(--greyC4);
+  border-radius: var(--r);
+  text-align: center;
+  display: block;
+  margin-top: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.attachments label:hover {
+  background-color: var(--greyE5);
+}
+
 
 @media(max-width: 768px) {
   .container {

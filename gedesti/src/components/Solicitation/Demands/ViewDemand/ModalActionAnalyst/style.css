@@ -1,0 +1,51 @@
+.inset-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.inset-list .modal {
+    border: 1px solid var(--greyC4);
+    position: absolute;
+    width: 200px;
+    height: 180px;
+    border-radius: var(--r);
+    background-color: var(--white);
+    margin-top: 10px;
+    margin-left: -30px;
+    display: inline;
+    align-items: center;
+    justify-content: center;
+    padding-top: 8px;
+    box-shadow: rgba(0, 0, 0, 0.11) 0px 0px 4.475px 0px, rgba(0, 0, 0, 0.13) 0px 4.4px 9.9px 0px;
+}
+
+
+.modal span {
+    color: var(--grey59);
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.modal .li {
+    margin-left: 10px;
+    height: 40px;
+    width: 180px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: var(--r)
+}
+
+.li-settings {
+    margin-bottom: 2px !important;
+}
+
+.modal .li:hover {
+    background-color: var(--greyE5);
+}
+
+.user-component a:hover {
+    text-decoration: none;
+}

@@ -31,19 +31,19 @@ export default function ProposedInformation() {
 
 
                     <div className="display-flex-grid">
-                        <div>
-                            <label>Centros de custos pagantes *</label>
-                            <SelectCostExecution />
+                        <div className="one">
+                            <label>Responsável pelo negócio *</label>
+                            <input type="text" />
                         </div>
 
                         <div>
-                            <label>Respnsáveis pelo negócio *</label>
+                            <label>Área do responsável</label>
                             <input type="text" />
                         </div>
                     </div>
 
                     <div className="display-flex-grid">
-                        <div>
+                        <div className="one">
                             <label>Início *</label>
                             <input type="date" />
                         </div>
@@ -54,10 +54,24 @@ export default function ProposedInformation() {
                         </div>
                     </div>
 
+                    <div className="display-btn-anexo">
+                        <label>Anexo</label>
+                        <div className="attachments">
+                            <input type="file" id="file" />
+                            <label htmlFor="file">
+                                <span className="material-symbols-outlined">
+                                    upload_file
+                                </span>
+
+                                Enviar arquivo</label>
+                        </div>
+                    </div>
                 </div>
 
                 <div className="demands-footer">
-                    <button className="btn-secondary">Cancelar</button>
+                    <Link to="/proposal/execution-costs">
+                        <button className="btn-secondary">Voltar</button>
+                    </Link>
                     <Link to="/proposal/edit-scope">
                         <button className="btn-primary">Gerar proposta</button>
                     </Link>

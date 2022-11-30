@@ -1,15 +1,7 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import "./style.css";
-import ModalChangeStatus from "../ModalChangeStatus";
 
-export default function InsetList() {
-
-    const [modalChangeStatus, setModalChangeStatus] = useState(false);
-
-
-
-
+export default function ModalChangeStatus() {
     return (
         <div className="inset-list">
             <div className="modal">
@@ -47,7 +39,7 @@ export default function InsetList() {
                     </div>
                 </Link>
 
-                <div className="li" onClick={() => { setModalChangeStatus(!modalChangeStatus) }}>
+                <div className="li">
                     <span className="material-symbols-outlined">
                         change_circle
                     </span>

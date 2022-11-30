@@ -7,8 +7,12 @@ import Input from "../Input";
 import ButtonAction from "../ButtonAction";
 import SelectCoin from "../SelectCoin";
 import CheckBox from "../CheckBox";
+import { useTranslation } from "react-i18next";
 
 export default function CreateDemands2() {
+
+    const { t, i18n } = useTranslation();
+
     return (
         <div className="create-demands-2">
             <Header icon="folder_copy" title="create-demand" />
@@ -22,7 +26,7 @@ export default function CreateDemands2() {
                 </div>
 
                 <div className="box">
-                    <p>Beneficio Real</p>
+                    <p>{t("benefitReal")}</p>
 
                     <div className="flex">
                         <Input label="Valor Mensal" required="*" />
@@ -32,7 +36,7 @@ export default function CreateDemands2() {
                 </div>
 
                 <div className="box">
-                    <p>Beneficio Potêncial</p>
+                    <p>{t("benefitPotential")}</p>
 
                     <div className="flex">
 
@@ -51,7 +55,7 @@ export default function CreateDemands2() {
                 </div>
 
                 <div className="box">
-                    <p>Beneficio Qualitativo</p>
+                    <p>{t("benefitQualitative")}</p>
 
                     <div className="flex">
                         <Input label="Valor Mensal" required="*" />

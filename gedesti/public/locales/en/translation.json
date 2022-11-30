@@ -14,6 +14,7 @@
     "date": "Request date",
     "generateProposal": "Generate proposal",
     "situation": "Situation",
+    "currentSituation": "Current situation",
     "analyst": "Analyst",
     "proposals": "Proposals",
     "agendas": "Agendas",
@@ -42,5 +43,14 @@
     "searchAgenda": "Search agenda",
     "searchMinute": "Search minute",
     "canceled": "Canceled",
-    "support": "Support"
+    "support": "Support",
+    "fail": "Fail",
+    "approve": "Approve",
+    "toRank": "To rank",
+    "benefitReal": "Benefit real",
+    "benefitPotential": "Benefit potential",
+    "benefitQualitative": "Benefit qualitative",
+    "attachments": "Attachments",
+    "classification": "Classification",
+    "complements": "Complements"
 }

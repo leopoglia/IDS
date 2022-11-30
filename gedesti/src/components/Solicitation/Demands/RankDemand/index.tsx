@@ -4,10 +4,11 @@ import Header from "../../../Fixed/Header";
 import Nav from "../../../Fixed/Nav";
 import Title from "../../../Fixed/Search/Title";
 import SelectSizeDemand from "./SelectSizeDemand";
+import { useTranslation } from "react-i18next";
 
 
 export default function RankDemand() {
-
+    const { t, i18n } = useTranslation();
 
     return (
         <div className="rank-demand">
@@ -59,7 +60,7 @@ export default function RankDemand() {
                     </div>
 
                     <div>
-                        <span>Anexos</span>
+                        <span>{t("attachments")}</span>
 
                         <div className="attachments">
                             <input type="file" id="file" />

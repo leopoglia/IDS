@@ -1,3 +1,4 @@
+import { t } from "i18next"
 import Header from "../../../Fixed/Header"
 import Nav from "../../../Fixed/Nav"
 import Title from "../../../Fixed/Search/Title"
@@ -40,7 +41,7 @@ export default function ComplementDemand() {
 
 
                     <div className="attatchments-complements">
-                        <span>Anexos</span>
+                        <span>{t("attachments")}</span>
 
                         <div className="attachments">
                             <input type="file" id="file" />

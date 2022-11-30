@@ -3,10 +3,16 @@ import Header from "../../../Fixed/Header"
 import Nav from "../../../Fixed/Nav"
 import Title from "../../../Fixed/Search/Title";
 import ButtonActionAnalyst from "./ButtonActionAnalyst";
+
+import Footer from "../../../Fixed/Footer";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import Footer from "../../../Fixed/Footer";
+import { useTranslation } from "react-i18next";
+
+
 export default function ViewDemand() {
+
+    const { t, i18n } = useTranslation();
 
     const url = window.location.href.split("/")[3];
     const [actionsDemand, setActionsDemand] = useState(2);
@@ -64,13 +70,13 @@ export default function ViewDemand() {
 
                                     <Link to="/demand/disapprove">
                                         <button className="btn-secondary">
-                                            <span>Reprovar</span>
+                                            <span>{t("fail")}</span>
                                         </button>
                                     </Link>
 
                                     <Link to="/demand/rank">
                                         <button className="btn-primary">
-                                            <span>Classificar</span>
+                                            <span>{t("toRank")}</span>
                                         </button>
                                     </Link>
 
@@ -90,14 +96,14 @@ export default function ViewDemand() {
 
                                         <div>
                                             <div className="situation-current">
-                                                <p>Solicitante</p>
+                                                <p>{t("requester")}</p>
                                                 <span>{val.requester}</span>
                                             </div>
 
                                             <div className="situation-current">
-                                                <p className="title">Situação Atual</p>
+                                                <p className="title">{t("currentSituation")}</p>
                                                 <span>{val.currentSituation}</span>
-                                                <p className="title">Proposta</p>
+                                                <p className="title">{t("proposal")}</p>
                                                 <span>{val.proposal}</span>
 
                                             </div>
@@ -113,7 +119,7 @@ export default function ViewDemand() {
                                             </div>
 
                                             <div className="real-benefit">
-                                                <p className="title">Beneficio Real</p>
+                                                <p className="title">{t("benefitReal")}</p>
 
                                                 <hr />
 
@@ -134,7 +140,7 @@ export default function ViewDemand() {
 
 
                                             <div className="potential-benefit">
-                                                <p className="title">Beneficio Potencial</p>
+                                                <p className="title">{t("benefitPotential")}</p>
 
                                                 <hr />
 
@@ -156,7 +162,7 @@ export default function ViewDemand() {
                                             </div>
 
                                             <div className="qualitative-benefit">
-                                                <p className="title">Beneficio Qualitativo</p>
+                                                <p className="title">{t("benefitQualitative")}</p>
 
                                                 <hr />
 
@@ -184,7 +190,7 @@ export default function ViewDemand() {
 
                                             <div className="attachments">
 
-                                                <p className="title">Anexos</p>
+                                                <p className="title">{t("attachments")}</p>
 
                                                 <div className="attachment">
                                                     <div className="attachment-image">
@@ -202,7 +208,7 @@ export default function ViewDemand() {
                             {(stepDemand === 1 || stepDemand === 2) ? (
                                 <div className="classification" >
 
-                                    <p>Classificação</p>
+                                    <p>{t("classification")}</p>
 
 
                                     <table>
@@ -240,7 +246,7 @@ export default function ViewDemand() {
                             {(stepDemand === 2) ? (
 
                                 <div className="complement" >
-                                    <p>Complementos</p>
+                                    <p>{t("complements")}</p>
 
                                     <table>
                                         <hr />
@@ -291,7 +297,7 @@ export default function ViewDemand() {
 
                                         <div>
                                             <div className="situation-current">
-                                                <p>Solicitante</p>
+                                                <p>{t("requester")}</p>
                                                 <span>{val.requester}</span>
                                             </div>
 
@@ -385,7 +391,7 @@ export default function ViewDemand() {
 
                                             <div className="attachments">
 
-                                                <p className="title">Anexos</p>
+                                                <p className="title">{t("attachments")}</p>
 
                                                 <div className="attachment">
                                                     <div className="attachment-image">

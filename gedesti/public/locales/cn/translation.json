@@ -14,6 +14,7 @@
     "date": "創建日期",
     "generateProposal": "生成提案",
     "situation": "地位",
+    "currentSituation": "當前狀況",
     "analyst": "分析師",
     "proposals": "提案",
     "agendas": "議程",
@@ -42,5 +43,14 @@
     "searchAgenda": "搜索議程",
     "searchMinute": "搜索會議記錄",
     "canceled": "已取消",
-    "support": "支持"
+    "support": "支持",
+    "fail": "失敗",
+    "approve": "批准",
+    "toRank": "排名",
+    "benefitReal": "實際收益",
+    "benefitPotential": "潛在收益",
+    "benefitQualitative": "質量收益",
+    "attachments": "附件",
+    "classification": "分類",
+    "complements": "補充"
 }

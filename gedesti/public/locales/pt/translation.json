@@ -14,6 +14,7 @@
     "date": "Data da solicitação",
     "generateProposal": "Gerar proposta",
     "situation": "Situação",
+    "currentSituation": "Situação atual",
     "analyst": "Analista",
     "proposals": "Propostas",
     "agendas": "Pautas",
@@ -42,5 +43,15 @@
     "searchAgenda": "Buscar por pauta",
     "searchMinute": "Buscar por ata",
     "canceled": "Cancelada",
-    "support": "Suporte"
+    "support": "Suporte",
+    "fail": "Reprovar",
+    "approve": "Aprovar",
+    "toRank": "Classificar",
+    "costCenter": "Centro de custo",
+    "benefitReal": "Benefício real",
+    "benefitPotential": "Benefício potencial",
+    "benefitQualitative": "Benefício qualitativo",
+    "attachments": "Anexos",
+    "classification": "Classificação",
+    "complements": "Complementos"
 }

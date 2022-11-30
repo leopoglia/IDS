@@ -4,8 +4,12 @@ import Nav from "../../../../Fixed/Nav"
 import Title from "../../../../Fixed/Search/Title";
 import ProgressBar from "../ProgressBar";
 import ButtonAction from "../ButtonAction";
+import { useTranslation } from "react-i18next";
 
 export default function CreateDemands3() {
+
+    const { t, i18n } = useTranslation();
+
     return (
         <div className="create-demands-3">
             <Header icon="folder_copy" title="create-demand" />
@@ -20,7 +24,7 @@ export default function CreateDemands3() {
 
                 <div className="box">
 
-                    <p>Anexos</p>
+                    <p>{t("attachments")}</p>
 
                     <div className="attachments">
                         <input type="file" id="file" />

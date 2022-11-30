@@ -1,5 +1,5 @@
 import './style.css'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useTranslation } from "react-i18next";
 
 
@@ -8,15 +8,30 @@ export default function Language() {
     const [language, setLanguage] = useState('br')
     const [modal, setModal] = useState(false)
 
+    function searchLanguage() {
+        if (localStorage.getItem('i18nextLng') !== null) {
+            changeLanguage(localStorage.getItem('i18nextLng'))
+            console.log(localStorage.getItem('i18nextLng'))
+        }
+    }
+
+
+    useEffect(() => {
+        searchLanguage();
+    }, [])
+
+
     const changeLanguage = (languages: any) => {
         i18n.changeLanguage(languages);
-        setLanguage(languages)
+        setLanguage(languages);
     }
+
+
 
 
     return (
         <div className='language' onClick={() => setModal(!modal)}>
-            {language === 'br' ? (
+            {language === 'pt' ? (
                 <img src="../flags/br.png" alt="" />
             ) : language === 'es' ? (
                 <img src="../flags/es.png" alt="" />
@@ -33,7 +48,7 @@ export default function Language() {
                 modal && (
                     <div className="modal">
 
-                        {language === 'br' ? (
+                        {language === 'pt' ? (
                             <div>
                                 <div className='flag' onClick={() => changeLanguage("es")}>
                                     <img src="../flags/es.png" alt="" />

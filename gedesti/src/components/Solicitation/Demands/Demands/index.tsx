@@ -17,7 +17,7 @@ export default function Demands() {
     const [table, setTableList] = useState(false);
 
     const [demands] = useState([
-        { name: <label>{t("demand")}</label> + "001", requester: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "Backlog" },
+        { name: "Solicitação 001", requester: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "Backlog" },
         { name: "Solicitação 002", requester: "Vytor Augusto Rosa", date: "21/11/2022", situation: "Assesment" },
         { name: "Solicitação 002", requester: "Vytor Augusto Rosa", date: "21/11/2022", situation: "Business Case" },
         { name: "Solicitação 002", requester: "Vytor Augusto Rosa", date: "21/11/2022", situation: "To-do" },

@@ -41,7 +41,7 @@ export default function ViewDemand() {
 
             {url === "demand" ? (
                 <div>
-                    <Header title="Visualizar Demanda" icon="visibility" />
+                    <Header title="viewDemand" icon="visibility" />
 
                     <Nav />
 
@@ -49,7 +49,7 @@ export default function ViewDemand() {
 
                         <div className="background-title">
 
-                            <Title nav="Demandas > Visualizar Demanda" title="Visualizar Demanda" />
+                            <Title nav="Demandas > Visualizar Demanda" title="viewDemand" />
 
                             {(actionsDemand === 1) ? (
 
@@ -272,7 +272,7 @@ export default function ViewDemand() {
                 </div>
             ) : url === "proposal" ? (
                 <div>
-                    <Header title="Visualizar Proposta" icon="visibility" />
+                    <Header title="viewProposal" icon="visibility" />
 
                     <Nav />
 
@@ -281,7 +281,7 @@ export default function ViewDemand() {
 
                         <div className="background-title">
 
-                            <Title nav="Propostas > Visualizar Proposta" title="Visualizar Proposta" />
+                            <Title nav="Propostas > Visualizar Proposta" title="viewProposal" />
                         </div>
 
                         <div className="box">
@@ -441,7 +441,7 @@ export default function ViewDemand() {
                 </div>
             ) : url === "agenda" ? (
                 <div>
-                    <Header title="Visualizar Pauta" icon="visibility" />
+                    <Header title="viewAgenda" icon="visibility" />
 
                     <Nav />
 
@@ -450,7 +450,7 @@ export default function ViewDemand() {
 
                         <div className="background-title">
 
-                            <Title nav="Pautas > Visualizar Pauta" title="Visualizar Pauta" />
+                            <Title nav="Pautas > Visualizar Pauta" title="viewAgenda" />
                         </div>
 
                         <div className="box">
@@ -482,7 +482,7 @@ export default function ViewDemand() {
                 </div>
             ) : url === "minute" ? (
                 <div>
-                    <Header title="Visualizar Ata" icon="visibility" />
+                    <Header title="viewMinute" icon="visibility" />
 
                     <Nav />
 
@@ -491,7 +491,7 @@ export default function ViewDemand() {
 
                         <div className="background-title">
 
-                            <Title nav="Atas > Visualizar Ata" title="Visualizar Ata" />
+                            <Title nav="Atas > Visualizar Ata" title="viewMinute" />
                         </div>
 
                         <div className="box"></div>

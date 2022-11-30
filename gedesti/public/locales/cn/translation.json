@@ -33,6 +33,8 @@
     "minute": "會議記錄",
     "createMinute": "創建會議記錄",
     "createAgenda": "創建議程",
+    "viewDemand": "查看需求",
+    "viewAgenda": "查看議程",
     "viewMinute": "查看會議記錄",
     "viewProposal": "查看提案",
     "searchSoliciation": "搜索請求",

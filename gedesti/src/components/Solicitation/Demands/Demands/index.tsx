@@ -6,15 +6,18 @@ import Demand from "../Demand";
 import Footer from "../../../Fixed/Footer";
 import { useState } from "react";
 import Load from "../../../Fixed/Load";
+import { useTranslation } from "react-i18next";
 
 export default function Demands() {
 
     const url = window.location.href.split("/");
 
+    const { t, i18n } = useTranslation();
+
     const [table, setTableList] = useState(false);
 
     const [demands] = useState([
-        { name: "Solicitação 001", requester: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "Backlog" },
+        { name: <label>{t("demand")}</label> + "001", requester: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "Backlog" },
         { name: "Solicitação 002", requester: "Vytor Augusto Rosa", date: "21/11/2022", situation: "Assesment" },
         { name: "Solicitação 002", requester: "Vytor Augusto Rosa", date: "21/11/2022", situation: "Business Case" },
         { name: "Solicitação 002", requester: "Vytor Augusto Rosa", date: "21/11/2022", situation: "To-do" },

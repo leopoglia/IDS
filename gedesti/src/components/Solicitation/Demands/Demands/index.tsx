@@ -24,13 +24,13 @@ export default function Demands() {
         { name: "Solicitação 002", requester: "Vytor Augusto Rosa", date: "21/11/2022", situation: "Done" },
     ]);
     const [proposals] = useState([
-        { name: "Proposta 001", requester: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "unallocated" },
+        { name: "Proposta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "unallocated" },
     ]);
     const [agendas] = useState([
-        { name: "Pauta 001", requester: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "unallocated" },
+        { name: "Pauta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "unallocated" },
     ]);
     const [minutes] = useState([
-        { name: "Ata 001", requester: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "unallocated" },
+        { name: "Ata 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "unallocated" },
     ]);
 
     const footer = () => {
@@ -79,7 +79,7 @@ export default function Demands() {
                         {
                             proposals.map((val, index) => {
                                 return (
-                                    <Demand listDirection={table} name={val.name} requester={val.requester} date={val.date} situation={val.situation} type="proposal" />
+                                    <Demand listDirection={table} name={val.name} requester={val.requester} analyst={val.analyst} date={val.date} situation={val.situation} type="proposal" />
                                 );
                             })
                         }

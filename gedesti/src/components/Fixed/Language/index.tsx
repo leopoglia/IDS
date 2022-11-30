@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 export default function Language() {
     const { t, i18n } = useTranslation();
-    const [language, setLanguage] = useState('br')
+    const [language, setLanguage] = useState('pt')
     const [modal, setModal] = useState(false)
 
     function searchLanguage() {
@@ -66,7 +66,7 @@ export default function Language() {
 
                         ) : language === 'es' ? (
                             <div>
-                                <div className='flag' onClick={() => changeLanguage('br')}>
+                                <div className='flag' onClick={() => changeLanguage('pt')}>
                                     <img src="../flags/br.png" alt="" />
                                 </div>
 
@@ -80,7 +80,7 @@ export default function Language() {
                             </div>
                         ) : language === 'en' ? (
                             <div>
-                                <div className='flag' onClick={() => changeLanguage('br')}>
+                                <div className='flag' onClick={() => changeLanguage('pt')}>
                                     <img src="../flags/br.png" alt="" />
                                 </div>
 
@@ -94,7 +94,7 @@ export default function Language() {
                             </div>
                         ) : language === 'cn' ? (
                             <div>
-                                <div className='flag' onClick={() => changeLanguage('br')}>
+                                <div className='flag' onClick={() => changeLanguage('pt')}>
                                     <img src="../flags/br.png" alt="" />
                                 </div>
 

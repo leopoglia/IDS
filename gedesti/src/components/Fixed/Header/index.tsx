@@ -2,11 +2,21 @@ import "./style.css"
 import Language from "../Language"
 import { Link } from "react-router-dom";
 import User from "../User";
+import { useTranslation } from "react-i18next";
 
 export default function Header(props: {
     icon: string;
     title: string;
 }) {
+
+    const { t, i18n } = useTranslation();
+
+    const title = () => {
+        if (props.title === "Demandas") {
+            return t("demands")
+        }
+    }
+
     return (
         <header className="header">
 
@@ -20,7 +30,7 @@ export default function Header(props: {
                         <span className="material-symbols-outlined">
                             {props.icon}
                         </span>
-                        <span>{props.title}</span>
+                        <span>{title()}</span>
                     </div>
 
                     <div className="trace" />

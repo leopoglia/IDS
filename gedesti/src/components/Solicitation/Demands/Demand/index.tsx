@@ -5,13 +5,23 @@ import Situation from "./Situation/index";
 export default function Demand(props: any) {
 
     const information = () => {
-        return (
-            (<div className="infos">
-                <div className="requester"><p>Solicitante: {props.requester}</p></div>
-                <div><p>Data da solicitação: {props.date}</p></div>
-                <div className="situation"><p>Situação: {props.situation}</p></div>
-            </div>)
-        )
+        if (props.analyst == null) {
+            return (
+                (<div className="infos">
+                    <div className="requester"><p>Solicitante: {props.requester}</p></div>
+                    <div><p>Data da solicitação: {props.date}</p></div>
+                    <div className="situation"><p>Situação: {props.situation}</p></div>
+                </div>)
+            )
+        } else {
+            return (
+                (<div className="infos">
+                    <div className="requester"><p>Solicitante: {props.requester}</p></div>
+                    <div><p>Data da solicitação: {props.date}</p></div>
+                    <div className="analyst"><p>Analista: {props.analyst}</p></div>
+                </div>)
+            )
+        }
     }
 
     const btnGenerateProposal = () => {

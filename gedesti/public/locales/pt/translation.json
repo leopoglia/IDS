@@ -5,7 +5,7 @@
     "remember-me": "Lembrar-me",
     "forgot-password": "Esqueceu sua senha?",
     "login": "Entrar",
-    "demand": "Demandas",
+    "demands": "Demandas",
     "viewDemands": "Visualizar Demandas",
     "createDemand": "Criar Demanda",
     "search": "Buscar por solicitação",
@@ -34,5 +34,9 @@
     "createMinute": "Criar Ata",
     "createAgenda": "Criar Pauta",
     "viewMinutes": "Visualizar Pautas",
-    "viewProposals": "Visualizar Propostas"
+    "viewProposals": "Visualizar Propostas",
+    "searchSoliciation": "Buscar por solicitação",
+    "searchProposal": "Buscar por proposta",
+    "searchAgenda": "Buscar por pauta",
+    "searchMinute": "Buscar por ata"
 }

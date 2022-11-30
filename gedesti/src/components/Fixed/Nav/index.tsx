@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import "./style.css"
 import React, { useState, useEffect } from 'react'
+import { useTranslation } from "react-i18next";
 
 export default function Nav() {
+
+    const { t, i18n } = useTranslation();
 
     const [nav, setNav] = useState("nav");
     const [current, setCurrent] = useState("current");
@@ -45,7 +48,7 @@ export default function Nav() {
                             <span className="material-symbols-outlined">
                                 draft
                             </span>
-                            <span className="title-li">Demandas</span>
+                            <span className="title-li">{t("demands")}</span>
                         </div>
 
                     </li>
@@ -58,7 +61,7 @@ export default function Nav() {
                             <span className="material-symbols-outlined">
                                 request_quote
                             </span>
-                            <span className="title-li">Propostas</span>
+                            <span className="title-li">{t("proposals")}</span>
                         </div>
                     </li>
                 </Link>
@@ -69,7 +72,7 @@ export default function Nav() {
                             <span className="material-symbols-outlined">
                                 folder
                             </span>
-                            <span className="title-li">Pautas</span>
+                            <span className="title-li">{t("agendas")}</span>
                         </div>
                     </li>
                 </Link>
@@ -80,7 +83,7 @@ export default function Nav() {
                             <span className="material-symbols-outlined">
                                 file_present
                             </span>
-                            <span className="title-li">Atas</span>
+                            <span className="title-li">{t("minutes")}</span>
                         </div>
                     </li>
                 </Link>
@@ -91,7 +94,7 @@ export default function Nav() {
                             <span className="material-symbols-outlined">
                                 chat_bubble
                             </span>
-                            <span className="title-li">Mensagens</span>
+                            <span className="title-li">{t("messages")}</span>
                         </div>
                     </li>
                 </Link>
@@ -102,7 +105,7 @@ export default function Nav() {
                             <span className="material-symbols-outlined">
                                 notifications
                             </span>
-                            <span className="title-li">Notificações</span>
+                            <span className="title-li">{t("notifications")}</span>
                         </div>
                     </li>
                 </ Link>
@@ -113,7 +116,7 @@ export default function Nav() {
                             <span className="material-symbols-outlined">
                                 settings
                             </span>
-                            <span className="title-li">Configurações</span>
+                            <span className="title-li">{t("configurations")}</span>
                         </div>
                     </li>
                 </Link>
@@ -124,7 +127,7 @@ export default function Nav() {
                             <span className="material-symbols-outlined">
                                 logout
                             </span>
-                            <span className="title-li">Sair</span>
+                            <span className="title-li">{t("logout")}</span>
                         </div>
                     </li>
                 </Link>

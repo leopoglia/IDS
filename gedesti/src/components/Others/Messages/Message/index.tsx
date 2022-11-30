@@ -12,7 +12,7 @@ export default function Message() {
 
             <div className="container">
                 <div className="backgroud-title">
-                    <Title nav="Mensagens > Mensagem" title="Mensagem" />
+                    <Title nav="Mensagens > Mensagem" title="message" />
                 </div>
 
                 <div className="box-message">

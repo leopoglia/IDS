@@ -3,9 +3,12 @@ import Header from "../../Fixed/Header"
 import Nav from "../../Fixed/Nav"
 import Title from "../../Fixed/Search/Title";
 import Footer from "../../Fixed/Footer";
+import { useTranslation } from "react-i18next";
 
 
 export default function Configuration() {
+    const { t, i18n } = useTranslation();
+
     return (
         <div className="configuration">
             <Header icon="settings" title="configurations" />
@@ -13,7 +16,7 @@ export default function Configuration() {
 
             <div className="container">
                 <div className="background-title">
-                    <Title nav="Configurações" title="Configurações" />
+                    <Title nav="Configurações" title="configurations" />
                 </div>
 
                 <div className="box">
@@ -32,22 +35,22 @@ export default function Configuration() {
 
                     <div className="change-configuration">
                         <div className="flex">
-                            <span className="title-confuration">Senha</span>
+                            <span className="title-confuration">{t("password")}</span>
                             <span className="material-symbols-outlined">
                                 edit
                             </span>
                         </div>
-                        <span className="subtitle-confuration">Alterar sua senha</span>
+                        <span className="subtitle-confuration">{t("changePassword")}</span>
                     </div>
 
                     <div className="change-configuration">
-                        <span className="title-confuration">Acessibilidade</span>
-                        <span className="subtitle-confuration">Tamanho da fonte</span>
+                        <span className="title-confuration">{t("accessibility")}</span>
+                        <span className="subtitle-confuration">{t("fontSize")}</span>
                     </div>
 
                     <div className="change-configuration">
-                        <span className="title-confuration">Notificações</span>
-                        <span className="subtitle-confuration">Notificações de mensagens</span>
+                        <span className="title-confuration">{t("notifications")}</span>
+                        <span className="subtitle-confuration">{t("messagesNotify")}</span>
                     </div>
                 </div>
 

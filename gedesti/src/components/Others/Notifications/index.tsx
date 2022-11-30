@@ -17,7 +17,7 @@ export default function Notifications() {
 
             <div className="container">
                 <div className="backgroud-title">
-                    <Title nav="Notificações" title="Notificações" />
+                    <Title nav="Notificações" title="notifications" />
                 </div>
 
                 <Notification />

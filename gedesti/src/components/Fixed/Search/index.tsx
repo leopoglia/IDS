@@ -24,6 +24,18 @@ export default function Search(props: any) {
         props.setTable(data);
     }
 
+    const search = () => {
+        if (props.title === "demands") {
+            return t("searchSoliciation");
+        } else if (props.title === "proposals") {
+            return t("searchProposal");
+        } else if (props.title === "agendas") {
+            return t("searchAgenda");
+        } else if (props.title === "minutes") {
+            return t("searchMinute");
+        }
+    }
+
 
 
 
@@ -35,7 +47,7 @@ export default function Search(props: any) {
 
                 <div className="input-search">
                     <span className="material-symbols-outlined">search</span>
-                    <input type="text" placeholder="Buscar por solicitação" required />
+                    <input type="text" placeholder={search()} required />
                 </div>
 
 

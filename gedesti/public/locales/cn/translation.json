@@ -34,5 +34,9 @@
     "createMinute": "創建會議記錄",
     "createAgenda": "創建議程",
     "viewMinute": "查看會議記錄",
-    "viewProposal": "查看提案"
+    "viewProposal": "查看提案",
+    "searchSoliciation": "搜索請求",
+    "searchProposal": "搜索提案",
+    "searchAgenda": "搜索議程",
+    "searchMinute": "搜索會議記錄"
 }

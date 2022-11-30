@@ -11,7 +11,6 @@ export default function Language() {
     function searchLanguage() {
         if (localStorage.getItem('i18nextLng') !== null) {
             changeLanguage(localStorage.getItem('i18nextLng'))
-            console.log(localStorage.getItem('i18nextLng'))
         }
     }
 

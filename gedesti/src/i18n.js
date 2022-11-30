@@ -13,7 +13,7 @@ i18n
     .init({
         // Linguagem padrão utilizada
         fallbackLng: 'pt',
-        debug: true,
+        debug: false,
         // Detecta e guarda um cookie em cache da linguagem fornecida
         detection: {
             order: ['queryString', 'cookie'],

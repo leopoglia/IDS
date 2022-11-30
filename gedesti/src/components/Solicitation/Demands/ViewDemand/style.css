@@ -7,41 +7,6 @@
     margin-left: 0px !important;
 }
 
-.view-demand table {
-    width: 100%;
-    display: block;
-    overflow: auto;
-}
-
-.view-demand tr {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    height: 35px;
-}
-
-.view-demand tr td {
-    width: 100%;
-    height: 100%;
-    border-right: 1px solid var(--greyC4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    direction: ltr;
-}
-
-.view-demand tr td:last-child {
-    border-right: none;
-}
-
-.view-demand hr {
-    width: auto !important;
-    margin: 0px;
-}
-
 .view-demand .description {
     display: flex;
     justify-content: space-evenly;

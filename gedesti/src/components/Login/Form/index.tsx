@@ -38,7 +38,9 @@ export default function Form() {
                         <label>{t("remember-me")}</label>
                     </div>
 
-                    <a href='/'>{t("forgot-password")}</a>
+                    <Link to="/forget-password">
+                        {t("forgot-password")}
+                    </Link>
                 </section>
             </main>
 

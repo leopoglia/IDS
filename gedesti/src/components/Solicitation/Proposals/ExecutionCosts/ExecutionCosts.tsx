@@ -39,14 +39,15 @@ export default function ExecutionCosts() {
                     <div className="display-flex-grid">
                         <div>
                             <label>Centros de custos pagantes *</label>
-                            <SelectCostExecution />
-                        </div>
 
-                        <div>
-                            <label>Respnsáveis pelo negócio *</label>
-                            <SelectCostExecution />
+                            <div className="display-flex">
+                                <SelectCostExecution />
+
+                                <button className="btn-primary">Adicionar</button>
+                            </div>
                         </div>
                     </div>
+
                 </div>
 
                 <div className="demands-footer">

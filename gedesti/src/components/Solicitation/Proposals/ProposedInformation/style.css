@@ -1,0 +1,23 @@
+.execution-costs .display-flex {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 15px;
+}
+
+.execution-costs .display-flex-grid {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.execution-costs .display-flex-grid div {
+    width: 100%;
+}
+
+.execution-costs .display-flex-grid button {
+    margin-left: 20px;
+}
+

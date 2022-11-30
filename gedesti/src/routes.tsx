@@ -15,12 +15,13 @@ import RankDemand from "./components/Solicitation/Demands/RankDemand";
 import DisapproveDemand from "./components/Solicitation/Demands/DisapproveDemand";
 import ComplementDemand from "./components/Solicitation/Demands/ComplementDemand";
 import HistoricalDemand from "./components/Solicitation/Demands/HistoricalDemand";
-import ExecutionCosts from "./components/Solicitation/Proposals/ExecutionCosts/ExecutionCosts";
+import ExecutionCosts from "./components/Solicitation/Proposals/ExecutionCosts";
 import EditProposalScope from "./components/Solicitation/Proposals/EditProposalScope";
 import SelectProposal from "./components/Solicitation/Proposals/SelectProposals";
 import CreateAgenda from "./components/Solicitation/Agendas/CreateAgenda";
 import CommissionOpinion from "./components/Solicitation/Proposals/CommissionOpinion";
 import AddExpense from "./components/Solicitation/Proposals/AddExpense/index";
+import ProposedInformation from "./components/Solicitation/Proposals/ProposedInformation";
 
 export default function Router() {
     return (
@@ -50,6 +51,7 @@ export default function Router() {
                 <Route path="proposal/execution-costs/add-expense" element={<AddExpense />} />
                 <Route path="/proposal/edit-scope" element={<EditProposalScope />} />
                 <Route path="/proposal/comission-opinion" element={<CommissionOpinion />} />
+                <Route path="/proposal/informations" element={<ProposedInformation />} />
 
                 <Route path="/agendas" element={<Demands />} />
                 <Route path="/agenda/create" element={<CreateAgenda />} />

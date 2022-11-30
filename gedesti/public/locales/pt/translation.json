@@ -13,5 +13,25 @@
     "requester": "Solicitante",
     "date": "Data da solicitação",
     "generateProposal": "Gerar proposta",
-    "situation": "Situação"
+    "situation": "Situação", 
+    "analyst": "Analista",
+    "proposals": "Propostas",
+    "agendas": "Pautas",
+    "minutes": "Atas",
+    "messages": "Mensagens",
+    "notifications": "Notificações",
+    "notification": "Notificação",
+    "configurations": "Configurações",
+    "logout": "Sair",
+    "accessibility": "Acessibilidade",
+    "fontSize": "Tamanho da fonte",
+    "messagesNotify": "Notificações de mensagens",
+    "changePassword": "Alterar sua senha",
+    "proposal": "Proposta",
+    "createProposal": "Criar Proposta",
+    "minute": "Pauta",
+    "createMinute": "Criar Pauta",
+    "viewMinutes": "Visualizar Pautas",
+    "viewProposals": "Visualizar Propostas"
+    // BLOCO DE FRASES PARA NOTIFICAÇÃO
 }

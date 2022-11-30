@@ -5,8 +5,13 @@
     "remember-me": "Lembrar-me",
     "forgot-password": "Esqueceu sua senha?",
     "login": "Entrar",
-    "demands": "Demandas",
+    "demand": "Demandas",
     "viewDemands": "Visualizar Demandas",
     "createDemand": "Criar Demanda",
-    "search": "Buscar por solicitação"
+    "search": "Buscar por solicitação",
+    "solicitation": "Solicitação",
+    "requester": "Solicitante",
+    "date": "Data da solicitação",
+    "generateProposal": "Gerar proposta",
+    "situation": "Situação"
 }

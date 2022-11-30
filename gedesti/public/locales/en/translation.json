@@ -4,5 +4,9 @@
     "password": "Password",
     "remember-me": "Remember me",
     "forgot-password": "Forgot password?",
-    "login": "Login"
+    "login": "Login",
+    "demands": "Demands",
+    "viewDemands": "View Demands",
+    "createDemand": "Create Demand",
+    "search": "Fetch per request"
 }

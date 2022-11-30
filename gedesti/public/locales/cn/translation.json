@@ -4,5 +4,9 @@
     "password": "密碼",
     "remember-me": "記得我",
     "forgot-password": "忘記密碼",
-    "login": "登錄"
+    "login": "登錄",
+    "demands": "要求",
+    "viewDemands": "查看需求",
+    "createDemand": "創造需求",
+    "search": "按請求獲取"
 }

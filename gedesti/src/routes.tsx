@@ -1,6 +1,7 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 
 import Form from './components/Login/Login';
+import ForgetPassword from './components/Login/ForgotPassword';
 import Demands from "./components/Solicitation/Demands/Demands";
 import Messages from "./components/Others/Messages";
 import Message from "./components/Others/Messages/Message";
@@ -26,6 +27,8 @@ export default function Router() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Form />} />
+                <Route path="/forget-password" element={<ForgetPassword />} />
+
                 <Route path="/messages" element={<Messages />} />
                 <Route path="/messages/message" element={<Message />} />
                 <Route path="/notifications" element={<Notifications />} />

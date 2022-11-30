@@ -212,7 +212,6 @@ export default function ViewDemand() {
                                             <td>BU Solicitante</td>
                                             <td>BU Beneficiada</td>
                                             <td>Sessão do TI responsável</td>
-
                                         </tr>
 
                                         <hr />
@@ -263,47 +262,8 @@ export default function ViewDemand() {
                                         </tr>
 
                                         <hr />
-
-
                                     </table>
-
-                                    {/* 
-                            <table>
-                                <hr />
-                                <tr>
-                                    <td>Tipo</td>
-                                    <td>Perfil</td>
-                                    <td>Período de execução</td>
-                                    <td>Horas necessárias</td>
-                                    <td>Valor da hora</td>
-                                    <td>Centro de custos</td>
-                                    <td>Valor total</td>
-
-                                </tr>
-
-                                <hr />
-
-
-                                <tr>
-                                    <td>Externa</td>
-                                    <td>WEG II</td>
-                                    <td>WEG Motores</td>
-                                    <td>WEG</td>
-                                    <td>WEG</td>
-                                    <td>WEG</td>
-                                    <td>WEG</td>
-
-
-                                </tr>
-
-                                <hr />
-
-
-                            </table> */}
-
                                 </div>
-
-
                             ) : (
                                 <div className="null"></div>
                             )}
@@ -435,6 +395,42 @@ export default function ViewDemand() {
                                                 </div>
 
                                             </div>
+
+                                            <div className="execution-cost">
+                                                <p className="title">Custos de execução do projeto</p>
+                                                <table>
+                                                    <hr />
+                                                    <tr>
+                                                        <td>Tipo</td>
+                                                        <td>Perfil</td>
+                                                        <td>Período de execução</td>
+                                                        <td>Horas necessárias</td>
+                                                        <td>Valor da hora</td>
+                                                        <td>Centro de custos</td>
+                                                        <td>Valor total</td>
+
+                                                    </tr>
+
+                                                    <hr />
+
+
+                                                    <tr>
+                                                        <td>Externa</td>
+                                                        <td>WEG II</td>
+                                                        <td>WEG Motores</td>
+                                                        <td>WEG</td>
+                                                        <td>WEG</td>
+                                                        <td>WEG</td>
+                                                        <td>WEG</td>
+
+
+                                                    </tr>
+
+                                                    <hr />
+
+
+                                                </table>
+                                            </div>
                                         </div>
                                     );
                                 })
@@ -461,7 +457,7 @@ export default function ViewDemand() {
 
                             <p>Propostas</p>
 
-                    
+
                             <div className="proposal-view">
 
                                 <p>Nome da Proposta</p>

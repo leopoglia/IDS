@@ -20,3 +20,12 @@
 .execution-costs .display-flex-grid button {
     margin-left: 20px;
 }
+
+.btn-center-cost {
+    min-width: 45px;
+    width: 45px;
+}
+
+.btn-center-cost span{
+    margin: 0 !important;
+}

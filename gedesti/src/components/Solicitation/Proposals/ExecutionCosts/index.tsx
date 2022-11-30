@@ -30,7 +30,7 @@ export default function ExecutionCosts() {
                         <p>Custos de execução do projeto </p>
 
                         <Link to="add-expense">
-                            <button className="btn-primary">Adicionar despesa</button>
+                            <button className="btn-secondary">Adicionar despesa</button>
                         </Link>
                     </div>
 
@@ -43,7 +43,11 @@ export default function ExecutionCosts() {
                             <div className="display-flex">
                                 <SelectCostExecution />
 
-                                <button className="btn-primary">Adicionar</button>
+                                <button className="btn-primary btn-center-cost">
+                                    <span className="material-symbols-outlined">
+                                        add
+                                    </span>
+                                </button>
                             </div>
                         </div>
                     </div>

@@ -1,24 +1,27 @@
 import "./style.css";
 import { Link } from "react-router-dom";
 import Situation from "./Situation/index";
+import { useTranslation } from "react-i18next";
+
 
 export default function Demand(props: any) {
+    const { t, i18n } = useTranslation();
 
     const information = () => {
         if (props.analyst == null) {
             return (
                 (<div className="infos">
-                    <div className="requester"><p>Solicitante: {props.requester}</p></div>
-                    <div><p>Data da solicitação: {props.date}</p></div>
-                    <div className="situation"><p>Situação: {props.situation}</p></div>
+                    <div className="requester"><p>{t("requester")}: {props.requester}</p></div>
+                    <div><p>{t("date")}: {props.date}</p></div>
+                    <div className="situation"><p>{t("situation")}: {props.situation}</p></div>
                 </div>)
             )
         } else {
             return (
                 (<div className="infos">
-                    <div className="requester"><p>Solicitante: {props.requester}</p></div>
-                    <div><p>Data da solicitação: {props.date}</p></div>
-                    <div className="analyst"><p>Analista: {props.analyst}</p></div>
+                    <div className="requester"><p>{t("requester")}: {props.requester}</p></div>
+                    <div><p>{t("date")}: {props.date}</p></div>
+                    <div className="analyst"><p>{t("analyst")}: {props.analyst}</p></div>
                 </div>)
             )
         }

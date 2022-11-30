@@ -13,5 +13,19 @@
     "requester": "Solicitante",
     "date": "Data da solicitação",
     "generateProposal": "Gerar proposta",
-    "situation": "Situação"
+    "situation": "Situação", 
+    "analyst": "Analista",
+    "proposals": "Propostas",
+    "agendas": "Pautas",
+    "minutes": "Atas",
+    "messages": "Mensagens",
+    "notifications": "Notificações",
+    "configurations": "Configurações",
+    "logout": "Sair",
+    "accessibility": "Acessibilidade",
+    "fontSize": "Tamanho da fonte",
+    "messagesNotify": "Notificações de mensagens",
+    "changePassword": "Alterar sua senha",
+    "proposal": "Proposta",
+    "createProposal": "Criar Proposta"
 }

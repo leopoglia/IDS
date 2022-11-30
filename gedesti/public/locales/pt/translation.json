@@ -13,7 +13,7 @@
     "requester": "Solicitante",
     "date": "Data da solicitação",
     "generateProposal": "Gerar proposta",
-    "situation": "Situação", 
+    "situation": "Situação",
     "analyst": "Analista",
     "proposals": "Propostas",
     "agendas": "Pautas",
@@ -31,7 +31,8 @@
     "proposal": "Proposta",
     "createProposal": "Criar Proposta",
     "minute": "Pauta",
-    "createMinute": "Criar Pauta",
+    "createMinute": "Criar Ata",
+    "createAgenda": "Criar Pauta",
     "viewMinutes": "Visualizar Pautas",
     "viewProposals": "Visualizar Propostas"
 }

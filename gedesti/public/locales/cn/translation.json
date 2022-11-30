@@ -32,6 +32,7 @@
     "createProposal": "創建提案",
     "minute": "會議記錄",
     "createMinute": "創建會議記錄",
+    "createAgenda": "創建議程",
     "viewMinute": "查看會議記錄",
     "viewProposal": "查看提案"
 }

@@ -62,7 +62,7 @@ export default function Demands() {
                     <Header icon="folder_copy" title="demands" />
                     <Nav />
                     <div className="container">
-                        <Search nav="Demandas > Visualizar Demandas" title="Demandas" button="Criar Demanda" link="/demand/create/1" setTable={setTable} />
+                        <Search nav="Demandas > Visualizar Demandas" title="demands" button="createDemand" link="/demand/create/1" setTable={setTable} />
                         {
                             demands.map((val, index) => {
                                 return (
@@ -78,7 +78,7 @@ export default function Demands() {
                     <Header icon="content_paste" title="proposals" />
                     <Nav />
                     <div className="container">
-                        <Search nav="Propostas > Visualizar Propostas" title="Propostas" button="Criar Proposta" link="/demands" setTable={setTable} />
+                        <Search nav="Propostas > Visualizar Propostas" title="proposals" button="createProposal" link="/demands" setTable={setTable} />
                         {
                             proposals.map((val, index) => {
                                 return (
@@ -94,7 +94,7 @@ export default function Demands() {
                     <Header icon="file_copy" title="agendas" />
                     <Nav />
                     <div className="container">
-                        <Search nav="Pautas > Visualizar Pautas" title="Pautas" button="Criar Pauta" link="/agenda/create" setTable={setTable} />
+                        <Search nav="Pautas > Visualizar Pautas" title="agendas" button="createAgenda" link="/agenda/create" setTable={setTable} />
                         {
                             agendas.map((val, index) => {
                                 return (
@@ -110,7 +110,7 @@ export default function Demands() {
                     <Header icon="description" title="minutes" />
                     <Nav />
                     <div className="container">
-                        <Search nav="Atas > Visualizar Atas" title="Atas" button="Criar Ata" link="/minutes/create" setTable={setTable} />
+                        <Search nav="Atas > Visualizar Atas" title="minutes" button="createMinute" link="/minutes/create" setTable={setTable} />
                         {
                             minutes.map((val, index) => {
                                 return (

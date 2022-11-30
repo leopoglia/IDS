@@ -1,10 +1,14 @@
 import "./style.css"
+import { useTranslation } from "react-i18next";
 
-export default function Title(props:any) {
+
+export default function Title(props: any) {
+    const { t, i18n } = useTranslation();
+
     return (
         <div className="Title">
-            <span>{props.nav}</span>
-            <h1>{props.title}</h1>
+            <span>{t(props.nav)}</span>
+            <h1>{t(props.title)}</h1>
         </div>
     );
 }

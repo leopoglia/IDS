@@ -3,9 +3,11 @@ import ButtonTableList from "./ButtonSearch";
 import Title from "./Title";
 import { Link } from "react-router-dom";
 import { SetStateAction, useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function Search(props: any) {
 
+    const { t, i18n } = useTranslation();
 
 
     const [data, setData] = useState(false);
@@ -43,7 +45,7 @@ export default function Search(props: any) {
                             <span className="material-symbols-outlined">
                                 add
                             </span>
-                            {props.button}
+                            {t(props.button)}
                         </button>
                     </Link>
 

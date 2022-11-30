@@ -50,7 +50,7 @@
     width: 100%;
     height: var(--h);
     border: 1px solid var(--greyC4);
-    border-radius: var(--r);
+    border-radius: 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -72,6 +72,11 @@
     display: flex;
     position: relative;
     margin-right: 6px;
+}
+
+.messages .box-message .input-message .actions-message div {
+    border-radius: 50px;
+
 }
 
 .messages .box-message .input-message input {
@@ -105,6 +110,7 @@
     border-radius: var(--r);
     background-color: var(--blue);
     cursor: pointer;
+    border-radius: 50px;
 }
 
 .messages .box-message .send:hover {

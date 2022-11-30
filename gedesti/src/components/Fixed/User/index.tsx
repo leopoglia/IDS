@@ -1,9 +1,10 @@
 import './style.css'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 export default function User() {
-
+    const { t, i18n } = useTranslation()
     const [modal, setModal] = useState(false)
 
 
@@ -28,7 +29,7 @@ export default function User() {
                                 settings
                             </span>
                             <span>
-                                Configurações
+                                {t("configurations")}
                             </span>
                         </div>
                     </Link>
@@ -39,7 +40,7 @@ export default function User() {
                                 logout
                             </span>
                             <span>
-                                Sair
+                                {t("logout")}
                             </span>
                         </div>
                     </Link>

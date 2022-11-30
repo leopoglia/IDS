@@ -22,6 +22,10 @@
     margin-right: 5px;
 }
 
+.box .frequency{
+    margin-bottom: 20px;
+}
+
 @media(max-width: 768px) {
     .attachments label {
         width: 100%;

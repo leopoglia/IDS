@@ -15,7 +15,7 @@ export default function ViewDemand() {
     const { t, i18n } = useTranslation();
 
     const url = window.location.href.split("/")[3];
-    const [actionsDemand, setActionsDemand] = useState(2);
+    const [actionsDemand, setActionsDemand] = useState(3);
     const [stepDemand, setStepDemand] = useState(2);
 
     const [demands] = useState([
@@ -65,7 +65,7 @@ export default function ViewDemand() {
                                     </span>
                                     <span>Gerar PDF</span>
                                 </button>
-                            ) : (
+                            ) : (actionsDemand === 2) ? (
                                 <div className="display-flex">
 
                                     <Link to="/demand/disapprove">
@@ -83,7 +83,25 @@ export default function ViewDemand() {
 
                                     <ButtonActionAnalyst />
                                 </div>
-                            )}
+
+                            ) : (actionsDemand === 3) ? (
+                                <div className="display-flex">
+                                    <Link to="/demand/complement">
+                                        <button className="btn-primary">
+                                            <span>Complementar</span>
+                                        </button>
+                                    </Link>
+                                </div>
+                            ) : (
+                                <div className="display-flex">
+                                    <Link to="/demand/complement">
+                                        <button className="btn-primary">
+                                            <span>Complementar</span>
+                                        </button>
+                                    </Link>
+                                </div>
+                            )
+                            }
 
                         </div>
 

@@ -24,7 +24,14 @@ export default function CreateDemands3() {
 
                 <div className="box">
 
-                    <p>{t("attachments")}</p>
+                    <p>Extras</p>
+
+                    <div className="frequency">
+                        <label>Frequência de Uso</label>
+                        <input type="text" />
+                    </div>
+
+                    <label>{t("attachments")}</label>
 
                     <div className="attachments">
                         <input type="file" id="file" />

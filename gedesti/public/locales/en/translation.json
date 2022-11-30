@@ -8,5 +8,10 @@
     "demands": "Demands",
     "viewDemands": "View Demands",
     "createDemand": "Create Demand",
-    "search": "Fetch per request"
+    "search": "Fetch per request",
+    "solicitation": "Solicitation",
+    "requester": "Requester",
+    "date": "Request date",
+    "generateProposal": "Generate proposal",
+    "situation": "Situation"
 }

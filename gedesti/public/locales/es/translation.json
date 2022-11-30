@@ -8,5 +8,10 @@
     "demands": "Demandas",
     "viewDemands": "Ver Demandas",
     "createDemand": "Crear Demanda",
-    "search": "Obtener por solicitud"
+    "search": "Obtener por solicitud",
+    "solicitation": "Solicitación",
+    "requester": "Solicitante",
+    "date": "Data da solicitación",
+    "generateProposal": "Generar propuesta",
+    "situation": "Situación"
 }

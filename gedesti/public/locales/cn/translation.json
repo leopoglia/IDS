@@ -8,5 +8,10 @@
     "demands": "要求",
     "viewDemands": "查看需求",
     "createDemand": "創造需求",
-    "search": "按請求獲取"
+    "search": "按請求獲取",
+    "solicitation": "招攬",
+    "requester": "請求者",
+    "date": "創建日期",
+    "generateProposal": "生成提案",
+    "situation": "地位"
 }

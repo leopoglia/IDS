@@ -91,6 +91,8 @@ export default function ViewDemand() {
                                             <span>Complementar</span>
                                         </button>
                                     </Link>
+
+                                    <ButtonActionAnalyst />
                                 </div>
                             ) : (
                                 <div className="display-flex">

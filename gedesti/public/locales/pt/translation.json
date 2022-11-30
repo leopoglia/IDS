@@ -20,6 +20,7 @@
     "minutes": "Atas",
     "messages": "Mensagens",
     "notifications": "Notificações",
+    "notification": "Notificação",
     "configurations": "Configurações",
     "logout": "Sair",
     "accessibility": "Acessibilidade",
@@ -27,5 +28,10 @@
     "messagesNotify": "Notificações de mensagens",
     "changePassword": "Alterar sua senha",
     "proposal": "Proposta",
-    "createProposal": "Criar Proposta"
+    "createProposal": "Criar Proposta",
+    "minute": "Pauta",
+    "createMinute": "Criar Pauta",
+    "viewMinutes": "Visualizar Pautas",
+    "viewProposals": "Visualizar Propostas"
+    // BLOCO DE FRASES PARA NOTIFICAÇÃO
 }

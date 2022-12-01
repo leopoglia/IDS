@@ -6,16 +6,20 @@ import ProgressBar from "../ProgressBar";
 import Input from "../Input";
 import TextArea from "../TextArea";
 import ButtonAction from "../ButtonAction";
+import { useTranslation } from "react-i18next";
 
 export default function CreateDemands1() {
+
+    const { t } = useTranslation();
+
     return (
         <div className="create-demands-1">
-            <Header icon="folder_copy" title="create-demand" />
+            <Header icon="folder_copy" title="createDemand" />
             <Nav />
 
             <div className="container">
                 <div className="background-title">
-                    <Title nav="Demandas > Criar Demanda" title="Criar Demanda" />
+                    <Title nav="Demandas > Criar Demanda" title="createDemand" />
 
                     <ProgressBar atual="1" />
                 </div>
@@ -23,16 +27,16 @@ export default function CreateDemands1() {
 
 
                 <div className="box">
-                    <p>Informações Gerais</p>
+                    <p>{t("generalInformation")}</p>
 
 
-                    <Input label="Titulo" required="*"></Input>
+                    <Input label="titleInput" required="*"></Input>
 
-                    <TextArea label="Problema a ser resolvido (Situação atual)" required="*"></TextArea>
+                    <TextArea label="currentSituation" required="*"></TextArea>
 
-                    <TextArea label="Proposta" required="*"></TextArea>
+                    <TextArea label="proposal" required="*"></TextArea>
 
-                    <Input label="Centro de Custos" required="*"></Input>
+                    <Input label="costCenter" required="*"></Input>
 
                 </div>
 

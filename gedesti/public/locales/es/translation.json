@@ -47,10 +47,20 @@
     "fail": "Fallar",
     "approve": "Aprobar",
     "toRank": "A rankear",
+    "costCenter": "Centro de costo",
     "benefitReal": "Beneficio real",
     "benefitPotential": "Beneficio potencial",
     "benefitQualitative": "Beneficio cualitativo",
     "attachments": "Archivos adjuntos",
     "classification": "Clasificación",
-    "complements": "Complementos"
+    "complements": "Complementos",
+    "generalInformation": "Información general",
+    "titleInput": "Título",
+    "monthlyValue": "Valor mensual",
+    "description": "Descripción",
+    "legalObligation": "Obligación legal",
+    "internalControlRequirements": "Requisitos de control interno",
+    "yes": "Sí",
+    "return": "Volver",
+    "advance" : "Avançar"
 }

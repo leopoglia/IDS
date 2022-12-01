@@ -12,12 +12,12 @@ export default function CreateDemands3() {
 
     return (
         <div className="create-demands-3">
-            <Header icon="folder_copy" title="create-demand" />
+            <Header icon="folder_copy" title="createDemand" />
             <Nav />
 
             <div className="container">
                 <div className="background-title">
-                    <Title nav="Demandas > Criar Demanda" title="Criar Demanda" />
+                    <Title nav="Demandas > Criar Demanda" title="createDemand" />
 
                     <ProgressBar atual="3" />
                 </div>

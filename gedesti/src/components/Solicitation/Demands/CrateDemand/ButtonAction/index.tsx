@@ -1,10 +1,13 @@
 import "./style.css";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function ButtonAction(props: {
     title: string
     click: string
 }) {
+
+    const { t } = useTranslation();
 
     const url = window.location.href.split("/")[5];
 
@@ -12,7 +15,7 @@ export default function ButtonAction(props: {
     if (props.click === "voltar" && url === "1") {
         return (
             <Link className="btn-secondary" to="/demands">
-                {props.title}
+                {t("return")}
             </Link>
         );
     }
@@ -21,13 +24,13 @@ export default function ButtonAction(props: {
     if (props.click === "voltar" && url !== "1") {
         return (
             <Link className="btn-secondary" to={"/demand/create/" + (parseInt(url) - 1)}>
-                {props.title}
+                {t("return")}
             </Link>
         );
     } else {
         return (
             <Link className="btn-primary" to={"/demand/create/" + (parseInt(url) + 1)}>
-                {props.title}
+                {t("advance")}
             </Link>
         );
     }

@@ -47,10 +47,20 @@
     "fail": "失敗",
     "approve": "批准",
     "toRank": "排名",
+    "costCenter": "成本中心",
     "benefitReal": "實際收益",
     "benefitPotential": "潛在收益",
     "benefitQualitative": "質量收益",
     "attachments": "附件",
     "classification": "分類",
-    "complements": "補充"
+    "complements": "補充",
+    "generalInformation": "一般信息",
+    "titleInput": "標題",
+    "monthlyValue": "月值",
+    "description": "描述",
+    "legalObligation": "法律責任",
+    "internalControlRequirements": "內部控制要求",
+    "yes": "是",
+    "return": "返回",
+    "advance" : "進展"
 }

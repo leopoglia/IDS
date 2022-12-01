@@ -47,10 +47,20 @@
     "fail": "Fail",
     "approve": "Approve",
     "toRank": "To rank",
+    "costCenter": "Cost center",
     "benefitReal": "Benefit real",
     "benefitPotential": "Benefit potential",
     "benefitQualitative": "Benefit qualitative",
     "attachments": "Attachments",
     "classification": "Classification",
-    "complements": "Complements"
+    "complements": "Complements",
+    "generalInformation": "General information",
+    "titleInput": "Title",
+    "monthlyValue": "Monthly value",
+    "description": "Description",
+    "legalObligation": "Legal obligation",
+    "internalControlRequirements": "Internal control requirements",
+    "yes": "Yes",
+    "return": "Return",
+    "advance" : "Advance"
 }

@@ -15,12 +15,12 @@ export default function CreateDemands2() {
 
     return (
         <div className="create-demands-2">
-            <Header icon="folder_copy" title="create-demand" />
+            <Header icon="folder_copy" title="createDemand" />
             <Nav />
 
             <div className="container">
                 <div className="background-title">
-                    <Title nav="Demandas > Criar Demanda" title="Criar Demanda" />
+                    <Title nav="Demandas > Criar Demanda" title="createDemand" />
 
                     <ProgressBar atual="2" />
                 </div>
@@ -29,11 +29,11 @@ export default function CreateDemands2() {
                     <p>{t("benefitReal")}</p>
 
                     <div className="flex">
-                        <Input label="Valor Mensal" required="*" />
+                        <Input label="monthlyValue" required="*" />
                         <SelectCoin />
                     </div>
 
-                    <Input label="Descrição" required=""></Input>
+                    <Input label="description" required=""></Input>
 
                 </div>
 
@@ -43,15 +43,15 @@ export default function CreateDemands2() {
                     <div className="flex-grid">
 
                         <div className="flex">
-                            <Input label="Valor Mensal" required="*" />
+                            <Input label="monthlyValue" required="*" />
                             <SelectCoin />
                         </div>
 
                         <div className="flex">
-                            <Input label="Descrição" required=""></Input>
+                            <Input label="description" required=""></Input>
 
                             <div className="input-checkbox">
-                                <label>Obrigação Legal</label>
+                                <label>{t("legalObligation")}</label>
                                 <div className="checkbox">
                                     <CheckBox />
                                 </div>
@@ -64,15 +64,15 @@ export default function CreateDemands2() {
                     <p>{t("benefitQualitative")}</p>
 
                     <div className="flex">
-                        <Input label="Valor Mensal" required="*" />
+                        <Input label="monthlyValue" required="*" />
                         <SelectCoin />
                     </div>
 
                     <div className="flex">
-                        <Input label="Descrição" required=""></Input>
+                        <Input label="description" required=""></Input>
 
                         <div className="input-checkbox">
-                            <label className="requirements">Requisitos de controles internos</label>
+                            <label className="requirements">{t("internalControlRequirements")}</label>
                             <div className="checkbox">
                                 <CheckBox />
                             </div>

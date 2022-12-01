@@ -15,7 +15,7 @@ import "./style.css"
 export default function EscopeDemand() {
     return (
         <div className="create-demands-1">
-            <Header icon="folder_copy" title="create-demand" />
+            <Header icon="folder_copy" title="createDemand" />
             <Nav />
 
             <div className="container">

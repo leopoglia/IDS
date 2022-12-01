@@ -53,5 +53,14 @@
     "benefitQualitative": "Benefício qualitativo",
     "attachments": "Anexos",
     "classification": "Classificação",
-    "complements": "Complementos"
+    "complements": "Complementos",
+    "generalInformation": "Informações gerais",
+    "titleInput": "Título",
+    "monthlyValue": "Valor mensal",
+    "description": "Descrição",
+    "legalObligation": "Obrigação legal",
+    "internalControlRequirements": "Requisitos de controle interno",
+    "yes": "Sim",
+    "return": "Voltar",
+    "advance" : "Avançar"
 }

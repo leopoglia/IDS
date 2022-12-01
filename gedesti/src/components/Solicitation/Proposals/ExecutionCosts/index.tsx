@@ -57,9 +57,11 @@ export default function ExecutionCosts() {
                 </div>
 
                 <div className="demands-footer">
-                    <button className="btn-secondary">Voltar</button>
                     <Link to="/proposal/informations">
-                        <button className="btn-primary">Proximo</button>
+                        <button className="btn-secondary">Voltar</button>
+                    </Link>
+                    <Link to="/proposals">
+                        <button className="btn-primary">Gerar Proposta</button>
                     </Link>
                 </div>
             </div>

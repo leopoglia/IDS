@@ -36,12 +36,16 @@ export default function EditProposalScope() {
                         <textarea />
                     </div>
 
+                </div>
 
-                    <div className="display-flex-end">
-                        <Link to="/proposals">
-                            <button className="btn-primary">Salvar alterações</button>
-                        </Link>
-                    </div>
+                <div className="demands-footer">
+                <Link to="/proposal/demand">
+                        <button className="btn-secondary">Voltar</button>
+                    </Link>
+
+                    <Link to="/proposal/informations">
+                        <button className="btn-primary">Avançar</button>
+                    </Link>
                 </div>
 
             </div>

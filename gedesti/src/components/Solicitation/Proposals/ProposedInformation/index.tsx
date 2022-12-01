@@ -69,11 +69,11 @@ export default function ProposedInformation() {
                 </div>
 
                 <div className="demands-footer">
-                    <Link to="/proposal/execution-costs">
+                    <Link to="/proposal/edit-scope">
                         <button className="btn-secondary">Voltar</button>
                     </Link>
-                    <Link to="/proposal/edit-scope">
-                        <button className="btn-primary">Gerar proposta</button>
+                    <Link to="/proposal/execution-costs">
+                        <button className="btn-primary">Avançar</button>
                     </Link>
                 </div>
             </div>

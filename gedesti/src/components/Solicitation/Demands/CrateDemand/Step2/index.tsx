@@ -31,24 +31,30 @@ export default function CreateDemands2() {
                     <div className="flex">
                         <Input label="Valor Mensal" required="*" />
                         <SelectCoin />
-                        <Input label="Descrição" required=""></Input>
                     </div>
+
+                    <Input label="Descrição" required=""></Input>
+
                 </div>
 
                 <div className="box">
                     <p>{t("benefitPotential")}</p>
 
-                    <div className="flex">
+                    <div className="flex-grid">
 
-                        <Input label="Valor Mensal" required="*" />
-                        <SelectCoin />
-                        <Input label="Descrição" required=""></Input>
+                        <div className="flex">
+                            <Input label="Valor Mensal" required="*" />
+                            <SelectCoin />
+                        </div>
 
+                        <div className="flex">
+                            <Input label="Descrição" required=""></Input>
 
-                        <div className="input-checkbox">
-                            <label>Obrigação Legal</label>
-                            <div className="checkbox">
-                                <CheckBox />
+                            <div className="input-checkbox">
+                                <label>Obrigação Legal</label>
+                                <div className="checkbox">
+                                    <CheckBox />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -60,6 +66,9 @@ export default function CreateDemands2() {
                     <div className="flex">
                         <Input label="Valor Mensal" required="*" />
                         <SelectCoin />
+                    </div>
+
+                    <div className="flex">
                         <Input label="Descrição" required=""></Input>
 
                         <div className="input-checkbox">

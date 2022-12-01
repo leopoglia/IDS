@@ -12,12 +12,12 @@
 }
 
 #root>div>div>div:nth-child(4)>div>div.input-checkbox {
-    width: 650px;
+    width: 300px;
 }
 
 .box .input-checkbox {
     display: grid;
-    width: 350px;
+    width: 150px;
     margin-bottom: 15px;
 }
 
@@ -31,9 +31,6 @@
     margin-left: 15px;
 }
 
-.box .input-checkbox .requirements{
-    width: 250px;
-}
 
 @media(max-width: 768px) {
     .box .flex {

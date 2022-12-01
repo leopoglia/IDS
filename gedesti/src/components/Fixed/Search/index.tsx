@@ -1,6 +1,7 @@
 import "./style.css";
 import ButtonTableList from "./ButtonSearch";
 import Title from "./Title";
+import Filter from "./Filter";
 import { Link } from "react-router-dom";
 import { SetStateAction, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
@@ -11,17 +12,25 @@ export default function Search(props: any) {
 
 
     const [data, setData] = useState(false);
+    const [filter, setFilter] = useState(false);
 
 
     const sendData = () => {
-
         if (data === true) {
             setData(false)
         } else {
             setData(true)
         }
-
         props.setTable(data);
+    }
+
+    const sendFilter = () => {
+        if (filter === true) {
+            setFilter(false)
+        } else {
+            setFilter(true)
+        }
+        props.setFilter(filter);
     }
 
     const search = () => {
@@ -65,14 +74,14 @@ export default function Search(props: any) {
                     <div className="btn-search">
                         <ButtonTableList icon="table_rows" sendData={sendData} />
 
-                        <ButtonTableList icon="filter_alt" />
+                        <ButtonTableList icon="filter_alt" sendFilter={sendFilter} />
+
+                        {filter && <Filter />}
                     </div>
                 </div>
             </div>
+
         </div>
     );
 }
 
-function sendData(data: any) {
-    throw new Error("Function not implemented.");
-}

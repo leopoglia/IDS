@@ -1,0 +1,12 @@
+.filter-modal {
+    margin-top: 65px;
+    height: 400px;
+    width: 200px;
+}
+
+.filter-modal .li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--greyF7);
+}

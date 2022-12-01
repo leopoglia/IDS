@@ -3,7 +3,13 @@ import "./style.css";
 export default function ButtonTableList(props: any) {
 
     const onClick = () => {
-        props.sendData(!props.data);
+
+        if (props.icon === "table_rows") {
+            return props.sendData(!props.data);
+
+        } else {
+            return props.sendFilter(!props.filter);
+        }
     }
 
 

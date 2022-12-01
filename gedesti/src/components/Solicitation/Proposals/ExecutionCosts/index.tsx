@@ -51,6 +51,11 @@ export default function ExecutionCosts() {
                                     </span>
                                 </button>
                             </div>
+
+                            <div className="cost-center">
+                                <span>Centro de Custo Tal</span>
+
+                            </div>
                         </div>
                     </div>
 

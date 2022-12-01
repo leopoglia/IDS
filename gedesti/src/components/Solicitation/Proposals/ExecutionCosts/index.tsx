@@ -55,6 +55,10 @@ export default function ExecutionCosts() {
                             <div className="cost-center">
                                 <span>Centro de Custo Tal</span>
 
+                                <div>
+                                    <input type="number" />
+                                    <label htmlFor="">%</label>
+                                </div>
                             </div>
                         </div>
                     </div>

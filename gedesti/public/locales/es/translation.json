@@ -62,5 +62,8 @@
     "internalControlRequirements": "Requisitos de control interno",
     "yes": "Sí",
     "return": "Volver",
-    "advance" : "Avançar"
+    "advance" : "Avançar",
+    "frequencyUse": "Frecuencia de uso",
+    "sendAttachment": "Enviar archivo adjunto",
+    "extras" : "Extras"
 }

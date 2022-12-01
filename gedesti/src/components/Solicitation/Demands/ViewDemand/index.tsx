@@ -129,7 +129,7 @@ export default function ViewDemand() {
                                             </div>
 
                                             <div className="cust-center">
-                                                <p className="title">Centro de Custos</p>
+                                                <p className="title">{t("costCenter")}</p>
                                                 <hr />
                                                 <table>
                                                     {tr("Centro de Custos", "Nome do Centro de Custos")}
@@ -330,7 +330,7 @@ export default function ViewDemand() {
                                             </div>
 
                                             <div className="cust-center">
-                                                <p className="title">Centro de Custos</p>
+                                                <p className="title">{t("costCenter")}</p>
                                                 <hr />
                                                 <table>
                                                     {tr("Centro de Custos", "Nome do Centro de Custos")}

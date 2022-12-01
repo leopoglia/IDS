@@ -24,10 +24,10 @@ export default function CreateDemands3() {
 
                 <div className="box">
 
-                    <p>Extras</p>
+                    <p>{t("extras")}</p>
 
                     <div className="frequency">
-                        <label>Frequência de Uso</label>
+                        <label>{t("frequencyUse")}</label>
                         <input type="text" />
                     </div>
 
@@ -38,9 +38,7 @@ export default function CreateDemands3() {
                         <label htmlFor="file">
                             <span className="material-symbols-outlined">
                                 upload_file
-                            </span>
-
-                            Enviar arquivo</label>
+                            </span>{t("sendAttachment")}</label>
                     </div>
 
                 </div>

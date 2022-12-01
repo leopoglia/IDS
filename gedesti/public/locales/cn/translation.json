@@ -62,5 +62,8 @@
     "internalControlRequirements": "內部控制要求",
     "yes": "是",
     "return": "返回",
-    "advance" : "進展"
+    "advance": "進展",
+    "frequencyUse": "使用頻率",
+    "sendAttachment": "發送附件",
+    "extras": "額外"
 }

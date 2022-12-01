@@ -57,6 +57,9 @@ export default function InsetList() {
                 </div>
 
             </div>
+
+            {modalChangeStatus && <ModalChangeStatus />}
+            
         </div>
     )
 }

@@ -1,0 +1,73 @@
+.modalChangeStatus {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(61, 61, 61, 0.26);
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalChangeStatus .modal {
+    width: 400px;
+    height: 350px;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-header .closeModal {
+    cursor: pointer;
+    border-radius: var(--r);
+    background-color: var(--greyF7);
+    border: 1px solid var(--greyC4);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-header .closeModal:hover {
+    background-color: var(--greyE5);
+}
+
+.modal-header p {
+    margin: 0;
+    font-size: var(--m);
+    color: var(--blue);
+}
+
+.modal .current {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-radius: var(--r);
+    border: 1px solid var(--greyC4);
+}
+
+.modal .current:hover {
+    background-color: var(--greyE5);
+}
+
+.modal .display-flex-center .material-symbols-outlined {
+    transform: rotate(90deg);
+}
+
+.modalChangeStatus .modal .btn-primary{
+    margin-top: 30px;
+    width: 100%;
+}
+
+.modal .display-flex-center{
+    margin-bottom: 20px;
+}

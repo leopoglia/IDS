@@ -28,13 +28,15 @@ export default function ExecutionCosts() {
 
                     <div className="display-flex">
                         <p>Custos de execução do projeto </p>
+                    </div>
 
+                    <GridCostExecution />
+
+                    <div className="display-flex-end">
                         <Link to="add-expense">
                             <button className="btn-secondary">Adicionar despesa</button>
                         </Link>
                     </div>
-
-                    <GridCostExecution />
 
                     <div className="display-flex-grid">
                         <div>
@@ -55,9 +57,11 @@ export default function ExecutionCosts() {
                 </div>
 
                 <div className="demands-footer">
-                    <button className="btn-secondary">Cancelar</button>
-                    <Link to="/proposal/edit-scope">
-                        <button className="btn-primary">Gerar proposta</button>
+                    <Link to="/proposal/informations">
+                        <button className="btn-secondary">Voltar</button>
+                    </Link>
+                    <Link to="/proposals">
+                        <button className="btn-primary">Gerar Proposta</button>
                     </Link>
                 </div>
             </div>

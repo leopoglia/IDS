@@ -1,38 +1,65 @@
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import "./style.css";
+import ModalChangeStatus from "../ModalChangeStatus";
 
 export default function InsetList() {
+
+    const [modalChangeStatus, setModalChangeStatus] = useState(false);
+
+
+
+
     return (
+        <div className="inset-list">
+            <div className="modal">
 
-        <List
-            sx={{ width: '100%', minWidth: 180, background: 'var(--greyF7)', borderRadius: '4px', border: '1px solid var(--greyC4)', color: 'var(--grey59)' }}
-            aria-label="contacts">
+                <Link to="/messages/message">
+                    <div className="li li-settings">
+                        <span className="material-symbols-outlined">
+                            chat
+                        </span>
+                        <span>
+                            Abrir conversa
+                        </span>
+                    </div>
+                </Link>
 
-            <Link to="/messages/message" style={{ textDecoration: 'none', color: 'var(--grey59)' }}>
+                <Link to="/demand/historical">
+                    <div className="li">
+                        <span className="material-symbols-outlined">
+                            history
+                        </span>
+                        <span>
+                            Histórico
+                        </span>
+                    </div>
+                </Link>
 
-                <ListItem disablePadding>
-                    <ListItemButton>
-                        <ListItemText primary="Abrir conversa" />
-                    </ListItemButton>
-                </ListItem>
-            </Link>
+                <Link to="/">
+                    <div className="li">
+                        <span className="material-symbols-outlined">
+                            download
+                        </span>
+                        <span>
+                            Baixar PDF
+                        </span>
+                    </div>
+                </Link>
 
-            <ListItem disablePadding>
-                <ListItemButton>
-                    <ListItemText primary="Baixar em PDF" />
-                </ListItemButton>
-            </ListItem>
+                <div className="li" onClick={() => { setModalChangeStatus(!modalChangeStatus) }}>
+                    <span className="material-symbols-outlined">
+                        change_circle
+                    </span>
+                    <span>
+                        Alterar Status
+                    </span>
+                </div>
 
-            <Link to="/demand/historical" style={{ textDecoration: 'none', color: 'var(--grey59)' }}>
-                <ListItem disablePadding>
-                    <ListItemButton>
-                        <ListItemText primary="Histórico" />
-                    </ListItemButton>
-                </ListItem>
-            </Link>
-        </List>
-    );
+            </div>
+
+            {modalChangeStatus && <ModalChangeStatus />}
+            
+        </div>
+    )
 }

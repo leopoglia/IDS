@@ -1,28 +1,41 @@
+import { t } from "i18next";
+import { Link } from "react-router-dom";
+import Header from "../../../Fixed/Header";
+import Nav from "../../../Fixed/Nav";
+import Title from "../../../Fixed/Search/Title";
+import ButtonAction from "../../Demands/CrateDemand/ButtonAction";
+import CheckBox from "../../Demands/CrateDemand/CheckBox";
+import Input from "../../Demands/CrateDemand/Input";
+import ProgressBar from "../../Demands/CrateDemand/ProgressBar";
+import SelectCoin from "../../Demands/CrateDemand/SelectCoin";
+import TextArea from "../../Demands/CrateDemand/TextArea";
 import "./style.css"
-import Header from "../../../../Fixed/Header"
-import Nav from "../../../../Fixed/Nav"
-import Title from "../../../../Fixed/Search/Title";
-import ProgressBar from "../ProgressBar";
-import Input from "../Input";
-import ButtonAction from "../ButtonAction";
-import SelectCoin from "../SelectCoin";
-import CheckBox from "../CheckBox";
-import { useTranslation } from "react-i18next";
 
-export default function CreateDemands2() {
 
-    const { t, i18n } = useTranslation();
-
+export default function EscopeDemand() {
     return (
-        <div className="create-demands-2">
+        <div className="create-demands-1">
             <Header icon="folder_copy" title="create-demand" />
             <Nav />
 
             <div className="container">
                 <div className="background-title">
-                    <Title nav="Demandas > Criar Demanda" title="Criar Demanda" />
+                    <Title nav="Proposta > Editar Demanda" title="proposal" />
 
-                    <ProgressBar atual="2" />
+                </div>
+
+                <div className="box">
+                    <p>Informações Gerais</p>
+
+
+                    <Input label="Titulo" required="*" />
+
+                    <TextArea label="Problema a ser resolvido (Situação atual)" required="*" />
+
+                    <TextArea label="Proposta" required="*" />
+
+                    <Input label="Centro de Custos" required="*"></Input>
+
                 </div>
 
                 <div className="box">
@@ -81,11 +94,11 @@ export default function CreateDemands2() {
 
                 </div>
 
-                <div className="demands-footer">
-                    <ButtonAction title="Voltar" click="voltar"></ButtonAction>
-                    <ButtonAction title="Avançar" click="avancar"></ButtonAction>
+                <div className="display-flex-end">
+                    <Link to="/proposal/edit-scope">
+                        <button className="btn-primary">Avançar</button>
+                    </Link>
                 </div>
-
 
             </div>
 

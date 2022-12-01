@@ -22,6 +22,7 @@ import CreateAgenda from "./components/Solicitation/Agendas/CreateAgenda";
 import CommissionOpinion from "./components/Solicitation/Proposals/CommissionOpinion";
 import AddExpense from "./components/Solicitation/Proposals/AddExpense/index";
 import ProposedInformation from "./components/Solicitation/Proposals/ProposedInformation";
+import EscopeDemand from "./components/Solicitation/Proposals/EscopeDemand";
 
 export default function Router() {
     return (
@@ -49,6 +50,7 @@ export default function Router() {
                 <Route path="/proposal/view" element={<ViewDemand />} />
                 <Route path="/proposal/execution-costs" element={<ExecutionCosts />} />
                 <Route path="proposal/execution-costs/add-expense" element={<AddExpense />} />
+                <Route path="/proposal/demand" element={<EscopeDemand />} />
                 <Route path="/proposal/edit-scope" element={<EditProposalScope />} />
                 <Route path="/proposal/comission-opinion" element={<CommissionOpinion />} />
                 <Route path="/proposal/informations" element={<ProposedInformation />} />

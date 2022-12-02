@@ -1,20 +1,20 @@
 const url = "http://localhost:8080/api/pauta";
 
 const Service = {
-    save: function (numeroSequencial: Number, anoPauta: Number, comissao: any) {
+    save: function (sequentialNumber: Number, yearAgenda: Number, commission: any) {
 
-        let listaComissoes:any = [];
+        let comissionList:any = [];
 
-        for(let i = 0; i < comissao.length; i++){
-            listaComissoes.push({codigoComissao: comissao[i].codigoComissao})
+        for(let i = 0; i < commission.length; i++){
+            comissionList.push({comissionCode: commission[i].comissionCode})
         }
 
         return new Promise((resolve, reject) => {
             fetch(url, {
                 method: 'POST', body: JSON.stringify({
-                    numeroSequencial: numeroSequencial,
-                    anoPauta: anoPauta,
-                    comissao: listaComissoes
+                    sequentialNumber: sequentialNumber,
+                    yearAgenda: yearAgenda,
+                    commission: comissionList
                 }), headers: { 'Content-Type': 'application/json' }
             }).then(function (result) { return result.json(); })
                 .then(resolve)

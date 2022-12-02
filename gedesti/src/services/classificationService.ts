@@ -1,24 +1,24 @@
 const url = "http://localhost:8080/api/classificacao"
 
 const Service = {
-    save: function (tamanhoClassificacao: Number, secaoTI: String, codigoPPM: String, linkEpicJira: String, buSolicitante: any, busBeneficiadas: any, matriculaAnalista: any) {
+    save: function (classificationSize: Number, itSection: String, ppmcode: String, linkEpicJira: String, requesterBu: any, beneficiaryBu: any, analistRegistry: any) {
 
-        let listaBusBeneficiadas: any = [];
+        let beneficiaryBuList: any = [];
 
-        for (let i = 0; i < busBeneficiadas.length; i++) {
-            listaBusBeneficiadas.push({ codigoBu: busBeneficiadas[i].codigoBu })
+        for (let i = 0; i < beneficiaryBu.length; i++) {
+            beneficiaryBuList.push({ buCode: beneficiaryBu[i].buCode })
         }
 
         return new Promise((resolve, reject) => {
             fetch(url, {
                 method: 'POST', body: JSON.stringify({
-                    tamanhoClassificacao: tamanhoClassificacao,
-                    secaoTI: secaoTI,
-                    codigoPPM: codigoPPM,
+                    classificationSize: classificationSize,
+                    itSection: itSection,
+                    ppmcode: ppmcode,
                     linkEpicJira: linkEpicJira,
-                    matriculaAnalista: { codigoFuncionario: matriculaAnalista },
-                    buSolicitante: { codigoBu: buSolicitante },
-                    busBeneficiadas: listaBusBeneficiadas
+                    analistRegistry: { workerCode: analistRegistry },
+                    requesterBu: { buCode: requesterBu },
+                    beneficiaryBu: beneficiaryBuList
                 }), headers: { 'Content-Type': 'application/json' }
             }).then(function (result) { return result.json(); })
                 .then(resolve)

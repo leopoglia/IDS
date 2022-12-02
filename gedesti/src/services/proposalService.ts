@@ -1,28 +1,26 @@
 const url = "http://localhost:8080/api/proposta"
 
 const Service = {
-    save: function (nomeProposta: String, statusProposta: String, payback: Number, periodoExecucaoInicial: any, periodoExecucaoFinal: any, descritivoProposta: String, analistaResponsavel: any, codigoPauta: any, Funcionarios: any) {
+    save: function (proposalName: String, proposalStatus: String, payback: Number, initialRunPeriod: any, finalExecutionPeriod: any, descriptiveProposal: String, responsibleAnalyst: any, agendaCode: any, workers: any) {
 
-        let listaFuncionarios:any = [];
+        let workersList:any = [];
 
-
-
-        for(let i = 0; i < Funcionarios.length; i++){
-            listaFuncionarios.push({codigoComissao: Funcionarios[i].codigoComissao})
+        for(let i = 0; i < workers.length; i++){
+            workersList.push({comissionCode: workers[i].comissionCode})
         }
 
         return new Promise((resolve, reject) => {
             fetch(url, {
                 method: 'POST', body: JSON.stringify({
-                    nomeProposta: nomeProposta,
-                    statusProposta: statusProposta,
+                    proposalName: proposalName,
+                    proposalStatus: proposalStatus,
                     payback: payback,
-                    periodoExecucaoInicial: periodoExecucaoInicial,
-                    periodoExecucaoFinal: periodoExecucaoFinal,
-                    descritivoProposta: descritivoProposta,
-                    analistaResponsavel: {codigoFuncionario: analistaResponsavel},
-                    codigoPauta: {codigoPauta: codigoPauta},
-                    Funcionarios: listaFuncionarios
+                    initialRunPeriod: initialRunPeriod,
+                    finalExecutionPeriod: finalExecutionPeriod,
+                    descriptiveProposal: descriptiveProposal,
+                    responsibleAnalyst: {codigoFuncionario: responsibleAnalyst},
+                    agendaCode: {agendaCode: agendaCode},
+                    workers: workersList
                 }), headers: { 'Content-Type': 'application/json' }
             }).then(function (result) { return result.json(); })
                 .then(resolve)

@@ -1,11 +1,11 @@
 const url = "http://localhost:8080/api/centrodecusto"
 
 const Service = {
-    save: function (centroDeCusto: String) {
+    save: function (costCenter: String) {
         return new Promise((resolve, reject) => {
             fetch(url, {
                 method: 'POST', body: JSON.stringify({
-                    centroDeCusto: centroDeCusto
+                    costCenter: costCenter
                 }), headers: { 'Content-Type': 'application/json' }
             }).then(function (result) { return result.json(); })
                 .then(resolve)

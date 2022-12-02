@@ -9,15 +9,15 @@ const Services = {
     //     })
     // },
 
-    save: function (codigoFuncionario: Number, nomeFuncionario: String, emailCorporativo: String, senhaFuncionario: String, cargoFuncionario: String) {
+    save: function (workerCode: Number, workerName: String, corporateEmail: String, workerPassword: String, workerOffice: String) {
         return new Promise((resolve, reject) => {
             fetch(url, {
                 method: 'POST', body: JSON.stringify({
-                    codigoFuncionario: codigoFuncionario,
-                    nomeFuncionario: nomeFuncionario,
-                    emailCorporativo: emailCorporativo,
-                    senhaFuncionario: senhaFuncionario,
-                    cargoFuncionario: cargoFuncionario
+                    workerCode: workerCode,
+                    workerName: workerName,
+                    corporateEmail: corporateEmail,
+                    workerPassword: workerPassword,
+                    workerOffice: workerOffice
                 }), headers: { 'Content-Type': 'application/json' }
             }).then(function (result) { return result.json(); })
                 .then(resolve)

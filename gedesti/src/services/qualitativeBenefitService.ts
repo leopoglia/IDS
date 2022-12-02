@@ -1,12 +1,12 @@
 const url = "http://localhost:8080/api/beneficioqualitativos"
 
 const Service = {
-    save: function (frequenciaDeUso: String, requisitosControlesInternos: Boolean) {
+    save: function (frequencyOfUse: String, interalControlsRequirements: Boolean) {
         return new Promise((resolve, reject) => {
             fetch(url, {
                 method: 'POST', body: JSON.stringify({
-                    frequenciaDeUso: frequenciaDeUso,
-                    requisitosControlesInternos: requisitosControlesInternos
+                    frequencyOfUse: frequencyOfUse,
+                    interalControlsRequirements: interalControlsRequirements
                 }), headers: { 'Content-Type': 'application/json' }
             }).then(function (result) { return result.json(); })
                 .then(resolve)

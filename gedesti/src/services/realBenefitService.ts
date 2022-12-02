@@ -2,13 +2,13 @@ const url = "http://localhost:8080/api/beneficioreal"
 
 const Services = {
 
-    save: function (valorMensalReal: Number, descricaoBeneficioReal: String, moedaReal: String) {
+    save: function (realMonthlyValue: Number, realBenefitDescription: String, realCurrency: String) {
         return new Promise((resolve, reject) => {
             fetch(url, {
                 method: 'POST', body: JSON.stringify({
-                    valorMensalReal: valorMensalReal,
-                    descricaoBeneficioReal: descricaoBeneficioReal,
-                    moedaReal: moedaReal
+                    realMonthlyValue: realMonthlyValue,
+                    realBenefitDescription: realBenefitDescription,
+                    realCurrency: realCurrency
                 }), headers: { 'Content-Type': 'application/json' }
             }).then(function (result) { return result.json(); })
                 .then(resolve)

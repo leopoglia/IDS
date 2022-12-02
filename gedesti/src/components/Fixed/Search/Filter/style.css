@@ -1,6 +1,5 @@
 .filter-modal {
     margin-top: 65px;
-    height: 400px;
     width: 200px;
 }
 
@@ -8,5 +7,4 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--greyF7);
 }

@@ -6,5 +6,25 @@
 .filter-modal .li {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+}
+
+.filter-modal input {
+    margin-top: 10px;
+    margin-right: -20px;
+    width: auto !important;
+    padding: 8px;
+}
+
+.hr {
+    border-bottom: 1px solid var(--greyC4);
+}
+
+.filter-modal .btn-primary{
+    width: 179px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    outline: none;
+    border: none;
 }

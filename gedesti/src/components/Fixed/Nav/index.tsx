@@ -43,8 +43,8 @@ export default function Nav() {
 
 
                 <Link to="/demands">
-                    <li>
-                        <div id={hover("demands")}>
+                    <li id={hover("demands")}>
+                        <div>
                             <span className="material-symbols-outlined">
                                 draft
                             </span>
@@ -56,8 +56,8 @@ export default function Nav() {
 
 
                 <Link to="/proposals">
-                    <li>
-                        <div id={hover("proposals")}>
+                    <li id={hover("proposals")}>
+                        <div>
                             <span className="material-symbols-outlined">
                                 request_quote
                             </span>
@@ -67,8 +67,8 @@ export default function Nav() {
                 </Link>
 
                 <Link to="/agendas">
-                    <li>
-                        <div id={hover("agendas")}>
+                    <li id={hover("agendas")}>
+                        <div >
                             <span className="material-symbols-outlined">
                                 folder
                             </span>
@@ -78,8 +78,8 @@ export default function Nav() {
                 </Link>
 
                 <Link to="/minutes">
-                    <li>
-                        <div id={hover("minutes")}>
+                    <li id={hover("minutes")}>
+                        <div>
                             <span className="material-symbols-outlined">
                                 file_present
                             </span>
@@ -89,8 +89,8 @@ export default function Nav() {
                 </Link>
 
                 <Link to="/messages">
-                    <li>
-                        <div id={hover("messages")}>
+                    <li id={hover("messages")}>
+                        <div>
                             <span className="material-symbols-outlined">
                                 chat_bubble
                             </span>
@@ -100,8 +100,8 @@ export default function Nav() {
                 </Link>
 
                 <Link to="/notifications">
-                    <li>
-                        <div id={hover("notifications")}>
+                    <li id={hover("notifications")}>
+                        <div>
                             <span className="material-symbols-outlined">
                                 notifications
                             </span>
@@ -111,8 +111,8 @@ export default function Nav() {
                 </ Link>
 
                 <Link to="/configuration">
-                    <li>
-                        <div id={hover("configuration")}>
+                    <li id={hover("configuration")}>
+                        <div>
                             <span className="material-symbols-outlined">
                                 settings
                             </span>

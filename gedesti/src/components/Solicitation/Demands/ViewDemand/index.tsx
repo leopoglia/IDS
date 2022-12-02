@@ -35,7 +35,7 @@ export default function ViewDemand() {
                     <td>{dataOne}</td>
                     <td>{dataTwo}</td>
                 </tr>
-                <hr />
+                <div className="hr" />
             </div>
         )
     }
@@ -130,7 +130,7 @@ export default function ViewDemand() {
 
                                             <div className="cust-center">
                                                 <p className="title">{t("costCenter")}</p>
-                                                <hr />
+                                                <div className="hr" />
                                                 <table>
                                                     {tr("Centro de Custos", "Nome do Centro de Custos")}
 
@@ -141,7 +141,7 @@ export default function ViewDemand() {
                                             <div className="real-benefit">
                                                 <p className="title">{t("benefitReal")}</p>
 
-                                                <hr />
+                                                <div className="hr" />
 
                                                 <div className="infos">
 
@@ -151,7 +151,7 @@ export default function ViewDemand() {
 
                                                 </div>
 
-                                                <hr />
+                                                <div className="hr" />
 
                                                 <div className="description">
                                                     <span className="desc">Descrição</span><span>{val.realBenefit.description}</span>
@@ -162,7 +162,7 @@ export default function ViewDemand() {
                                             <div className="potential-benefit">
                                                 <p className="title">{t("benefitPotential")}</p>
 
-                                                <hr />
+                                                <div className="hr" />
 
                                                 <div className="infos">
 
@@ -174,7 +174,7 @@ export default function ViewDemand() {
 
                                                 </div>
 
-                                                <hr />
+                                                <div className="hr" />
 
                                                 <div className="description">
                                                     <span className="desc">Descrição</span><span>{val.potentialBenefit.description}</span>
@@ -184,7 +184,7 @@ export default function ViewDemand() {
                                             <div className="qualitative-benefit">
                                                 <p className="title">{t("benefitQualitative")}</p>
 
-                                                <hr />
+                                                <div className="hr" />
 
                                                 <div className="infos">
 
@@ -201,7 +201,7 @@ export default function ViewDemand() {
 
                                                 </div>
 
-                                                <hr />
+                                                <div className="hr" />
 
                                                 <div className="description">
                                                     <span className="desc">Descrição</span><span>{val.qualitativeBenefit.description}</span>
@@ -232,7 +232,7 @@ export default function ViewDemand() {
 
 
                                     <table>
-                                        <hr />
+                                        <div className="hr" />
                                         <tr>
                                             <td>Tamanho</td>
                                             <td>BU Solicitante</td>
@@ -240,7 +240,7 @@ export default function ViewDemand() {
                                             <td>Sessão do TI responsável</td>
                                         </tr>
 
-                                        <hr />
+                                        <div className="hr" />
 
 
                                         <tr>
@@ -251,7 +251,7 @@ export default function ViewDemand() {
 
                                         </tr>
 
-                                        <hr />
+                                        <div className="hr" />
 
 
                                     </table>
@@ -269,7 +269,7 @@ export default function ViewDemand() {
                                     <p>{t("complements")}</p>
 
                                     <table>
-                                        <hr />
+                                        <div className="hr" />
                                         <tr>
                                             <td>Prazo Execução</td>
                                             <td>Código PPM</td>
@@ -277,7 +277,7 @@ export default function ViewDemand() {
 
                                         </tr>
 
-                                        <hr />
+                                        <div className="hr" />
 
 
                                         <tr>
@@ -287,7 +287,7 @@ export default function ViewDemand() {
 
                                         </tr>
 
-                                        <hr />
+                                        <div className="hr" />
                                     </table>
                                 </div>
                             ) : (
@@ -331,7 +331,7 @@ export default function ViewDemand() {
 
                                             <div className="cust-center">
                                                 <p className="title">{t("costCenter")}</p>
-                                                <hr />
+                                                <div className="hr" />
                                                 <table>
                                                     {tr("Centro de Custos", "Nome do Centro de Custos")}
 
@@ -342,7 +342,7 @@ export default function ViewDemand() {
                                             <div className="real-benefit">
                                                 <p className="title">Beneficio Real</p>
 
-                                                <hr />
+                                                <div className="hr" />
 
                                                 <div className="infos">
 
@@ -352,7 +352,7 @@ export default function ViewDemand() {
 
                                                 </div>
 
-                                                <hr />
+                                                <div className="hr" />
 
                                                 <div className="description">
                                                     <span className="desc">Descrição</span><span>{val.realBenefit.description}</span>
@@ -363,7 +363,7 @@ export default function ViewDemand() {
                                             <div className="potential-benefit">
                                                 <p className="title">Beneficio Potencial</p>
 
-                                                <hr />
+                                                <div className="hr" />
 
                                                 <div className="infos">
 
@@ -375,7 +375,7 @@ export default function ViewDemand() {
 
                                                 </div>
 
-                                                <hr />
+                                                <div className="hr" />
 
                                                 <div className="description">
                                                     <span className="desc">Descrição</span><span>{val.potentialBenefit.description}</span>
@@ -385,7 +385,7 @@ export default function ViewDemand() {
                                             <div className="qualitative-benefit">
                                                 <p className="title">Beneficio Qualitativo</p>
 
-                                                <hr />
+                                                <div className="hr" />
 
                                                 <div className="infos">
 
@@ -402,7 +402,7 @@ export default function ViewDemand() {
 
                                                 </div>
 
-                                                <hr />
+                                                <div className="hr" />
 
                                                 <div className="description">
                                                     <span className="desc">Descrição</span><span>{val.qualitativeBenefit.description}</span>
@@ -425,7 +425,7 @@ export default function ViewDemand() {
                                             <div className="execution-cost">
                                                 <p className="title">Custos de execução do projeto</p>
                                                 <table>
-                                                    <hr />
+                                                    <div className="hr" />
                                                     <tr>
                                                         <td>Tipo</td>
                                                         <td>Perfil</td>
@@ -437,7 +437,7 @@ export default function ViewDemand() {
 
                                                     </tr>
 
-                                                    <hr />
+                                                    <div className="hr" />
 
 
                                                     <tr>
@@ -452,7 +452,7 @@ export default function ViewDemand() {
 
                                                     </tr>
 
-                                                    <hr />
+                                                    <div className="hr" />
 
 
                                                 </table>

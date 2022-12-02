@@ -104,7 +104,7 @@ export default function ConditionalValidationGrid() {
 
     return (
         <table>
-            <hr />
+            <div className='hr' />
             <tr>
                 <td>Tipo despesa</td>
                 <td>Perfil despesa</td>
@@ -115,7 +115,7 @@ export default function ConditionalValidationGrid() {
 
             </tr>
 
-            <hr />
+            <div className='hr' />
 
 
             <tr>
@@ -128,7 +128,7 @@ export default function ConditionalValidationGrid() {
 
             </tr>
 
-            <hr />
+            <div className='hr' />
         </table>
 
 

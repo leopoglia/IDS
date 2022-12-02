@@ -28,7 +28,7 @@ export default function HistoricalDemand() {
                             <td>Hora alteração</td>
                         </tr>
 
-                        <hr />
+                        <div className="hr" />
 
 
                         <tr>
@@ -47,7 +47,7 @@ export default function HistoricalDemand() {
                             </td>
                         </tr>
 
-                        <hr />
+                        <div className="hr" />
 
                         <tr>
                             <td>Leonardo Heitor Poglia</td>
@@ -65,7 +65,7 @@ export default function HistoricalDemand() {
                             </td>
                         </tr>
 
-                        <hr />
+                        <div className="hr" />
 
                     </table>
 

@@ -94,14 +94,6 @@ nav .title-li {
     border-radius: var(--r);
 }
 
-nav #current {
-    background-color: var(--greyD9) !important;
-}
-
-
-nav #current:hover {
-    background-color: var(--greyD9) !important;
-}
 
 #current .material-symbols-outlined {
     font-variation-settings:

@@ -17,7 +17,7 @@ export default function Header(props: {
 
             <div className="left">
                 <Link to="/demands">
-                    <img src="../imgs/weg-white.png" alt="" />
+                    <img src="/imgs/weg-white.png" alt="logo" />
                 </Link>
 
                 <div className="title">

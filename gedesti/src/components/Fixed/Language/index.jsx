@@ -9,6 +9,7 @@ import DropdownList from "../Modal";
 function Language() {
     const { t, i18n } = useTranslation();
     const [language, setLanguage] = useState('pt');
+    const [showDropdown, setShowDropdown] = useState(false);
 
     function searchLanguage() {
         if (localStorage.getItem('i18nextLng') !== null) {
@@ -28,7 +29,6 @@ function Language() {
         setShowDropdown(false);
     };
 
-    const [showDropdown, setShowDropdown] = useState(false);
 
 
     useEffect(() => {
@@ -50,7 +50,7 @@ function Language() {
                 <img src="/flags/br.png" alt="" />
             )}
 
-            {showDropdown ? <DropdownList changeLanguage={language} /> : null}
+            {showDropdown ? <DropdownList /> : null}
 
 
         </div>

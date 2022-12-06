@@ -3,9 +3,10 @@ import i18n from "../../../i18n";
 
 function DropdownList() {
 
+
     const [language, setLanguage] = useState('pt')
 
-    const changeLanguage = (languages:any) => {
+    const changeLanguage = (languages: any) => {
         i18n.changeLanguage(languages);
         setLanguage(languages);
     }

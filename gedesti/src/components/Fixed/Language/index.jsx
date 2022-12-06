@@ -11,30 +11,15 @@ function Language() {
     const [language, setLanguage] = useState('pt');
     const [showDropdown, setShowDropdown] = useState(false);
 
-    function searchLanguage() {
-        if (localStorage.getItem('i18nextLng') !== null) {
-            changeLanguage(localStorage.getItem('i18nextLng'))
-        }
-    }
-
-    function changeLanguage(lng) {
-        i18n.changeLanguage(lng);
-        setLanguage(lng);
-        localStorage.setItem('i18nextLng', lng);
-    }
-
-
     // Drop down
     Language.handleClickOutside = () => {
         setShowDropdown(false);
     };
 
-
-
-    useEffect(() => {
-        searchLanguage();
-    }, [])
-
+    const handleClick = (event) => {
+        setLanguage(event);
+        console.log(event);
+    };
 
     return (
         <div className='language' onClick={() => setShowDropdown(!showDropdown)}>
@@ -50,7 +35,7 @@ function Language() {
                 <img src="/flags/br.png" alt="" />
             )}
 
-            {showDropdown ? <DropdownList /> : null}
+            {showDropdown ? <DropdownList handleClick={handleClick} /> : null}
 
 
         </div>

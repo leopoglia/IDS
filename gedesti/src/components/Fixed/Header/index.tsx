@@ -3,6 +3,7 @@ import Language from "../Language"
 import { Link } from "react-router-dom";
 import User from "../User";
 import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
 
 export default function Header(props: {
     icon: string;
@@ -15,6 +16,7 @@ export default function Header(props: {
     return (
         <header className="header">
 
+            
             <div className="left">
                 <Link to="/demands">
                     <img src="/imgs/weg-white.png" alt="logo" />

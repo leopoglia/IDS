@@ -5,9 +5,15 @@
     position: fixed;
     left: 0;
     top: 0;
+    right: 0;
+    bottom: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.modalChangeStatus body{
+    overflow: hidden;
 }
 
 .modalChangeStatus .modal {
@@ -63,11 +69,11 @@
     transform: rotate(90deg);
 }
 
-.modalChangeStatus .modal .btn-primary{
+.modalChangeStatus .modal .btn-primary {
     margin-top: 30px;
     width: 100%;
 }
 
-.modal .display-flex-center{
+.modal .display-flex-center {
     margin-bottom: 20px;
 }

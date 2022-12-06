@@ -38,22 +38,22 @@
 
 @font-face {
   font-family: "Helvetica";
-  src: url("../public/fonts/Helvetica.ttf");
+  src: url("/public/fonts/Helvetica.ttf");
 }
 
 @font-face {
   font-family: "Helvetica Bold";
-  src: url("../public/fonts/Helvetica-Bold.ttf");
+  src: url("/public/fonts/Helvetica-Bold.ttf");
 }
 
 @font-face {
   font-family: "Helvetica Oblique";
-  src: url("../public/fonts/Helvetica-BoldOblique.ttf");
+  src: url("/public/fonts/Helvetica-BoldOblique.ttf");
 }
 
 @font-face {
   font-family: "Helvetica Bold Oblique";
-  src: url("../public/fonts/Helvetica-BoldOblique.ttf");
+  src: url("/public/fonts/Helvetica-BoldOblique.ttf");
 }
 
 * {

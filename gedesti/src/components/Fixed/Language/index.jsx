@@ -7,7 +7,6 @@ import DropdownList from "../Modal";
 
 
 function Language() {
-    const { t, i18n } = useTranslation();
     const [language, setLanguage] = useState('pt');
     const [showDropdown, setShowDropdown] = useState(false);
 
@@ -18,18 +17,21 @@ function Language() {
 
     const handleClick = (event) => {
         setLanguage(event);
-        console.log(event);
     };
+
+    useEffect(() => {
+        setLanguage(localStorage.getItem('language'))
+    }, [])
 
     return (
         <div className='language' onClick={() => setShowDropdown(!showDropdown)}>
-            {language === 'pt' ? (
+            {language === 'pt' || language === '"pt"'   ? (
                 <img src="/flags/br.png" alt="" />
-            ) : language === 'es' ? (
+            ) : language === 'es'  || language === '"es"' ? (
                 <img src="/flags/es.png" alt="" />
-            ) : language === 'en' ? (
+            ) : language === 'en'  || language === '"en"' ? (
                 <img src="/flags/us.png" alt="" />
-            ) : language === 'cn' ? (
+            ) : language === 'cn'  || language === '"cn"' ? (
                 <img src="/flags/cn.png" alt="" />
             ) : (
                 <img src="/flags/br.png" alt="" />

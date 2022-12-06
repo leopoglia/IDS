@@ -12,10 +12,14 @@ function DropdownList({ handleClick }: any) {
         handleClick(languages);
     }
 
+    useEffect(() => {
+        setLanguage(JSON.stringify(localStorage.getItem('language')))
+    }, [])
+
     return (
         <div className="modal">
 
-            {language === 'pt' ? (
+            {language === 'pt' || language === '"pt"' ? (
                 <div>
                     <div className='flag' onClick={() => changeLanguages("es")}>
                         <img src="/flags/es.png" alt="" />
@@ -31,7 +35,7 @@ function DropdownList({ handleClick }: any) {
 
                 </div>
 
-            ) : language === 'es' ? (
+            ) : language === 'es' || language === '"es"' ? (
                 <div>
                     <div className='flag' onClick={() => changeLanguages('pt')}>
                         <img src="/flags/br.png" alt="" />
@@ -45,7 +49,7 @@ function DropdownList({ handleClick }: any) {
                         <img src="/flags/cn.png" alt="" />
                     </div>
                 </div>
-            ) : language === 'en' ? (
+            ) : language === 'en' || language === '"en"' ? (
                 <div>
                     <div className='flag' onClick={() => changeLanguages('pt')}>
                         <img src="/flags/br.png" alt="" />
@@ -59,7 +63,7 @@ function DropdownList({ handleClick }: any) {
                         <img src="/flags/cn.png" alt="" />
                     </div>
                 </div>
-            ) : language === 'cn' ? (
+            ) : language === 'cn' || language === '"cn"' ? (
                 <div>
                     <div className='flag' onClick={() => changeLanguages('pt')}>
                         <img src="/flags/br.png" alt="" />

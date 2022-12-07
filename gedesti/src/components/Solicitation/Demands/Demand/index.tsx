@@ -11,6 +11,7 @@ export default function Demand(props: any) {
         if (props.analyst == null) {
             return (
                 (<div className="infos">
+                    <div className="code">1000025500</div>
                     <div className="requester"><p>{t("requester")}: {props.requester}</p></div>
                     <div><p>{t("date")}: {props.date}</p></div>
                     <div className="situation"><p>{t("situation")}: {props.situation}</p></div>
@@ -19,21 +20,12 @@ export default function Demand(props: any) {
         } else {
             return (
                 (<div className="infos">
+                    <div className="code">1000025500</div>
                     <div className="requester"><p>{t("requester")}: {props.requester}</p></div>
                     <div><p>{t("date")}: {props.date}</p></div>
                     <div className="analyst"><p>{t("analyst")}: {props.analyst}</p></div>
                 </div>)
             )
-        }
-    }
-
-    const btnGenerateProposal = () => {
-        if (props.situation === "Backlog") {
-            return (
-                <Link to="/proposal/demand">
-                    <button className="btn-primary">{t("generateProposal")}</button>
-                </Link>
-            );
         }
     }
 
@@ -51,9 +43,8 @@ export default function Demand(props: any) {
             <Link to={"/" + props.type + "/view"}>
                 <div className="demand">
                     <section>
-                        <div className="display-flex">
+                        <div className="name-code">
                             <h1>{props.name}</h1>
-                            <div className="code">1000025500</div>
                         </div>
 
 
@@ -66,9 +57,9 @@ export default function Demand(props: any) {
 
 
                     <div className="display-flex">
+
                         {information()}
 
-                        {btnGenerateProposal()}
                     </div>
 
 
@@ -80,10 +71,7 @@ export default function Demand(props: any) {
             <Link to={"/" + props.type + "/view"}>
                 <div className="demand-list">
                     <section>
-                        <div className="display-flex">
-                            <h1>{props.name}</h1>
-                            <div className="code">1000025500</div>
-                        </div>
+                        <h1>{props.name}</h1>
                     </section>
 
 

@@ -17,14 +17,14 @@ export default function Demands() {
     const [table, setTableList] = useState(false);
 
     const [demands] = useState([
-        { name: "Solicitação 001", requester: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "Backlog" },
-        { name: "Solicitação 002", requester: "Vytor Augusto Rosa", date: "21/11/2022", situation: "Assesment" },
-        { name: "Solicitação 002", requester: "Vytor Augusto Rosa", date: "21/11/2022", situation: "Business Case" },
-        { name: "Solicitação 002", requester: "Vytor Augusto Rosa", date: "21/11/2022", situation: "To-do" },
-        { name: "Solicitação 002", requester: "Vytor Augusto Rosa", date: "21/11/2022", situation: "Design and Build" },
-        { name: "Solicitação 002", requester: "Vytor Augusto Rosa", date: "21/11/2022", situation: "Cancelled" },
-        { name: "Solicitação 002", requester: "Vytor Augusto Rosa", date: "21/11/2022", situation: "Support" },
-        { name: "Solicitação 002", requester: "Vytor Augusto Rosa", date: "21/11/2022", situation: "Done" },
+        { name: "Sistema para calcular o SCORE", requester: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "Backlog" },
+        { name: "Calculadora de custos para projeto de demandas", requester: "Vytor Augusto Rosa", date: "21/11/2022", situation: "Assesment" },
+        { name: "Programa que identifica falhas de proteção constantes no Gitlab", requester: "Eduarda B", date: "21/11/2022", situation: "Business Case" },
+        { name: "Projeto para inovações", requester: "Ester G", date: "21/11/2022", situation: "To-do" },
+        { name: "Alterar custo de uso do projeto GEDESTI", requester: "Romário H", date: "21/11/2022", situation: "Design and Build" },
+        { name: "Nova área de leitura online", requester: "Josué do Amarante", date: "21/11/2022", situation: "Cancelled" },
+        { name: "GPS para se localizar na fabrica", requester: "Tati", date: "21/11/2022", situation: "Support" },
+        { name: "Sistema para solicitação de demandas de TI", requester: "Jair", date: "21/11/2022", situation: "Done" },
     ]);
     const [proposals] = useState([
         { name: "Proposta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "unallocated" },

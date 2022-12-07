@@ -69,3 +69,24 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
 }
+
+.execution-costs .display-flex-space-between {
+    margin-top: 25px;
+}
+
+.execution-costs .costs-execution{
+    display: flex;
+}
+
+.execution-costs .hr-execution{
+    margin-top: 30px;
+}
+
+.execution-costs .costs-execution span {
+    background-color: var(--greyF7);
+    padding: 12px;
+    border-radius: var(--r);
+    border: 1px solid var(--greyC4);
+    color: var(--grey59);
+    margin-right: 20px;
+}

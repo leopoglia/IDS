@@ -32,11 +32,21 @@ export default function ExecutionCosts() {
 
                     <GridCostExecution />
 
-                    <div className="display-flex-end">
+                    <div className="display-flex-space-between">
+                        <div className="costs-execution">
+                            <span>Custos totais: R$ 0,00</span>
+
+                            <span>Custos externo: R$ 0,00</span>
+
+                            <span>Custos interno: R$ 0,00</span>
+
+                        </div>
                         <Link to="add-expense">
                             <button className="btn-secondary">Adicionar despesa</button>
                         </Link>
                     </div>
+
+                    <div className="hr hr-execution" />
 
                     <div className="display-flex-grid">
                         <div>

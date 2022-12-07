@@ -126,7 +126,8 @@ input[type=checkbox]:checked {
 
 .display-flex,
 .display-flex-end,
-.display-flex-center {
+.display-flex-center,
+.display-flex-space-between {
   display: flex;
 }
 
@@ -141,6 +142,15 @@ input[type=checkbox]:checked {
 .display-flex-center {
   justify-content: center;
   align-items: center;
+}
+
+.display-flex-space-between {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text-bold{
+  font-weight: 600;
 }
 
 .material-symbols-outlined {
@@ -261,6 +271,7 @@ tr td {
   overflow: hidden;
   text-overflow: ellipsis;
   direction: ltr;
+  color: var(--grey59);
 }
 
 tr td:last-child {

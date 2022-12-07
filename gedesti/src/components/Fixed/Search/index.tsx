@@ -50,7 +50,10 @@ export default function Search(props: any) {
         <div className="search">
             <Title nav={props.title} title={props.title} />
 
+
+
             <div className="section">
+
 
                 <div className="input-search">
                     <span className="material-symbols-outlined">search</span>
@@ -68,7 +71,6 @@ export default function Search(props: any) {
                         </button>
                     </Link>
 
-
                     <div className="btn-search">
                         <ButtonTableList icon="table_rows" sendData={sendData} />
 
@@ -77,6 +79,12 @@ export default function Search(props: any) {
                         {filter && <Filter />}
                     </div>
                 </div>
+
+                {filter &&
+                    <button className="btn-secondary export-spreadsheet">
+                        <img src="/attachment/excel.png" alt="" />
+                    </button>
+                }
             </div>
 
         </div>

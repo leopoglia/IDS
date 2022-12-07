@@ -38,6 +38,17 @@
     display: flex;
 }
 
+.export-spreadsheet {
+    margin-left: 10px;
+    width: 45px;
+    right: 0;
+}
+
+.export-spreadsheet img{
+    width: 35px;
+    height: 35px;
+}
+
 @media(max-width: 1280px) {
     .search input {
         width: 100%;
@@ -65,7 +76,7 @@
         margin-left: 10px;
     }
 
-    .search .input-search{
+    .search .input-search {
         margin-right: 0px;
     }
 }

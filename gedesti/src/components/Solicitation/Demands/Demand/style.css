@@ -81,12 +81,12 @@
 }
 
 .demand .btn-primary,
-.demand .btn-secondary{
+.demand .btn-secondary {
     height: 40px;
     font-size: var(--p) !important;
 }
 
-.demand .btn-primary span{
+.demand .btn-primary span {
     margin: 0;
 }
 

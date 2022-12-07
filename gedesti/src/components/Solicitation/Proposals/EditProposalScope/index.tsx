@@ -19,17 +19,10 @@ export default function EditProposalScope() {
 
         </div>
 
-        <div className="box">
 
 
-          <div className="display-flex">
-            <p>Escopo da Proposta</p>
-          </div>
+        <Editor />
 
-          <Editor />
-
-
-        </div>
 
         <div className="demands-footer">
           <Link to="/proposal/demand">

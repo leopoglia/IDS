@@ -21,7 +21,7 @@ import prepopulatedText from "./SampleText.js";
 function Placeholder() {
     return (
         <div className="editor-placeholder">
-            Informe o Escopo da Proposta
+            Informe o Escopo...
         </div>
     );
 }

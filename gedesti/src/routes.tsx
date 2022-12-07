@@ -23,6 +23,7 @@ import CommissionOpinion from "./components/Solicitation/Proposals/CommissionOpi
 import AddExpense from "./components/Solicitation/Proposals/AddExpense/index";
 import ProposedInformation from "./components/Solicitation/Proposals/ProposedInformation";
 import EscopeDemand from "./components/Solicitation/Proposals/EscopeDemand";
+import CreateMinute from "./components/Solicitation/Minutes/CreateMinute";
 
 export default function Router() {
     return (
@@ -61,6 +62,7 @@ export default function Router() {
                 <Route path="/agenda/select-proposals" element={<SelectProposal />} />
 
                 <Route path="/minutes" element={<Demands />} />
+                <Route path="/minutes/create" element={<CreateMinute />} />
                 <Route path="/minute/view" element={<ViewDemand />} />
 
 

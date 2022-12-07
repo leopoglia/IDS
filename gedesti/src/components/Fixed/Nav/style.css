@@ -41,7 +41,11 @@ nav li div {
     max-height: 50px;
 }
 
-nav li:hover {
+nav .material-symbols-outlined:hover {
+    background-color: var(--greyE5);
+}
+
+.nav-open div:hover{
     background-color: var(--greyE5);
 }
 

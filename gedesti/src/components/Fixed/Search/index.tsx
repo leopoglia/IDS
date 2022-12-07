@@ -46,8 +46,6 @@ export default function Search(props: any) {
     }
 
 
-
-
     return (
         <div className="search">
             <Title nav={props.title} title={props.title} />

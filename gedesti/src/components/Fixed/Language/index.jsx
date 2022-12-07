@@ -1,5 +1,6 @@
 import './style.css'
 import React, { useState, useEffect } from 'react'
+import { useTranslation } from "react-i18next";
 import onClickOutside from "react-onclickoutside";
 import DropdownList from "./Modal";
 
@@ -9,6 +10,7 @@ function Language() {
     const [language, setLanguage] = useState('pt');
     const [showDropdown, setShowDropdown] = useState(false);
 
+    // Drop down
     Language.handleClickOutside = () => {
         setShowDropdown(false);
     };
@@ -36,6 +38,8 @@ function Language() {
             )}
 
             {showDropdown ? <DropdownList handleClick={handleClick} children="language" /> : null}
+
+
         </div>
     )
 }

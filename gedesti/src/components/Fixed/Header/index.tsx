@@ -16,10 +16,10 @@ export default function Header(props: {
     return (
         <header className="header">
 
-            
+
             <div className="left">
                 <Link to="/demands">
-                    <img src="/imgs/weg-white.png" alt="logo" />
+                    <img src="/images/weg-white.png" alt="logo" />
                 </Link>
 
                 <div className="title">

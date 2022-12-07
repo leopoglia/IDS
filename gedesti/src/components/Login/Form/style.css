@@ -27,7 +27,7 @@
     content: '';
     width: 18px;
     height: 18px;
-    background-image: url('/public/imgs/logo.png');
+    background-image: url('/public/images/logo.png');
     background-size: 100%;
     margin-left: 5px;
 }

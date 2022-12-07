@@ -4,9 +4,9 @@ export default function Footer() {
     return (
         <footer className="footer">
 
-            <img src="/imgs/logo.png" alt="logo" />
+            <img src="/images/logo.png" alt="logo" />
 
-            <img src="/imgs/weg-blue.png" />
+            <img src="/images/weg-blue.png" />
 
 
             <span>© 2022 Gedesti</span>

@@ -22,7 +22,7 @@ export default function Form() {
 
 
 
-                        <img src="/imgs/weg-blue.png" alt="" />
+                        <img src="/images/weg-blue.png" alt="" />
                     </header>
 
                     <main>

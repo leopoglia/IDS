@@ -98,7 +98,7 @@ export default function Demands() {
                         {
                             agendas.map((val, index) => {
                                 return (
-                                    <Demand listDirection={table} name={val.name} requester={val.requester} date={val.date} situation={val.situation} type="agenda" />
+                                    <Demand listDirection={table} name={val.name} requester={val.requester} analyst={val.analyst} date={val.date} situation={val.situation} type="agenda" />
                                 );
                             })
                         }
@@ -114,7 +114,7 @@ export default function Demands() {
                         {
                             minutes.map((val, index) => {
                                 return (
-                                    <Demand listDirection={table} name={val.name} requester={val.requester} date={val.date} situation={val.situation} type="minute" />
+                                    <Demand listDirection={table} name={val.name} requester={val.requester} analyst={val.analyst} date={val.date} situation={val.situation} type="minute" />
                                 );
                             })
                         }

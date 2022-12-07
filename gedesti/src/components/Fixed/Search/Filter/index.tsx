@@ -105,6 +105,11 @@ export default function Filter() {
                     <span>Código PPM</span>
                 </div>
 
+                <div className="li" onClick={() => { setFilter(true) }}>
+                    <span className="material-symbols-outlined">draft</span>
+                    <span>Código Proposta</span>
+                </div>
+
                 {sendFilter()}
 
             </div>
@@ -116,6 +121,11 @@ export default function Filter() {
                 <div className="li" onClick={() => { setFilter(true) }}>
                     <span className="material-symbols-outlined">workspaces</span>
                     <span>Forúm</span>
+                </div>
+
+                <div className="li" onClick={() => { setFilter(true) }}>
+                    <span className="material-symbols-outlined">draft</span>
+                    <span>Código Pauta</span>
                 </div>
 
                 {sendFilter()}
@@ -134,6 +144,11 @@ export default function Filter() {
                 <div className="li" onClick={() => { setFilter(true) }}>
                     <span className="material-symbols-outlined">calendar_month</span>
                     <span>Data</span>
+                </div>
+
+                <div className="li" onClick={() => { setFilter(true) }}>
+                    <span className="material-symbols-outlined">draft</span>
+                    <span>Código ATA</span>
                 </div>
 
                 {sendFilter()}

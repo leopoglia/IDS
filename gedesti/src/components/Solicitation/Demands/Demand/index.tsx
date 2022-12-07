@@ -51,7 +51,10 @@ export default function Demand(props: any) {
             <Link to={"/" + props.type + "/view"}>
                 <div className="demand">
                     <section>
-                        <h1>{props.name}</h1>
+                        <div className="display-flex">
+                            <h1>{props.name}</h1>
+                            <div className="code">1000025500</div>
+                        </div>
 
 
                         <div className="display-grid">
@@ -77,8 +80,10 @@ export default function Demand(props: any) {
             <Link to={"/" + props.type + "/view"}>
                 <div className="demand-list">
                     <section>
-                        <h1>{props.name}</h1>
-
+                        <div className="display-flex">
+                            <h1>{props.name}</h1>
+                            <div className="code">1000025500</div>
+                        </div>
                     </section>
 
 

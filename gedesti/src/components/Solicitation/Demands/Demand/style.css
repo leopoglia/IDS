@@ -10,6 +10,19 @@
     font-weight: 400;
 }
 
+.demand section .display-flex,
+.demand-list section .display-flex {
+    align-items: center;
+}
+
+.demand section .code,
+.demand-list section .code {
+    background-color: var(--greyE5);
+    padding: 4px;
+    border-radius: var(--r);
+    font-size: var(--pp);
+}
+
 .demand-list {
     height: 70px;
     border: 0px;

@@ -29,6 +29,16 @@ export default function Demand(props: any) {
         }
     }
 
+    const btnGenerateProposal = () => {
+        if (props.situation === "Backlog") {
+            return (
+                <Link to="/proposal/demand">
+                    <button className="btn-primary">{t("generateProposal")}</button>
+                </Link>
+            );
+        }
+    }
+
     const situation = () => {
         if (props.type === "demand") {
             return (
@@ -60,6 +70,7 @@ export default function Demand(props: any) {
 
                         {information()}
 
+                        {btnGenerateProposal()}
                     </div>
 
 
@@ -71,7 +82,7 @@ export default function Demand(props: any) {
             <Link to={"/" + props.type + "/view"}>
                 <div className="demand-list">
                     <section>
-                        <h1>{props.name}</h1>
+                            <h1>{props.name}</h1>
                     </section>
 
 

@@ -80,7 +80,11 @@
     margin: 10px 15px !important;
 }
 
-
+.demand .btn-primary,
+.demand .btn-secondary{
+    height: 40px;
+    font-size: var(--p) !important;
+}
 
 .demand .btn-primary span{
     margin: 0;

@@ -10,8 +10,8 @@
     width: 200px;
     border-radius: var(--r);
     background-color: var(--white);
-    margin-top: 10px;
-    margin-left: -30px;
+    margin-top: 0px;
+    margin-left: -20px;
     display: inline;
     align-items: center;
     justify-content: center;

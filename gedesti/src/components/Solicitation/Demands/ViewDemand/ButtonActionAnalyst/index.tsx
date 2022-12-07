@@ -2,10 +2,10 @@ import "./style.css"
 import { useState } from "react";
 import ModalActionAnalyst from "../ModalActionAnalyst";
 
-
 export default function ButtonActionAnalyst() {
 
     const [modal, setModal] = useState(false);
+
 
 
     return (

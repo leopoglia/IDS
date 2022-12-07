@@ -9,7 +9,6 @@ function Language() {
     const [language, setLanguage] = useState('pt');
     const [showDropdown, setShowDropdown] = useState(false);
 
-    // Drop down
     Language.handleClickOutside = () => {
         setShowDropdown(false);
     };

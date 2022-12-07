@@ -7,9 +7,6 @@ export default function InsetList() {
 
     const [modalChangeStatus, setModalChangeStatus] = useState(false);
 
-
-
-
     return (
         <div className="inset-list">
             <div className="modal">
@@ -59,7 +56,7 @@ export default function InsetList() {
             </div>
 
             {modalChangeStatus && <ModalChangeStatus />}
-            
+
         </div>
     )
 }

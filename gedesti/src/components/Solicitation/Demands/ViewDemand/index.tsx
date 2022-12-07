@@ -40,8 +40,6 @@ export default function ViewDemand() {
         )
     }
 
-
-
     return (
         <div className="view-demand">
 

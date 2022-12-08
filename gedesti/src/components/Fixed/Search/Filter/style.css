@@ -28,3 +28,8 @@
     outline: none;
     border: none;
 }
+
+.filter-modal .btn-secondary{
+    width: 179px;
+    margin-top: 10px;
+}

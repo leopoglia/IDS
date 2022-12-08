@@ -12,8 +12,11 @@ export default function Filter() {
             return (
                 <div>
                     <div className="hr" />
+
                     <input type="text" placeholder="Insira o parametro aqui" />
+
                     <button className="btn-primary">Filtrar</button>
+
                 </div>
             )
         }
@@ -22,6 +25,7 @@ export default function Filter() {
     if (url === 'demands') {
         return (
             <div className="filter-modal modal">
+
                 <div className="li">
                     <span className="material-symbols-outlined">home</span>
                     <span>Minhas demandas</span>
@@ -74,7 +78,7 @@ export default function Filter() {
     } else if (url === 'proposals') {
         return (
             <div className="filter-modal modal">
-
+    
                 <div className="li" onClick={() => { setFilter(true) }}>
                     <span className="material-symbols-outlined">person</span>
                     <span>Solicitante</span>
@@ -135,7 +139,7 @@ export default function Filter() {
     } else {
         return (
             <div className="filter-modal modal">
-
+         
                 <div className="li" onClick={() => { setFilter(true) }}>
                     <span className="material-symbols-outlined">workspaces</span>
                     <span>Número ATA</span>

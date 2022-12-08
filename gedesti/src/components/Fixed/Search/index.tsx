@@ -53,9 +53,14 @@ export default function Search(props: any) {
 
 
             <div className="section">
-
+                {filter &&
+                    <button className="btn-secondary export-spreadsheet">
+                        <img src="/attachment/excel.png" alt="" />
+                    </button>
+                }
 
                 <div className="input-search">
+
                     <span className="material-symbols-outlined">search</span>
                     <input type="text" placeholder={search()} required />
                 </div>
@@ -80,11 +85,7 @@ export default function Search(props: any) {
                     </div>
                 </div>
 
-                {filter &&
-                    <button className="btn-secondary export-spreadsheet">
-                        <img src="/attachment/excel.png" alt="" />
-                    </button>
-                }
+
             </div>
 
         </div>

@@ -9,15 +9,26 @@ export default function Demand(props: any) {
 
     const information = () => {
         if (props.analyst == null) {
-            return (
-                (<div className="infos">
-                    <div className="code">1000025500</div>
-                    <div className="requester"><p>{t("requester")}: {props.requester}</p></div>
-                    <div><p>{t("date")}: {props.date}</p></div>
-                    <div className="situation"><p>{t("situation")}: {props.situation}</p></div>
-                </div>)
-            )
-        } else {
+            if (props.director == null) {
+                return (
+                    (<div className="infos">
+                        <div className="code">1000025500</div>
+                        <div className="requester"><p>{t("requester")}: {props.requester}</p></div>
+                        <div><p>{t("date")}: {props.date}</p></div>
+                        <div className="situation"><p>{t("situation")}: {props.situation}</p></div>
+                    </div>)
+                )
+            } else {
+                return (
+                    (<div className="infos">
+                        <div className="code">1000025500</div>
+                        <div className="requester"><p>{t("director")}: {props.director}</p></div>
+                        <div><p>{t("date")}: {props.date}</p></div>
+                        <div className="analyst"><p>{t("coordinator")}: {props.coordinator}</p></div>
+                    </div>)
+                )
+            }
+        } else if (props.analyst != null) {
             return (
                 (<div className="infos">
                     <div className="code">1000025500</div>
@@ -82,7 +93,7 @@ export default function Demand(props: any) {
             <Link to={"/" + props.type + "/view"}>
                 <div className="demand-list">
                     <section>
-                            <h1>{props.name}</h1>
+                        <h1>{props.name}</h1>
                     </section>
 
 

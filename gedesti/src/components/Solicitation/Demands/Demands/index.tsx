@@ -36,7 +36,7 @@ export default function Demands() {
         { name: "Pauta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "unallocated" },
     ]);
     const [minutes] = useState([
-        { name: "Ata 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "unallocated" },
+        { name: "Ata 001", date: "27/04/2022", situation: "unallocated", number: "10/2021", director: "Vytor Augusto Rosa", coordinator: "Leonardo Heitor Poglia" },
     ]);
 
     const footer = () => {
@@ -117,7 +117,7 @@ export default function Demands() {
                         {
                             minutes.map((val, index) => {
                                 return (
-                                    <Demand listDirection={table} name={val.name} requester={val.requester} analyst={val.analyst} date={val.date} situation={val.situation} type="minute" />
+                                    <Demand listDirection={table} name={val.name} director={val.director} coordinator={val.coordinator} number={val.number} date={val.date} situation={val.situation} type="minute" />
                                 );
                             })
                         }

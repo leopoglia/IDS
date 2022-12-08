@@ -65,5 +65,8 @@
     "advance": "進展",
     "frequencyUse": "使用頻率",
     "sendAttachment": "發送附件",
-    "extras": "額外"
+    "extras": "額外",
+    "approved": "批准",
+    "rejected": "拒絕",
+    "pending": "待定"
 }

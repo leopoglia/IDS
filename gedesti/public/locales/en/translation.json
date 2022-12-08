@@ -65,5 +65,8 @@
     "advance" : "Advance",
     "frequencyUse": "Frequency use",
     "sendAttachment": "Send attachment",
-    "extras": "Extras"
+    "extras": "Extras",
+    "approved": "Approved",
+    "rejected": "Rejected",
+    "pending": "Pending"
 }

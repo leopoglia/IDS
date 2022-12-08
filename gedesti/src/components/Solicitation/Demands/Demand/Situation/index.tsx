@@ -23,11 +23,32 @@ export default function Situation(props: any) {
         } else if (props.situation === "Done") {
             return (<div className="situation-done">100%</div>);
         }
+
+        if (props.situation === "Approved") {
+            return (<div className="graphic-proposal">{t("approved")}<div className="situation-approved"></div></div>);
+        } else if (props.situation === "Rejected") {
+            return (<div className="graphic-proposal">{t("rejected")}<div className="situation-rejected"></div></div>);
+        } else if (props.situation === "Pending") {
+            return (<div className="graphic-proposal">{t("pending")}<div className="situation-pending"></div></div>);
+        }
     }
 
-    return (
-        <div className="graphic">
-            {situation()}
-        </div>
-    );
+    if (props.type === "demand") {
+        return (
+            <div className="graphic">
+                {situation()}
+            </div>
+        );
+    } else if (props.type === "proposal") {
+        return (
+            <div className="graphic-proposal">
+                {situation()}
+            </div>
+        );
+    } else {
+        return (
+            <div>
+            </div>
+        );
+    }
 }

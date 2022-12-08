@@ -27,7 +27,10 @@ export default function Demands() {
         { name: "Sistema para solicitação de demandas de TI", requester: "Jair", date: "21/11/2022", situation: "Done" },
     ]);
     const [proposals] = useState([
-        { name: "Proposta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "unallocated" },
+        { name: "Proposta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "Approved" },
+        { name: "Proposta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "Rejected" },
+        { name: "Proposta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "Pending" },
+
     ]);
     const [agendas] = useState([
         { name: "Pauta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "unallocated" },

@@ -6,6 +6,46 @@
     background-color: var(--greyD9);
 }
 
+.demand-list .graphic-proposal {
+    width: 118px;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 5px;
+}
+
+.demand .situation-approved,
+.demand-list .situation-approved,
+.demand .situation-rejected,
+.demand-list .situation-rejected,
+.demand .situation-pending,
+.demand-list .situation-pending {
+    width: 15px;
+    height: 15px;
+    border-radius: 50px;
+    margin-left: 10px;
+}
+
+.demand .situation-approved,
+.demand-list .situation-approved {
+    background-color: #36802d
+}
+
+.demand .situation-rejected,
+.demand-list .situation-rejected {
+    background-color: #d33649
+}
+
+.demand .situation-pending,
+.demand-list .situation-pending {
+    background-color: #f6921d
+}
+
+.demand .graphic-proposal,
+.demand-list .graphic-proposal {
+    display: flex;
+    align-items: center;
+}
+
 .demand-list .graphic {
     margin-right: 15px;
 }
@@ -68,7 +108,7 @@
 }
 
 .graphic .situation-cancelled,
-.graphic .situation-support{
+.graphic .situation-support {
     color: var(--grey3d);
 }
 

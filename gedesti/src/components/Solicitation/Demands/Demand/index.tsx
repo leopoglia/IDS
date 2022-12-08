@@ -40,9 +40,9 @@ export default function Demand(props: any) {
     }
 
     const situation = () => {
-        if (props.type === "demand") {
+        if (props.type === "demand" || props.type === "proposal") {
             return (
-                <Situation situation={props.situation} />
+                <Situation type={props.type} situation={props.situation} />
             );
         }
     }

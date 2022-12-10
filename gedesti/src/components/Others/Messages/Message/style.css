@@ -13,13 +13,13 @@
 
 
 .messages .box-message .user-picture {
-    max-width: 80px;
-    min-width: 80px;
-    width: 80px;
-    max-height: 80px;
-    height: 80px;
+    max-width: 50px;
+    min-width: 50px;
+    width: 50px;
+    max-height: 50px;
+    height: 50px;
     background-color: var(--greyD9);
-    border-radius: 80px;
+    border-radius: 50px;
 }
 
 .messages .box-message .message-name {
@@ -146,7 +146,7 @@
 }
 
 .messages .box-message .message-user span {
-    font-size: var(--p);
+    font-size: var(--pp);
 }
 
 .messages .box-message .message-two {
@@ -186,7 +186,7 @@
 }
 
 .messages .box-message .messages-chat {
-    height: 55vh;
+    height: 50vh;
     overflow-y: auto;
     overflow-x: hidden;
     margin-bottom: 10px;

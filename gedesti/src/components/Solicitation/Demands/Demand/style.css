@@ -8,14 +8,11 @@
     color: var(--grey59);
     cursor: pointer;
     font-weight: 400;
-}
-
-.demand-list{
-    overflow-x: auto;
     overflow-y: hidden;
+    overflow-x: auto;
 }
 
-.demand-list section h1{
+.demand-list section h1 {
     display: inline-block;
     white-space: nowrap;
 }
@@ -90,6 +87,13 @@
     margin: 10px 15px !important;
 }
 
+.demand section h1 {
+    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
 .demand .btn-primary,
 .demand .btn-secondary {
     height: 40px;
@@ -107,8 +111,6 @@
     height: 52px;
     margin-left: 5px;
     padding-right: 20px;
-    overflow-y: hidden;
-    overflow-x: auto;
 }
 
 .demand .infos div,
@@ -147,8 +149,6 @@
     height: 100%;
     margin-top: 0px;
     margin-left: 0px;
-    overflow-y: hidden;
-    overflow-x: auto;
 }
 
 

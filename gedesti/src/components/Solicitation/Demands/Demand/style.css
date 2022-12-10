@@ -10,6 +10,16 @@
     font-weight: 400;
 }
 
+.demand-list{
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.demand-list section h1{
+    display: inline-block;
+    white-space: nowrap;
+}
+
 .demand section .display-flex,
 .demand-list section .display-flex {
     align-items: center;

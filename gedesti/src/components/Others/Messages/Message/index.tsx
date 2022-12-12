@@ -2,9 +2,14 @@ import "./style.css"
 import Header from "../../../Fixed/Header"
 import Nav from "../../../Fixed/Nav"
 import Title from "../../../Fixed/Search/Title";
+import Emoji from "../Emoji/emoji"
+import { useState } from "react";
 
 
 export default function Message() {
+
+    const [emoji, setEmoji] = useState(false);
+
     return (
         <div className="messages">
             <Header icon="chat" title="chat" />
@@ -128,13 +133,17 @@ export default function Message() {
 
                     <div className="text-field">
 
+                        {emoji && <Emoji />}
+
+
                         <div className="input-message">
                             <input type="text" placeholder="Envie sua mensagem" />
 
 
                             <div className="actions-message">
 
-                                <div className="add-reaction">
+
+                                <div className="add-reaction" onClick={()=> setEmoji(!emoji)}>
                                     <span className="material-symbols-outlined">
                                         add_reaction
                                     </span>
@@ -148,7 +157,6 @@ export default function Message() {
 
                             </div>
                         </div>
-
                         <div className="send">
                             <span className="material-symbols-outlined">
                                 send

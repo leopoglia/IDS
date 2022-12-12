@@ -1,0 +1,12 @@
+.Emoji{
+    position: absolute;
+    right: 0;
+    margin-bottom: 500px;
+    margin-right: 200px;
+}
+
+@media screen and (max-width: 768px) {
+    .Emoji{
+        margin-right: 80px;
+    }
+}

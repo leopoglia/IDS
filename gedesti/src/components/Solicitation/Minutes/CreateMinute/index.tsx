@@ -3,7 +3,6 @@ import Nav from "../../../Fixed/Nav";
 import Title from "../../../Fixed/Search/Title";
 import Editor from "../../Proposals/EditProposalScope/Editor";
 
-
 export default function CreateMinute() {
     return (
         <div className="create-minute">
@@ -15,7 +14,6 @@ export default function CreateMinute() {
                 </div>
 
                 <Editor />
-
 
                 <div className="display-flex-end">
                     <button className="btn-primary">Salvar</button>

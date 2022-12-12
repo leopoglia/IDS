@@ -1,17 +1,17 @@
-
-.navigator, .navigator div{
+.navigator,
+.navigator div {
     display: flex;
     align-items: center;
 }
 
-.navigator{
+.navigator {
     height: var(--h);
     justify-content: flex-end;
     margin-top: 25px;
     color: var(--grey59);
 }
 
-.navigator div{
+.navigator div {
     width: var(--h);
     height: 100%;
     justify-content: center;
@@ -21,16 +21,58 @@
     cursor: pointer;
 }
 
-.navigator div:hover{
+.navigator div:hover {
     background-color: var(--blueF4);
 }
 
-.navigator .current{
+.navigator .current {
     background-color: var(--blue);
     color: var(--white);
     border: none;
 }
 
-.navigator .current:hover{
-    background-color: var(--blue19) !important;; 
+.navigator .current:hover {
+    background-color: var(--blue19) !important;
+    ;
+}
+
+.background-minute {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Color de fondo transparente */
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.minute{
+    width: 35%;
+    height: 84%;
+    background-color: var(--white);
+    border-radius: var(--r);
+}
+
+.minute img{
+    width: 50px;
+}
+
+
+.minute iframe{
+    width: 100%;
+    height: 100%;
+    margin-left: 0px !important;
+    border: none;
+    border-radius: var(--r);
+}
+
+@media screen and (max-width: 768px) {
+    .minute{
+        width: 90%;
+        height: 90%;
+    }
 }

@@ -63,7 +63,6 @@ export default function Router() {
 
                 <Route path="/minutes" element={<Demands />} />
                 <Route path="/minutes/create" element={<CreateMinute />} />
-                <Route path="/minute/view" element={<ViewDemand />} />
 
 
             </Routes>

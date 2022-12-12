@@ -58,6 +58,35 @@ export default function Demand(props: any) {
         }
     }
 
+    if (props.type === "minute") {
+        return (
+            <div className="demand">
+                <section>
+                    <div className="name-code">
+                        <h1>{props.name}</h1>
+                    </div>
+
+
+                    <div className="display-grid">
+
+                        {situation()}
+                    </div>
+
+                </section>
+
+
+                <div className="display-flex">
+
+                    {information()}
+
+                    {btnGenerateProposal()}
+                </div>
+
+
+            </div>
+        );
+    }
+
 
     if (props.listDirection === false) {
         return (

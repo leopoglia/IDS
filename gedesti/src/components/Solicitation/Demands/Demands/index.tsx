@@ -58,8 +58,21 @@ export default function Demands() {
         setTableList(!table);
     }
 
+    const [minute, setMinute] = useState(false);
+
+
     return (
         <div>
+            {minute && (
+                <div className="background-minute">
+                    <div className="minute">
+
+                    <iframe src="https://drive.google.com/file/d/1KUVJAtGV79p9z26CxO54PixTbwVCd93x/preview" width="640" height="480" allow="autoplay"></iframe>
+
+                    </div>
+                </div>
+            )}
+
             {(url[3] === "demands") ? (
                 <div className="demands">
                     <Header icon="folder_copy" title="demands" />
@@ -117,7 +130,9 @@ export default function Demands() {
                         {
                             minutes.map((val, index) => {
                                 return (
-                                    <Demand listDirection={table} name={val.name} director={val.director} coordinator={val.coordinator} number={val.number} date={val.date} situation={val.situation} type="minute" />
+                                    <div onClick={() => setMinute(true)}>
+                                        <Demand listDirection={table} name={val.name} director={val.director} coordinator={val.coordinator} number={val.number} date={val.date} situation={val.situation} type="minute" />
+                                    </div>
                                 );
                             })
                         }
@@ -126,6 +141,7 @@ export default function Demands() {
                 </div>
             ) : (<div className="null" />)
             }
+
         </div>
     )
 }

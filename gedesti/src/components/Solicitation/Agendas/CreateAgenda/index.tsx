@@ -73,7 +73,7 @@ export default function CreateAgenda() {
 
 
                 <div className="display-flex-end">
-                    <Link to="/agenda">
+                    <Link to="/agendas">
                         <button className="btn-primary">Salvar</button>
                     </Link>
                 </div>

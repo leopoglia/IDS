@@ -3,6 +3,7 @@ import Header from "../../../Fixed/Header"
 import Nav from "../../../Fixed/Nav"
 import Title from "../../../Fixed/Search/Title"
 import SelectSizeDemand from "../RankDemand/SelectSizeDemand"
+import { Link } from "react-router-dom"
 import './style.css'
 
 export default function ComplementDemand() {
@@ -54,9 +55,10 @@ export default function ComplementDemand() {
                     </div>
 
                 </div>
-                <div className="demands-footer">
-                    <button className="btn-secondary">Cancelar</button>
-                    <button className="btn-primary">Complementar</button>
+                <div className="display-flex-end">
+                    <Link to="/demands">
+                        <button className="btn-primary">Complementar</button>
+                    </Link>
                 </div>
             </div>
         </div >

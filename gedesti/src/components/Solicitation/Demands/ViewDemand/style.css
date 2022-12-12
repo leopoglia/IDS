@@ -69,6 +69,14 @@
     margin-right: 15px !important;
 }
 
+.view-demand .btn-download{
+    width: 45px !important;
+}
+
+.view-demand .btn-download span{
+    margin: 0;
+}
+
 .view-demand .classification {
     margin-top: 30px !important;
 }

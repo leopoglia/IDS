@@ -306,6 +306,15 @@ export default function ViewDemand() {
                         <div className="background-title">
 
                             <Title nav="Propostas > Visualizar Proposta" title="viewProposal" />
+
+                            <Link to="/">
+                                <button className="btn-primary btn-download">
+                                    <span className="material-symbols-outlined">
+                                        download
+                                    </span>
+                                </button>
+                            </Link>
+
                         </div>
 
                         <div className="box">

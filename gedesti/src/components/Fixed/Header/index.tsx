@@ -10,7 +10,7 @@ export default function Header(props: {
     title: string;
 }) {
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
 
     return (

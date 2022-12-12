@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 
 export default function Form() {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
 
     return (

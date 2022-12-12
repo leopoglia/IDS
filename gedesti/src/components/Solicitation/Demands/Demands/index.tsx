@@ -12,7 +12,7 @@ export default function Demands() {
 
     const url = window.location.href.split("/");
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     const [table, setTableList] = useState(false);
 

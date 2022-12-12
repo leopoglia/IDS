@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 export default function Situation(props: any) {
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     const situation = () => {
         if (props.situation === "Backlog") {

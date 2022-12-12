@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 
 export default function Demand(props: any) {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     const information = () => {
         if (props.analyst == null) {

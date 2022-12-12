@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 export default function Nav() {
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     const [nav, setNav] = useState("nav");
     const [current, setCurrent] = useState("current");

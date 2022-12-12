@@ -5,7 +5,7 @@ import Language from '../../Fixed/Language';
 import Footer from '../../Fixed/Footer';
 
 export default function Form() {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
 
     return (

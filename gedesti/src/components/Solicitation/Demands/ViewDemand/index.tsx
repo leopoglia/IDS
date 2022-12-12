@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next";
 
 export default function ViewDemand() {
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     const url = window.location.href.split("/")[3];
     const [actionsDemand, setActionsDemand] = useState(3);

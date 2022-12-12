@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 
 export default function Title(props: any) {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     return (
         <div className="Title">

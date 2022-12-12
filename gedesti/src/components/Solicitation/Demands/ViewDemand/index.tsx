@@ -523,13 +523,6 @@ export default function ViewDemand() {
             {url !== "agenda" ? (
                 <Footer />)
                 : null}
-
-
-
         </div>
-
-
-
     );
-
 }

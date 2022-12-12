@@ -6,9 +6,10 @@ import { Link } from "react-router-dom";
 import { SetStateAction, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
+
 export default function Search(props: any) {
 
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
 
 
     const [data, setData] = useState(false);
@@ -30,6 +31,7 @@ export default function Search(props: any) {
         } else {
             setFilter(true)
         }
+        props.setFilter(filter);
     }
 
     const search = () => {
@@ -42,6 +44,13 @@ export default function Search(props: any) {
         } else if (props.title === "minutes") {
             return t("searchMinute");
         }
+    }
+
+    const [name, setName] = useState<string | undefined>()
+    const [type, setType] = useState<string>("")
+    const callback = (name: string | undefined, type: string) => {
+        setName(name)
+        setType(type)
     }
 
 
@@ -80,7 +89,9 @@ export default function Search(props: any) {
 
                         <ButtonTableList icon="filter_alt" sendFilter={sendFilter} />
 
-                        {filter && <Filter />}
+                        <div>{name}</div>
+                        <div>{type}</div>
+                        {filter && <Filter onClick={callback} />}
                     </div>
                 </div>
 

@@ -213,7 +213,6 @@
     border: 2px solid white;
 }
 
-
 @media(max-width: 1140px) {
     .messages .box-message .message-user {
         max-width: 40%;
@@ -226,4 +225,15 @@
     .messages .box-message .message-user {
         max-width: 100%;
     }
+
+    .Emoji{
+        margin-right: 80px;
+    }
+}
+
+.Emoji{
+    position: absolute;
+    right: 0;
+    margin-bottom: 500px;
+    margin-right: 200px;
 }

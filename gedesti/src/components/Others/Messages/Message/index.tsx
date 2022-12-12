@@ -2,13 +2,29 @@ import "./style.css"
 import Header from "../../../Fixed/Header"
 import Nav from "../../../Fixed/Nav"
 import Title from "../../../Fixed/Search/Title";
-import Emoji from "../Emoji/emoji"
+import EmojiPicker, {
+    EmojiStyle,
+    SkinTones,
+    Theme,
+    Categories,
+    EmojiClickData,
+    Emoji,
+    SuggestionMode
+} from "emoji-picker-react";
 import { useState } from "react";
 
 
 export default function Message() {
 
     const [emoji, setEmoji] = useState(false);
+    const [message, setMessage] = useState("");
+    const [selectedEmoji, setSelectedEmoji] = useState("");
+
+    function onClick(emojiData: EmojiClickData, event: MouseEvent) {
+        setSelectedEmoji(emojiData.unified);
+        console.log(emojiData);
+        setMessage((previousMessage) => previousMessage + emojiData.emoji);
+    }
 
     return (
         <div className="messages">
@@ -33,22 +49,9 @@ export default function Message() {
                         </div>
                     </div>
 
+                    <div className="chat-box">
 
-                    <div className="messages-chat">
-                        <div className="message-user">
-                            <div className="message-content">
-                                <span className="message-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum eleifend quam vitae viverra. Nullam vulputate elit a ipsum porttitor gravida. Proin et vehicula velit. Donec eget nulla quis
-                                </span>
-
-
-                                <div className="message-time">
-                                    <span >12:00</span>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div className="message-two">
+                        <div className="messages-chat">
                             <div className="message-user">
                                 <div className="message-content">
                                     <span className="message-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum eleifend quam vitae viverra. Nullam vulputate elit a ipsum porttitor gravida. Proin et vehicula velit. Donec eget nulla quis
@@ -60,90 +63,50 @@ export default function Message() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div className="message-user">
-                            <div className="message-content">
-                                <span className="message-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum eleifend quam vitae viverra. Nullam vulputate elit a ipsum porttitor gravida. Proin et vehicula velit. Donec eget nulla quis
-                                </span>
-
-
-                                <div className="message-time">
-                                    <span >12:00</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="message-two">
-                            <div className="message-user">
-                                <div className="message-content">
-                                    <span className="message-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum eleifend quam vitae viverra. Nullam vulputate elit a ipsum porttitor gravida. Proin et vehicula velit. Donec eget nulla quis
-                                    </span>
+                            <div className="message-two">
+                                <div className="message-user">
+                                    <div className="message-content">
+                                        <span className="message-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum eleifend quam vitae viverra. Nullam vulputate elit a ipsum porttitor gravida. Proin et vehicula velit. Donec eget nulla quis
+                                        </span>
 
 
-                                    <div className="message-time">
-                                        <span >12:00</span>
+                                        <div className="message-time">
+                                            <span >12:00</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div className="message-user">
-                            <div className="message-content">
-                                <span className="message-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum eleifend quam vitae viverra. Nullam vulputate elit a ipsum porttitor gravida. Proin et vehicula velit. Donec eget nulla quis
-                                </span>
-
-
-                                <div className="message-time">
-                                    <span >12:00</span>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div className="message-two">
-                            <div className="message-user">
-                                <div className="message-content">
-                                    <span className="message-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum eleifend quam vitae viverra. Nullam vulputate elit a ipsum porttitor gravida. Proin et vehicula velit. Donec eget nulla quis
-                                    </span>
-
-
-                                    <div className="message-time">
-                                        <span >12:00</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="message-user">
-                            <div className="message-content">
-                                <span className="message-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum eleifend quam vitae viverra. Nullam vulputate elit a ipsum porttitor gravida. Proin et vehicula velit. Donec eget nulla quis
-                                </span>
-
-
-                                <div className="message-time">
-                                    <span >12:00</span>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
-
 
 
                     <div className="text-field">
 
-                        {emoji && <Emoji />}
+                        {emoji ? (
+                            <div className="Emoji">
+                                <EmojiPicker
+
+                                    onEmojiClick={onClick}
+                                    autoFocusSearch={false} />
+                            </div>
+                        ) : null}
+
+
 
 
                         <div className="input-message">
-                            <input type="text" placeholder="Envie sua mensagem" />
+                            <input type="text" placeholder="Envie sua mensagem"
+                                value={message}
+                                onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+                                    setMessage(e.target.value)}
+                            />
 
 
                             <div className="actions-message">
 
 
-                                <div className="add-reaction" onClick={()=> setEmoji(!emoji)}>
+                                <div className="add-reaction" onClick={() => setEmoji(!emoji)}>
                                     <span className="material-symbols-outlined">
                                         add_reaction
                                     </span>
@@ -167,6 +130,6 @@ export default function Message() {
 
             </div>
 
-        </div>
+        </div >
     );
 }

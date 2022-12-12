@@ -182,3 +182,10 @@
     margin-right: 15px;
     width: 150px;
 }
+
+@media (max-width: 768px) {
+    .demand .infos,
+    .demand-list .infos {
+        height: auto;
+    }
+}

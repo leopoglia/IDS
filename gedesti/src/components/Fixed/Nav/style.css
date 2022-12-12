@@ -153,18 +153,23 @@ nav li {
 
 @media(max-width: 768px) {
 
+    .nav-open, 
+    #nav-open,
+    nav{
+        transition: 0s !important;
+        transition: 0s !important;
+        transition: 0s !important;
+    }
+
     .nav-open {
         width: 100%;
         position: sticky;
         z-index: 1;
+        overflow: hidden !important;
     }
 
     #nav-open {
         width: 100%;
-    }
-
-    .nav-open {
-        overflow: hidden !important;
     }
 
     nav li {
@@ -183,6 +188,5 @@ nav li {
     nav li .material-symbols-rounded {
         font-size: 22px;
     }
-
 
 }

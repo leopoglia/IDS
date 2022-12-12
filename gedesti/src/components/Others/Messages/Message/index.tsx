@@ -12,6 +12,7 @@ import EmojiPicker, {
     SuggestionMode
 } from "emoji-picker-react";
 import { useState } from "react";
+import Footer from "../../../Fixed/Footer";
 
 
 export default function Message() {
@@ -127,6 +128,8 @@ export default function Message() {
                         </div>
                     </div>
                 </div>
+
+                <Footer />
 
             </div>
 

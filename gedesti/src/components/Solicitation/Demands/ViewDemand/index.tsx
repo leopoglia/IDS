@@ -511,32 +511,19 @@ export default function ViewDemand() {
                             <button className="btn-primary">Finalizar</button>
                         </div>
 
-                    </div>
-                </div>
-            ) : url === "minute" ? (
-                <div>
-                    <Header title="viewMinute" icon="visibility" />
+                        <Footer />
 
-                    <Nav />
-
-                    <div className="container">
-
-
-                        <div className="background-title">
-
-                            <Title nav="Atas > Visualizar Ata" title="viewMinute" />
-                        </div>
-
-                        <div className="box"></div>
 
                     </div>
                 </div>
             ) : (
-                <div />
+                null
             )}
 
+            {url !== "agenda" ? (
+                <Footer />)
+                : null}
 
-            <Footer />
 
 
         </div>

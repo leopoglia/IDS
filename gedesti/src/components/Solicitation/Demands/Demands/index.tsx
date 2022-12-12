@@ -64,10 +64,10 @@ export default function Demands() {
     return (
         <div>
             {minute && (
-                <div className="background-minute">
+                <div className="background-minute" onClick={() => setMinute(false)}>
                     <div className="minute">
 
-                    <iframe src="https://drive.google.com/file/d/1KUVJAtGV79p9z26CxO54PixTbwVCd93x/preview" width="640" height="480" allow="autoplay"></iframe>
+                    <iframe src="https://drive.google.com/file/d/1-Mb9GlWMegsrv8po3Ra-PL3x8WqpancP/preview" width="640" height="480" allow="autoplay"></iframe>
 
                     </div>
                 </div>

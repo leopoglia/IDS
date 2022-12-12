@@ -18,7 +18,16 @@ export default function ButtonAction(props: {
                 {t("return")}
             </Link>
         );
+    } else if (url === "3") {
+        return (
+            <Link className="btn-primary" to="/demands">
+                <button className="btn-primary">
+                    {t("advance")}
+                </button>
+            </Link>
+        );
     }
+
 
 
     if (props.click === "voltar" && url !== "1") {

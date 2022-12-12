@@ -30,7 +30,6 @@ export default function Search(props: any) {
         } else {
             setFilter(true)
         }
-        props.setFilter(filter);
     }
 
     const search = () => {

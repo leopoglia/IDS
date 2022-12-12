@@ -63,6 +63,11 @@
 }
 
 
+body {
+    overflow: overlay;
+}
+
+
 #root {
   min-height: 100vh;
   background-color: var(--white);

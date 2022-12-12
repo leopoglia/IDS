@@ -32,12 +32,8 @@
 .message .message-name {
     display: grid;
     margin-left: 15px;
-    font-size: var(--m);
 }
 
-.message .message-name .last-message {
-    font-size: var(--p);
-}
 
 .message .date-horary .date{
     margin-right: 15px;

@@ -3,7 +3,6 @@ import Language from "../Language"
 import { Link } from "react-router-dom";
 import User from "../User";
 import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
 
 export default function Header(props: {
     icon: string;

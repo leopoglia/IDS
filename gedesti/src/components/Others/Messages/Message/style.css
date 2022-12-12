@@ -146,7 +146,7 @@
 }
 
 .messages .box-message .message-user span {
-    font-size: var(--pp);
+    font-size: var(--p);
 }
 
 .messages .box-message .message-two {

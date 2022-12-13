@@ -44,14 +44,41 @@
     right: 0;
 }
 
-.export-spreadsheet img{
+.export-spreadsheet img {
     width: 35px;
     height: 35px;
 }
 
-.background-filter{
+.background-filter {
     margin-left: 200px !important;
     position: absolute;
+}
+
+.filters-on {
+    display: flex;
+    align-items: center;
+}
+
+.filters-on div {
+    width: 100px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    background-color: var(--blue);
+    border-radius: 50px;
+    color: var(--white);
+    font-size: var(--pp);
+}
+
+.filters-on div:hover {
+    cursor: pointer;
+    background-color: var(--blue19);
+}
+
+.size-20 {
+    font-size: 15px;
 }
 
 @media(max-width: 1280px) {

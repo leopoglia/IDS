@@ -74,6 +74,10 @@ export default function Search(props: any) {
                     </button>
                 }
 
+                <div className="filters-on">
+                    <div className="display-flex"><span>{name} - {type}</span><span className="material-symbols-outlined size-20">close</span></div>
+                </div>
+
                 <div className="input-search">
 
                     <span className="material-symbols-outlined">search</span>

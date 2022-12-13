@@ -86,8 +86,7 @@ export default function Demands() {
                     <Header icon="folder_copy" title="demands" />
                     <Nav />
                     <div className="container">
-                        {name}, {type}
-                        <Search onClick={callback} nav="Demandas > Visualizar Demandas" title="demands" button="createDemand" link="/demand/create/1" setTable={setTable} />
+                        <Search onClick={callback} name={name} type={type} nav="Demandas > Visualizar Demandas" title="demands" button="createDemand" link="/demand/create/1" setTable={setTable} />
                         {
                             demands.map((val, index) => {
                                 return (

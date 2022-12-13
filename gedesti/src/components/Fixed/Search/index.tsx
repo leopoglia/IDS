@@ -49,7 +49,7 @@ export default function Search(props: any) {
         }
     }
 
-    const [name, setName] = useState<string | undefined>()
+    const [name, setName] = useState<string | undefined>("")
     const [type, setType] = useState<string>("")
     const callback = (name: string | undefined, type: string) => {
         setName(name)
@@ -68,15 +68,18 @@ export default function Search(props: any) {
 
 
             <div className="section">
-                {filter &&
-                    <button className="btn-secondary export-spreadsheet">
-                        <img src="/attachment/excel.png" alt="" />
-                    </button>
-                }
 
-                <div className="filters-on">
-                    <div className="display-flex"><span>{name} - {type}</span><span className="material-symbols-outlined size-20">close</span></div>
-                </div>
+                {props.name !== "" && props.type !== "" &&
+                    <div className="display-flex">
+                        <div className="filters-on">
+                            <div className="display-flex"><span>{props.name} - {props.type}</span><span className="material-symbols-outlined size-20">close</span></div>
+                        </div>
+
+                        <button className="btn-secondary export-spreadsheet">
+                            <img src="/attachment/excel.png" alt="" />
+                        </button>
+                    </div>
+                }
 
                 <div className="input-search">
 

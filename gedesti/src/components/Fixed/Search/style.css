@@ -49,6 +49,11 @@
     height: 35px;
 }
 
+.background-filter{
+    margin-left: 200px !important;
+    position: absolute;
+}
+
 @media(max-width: 1280px) {
     .search input {
         width: 100%;

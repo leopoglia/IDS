@@ -60,6 +60,14 @@ export default function Demands() {
 
     const [minute, setMinute] = useState(false);
 
+    const [name, setName] = useState<string | undefined>()
+    const [type, setType] = useState<string>("")
+    const callback = (name: string | undefined, type: string) => {
+        setName(name)
+        setType(type)
+    }
+
+
 
     return (
         <div>
@@ -67,7 +75,7 @@ export default function Demands() {
                 <div className="background-minute" onClick={() => setMinute(false)}>
                     <div className="minute">
 
-                    <iframe src="https://drive.google.com/file/d/1-Mb9GlWMegsrv8po3Ra-PL3x8WqpancP/preview" width="640" height="480" allow="autoplay"></iframe>
+                        <iframe src="https://drive.google.com/file/d/1-Mb9GlWMegsrv8po3Ra-PL3x8WqpancP/preview" width="640" height="480" allow="autoplay"></iframe>
 
                     </div>
                 </div>
@@ -78,7 +86,8 @@ export default function Demands() {
                     <Header icon="folder_copy" title="demands" />
                     <Nav />
                     <div className="container">
-                        <Search nav="Demandas > Visualizar Demandas" title="demands" button="createDemand" link="/demand/create/1" setTable={setTable} />
+                        {name}, {type}
+                        <Search onClick={callback} nav="Demandas > Visualizar Demandas" title="demands" button="createDemand" link="/demand/create/1" setTable={setTable} />
                         {
                             demands.map((val, index) => {
                                 return (

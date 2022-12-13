@@ -17,7 +17,7 @@ export default function Filter(props: FilterProps) {
                 <div>
                     <div className="hr" />
 
-                    <input type="text" ref={inputName} placeholder="Insira o parametro aqui" />
+                    <input onChange={onButtonPress} type="text" ref={inputName} placeholder="Insira o parametro aqui" />
 
                     <button onClick={onButtonPress} className="btn-primary">Filtrar</button>
 
@@ -33,7 +33,7 @@ export default function Filter(props: FilterProps) {
 
     if (url === 'demands') {
         return (
-            <div className="filter-modal modal">
+            <div className="filter-modal modal" onClick={onButtonPress}>
 
                 <div className="li">
                     <span className="material-symbols-outlined" onClick={() => { setType("home") }}>home</span>
@@ -86,7 +86,7 @@ export default function Filter(props: FilterProps) {
         )
     } else if (url === 'proposals') {
         return (
-            <div className="filter-modal modal">
+            <div className="filter-modal modal" onClick={onButtonPress}>
 
                 <div className="li" onClick={() => { setFilter(true); setType("requester") }}>
                     <span className="material-symbols-outlined">person</span>
@@ -129,7 +129,7 @@ export default function Filter(props: FilterProps) {
         )
     } else if (url === 'agendas') {
         return (
-            <div className="filter-modal modal">
+            <div className="filter-modal modal" onClick={onButtonPress}>
 
                 <div className="li" onClick={() => { setFilter(true); setType("forum") }}>
                     <span className="material-symbols-outlined">workspaces</span>
@@ -147,7 +147,7 @@ export default function Filter(props: FilterProps) {
         )
     } else {
         return (
-            <div className="filter-modal modal">
+            <div className="filter-modal modal" onClick={onButtonPress}>
 
                 <div className="li" onClick={() => { setFilter(true); setType("number-minutes") }}>
                     <span className="material-symbols-outlined">workspaces</span>

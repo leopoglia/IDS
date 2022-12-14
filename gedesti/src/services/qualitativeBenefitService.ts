@@ -1,4 +1,4 @@
-const url = "http://localhost:8080/api/beneficioqualitativos"
+const url = "http://localhost:8080/api/qualitativebenefit"
 
 const Service = {
     save: function (frequencyOfUse: String, interalControlsRequirements: Boolean) {

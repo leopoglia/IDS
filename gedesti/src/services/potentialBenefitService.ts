@@ -1,4 +1,4 @@
-const url = "http://localhost:8080/api/beneficiopotencial"
+const url = "http://localhost:8080/api/potentialbenefit"
 
 const Services = {
     save: function (potentialMonthlyValue: Number, legalObrigation: Boolean, potentialCurrency: String) {

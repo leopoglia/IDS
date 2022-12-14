@@ -10,6 +10,8 @@ export default function Nav() {
     const [nav, setNav] = useState("nav");
     const [current, setCurrent] = useState("current");
     const url = window.location.pathname.split("/")[1];
+    const worker: any = localStorage.getItem("worker");
+    const office = JSON.parse(worker).office;
 
     function hover(li: string): string {
         if (url === li || url === li.substring(0, li.length - 1)) {
@@ -63,7 +65,7 @@ export default function Nav() {
                     </li>
                 </Link>
 
-                {localStorage.getItem("office") === "analyst" || localStorage.getItem("office") === "ti" &&
+                {office === "analyst" || office === "ti" &&
                     (<><Link to="/proposals">
                         <li id={hover("proposals")}>
                             <div>

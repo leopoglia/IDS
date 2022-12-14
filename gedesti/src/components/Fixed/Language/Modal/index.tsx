@@ -10,12 +10,12 @@ export default function DropdownList({ handleClick }: any): any {
     const changeLanguages = (languages: any) => {
         i18n.changeLanguage(languages);
         setLanguage(languages);
-        localStorage.setItem('language', languages)
+        localStorage.setItem('i18nextLng', languages)
         handleClick(languages);
     }
 
     useEffect(() => {
-        setLanguage(JSON.stringify(localStorage.getItem('language')))
+        setLanguage(JSON.stringify(localStorage.getItem('i18nextLng')))
     }, [])
 
     return (

@@ -16,7 +16,16 @@ export default function Form() {
             const response: any = await Services.login(email, password);
 
             if (response.workerOffice !== undefined) {
-                localStorage.setItem("office", response.workerOffice);
+
+                const worker = {
+                    id: response.workerCode,
+                    office: response.workerOffice,
+                    name: response.workerName,
+                    email: response.corporateEmail,
+                }
+
+                localStorage.setItem("worker", JSON.stringify(worker));
+
                 window.location.href = "/demands";
             }
         }

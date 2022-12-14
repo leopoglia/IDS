@@ -19,7 +19,7 @@ function Language() {
     };
 
     useEffect(() => {
-        setLanguage(localStorage.getItem('language'))
+        setLanguage(localStorage.getItem('i18nextLng'))
     }, [])
 
     return (

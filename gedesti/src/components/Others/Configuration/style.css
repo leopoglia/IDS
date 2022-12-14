@@ -29,6 +29,12 @@
     width: 90px;
     height: 90px;
     border-radius: 80px;
+    background-color: var(--blue19);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: var(--white);
 }
 
 .configuration .box .picture-profile:hover {

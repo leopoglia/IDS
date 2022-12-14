@@ -7,6 +7,10 @@ import Modal from './Modal'
 function User() {
     const [modal, setModal] = useState(false)
 
+    const worker = localStorage.getItem('worker');
+    const name = JSON.parse(worker).name;
+    const image = name.substr(0, 1)
+
     // Drop down
     User.handleClickOutside = () => {
         setModal(false);
@@ -18,10 +22,10 @@ function User() {
             <div className="user" onClick={() => setModal(!modal)}>
                 <div className="display-grid">
 
-                    <span className="username">Jair</span>
+                    <span className="username">{name}</span>
                 </div>
 
-                <img className="person" src="https://media-exp1.licdn.com/dms/image/C5603AQGoPhhWyeL2-Q/profile-displayphoto-shrink_200_200/0/1516833080377?e=2147483647&v=beta&t=O_q0eYPuycqoRh8ACadEX5gQhrVbPnomvJKRFQTIycI" alt="" />
+                <div className="person">{image}</div>
             </div>
 
             {modal ? <Modal /> : null}

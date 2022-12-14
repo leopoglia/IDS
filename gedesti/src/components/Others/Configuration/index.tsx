@@ -9,6 +9,11 @@ import { useTranslation } from "react-i18next";
 export default function Configuration() {
     const { t } = useTranslation();
 
+    const worker: any = localStorage.getItem("worker");
+    const name: any = JSON.parse(worker).name;
+    const email = JSON.parse(worker).email;
+    const image = name.substr(0, 1)
+
     return (
         <div className="configuration">
             <Header icon="settings" title="configurations" />
@@ -21,15 +26,15 @@ export default function Configuration() {
 
                 <div className="box">
                     <div className="profile">
-                        <img className="picture-profile" src="https://media-exp1.licdn.com/dms/image/C5603AQGoPhhWyeL2-Q/profile-displayphoto-shrink_200_200/0/1516833080377?e=2147483647&v=beta&t=O_q0eYPuycqoRh8ACadEX5gQhrVbPnomvJKRFQTIycI" alt="" />
+                        <div className="picture-profile">{image}</div>
                         <div className="email-name">
                             <div className="flex">
-                                <span className="name">Jair Paulo Satig</span>
+                                <span className="name">{name}</span>
                                 <span className="material-symbols-outlined">
                                     edit
                                 </span>
                             </div>
-                            <span className="email">jair@weg.net</span>
+                            <span className="email">{email}</span>
                         </div>
                     </div>
 
@@ -60,6 +65,6 @@ export default function Configuration() {
             </div>
 
 
-        </div>
+        </div >
     );
 }

@@ -16,10 +16,13 @@
 
 
 .header .person {
-    background-color: var(--greyD9);
+    background-color: var(--blue19);
     width: 35px;
     height: 35px;
     border-radius: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .header .user {

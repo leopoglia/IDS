@@ -63,50 +63,50 @@ export default function Nav() {
                     </li>
                 </Link>
 
+                {localStorage.getItem("email") === "admin" &&
+                    (<><Link to="/proposals">
+                        <li id={hover("proposals")}>
+                            <div>
+                                <span className="material-symbols-outlined">
+                                    request_quote
+                                </span>
+                                <span className="title-li">{t("proposals")}</span>
+                            </div>
+                        </li>
+                    </Link><Link to="/agendas">
+                            <li id={hover("agendas")}>
+                                <div>
+                                    <span className="material-symbols-outlined">
+                                        folder
+                                    </span>
+                                    <span className="title-li">{t("agendas")}</span>
+                                </div>
+                            </li>
+                        </Link><Link to="/minutes">
+                            <li id={hover("minutes")}>
+                                <div>
+                                    <span className="material-symbols-outlined">
+                                        file_present
+                                    </span>
+                                    <span className="title-li">{t("minutes")}</span>
+                                </div>
+                            </li>
+                        </Link>
 
-                <Link to="/proposals">
-                    <li id={hover("proposals")}>
-                        <div>
-                            <span className="material-symbols-outlined">
-                                request_quote
-                            </span>
-                            <span className="title-li">{t("proposals")}</span>
-                        </div>
-                    </li>
-                </Link>
 
-                <Link to="/agendas">
-                    <li id={hover("agendas")}>
-                        <div >
-                            <span className="material-symbols-outlined">
-                                folder
-                            </span>
-                            <span className="title-li">{t("agendas")}</span>
-                        </div>
-                    </li>
-                </Link>
-
-                <Link to="/minutes">
-                    <li id={hover("minutes")}>
-                        <div>
-                            <span className="material-symbols-outlined">
-                                file_present
-                            </span>
-                            <span className="title-li">{t("minutes")}</span>
-                        </div>
-                    </li>
-                </Link>
-
-                <Link to="/messages">
-                    <li id={hover("messages")}>
-                        <div>
-                            <span className="material-symbols-outlined">
-                                chat_bubble
-                            </span>
-                            <span className="title-li">{t("messages")}</span>
-                        </div>
-                    </li>
-                </Link>
+                        <Link to="/messages">
+                            <li id={hover("messages")}>
+                                <div>
+                                    <span className="material-symbols-outlined">
+                                        chat_bubble
+                                    </span>
+                                    <span className="title-li">{t("messages")}</span>
+                                </div>
+                            </li>
+                        </Link>
+                    </>
+                    )
+                }
 
                 <Link to="/notifications">
                     <li id={hover("notifications")}>

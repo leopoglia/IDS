@@ -8,6 +8,8 @@ export default function Form() {
     const { t } = useTranslation();
 
 
+
+
     return (
         <form className="login-form">
             <header>
@@ -22,7 +24,7 @@ export default function Form() {
                 <div>
                     <span className="material-symbols-outlined">alternate_email</span>
                     <label>{t("email")}</label>
-                    <input id="email" type="text" required />
+                    <input onChange={(e) => { localStorage.setItem("email", e.target.value) }} id="email" type="email" required />
                 </div>
 
 

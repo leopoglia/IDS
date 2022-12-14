@@ -67,9 +67,6 @@ export default function Demands() {
     const callback = (name: string, type: string) => {
         setName(name)
         setType(type)
-        console.log(nameFilter)
-        console.log(typeFilter)
-
     }
 
 
@@ -103,7 +100,7 @@ export default function Demands() {
                                         <Demand listDirection={table} name={val.name} requester={val.requester} date={val.date} situation={val.situation} type="demand" />
                                     );
                                 } else {
-                                    if (typeFilter === "requester" && val.requester.includes(nameFilter)) {
+                                    if (typeFilter === "requester" && val.requester.toUpperCase().includes(nameFilter.toUpperCase())) {
                                         return (
                                             <Demand listDirection={table} name={val.name} requester={val.requester} date={val.date} situation={val.situation} type="demand" />
                                         );

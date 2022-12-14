@@ -137,7 +137,7 @@ export default function Demands() {
                     <Header icon="description" title="minutes" />
                     <Nav />
                     <div className="container">
-                        <Search onClick={callback} name={nameFilter} type={typeFilter} nav="Atas > Visualizar Atas" title="minutes" button="createMinute" link="/minutes/create" setTable={setTable} />
+                        <Search onClick={callback} name={nameFilter} type={typeFilter} nav="Atas > Visualizar Atas" title="minutes" button="createMinute" link="/agendas" setTable={setTable} />
                         {
                             minutes.map((val, index) => {
                                 return (

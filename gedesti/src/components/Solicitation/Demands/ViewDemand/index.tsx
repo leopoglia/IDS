@@ -508,7 +508,9 @@ export default function ViewDemand() {
                         </div>
 
                         <div className="display-flex-end">
-                            <button className="btn-primary">Finalizar</button>
+                            <Link to="/minutes/create">
+                                <button className="btn-primary">Finalizar</button>
+                            </Link>
                         </div>
 
                         <Footer />

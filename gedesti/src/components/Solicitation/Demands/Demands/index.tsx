@@ -6,17 +6,11 @@ import Demand from "../Demand";
 import Footer from "../../../Fixed/Footer";
 import { useState } from "react";
 import Load from "../../../Fixed/Load";
-import { useTranslation } from "react-i18next";
-import { type } from "@testing-library/user-event/dist/type";
 
 export default function Demands() {
-
     const url = window.location.href.split("/");
 
-    const { t } = useTranslation();
-
     const [table, setTableList] = useState(false);
-
 
     const [demands] = useState([
         { name: "Sistema para calcular o SCORE", requester: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "Backlog" },
@@ -69,10 +63,6 @@ export default function Demands() {
         setType(type)
     }
 
-
-
-
-
     return (
         <div>
             {minute && (
@@ -90,8 +80,7 @@ export default function Demands() {
                     <Header icon="folder_copy" title="demands" />
                     <Nav />
                     <div className="container">
-                        {nameFilter},
-                        {typeFilter}
+
                         <Search onClick={callback} name={nameFilter} type={typeFilter} nav="Demandas > Visualizar Demandas" title="demands" button="createDemand" link="/demand/create/1" setTable={setTable} />
                         {
                             demands.map((val, index) => {

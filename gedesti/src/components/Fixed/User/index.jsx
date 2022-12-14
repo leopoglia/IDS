@@ -1,6 +1,5 @@
 import './style.css'
 import React, { useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import onClickOutside from "react-onclickoutside";
 import Modal from './Modal'
 

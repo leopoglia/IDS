@@ -3,7 +3,7 @@ import ButtonTableList from "./ButtonSearch";
 import Title from "./Title";
 import Filter from "./Filter";
 import { Link } from "react-router-dom";
-import { SetStateAction, useState, useEffect } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export interface FilterProps {

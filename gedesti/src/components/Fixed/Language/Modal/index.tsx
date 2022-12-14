@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "@mui/icons-material";
-import { useTranslation } from "react-i18next";
 import i18n from "../../../../i18n";
 
 
 
 export default function DropdownList({ handleClick }: any): any {
-    const { t } = useTranslation();
 
     const [language, setLanguage] = useState('pt');
 

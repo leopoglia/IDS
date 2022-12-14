@@ -1,6 +1,5 @@
 import './style.css'
 import React, { useState, useEffect } from 'react'
-import { useTranslation } from "react-i18next";
 import onClickOutside from "react-onclickoutside";
 import DropdownList from "./Modal";
 

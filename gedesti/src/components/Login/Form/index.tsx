@@ -11,15 +11,19 @@ export default function Form() {
     const [password, setPassword] = useState("");
 
     async function login() {
-        const response = await Services.login(email, password);
-        console.log(response);
 
-        console.log(email);
-        console.log(password);
+        if ((email !== "" || password !== "") && email.includes("@")) {
+            const response: any = await Services.login(email, password);
+
+            if (response.workerOffice !== undefined) {
+                localStorage.setItem("office", response.workerOffice);
+                window.location.href = "/demands";
+            }
+        }
     }
 
     return (
-        <form className="login-form">
+        <div className="login-form">
             <header>
                 <h1>{t("title")}<b>GEDESTI</b></h1>
 
@@ -56,10 +60,8 @@ export default function Form() {
             </main>
 
             <footer>
-                <Link to="/demands">
-                    <button type="submit" onClick={() => { login() }}>{t("login")}</button>
-                </Link>
+                <button onClick={() => { login() }}>{t("login")}</button>
             </footer>
-        </form>
+        </div>
     )
 }

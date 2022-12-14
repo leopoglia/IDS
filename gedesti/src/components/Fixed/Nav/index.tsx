@@ -63,7 +63,7 @@ export default function Nav() {
                     </li>
                 </Link>
 
-                {localStorage.getItem("email") === "analista" || localStorage.getItem("email") === "gestor" &&
+                {localStorage.getItem("office") === "analyst" || localStorage.getItem("office") === "ti" &&
                     (<><Link to="/proposals">
                         <li id={hover("proposals")}>
                             <div>

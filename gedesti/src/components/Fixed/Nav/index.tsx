@@ -65,7 +65,7 @@ export default function Nav() {
                     </li>
                 </Link>
 
-                {office === "analyst" || office === "ti" &&
+                {(office === "analyst" || office === "ti") &&
                     (<><Link to="/proposals">
                         <li id={hover("proposals")}>
                             <div>

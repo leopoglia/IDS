@@ -12,6 +12,9 @@
     align-items: center;
 }
 
+.configuration .box .profile .material-symbols-outlined{
+    margin-left: 5px;
+}
 
 .configuration .box .material-symbols-outlined {
     margin-left: 10px;
@@ -51,7 +54,8 @@
 }
 
 .configuration .box .email-name .email {
-    font-size: var(--m);
+    font-size: var(--p);
+    margin-top: 5px;
 }
 
 .configuration .box .change-configuration {
@@ -63,8 +67,89 @@
 
 .configuration .box .change-configuration .title-confuration {
     font-size: var(--m);
+    height: 34px;
 }
 
-.configuration .box .change-configuration .subtitle-confuration {
-    margin-top: 6px;
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 56px;
+    height: 30px;
+    margin-left: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.switch label {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--greyC4);
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.switch label:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--white);
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+label {
+    background-color: var(--blue19);
+}
+
+input:focus+label {
+    box-shadow: 0 0 1px var(--blue19);
+}
+
+input:checked+label:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.font-size {
+    margin-left: 10px;
+    width: 40px !important;
+    height: 34px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 !important;
+}
+
+.font-size:hover {
+    border: 1px solid var(--grey59)
+}
+
+.font-size:focus {
+    border: 2px solid var(--blue19)
+}
+
+.input-password{
+    width: 150px !important;
+    margin-left: 15px;
+    padding-right: 11.5px !important;
+}
+
+.configuration .display-flex{
+    align-items: center;
 }

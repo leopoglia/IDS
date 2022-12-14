@@ -19,54 +19,54 @@ import CodeHighlightPlugin from "./plugins/CodeHighlightPlugin";
 import prepopulatedText from "./SampleText.js";
 
 function Placeholder() {
-    return (
-        <div className="editor-placeholder">
-            Informe o Escopo...
-        </div>
-    );
+  return (
+    <div className="editor-placeholder">
+      Play around with the Markdown plugin...
+    </div>
+  );
 }
 
 const editorConfig = {
-    editorState: prepopulatedText,
-    theme: ExampleTheme,
-    // Handling of errors during update
-    onError(error) {
-        throw error;
-    },
-    // Any custom nodes go here
-    nodes: [
-        HeadingNode,
-        ListNode,
-        ListItemNode,
-        QuoteNode,
-        CodeNode,
-        CodeHighlightNode,
-        TableNode,
-        TableCellNode,
-        TableRowNode,
-        AutoLinkNode,
-        LinkNode
-    ]
+  editorState: prepopulatedText,
+  theme: ExampleTheme,
+  // Handling of errors during update
+  onError(error) {
+    throw error;
+  },
+  // Any custom nodes go here
+  nodes: [
+    HeadingNode,
+    ListNode,
+    ListItemNode,
+    QuoteNode,
+    CodeNode,
+    CodeHighlightNode,
+    TableNode,
+    TableCellNode,
+    TableRowNode,
+    AutoLinkNode,
+    LinkNode
+  ]
 };
 
 export default function Editor() {
-    return (
-        <LexicalComposer initialConfig={editorConfig}>
-            <div className="editor-container">
-                <ToolbarPlugin />
-                <div className="editor-inner">
-                    <RichTextPlugin
-                        contentEditable={<ContentEditable className="editor-input" />}
-                        placeholder={<Placeholder />}
-                    />
-                    <AutoFocusPlugin />
-                    <ListPlugin />
-                    <LinkPlugin />
-                    <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
-                    <CodeHighlightPlugin />
-                </div>
-                <ActionsPlugin />
-            </div>
-        </LexicalComposer>
-    );
+  return (
+    <LexicalComposer initialConfig={editorConfig}>
+      <div className="editor-container">
+        <ToolbarPlugin />
+        <div className="editor-inner">
+          <RichTextPlugin
+            contentEditable={<ContentEditable className="editor-input" />}
+            placeholder={<Placeholder />}
+          />
+          <AutoFocusPlugin />
+          <ListPlugin />
+          <LinkPlugin />
+          <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
+          <CodeHighlightPlugin />
+        </div>
+        <ActionsPlugin />
+      </div>
+    </LexicalComposer>
+  );
 }

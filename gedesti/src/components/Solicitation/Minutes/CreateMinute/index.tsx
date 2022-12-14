@@ -13,7 +13,7 @@ export default function CreateMinute() {
                     <Title title="Criar Ata" nav="Atas > Criar Ata" />
                 </div>
 
-                {/* <Editor /> */}
+                <Editor />
 
                 <div className="display-flex-end">
                     <button className="btn-primary">Salvar</button>

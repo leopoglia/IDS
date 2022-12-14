@@ -7,6 +7,7 @@ import Footer from "../../../Fixed/Footer";
 import { useState } from "react";
 import Load from "../../../Fixed/Load";
 import { useTranslation } from "react-i18next";
+import { type } from "@testing-library/user-event/dist/type";
 
 export default function Demands() {
 
@@ -15,6 +16,7 @@ export default function Demands() {
     const { t } = useTranslation();
 
     const [table, setTableList] = useState(false);
+
 
     const [demands] = useState([
         { name: "Sistema para calcular o SCORE", requester: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "Backlog" },
@@ -60,12 +62,17 @@ export default function Demands() {
 
     const [minute, setMinute] = useState(false);
 
-    const [name, setName] = useState<string | undefined>()
-    const [type, setType] = useState<string>("")
-    const callback = (name: string | undefined, type: string) => {
+    const [nameFilter, setName] = useState<string>("")
+    const [typeFilter, setType] = useState<string>("")
+    const callback = (name: string, type: string) => {
         setName(name)
         setType(type)
+        console.log(nameFilter)
+        console.log(typeFilter)
+
     }
+
+
 
 
 
@@ -86,12 +93,22 @@ export default function Demands() {
                     <Header icon="folder_copy" title="demands" />
                     <Nav />
                     <div className="container">
-                        <Search onClick={callback} name={name} type={type} nav="Demandas > Visualizar Demandas" title="demands" button="createDemand" link="/demand/create/1" setTable={setTable} />
+                        {nameFilter},
+                        {typeFilter}
+                        <Search onClick={callback} name={nameFilter} type={typeFilter} nav="Demandas > Visualizar Demandas" title="demands" button="createDemand" link="/demand/create/1" setTable={setTable} />
                         {
                             demands.map((val, index) => {
-                                return (
-                                    <Demand listDirection={table} name={val.name} requester={val.requester} date={val.date} situation={val.situation} type="demand" />
-                                );
+                                if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined)) {
+                                    return (
+                                        <Demand listDirection={table} name={val.name} requester={val.requester} date={val.date} situation={val.situation} type="demand" />
+                                    );
+                                } else {
+                                    if (typeFilter === "requester" && val.requester.includes(nameFilter)) {
+                                        return (
+                                            <Demand listDirection={table} name={val.name} requester={val.requester} date={val.date} situation={val.situation} type="demand" />
+                                        );
+                                    }
+                                }
                             })
                         }
                         {footer()}
@@ -102,7 +119,7 @@ export default function Demands() {
                     <Header icon="content_paste" title="proposals" />
                     <Nav />
                     <div className="container">
-                        <Search onClick={callback} name={name} type={type} nav="Propostas > Visualizar Propostas" title="proposals" button="createProposal" link="/demands" setTable={setTable} />
+                        <Search onClick={callback} name={nameFilter} type={typeFilter} nav="Propostas > Visualizar Propostas" title="proposals" button="createProposal" link="/demands" setTable={setTable} />
                         {
                             proposals.map((val, index) => {
                                 return (
@@ -118,7 +135,7 @@ export default function Demands() {
                     <Header icon="file_copy" title="agendas" />
                     <Nav />
                     <div className="container">
-                        <Search onClick={callback} name={name} type={type} nav="Pautas > Visualizar Pautas" title="agendas" button="createAgenda" link="/agenda/create" setTable={setTable} />
+                        <Search onClick={callback} name={nameFilter} type={typeFilter} nav="Pautas > Visualizar Pautas" title="agendas" button="createAgenda" link="/agenda/create" setTable={setTable} />
                         {
                             agendas.map((val, index) => {
                                 return (
@@ -134,7 +151,7 @@ export default function Demands() {
                     <Header icon="description" title="minutes" />
                     <Nav />
                     <div className="container">
-                        <Search onClick={callback} name={name} type={type} nav="Atas > Visualizar Atas" title="minutes" button="createMinute" link="/minutes/create" setTable={setTable} />
+                        <Search onClick={callback} name={nameFilter} type={typeFilter} nav="Atas > Visualizar Atas" title="minutes" button="createMinute" link="/minutes/create" setTable={setTable} />
                         {
                             minutes.map((val, index) => {
                                 return (

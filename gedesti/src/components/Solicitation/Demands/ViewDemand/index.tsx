@@ -15,7 +15,7 @@ export default function ViewDemand() {
     const { t } = useTranslation();
 
     const url = window.location.href.split("/")[3];
-    const [actionsDemand, setActionsDemand] = useState(3);
+    const [actionsDemand, setActionsDemand] = useState(1);
     const [stepDemand, setStepDemand] = useState(2);
 
     const [demands] = useState([

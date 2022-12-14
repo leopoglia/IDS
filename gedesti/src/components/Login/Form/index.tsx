@@ -24,7 +24,7 @@ export default function Form() {
                 <div>
                     <span className="material-symbols-outlined">alternate_email</span>
                     <label>{t("email")}</label>
-                    <input onChange={(e) => { localStorage.setItem("email", e.target.value) }} id="email" type="email" required />
+                    <input onChange={(e) => { localStorage.setItem("email", e.target.value) }} id="email" type="text" required />
                 </div>
 
 

@@ -1,4 +1,4 @@
-const url = "http://localhost:8080/api/pauta";
+const url = "http://localhost:8080/api/agenda";
 
 const Service = {
     save: function (sequentialNumber: Number, yearAgenda: Number, commission: any) {

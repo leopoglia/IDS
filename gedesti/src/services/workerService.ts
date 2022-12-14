@@ -1,4 +1,4 @@
-const url = "http://localhost:8080/api/funcionario";
+const url = "http://localhost:8080/api/worker";
 
 
 const Services = {

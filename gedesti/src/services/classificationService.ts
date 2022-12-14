@@ -1,4 +1,4 @@
-const url = "http://localhost:8080/api/classificacao"
+const url = "http://localhost:8080/api/classification"
 
 const Service = {
     save: function (classificationSize: Number, itSection: String, ppmcode: String, linkEpicJira: String, requesterBu: any, beneficiaryBu: any, analistRegistry: any) {

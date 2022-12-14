@@ -1,6 +1,6 @@
 const url = "http://localhost:8080/api/classification"
 
-const Service = {
+const Services = {
     save: function (classificationSize: Number, itSection: String, ppmcode: String, linkEpicJira: String, requesterBu: any, beneficiaryBu: any, analistRegistry: any) {
 
         let beneficiaryBuList: any = [];
@@ -54,4 +54,4 @@ const Service = {
     }
 }
 
-export default Service;
+export default Services;

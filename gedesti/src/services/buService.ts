@@ -1,6 +1,6 @@
 const url = "http://localhost:8080/api/bu"
 
-const Service = {
+const Services = {
     save: function (bu: String) {
         return new Promise((resolve, reject) => {
             fetch(url, {
@@ -41,4 +41,4 @@ const Service = {
     }
 }
 
-export default Service;
+export default Services;

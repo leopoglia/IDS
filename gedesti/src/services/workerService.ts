@@ -50,6 +50,18 @@ const Services = {
                 .then(resolve)
                 .catch(resolve)
         })
+    },
+    login: function (corporateEmail: String, workerPassword: String) {
+        return new Promise((resolve, reject) => {
+            fetch(url + '/login', {
+                method: 'POST', body: JSON.stringify({
+                    corporateEmail: corporateEmail,
+                    workerPassword: workerPassword
+                }), headers: { 'Content-Type': 'application/json' }
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(resolve)
+        })
     }
 }
 

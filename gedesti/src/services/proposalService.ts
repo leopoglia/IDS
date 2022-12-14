@@ -1,6 +1,6 @@
 const url = "http://localhost:8080/api/proposal"
 
-const Service = {
+const Services = {
     save: function (proposalName: String, proposalStatus: String, payback: Number, initialRunPeriod: any, finalExecutionPeriod: any, descriptiveProposal: String, responsibleAnalyst: any, agendaCode: any, workers: any) {
 
         let workersList:any = [];
@@ -56,4 +56,4 @@ const Service = {
     }
 }
 
-export default Service;
+export default Services;

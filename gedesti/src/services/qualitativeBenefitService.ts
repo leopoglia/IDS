@@ -1,6 +1,6 @@
 const url = "http://localhost:8080/api/qualitativebenefit"
 
-const Service = {
+const Services = {
     save: function (frequencyOfUse: String, interalControlsRequirements: Boolean) {
         return new Promise((resolve, reject) => {
             fetch(url, {
@@ -42,4 +42,4 @@ const Service = {
     }
 }
 
-export default Service;
+export default Services;

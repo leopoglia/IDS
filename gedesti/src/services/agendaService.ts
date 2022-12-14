@@ -1,6 +1,6 @@
 const url = "http://localhost:8080/api/agenda";
 
-const Service = {
+const Services = {
     save: function (sequentialNumber: Number, yearAgenda: Number, commission: any) {
 
         let comissionList:any = [];
@@ -50,4 +50,4 @@ const Service = {
     }
 }
 
-export default Service;
+export default Services;

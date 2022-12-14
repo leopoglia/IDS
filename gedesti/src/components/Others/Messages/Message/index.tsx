@@ -23,7 +23,6 @@ export default function Message() {
 
     function onClick(emojiData: EmojiClickData, event: MouseEvent) {
         setSelectedEmoji(emojiData.unified);
-        console.log(emojiData);
         setMessage((previousMessage) => previousMessage + emojiData.emoji);
     }
 

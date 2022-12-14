@@ -45,17 +45,46 @@ export default function Configuration() {
                                 edit
                             </span>
                         </div>
-                        <span className="subtitle-confuration">{t("changePassword")}</span>
+
+                        <div className="display-flex">
+                            <span className="subtitle-confuration">{t("changePassword")}</span>
+
+                            <input type="password" className="input-password" value={"123456789124354235423516534424354235234532345678"} disabled />
+                        </div>
                     </div>
 
                     <div className="change-configuration">
                         <span className="title-confuration">{t("accessibility")}</span>
-                        <span className="subtitle-confuration">{t("fontSize")}</span>
+
+                        <div className="display-flex">
+                            <span className="subtitle-confuration">{t("fontSize")}</span>
+
+                            <span className="material-symbols-outlined">
+                                remove
+                            </span>
+
+                            <input className="font-size" type="number" />
+
+                            <span className="material-symbols-outlined">
+                                add
+                            </span>
+                        </div>
+
                     </div>
 
                     <div className="change-configuration">
                         <span className="title-confuration">{t("notifications")}</span>
-                        <span className="subtitle-confuration">{t("messagesNotify")}</span>
+
+                        <div className="display-flex">
+                            <span className="subtitle-confuration">{t("messagesNotify")}</span>
+
+                            <div className="switch">
+                                <input type="checkbox" id="switch" name="switch" />
+                                <label htmlFor="switch" />
+                            </div>
+
+                        </div>
+
                     </div>
                 </div>
 

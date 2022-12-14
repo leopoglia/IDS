@@ -102,7 +102,7 @@ export default function Demands() {
                     <Header icon="content_paste" title="proposals" />
                     <Nav />
                     <div className="container">
-                        <Search nav="Propostas > Visualizar Propostas" title="proposals" button="createProposal" link="/demands" setTable={setTable} />
+                        <Search onClick={callback} name={name} type={type} nav="Propostas > Visualizar Propostas" title="proposals" button="createProposal" link="/demands" setTable={setTable} />
                         {
                             proposals.map((val, index) => {
                                 return (
@@ -118,7 +118,7 @@ export default function Demands() {
                     <Header icon="file_copy" title="agendas" />
                     <Nav />
                     <div className="container">
-                        <Search nav="Pautas > Visualizar Pautas" title="agendas" button="createAgenda" link="/agenda/create" setTable={setTable} />
+                        <Search onClick={callback} name={name} type={type} nav="Pautas > Visualizar Pautas" title="agendas" button="createAgenda" link="/agenda/create" setTable={setTable} />
                         {
                             agendas.map((val, index) => {
                                 return (
@@ -134,7 +134,7 @@ export default function Demands() {
                     <Header icon="description" title="minutes" />
                     <Nav />
                     <div className="container">
-                        <Search nav="Atas > Visualizar Atas" title="minutes" button="createMinute" link="/minutes/create" setTable={setTable} />
+                        <Search onClick={callback} name={name} type={type} nav="Atas > Visualizar Atas" title="minutes" button="createMinute" link="/minutes/create" setTable={setTable} />
                         {
                             minutes.map((val, index) => {
                                 return (

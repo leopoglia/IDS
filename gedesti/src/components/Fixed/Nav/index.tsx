@@ -22,13 +22,22 @@ export default function Nav() {
 
     function toggleNav(): any {
 
-
         if (nav === "nav") {
+            setNav("nav-open");
+            localStorage.setItem("nav", "nav-open");
+        } else {
+            setNav("nav");
+            localStorage.setItem("nav", "nav");
+        }
+    }
+
+    useEffect(() => {
+        if (localStorage.getItem("nav") === "nav-open") {
             setNav("nav-open");
         } else {
             setNav("nav");
         }
-    }
+    }, []);
 
 
     return (

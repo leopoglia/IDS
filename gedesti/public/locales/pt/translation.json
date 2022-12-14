@@ -68,5 +68,13 @@
     "extras": "Extras",
     "approved": "Aprovada",
     "rejected": "Reprovada",
-    "pending": "Aguardando"
+    "pending": "Aguardando",
+    "myDemands": "Minhas demandas",
+    "manager": "Gerente",
+    "forum": "Fórum",
+    "departament": "Departamento",
+    "size": "Tamanho",
+    "ppmCode": "Código PPM",
+    "demandCode": "Código da demanda",
+    "status": "Status"
 }

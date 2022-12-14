@@ -68,5 +68,13 @@
     "extras": "額外",
     "approved": "批准",
     "rejected": "拒絕",
-    "pending": "待定"
+    "pending": "待定",
+    "myDemands": "我的請求",
+    "manager": "經理",
+    "forum": "論壇",
+    "departament": "部門",
+    "size": "尺寸",
+    "ppmCode": "PPM代碼",
+    "demandCode": "需求代碼",
+    "status": "狀態"
 }

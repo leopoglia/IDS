@@ -59,6 +59,7 @@ export default function Demand(props: any) {
     }
 
     if (props.type === "minute") {
+        if (props.listDirection === false) {
         return (
             <div className="demand">
                 <section>
@@ -84,7 +85,35 @@ export default function Demand(props: any) {
 
 
             </div>
-        );
+        )
+        }else{
+            return (
+                <div className="demand-list">
+                    <section>
+                        <div className="name-code">
+                            <h1>{props.name}</h1>
+                        </div>
+    
+    
+                        <div className="display-grid">
+    
+                            {situation()}
+                        </div>
+    
+                    </section>
+    
+    
+                    <div className="display-flex">
+    
+                        {information()}
+    
+                        {btnGenerateProposal()}
+                    </div>
+    
+    
+                </div>
+            )
+        }
     }
 
 

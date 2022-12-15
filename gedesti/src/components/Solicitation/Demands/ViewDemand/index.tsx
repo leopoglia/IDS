@@ -226,6 +226,7 @@ export default function ViewDemand() {
                                                 </div>
 
                                             </div>
+
                                         </div>
                                     );
                                 })
@@ -335,6 +336,11 @@ export default function ViewDemand() {
                                             <div className="situation-current">
                                                 <p>{t("requester")}</p>
                                                 <span>{val.requester}</span>
+                                            </div>
+
+                                            <div className="responsible">
+                                                <p>{t("requester")}</p>
+                                                <input className={inputDiv} type="text" value={val.requester} disabled={editDemand} />
                                             </div>
 
                                             <div className="situation-current">

@@ -94,6 +94,10 @@
     margin-bottom: 15px;
 }
 
+.view-demand .responsible{
+    margin-top: 30px;
+}
+
 .view-demand .proposal-view:hover {
     background-color: var(--greyF7);
 }

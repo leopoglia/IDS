@@ -5,6 +5,8 @@ import { useTranslation } from "react-i18next";
 
 
 export default function Demand(props: any) {
+    const worker: any = localStorage.getItem("worker");
+    const office = JSON.parse(worker).office;
     const { t } = useTranslation();
 
     const information = () => {
@@ -42,11 +44,13 @@ export default function Demand(props: any) {
 
     const btnGenerateProposal = () => {
         if (props.situation === "Backlog") {
-            return (
-                <Link to="/proposal/demand">
-                    <button className="btn-primary">{t("generateProposal")}</button>
-                </Link>
-            );
+            if (office === "analyst" || office === "ti") {
+                return (
+                    <Link to="/proposal/demand">
+                        <button className="btn-primary">{t("generateProposal")}</button>
+                    </Link>
+                );
+            }
         }
     }
 
@@ -60,57 +64,56 @@ export default function Demand(props: any) {
 
     if (props.type === "minute") {
         if (props.listDirection === false) {
-        return (
-            <div className="demand">
-                <section>
-                    <div className="name-code">
-                        <h1>{props.name}</h1>
+            return (
+                <div className="demand">
+                    <section>
+                        <div className="name-code">
+                            <h1>{props.name}</h1>
+                        </div>
+
+
+                        <div className="display-grid">
+
+                            {situation()}
+                        </div>
+
+                    </section>
+
+
+                    <div className="display-flex">
+
+                        {information()}
+
+                        {btnGenerateProposal()}
                     </div>
 
 
-                    <div className="display-grid">
-
-                        {situation()}
-                    </div>
-
-                </section>
-
-
-                <div className="display-flex">
-
-                    {information()}
-
-                    {btnGenerateProposal()}
                 </div>
-
-
-            </div>
-        )
-        }else{
+            )
+        } else {
             return (
                 <div className="demand-list">
                     <section>
                         <div className="name-code">
                             <h1>{props.name}</h1>
                         </div>
-    
-    
+
+
                         <div className="display-grid">
-    
+
                             {situation()}
                         </div>
-    
+
                     </section>
-    
-    
+
+
                     <div className="display-flex">
-    
+
                         {information()}
-    
-                        {btnGenerateProposal()}
+
                     </div>
-    
-    
+
+
                 </div>
             )
         }

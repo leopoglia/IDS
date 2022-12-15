@@ -34,7 +34,7 @@ nav a {
 nav ul {
     padding: 0;
     margin: 0;
-    padding-left: 8px;
+    padding-left: 7.4px;
 }
 
 .nav-open ul {
@@ -72,8 +72,7 @@ nav .title-li {
 }
 
 .nav-open .toggle {
-    padding-left: 8px;
-
+    margin-left: 7.4px !important;
 }
 
 .nav-open .toggle .material-symbols-outlined {

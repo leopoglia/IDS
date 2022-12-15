@@ -98,5 +98,7 @@
     "proposalEditDemand": "Proposal > Edit Demand",
     "generalInformations": "General informations",
     "titleProposal": "Title",
-    "problemToBeSolved": "Problem to be solved (Current Situation)"
+    "problemToBeSolved": "Problem to be solved (Current Situation)",
+    "proposalScope": "Proposal scope",
+    "proposalScopeProposal": "Proposal > Proposal scope"
 }

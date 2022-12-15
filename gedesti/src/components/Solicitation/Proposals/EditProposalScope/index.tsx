@@ -4,8 +4,13 @@ import Title from "../../../Fixed/Search/Title";
 import { Link } from "react-router-dom";
 import Editor from "./Editor"
 import "./style.css"
+import { useTranslation } from "react-i18next";
+
 
 export default function EditProposalScope() {
+  const { t } = useTranslation();
+
+
   return (
     <div className="edit-proposal-scope">
       <Header title="Escopo da Proposta" icon="edit" />
@@ -15,7 +20,7 @@ export default function EditProposalScope() {
 
         <div className="background-title">
 
-          <Title title="Escopo da Proposta" nav="Proposals > Escopo da Proposta" />
+          <Title title={t("proposalScope")} nav={t("proposalScopeProposal")} />
 
         </div>
 
@@ -26,11 +31,11 @@ export default function EditProposalScope() {
 
         <div className="demands-footer">
           <Link to="/proposal/demand">
-            <button className="btn-secondary">Voltar</button>
+            <button className="btn-secondary">{t("return")}</button>
           </Link>
 
           <Link to="/proposal/informations">
-            <button className="btn-primary">Avançar</button>
+            <button className="btn-primary">{t("advance")}</button>
           </Link>
         </div>
 

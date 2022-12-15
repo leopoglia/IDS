@@ -10,19 +10,21 @@ import Footer from "../../../Fixed/Footer";
 
 var stompClient = null;
 const worker = localStorage.getItem('worker');
-const name = JSON.parse(worker).name;
+const nameWorker = "JSON.parse(worker).name;"
+
+
 const ChatRoom = () => {
     const [privateChats, setPrivateChats] = useState(new Map());
     const [publicChats, setPublicChats] = useState([]);
     const [tab, setTab] = useState("CHATROOM");
     const [userData, setUserData] = useState({
-        username: name,
+        username: nameWorker,
         receivername: '',
         connected: false,
         message: ''
     });
     useEffect(() => {
-        console.log(userData);
+        // console.log(userData);
     }, [userData]);
 
     const connect = () => {

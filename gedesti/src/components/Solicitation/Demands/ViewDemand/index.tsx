@@ -505,21 +505,22 @@ export default function ViewDemand() {
 
                             <p>Propostas</p>
 
+                            <Link to="/proposal/view">
+                                <div className="proposal-view">
 
-                            <div className="proposal-view">
+                                    <p>Nome da Proposta</p>
 
-                                <p>Nome da Proposta</p>
+                                    <span>
+                                        Nunc maximus purus sit amet est lacinia condimentum. Praesent sodales leo a finibus semper. Nunc luctus libero fermentum varius imperdiet. Aliquam tellus leo, volutpat ac scelerisque eget, gravida in urna. Curabitur ac urna bibendum, faucibus eros quis, auctor nibh. Etiam auctor rhoncus velit. Nulla finibus fringilla magna, eu tempus nisl molestie sed. Vivamus efficitur dui at malesuada lobortis.
+                                    </span>
 
-                                <span>
-                                    Nunc maximus purus sit amet est lacinia condimentum. Praesent sodales leo a finibus semper. Nunc luctus libero fermentum varius imperdiet. Aliquam tellus leo, volutpat ac scelerisque eget, gravida in urna. Curabitur ac urna bibendum, faucibus eros quis, auctor nibh. Etiam auctor rhoncus velit. Nulla finibus fringilla magna, eu tempus nisl molestie sed. Vivamus efficitur dui at malesuada lobortis.
-                                </span>
-
-                                <div className="proposal-view-buttons">
-                                    <Link to="/proposal/comission-opinion">
-                                        <button className="btn-primary">Inserir parecer comissão</button>
-                                    </Link>
+                                    <div className="proposal-view-buttons">
+                                        <Link to="/proposal/comission-opinion">
+                                            <button className="btn-primary">Inserir parecer comissão</button>
+                                        </Link>
+                                    </div>
                                 </div>
-                            </div>
+                            </Link>
                         </div>
 
                         <div className="display-flex-end">

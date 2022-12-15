@@ -94,7 +94,7 @@
     margin-bottom: 15px;
 }
 
-.view-demand .responsible{
+.view-demand .responsible {
     margin-top: 30px;
 }
 
@@ -129,4 +129,9 @@
 .view-demand .input-disabled:focus {
     outline: none;
     border: none !important;
+}
+
+.view-demand .box a {
+    text-decoration: none;
+    color: var(--grey59);
 }

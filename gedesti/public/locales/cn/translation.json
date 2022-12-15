@@ -74,7 +74,14 @@
     "forum": "論壇",
     "departament": "部門",
     "size": "尺寸",
-    "ppmCode": "PPM代碼",
+    "ppmCode": "PPM 代碼",
     "demandCode": "需求代碼",
-    "status": "狀態"
+    "status": "狀態",
+    "demandViewDemand": "需求 > 查看需求",
+    "generatePDF": "生成 PDF",
+    "nameCostCenter": "成本中心名稱",
+    "requesterBU": "請求者 BU",
+    "buBenefited": "受益 BU",
+    "responsibleItSession": "負責 IT 會議",
+    "deadline": "截止日期"
 }

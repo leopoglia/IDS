@@ -47,7 +47,7 @@
     "fail": "Reprovar",
     "approve": "Aprovar",
     "toRank": "Classificar",
-    "costCenter": "Centro de custo",
+    "costCenter": "Centro de Custo",
     "benefitReal": "Benefício real",
     "benefitPotential": "Benefício potencial",
     "benefitQualitative": "Benefício qualitativo",
@@ -76,5 +76,12 @@
     "size": "Tamanho",
     "ppmCode": "Código PPM",
     "demandCode": "Código da demanda",
-    "status": "Status"
+    "status": "Status",
+    "demandViewDemand": "Demanda > Visualizar Demanda",
+    "generatePDF": "Gerar PDF",
+    "nameCostCenter": "Nome do Centro de Custo",
+    "requesterBU": "BU Solicitante",
+    "buBenefited": "BU Beneficiada",
+    "responsibleItSession": "Sessão de TI Responsável",
+    "deadline": "Prazo de execução"
 }

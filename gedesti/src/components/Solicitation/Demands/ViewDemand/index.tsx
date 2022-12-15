@@ -32,8 +32,8 @@ export default function ViewDemand() {
         return (
             <div>
                 <tr>
-                    <td>{dataOne}</td>
-                    <td>{dataTwo}</td>
+                    <td>{t(dataOne)}</td>
+                    <td>{t(dataTwo)}</td>
                 </tr>
                 <div className="hr" />
             </div>
@@ -53,7 +53,7 @@ export default function ViewDemand() {
 
                         <div className="background-title">
 
-                            <Title nav="Demandas > Visualizar Demanda" title="viewDemand" />
+                            <Title nav={t("demandViewDemand")} title="viewDemand" />
 
                             {(actionsDemand === 1) ? (
 
@@ -61,7 +61,7 @@ export default function ViewDemand() {
                                     <span className="material-symbols-outlined">
                                         download
                                     </span>
-                                    <span>Gerar PDF</span>
+                                    <span>{t("generatePDF")}</span>
                                 </button>
                             ) : (actionsDemand === 2) ? (
                                 <div className="display-flex">
@@ -130,7 +130,7 @@ export default function ViewDemand() {
                                                 <p className="title">{t("costCenter")}</p>
                                                 <div className="hr" />
                                                 <table>
-                                                    {tr("Centro de Custos", "Nome do Centro de Custos")}
+                                                    {tr("costCenter", "nameCostCenter")}
 
                                                     {tr(val.costCenter.number, val.costCenter.name)}
                                                 </table>
@@ -144,7 +144,7 @@ export default function ViewDemand() {
                                                 <div className="infos">
 
                                                     <div>
-                                                        <span>Valor Mensal: </span><span>{val.realBenefit.monthlyValue}</span>
+                                                        <span>{t("monthlyValue")}: </span><span>{val.realBenefit.monthlyValue}</span>
                                                     </div>
 
                                                 </div>
@@ -165,10 +165,10 @@ export default function ViewDemand() {
                                                 <div className="infos">
 
                                                     <div>
-                                                        <span>Valor Mensal: </span><span>{val.potentialBenefit.monthlyValue}</span>
+                                                        <span>{t("monthlyValue")}: </span><span>{val.potentialBenefit.monthlyValue}</span>
                                                     </div>
 
-                                                    <span>Obrigação Legal: {val.potentialBenefit.legalObligation}</span>
+                                                    <span>{t("legalObligation")}: {val.potentialBenefit.legalObligation}</span>
 
                                                 </div>
 
@@ -187,15 +187,15 @@ export default function ViewDemand() {
                                                 <div className="infos">
 
                                                     <div>
-                                                        <span>Valor Mensal: </span><span>{val.qualitativeBenefit.monthlyValue}</span>
+                                                        <span>{t("monthlyValue")}: </span><span>{val.qualitativeBenefit.monthlyValue}</span>
 
                                                     </div>
 
                                                     <div>
-                                                        <span>Obrigação Legal: {val.qualitativeBenefit.legalObligation}</span>
+                                                        <span>{t("legalObligation")}: {val.qualitativeBenefit.legalObligation}</span>
                                                     </div>
 
-                                                    <span>Requisitos de controles internos: {val.qualitativeBenefit.internalControlRequirements}</span>
+                                                    <span>{t("internalControlRequirements")}: {val.qualitativeBenefit.internalControlRequirements}</span>
 
                                                 </div>
 
@@ -232,10 +232,10 @@ export default function ViewDemand() {
                                     <table>
                                         <div className="hr" />
                                         <tr>
-                                            <td>Tamanho</td>
-                                            <td>BU Solicitante</td>
-                                            <td>BU Beneficiada</td>
-                                            <td>Sessão do TI responsável</td>
+                                            <td>{t("size")}</td>
+                                            <td>{t("requesterBU")}</td>
+                                            <td>{t("buBenefited")}</td>
+                                            <td>{t("responsibleItSession")}</td>
                                         </tr>
 
                                         <div className="hr" />
@@ -269,8 +269,8 @@ export default function ViewDemand() {
                                     <table>
                                         <div className="hr" />
                                         <tr>
-                                            <td>Prazo Execução</td>
-                                            <td>Código PPM</td>
+                                            <td>{t("deadline")}</td>
+                                            <td>{t("ppmCode")}</td>
                                             <td>Link EPIC Jira</td>
 
                                         </tr>

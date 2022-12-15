@@ -47,7 +47,7 @@
     "fail": "Fail",
     "approve": "Approve",
     "toRank": "To rank",
-    "costCenter": "Cost center",
+    "costCenter": "Cost Center",
     "benefitReal": "Benefit real",
     "benefitPotential": "Benefit potential",
     "benefitQualitative": "Benefit qualitative",
@@ -76,5 +76,12 @@
     "size": "Size",
     "ppmCode": "PPM code",
     "demandCode": "Demand code",
-    "status": "Status"
+    "status": "Status",
+    "demandViewDemand": "Demand > View Demand",
+    "generatePDF": "Generate PDF",
+    "nameCostCenter": "Name Cost Center",
+    "requesterBU": "Requester BU",
+    "buBenefited": "BU Benefited",
+    "responsibleItSession": "Responsible IT Session",
+    "deadline": "Deadline"
 }

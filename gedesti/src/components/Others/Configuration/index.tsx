@@ -56,7 +56,7 @@ export default function Configuration() {
                     <div className="change-configuration">
                         <span className="title-confuration">{t("accessibility")}</span>
 
-                        <div className="display-flex">
+                        <div className="display-flex font">
                             <span className="subtitle-confuration">{t("fontSize")}</span>
 
                             <span className="material-symbols-outlined">

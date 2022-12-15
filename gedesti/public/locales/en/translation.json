@@ -83,5 +83,7 @@
     "requesterBU": "Requester BU",
     "buBenefited": "BU Benefited",
     "responsibleItSession": "Responsible IT Session",
-    "deadline": "Deadline"
+    "deadline": "Deadline",
+    "linkEpicJira": "Link Epic Jira",
+    "codeProposal": "Code proposal"
 }

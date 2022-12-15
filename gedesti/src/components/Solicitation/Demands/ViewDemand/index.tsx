@@ -271,7 +271,7 @@ export default function ViewDemand() {
                                         <tr>
                                             <td>{t("deadline")}</td>
                                             <td>{t("ppmCode")}</td>
-                                            <td>Link EPIC Jira</td>
+                                            <td>{t("linkEpicJira")}</td>
 
                                         </tr>
 

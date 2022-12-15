@@ -75,7 +75,7 @@
     "departament": "Departamento",
     "size": "Tamaño",
     "ppmCode": "Código PPM",
-    "demandCode": "Código de demanda",
+    "demandCode": "Código demanda",
     "status": "Estado",
     "demandView": "Demanda > Ver Demanda",
     "generatePDF": "Generar PDF",
@@ -83,5 +83,7 @@
     "requesterBU": "BU Solicitante",
     "buBenefited":  "BU Beneficiada",
     "responsibleItSession": "Responsable de la sesión IT",
-    "deadline": "Fecha límite"
+    "deadline": "Fecha límite",
+    "linkEpicJira": "Link Epic Jira",
+    "codeProposal": "Código propuesta"
 }

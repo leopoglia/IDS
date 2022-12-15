@@ -83,5 +83,7 @@
     "requesterBU": "請求者 BU",
     "buBenefited": "受益 BU",
     "responsibleItSession": "負責 IT 會議",
-    "deadline": "截止日期"
+    "deadline": "截止日期",
+    "linkEpicJira": "連接 Jira Epic",
+    "codeProposal": "提案代碼"
 }

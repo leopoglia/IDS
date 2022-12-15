@@ -98,32 +98,32 @@ export default function Filter(props: FilterProps) {
 
                 <div className="li" onClick={() => { setFilter(true); setType("manager") }}>
                     <span className="material-symbols-outlined">manage_accounts</span>
-                    <span>Gerente</span>
+                    <span>{t("manager")}</span>
                 </div>
 
                 <div className="li" onClick={() => { setFilter(true); setType("forum") }}>
                     <span className="material-symbols-outlined">workspaces</span>
-                    <span>Forúm</span>
+                    <span>{t("forum")}</span>
                 </div>
 
                 <div className="li" onClick={() => { setFilter(true); setType("department") }}>
                     <span className="material-symbols-outlined">location_on</span>
-                    <span>Departamento</span>
+                    <span>{t("departament")}</span>
                 </div>
 
                 <div className="li" onClick={() => { setFilter(true); setType("size") }}>
                     <span className="material-symbols-outlined">crop_free</span>
-                    <span>Tamanho</span>
+                    <span>{t("size")}</span>
                 </div>
 
                 <div className="li" onClick={() => { setFilter(true); setType("ppm") }}>
                     <span className="material-symbols-outlined">link</span>
-                    <span>Código PPM</span>
+                    <span>{t("ppmCode")}</span>
                 </div>
 
                 <div className="li" onClick={() => { setFilter(true); setType("code-proposal") }}>
                     <span className="material-symbols-outlined">draft</span>
-                    <span>Código Proposta</span>
+                    <span>{t("codeProposal")}</span>
                 </div>
 
                 {sendFilter()}

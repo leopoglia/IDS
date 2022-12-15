@@ -6,19 +6,27 @@ import ButtonActionAnalyst from "./ButtonActionAnalyst";
 
 import Footer from "../../../Fixed/Footer";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 
 export default function ViewDemand() {
 
     const { t } = useTranslation();
-
+    const worker: any = localStorage.getItem("worker");
+    const office = JSON.parse(worker).office;
     const url = window.location.href.split("/")[3];
     const [actionsDemand, setActionsDemand] = useState(1);
     const [stepDemand, setStepDemand] = useState(2);
     const [editDemand, setEditDemand] = useState(true);
     const [inputDiv, setInputDiv] = useState("input-disabled");
+
+    useEffect(() => {
+    if (office === "bussines") {
+        setActionsDemand(2);
+    }
+    }, [office]);
+    
 
     const [demands] = useState([
         {

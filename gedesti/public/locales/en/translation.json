@@ -100,5 +100,10 @@
     "titleProposal": "Title",
     "problemToBeSolved": "Problem to be solved (Current Situation)",
     "proposalScope": "Proposal scope",
-    "proposalScopeProposal": "Proposal > Proposal scope"
+    "proposalScopeProposal": "Proposal > Proposal scope",
+    "executionCosts": "Execution costs",
+    "demandExecutionCosts": "Demand > Execution costs",
+    "executionCostsProject": "Execution costs project",
+    "responsibleBussiness": "Responsible bussiness",
+    "end": "End"
 }

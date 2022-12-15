@@ -6,13 +6,16 @@ import GridCostExecution from "./GridCostExecution";
 import SelectCostExecution from "./SelectCostExecution";
 import { Link } from "react-router-dom";
 import "./style.css"
+import { useTranslation } from "react-i18next";
+
 
 export default function ExecutionCosts() {
+    const { t } = useTranslation();
 
     return (
         <div className="execution-costs">
 
-            <Header title="Execution Costs" icon="payments" />
+            <Header title={t("executionCosts")} icon="payments" />
 
             <Nav />
 
@@ -20,7 +23,7 @@ export default function ExecutionCosts() {
 
 
                 <div className="background-title">
-                    <Title title="Execution Costs" nav="Demands > Execution Costs" />
+                    <Title title="Execution Costs" nav={t("demandExecutionCosts")} />
                 </div>
 
                 <div className="box">

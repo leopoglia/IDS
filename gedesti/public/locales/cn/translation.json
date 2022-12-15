@@ -100,5 +100,10 @@
     "titleProposal": "標題",
     "problemToBeSolved": "要解決的問題 (現在的情況)",
     "proposalScope": "提案範圍",
-    "proposalScopeProposal": "提案 > 提案範圍"
+    "proposalScopeProposal": "提案 > 提案範圍",
+    "executionCosts": "執行成本",
+    "demandExecutionCosts": "需求 > 執行成本",
+    "executionCostsProject": "執行成本項目",
+    "responsibleBussiness": "負責業務",
+    "end": "結束"
 }

@@ -122,6 +122,12 @@ export default function ViewDemand() {
                                     return (
 
                                         <div>
+
+                                            <div className="display-flex-space-between title-name">
+                                                <p>{val.name}</p>
+                                                <div className="code">1000025500</div>
+                                            </div>
+
                                             <div className="situation-current">
                                                 <p>{t("requester")}</p>
                                                 <input className={inputDiv} type="text" value={val.requester} disabled={editDemand} />
@@ -134,15 +140,7 @@ export default function ViewDemand() {
                                                 <input className={inputDiv} type="text" value={val.proposal} disabled={editDemand} />
                                             </div>
 
-                                            <div className="cust-center">
-                                                <p className="title">{t("costCenter")}</p>
-                                                <div className="hr" />
-                                                <table>
-                                                    {tr("costCenter", "nameCostCenter")}
 
-                                                    {tr(val.costCenter.number, val.costCenter.name)}
-                                                </table>
-                                            </div>
 
                                             <div className="real-benefit">
                                                 <p className="title">{t("benefitReal")}</p>
@@ -212,6 +210,16 @@ export default function ViewDemand() {
                                                 <div className="description">
                                                     <span className="desc">Descrição</span><span>{val.qualitativeBenefit.description}</span>
                                                 </div>
+                                            </div>
+
+                                            <div className="cust-center">
+                                                <p className="title">{t("costCenter")}</p>
+                                                <div className="hr" />
+                                                <table>
+                                                    {tr("costCenter", "nameCostCenter")}
+
+                                                    {tr(val.costCenter.number, val.costCenter.name)}
+                                                </table>
                                             </div>
 
                                             <div className="attachments">

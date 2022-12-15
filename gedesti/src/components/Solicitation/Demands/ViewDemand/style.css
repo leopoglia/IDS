@@ -138,3 +138,31 @@
     text-decoration: none;
     color: var(--grey59);
 }
+
+.view-demand .real-benefit,
+.view-demand .potential-benefit,
+.view-demand .qualitative-benefit {
+    margin-top: 30px;
+}
+
+.view-demand .title-name{
+    margin-bottom: 20px;
+}
+
+.view-demand .title-name p{
+    font-size: var(--g);
+}
+
+.view-demand .code {
+    background-color: var(--greyE5);
+    padding: 4px;
+    width: 100px;
+    height: 30px;
+    margin-left: 15px;
+    border-radius: var(--r);
+    font-size: var(--pp) !important;
+    border: 1px solid var(--greyC4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

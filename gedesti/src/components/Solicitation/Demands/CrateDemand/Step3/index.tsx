@@ -5,10 +5,14 @@ import Title from "../../../../Fixed/Search/Title";
 import ProgressBar from "../ProgressBar";
 import ButtonAction from "../ButtonAction";
 import { useTranslation } from "react-i18next";
+import { useState } from 'react';
 
 export default function CreateDemands3() {
 
     const { t } = useTranslation();
+
+    const [demandAttachment, setdemandAttachment] = useState("");
+    const [executionPeriod, setExecutionPeriod] = useState("");
 
     return (
         <div className="create-demands-3">
@@ -28,13 +32,13 @@ export default function CreateDemands3() {
 
                     <div className="frequency">
                         <label>{t("frequencyUse")}</label>
-                        <input type="text" />
+                        <input type="text" onChange={(e) => { setExecutionPeriod(e.target.value)}}/>
                     </div>
 
                     <label>{t("attachments")}</label>
 
                     <div className="attachments">
-                        <input type="file" id="file" />
+                        <input type="file" id="file" onChange={(e) => { setdemandAttachment(e.target.value)}}/>
                         <label htmlFor="file">
                             <span className="material-symbols-outlined">
                                 upload_file

@@ -85,5 +85,6 @@
     "responsibleItSession": "Responsable de la sesión IT",
     "deadline": "Fecha límite",
     "linkEpicJira": "Link Epic Jira",
-    "codeProposal": "Código propuesta"
+    "codeProposal": "Código propuesta",
+    "proposalView": "Propuesta > Ver Propuesta"
 }

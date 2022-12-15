@@ -85,5 +85,6 @@
     "responsibleItSession": "負責 IT 會議",
     "deadline": "截止日期",
     "linkEpicJira": "連接 Jira Epic",
-    "codeProposal": "提案代碼"
+    "codeProposal": "提案代碼",
+    "proposalViewProposal": "提案 > 查看提案"
 }

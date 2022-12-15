@@ -85,5 +85,6 @@
     "responsibleItSession": "Sessão de TI Responsável",
     "deadline": "Prazo de execução",
     "linkEpicJira": "Link Epic Jira",
-    "codeProposal": "Código proposta"
+    "codeProposal": "Código proposta",
+    "proposalViewProposal": "Proposta > Visualizar Proposta"
 }

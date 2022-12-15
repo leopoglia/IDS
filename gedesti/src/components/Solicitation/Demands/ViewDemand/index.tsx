@@ -305,7 +305,7 @@ export default function ViewDemand() {
 
                         <div className="background-title">
 
-                            <Title nav="Propostas > Visualizar Proposta" title="viewProposal" />
+                            <Title nav={t("proposalViewProposal")} title="viewProposal" />
 
                             <Link to="/">
                                 <button className="btn-primary btn-download">
@@ -329,9 +329,9 @@ export default function ViewDemand() {
                                             </div>
 
                                             <div className="situation-current">
-                                                <p className="title">Situação Atual</p>
+                                                <p className="title">{t("currentSituation")}</p>
                                                 <span>{val.currentSituation}</span>
-                                                <p className="title">Proposta</p>
+                                                <p className="title">{t("proposal")}</p>
                                                 <span>{val.proposal}</span>
 
                                             </div>

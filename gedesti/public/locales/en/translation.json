@@ -85,5 +85,6 @@
     "responsibleItSession": "Responsible IT Session",
     "deadline": "Deadline",
     "linkEpicJira": "Link Epic Jira",
-    "codeProposal": "Code proposal"
+    "codeProposal": "Code proposal",
+    "proposalViewProposal": "Proposal > View Proposal"
 }

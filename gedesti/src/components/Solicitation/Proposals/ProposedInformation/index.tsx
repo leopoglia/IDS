@@ -4,14 +4,18 @@ import Footer from "../../../Fixed/Footer";
 import Title from "../../../Fixed/Search/Title";
 import SelectCostExecution from "./SelectCostExecution";
 import { Link } from "react-router-dom";
-import "./style.css"
+import "./style.css";
+import { useTranslation } from "react-i18next";
+
 
 export default function ProposedInformation() {
+    const { t } = useTranslation();
+
 
     return (
         <div className="execution-costs">
 
-            <Header title="Execution Costs" icon="payments" />
+            <Header title={t("executionCosts")} icon="payments" />
 
             <Nav />
 
@@ -19,20 +23,20 @@ export default function ProposedInformation() {
 
 
                 <div className="background-title">
-                    <Title title="Execution Costs" nav="Demands > Execution Costs" />
+                    <Title title={t("executionCosts")} nav={t("demandExecutionCosts")} />
                 </div>
 
                 <div className="box">
 
 
                     <div className="display-flex">
-                        <p>Custos de execução do projeto </p>
+                        <p>{t("executionCostsProject")}</p>
                     </div>
 
 
                     <div className="display-flex-grid">
                         <div className="one">
-                            <label>Responsável pelo negócio *</label>
+                            <label>{t("responsibleBussiness")} *</label>
                             <input type="text" />
                         </div>
 
@@ -49,7 +53,7 @@ export default function ProposedInformation() {
                         </div>
 
                         <div>
-                            <label>Fim *</label>
+                            <label>{t("end")} *</label>
                             <input type="date" />
                         </div>
                     </div>
@@ -70,10 +74,10 @@ export default function ProposedInformation() {
 
                 <div className="demands-footer">
                     <Link to="/proposal/edit-scope">
-                        <button className="btn-secondary">Voltar</button>
+                        <button className="btn-secondary">{t("return")}</button>
                     </Link>
                     <Link to="/proposal/execution-costs">
-                        <button className="btn-primary">Avançar</button>
+                        <button className="btn-primary">{t("advance")}</button>
                     </Link>
                 </div>
             </div>

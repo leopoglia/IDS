@@ -100,5 +100,10 @@
     "titleProposal": "Título",
     "problemToBeSolved": "Problema a ser resolvido (Situação atual)",
     "proposalScope": "Escopo da proposta",
-    "proposalScopeProposal": "Proposta > Escopo da proposta"
+    "proposalScopeProposal": "Proposta > Escopo da proposta",
+    "executionCosts": "Custos de execução",
+    "demandExecutionCosts": "Demanda > Custos de execução",
+    "executionCostsProject": "Custos de execução do projeto",
+    "responsibleBussiness": "Responsável pelo negócio",
+    "end": "Fim"
 }

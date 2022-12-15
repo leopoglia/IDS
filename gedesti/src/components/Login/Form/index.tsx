@@ -1,8 +1,9 @@
 import './style.css';
 import { Link } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Services from '../../../services/workerService';
+import Alert from '../../Fixed/Alert'
 
 export default function Form() {
     const { t } = useTranslation();
@@ -10,6 +11,16 @@ export default function Form() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+
+    const alert = () => {
+        if (error === "input-error") {
+            return (
+                <Alert type="error" text="Email ou senha incorretos!" />
+            );
+        }
+    }
+
+
 
     async function login() {
 
@@ -72,9 +83,13 @@ export default function Form() {
                 </section>
             </main>
 
+
             <footer>
                 <button onClick={() => { login() }}>{t("login")}</button>
             </footer>
+
+            {alert()}
+
         </div>
     )
 }

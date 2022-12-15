@@ -56,13 +56,20 @@ export default function ViewDemand() {
                             <Title nav={t("demandViewDemand")} title="viewDemand" />
 
                             {(actionsDemand === 1) ? (
+                                <div className="display-flex">
+                                    <button className="btn-primary">
+                                        <span className="material-symbols-outlined">
+                                            download
+                                        </span>
+                                        <span>{t("generatePDF")}</span>
+                                    </button>
 
-                                <button className="btn-primary">
-                                    <span className="material-symbols-outlined">
-                                        download
-                                    </span>
-                                    <span>{t("generatePDF")}</span>
-                                </button>
+                                    <button className="btn-primary btn-download btn-mini">
+                                        <span className="material-symbols-outlined">
+                                            edit
+                                        </span>
+                                    </button>
+                                </div>
                             ) : (actionsDemand === 2) ? (
                                 <div className="display-flex">
 

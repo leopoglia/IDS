@@ -24,6 +24,7 @@
     "i18next-http-backend": "^2.0.2",
     "lexical": "^0.6.0",
     "react": "^18.2.0",
+    "react-client": "^1.0.1",
     "react-dom": "^18.2.0",
     "react-i18next": "^12.0.0",
     "react-onclickoutside": "^6.12.2",
@@ -31,6 +32,9 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-spinners": "^0.13.6",
+    "sockjs": "^0.3.24",
+    "sockjs-client": "^1.6.1",
+    "stompjs": "^2.3.3",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"
   },

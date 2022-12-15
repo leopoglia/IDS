@@ -14,7 +14,6 @@ export default function SelectLabels() {
 
     return (
         <div>
-
             <FormControl sx={{ m: 1 }}>
                 <Select
                     value={age}

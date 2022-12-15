@@ -11,7 +11,7 @@ export default function Input(props: {
     return (
         <div className="input">
             <label>{t(props.label)} {props.required}</label>
-            <input type="text" />
+            <input  type="text" />
         </div>
     );
 }

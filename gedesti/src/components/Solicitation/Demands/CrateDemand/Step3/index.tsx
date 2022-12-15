@@ -6,13 +6,26 @@ import ProgressBar from "../ProgressBar";
 import ButtonAction from "../ButtonAction";
 import { useTranslation } from "react-i18next";
 import { useState } from 'react';
+import Services from "../../../../../services/demandService";
 
 export default function CreateDemands3() {
 
     const { t } = useTranslation();
 
     const [demandAttachment, setdemandAttachment] = useState("");
-    const [executionPeriod, setExecutionPeriod] = useState("");
+    const [executionPeriod, setExecutionPeriod]:any = useState("");
+
+    let demandTitle:any = localStorage.getItem("demandTitle");
+    let currentProblem:any = localStorage.getItem("demandProblem");
+    let proposal = localStorage.getItem("proposal");
+    let costCenter:any = localStorage.getItem("costCenter"); 
+
+    let worker:any = localStorage.getItem("worker");
+    let workerCode = JSON.parse(worker).id;
+
+    async function cadastrarDemanda(){
+        await Services.save(demandTitle, currentProblem, "objetivo", costCenter, "backlog", 20, executionPeriod, workerCode, 1, 1, 1, demandAttachment);
+    }
 
     return (
         <div className="create-demands-3">
@@ -49,7 +62,9 @@ export default function CreateDemands3() {
 
                 <div className="demands-footer">
                     <ButtonAction title="Voltar" click="voltar"></ButtonAction>
+                    <div onClick={() => { cadastrarDemanda() }}>
                     <ButtonAction title="Avançar" click="avancar"></ButtonAction>
+                    </div>
                 </div>
             </div>
 

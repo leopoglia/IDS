@@ -1,13 +1,13 @@
 const url = "http://localhost:8080/api/demand";
 
 const Services = {
-    save: function (demandTitle: String, currentProblem: String, demandObjective: String, demandStatus: String, score: Number, executionPeriod: Number, requesterRegistration: Number, realBenefit: Number, QualitativeBenefit: Number, PotentialBenefit: Number, demandAttachment: any) {
-
+    save: function (demandTitle: String, currentProblem: String, demandObjective: String, costCenter: String, demandStatus: String, score: Number, executionPeriod: Number, requesterRegistration: Number, realBenefit: Number, QualitativeBenefit: Number, PotentialBenefit: Number, demandAttachment: any) {
         var formData = new FormData();
         let demand = { 
             "demandTitle": demandTitle,
             "currentProblem": currentProblem,
             "demandObjective": demandObjective,
+            "costCenter": [{"costCenterCode": costCenter}],
             "demandStatus": demandStatus,
             "score": score,
             "executionPeriod": executionPeriod,
@@ -17,6 +17,7 @@ const Services = {
             "PotentialBenefit": {"PotentialBenefitCode": PotentialBenefit} }
         formData.append("demand", JSON.stringify(demand));
         formData.append("demandAttachment", demandAttachment);
+        console.log(JSON.stringify(formData))
 
         return new Promise((resolve, reject) => {
             fetch(url, {

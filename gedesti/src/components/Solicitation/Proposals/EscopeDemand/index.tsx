@@ -10,9 +10,14 @@ import ProgressBar from "../../Demands/CrateDemand/ProgressBar";
 import SelectCoin from "../../Demands/CrateDemand/SelectCoin";
 import TextArea from "../../Demands/CrateDemand/TextArea";
 import "./style.css"
+import { useTranslation } from "react-i18next";
+
 
 
 export default function EscopeDemand() {
+
+    const { t } = useTranslation();
+
     return (
         <div className="create-demands-1">
             <Header icon="folder_copy" title="createDemand" />
@@ -20,21 +25,21 @@ export default function EscopeDemand() {
 
             <div className="container">
                 <div className="background-title">
-                    <Title nav="Proposta > Editar Demanda" title="proposal" />
+                    <Title nav="proposalEditDemand" title="proposal" />
 
                 </div>
 
                 <div className="box">
-                    <p>Informações Gerais</p>
+                    <p>{t("generalInformations")}</p>
 
 
-                    <Input label="Titulo" required="*" />
+                    <Input label="titleProposal" required="*" />
 
-                    <TextArea label="Problema a ser resolvido (Situação atual)" required="*" />
+                    <TextArea label="problemToBeSolved" required="*" />
 
-                    <TextArea label="Proposta" required="*" />
+                    <TextArea label="proposal" required="*" />
 
-                    <Input label="Centro de Custos" required="*"></Input>
+                    <Input label="costCenter" required="*"></Input>
 
                 </div>
 
@@ -42,11 +47,11 @@ export default function EscopeDemand() {
                     <p>{t("benefitReal")}</p>
 
                     <div className="flex">
-                        <Input label="Valor Mensal" required="*" />
+                        <Input label="monthlyValue" required="*" />
                         <SelectCoin />
                     </div>
 
-                    <Input label="Descrição" required=""></Input>
+                    <Input label="description" required=""></Input>
 
                 </div>
 
@@ -56,15 +61,15 @@ export default function EscopeDemand() {
                     <div className="flex-grid">
 
                         <div className="flex">
-                            <Input label="Valor Mensal" required="*" />
+                            <Input label="monthlyValue" required="*" />
                             <SelectCoin />
                         </div>
 
                         <div className="flex">
-                            <Input label="Descrição" required=""></Input>
+                            <Input label="description" required=""></Input>
 
                             <div className="input-checkbox">
-                                <label>Obrigação Legal</label>
+                                <label>{t("legalObligation")}</label>
                                 <div className="checkbox">
                                     <CheckBox />
                                 </div>
@@ -77,15 +82,15 @@ export default function EscopeDemand() {
                     <p>{t("benefitQualitative")}</p>
 
                     <div className="flex">
-                        <Input label="Valor Mensal" required="*" />
+                        <Input label="monthlyValue" required="*" />
                         <SelectCoin />
                     </div>
 
                     <div className="flex">
-                        <Input label="Descrição" required=""></Input>
+                        <Input label="description" required=""></Input>
 
                         <div className="input-checkbox requirements">
-                            <label>Requisitos de controles internos</label>
+                            <label>{t("internalControlRequirements")}</label>
                             <div className="checkbox">
                                 <CheckBox />
                             </div>
@@ -96,7 +101,7 @@ export default function EscopeDemand() {
 
                 <div className="display-flex-end">
                     <Link to="/proposal/edit-scope">
-                        <button className="btn-primary">Avançar</button>
+                        <button className="btn-primary">{t("advance")}</button>
                     </Link>
                 </div>
 

@@ -94,5 +94,9 @@
     "necessityHours": "Horas necessárias",
     "hoursValue": "Valor da hora",
     "totalValue": "Valor total",
-    "responsibleForTheBusiness": "Responsável pelo negócio"
+    "responsibleForTheBusiness": "Responsável pelo negócio",
+    "proposalEditDemand": "Proposta > Editar Demanda",
+    "generalInformations": "Informações gerais",
+    "titleProposal": "Título",
+    "problemToBeSolved": "Problema a ser resolvido (Situação atual)"
 }

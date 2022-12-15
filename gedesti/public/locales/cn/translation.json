@@ -94,5 +94,9 @@
     "necessityHours": "需要小時",
     "hoursValue": "小時價值",
     "totalValue": "總價值",
-    "responsibleForTheBusiness": "負責業務"
+    "responsibleForTheBusiness": "負責業務",
+    "proposalEditDemand": "提案 > 編輯需求",
+    "generalInformations": "一般信息",
+    "titleProposal": "標題",
+    "problemToBeSolved": "要解決的問題 (現在的情況)"
 }

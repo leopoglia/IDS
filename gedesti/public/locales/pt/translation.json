@@ -86,5 +86,12 @@
     "deadline": "Prazo de execução",
     "linkEpicJira": "Link Epic Jira",
     "codeProposal": "Código proposta",
-    "proposalViewProposal": "Proposta > Visualizar Proposta"
+    "proposalViewProposal": "Proposta > Visualizar Proposta",
+    "projectExecutionCosts": "Custo de execução do projeto",
+    "type": "Tipo",
+    "profile": "Perfil",
+    "periodOfExecution": "Período de execução",
+    "necessityHours": "Horas necessárias",
+    "hoursValue": "Valor da hora",
+    "totalValue": "Valor total"
 }

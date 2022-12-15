@@ -86,5 +86,12 @@
     "deadline": "截止日期",
     "linkEpicJira": "連接 Jira Epic",
     "codeProposal": "提案代碼",
-    "proposalViewProposal": "提案 > 查看提案"
+    "proposalViewProposal": "提案 > 查看提案",
+    "projectExecutionCosts": "項目執行成本",
+    "type": "類型",
+    "profile": "個人資料",
+    "periodOfExecution": "執行期間",
+    "necessityHours": "需要小時",
+    "hoursValue": "小時價值",
+    "totalValue": "總價值"
 }

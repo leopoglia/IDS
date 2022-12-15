@@ -22,11 +22,13 @@ export default function ViewDemand() {
     const [inputDiv, setInputDiv] = useState("input-disabled");
 
     useEffect(() => {
-    if (office === "bussines") {
-        setActionsDemand(2);
-    }
+        if (office === "bussines") {
+            setActionsDemand(2);
+        } else if (office === "analyst") {
+            setActionsDemand(3);
+        }
     }, [office]);
-    
+
 
     const [demands] = useState([
         {
@@ -91,7 +93,7 @@ export default function ViewDemand() {
 
                                     <Link to="/demand/rank">
                                         <button className="btn-primary">
-                                            <span>{t("toRank")}</span>
+                                            <span>{t("approve")}</span>
                                         </button>
                                     </Link>
 
@@ -101,6 +103,25 @@ export default function ViewDemand() {
 
                             ) : (actionsDemand === 3) ? (
                                 <div className="display-flex">
+
+                                    <Link to="/demand/disapprove">
+                                        <button className="btn-secondary">
+                                            <span>{t("fail")}</span>
+                                        </button>
+                                    </Link>
+
+                                    <Link to="/demand/rank">
+                                        <button className="btn-primary">
+                                            <span>{t("toRank")}</span>
+                                        </button>
+                                    </Link>
+
+
+                                    <ButtonActionAnalyst />
+                                </div>
+
+                            ) : (actionsDemand === 4) ? (
+                                <div className="display-flex">
                                     <Link to="/demand/complement">
                                         <button className="btn-primary">
                                             <span>Complementar</span>
@@ -109,16 +130,8 @@ export default function ViewDemand() {
 
                                     <ButtonActionAnalyst />
                                 </div>
-                            ) : (
-                                <div className="display-flex">
-                                    <Link to="/demand/complement">
-                                        <button className="btn-primary">
-                                            <span>Complementar</span>
-                                        </button>
-                                    </Link>
-                                </div>
-                            )
-                            }
+                            ) : null}
+
 
                         </div>
 

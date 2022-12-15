@@ -6,6 +6,12 @@
     font-size: 11px;
 }
 
+.Title span:hover {
+    color: var(--blue);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .Title h1 {
     margin: 2px 0px 2px 49px;
     font-size: 22px;

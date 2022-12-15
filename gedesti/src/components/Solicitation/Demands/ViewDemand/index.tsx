@@ -55,7 +55,7 @@ export default function ViewDemand() {
 
                         <div className="background-title">
 
-                            <Title nav={t("demandViewDemand")} title="viewDemand" />
+                            <Title nav={t("demandViewDemand")} title="Nome da Demanda" />
 
                             {(actionsDemand === 1) ? (
                                 <div className="display-flex">
@@ -123,8 +123,7 @@ export default function ViewDemand() {
 
                                         <div>
 
-                                            <div className="display-flex-space-between title-name">
-                                                <p>{val.name}</p>
+                                            <div className="display-flex-end">
                                                 <div className="code">1000025500</div>
                                             </div>
 
@@ -505,7 +504,7 @@ export default function ViewDemand() {
 
                         <div className="background-title">
 
-                            <Title nav="Pautas > Visualizar Pauta" title="viewAgenda" />
+                            <Title nav="Pautas > Nome Pauta" title="viewAgenda" />
                         </div>
 
                         <div className="box">

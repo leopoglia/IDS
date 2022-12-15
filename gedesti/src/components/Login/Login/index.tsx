@@ -8,6 +8,7 @@ export default function Login() {
 
     useEffect(() => {
         localStorage.clear();
+        localStorage.setItem('i18nextLng', 'pt');
     }, []);
 
 

@@ -9,6 +9,7 @@ export default function Form() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
     async function login() {
 
@@ -28,6 +29,8 @@ export default function Form() {
 
                 window.location.href = "/demands";
             }
+        } else {
+            setError("input-error");
         }
     }
 
@@ -41,18 +44,19 @@ export default function Form() {
                 <img src="/images/weg-blue.png" alt="" />
             </header>
 
+
             <main>
                 <div>
                     <span className="material-symbols-outlined">alternate_email</span>
                     <label>{t("email")}</label>
-                    <input onChange={(e) => { setEmail(e.target.value) }} id="email" type="text" required />
+                    <input className={error} onChange={(e) => { setEmail(e.target.value) }} id="email" type="text" required />
                 </div>
 
 
                 <div>
                     <span className="material-symbols-outlined">key</span>
                     <label>{t("password")}</label>
-                    <input id="password" onChange={(e) => { setPassword(e.target.value) }} type="password" required />
+                    <input className={error} id="password" onChange={(e) => { setPassword(e.target.value) }} type="password" required />
 
                 </div>
 

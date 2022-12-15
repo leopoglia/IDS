@@ -12,7 +12,7 @@
     align-items: center;
 }
 
-.configuration .box .profile .material-symbols-outlined{
+.configuration .box .profile .material-symbols-outlined {
     margin-left: 5px;
 }
 
@@ -71,21 +71,21 @@
 }
 
 
-.switch {
+.configuration .switch {
     position: relative;
     display: inline-block;
-    width: 56px;
-    height: 30px;
+    width: 53px;
+    height: 25px;
     margin-left: 20px;
 }
 
-.switch input {
+.configuration .switch input {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-.switch label {
+.configuration .switch label {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -98,11 +98,11 @@
     border-radius: 34px;
 }
 
-.switch label:before {
+.configuration .switch label:before {
     position: absolute;
     content: "";
-    height: 22px;
-    width: 22px;
+    height: 18px;
+    width: 18px;
     left: 4px;
     bottom: 4px;
     background-color: var(--white);
@@ -111,15 +111,15 @@
     border-radius: 50%;
 }
 
-input:checked+label {
+.configuration input:checked+label {
     background-color: var(--blue19);
 }
 
-input:focus+label {
+.configuration input:focus+label {
     box-shadow: 0 0 1px var(--blue19);
 }
 
-input:checked+label:before {
+.configuration input:checked+label:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
@@ -144,12 +144,12 @@ input:checked+label:before {
     border: 2px solid var(--blue19)
 }
 
-.input-password{
+.input-password {
     width: 150px !important;
     margin-left: 15px;
     padding-right: 11.5px !important;
 }
 
-.configuration .display-flex{
+.configuration .display-flex {
     align-items: center;
 }

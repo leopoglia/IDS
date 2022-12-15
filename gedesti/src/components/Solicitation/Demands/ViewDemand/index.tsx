@@ -349,21 +349,21 @@ export default function ViewDemand() {
                                                 <p className="title">{t("costCenter")}</p>
                                                 <div className="hr" />
                                                 <table>
-                                                    {tr("Centro de Custos", "Nome do Centro de Custos")}
+                                                    {tr("costCenter", "nameCostCenter")}
 
                                                     {tr(val.costCenter.number, val.costCenter.name)}
                                                 </table>
                                             </div>
 
                                             <div className="real-benefit">
-                                                <p className="title">Beneficio Real</p>
+                                                <p className="title">{t("benefitReal")}</p>
 
                                                 <div className="hr" />
 
                                                 <div className="infos">
 
                                                     <div>
-                                                        <span>Valor Mensal: </span><span>{val.realBenefit.monthlyValue}</span>
+                                                        <span>{t("monthlyValue")}: </span><span>{val.realBenefit.monthlyValue}</span>
                                                     </div>
 
                                                 </div>
@@ -377,17 +377,17 @@ export default function ViewDemand() {
 
 
                                             <div className="potential-benefit">
-                                                <p className="title">Beneficio Potencial</p>
+                                                <p className="title">{t("benefitPotential")}</p>
 
                                                 <div className="hr" />
 
                                                 <div className="infos">
 
                                                     <div>
-                                                        <span>Valor Mensal: </span><span>{val.potentialBenefit.monthlyValue}</span>
+                                                        <span>{t("monthlyValue")}: </span><span>{val.potentialBenefit.monthlyValue}</span>
                                                     </div>
 
-                                                    <span>Obrigação Legal: {val.potentialBenefit.legalObligation}</span>
+                                                    <span>{t("legalObligation")}: {val.potentialBenefit.legalObligation}</span>
 
                                                 </div>
 
@@ -399,22 +399,22 @@ export default function ViewDemand() {
                                             </div>
 
                                             <div className="qualitative-benefit">
-                                                <p className="title">Beneficio Qualitativo</p>
+                                                <p className="title">{t("benefitQualitative")}</p>
 
                                                 <div className="hr" />
 
                                                 <div className="infos">
 
                                                     <div>
-                                                        <span>Valor Mensal: </span><span>{val.qualitativeBenefit.monthlyValue}</span>
+                                                        <span>{t("monthlyValue")}: </span><span>{val.qualitativeBenefit.monthlyValue}</span>
 
                                                     </div>
 
                                                     <div>
-                                                        <span>Obrigação Legal: {val.qualitativeBenefit.legalObligation}</span>
+                                                        <span>{t("legalObligation")}: {val.qualitativeBenefit.legalObligation}</span>
                                                     </div>
 
-                                                    <span>Requisitos de controles internos: {val.qualitativeBenefit.internalControlRequirements}</span>
+                                                    <span>{t("internalControlRequirements")}: {val.qualitativeBenefit.internalControlRequirements}</span>
 
                                                 </div>
 
@@ -439,17 +439,17 @@ export default function ViewDemand() {
                                             </div>
 
                                             <div className="execution-cost">
-                                                <p className="title">Custos de execução do projeto</p>
+                                                <p className="title">{t("projectExecutionCosts")}</p>
                                                 <table>
                                                     <div className="hr" />
                                                     <tr>
-                                                        <td>Tipo</td>
-                                                        <td>Perfil</td>
-                                                        <td>Período de execução</td>
-                                                        <td>Horas necessárias</td>
-                                                        <td>Valor da hora</td>
-                                                        <td>Centro de custos</td>
-                                                        <td>Valor total</td>
+                                                        <td>{t("type")}</td>
+                                                        <td>{t("profile")}</td>
+                                                        <td>{t("periodOfExecution")}</td>
+                                                        <td>{t("necessityHours")}</td>
+                                                        <td>{t("hoursValue")}</td>
+                                                        <td>{t("costCenter")}</td>
+                                                        <td>{t("totalValue")}</td>
 
                                                     </tr>
 

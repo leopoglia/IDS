@@ -15,8 +15,12 @@ nav,
     position: fixed;
     margin-top: 65px;
     z-index: -1;
+    transition: 0.1s;
 }
 
+nav {
+    transition: 0.1s !important;
+}
 
 .nav-open,
 #nav-open {
@@ -30,11 +34,23 @@ nav a {
 nav ul {
     padding: 0;
     margin: 0;
+    padding-left: 8px;
+}
+
+.nav-open ul {
+    padding-left: 0;
 }
 
 nav li div {
     max-width: 50px;
     max-height: 50px;
+    display: flex;
+    align-items: center;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    direction: ltr;
 }
 
 nav .material-symbols-outlined:hover {
@@ -46,29 +62,13 @@ nav .material-symbols-outlined:hover {
 }
 
 nav .title-li {
-    font-size: 0px;
+    font-size: 14px;
 }
 
-.nav-open .title-li {
-    font-size: 14px !important;
-}
-
-
-.nav-open li div {
-    max-width: 185px;
-}
-
-.nav-open li {
-    justify-content: flex-start;
-}
 
 .nav-open li span {
     font-weight: 100;
-    display: inline-block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    direction: ltr;
+
 }
 
 .nav-open .toggle {
@@ -87,7 +87,8 @@ nav .title-li {
 .nav-open li div {
     display: flex;
     align-items: center;
-    width: 90%;
+    width: 90% !important;
+    max-width: none !important;
     height: 50px;
     padding-left: 10px;
     margin-left: 11px;
@@ -131,7 +132,6 @@ nav li {
     list-style: none;
     display: flex;
     align-items: center;
-    justify-content: center;
 }
 
 
@@ -140,10 +140,11 @@ nav li {
 }
 
 .logout {
-    width: 65px;
+    width: 58px;
     background-color: var(--greyF7);
     position: fixed;
     bottom: 0;
+    transition: 0.1s !important;
 }
 
 @media(max-width: 768px) {

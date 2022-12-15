@@ -7,7 +7,7 @@ export default function Nav() {
 
     const { t } = useTranslation();
 
-    const [nav, setNav] = useState("nav");
+    const [nav, setNav] = useState(localStorage.getItem("nav") || "nav");
     const [current, setCurrent] = useState("current");
     const url = window.location.pathname.split("/")[1];
     const worker: any = localStorage.getItem("worker");
@@ -23,7 +23,6 @@ export default function Nav() {
     }
 
     function toggleNav(): any {
-
         if (nav === "nav") {
             setNav("nav-open");
             localStorage.setItem("nav", "nav-open");
@@ -75,7 +74,9 @@ export default function Nav() {
                                 <span className="title-li">{t("proposals")}</span>
                             </div>
                         </li>
-                    </Link><Link to="/agendas">
+                    </Link>
+
+                        <Link to="/agendas">
                             <li id={hover("agendas")}>
                                 <div>
                                     <span className="material-symbols-outlined">
@@ -84,7 +85,9 @@ export default function Nav() {
                                     <span className="title-li">{t("agendas")}</span>
                                 </div>
                             </li>
-                        </Link><Link to="/minutes">
+                        </Link>
+
+                        <Link to="/minutes">
                             <li id={hover("minutes")}>
                                 <div>
                                     <span className="material-symbols-outlined">

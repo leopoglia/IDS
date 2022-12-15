@@ -9,12 +9,14 @@ import EmojiPicker, { EmojiStyle, SkinTones, Theme, Categories, EmojiClickData, 
 import Footer from "../../../Fixed/Footer";
 
 var stompClient = null;
+const worker = localStorage.getItem('worker');
+const name = JSON.parse(worker).name;
 const ChatRoom = () => {
     const [privateChats, setPrivateChats] = useState(new Map());
     const [publicChats, setPublicChats] = useState([]);
     const [tab, setTab] = useState("CHATROOM");
     const [userData, setUserData] = useState({
-        username: '',
+        username: name,
         receivername: '',
         connected: false,
         message: ''
@@ -96,24 +98,6 @@ const ChatRoom = () => {
         }
     }
 
-    const sendPrivateValue = () => {
-        if (stompClient) {
-            var chatMessage = {
-                senderName: userData.username,
-                receiverName: tab,
-                message: userData.message,
-                status: "MESSAGE"
-            };
-
-            if (userData.username !== tab) {
-                privateChats.get(tab).push(chatMessage);
-                setPrivateChats(new Map(privateChats));
-            }
-            stompClient.send("/app/private-message", {}, JSON.stringify(chatMessage));
-            setUserData({ ...userData, "message": "" });
-        }
-    }
-
     const handleUsername = (event) => {
         const { value } = event.target;
         setUserData({ ...userData, "username": value });
@@ -122,6 +106,10 @@ const ChatRoom = () => {
     const registerUser = () => {
         connect();
     }
+
+    useEffect(() => {
+        registerUser();
+    }, []);
 
     const [emoji, setEmoji] = useState(false);
     const [message, setMessage] = useState("");
@@ -162,88 +150,74 @@ const ChatRoom = () => {
                     </div>
 
 
-                    {userData.connected ?
-                        <div className="chat-box">
-                            <div className="member-list">
-                                {/* <ul>
+                    <div className="chat-box">
+                        <div className="member-list">
+                            {/* <ul>
                                     <li onClick={() => { setTab("CHATROOM") }} className={`member ${tab === "CHATROOM" && "active"}`}>Chatroom</li>
                                     {[...privateChats.keys()].map((name, index) => (
                                         <li onClick={() => { setTab(name) }} className={`member ${tab === name && "active"}`} key={index}>{name}</li>
                                     ))}
                                 </ul> */}
-                            </div>
-                            {tab === "CHATROOM" && <div className="chat-content">
-                                <ul className="chat-messages">
-                                    {publicChats.map((chat, index) => (
-                                        <li className={`message-user ${chat.senderName === userData.username && "self"}`} key={index}>
-                                            {chat.senderName !== userData.username && <div className="avatar">{chat.senderName}</div>}
-                                            <div className="message-data">{chat.message}</div>
+                        </div>
+                        {tab === "CHATROOM" && <div className="chat-content">
+                            <ul className="chat-messages">
+                                {publicChats.map((chat, index) => (
+                                    <li className={`message-user ${chat.senderName === userData.username && "self"}`} key={index}>
+                                        {chat.senderName !== userData.username && <div className="avatar">{chat.senderName}</div>}
+                                        <div className="message-data">{chat.message}</div>
 
-                                            <div className='message-time'>{time}</div>
-                                        </li>
-                                    ))}
-                                </ul>
+                                        <div className='message-time'>{time}</div>
+                                    </li>
+                                ))}
+                            </ul>
 
-                                <div className="send-message">
-
-
-                                    {/* <input type="text" className="input-message" placeholder="enter the message" value={userData.message} onChange={handleMessage} /> */}
+                            <div className="send-message">
 
 
-                                    <div className="display-flex">
-                                        <div className="input-message">
-                                            <input type="text" placeholder="Envie sua mensagem"
-                                                onInput={(e) =>
-                                                    setMessage(e.target.value)}
-                                                value={userData.message} onChange={handleMessage}
-                                            />
+                                {/* <input type="text" className="input-message" placeholder="enter the message" value={userData.message} onChange={handleMessage} /> */}
 
 
-                                            <div className="actions-message">
+                                <div className="display-flex">
+                                    <div className="input-message">
+                                        <input type="text" placeholder="Envie sua mensagem"
+                                            onInput={(e) =>
+                                                setMessage(e.target.value)}
+                                            value={userData.message} onChange={handleMessage}
+                                        />
 
 
-                                                <div className="add-reaction" onClick={() => setEmoji(!emoji)}>
-                                                    <span className="material-symbols-outlined">
-                                                        add_reaction
-                                                    </span>
-                                                </div>
+                                        <div className="actions-message">
 
-                                                <div className="attach_file">
-                                                    <span className="material-symbols-outlined">
-                                                        attach_file
-                                                    </span>
-                                                </div>
 
+                                            <div className="add-reaction" onClick={() => setEmoji(!emoji)}>
+                                                <span className="material-symbols-outlined">
+                                                    add_reaction
+                                                </span>
                                             </div>
+
+                                            <div className="attach_file">
+                                                <span className="material-symbols-outlined">
+                                                    attach_file
+                                                </span>
+                                            </div>
+
                                         </div>
-
-
-
-                                        <button type="button" className="send send-ubtton" onClick={sendValue}>
-                                            <span className="material-symbols-outlined">
-                                                send
-                                            </span>
-                                        </button>
                                     </div>
 
-                                </div>
-                            </div>}
 
-                        </div>
-                        :
-                        <div className="register">
-                            <input
-                                id="user-name"
-                                placeholder="Enter your name"
-                                name="userName"
-                                value={userData.username}
-                                onChange={handleUsername}
-                                margin="normal"
-                            />
-                            <button type="button" onClick={registerUser}>
-                                connect
-                            </button>
+
+                                    <button type="button" className="send send-ubtton" onClick={sendValue}>
+                                        <span className="material-symbols-outlined">
+                                            send
+                                        </span>
+                                    </button>
+                                </div>
+
+                            </div>
                         </div>}
+
+                    </div>
+
 
 
 

@@ -26,12 +26,12 @@ export default function addExpense() {
 
                     <div className="display-flex-grid">
                         <label>Tipo de despesa *</label>
-                        <SelectAddExpense />
+                        <SelectAddExpense type="typeOfExpense" />
                     </div>
 
                     <div className="display-flex-grid">
                         <label>Perfil da despesa *</label>
-                        <SelectAddExpense />
+                        <SelectAddExpense type="expenseProfile" />
                     </div>
 
                     <div className="display-flex-grid">

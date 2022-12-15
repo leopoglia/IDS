@@ -3,6 +3,10 @@
     justify-content: space-between;
 }
 
+.create-demands-1 .requirements{
+    width: 300px;
+}
+
 @media(max-width: 1050px){
     .create-demands-1 .progress-bar{
         width: 70%;

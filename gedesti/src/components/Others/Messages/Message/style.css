@@ -107,6 +107,8 @@
     background-color: var(--blue);
     cursor: pointer;
     border-radius: 50px;
+    outline: none;
+    border: none;
 }
 
 .messages .box-message .send:hover {
@@ -127,6 +129,12 @@
     margin-right: 30px;
 }
 
+.messages .chat-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
 .messages .box-message .message-user:hover {
     background-color: var(--greyD9);
 }
@@ -139,6 +147,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    font-size: var(--p);
 }
 
 .messages .box-message .message-user span {
@@ -181,7 +190,7 @@
     background-color: var(--greyE5);
 }
 
-.messages .box-message .messages-chat {
+.messages .box-message .chat-messages {
     height: 50vh;
     overflow-y: auto;
     overflow-x: hidden;
@@ -226,12 +235,12 @@
         max-width: 100%;
     }
 
-    .Emoji{
+    .Emoji {
         margin-right: 80px;
     }
 }
 
-.Emoji{
+.Emoji {
     position: absolute;
     right: 0;
     margin-bottom: 500px;

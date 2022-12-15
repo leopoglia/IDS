@@ -84,8 +84,8 @@ export default function EscopeDemand() {
                     <div className="flex">
                         <Input label="Descrição" required=""></Input>
 
-                        <div className="input-checkbox">
-                            <label className="requirements">Requisitos de controles internos</label>
+                        <div className="input-checkbox requirements">
+                            <label>Requisitos de controles internos</label>
                             <div className="checkbox">
                                 <CheckBox />
                             </div>

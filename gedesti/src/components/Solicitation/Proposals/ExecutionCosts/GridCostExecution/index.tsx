@@ -119,9 +119,9 @@ export default function ConditionalValidationGrid() {
 
 
             <tr>
-                <td>Programador Júnior</td>
-                <td>Grande</td>
-                <td>20 dias</td>
+                <td>Interno</td>
+                <td>Infraestrutura</td>
+                <td>20 meses</td>
                 <td>400 horas</td>
                 <td>50</td>
                 <td>1000</td>

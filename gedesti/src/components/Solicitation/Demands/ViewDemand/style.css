@@ -69,15 +69,15 @@
     margin-right: 15px !important;
 }
 
-.view-demand .btn-download{
+.view-demand .btn-download {
     width: 45px !important;
 }
 
-.view-demand .btn-mini{
+.view-demand .btn-mini {
     margin-left: 15px !important;
 }
 
-.view-demand .btn-download span{
+.view-demand .btn-download span {
     margin: 0;
 }
 
@@ -111,4 +111,18 @@
 
 .view-demand .proposal-view-buttons button {
     margin-left: 15px;
+}
+
+.view-demand .input-disabled {
+    border: none;
+    color: black;
+}
+
+.view-demand .input-disabled:hover {
+    border: none !important;
+}
+
+.view-demand .input-disabled:focus {
+    outline: none;
+    border: none !important;
 }

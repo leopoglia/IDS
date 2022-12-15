@@ -133,6 +133,8 @@ const ChatRoom = () => {
         setMessage((previousMessage) => previousMessage + emojiData.emoji);
     }
 
+    const time = new Date().toLocaleTimeString();
+
 
     return (
         <div className="messages">
@@ -163,12 +165,12 @@ const ChatRoom = () => {
                     {userData.connected ?
                         <div className="chat-box">
                             <div className="member-list">
-                                <ul>
+                                {/* <ul>
                                     <li onClick={() => { setTab("CHATROOM") }} className={`member ${tab === "CHATROOM" && "active"}`}>Chatroom</li>
                                     {[...privateChats.keys()].map((name, index) => (
                                         <li onClick={() => { setTab(name) }} className={`member ${tab === name && "active"}`} key={index}>{name}</li>
                                     ))}
-                                </ul>
+                                </ul> */}
                             </div>
                             {tab === "CHATROOM" && <div className="chat-content">
                                 <ul className="chat-messages">
@@ -176,7 +178,8 @@ const ChatRoom = () => {
                                         <li className={`message-user ${chat.senderName === userData.username && "self"}`} key={index}>
                                             {chat.senderName !== userData.username && <div className="avatar">{chat.senderName}</div>}
                                             <div className="message-data">{chat.message}</div>
-                                            {chat.senderName === userData.username && <div className="avatar self">{chat.senderName}</div>}
+
+                                            <div className='message-time'>{time}</div>
                                         </li>
                                     ))}
                                 </ul>
@@ -184,41 +187,45 @@ const ChatRoom = () => {
                                 <div className="send-message">
 
 
-                                    <input type="text" className="input-message" placeholder="enter the message" value={userData.message} onChange={handleMessage} />
-
-                                    <div className="input-message">
-                                        <input type="text" placeholder="Envie sua mensagem"
-                                            onInput={(e) =>
-                                                setMessage(e.target.value)}
-                                            value={userData.message} onChange={handleMessage}
-                                        />
+                                    {/* <input type="text" className="input-message" placeholder="enter the message" value={userData.message} onChange={handleMessage} /> */}
 
 
-                                        <div className="actions-message">
+                                    <div className="display-flex">
+                                        <div className="input-message">
+                                            <input type="text" placeholder="Envie sua mensagem"
+                                                onInput={(e) =>
+                                                    setMessage(e.target.value)}
+                                                value={userData.message} onChange={handleMessage}
+                                            />
 
 
-                                            <div className="add-reaction" onClick={() => setEmoji(!emoji)}>
-                                                <span className="material-symbols-outlined">
-                                                    add_reaction
-                                                </span>
+                                            <div className="actions-message">
+
+
+                                                <div className="add-reaction" onClick={() => setEmoji(!emoji)}>
+                                                    <span className="material-symbols-outlined">
+                                                        add_reaction
+                                                    </span>
+                                                </div>
+
+                                                <div className="attach_file">
+                                                    <span className="material-symbols-outlined">
+                                                        attach_file
+                                                    </span>
+                                                </div>
+
                                             </div>
-
-                                            <div className="attach_file">
-                                                <span className="material-symbols-outlined">
-                                                    attach_file
-                                                </span>
-                                            </div>
-
                                         </div>
+
+
+
+                                        <button type="button" className="send send-ubtton" onClick={sendValue}>
+                                            <span className="material-symbols-outlined">
+                                                send
+                                            </span>
+                                        </button>
                                     </div>
 
-
-
-                                    <button type="button" className="send send-ubtton" onClick={sendValue}>
-                                        <span className="material-symbols-outlined">
-                                            send
-                                        </span>
-                                    </button>
                                 </div>
                             </div>}
 

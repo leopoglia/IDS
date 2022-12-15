@@ -17,6 +17,8 @@ export default function ViewDemand() {
     const url = window.location.href.split("/")[3];
     const [actionsDemand, setActionsDemand] = useState(1);
     const [stepDemand, setStepDemand] = useState(2);
+    const [editDemand, setEditDemand] = useState(true);
+    const [inputDiv, setInputDiv] = useState("input-disabled");
 
     const [demands] = useState([
         {
@@ -64,7 +66,7 @@ export default function ViewDemand() {
                                         <span>{t("generatePDF")}</span>
                                     </button>
 
-                                    <button className="btn-primary btn-download btn-mini">
+                                    <button onClick={() => { setEditDemand(!editDemand); if (inputDiv === "") { setInputDiv("input-disabled") } else { setInputDiv("") } }} className="btn-primary btn-download btn-mini">
                                         <span className="material-symbols-outlined">
                                             edit
                                         </span>
@@ -122,15 +124,14 @@ export default function ViewDemand() {
                                         <div>
                                             <div className="situation-current">
                                                 <p>{t("requester")}</p>
-                                                <span>{val.requester}</span>
+                                                <input className={inputDiv} type="text" value={val.requester} disabled={editDemand} />
                                             </div>
 
                                             <div className="situation-current">
                                                 <p className="title">{t("currentSituation")}</p>
-                                                <span>{val.currentSituation}</span>
+                                                <input className={inputDiv} type="text" value={val.currentSituation} disabled={editDemand} />
                                                 <p className="title">{t("proposal")}</p>
-                                                <span>{val.proposal}</span>
-
+                                                <input className={inputDiv} type="text" value={val.proposal} disabled={editDemand} />
                                             </div>
 
                                             <div className="cust-center">
@@ -315,10 +316,11 @@ export default function ViewDemand() {
                             <Title nav={t("proposalViewProposal")} title="viewProposal" />
 
                             <Link to="/">
-                                <button className="btn-primary btn-download">
+                                <button className="btn-primary">
                                     <span className="material-symbols-outlined">
                                         download
                                     </span>
+                                    <span>{t("generatePDF")}</span>
                                 </button>
                             </Link>
 

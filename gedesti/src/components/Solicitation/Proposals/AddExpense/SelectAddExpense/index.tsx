@@ -5,7 +5,7 @@ import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
-export default function SelectLabels() {
+export default function SelectLabels(props: any) {
     const [age, setAge] = React.useState('');
 
     const handleChange = (event: SelectChangeEvent) => {
@@ -24,12 +24,19 @@ export default function SelectLabels() {
 
                     sx={{ height: '45px' }}
                 >
-                    <MenuItem value="">
-                        <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
+
+                    {props.type === "typeOfExpense" ? <MenuItem value={10}>Interno</MenuItem>
+                        : null}
+
+                    {props.type === "typeOfExpense" ? <MenuItem value={20}>Externo</MenuItem>
+                        : null}
+
+                    {props.type === "expenseProfile" ? <MenuItem value={10}>Desenvolvimento</MenuItem>
+                        : null}
+
+                    {props.type === "expenseProfile" ? <MenuItem value={20}>Infraestrutura</MenuItem>
+                        : null}
+
                 </Select>
             </FormControl>
         </div>

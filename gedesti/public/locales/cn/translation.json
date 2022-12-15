@@ -98,5 +98,7 @@
     "proposalEditDemand": "提案 > 編輯需求",
     "generalInformations": "一般信息",
     "titleProposal": "標題",
-    "problemToBeSolved": "要解決的問題 (現在的情況)"
+    "problemToBeSolved": "要解決的問題 (現在的情況)",
+    "proposalScope": "提案範圍",
+    "proposalScopeProposal": "提案 > 提案範圍"
 }

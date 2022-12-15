@@ -20,7 +20,7 @@ export default function EditProposalScope() {
 
         <div className="background-title">
 
-          <Title title="Escopo da Proposta" nav="Proposals > Escopo da Proposta" />
+          <Title title={t("proposalScope")} nav={t("proposalScopeProposal")} />
 
         </div>
 

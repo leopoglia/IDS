@@ -10,7 +10,7 @@ import SelectCoin from "../SelectCoin";
 import CheckBox from "../CheckBox";
 import { useTranslation } from "react-i18next";
 import { useState } from 'react';
-import BenefitServices from "../../../../../services/realBenefitService";
+import RealServices from "../../../../../services/realBenefitService";
 import QualitativeServices from "../../../../../services/qualitativeBenefitService";
 import PotentialServices from "../../../../../services/potentialBenefitService";
 
@@ -30,9 +30,13 @@ export default function CreateDemands2() {
     const [interalControlsRequirements, setInteralControlsRequirements] = useState("");
 
     async function cadastrarBeneficios() {
-        await BenefitServices.save(Number.parseFloat(realMonthlyValue), realBenefitDescription, "real");
-        await PotentialServices.save(Number.parseFloat(potentialMonthlyValue), true, "real");
-        await QualitativeServices.save(frequencyOfUse, true);
+        let realBenefits:any = await RealServices.save(Number.parseFloat(realMonthlyValue), realBenefitDescription, "real");
+        let potentialBenefits:any = await PotentialServices.save(Number.parseFloat(potentialMonthlyValue), true, "real");
+        let qualitativeBenefits:any = await QualitativeServices.save(frequencyOfUse, true);
+
+        localStorage.setItem("realBenefits", JSON.stringify(realBenefits));
+        localStorage.setItem("potentialBenefits", JSON.stringify(potentialBenefits));
+        localStorage.setItem("qualitativeBenefits", JSON.stringify(qualitativeBenefits));
     }
 
     return (

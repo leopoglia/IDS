@@ -12,19 +12,38 @@ export default function CreateDemands3() {
 
     const { t } = useTranslation();
 
-    const [demandAttachment, setdemandAttachment] = useState("");
-    const [executionPeriod, setExecutionPeriod]:any = useState("");
+    const [demandAttachment, setdemandAttachment]: any = useState("");
+    const [executionPeriod, setExecutionPeriod]: any = useState("");
 
-    let demandTitle:any = localStorage.getItem("demandTitle");
-    let currentProblem:any = localStorage.getItem("demandProblem");
-    let proposal = localStorage.getItem("proposal");
-    let costCenter:any = localStorage.getItem("costCenter"); 
+    let demandTitle: any = localStorage.getItem("demandTitle");
+    let currentProblem: any = localStorage.getItem("currentProblem");
+    let demandObjective: any = localStorage.getItem("demandObjective");
+    let costCenter: any = localStorage.getItem("costCenter");
+
+    let realBenefits: any = localStorage.getItem("realBenefits");
+    let realBenefitCode = JSON.parse(realBenefits).realBenefitCode;
+    let potentialBenefits: any = localStorage.getItem("potentialBenefits");
+    let potentialBenefitCode = JSON.parse(potentialBenefits).potentialBenefitCode;
+    let qualitativeBenefits: any = localStorage.getItem("qualitativeBenefits");
+    let qualitativeBenefitCode = JSON.parse(qualitativeBenefits).qualitativeBenefitCode;
 
     let worker:any = localStorage.getItem("worker");
     let workerCode = JSON.parse(worker).id;
 
     async function cadastrarDemanda(){
-        await Services.save(demandTitle, currentProblem, "objetivo", costCenter, "backlog", 20, executionPeriod, workerCode, 1, 1, 1, demandAttachment);
+        await Services.save(demandTitle,
+            currentProblem,
+            demandObjective,
+            costCenter,
+            "backlog",
+            20,
+            executionPeriod,
+            workerCode,
+            realBenefitCode,
+            potentialBenefitCode,
+            qualitativeBenefitCode,
+            demandAttachment);
+            console.log(realBenefits.realBenefitCode, potentialBenefits.potentialBenefitCode, qualitativeBenefits.qualitativeBenefitCode)
     }
 
     return (

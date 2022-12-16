@@ -17,12 +17,12 @@ export default function CreateDemands1() {
 
     const [demandTitle, setDemandTitle] = useState("");
     const [currentProblem, setcurrentProblem] = useState("");
-    const [proposal, setProposal] = useState("");
+    const [demandObjective, setDemandObjective] = useState("");
     const [costCenter, setCostCenter] = useState("");
 
     localStorage.setItem("demandTitle", demandTitle);
     localStorage.setItem("currentProblem", currentProblem);
-    localStorage.setItem("proposal", proposal);
+    localStorage.setItem("demandObjective", demandObjective);
     localStorage.setItem("costCenter", costCenter);
 
     return (
@@ -56,7 +56,7 @@ export default function CreateDemands1() {
 
                     <div className="text-area">
                         <label>{t("proposal")} *</label>
-                        <textarea onChange={(e) => { setProposal(e.target.value) }} />
+                        <textarea onChange={(e) => { setDemandObjective(e.target.value) }} />
                     </div>
 
                     {/* <TextArea label="proposal" required="*" onChange={(e) => { setProposal(e.target.value) }}></TextArea> */}

@@ -1,32 +1,32 @@
 const url = "http://localhost:8080/api/demand";
 
 const Services = {
-    save: function (demandTitle: String, currentProblem: String, demandObjective: String, costCenter: String, demandStatus: String, score: Number, executionPeriod: Number, requesterRegistration: Number, realBenefit: Number, QualitativeBenefit: Number, PotentialBenefit: Number, demandAttachment: any) {
+    save: function (demandTitle: String, currentProblem: String, demandObjective: String, costCenter: String, demandStatus: String, score: Number, executionPeriod: Number, requesterRegistration: Number, realBenefit: Number, qualitativeBenefit: Number, potentialBenefit: Number, demandAttachment: any) {
         var formData = new FormData();
-        let demand = { 
+        let demand = {
             "demandTitle": demandTitle,
             "currentProblem": currentProblem,
             "demandObjective": demandObjective,
-            "costCenter": [{"costCenterCode": costCenter}],
+            "costCenter": [{ "costCenterCode": costCenter }],
             "demandStatus": demandStatus,
             "score": score,
             "executionPeriod": executionPeriod,
-            "requesterRegistration": {"workerCode": requesterRegistration},
-            "realBenefit": {"realBenefitCode": realBenefit},
-            "QualitativeBenefit": {"QualitativeBenefitCode": QualitativeBenefit},
-            "PotentialBenefit": {"PotentialBenefitCode": PotentialBenefit} }
-        formData.append("demand", JSON.stringify(demand));
-        formData.append("demandAttachment", demandAttachment);
-        console.log(JSON.stringify(formData))
+            "requesterRegistration": { "workerCode": requesterRegistration },
+            "realBenefit": { "realBenefitCode": realBenefit },
+            "qualitativeBenefit": {"qualitativeBenefitCode": qualitativeBenefit},
+            "potentialBenefit": {"potentialBenefitCode": potentialBenefit} }
+        formData.append('demand', JSON.stringify(demand));
+        formData.append('demandAttachment', demandAttachment);
+
+        console.log(formData.get("demand"));
 
         return new Promise((resolve, reject) => {
             fetch(url, {
                 method: 'POST',
-                body: formData,
-                headers: { 'Content-Type': 'application/json' }
+                body: formData
             }).then(function (result) { return result.json(); })
                 .then(resolve)
-                .catch(resolve)
+                .catch(reject)
         })
     },
     findAll: async function () {
@@ -35,7 +35,7 @@ const Services = {
                 method: 'GET', headers: { 'Content-Type': 'application/json' }
             }).then(function (result) { return result.json(); })
                 .then(resolve)
-                .catch(resolve)
+                .catch(reject)
         })
     },
     findById: function (id: number) {
@@ -44,7 +44,7 @@ const Services = {
                 method: 'GET', headers: { 'Content-Type': 'application/json' }
             }).then(function (result) { return result.json(); })
                 .then(resolve)
-                .catch(resolve)
+                .catch(reject)
         })
     },
     delete: function (id: number) {
@@ -53,7 +53,7 @@ const Services = {
                 method: 'DELETE', headers: { 'Content-Type': 'application/json' }
             }).then(function (result) { return result.json(); })
                 .then(resolve)
-                .catch(resolve)
+                .catch(reject)
         })
     }
 }

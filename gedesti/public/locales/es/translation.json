@@ -120,5 +120,10 @@
     "codeMinutes": "Código acta",
     "agendaCreateAgenda": "Agenda > Crear Agenda",
     "publiquedMinute": "Acta publicada",
-    "objective": "Objetivo"
+    "objective": "Objetivo",
+    "addProposal": "Agregar propuesta",
+    "agendaName": "Nombre de la agenda",
+    "number": "Número",
+    "year": "Año",
+    "save": "Guardar"
 }

@@ -535,7 +535,7 @@ export default function ViewDemand() {
                             <Link to="/proposal/view">
                                 <div className="proposal-view">
 
-                                    <p>Nome da Proposta</p>
+                                    <p>{t("proposalName")}</p>
 
                                     <span>
                                         Nunc maximus purus sit amet est lacinia condimentum. Praesent sodales leo a finibus semper. Nunc luctus libero fermentum varius imperdiet. Aliquam tellus leo, volutpat ac scelerisque eget, gravida in urna. Curabitur ac urna bibendum, faucibus eros quis, auctor nibh. Etiam auctor rhoncus velit. Nulla finibus fringilla magna, eu tempus nisl molestie sed. Vivamus efficitur dui at malesuada lobortis.

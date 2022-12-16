@@ -120,5 +120,10 @@
     "codeMinutes": "會議記錄代碼",
     "agendaCreateAgenda": "議程 > 創建議程",
     "publiquedMinute": "發布會議記錄",
-    "objective": "目標"
+    "objective": "目標",
+    "addProposal": "添加提案",
+    "agendaName": "議程名稱",
+    "number": "數量",
+    "year": "年",
+    "save": "保存"
 }

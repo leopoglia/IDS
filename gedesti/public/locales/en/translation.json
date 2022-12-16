@@ -120,5 +120,10 @@
     "codeMinutes": "Code minutes",
     "agendaCreateAgenda": "Agenda > Create Agenda",
     "publiquedMinute": "Publiqued minute",
-    "objective": "Objective"
+    "objective": "Objective",
+    "addProposal": "Add proposal",
+    "agendaName": "Agenda name",
+    "number": "Number",
+    "year": "Year",
+    "save": "Save"
 }

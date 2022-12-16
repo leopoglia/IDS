@@ -121,5 +121,10 @@
     "proposalName": "Nome da proposta",
     "agendaCreateAgenda": "Pauta > Criar Pauta",
     "publiquedMinute": "Ata publicada",
-    "objetive": "Objetivo"
+    "objective": "Objetivo",
+    "addProposal": "Adicionar proposta",
+    "agendaName": "Nome da pauta",
+    "number": "Número",
+    "year": "Ano",
+    "save": "Salvar"
 }

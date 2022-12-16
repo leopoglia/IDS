@@ -56,7 +56,7 @@ export default function CreateAgenda() {
 
                         <div className="display-flex-end">
                             <Link to="/agenda/select-proposals">
-                                <button className="btn-primary">Adicionar Proposta</button>
+                                <button className="btn-primary">{t("addProposal")}</button>
                             </Link>
                         </div>
 
@@ -65,9 +65,9 @@ export default function CreateAgenda() {
 
 
                     <div className="display-flex">
-                        <Input label="Nome da Pauta" required="*" />
-                        <Input label="Número" required="*" />
-                        <Input label="Ano" required="*" />
+                        <Input label={t("agendaName")} required="*" />
+                        <Input label={t("number")} required="*" />
+                        <Input label={t("year")} required="*" />
                     </div>
 
 
@@ -76,7 +76,7 @@ export default function CreateAgenda() {
 
                 <div className="display-flex-end">
                     <Link to="/agendas">
-                        <button className="btn-primary">Salvar</button>
+                        <button className="btn-primary">{t("save")}</button>
                     </Link>
                 </div>
 

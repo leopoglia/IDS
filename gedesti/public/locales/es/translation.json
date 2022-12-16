@@ -52,6 +52,7 @@
     "benefitPotential": "Beneficio potencial",
     "benefitQualitative": "Beneficio cualitativo",
     "attachments": "Archivos adjuntos",
+    "attachment": "Archivo adjunto",
     "classification": "Clasificación",
     "complements": "Complementos",
     "generalInformation": "Información general",
@@ -105,5 +106,12 @@
     "demandExecutionCosts": "Demanda > Costos de ejecución",
     "executionCostsProject": "Costos de ejecución del proyecto",
     "responsibleBussiness": "Responsable por el negocio",
-    "end": "Fin"
+    "end": "Fin",
+    "responsibleArea": "Responsable de área",
+    "start": "Inicio",
+    "addExpense": "Agregar gasto",
+    "payingCostCenter": "Centro de costo pagador",
+    "totalsCosts": "Costos totales",
+    "internalsCosts": "Costos internos",
+    "externalCosts": "Costos externos"
 }

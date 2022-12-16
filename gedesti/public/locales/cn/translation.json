@@ -52,6 +52,7 @@
     "benefitPotential": "潛在收益",
     "benefitQualitative": "質量收益",
     "attachments": "附件",
+    "attachment": "附件",
     "classification": "分類",
     "complements": "補充",
     "generalInformation": "一般信息",
@@ -105,5 +106,12 @@
     "demandExecutionCosts": "需求 > 執行成本",
     "executionCostsProject": "執行成本項目",
     "responsibleBussiness": "負責業務",
-    "end": "結束"
+    "end": "結束",
+    "responsibleArea": "負責區域",
+    "start": "開始",
+    "addExpense": "添加費用",
+    "payingCostCenter": "支付成本中心",
+    "totalsCosts": "總成本",
+    "internalsCosts": "內部成本",
+    "externalCosts": "外部成本"
 }

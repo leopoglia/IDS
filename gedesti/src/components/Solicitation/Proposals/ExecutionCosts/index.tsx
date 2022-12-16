@@ -23,14 +23,14 @@ export default function ExecutionCosts() {
 
 
                 <div className="background-title">
-                    <Title title="Execution Costs" nav={t("demandExecutionCosts")} />
+                    <Title title="executionCosts" nav={t("demandExecutionCosts")} />
                 </div>
 
                 <div className="box">
 
 
                     <div className="display-flex">
-                        <p>Custos de execução do projeto </p>
+                        <p>{t("executionCostsProject")}</p>
                     </div>
 
                     <div className="block">
@@ -39,14 +39,14 @@ export default function ExecutionCosts() {
                         <div className="display-flex-space-between">
 
                             <Link to="add-expense">
-                                <button className="btn-secondary">Adicionar despesa</button>
+                                <button className="btn-secondary">{t("addExpense")}</button>
                             </Link>
                         </div>
 
 
                         <div className="display-flex-grid">
                             <div>
-                                <label>Centros de custos pagantes *</label>
+                                <label>{t("payingCostCenter")} *</label>
 
                                 <div className="display-flex">
                                     <SelectCostExecution />
@@ -75,21 +75,21 @@ export default function ExecutionCosts() {
 
                 <div className="demands-footer">
                     <Link to="/proposal/informations">
-                        <button className="btn-secondary">Voltar</button>
+                        <button className="btn-secondary">{t("return")}</button>
                     </Link>
 
                     <div className="display-flex-center">
                         <div className="costs-execution">
-                            <span>Custos totais: R$ 0,00</span>
+                            <span>{t("totalsCosts")}: R$ 0,00</span>
 
-                            <span>Custos externo: R$ 0,00</span>
+                            <span>{t("externalCosts")}: R$ 0,00</span>
 
-                            <span>Custos interno: R$ 0,00</span>
+                            <span>{t("internalsCosts")}: R$ 0,00</span>
 
                         </div>
 
                         <Link to="/proposals">
-                            <button className="btn-primary">Gerar Proposta</button>
+                            <button className="btn-primary">{t("generateProposal")}</button>
                         </Link>
                     </div>
                 </div>

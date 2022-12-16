@@ -41,14 +41,14 @@ export default function ProposedInformation() {
                         </div>
 
                         <div>
-                            <label>Área do responsável</label>
+                            <label>{t("responsibleArea")}</label>
                             <input type="text" />
                         </div>
                     </div>
 
                     <div className="display-flex-grid">
                         <div className="one">
-                            <label>Início *</label>
+                            <label>{t("start")} *</label>
                             <input type="date" />
                         </div>
 
@@ -59,7 +59,7 @@ export default function ProposedInformation() {
                     </div>
 
                     <div className="display-btn-anexo">
-                        <label>Anexo</label>
+                        <label>{t("attachment")}</label>
                         <div className="attachments">
                             <input type="file" id="file" />
                             <label htmlFor="file">
@@ -67,7 +67,7 @@ export default function ProposedInformation() {
                                     upload_file
                                 </span>
 
-                                Enviar arquivo</label>
+                                {t("sendAttachment")}</label>
                         </div>
                     </div>
                 </div>

@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColumns, GridRowsProp } from '@mui/x-data-grid';
 import { randomPrice } from '@mui/x-data-grid-generator';
-
+import { useTranslation } from "react-i18next";
 
 const StyledBox = styled(Box)(({ theme }) => ({
     height: 300,
@@ -53,6 +53,8 @@ const rows: GridRowsProp = [
 ];
 
 export default function ConditionalValidationGrid() {
+    const { t } = useTranslation();
+
     const columns: GridColumns = [
         {
             field: 'tipoDespesa',
@@ -106,12 +108,12 @@ export default function ConditionalValidationGrid() {
         <table>
             <div className='hr' />
             <tr>
-                <td>Tipo despesa</td>
-                <td>Perfil despesa</td>
-                <td>Período de execução</td>
-                <td>Horas necessárias</td>
-                <td>Valor da hora</td>
-                <td>Valor total</td>
+                <td>{t("expenseType")}</td>
+                <td>{t("expenseProfile")}</td>
+                <td>{t("periodOfExecution")}</td>
+                <td>{t("necessityHours")}</td>
+                <td>{t("hoursValue")}</td>
+                <td>{t("totalValue")}</td>
 
             </tr>
 

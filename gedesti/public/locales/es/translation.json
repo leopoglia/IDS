@@ -113,5 +113,9 @@
     "payingCostCenter": "Centro de costo pagador",
     "totalsCosts": "Costos totales",
     "internalsCosts": "Costos internos",
-    "externalCosts": "Costos externos"
+    "externalCosts": "Costos externos",
+    "expenseType": "Tipo de gasto",
+    "expenseProfile": "Perfil de gasto",
+    "numberMinutes": "Número de actas",
+    "codeMinutes": "Código acta"
 }

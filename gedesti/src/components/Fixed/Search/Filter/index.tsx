@@ -136,12 +136,12 @@ export default function Filter(props: FilterProps) {
 
                 <div className="li" onClick={() => { setFilter(true); setType("forum") }}>
                     <span className="material-symbols-outlined">workspaces</span>
-                    <span>Forúm</span>
+                    <span>{t("forum")}</span>
                 </div>
 
                 <div className="li" onClick={() => { setFilter(true); setType("code-agendas") }}>
                     <span className="material-symbols-outlined">draft</span>
-                    <span>Código Pauta</span>
+                    <span>{t("codeProposal")}</span>
                 </div>
 
                 {sendFilter()}
@@ -154,17 +154,17 @@ export default function Filter(props: FilterProps) {
 
                 <div className="li" onClick={() => { setFilter(true); setType("number-minutes") }}>
                     <span className="material-symbols-outlined">workspaces</span>
-                    <span>Número ATA</span>
+                    <span>{t("numberMinutes")}</span>
                 </div>
 
                 <div className="li" onClick={() => { setFilter(true); setType("date") }}>
                     <span className="material-symbols-outlined">calendar_month</span>
-                    <span>Data</span>
+                    <span>{t("date")}</span>
                 </div>
 
                 <div className="li" onClick={() => { setFilter(true); setType("code-minutes") }}>
                     <span className="material-symbols-outlined">draft</span>
-                    <span>Código ATA</span>
+                    <span>{t("codeMinutes")}</span>
                 </div>
 
                 {sendFilter()}

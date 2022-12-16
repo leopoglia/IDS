@@ -113,5 +113,9 @@
     "payingCostCenter": "Paying cost center",
     "totalsCosts": "Totals costs",
     "internalsCosts": "Internals costs",
-    "externalCosts": "External costs"
+    "externalCosts": "External costs",
+    "expenseType": "Expense type",
+    "expenseProfile": "Expense profile",
+    "numberMinutes": "Number minutes",
+    "codeMinutes": "Code minutes"
 }

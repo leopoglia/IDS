@@ -113,5 +113,9 @@
     "payingCostCenter": "支付成本中心",
     "totalsCosts": "總成本",
     "internalsCosts": "內部成本",
-    "externalCosts": "外部成本"
+    "externalCosts": "外部成本",
+    "expenseType": "費用類型",
+    "expenseProfile": "費用配置",
+    "numberMinutes": "會議記錄數",
+    "codeMinutes": "會議記錄代碼"
 }

@@ -119,5 +119,6 @@
     "numberMinutes": "Número de actas",
     "codeMinutes": "Código acta",
     "agendaCreateAgenda": "Agenda > Crear Agenda",
-    "publiquedMinute": "Acta publicada"
+    "publiquedMinute": "Acta publicada",
+    "objective": "Objetivo"
 }

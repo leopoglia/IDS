@@ -119,5 +119,6 @@
     "numberMinutes": "Number minutes",
     "codeMinutes": "Code minutes",
     "agendaCreateAgenda": "Agenda > Create Agenda",
-    "publiquedMinute": "Publiqued minute"
+    "publiquedMinute": "Publiqued minute",
+    "objective": "Objective"
 }

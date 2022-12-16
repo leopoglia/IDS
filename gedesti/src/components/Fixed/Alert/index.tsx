@@ -1,7 +1,6 @@
-import * as React from 'react';
 import Alert from '@mui/material/Alert';
-import Stack from '@mui/material/Stack';
 import "./style.css"
+import { useState } from 'react';
 
 export default function BasicAlerts(props: any) {
 

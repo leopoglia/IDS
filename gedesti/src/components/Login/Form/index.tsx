@@ -18,8 +18,8 @@ export default function Form() {
                 <Alert type="error" text="Email ou senha incorretos!" />
             );
         }
-    }
 
+    }
 
 
     async function login() {
@@ -42,6 +42,9 @@ export default function Form() {
             }
         } else {
             setError("input-error");
+            setTimeout(() => {
+                setError("");
+            }, 10000);
         }
     }
 

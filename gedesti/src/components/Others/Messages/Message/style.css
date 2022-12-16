@@ -135,6 +135,12 @@
     margin: 0;
 }
 
+.messages .message-data span {
+    width: 100%;
+    word-break: break-all;
+    overflow-x: hidden;
+}
+
 .messages .box-message .message-user:hover {
     background-color: var(--greyD9);
 }

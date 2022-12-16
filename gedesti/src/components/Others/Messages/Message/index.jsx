@@ -166,7 +166,7 @@ const ChatRoom = () => {
                                 {publicChats.map((chat, index) => (
                                     <li className={`message-user ${chat.senderName === userData.username && "self"}`} key={index}>
                                         {chat.senderName !== userData.username && <div className="avatar">{chat.senderName}</div>}
-                                        <div className="message-data">{chat.message}</div>
+                                        <div className="message-data"><span>{chat.message}</span></div>
 
                                         <div className='message-time'>{time}</div>
                                     </li>

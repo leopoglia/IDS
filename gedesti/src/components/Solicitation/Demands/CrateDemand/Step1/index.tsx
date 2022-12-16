@@ -55,7 +55,7 @@ export default function CreateDemands1() {
                     <TextArea label="currentSituation" required="*" onChange={(e) => { setDemandProblem(e.target.value) }}></TextArea> */}
 
                     <div className="text-area">
-                        <label>{t("proposal")} *</label>
+                        <label>{t("objective")} *</label>
                         <textarea onChange={(e) => { setDemandObjective(e.target.value) }} />
                     </div>
 
@@ -73,7 +73,6 @@ export default function CreateDemands1() {
                 <div className="demands-footer">
                     <ButtonAction title="Voltar" click="voltar"></ButtonAction>
                     <ButtonAction title="Avançar" click="avancar"></ButtonAction>
-
                 </div>
 
             </div>

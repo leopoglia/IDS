@@ -4,9 +4,11 @@ import Title from "../../../Fixed/Search/Title";
 import "./style.css";
 import { Link } from "react-router-dom";
 import Input from "../../Demands/CrateDemand/Input";
-
+import { useTranslation } from "react-i18next";
 
 export default function CreateAgenda() {
+
+    const { t } = useTranslation();
 
     return (
         <div className="create-agenda">
@@ -14,13 +16,13 @@ export default function CreateAgenda() {
             <Nav />
             <div className="container">
                 <div className="background-title">
-                    <Title title="Criar Pauta" nav="Pautas > Criar Pauta" />
+                    <Title title={t("createAgenda")} nav={t("agendaCreateAgenda")} />
                 </div>
 
                 <div className="box">
 
                     <div className="display-flex">
-                        <p>Propostas</p>
+                        <p>{t("proposals")}</p>
 
                     </div>
 
@@ -28,7 +30,7 @@ export default function CreateAgenda() {
                     <div className="proposals-agenda">
                         <div className="proposal">
                             <div className="proposal-agenda">
-                                <p>Nome da Proposta</p>
+                                <p>{t("proposalName")}</p>
 
 
                                 <div className="delete-proposal-agenda">
@@ -47,7 +49,7 @@ export default function CreateAgenda() {
 
                                 <input type="checkbox" />
 
-                                <label>Ata Públicada</label>
+                                <label>{t("publiquedMinute")}</label>
 
                             </div>
                         </div>

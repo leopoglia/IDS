@@ -117,5 +117,7 @@
     "expenseType": "Expense type",
     "expenseProfile": "Expense profile",
     "numberMinutes": "Number minutes",
-    "codeMinutes": "Code minutes"
+    "codeMinutes": "Code minutes",
+    "agendaCreateAgenda": "Agenda > Create Agenda",
+    "publiquedMinute": "Publiqued minute"
 }

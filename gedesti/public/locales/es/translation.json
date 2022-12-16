@@ -117,5 +117,7 @@
     "expenseType": "Tipo de gasto",
     "expenseProfile": "Perfil de gasto",
     "numberMinutes": "Número de actas",
-    "codeMinutes": "Código acta"
+    "codeMinutes": "Código acta",
+    "agendaCreateAgenda": "Agenda > Crear Agenda",
+    "publiquedMinute": "Acta publicada"
 }

@@ -117,5 +117,7 @@
     "expenseType": "費用類型",
     "expenseProfile": "費用配置",
     "numberMinutes": "會議記錄數",
-    "codeMinutes": "會議記錄代碼"
+    "codeMinutes": "會議記錄代碼",
+    "agendaCreateAgenda": "議程 > 創建議程",
+    "publiquedMinute": "發布會議記錄"
 }

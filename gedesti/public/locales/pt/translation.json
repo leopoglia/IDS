@@ -117,5 +117,8 @@
     "expenseType": "Tipo de despesa",
     "expenseProfile": "Perfil de despesa",
     "numberMinutes": "Número ata",
-    "codeMinutes": "Código ata"
+    "codeMinutes": "Código ata",
+    "proposalName": "Nome da proposta",
+    "agendaCreateAgenda": "Pauta > Criar Pauta",
+    "publiquedMinute": "Ata publicada"
 }

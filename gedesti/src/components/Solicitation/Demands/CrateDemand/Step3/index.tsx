@@ -35,7 +35,7 @@ export default function CreateDemands3() {
             currentProblem,
             demandObjective,
             costCenter,
-            "backlog",
+            "Backlog",
             20,
             executionPeriod,
             workerCode,

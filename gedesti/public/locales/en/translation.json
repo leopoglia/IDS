@@ -125,5 +125,11 @@
     "agendaName": "Agenda name",
     "number": "Number",
     "year": "Year",
-    "save": "Save"
+    "save": "Save",
+    "proposalName": "Proposal name",
+    "agendaAgendaName": "Agenda > Agenda name",
+    "finish": "Finish",
+    "insertCommissionOpinion": "Insert commission opinion",
+    "observations": "Observations",
+    "commissionOpinion": "Commission opinion"
 }

@@ -3,9 +3,12 @@ import Nav from "../../../Fixed/Nav";
 import Title from "../../../Fixed/Search/Title";
 import { Link } from "react-router-dom";
 import "./style.css";
-
+import { useTranslation } from "react-i18next";
 
 export default function CommissionOpinion() {
+
+    const { t } = useTranslation();
+
     return (
         <div className="commission-opinion">
 
@@ -17,37 +20,37 @@ export default function CommissionOpinion() {
 
                 <div className="background-title">
 
-                    <Title title="Parecer da  Comissão" nav="Proposals > Parecer da  Comissão" />
+                    <Title title={t("commissionOpinion")} nav="Proposals > Parecer da  Comissão" />
 
 
                 </div>
 
                 <div className="box">
 
-                    <p>Parecer da comissão</p>
+                    <p>{t("commissionOpinion")}</p>
 
                     <div className="display-flex">
                         <div className="display-grid">
-                            <label htmlFor="yes">Aprovado</label>
+                            <label htmlFor="yes">{t("approve")}</label>
                             <input type="radio" id="yes" name="parecer" />
                         </div>
 
                         <div className="display-grid">
 
-                            <label htmlFor="no">Reprovado</label>
+                            <label htmlFor="no">{t("fail")}</label>
                             <input type="radio" id="no" name="parecer" />
                         </div>
                     </div>
 
 
-                    <p>Observações</p>
+                    <p>{t("observations")}</p>
 
                     <textarea className="textarea" />
                 </div>
 
                 <div className="display-flex-end">
                     <Link to="/agenda/view">
-                        <button className="btn-primary">Salvar</button>
+                        <button className="btn-primary">{t("save")}</button>
                     </Link>
                 </div>
             </div>

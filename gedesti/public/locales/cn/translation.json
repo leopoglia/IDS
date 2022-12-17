@@ -125,5 +125,11 @@
     "agendaName": "議程名稱",
     "number": "數量",
     "year": "年",
-    "save": "保存"
+    "save": "保存",
+    "proposalName": "提案名稱",
+    "agendaAgendaName": "議程 > 議程名稱",
+    "finish": "完成",
+    "insertCommissionOpinion": "插入委員會意見",
+    "observations": "觀察",
+    "commissionOpinion": "委員會意見"
 }

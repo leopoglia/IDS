@@ -126,5 +126,10 @@
     "agendaName": "Nome da pauta",
     "number": "Número",
     "year": "Ano",
-    "save": "Salvar"
+    "save": "Salvar",
+    "agendaAgendaName": "Pauta > Nome da pauta",
+    "insertCommissionOpinion": "Inserir parecer da comissão",
+    "finish": "Finalizar",
+    "observations": "Observações",
+    "commissionOpinion": "Parecer da comissão"
 }

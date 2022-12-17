@@ -125,5 +125,11 @@
     "agendaName": "Nombre de la agenda",
     "number": "Número",
     "year": "Año",
-    "save": "Guardar"
+    "save": "Guardar",
+    "proposalName": "Nombre de la propuesta",
+    "agendaAgendaName": "Agenda > Nombre de la agenda",
+    "finish": "Finalizar",
+    "insertCommissionOpinion": "Insertar opinión de la comisión",
+    "observations": "Observaciones",
+    "commissionOpinion": "Opinión de la comisión"
 }

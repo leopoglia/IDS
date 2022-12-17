@@ -525,12 +525,12 @@ export default function ViewDemand() {
 
                         <div className="background-title">
 
-                            <Title nav="Pautas > Nome Pauta" title="viewAgenda" />
+                            <Title nav={t("agendaAgendaName")} title="viewAgenda" />
                         </div>
 
                         <div className="box">
 
-                            <p>Propostas</p>
+                            <p>{t("proposals")}</p>
 
                             <Link to="/proposal/view">
                                 <div className="proposal-view">
@@ -543,7 +543,7 @@ export default function ViewDemand() {
 
                                     <div className="proposal-view-buttons">
                                         <Link to="/proposal/comission-opinion">
-                                            <button className="btn-primary">Inserir parecer comissão</button>
+                                            <button className="btn-primary">{t("insertCommissionOpinion")}</button>
                                         </Link>
                                     </div>
                                 </div>
@@ -552,7 +552,7 @@ export default function ViewDemand() {
 
                         <div className="display-flex-end">
                             <Link to="/minutes/create">
-                                <button className="btn-primary">Finalizar</button>
+                                <button className="btn-primary">{t("finish")}</button>
                             </Link>
                         </div>
 

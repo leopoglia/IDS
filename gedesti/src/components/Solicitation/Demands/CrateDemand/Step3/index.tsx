@@ -29,6 +29,7 @@ export default function CreateDemands3() {
 
     let worker:any = localStorage.getItem("worker");
     let workerCode = JSON.parse(worker).id;
+    const [fileAttachment, setFileAttachment]:any = useState();
 
     async function cadastrarDemanda(){
         await Services.save(demandTitle,
@@ -42,9 +43,14 @@ export default function CreateDemands3() {
             realBenefitCode,
             potentialBenefitCode,
             qualitativeBenefitCode,
-            demandAttachment);
+            fileAttachment);
             console.log(realBenefits.realBenefitCode, potentialBenefits.potentialBenefitCode, qualitativeBenefits.qualitativeBenefitCode)
     }
+
+    const handleFileSelected = (e: any): void => {
+        const files = Array.from(e.target.files)
+        setFileAttachment(files[0])
+      }
 
     return (
         <div className="create-demands-3">
@@ -70,7 +76,7 @@ export default function CreateDemands3() {
                     <label>{t("attachments")}</label>
 
                     <div className="attachments">
-                        <input type="file" id="file" onChange={(e) => { setdemandAttachment(e.target.value)}}/>
+                        <input type="file" id="file" onChange={handleFileSelected}/>
                         <label htmlFor="file">
                             <span className="material-symbols-outlined">
                                 upload_file

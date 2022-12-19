@@ -2,7 +2,6 @@ const url = "http://localhost:8080/api/classification"
 
 const Services = {
     save: function (classificationSize: Number, itSection: String, ppmcode: String, linkEpicJira: String, requesterBu: any, beneficiaryBu: any, analistRegistry: any) {
-
         let beneficiaryBuList: any = [];
 
         for (let i = 0; i < beneficiaryBu.length; i++) {

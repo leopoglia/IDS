@@ -148,5 +148,11 @@
     "history": "Histórico",
     "downloadPDF": "Baixar PDF",
     "changeStatus": "Alterar status",
-    "confirm": "Confirmar"
+    "confirm": "Confirmar",
+    "createMinute": "Criar ata",
+    "minuteCreateMinute": "Ata > Criar Ata",
+    "interal": "Interno",
+    "external": "Externo",
+    "development": "Desenvolvimento",
+    "infraestructure": "Infraestrutura"
 }

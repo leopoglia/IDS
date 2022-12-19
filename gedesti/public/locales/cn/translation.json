@@ -147,5 +147,10 @@
     "history": "歷史",
     "downloadPDF": "下載 PDF",
     "changeStatus": "更改狀態",
-    "confirm": "確認"
+    "confirm": "確認",
+    "minuteCreateMinute": "會議記錄 > 創建會議記錄",
+    "internal": "內部",
+    "external": "外部",
+    "development": "開發",
+    "infraestructure": "基礎設施"
 }

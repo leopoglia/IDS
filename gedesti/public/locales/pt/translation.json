@@ -115,7 +115,7 @@
     "internalsCosts": "Custos internos",
     "externalCosts": "Custos externos",
     "expenseType": "Tipo de despesa",
-    "expenseProfile": "Perfil de despesa",
+    "expenseProfile": "Perfil da despesa",
     "numberMinutes": "Número ata",
     "codeMinutes": "Código ata",
     "proposalName": "Nome da proposta",
@@ -154,5 +154,14 @@
     "interal": "Interno",
     "external": "Externo",
     "development": "Desenvolvimento",
-    "infraestructure": "Infraestrutura"
+    "infraestructure": "Infraestrutura",
+    "expenseInformation": "Informações da despesa",
+    "periodOfExecutionMonth": "Período de execução (mêses)",
+    "necessityHoursQuantity": "Quantidade de horas necessárias",
+    "hourValue": "Valor hora",
+    "expenseTotalValue": "Valor total da despesa",
+    "add": "Adicionar",
+    "proposalComissionOpinion": "Proposta > Parecer da comissão",
+    "createProposalSelectProposal": "Proposta > Criar Proposta > Selecionar Proposta",
+    "selectProposal": "Selecionar proposta"
 }

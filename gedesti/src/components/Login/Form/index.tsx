@@ -90,7 +90,7 @@ export default function Form() {
                     </div>
 
                     <Link to="/forget-password">
-                        {t("forgot-password")}
+                        {t("forgotPassword")}
                     </Link>
                 </section>
             </main>

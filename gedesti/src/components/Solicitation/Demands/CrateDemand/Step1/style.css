@@ -3,6 +3,19 @@
     justify-content: space-between;
 }
 
+.w45{
+    width: 45px;
+    min-width: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 15px;
+}
+
+.w45 span{
+    margin: 0px !important;
+}
+
 @media(max-width: 1050px){
     .create-demands-1 .progress-bar{
         width: 70%;

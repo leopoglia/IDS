@@ -63,7 +63,14 @@ export default function CreateDemands1() {
 
                     <div className="input">
                         <label>{t("costCenter")} *</label>
-                        <input onChange={(e) => { setCostCenter(e.target.value) }} type="text" />
+
+                        <div className="display-flex">
+                            <input onChange={(e) => { setCostCenter(e.target.value) }} type="text" />
+
+                            <div className="btn-primary w45">
+                                <span className="material-symbols-outlined">add</span>
+                            </div>
+                        </div>
                     </div>
 
                     {/* <Input label="costCenter" required="*" onChange={(e) => { setCostCenter(e.target.value) }}></Input> */}

@@ -40,6 +40,14 @@ export default function Form() {
 
                 window.location.href = "/demands";
             }
+
+            if (response?.status === 400 || response?.status === 500) {
+                setError("input-error");
+                setTimeout(() => {
+                    setError("");
+                }, 10000);
+            }
+
         } else {
             setError("input-error");
             setTimeout(() => {

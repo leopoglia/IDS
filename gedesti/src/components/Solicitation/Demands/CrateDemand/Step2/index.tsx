@@ -104,7 +104,7 @@ export default function CreateDemands2() {
                     <div className="flex">
                         {/* <Input label="monthlyValue" required="*" /> */}
                         <div className="input">
-                            <label>{t("monthlyValue")} </label>
+                            <label>{t("monthlyValue")} *</label>
                             <input type="text" onChange={(e) => { setFrequencyOfUse(e.target.value) }} />
                         </div>
                         <SelectCoin />

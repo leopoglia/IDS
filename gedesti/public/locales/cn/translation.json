@@ -3,7 +3,7 @@
     "email": "電子郵件",
     "password": "密碼",
     "remember-me": "記得我",
-    "forgot-password": "忘記密碼",
+    "forgotPassword": "忘記密碼",
     "login": "登錄",
     "demands": "要求",
     "viewDemands": "查看需求",
@@ -131,5 +131,12 @@
     "finish": "完成",
     "insertCommissionOpinion": "插入委員會意見",
     "observations": "觀察",
-    "commissionOpinion": "委員會意見"
+    "commissionOpinion": "委員會意見",
+    "send": "發送",
+    "deadlineDemand": "需求截止日期",
+    "complementary": "補充",
+    "agendaViewAgenda": "議程 > 查看議程",
+    "minuteViewMinute": "會議記錄 > 查看會議記錄",
+    "reasonForDisapproval": "拒絕原因", 
+    "cancel": "取消"
 }

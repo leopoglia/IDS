@@ -27,15 +27,15 @@ export default function ComplementDemand() {
 
                 <div className="box">
                     <div className="display-grid-select">
-                        <label htmlFor="">Prazo da execução da demanda *</label>
+                        <label htmlFor="">{t("deadlineDemand")} *</label>
                         <SelectSizeDemand />
                     </div>
                     <div className="display-grid">
-                        <label htmlFor="">Código do PPM *</label>
+                        <label htmlFor="">{t("ppmCode")} *</label>
                         <input type="text" />
                     </div>
                     <div className="display-grid">
-                        <label htmlFor="">Link para EPIC do Jira *</label>
+                        <label htmlFor="">{t("linkEpicJira")} *</label>
                         <input type="text" />
                     </div>
 
@@ -49,7 +49,7 @@ export default function ComplementDemand() {
                             <label htmlFor="file">
                                 <span className="material-symbols-outlined">
                                     upload_file
-                                </span>Enviar arquivo</label>
+                                </span>{t("sendAttachment")}</label>
                         </div>
 
                     </div>
@@ -57,7 +57,7 @@ export default function ComplementDemand() {
                 </div>
                 <div className="display-flex-end">
                     <Link to="/demands">
-                        <button className="btn-primary">Complementar</button>
+                        <button className="btn-primary">{t("complementary")}</button>
                     </Link>
                 </div>
             </div>

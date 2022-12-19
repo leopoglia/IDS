@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 import { useState, useEffect } from 'react';
 import Services from '../../../services/workerService';
-import Alert from '../../Fixed/Alert'
+import React from 'react';
+import { toast, ToastContainer, TypeOptions } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Form() {
     const { t } = useTranslation();
@@ -12,14 +14,21 @@ export default function Form() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
-    const alert = () => {
-        if (error === "input-error") {
-            return (
-                <Alert type="error" text="Email ou senha incorretos!" />
-            );
-        }
+    const types = ["success", "info", "warning", "error"];
 
-    }
+    const notify = () => {
+        toast.error('E-mail ou senha incorretos!', {
+            position: "bottom-right",
+            autoClose: 4000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    };
+
 
 
     async function login() {
@@ -42,17 +51,11 @@ export default function Form() {
             }
 
             if (response?.status === 400 || response?.status === 500) {
-                setError("input-error");
-                setTimeout(() => {
-                    setError("");
-                }, 10000);
+                notify();
             }
 
         } else {
-            setError("input-error");
-            setTimeout(() => {
-                setError("");
-            }, 10000);
+            notify();
         }
     }
 
@@ -89,17 +92,17 @@ export default function Form() {
                     </div>
 
                     <Link to="/forget-password">
-                        {t("forgot-password")}
+                        {t("forgotPassword")}
                     </Link>
                 </section>
             </main>
 
 
             <footer>
-                <button onClick={() => { login() }}>{t("login")}</button>
+                <button onClick={login}>{t("login")}</button>
             </footer>
 
-            {alert()}
+            <ToastContainer position="bottom-right" newestOnTop />
 
         </div>
     )

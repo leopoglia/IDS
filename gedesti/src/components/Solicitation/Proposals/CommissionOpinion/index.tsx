@@ -20,7 +20,7 @@ export default function CommissionOpinion() {
 
                 <div className="background-title">
 
-                    <Title title={t("commissionOpinion")} nav="Proposals > Parecer da  Comissão" />
+                    <Title title={t("commissionOpinion")} nav={t("proposalComissionOpinion")} />
 
 
                 </div>

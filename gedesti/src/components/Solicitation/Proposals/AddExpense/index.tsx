@@ -1,3 +1,4 @@
+import { t } from "i18next";
 import { Link } from "react-router-dom";
 import Header from "../../../Fixed/Header";
 import Nav from "../../../Fixed/Nav";
@@ -21,43 +22,43 @@ export default function addExpense() {
 
                 <div className="box">
 
-                    <p>Informações da Despesa</p>
+                    <p>{t("expenseInformation")}</p>
 
 
                     <div className="display-flex-grid">
-                        <label>Tipo de despesa *</label>
+                        <label>{t("expenseType")} *</label>
                         <SelectAddExpense type="typeOfExpense" />
                     </div>
 
                     <div className="display-flex-grid">
-                        <label>Perfil da despesa *</label>
+                        <label>{t("expenseProfile")} *</label>
                         <SelectAddExpense type="expenseProfile" />
                     </div>
 
                     <div className="display-flex-grid">
-                        <label>Período de execução (meses) *</label>
+                        <label>{t("periodOfExecutionMonth")} *</label>
                         <input type="number" />
                     </div>
 
                     <div className="display-flex-grid">
-                        <label>Quantidade de horas necessárias *</label>
+                        <label>{t("necessityHoursQuantity")} *</label>
                         <input type="number" />
                     </div>
 
                     <div className="display-flex-grid">
-                        <label>Valor hora *</label>
+                        <label>{t("hourValue")} *</label>
                         <input type="number" />
                     </div>
 
                     <div className="display-flex-grid">
-                        <label>Valor todal da despesa *</label>
+                        <label>{t("expenseTotalValue")} *</label>
                         <input type="number" />
                     </div>
                 </div>
 
                 <div className="display-flex-end">
                     <Link to="/proposal/execution-costs">
-                        <button className="btn-primary">Adicionar</button>
+                        <button className="btn-primary">{t("add")}</button>
                     </Link>
                 </div>
             </div>

@@ -152,5 +152,14 @@
     "interal": "Interal",
     "external": "External",
     "development": "Development",
-    "infrastructure": "Infrastructure"
+    "infrastructure": "Infrastructure",
+    "expenseInformation": "Expense information",
+    "periodOfExecutionMonth": "Period of execution (month)",
+    "necessityHoursQuantity": "Necessity hours quantity",
+    "hourValue": "Hour value",
+    "expenseTotalValue": "Expense total value",
+    "add": "Add",
+    "proposalComissionOpinion": "Proposal > Comission opinion",
+    "createProposalSelectProposal": "Proposal > Create proposal > Select proposal",
+    "selectProposal": "Select proposal"
 }

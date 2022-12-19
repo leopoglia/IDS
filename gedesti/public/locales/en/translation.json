@@ -138,5 +138,14 @@
     "agendaViewAgenda": "Agenda > View Agenda",
     "minuteViewMinute": "Minute > View Minute",
     "reasonForDisapproval": "Reason for disapproval",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "returnVersion": "Return version",
+    "alterationDate": "Alteration date",
+    "alterationHour": "Alteration hour",
+    "demandName": "Demand name",
+    "openConsultation": "Open consultation",
+    "history": "History",
+    "downloadPDF": "Download PDF",
+    "changeStatus": "Change status",
+    "confirm": "Confirm"
 }

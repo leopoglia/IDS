@@ -138,5 +138,15 @@
     "agendaViewAgenda": "Pauta > Visualizar Pauta",
     "minuteViewMinute": "Ata > Visualizar Ata",
     "reasonForDisapproval": "Motivo da reprovação",
-    "cancel": "Cancelar"
+    "cancel": "Cancelar",
+    "returnVersion": "Retornar versão",
+    "view": "Visualizar",
+    "alterationDate": "Data de alteração",
+    "alterationHour": "Hora de alteração",
+    "demandName": "Nome da demanda",
+    "openConversation": "Abrir conversa",
+    "history": "Histórico",
+    "downloadPDF": "Baixar PDF",
+    "changeStatus": "Alterar status",
+    "confirm": "Confirmar"
 }

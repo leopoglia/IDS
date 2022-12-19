@@ -138,5 +138,14 @@
     "agendaViewAgenda": "Agenda > Ver Agenda",
     "minuteViewMinute": "Acta > Ver Acta",
     "reasonForDisapproval": "Motivo de desaprobación",
-    "cancel": "Cancelar"
+    "cancel": "Cancelar",
+    "returnVersion": "Volver a versión",
+    "alterationDate": "Fecha de alteración",
+    "alterationHour": "Hora de alteración",
+    "demandName": "Nombre de la demanda",
+    "openConversation": "Abrir conversación",
+    "history": "Historial",
+    "downloadPDF": "Descargar PDF",
+    "changeStatus": "Cambiar estado",
+    "confirm": "Confirmar"
 }

@@ -124,7 +124,7 @@ export default function ViewDemand() {
                                 <div className="display-flex">
                                     <Link to="/demand/complement">
                                         <button className="btn-primary">
-                                            <span>Complementar</span>
+                                            <span>{t("complementary")}</span>
                                         </button>
                                     </Link>
 

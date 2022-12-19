@@ -138,5 +138,14 @@
     "agendaViewAgenda": "議程 > 查看議程",
     "minuteViewMinute": "會議記錄 > 查看會議記錄",
     "reasonForDisapproval": "拒絕原因", 
-    "cancel": "取消"
+    "cancel": "取消",
+    "returnVersion": "返回版本",
+    "alterationDate": "更改日期",
+    "alterationHour": "更改時間",
+    "demandName": "需求名稱",
+    "openConsultation": "開放諮詢",
+    "history": "歷史",
+    "downloadPDF": "下載 PDF",
+    "changeStatus": "更改狀態",
+    "confirm": "確認"
 }

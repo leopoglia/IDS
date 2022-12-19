@@ -2,6 +2,7 @@ import Header from "../../../Fixed/Header";
 import Nav from "../../../Fixed/Nav";
 import Title from "../../../Fixed/Search/Title";
 import "./style.css";
+import { t } from "i18next";
 
 export default function HistoricalDemand() {
     return (
@@ -21,11 +22,11 @@ export default function HistoricalDemand() {
 
                     <table>
                         <tr>
-                            <td>Usuário</td>
-                            <td className="table-restore-page">Retornar versão</td>
-                            <td className="table-find-in-page">Visualizar</td>
-                            <td>Data alteração</td>
-                            <td>Hora alteração</td>
+                            <td>{t("user")}</td>
+                            <td className="table-restore-page">{t("returnVersion")}</td>
+                            <td className="table-find-in-page">{t("view")}</td>
+                            <td>{t("alterationDate")}</td>
+                            <td>{t("alterationHour")}</td>
                         </tr>
 
                         <div className="hr" />

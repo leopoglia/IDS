@@ -29,7 +29,7 @@ export default function RankDemand() {
 
                     <div className="size-demand">
 
-                        <label htmlFor="">Tamanho *</label>
+                        <label htmlFor="">{t("size")} *</label>
 
                         <SelectSizeDemand />
 
@@ -37,7 +37,7 @@ export default function RankDemand() {
 
                     <div className="bu-requester">
 
-                        <label htmlFor="">BU Solicitante *</label>
+                        <label htmlFor="">{t("requesterBU")} *</label>
 
                         <SelectSizeDemand />
 
@@ -45,7 +45,7 @@ export default function RankDemand() {
 
                     <div className="bu-benefited">
 
-                        <label htmlFor="">BU Beneficiada *</label>
+                        <label htmlFor="">{t("buBenefited")} *</label>
 
                         <SelectSizeDemand />
 
@@ -53,7 +53,7 @@ export default function RankDemand() {
 
                     <div className="ti-section">
 
-                        <label htmlFor="">Seção de TI responsável *</label>
+                        <label htmlFor="">{t("responsibleItSession")} *</label>
 
                         <SelectSizeDemand />
 
@@ -67,7 +67,7 @@ export default function RankDemand() {
                             <label htmlFor="file">
                                 <span className="material-symbols-outlined">
                                     upload_file
-                                </span>Enviar arquivo</label>
+                                </span>{t("sendAttachment")}</label>
                         </div>
 
                     </div>
@@ -75,13 +75,12 @@ export default function RankDemand() {
 
                 <div className="demands-footer">
                     <button className="btn-secondary">
-                        <span>Voltar</span>
+                        <span>{t("return")}</span>
                     </button>
 
                     <button className="btn-primary">
-                        <span>Classificar</span>
+                        <span>{t("toRank")}</span>
                     </button>
-
 
                 </div>
 

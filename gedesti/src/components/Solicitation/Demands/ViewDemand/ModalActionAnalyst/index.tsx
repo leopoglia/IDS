@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import "./style.css";
 import ModalChangeStatus from "../ModalChangeStatus";
+import { t } from "i18next";
 
 export default function InsetList() {
 
@@ -17,7 +18,7 @@ export default function InsetList() {
                             chat
                         </span>
                         <span>
-                            Abrir conversa
+                            {t("openCnversation")}
                         </span>
                     </div>
                 </Link>
@@ -28,7 +29,7 @@ export default function InsetList() {
                             history
                         </span>
                         <span>
-                            Histórico
+                            {t("history")}
                         </span>
                     </div>
                 </Link>
@@ -39,7 +40,7 @@ export default function InsetList() {
                             download
                         </span>
                         <span>
-                            Baixar PDF
+                            {t("downloadPDF")}
                         </span>
                     </div>
                 </Link>
@@ -49,7 +50,7 @@ export default function InsetList() {
                         change_circle
                     </span>
                     <span>
-                        Alterar Status
+                        {t("changeStatus")}
                     </span>
                 </div>
 

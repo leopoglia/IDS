@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
 import "./style.css";
 import SelectNewStatus from "./SelectNewStatus";
+import { t } from "i18next";
 
 export default function ModalChangeStatus() {
     return (
         <div className="modalChangeStatus">
             <div className="modal">
                 <div className="modal-header">
-                    <p>Alterar Status</p>
+                    <p>{t("changeStatus")}</p>
 
 
 
@@ -37,7 +38,7 @@ export default function ModalChangeStatus() {
                         <SelectNewStatus className="select-new-status"/>
                     </div>
 
-                    <button className="btn-primary">Confirmar</button>
+                    <button className="btn-primary">{t("confirm")}</button>
 
                 </div>
             </div>

@@ -19,7 +19,7 @@ export default function Form() {
     const notify = () => {
         toast.error('E-mail ou senha incorretos!', {
             position: "bottom-right",
-            autoClose: 5000,
+            autoClose: 4000,
             hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: true,

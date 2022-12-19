@@ -1,13 +1,14 @@
 import "./style.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { t } from "i18next";
 
 export default function SelectProposal() {
 
     const [information, setInformation] = useState(<div className="infos">
-        <div><p>Solicitante: Leonardo Heitor Poglia</p></div>
-        <div><p>Data da solicitação: 27/04/2022</p></div>
-        <div><p>Situação: Aprovado</p></div>
+        <div><p>{t("resquester")}: Leonardo Heitor Poglia</p></div>
+        <div><p>{t("date")}: 27/04/2022</p></div>
+        <div><p>{t("situation")}: Aprovado</p></div>
 
     </div>);
 

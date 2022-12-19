@@ -4,9 +4,12 @@ import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { useTranslation } from "react-i18next";
 
 export default function SelectLabels(props: any) {
     const [age, setAge] = React.useState('');
+
+    const { t } = useTranslation();
 
     const handleChange = (event: SelectChangeEvent) => {
         setAge(event.target.value);
@@ -25,16 +28,16 @@ export default function SelectLabels(props: any) {
                     sx={{ height: '45px' }}
                 >
 
-                    {props.type === "typeOfExpense" ? <MenuItem value={10}>Interno</MenuItem>
+                    {props.type === "typeOfExpense" ? <MenuItem value={10}>{t("internal")}</MenuItem>
                         : null}
 
-                    {props.type === "typeOfExpense" ? <MenuItem value={20}>Externo</MenuItem>
+                    {props.type === "typeOfExpense" ? <MenuItem value={20}>{t("external")}</MenuItem>
                         : null}
 
-                    {props.type === "expenseProfile" ? <MenuItem value={10}>Desenvolvimento</MenuItem>
+                    {props.type === "expenseProfile" ? <MenuItem value={10}>{t("development")}</MenuItem>
                         : null}
 
-                    {props.type === "expenseProfile" ? <MenuItem value={20}>Infraestrutura</MenuItem>
+                    {props.type === "expenseProfile" ? <MenuItem value={20}>{t("infraestructure")}</MenuItem>
                         : null}
 
                 </Select>

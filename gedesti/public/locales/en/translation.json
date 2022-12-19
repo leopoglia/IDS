@@ -147,5 +147,19 @@
     "history": "History",
     "downloadPDF": "Download PDF",
     "changeStatus": "Change status",
-    "confirm": "Confirm"
+    "confirm": "Confirm",
+    "minuteCreateMinute": "Minute > Create Minute",
+    "interal": "Interal",
+    "external": "External",
+    "development": "Development",
+    "infrastructure": "Infrastructure",
+    "expenseInformation": "Expense information",
+    "periodOfExecutionMonth": "Period of execution (month)",
+    "necessityHoursQuantity": "Necessity hours quantity",
+    "hourValue": "Hour value",
+    "expenseTotalValue": "Expense total value",
+    "add": "Add",
+    "proposalComissionOpinion": "Proposal > Comission opinion",
+    "createProposalSelectProposal": "Proposal > Create proposal > Select proposal",
+    "selectProposal": "Select proposal"
 }

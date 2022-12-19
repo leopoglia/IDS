@@ -147,5 +147,10 @@
     "history": "Historial",
     "downloadPDF": "Descargar PDF",
     "changeStatus": "Cambiar estado",
-    "confirm": "Confirmar"
+    "confirm": "Confirmar",
+    "minuteCreateMinute": "Acta > Crear Acta",
+    "internal": "Interno",
+    "external": "Externo",
+    "development": "Desarrollo",
+    "infraestructure": "Infraestructura"
 }

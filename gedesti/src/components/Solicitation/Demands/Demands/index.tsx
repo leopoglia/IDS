@@ -4,25 +4,39 @@ import Nav from "../../../Fixed/Nav"
 import Search from "../../../Fixed/Search";
 import Demand from "../Demand";
 import Footer from "../../../Fixed/Footer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { t } from "i18next"
 import Load from "../../../Fixed/Load";
+import Services from "../../../../services/demandService";
+import { findAllByAltText } from "@testing-library/react";
 
 export default function Demands() {
     const url = window.location.href.split("/");
-
+    let findDemands:any;
     const [table, setTableList] = useState(false);
 
-    const [demands] = useState([
-        { name: "Sistema para calcular o SCORE", requester: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "Backlog" },
-        { name: "Calculadora de custos para projeto de demandas", requester: "Vytor Augusto Rosa", date: "21/11/2022", situation: "Assesment" },
-        { name: "Programa que identifica falhas de proteção constantes no Gitlab", requester: "Eduarda B", date: "21/11/2022", situation: "Business Case" },
-        { name: "Projeto para inovações", requester: "Ester G", date: "21/11/2022", situation: "To-do" },
-        { name: "Alterar custo de uso do projeto GEDESTI", requester: "Romário H", date: "21/11/2022", situation: "Design and Build" },
-        { name: "Nova área de leitura online", requester: "Josué do Amarante", date: "21/11/2022", situation: "Cancelled" },
-        { name: "GPS para se localizar na fabrica", requester: "Tati", date: "21/11/2022", situation: "Support" },
-        { name: "Sistema para solicitação de demandas de TI", requester: "Jair", date: "21/11/2022", situation: "Done" },
+    async function getDemands(){
+        findDemands = await Services.findAll().then((res:any) => {
+            setDemands(res);
+        });
+        return findDemands;
+    }
+
+    useEffect(() => {
+        getDemands();
+    })
+
+    const [demands, setDemands] = useState([
+        { demandTitle: "Sistema para calcular o SCORE", requester: "Leonardo Heitor Poglia", date: "27/04/2022", demandStatus: "Backlog" },
+        { demandTitle: "Calculadora de custos para projeto de demandas", requester: "Vytor Augusto Rosa", date: "21/11/2022", demandStatus: "Assesment" },
+        { demandTitle: "Programa que identifica falhas de proteção constantes no Gitlab", requester: "Eduarda B", date: "21/11/2022", demandStatus: "Business Case" },
+        { demandTitle: "Projeto para inovações", requester: "Ester G", date: "21/11/2022", demandStatus: "To-do" },
+        { demandTitle: "Alterar custo de uso do projeto GEDESTI", requester: "Romário H", date: "21/11/2022", demandStatus: "Design and Build" },
+        { demandTitle: "Nova área de leitura online", requester: "Josué do Amarante", date: "21/11/2022", demandStatus: "Cancelled" },
+        { demandTitle: "GPS para se localizar na fabrica", requester: "Tati", date: "21/11/2022", demandStatus: "Support" },
+        { demandTitle: "Sistema para solicitação de demandas de TI", requester: "Jair", date: "21/11/2022", demandStatus: "Done" }
     ]);
+
     const [proposals] = useState([
         { name: "Proposta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "Approved" },
         { name: "Proposta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "Rejected" },
@@ -87,12 +101,12 @@ export default function Demands() {
                             demands.map((val, index) => {
                                 if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined)) {
                                     return (
-                                        <Demand listDirection={table} name={val.name} requester={val.requester} date={val.date} situation={val.situation} type="demand" />
+                                        <Demand listDirection={table} name={val.demandTitle} requester={val.requester} date={val.date} situation={val.demandStatus} type="demand" />
                                     );
                                 } else {
                                     if (typeFilter === "requester" && val.requester.toUpperCase().includes(nameFilter.toUpperCase())) {
                                         return (
-                                            <Demand listDirection={table} name={val.name} requester={val.requester} date={val.date} situation={val.situation} type="demand" />
+                                            <Demand listDirection={table} name={val.demandTitle} requester={val.requester} date={val.date} situation={val.demandStatus} type="demand" />
                                         );
                                     }
                                 }

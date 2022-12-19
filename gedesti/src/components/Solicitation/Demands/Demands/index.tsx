@@ -5,6 +5,7 @@ import Search from "../../../Fixed/Search";
 import Demand from "../Demand";
 import Footer from "../../../Fixed/Footer";
 import { useState } from "react";
+import { t } from "i18next"
 import Load from "../../../Fixed/Load";
 
 export default function Demands() {
@@ -81,7 +82,7 @@ export default function Demands() {
                     <Nav />
                     <div className="container">
 
-                        <Search onClick={callback} name={nameFilter} type={typeFilter} nav="Demandas > Visualizar Demandas" title="demands" button="createDemand" link="/demand/create/1" setTable={setTable} />
+                        <Search onClick={callback} name={nameFilter} type={typeFilter} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1" setTable={setTable} />
                         {
                             demands.map((val, index) => {
                                 if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined)) {
@@ -105,7 +106,7 @@ export default function Demands() {
                     <Header icon="content_paste" title="proposals" />
                     <Nav />
                     <div className="container">
-                        <Search onClick={callback} name={nameFilter} type={typeFilter} nav="Propostas > Visualizar Propostas" title="proposals" button="createProposal" link="/demands" setTable={setTable} />
+                        <Search onClick={callback} name={nameFilter} type={typeFilter} nav={t("proposalViewProposal")} title="proposals" button="createProposal" link="/demands" setTable={setTable} />
                         {
                             proposals.map((val, index) => {
                                 return (
@@ -121,7 +122,7 @@ export default function Demands() {
                     <Header icon="file_copy" title="agendas" />
                     <Nav />
                     <div className="container">
-                        <Search onClick={callback} name={nameFilter} type={typeFilter} nav="Pautas > Visualizar Pautas" title="agendas" button="createAgenda" link="/agenda/create" setTable={setTable} />
+                        <Search onClick={callback} name={nameFilter} type={typeFilter} nav={t("agendaViewAgenda")} title="agendas" button="createAgenda" link="/agenda/create" setTable={setTable} />
                         {
                             agendas.map((val, index) => {
                                 return (
@@ -137,7 +138,7 @@ export default function Demands() {
                     <Header icon="description" title="minutes" />
                     <Nav />
                     <div className="container">
-                        <Search onClick={callback} name={nameFilter} type={typeFilter} nav="Atas > Visualizar Atas" title="minutes" button="createMinute" link="/agendas" setTable={setTable} />
+                        <Search onClick={callback} name={nameFilter} type={typeFilter} nav={t("minuteViewMinute")} title="minutes" button="createMinute" link="/agendas" setTable={setTable} />
                         {
                             minutes.map((val, index) => {
                                 return (

@@ -1,3 +1,4 @@
+import { t } from "i18next";
 import Footer from "../../../Fixed/Footer";
 import Header from "../../../Fixed/Header";
 import Nav from "../../../Fixed/Nav";
@@ -26,7 +27,7 @@ export default function DisapproveDemand() {
                     <div className="disapprove-demand">
 
                         <div className="display-grid">
-                            <label htmlFor="">Motivo da reprovação *</label>
+                            <label htmlFor="">{t("reasonForDisapproval")} *</label>
 
                             <textarea />
                         </div>
@@ -36,9 +37,9 @@ export default function DisapproveDemand() {
 
                 <div className="demands-footer">
 
-                    <button className="btn-secondary">Cancelar</button>
+                    <button className="btn-secondary">{t("cancel")}</button>
 
-                    <button className="btn-primary">Reprovar</button>
+                    <button className="btn-primary">{t("fail")}</button>
 
                 </div>
 

@@ -3,7 +3,7 @@
     "email": "Email",
     "password": "Senha",
     "remember-me": "Lembrar-me",
-    "forgot-password": "Esqueceu sua senha?",
+    "forgotPassword": "Esqueceu sua senha?",
     "login": "Entrar",
     "demands": "Demandas",
     "viewDemands": "Visualizar Demandas",
@@ -131,5 +131,12 @@
     "insertCommissionOpinion": "Inserir parecer da comissão",
     "finish": "Finalizar",
     "observations": "Observações",
-    "commissionOpinion": "Parecer da comissão"
+    "commissionOpinion": "Parecer da comissão",
+    "send": "Enviar",
+    "deadlineDemand": "Prazo de execução da demanda",
+    "complementary": "Complementar",
+    "agendaViewAgenda": "Pauta > Visualizar Pauta",
+    "minuteViewMinute": "Ata > Visualizar Ata",
+    "reasonForDisapproval": "Motivo da reprovação",
+    "cancel": "Cancelar"
 }

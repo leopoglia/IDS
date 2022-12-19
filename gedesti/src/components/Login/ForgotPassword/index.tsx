@@ -18,7 +18,7 @@ export default function Form() {
             <div className="form">
                 <form className="login-form">
                     <header>
-                        <h1>Esqueceu a senha</h1>
+                        <h1>{t("forgotPassword")}</h1>
 
 
 
@@ -35,7 +35,7 @@ export default function Form() {
 
                     <footer>
                         <Link to="/demands">
-                            <button type="submit">Enviar</button>
+                            <button type="submit">{t("send")}</button>
                         </Link>
                     </footer>
                 </form>        </div>

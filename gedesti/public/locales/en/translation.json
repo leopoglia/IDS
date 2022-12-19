@@ -3,7 +3,7 @@
     "email": "Email",
     "password": "Password",
     "remember-me": "Remember me",
-    "forgot-password": "Forgot password?",
+    "forgotPassword": "Forgot password?",
     "login": "Login",
     "demands": "Demands",
     "viewDemands": "View Demands",
@@ -131,5 +131,12 @@
     "finish": "Finish",
     "insertCommissionOpinion": "Insert commission opinion",
     "observations": "Observations",
-    "commissionOpinion": "Commission opinion"
+    "commissionOpinion": "Commission opinion",
+    "send": "Send",
+    "deadlineDemand": "Deadline demand",
+    "complementary": "Complementary",
+    "agendaViewAgenda": "Agenda > View Agenda",
+    "minuteViewMinute": "Minute > View Minute",
+    "reasonForDisapproval": "Reason for disapproval",
+    "cancel": "Cancel"
 }

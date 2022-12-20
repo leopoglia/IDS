@@ -7,6 +7,7 @@ import ButtonAction from "../ButtonAction";
 import { useTranslation } from "react-i18next";
 import { useState } from 'react';
 import Services from "../../../../../services/demandService";
+import { act } from "react-dom/test-utils";
 
 export default function CreateDemands3() {
 
@@ -32,6 +33,8 @@ export default function CreateDemands3() {
     const [fileAttachment, setFileAttachment]:any = useState();
 
     async function cadastrarDemanda(){
+        let actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear();
+
         await Services.save(demandTitle,
             currentProblem,
             demandObjective,
@@ -43,7 +46,9 @@ export default function CreateDemands3() {
             realBenefitCode,
             potentialBenefitCode,
             qualitativeBenefitCode,
-            fileAttachment);
+            fileAttachment,
+            actualDate
+            );
             console.log(realBenefits.realBenefitCode, potentialBenefits.potentialBenefitCode, qualitativeBenefits.qualitativeBenefitCode)
     }
 

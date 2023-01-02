@@ -4,7 +4,6 @@ import Form from './components/Login/Login';
 import ForgetPassword from './components/Login/ForgotPassword';
 import Demands from "./components/Solicitation/Demands/Demands";
 import Messages from "./components/Others/Messages";
-import Message from "./components/Others/Messages/Message";
 import Notifications from "./components/Others/Notifications";
 import Configuration from "./components/Others/Configuration";
 import CreateDemands1 from "./components/Solicitation/Demands/CrateDemand/Step1";
@@ -33,7 +32,6 @@ export default function Router() {
                 <Route path="/forget-password" element={<ForgetPassword />} />
 
                 <Route path="/messages" element={<Messages />} />
-                <Route path="/messages/message" element={<Message />} />
                 <Route path="/notifications" element={<Notifications />} />
                 <Route path="/configuration" element={<Configuration />} />
 

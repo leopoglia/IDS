@@ -50,7 +50,7 @@ export default function Form() {
                 window.location.href = "/demands";
             }
 
-            if (response?.status === 400 || response?.status === 500) {
+            if (response?.status === 400 || response?.status === 500 || response?.status === undefined) {
                 notify();
             }
 

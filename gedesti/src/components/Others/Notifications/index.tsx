@@ -8,6 +8,7 @@ import { useState } from "react";
 
 export default function Notifications() {
 
+    const speaks = ["Olá eu sou a Bia, sua assistente virtual!aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"]
     
 
     return (
@@ -16,7 +17,7 @@ export default function Notifications() {
             <div className="barrier"></div>
             <img className="bia" src="https://i.imgur.com/r004kLD.png"></img>
             <div className="bubble modal">
-
+                {speaks[0]}
             </div>
 
             <Header icon="notifications" title="notifications" />

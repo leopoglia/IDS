@@ -17,10 +17,12 @@
 
 .bubble{
     right: 0;
+    width: 300px;
     margin-right: 220px;
     margin-top: 150px;
     padding: 15px 10px;
+    padding-right: 5px !important;
     color: var(--blue);
     font-size: var(--p);
-    word-break: break-all;
+    word-break:keep-all;
 }

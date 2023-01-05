@@ -8,9 +8,8 @@ import { useState } from "react";
 
 export default function Notifications() {
 
-    const speaks = ["Olá eu sou a Bia, sua assistente virtual!aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"]
+    const speaks = ["Olá, eu sou a Bia e estou aqui para ajudá-lo no sistema de demandas Gedesti. O que posso fazer por você hoje?"]
     
-
     return (
         <div className="notifications">
 

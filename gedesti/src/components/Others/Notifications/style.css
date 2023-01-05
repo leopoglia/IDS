@@ -22,4 +22,5 @@
     padding: 15px 10px;
     color: var(--blue);
     font-size: var(--p);
+    word-break: break-all;
 }

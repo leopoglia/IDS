@@ -18,12 +18,13 @@ export default function CreateDemands1() {
     const [currentProblem, setcurrentProblem] = useState("");
     const [demandObjective, setDemandObjective] = useState("");
     const [costCenter, setCostCenter] = useState("");
-    const [modalCenterCost, setModalCenterCost] = useState(false);
 
     localStorage.setItem("demandTitle", demandTitle);
     localStorage.setItem("currentProblem", currentProblem);
     localStorage.setItem("demandObjective", demandObjective);
     localStorage.setItem("costCenter", costCenter);
+
+    const [costsCenters, setCostsCenters]:any = useState([]);
 
     return (
         <div className="create-demands-1">
@@ -67,11 +68,15 @@ export default function CreateDemands1() {
                         <div className="display-flex">
                             <input onChange={(e) => { setCostCenter(e.target.value) }} type="text" />
 
-                            <div className="btn-primary w45" onClick={() => setModalCenterCost(true)}>
+                            <div className="btn-primary w45" onClick={()=> {alert(costCenter); setCostsCenters(costCenter)}}>
                                 <span className="material-symbols-outlined">add</span>
                             </div>
                         </div>
                     </div>
+
+                    {costsCenters}
+
+
 
                     {/* <Input label="costCenter" required="*" onChange={(e) => { setCostCenter(e.target.value) }}></Input> */}
 

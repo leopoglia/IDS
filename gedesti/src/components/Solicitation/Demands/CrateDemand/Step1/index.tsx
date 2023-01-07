@@ -68,7 +68,7 @@ export default function CreateDemands1() {
                         <div className="display-flex">
                             <input onChange={(e) => { setCostCenter(e.target.value) }} type="text" />
 
-                            <div className="btn-primary w45" onClick={()=> {alert(costCenter); setCostsCenters(costCenter)}}>
+                            <div className="btn-primary w45" onClick={()=> {alert(costCenter); setCostsCenters(costsCenters + " " + costCenter)}}>
                                 <span className="material-symbols-outlined">add</span>
                             </div>
                         </div>

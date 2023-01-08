@@ -32,6 +32,16 @@ export default function CreateDemands1() {
         setCostCenter("");
     }
 
+    function deleteCostCenter(costCenter: any) {
+        return () => {
+            const index = costsCenters.indexOf(costCenter);
+            if (index > -1) {
+                costsCenters.splice(index, 1);
+            }
+            setCostsCenters(costsCenters);
+        }
+    }
+
     return (
         <div className="create-demands-1">
             <Header icon="folder_copy" title="createDemand" />
@@ -82,7 +92,7 @@ export default function CreateDemands1() {
 
                     {costsCenters.map((costCenter: any) => {
                         return <div className="costCenter">{costCenter}
-                            <span className="material-symbols-outlined delete-cost-center">
+                            <span className="material-symbols-outlined delete-cost-center" onClick={deleteCostCenter(costCenter)}>
                                 delete
                             </span>
                         </div>

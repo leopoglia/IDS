@@ -45,6 +45,7 @@ export default function CreateDemands1() {
 
     function createCostCenter(){
         // criar os cost center no banco
+        
     }
 
     return (

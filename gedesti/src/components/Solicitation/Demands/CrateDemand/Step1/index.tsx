@@ -39,6 +39,7 @@ export default function CreateDemands1() {
                 costsCenters.splice(index, 1);
             }
             setCostsCenters(costsCenters);
+            setCostCenter(" ");
         }
     }
 

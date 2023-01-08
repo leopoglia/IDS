@@ -43,6 +43,10 @@ export default function CreateDemands1() {
         }
     }
 
+    function createCostCenter(){
+        // criar os cost center no banco
+    }
+
     return (
         <div className="create-demands-1">
             <Header icon="folder_copy" title="createDemand" />

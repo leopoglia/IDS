@@ -3,7 +3,7 @@ import Header from "../../../Fixed/Header"
 import Nav from "../../../Fixed/Nav"
 import Title from "../../../Fixed/Search/Title";
 import ButtonActionAnalyst from "./ButtonActionAnalyst";
-
+import Services from "../../../../services/demandService";
 import Footer from "../../../Fixed/Footer";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -13,15 +13,29 @@ import { useTranslation } from "react-i18next";
 export default function ViewDemand() {
 
     const { t } = useTranslation();
-    const worker: any = localStorage.getItem("worker");
-    const office = JSON.parse(worker).office;
-    const url = window.location.href.split("/")[3];
+
+    const worker: any = localStorage.getItem("worker"); // Buscar dados do usuário
+    const office = JSON.parse(worker).office; // Buscar tipo de usuário
+    const url = window.location.href.split("/")[3]; // Buscar tipo da demanda
+
+    const demandCode = parseInt(window.location.href.split("/")[5]); // Buscar código da demanda
+    console.log(demandCode)
+
     const [actionsDemand, setActionsDemand] = useState(1);
     const [stepDemand, setStepDemand] = useState(2);
     const [editDemand, setEditDemand] = useState(true);
     const [inputDiv, setInputDiv] = useState("input-disabled");
 
+    function getDemand(){
+        Services.findById(demandCode).then((response: any) => {
+            console.log(response)
+            setDemands(response)
+        })
+    }
+
     useEffect(() => {
+        getDemand();
+
         if (office === "bussines") {
             setActionsDemand(2);
         } else if (office === "analyst") {
@@ -30,9 +44,9 @@ export default function ViewDemand() {
     }, [office]);
 
 
-    const [demands] = useState([
+    const [demands, setDemands] = useState([
         {
-            name: "Solicitação 001", requester: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "Backlog", currentSituation: "Situação a ser Resolvida", proposal: "Proposta",
+            demandTitle: "Solicitação 001", requesterRegistration: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "Backlog", currentSituation: "Situação a ser Resolvida", proposal: "Proposta",
             costCenter: { number: "24342", name: "Nome do Centro de Custos" }, realBenefit: { monthlyValue: 500, description: "Descrição Beneficio Real" },
             potentialBenefit: { monthlyValue: 500, description: "Descrição Beneficio Potencial", legalObligation: "Sim" }, qualitativeBenefit: { monthlyValue: 500, description: "Descrição Beneficio Qualitativo", legalObligation: "Sim", internalControlRequirements: true },
             attachments: [{ name: "Anexo 1", link: "https://www.google.com.br" }], classification: { size: "Pequeno - 40 - 400 horas", buApplicant: "WEG II", buBeneficiary: "WEG Motores", responsibleITSession: "Centro WEG" },
@@ -65,7 +79,7 @@ export default function ViewDemand() {
 
                         <div className="background-title">
 
-                            <Title nav={t("demandViewDemand")} title="Nome da Demanda" />
+                            <Title nav={t("demandViewDemand")} title="viewDemand" />
 
                             {(actionsDemand === 1) ? (
                                 <div className="display-flex">
@@ -143,14 +157,13 @@ export default function ViewDemand() {
                                     return (
 
                                         <div>
-
-                                            <div className="display-flex-end">
-                                                <div className="code">1000025500</div>
-                                            </div>
-
                                             <div className="situation-current">
-                                                <p>{t("requester")}</p>
-                                                <input className={inputDiv} type="text" value={val.requester} disabled={editDemand} />
+                                                <div className="display-flex-space-between">
+                                                    <p>{t("requester")}</p>
+                                                    <div className="code">1000025500</div>
+                                                </div>
+
+                                                <input className={inputDiv} type="text" value={val.requesterRegistration} disabled={editDemand} />
                                             </div>
 
                                             <div className="situation-current">
@@ -363,12 +376,12 @@ export default function ViewDemand() {
                                         <div>
                                             <div className="situation-current">
                                                 <p>{t("requester")}</p>
-                                                <input className={inputDiv} type="text" value={val.requester} disabled={editDemand} />
+                                                <input className={inputDiv} type="text" value={val.requesterRegistration} disabled={editDemand} />
                                             </div>
 
                                             <div className="responsible">
                                                 <p>{t("responsibleForTheBusiness")}</p>
-                                                <input className={inputDiv} type="text" value={val.requester} disabled={editDemand} />
+                                                <input className={inputDiv} type="text" value={val.requesterRegistration} disabled={editDemand} />
                                             </div>
 
                                             <div className="situation-current">

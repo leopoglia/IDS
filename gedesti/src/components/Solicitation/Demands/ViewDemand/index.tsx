@@ -49,11 +49,10 @@ export default function ViewDemand() {
 
     const [demands, setDemands] = useState([
         {
-            demandTitle: "Solicitação 001", requesterRegistration:  {workerName: ""}, demandDate: "27/04/2022", demandStatus: "Backlog", currentProblem: "Situação a ser Resolvida", proposal: "Proposta",
-            costCenter: { number: "24342", name: "Nome do Centro de Custos" }, realBenefit: { monthlyValue: 500, description: "Descrição Beneficio Real" },
-            potentialBenefit: { monthlyValue: 500, description: "Descrição Beneficio Potencial", legalObligation: "Sim" }, qualitativeBenefit: { monthlyValue: 500, description: "Descrição Beneficio Qualitativo", legalObligation: "Sim", internalControlRequirements: true },
-            demandAttachment: [{ name: "Anexo 1", link: "https://www.google.com.br" }], classification: { size: "Pequeno - 40 - 400 horas", buApplicant: "WEG II", buBeneficiary: "WEG Motores", responsibleITSession: "Centro WEG" },
-            complements: [{ executionDeadline: "4 meses", ppm: "98765432", epicJira: "https://ctw2022.atlassian.net/jira/software/projects/P2/boards/1/roadmap" }]
+            demandTitle: "", requesterRegistration:  {workerName: ""}, demandDate: "", demandStatus: "", currentProblem: "", proposal: "",
+            costCenter: { number: "", name: "" }, realBenefit: { realMonthlyValue: 0, realCurrency: "", realBenefitDescription: "" },
+            potentialBenefit: { monthlyValue: 0, description: "", legalObligation: "" }, qualitativeBenefit: { monthlyValue: 0, description: "", legalObligation: "", internalControlRequirements: true },
+            complements: [{ executionDeadline: "", ppm: "", epicJira: "" }]
         }]);
 
     const tr = (dataOne: any, dataTwo: any) => {
@@ -185,7 +184,7 @@ export default function ViewDemand() {
                                                 <div className="infos">
 
                                                     <div>
-                                                        <span>{t("monthlyValue")}: </span><span>{val.realBenefit.monthlyValue}</span>
+                                                        <span>{t("monthlyValue")}: </span><span>{val.realBenefit.realMonthlyValue}</span>
                                                     </div>
 
                                                 </div>
@@ -193,7 +192,7 @@ export default function ViewDemand() {
                                                 <div className="hr" />
 
                                                 <div className="description">
-                                                    <span className="desc">Descrição</span><span>{val.realBenefit.description}</span>
+                                                    <span className="desc">Descrição</span><span>{val.realBenefit.realBenefitDescription}</span>
                                                 </div>
                                             </div>
 
@@ -411,7 +410,7 @@ export default function ViewDemand() {
                                                 <div className="infos">
 
                                                     <div>
-                                                        <span>{t("monthlyValue")}: </span><span>{val.realBenefit.monthlyValue}</span>
+                                                        <span>{t("monthlyValue")}: </span><span>{val.realBenefit.realMonthlyValue}</span>
                                                     </div>
 
                                                 </div>
@@ -419,7 +418,7 @@ export default function ViewDemand() {
                                                 <div className="hr" />
 
                                                 <div className="description">
-                                                    <span className="desc">Descrição</span><span>{val.realBenefit.description}</span>
+                                                    <span className="desc">Descrição</span><span>{val.realBenefit.realBenefitDescription}</span>
                                                 </div>
                                             </div>
 

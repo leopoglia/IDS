@@ -26,10 +26,13 @@ export default function ViewDemand() {
     const [editDemand, setEditDemand] = useState(true);
     const [inputDiv, setInputDiv] = useState("input-disabled");
 
-    function getDemand(){
+    function getDemand() {
         Services.findById(demandCode).then((response: any) => {
             console.log(response)
-            setDemands(response)
+            const demand = [response]
+            setDemands(demand)
+
+            console.log("demanda -> " , demands)
         })
     }
 
@@ -46,13 +49,12 @@ export default function ViewDemand() {
 
     const [demands, setDemands] = useState([
         {
-            demandTitle: "Solicitação 001", requesterRegistration: "Leonardo Heitor Poglia", date: "27/04/2022", situation: "Backlog", currentSituation: "Situação a ser Resolvida", proposal: "Proposta",
+            demandTitle: "Solicitação 001", requesterRegistration:  {workerName: ""}, demandDate: "27/04/2022", demandStatus: "Backlog", currentProblem: "Situação a ser Resolvida", proposal: "Proposta",
             costCenter: { number: "24342", name: "Nome do Centro de Custos" }, realBenefit: { monthlyValue: 500, description: "Descrição Beneficio Real" },
             potentialBenefit: { monthlyValue: 500, description: "Descrição Beneficio Potencial", legalObligation: "Sim" }, qualitativeBenefit: { monthlyValue: 500, description: "Descrição Beneficio Qualitativo", legalObligation: "Sim", internalControlRequirements: true },
-            attachments: [{ name: "Anexo 1", link: "https://www.google.com.br" }], classification: { size: "Pequeno - 40 - 400 horas", buApplicant: "WEG II", buBeneficiary: "WEG Motores", responsibleITSession: "Centro WEG" },
-            complements: [{ executionDeadline: "4 meses", ppm: "98765432", epicJira: "https://ctw2022.atlassian.net/jira/software/projects/P2/boards/1/roadmap" }],
-        },
-    ]);
+            demandAttachment: [{ name: "Anexo 1", link: "https://www.google.com.br" }], classification: { size: "Pequeno - 40 - 400 horas", buApplicant: "WEG II", buBeneficiary: "WEG Motores", responsibleITSession: "Centro WEG" },
+            complements: [{ executionDeadline: "4 meses", ppm: "98765432", epicJira: "https://ctw2022.atlassian.net/jira/software/projects/P2/boards/1/roadmap" }]
+        }]);
 
     const tr = (dataOne: any, dataTwo: any) => {
         return (
@@ -163,12 +165,12 @@ export default function ViewDemand() {
                                                     <div className="code">1000025500</div>
                                                 </div>
 
-                                                <input className={inputDiv} type="text" value={val.requesterRegistration} disabled={editDemand} />
+                                                <input className={inputDiv} type="text" value={val.requesterRegistration.workerName} disabled={editDemand} />
                                             </div>
 
                                             <div className="situation-current">
                                                 <p className="title">{t("currentSituation")}</p>
-                                                <input className={inputDiv} type="text" value={val.currentSituation} disabled={editDemand} />
+                                                <input className={inputDiv} type="text" value={val.currentProblem} disabled={editDemand} />
                                                 <p className="title">{t("proposal")}</p>
                                                 <input className={inputDiv} type="text" value={val.proposal} disabled={editDemand} />
                                             </div>
@@ -376,17 +378,17 @@ export default function ViewDemand() {
                                         <div>
                                             <div className="situation-current">
                                                 <p>{t("requester")}</p>
-                                                <input className={inputDiv} type="text" value={val.requesterRegistration} disabled={editDemand} />
+                                                <input className={inputDiv} type="text" value={val.requesterRegistration.workerName} disabled={editDemand} />
                                             </div>
 
                                             <div className="responsible">
                                                 <p>{t("responsibleForTheBusiness")}</p>
-                                                <input className={inputDiv} type="text" value={val.requesterRegistration} disabled={editDemand} />
+                                                <input className={inputDiv} type="text" value={val.requesterRegistration.workerName} disabled={editDemand} />
                                             </div>
 
                                             <div className="situation-current">
                                                 <p className="title">{t("currentSituation")}</p>
-                                                <input className={inputDiv} type="text" value={val.currentSituation} disabled={editDemand} />
+                                                <input className={inputDiv} type="text" value={val.currentProblem} disabled={editDemand} />
                                                 <p className="title">{t("proposal")}</p>
                                                 <input className={inputDiv} type="text" value={val.proposal} disabled={editDemand} />
                                             </div>

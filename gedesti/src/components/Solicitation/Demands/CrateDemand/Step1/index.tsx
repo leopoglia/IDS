@@ -8,7 +8,7 @@ import TextArea from "../TextArea";
 import ButtonAction from "../ButtonAction";
 import { useTranslation } from "react-i18next";
 import { useState } from 'react';
-import Services from '../../../../../services/demandService';
+import Services from '../../../../../services/costCenterService';
 
 export default function CreateDemands1() {
 
@@ -49,7 +49,7 @@ export default function CreateDemands1() {
 
     function createCostCenter() {
         // criar os cost center no banco
-
+        Services.save(costCenter);
     }
 
     return (
@@ -94,7 +94,7 @@ export default function CreateDemands1() {
                         <div className="display-flex">
                             <input onChange={(e) => { setCostCenter(e.target.value); }} type="text" />
 
-                            <div className="btn-primary w45" onClick={() => { addCostCenter(costCenter) }}>
+                            <div className="btn-primary w45" onClick={() => { createCostCenter()}}>
                                 <span className="material-symbols-outlined">add</span>
                             </div>
                         </div>

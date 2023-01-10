@@ -24,7 +24,7 @@ nav {
 
 .nav-open,
 #nav-open {
-    width: 200px;
+    width: 175px;
 }
 
 nav a {
@@ -135,7 +135,7 @@ nav li {
 
 
 .nav-open .logout {
-    width: 200px;
+    width: 175px;
 }
 
 .logout {

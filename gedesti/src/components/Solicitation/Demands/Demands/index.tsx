@@ -101,12 +101,12 @@ export default function Demands() {
                             demands.map((val, index) => {
                                 if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined)) {
                                     return (
-                                        <Demand listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />
+                                        <Demand demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />
                                     );
                                 } else {
                                     if (typeFilter === "requester" && val.requesterRegistration.workerName.toUpperCase().includes(nameFilter.toUpperCase())) {
                                         return (
-                                            <Demand id={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />
+                                            <Demand demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />
                                         );
                                     }
                                 }

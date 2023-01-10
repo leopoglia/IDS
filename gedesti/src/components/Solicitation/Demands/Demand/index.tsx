@@ -122,7 +122,7 @@ export default function Demand(props: any) {
 
     if (props.listDirection === false) {
         return (
-            <Link to={"/" + props.type + "/view"}>
+            <Link to={"/" + props.type + "/view/" + props.demandCode}>
                 <div className="demand">
                     <section>
                         <div className="name-code">
@@ -151,7 +151,7 @@ export default function Demand(props: any) {
         );
     } else {
         return (
-            <Link to={"/" + props.type + "/view"}>
+            <Link to={"/" + props.type + "/view/" + props.demandCode}>
                 <div className="demand-list">
                     <section>
                         <h1>{props.name}</h1>

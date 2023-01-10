@@ -39,14 +39,14 @@ export default function Router() {
                 <Route path="/demand/create/1" element={<CreateDemands1 />} />
                 <Route path="/demand/create/2" element={<CreateDemands2 />} />
                 <Route path="/demand/create/3" element={<CreateDemands3 />} />
-                <Route path="/demand/view" element={<ViewDemand />} />
+                <Route path="/demand/view/:id" element={<ViewDemand />} />
                 <Route path="/demand/rank" element={<RankDemand />} />
                 <Route path="/demand/disapprove" element={<DisapproveDemand />} />
                 <Route path="/demand/complement" element={<ComplementDemand />} />
                 <Route path="/demand/historical" element={<HistoricalDemand />} />
 
                 <Route path="/proposals" element={<Demands />} />
-                <Route path="/proposal/view" element={<ViewDemand />} />
+                <Route path="/proposal/view/:id" element={<ViewDemand />} />
                 <Route path="/proposal/execution-costs" element={<ExecutionCosts />} />
                 <Route path="proposal/execution-costs/add-expense" element={<AddExpense />} />
                 <Route path="/proposal/demand" element={<EscopeDemand />} />
@@ -56,7 +56,7 @@ export default function Router() {
 
                 <Route path="/agendas" element={<Demands />} />
                 <Route path="/agenda/create" element={<CreateAgenda />} />
-                <Route path="/agenda/view" element={<ViewDemand />} />
+                <Route path="/agenda/view/:id" element={<ViewDemand />} />
                 <Route path="/agenda/select-proposals" element={<SelectProposal />} />
 
                 <Route path="/minutes" element={<Demands />} />

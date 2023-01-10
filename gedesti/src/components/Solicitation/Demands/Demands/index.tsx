@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 import { t } from "i18next"
 import Load from "../../../Fixed/Load";
 import Services from "../../../../services/demandService";
-import { findAllByAltText } from "@testing-library/react";
 
 export default function Demands() {
     const url = window.location.href.split("/");
@@ -18,23 +17,24 @@ export default function Demands() {
     async function getDemands(){
         findDemands = await Services.findAll().then((res:any) => {
             setDemands(res);
+            console.log(res)
         });
         return findDemands;
     }
 
     useEffect(() => {
         getDemands();
-    })
+    },[])
 
     const [demands, setDemands] = useState([
-        { demandTitle: "Sistema para calcular o SCORE", requesterRegistration: {workerName: "Leonardo Heitor Poglia"}, demandDate: "27/04/2022", demandStatus: "Backlog" },
-        { demandTitle: "Calculadora de custos para projeto de demandas", requesterRegistration: {workerName: "Vytor Augusto Rosa"}, demandDate: "21/11/2022", demandStatus: "Assesment" },
-        { demandTitle: "Programa que identifica falhas de proteção constantes no Gitlab", requesterRegistration: {workerName: "Eduarda B"}, demandDate: "21/11/2022", demandStatus: "Business Case" },
-        { demandTitle: "Projeto para inovações", requesterRegistration: {workerName: "Ester G"}, demandDate: "21/11/2022", demandStatus: "To-do" },
-        { demandTitle: "Alterar custo de uso do projeto GEDESTI", requesterRegistration: {workerName: "Romário H"}, demandDate: "21/11/2022", demandStatus: "Design and Build" },
-        { demandTitle: "Nova área de leitura online", requesterRegistration: {workerName: "Josué do Amarante"}, demandDate: "21/11/2022", demandStatus: "Cancelled" },
-        { demandTitle: "GPS para se localizar na fabrica", requesterRegistration: {workerName: "Tati"}, demandDate: "21/11/2022", demandStatus: "Support" },
-        { demandTitle: "Sistema para solicitação de demandas de TI", requesterRegistration: {workerName: "Jair"}, demandDate: "21/11/2022", demandStatus: "Done" }
+        { demandCode: 1, demandTitle: "Sistema para calcular o SCORE", requesterRegistration: {workerName: "Leonardo Heitor Poglia"}, demandDate: "27/04/2022", demandStatus: "Backlog" },
+        { demandCode: 2, demandTitle: "Calculadora de custos para projeto de demandas", requesterRegistration: {workerName: "Vytor Augusto Rosa"}, demandDate: "21/11/2022", demandStatus: "Assesment" },
+        { demandCode: 3, demandTitle: "Programa que identifica falhas de proteção constantes no Gitlab", requesterRegistration: {workerName: "Eduarda B"}, demandDate: "21/11/2022", demandStatus: "Business Case" },
+        { demandCode: 4, demandTitle: "Projeto para inovações", requesterRegistration: {workerName: "Ester G"}, demandDate: "21/11/2022", demandStatus: "To-do" },
+        { demandCode: 5, demandTitle: "Alterar custo de uso do projeto GEDESTI", requesterRegistration: {workerName: "Romário H"}, demandDate: "21/11/2022", demandStatus: "Design and Build" },
+        { demandCode: 6, demandTitle: "Nova área de leitura online", requesterRegistration: {workerName: "Josué do Amarante"}, demandDate: "21/11/2022", demandStatus: "Cancelled" },
+        { demandCode: 7, demandTitle: "GPS para se localizar na fabrica", requesterRegistration: {workerName: "Tati"}, demandDate: "21/11/2022", demandStatus: "Support" },
+        { demandCode: 8, demandTitle: "Sistema para solicitação de demandas de TI", requesterRegistration: {workerName: "Jair"}, demandDate: "21/11/2022", demandStatus: "Done" }
     ]);
 
     const [proposals] = useState([
@@ -106,7 +106,7 @@ export default function Demands() {
                                 } else {
                                     if (typeFilter === "requester" && val.requesterRegistration.workerName.toUpperCase().includes(nameFilter.toUpperCase())) {
                                         return (
-                                            <Demand listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />
+                                            <Demand id={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />
                                         );
                                     }
                                 }

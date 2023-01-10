@@ -123,6 +123,7 @@ input,
 textarea {
   outline: none !important;
   background-color: var(--white);
+  font-size: var(--p) !important;
 }
 
 input[type=checkbox]:checked {

@@ -27,9 +27,13 @@ export default function CreateDemands1() {
     const [costsCenters, setCostsCenters]: any = useState([]);
 
     function addCostCenter(costCenterAdd: any) {
-        costsCenters.push(costCenterAdd);
-        setCostsCenters(costsCenters);
-        setCostCenter("");
+        if (costCenterAdd === "" || costCenterAdd === " ") {
+            alert("Digite um centro de custo");
+        } else {
+            costsCenters.push(costCenterAdd);
+            setCostsCenters(costsCenters);
+            setCostCenter("");
+        }
     }
 
     function deleteCostCenter(costCenter: any) {
@@ -43,9 +47,9 @@ export default function CreateDemands1() {
         }
     }
 
-    function createCostCenter(){
+    function createCostCenter() {
         // criar os cost center no banco
-        
+
     }
 
     return (

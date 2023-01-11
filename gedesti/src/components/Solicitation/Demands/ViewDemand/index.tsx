@@ -51,7 +51,7 @@ export default function ViewDemand() {
         {
             demandTitle: "", requesterRegistration:  {workerName: ""}, demandDate: "", demandStatus: "", currentProblem: "", proposal: "",
             costCenter: { number: "", name: "" }, realBenefit: { realMonthlyValue: 0, realCurrency: "", realBenefitDescription: "" },
-            potentialBenefit: { monthlyValue: 0, description: "", legalObligation: "" }, qualitativeBenefit: { monthlyValue: 0, description: "", legalObligation: "", internalControlRequirements: true },
+            potentialBenefit: { potentialMonthlyValue: 0, legalObrigation: false, description: "" }, qualitativeBenefit: { monthlyValue: 0, description: "", legalObligation: "", internalControlRequirements: true },
             complements: [{ executionDeadline: "", ppm: "", epicJira: "" }]
         }]);
 
@@ -205,10 +205,10 @@ export default function ViewDemand() {
                                                 <div className="infos">
 
                                                     <div>
-                                                        <span>{t("monthlyValue")}: </span><span>{val.potentialBenefit.monthlyValue}</span>
+                                                        <span>{t("monthlyValue")}: </span><span>{val.potentialBenefit.potentialMonthlyValue}</span>
                                                     </div>
 
-                                                    <span>{t("legalObligation")}: {val.potentialBenefit.legalObligation}</span>
+                                                    <span>{t("legalObligation")}: {val.potentialBenefit.legalObrigation}</span>
 
                                                 </div>
 
@@ -431,10 +431,10 @@ export default function ViewDemand() {
                                                 <div className="infos">
 
                                                     <div>
-                                                        <span>{t("monthlyValue")}: </span><span>{val.potentialBenefit.monthlyValue}</span>
+                                                        <span>{t("monthlyValue")}: </span><span>{val.potentialBenefit.potentialMonthlyValue}</span>
                                                     </div>
 
-                                                    <span>{t("legalObligation")}: {val.potentialBenefit.legalObligation}</span>
+                                                    <span>{t("legalObligation")}: {val.potentialBenefit.legalObrigation}</span>
 
                                                 </div>
 

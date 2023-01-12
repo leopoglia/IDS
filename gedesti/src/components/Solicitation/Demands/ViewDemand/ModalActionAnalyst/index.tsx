@@ -18,7 +18,7 @@ export default function InsetList() {
                             chat
                         </span>
                         <span>
-                            {t("openCnversation")}
+                            {t("openConversation")}
                         </span>
                     </div>
                 </Link>

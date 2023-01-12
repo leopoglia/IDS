@@ -21,7 +21,18 @@ export default function ViewDemand() {
     const demandCode = parseInt(window.location.href.split("/")[5]); // Buscar código da demanda
     console.log(demandCode)
 
-    const [actionsDemand, setActionsDemand] = useState(1);
+    // Botões superiores
+    // 0 - Sem botões  
+    // 1 - Gerar PDF e Editar (Solicitante) 
+    // 2 - Reprovar e Aprovar (Analista)
+    // 3 - Classificar (Gerente de Negócios)
+    // 4 - Complementar (Analista)
+    const [actionsDemand, setActionsDemand] = useState(2); 
+    
+    // Situação da Demanda
+    // 0 - Demanda criada
+    // 1 - Demanda Classificada
+    // 2 - Demanda Complementada
     const [stepDemand, setStepDemand] = useState(0);
     const [editDemand, setEditDemand] = useState(true);
     const [inputDiv, setInputDiv] = useState("input-disabled");

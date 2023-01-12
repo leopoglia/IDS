@@ -22,7 +22,7 @@ export default function ViewDemand() {
     console.log(demandCode)
 
     const [actionsDemand, setActionsDemand] = useState(1);
-    const [stepDemand, setStepDemand] = useState(2);
+    const [stepDemand, setStepDemand] = useState(0);
     const [editDemand, setEditDemand] = useState(true);
     const [inputDiv, setInputDiv] = useState("input-disabled");
 
@@ -50,8 +50,8 @@ export default function ViewDemand() {
     const [demands, setDemands] = useState([
         {
             demandTitle: "", requesterRegistration:  {workerName: ""}, demandDate: "", demandStatus: "", currentProblem: "", proposal: "",
-            costCenter: { number: "", name: "" }, realBenefit: { realMonthlyValue: 0, realCurrency: "", realBenefitDescription: "" },
-            potentialBenefit: { potentialMonthlyValue: 0, legalObrigation: false, description: "" }, qualitativeBenefit: { monthlyValue: 0, description: "", legalObligation: "", internalControlRequirements: true },
+            costCenter: { costCenterCode: "", costCenter: "" }, realBenefit: { realMonthlyValue: 0, realCurrency: "", realBenefitDescription: "" },
+            potentialBenefit: { potentialMonthlyValue: 0, legalObrigation: false, description: "" }, qualitativeBenefit: { realMonthlyValue: 0,  interalControlsRequirements: false, frequencyOfUse: "", description: "" },
             complements: [{ executionDeadline: "", ppm: "", epicJira: "" }]
         }]);
 
@@ -227,15 +227,15 @@ export default function ViewDemand() {
                                                 <div className="infos">
 
                                                     <div>
-                                                        <span>{t("monthlyValue")}: </span><span>{val.qualitativeBenefit.monthlyValue}</span>
+                                                        <span>{t("monthlyValue")}: </span><span>{val.qualitativeBenefit.realMonthlyValue}</span>
 
                                                     </div>
 
                                                     <div>
-                                                        <span>{t("legalObligation")}: {val.qualitativeBenefit.legalObligation}</span>
+                                                        <span>{t("legalObligation")}: {val.qualitativeBenefit.frequencyOfUse}</span>
                                                     </div>
 
-                                                    <span>{t("internalControlRequirements")}: {val.qualitativeBenefit.internalControlRequirements}</span>
+                                                    <span>{t("internalControlRequirements")}: {val.qualitativeBenefit.interalControlsRequirements}</span>
 
                                                 </div>
 
@@ -252,7 +252,7 @@ export default function ViewDemand() {
                                                 <table>
                                                     {tr("costCenter", "nameCostCenter")}
 
-                                                    {tr(val.costCenter.number, val.costCenter.name)}
+                                                    {tr(val.costCenter.costCenterCode, val.costCenter.costCenter)}
                                                 </table>
                                             </div>
 
@@ -398,7 +398,7 @@ export default function ViewDemand() {
                                                 <table>
                                                     {tr("costCenter", "nameCostCenter")}
 
-                                                    {tr(val.costCenter.number, val.costCenter.name)}
+                                                    {tr(val.costCenter.costCenterCode, val.costCenter.costCenter)}
                                                 </table>
                                             </div>
 
@@ -453,15 +453,15 @@ export default function ViewDemand() {
                                                 <div className="infos">
 
                                                     <div>
-                                                        <span>{t("monthlyValue")}: </span><span>{val.qualitativeBenefit.monthlyValue}</span>
+                                                        <span>{t("monthlyValue")}: </span><span>{val.qualitativeBenefit.realMonthlyValue}</span>
 
                                                     </div>
 
                                                     <div>
-                                                        <span>{t("legalObligation")}: {val.qualitativeBenefit.legalObligation}</span>
+                                                        <span>{t("legalObligation")}: {val.qualitativeBenefit.frequencyOfUse}</span>
                                                     </div>
 
-                                                    <span>{t("internalControlRequirements")}: {val.qualitativeBenefit.internalControlRequirements}</span>
+                                                    <span>{t("internalControlRequirements")}: {val.qualitativeBenefit.interalControlsRequirements}</span>
 
                                                 </div>
 

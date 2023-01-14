@@ -35,6 +35,7 @@ export default function ViewDemand() {
     // 2 - Demanda Complementada
     const [stepDemand, setStepDemand] = useState(0);
     const [editDemand, setEditDemand] = useState(true);
+    const [centerCost, setCenterCost] = useState("");
     const [inputDiv, setInputDiv] = useState("input-disabled");
 
     function getDemand() {

@@ -2,7 +2,7 @@ nav,
 .nav-open,
 #nav,
 #nav-open {
-    width: 65px;
+    width: 60px;
     min-height: 100%;
     position: sticky;
     top: 0;
@@ -34,7 +34,7 @@ nav a {
 nav ul {
     padding: 0;
     margin: 0;
-    padding-left: 7.4px;
+    padding-left: 5px;
 }
 
 .nav-open ul {
@@ -72,7 +72,7 @@ nav .title-li {
 }
 
 .nav-open .toggle {
-    margin-left: 7.4px !important;
+    margin-left: 5px !important;
 }
 
 .nav-open .toggle .material-symbols-outlined {
@@ -90,7 +90,7 @@ nav .title-li {
     max-width: none !important;
     height: 50px;
     padding-left: 10px;
-    margin-left: 11px;
+    margin-left: 8.8px;
     border-radius: var(--r);
 }
 
@@ -139,7 +139,7 @@ nav li {
 }
 
 .logout {
-    width: 58px;
+    width: 53px;
     background-color: var(--greyF7);
     position: fixed;
     bottom: 0;

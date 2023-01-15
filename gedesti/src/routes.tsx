@@ -23,6 +23,7 @@ import AddExpense from "./components/Solicitation/Proposals/AddExpense/index";
 import ProposedInformation from "./components/Solicitation/Proposals/ProposedInformation";
 import EscopeDemand from "./components/Solicitation/Proposals/EscopeDemand";
 import CreateMinute from "./components/Solicitation/Minutes/CreateMinute";
+import Message from "./components/Others/Messages/Message";
 
 export default function Router() {
     return (
@@ -32,6 +33,7 @@ export default function Router() {
                 <Route path="/forget-password" element={<ForgetPassword />} />
 
                 <Route path="/messages" element={<Messages />} />
+                <Route path="/messages/message" element={<Message />} />
                 <Route path="/notifications" element={<Notifications />} />
                 <Route path="/configuration" element={<Configuration />} />
 

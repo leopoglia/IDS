@@ -1,0 +1,254 @@
+.messages .box-message {
+    margin-top: 50px;
+    color: var(--grey59);
+}
+
+.messages .box-message .profile {
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--greyC4);
+    margin-bottom: 20px;
+}
+
+
+.messages .box-message .user-picture {
+    max-width: 50px;
+    min-width: 50px;
+    width: 50px;
+    max-height: 50px;
+    height: 50px;
+    background-color: var(--greyD9);
+    border-radius: 50px;
+}
+
+.messages .box-message .message-name {
+    margin-left: 20px;
+}
+
+.messages .box-message span {
+    font-size: var(--m);
+}
+
+.messages .box-message .online span {
+    font-size: var(--p);
+}
+
+.messages .box-message .online span::after {
+    content: "";
+
+    margin-top: 5px;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: var(--blue);
+    margin-left: 5px;
+}
+
+.messages .box-message .input-message {
+    width: 100%;
+    height: var(--h);
+    border: 1px solid var(--greyC4);
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.messages .box-message .input-message .material-symbols-outlined {
+    width: 30px;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.messages .box-message .input-message .actions-message {
+    display: flex;
+    position: relative;
+    margin-right: 6px;
+}
+
+.messages .box-message .input-message .actions-message div {
+    border-radius: 50px;
+
+}
+
+.messages .box-message .input-message input {
+    width: 100%;
+    height: 100%;
+    padding: 0 20px;
+    border-radius: 100px;
+    border: none;
+}
+
+.messages .box-message .input-message input:hover,
+.messages .box-message .input-message input:focus {
+    border: 0 solid transparent !important;
+}
+
+.messages .box-message .text-field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.messages .box-message .send {
+    margin-left: 10px;
+    width: 45px;
+    min-width: 45px;
+    height: var(--h);
+    min-height: var(--h);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--r);
+    background-color: var(--blue);
+    cursor: pointer;
+    border-radius: 50px;
+    outline: none;
+    border: none;
+}
+
+.messages .box-message .send:hover {
+    background-color: var(--blue19);
+}
+
+.messages .box-message .send .material-symbols-outlined {
+    font-size: 30px;
+    color: white;
+}
+
+.messages .box-message .message-user {
+    max-width: 35%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background-color: var(--greyE5);
+    margin-right: 30px;
+}
+
+.messages .chat-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.messages .message-data span {
+    width: 100%;
+    word-break: break-all;
+    overflow-x: hidden;
+}
+
+.messages .box-message .message-user:hover {
+    background-color: var(--greyD9);
+}
+
+.messages .box-message .message-user .message-content {
+    display: grid;
+}
+
+.messages .box-message .message-user .message-time {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: var(--p);
+}
+
+.messages .box-message .message-user span {
+    font-size: var(--p);
+}
+
+.messages .box-message .message-two {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.messages .box-message .message-two .message-user {
+    background-color: var(--greyF7);
+}
+
+.messages .box-message .message-two .message-user:hover {
+    background-color: var(--greyE5);
+}
+
+
+.messages .box-message .input-message .add-reaction,
+.messages .box-message .input-message .attach_file {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 35px;
+    min-width: 35px;
+    min-height: 35px;
+    height: 35px;
+    margin-left: 5px;
+    border-radius: var(--r);
+}
+
+
+.messages .box-message .input-message .add-reaction:hover,
+.messages .box-message .input-message .attach_file:hover {
+    background-color: var(--greyE5);
+}
+
+.messages .box-message .chat-messages {
+    height: 50vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-bottom: 10px;
+}
+
+
+* {
+    scrollbar-width: auto;
+    scrollbar-color: var(--greyD9) white;
+}
+
+.chat-messages::-webkit-scrollbar {
+    width: 12px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: white;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background-color: var(--greyD9);
+    border-radius: 10px;
+    border: 3px solid white;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+    background-color: var(--greyC4);
+    border: 2px solid white;
+}
+
+@media(max-width: 1140px) {
+    .messages .box-message .message-user {
+        max-width: 40%;
+    }
+}
+
+
+
+@media(max-width: 768px) {
+    .messages .box-message .message-user {
+        max-width: 100%;
+    }
+
+    .Emoji {
+        margin-right: 80px;
+    }
+}
+
+.Emoji {
+    position: absolute;
+    right: 0;
+    margin-bottom: 500px;
+    margin-right: 200px;
+}

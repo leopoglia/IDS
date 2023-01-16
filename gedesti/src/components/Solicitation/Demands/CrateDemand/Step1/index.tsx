@@ -18,18 +18,18 @@ export default function CreateDemands1() {
     const [currentProblem, setcurrentProblem] = useState("");
     const [demandObjective, setDemandObjective] = useState("");
     const [costCenter, setCostCenter] = useState("");
+    const [costsCenters, setCostsCenters]: any = useState([]);
 
     localStorage.setItem("demandTitle", demandTitle);
     localStorage.setItem("currentProblem", currentProblem);
     localStorage.setItem("demandObjective", demandObjective);
-    localStorage.setItem("costCenter", costCenter);
-
-    const [costsCenters, setCostsCenters]: any = useState([]);
+    localStorage.setItem("costCenter", costsCenters);
 
     function addCostCenter(costCenterAdd: any) {
         if (costCenterAdd === "" || costCenterAdd === " ") {
             alert("Digite um centro de custo");
         } else {
+            createCostCenter();
             costsCenters.push(costCenterAdd);
             setCostsCenters(costsCenters);
             setCostCenter("");

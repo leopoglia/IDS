@@ -3,11 +3,20 @@ const url = "http://localhost:8080/api/demand";
 const Services = {
     save: function (demandTitle: String, currentProblem: String, demandObjective: String, costCenter: String, demandStatus: String, score: Number, executionPeriod: Number, requesterRegistration: Number, realBenefit: Number, qualitativeBenefit: Number, potentialBenefit: Number, demandAttachment: any, demandDate:String) {
         var formData = new FormData();
+
+        let costCenters = costCenter.split(",");
+        console.log("separado ->",costCenters)
+
+        console.log(costCenter[0], costCenter[1])
+        for(let i = 0; i < costCenter.length; i++){
+        }
+
+
         let demand = {
             "demandTitle": demandTitle,
             "currentProblem": currentProblem,
             "demandObjective": demandObjective,
-            "costCenter": [{ "costCenterCode": costCenter }],
+            "costCenter": "",
             "demandStatus": demandStatus,
             "score": score,
             "executionPeriod": executionPeriod,

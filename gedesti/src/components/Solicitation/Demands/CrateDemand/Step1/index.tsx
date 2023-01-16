@@ -19,11 +19,12 @@ export default function CreateDemands1() {
     const [demandObjective, setDemandObjective] = useState("");
     const [costCenter, setCostCenter] = useState("");
     const [costsCenters, setCostsCenters]: any = useState([]);
+    const [idCostCenter, setIdCostCenter]:any = useState([]);
 
     localStorage.setItem("demandTitle", demandTitle);
     localStorage.setItem("currentProblem", currentProblem);
     localStorage.setItem("demandObjective", demandObjective);
-    localStorage.setItem("costCenter", costsCenters);
+    localStorage.setItem("costCenter", idCostCenter);
 
     function addCostCenter(costCenterAdd: any) {
         if (costCenterAdd === "" || costCenterAdd === " ") {
@@ -33,7 +34,6 @@ export default function CreateDemands1() {
             costsCenters.push(costCenterAdd);
             setCostsCenters(costsCenters);
             setCostCenter("");
-            console.log(costsCenters)
         }
     }
 
@@ -45,13 +45,14 @@ export default function CreateDemands1() {
             }
             setCostsCenters(costsCenters);
             setCostCenter(" ");
-            console.log(costsCenters)
         }
     }
 
-    function createCostCenter() {
+    async function createCostCenter() {
         // criar os cost center no banco
-        Services.save(costCenter);
+        let service:any = await Services.save(costCenter);
+        console.log("retorno -> ", service);
+        idCostCenter.push(service.costCenterCode);
     }
 
     return (

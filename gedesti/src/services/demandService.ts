@@ -1,7 +1,7 @@
 const url = "http://localhost:8080/api/demand";
 
 const Services = {
-    save: function (demandTitle: String, currentProblem: String, demandObjective: String, costCenter: String, demandStatus: String, score: Number, executionPeriod: Number, requesterRegistration: Number, realBenefit: Number, qualitativeBenefit: Number, potentialBenefit: Number, demandAttachment: any, demandDate:String) {
+    save: function (demandTitle: String, currentProblem: String, demandObjective: String, costCenter: String, demandStatus: String, score: Number, executionPeriod: Number, requesterRegistration: Number, realBenefit: Number, qualitativeBenefit: Number, potentialBenefit: Number, demandAttachment: any, demandDate: String) {
         var formData = new FormData();
 
         let costCentersSplit = costCenter.split(",");
@@ -10,7 +10,7 @@ const Services = {
             costCenters.push({ "costCenterCode": costCentersSplit[i] });
         }
 
-        console.log(costCenters)
+        console.log("cost centers -> ", costCenters)
 
         let demand = {
             "demandTitle": demandTitle,
@@ -22,8 +22,8 @@ const Services = {
             "executionPeriod": executionPeriod,
             "requesterRegistration": { "workerCode": requesterRegistration },
             "realBenefit": { "realBenefitCode": realBenefit },
-            "qualitativeBenefit": {"qualitativeBenefitCode": qualitativeBenefit},
-            "potentialBenefit": {"potentialBenefitCode": potentialBenefit},
+            "qualitativeBenefit": { "qualitativeBenefitCode": qualitativeBenefit },
+            "potentialBenefit": { "potentialBenefitCode": potentialBenefit },
             "demandDate": demandDate
         }
         formData.append('demand', JSON.stringify(demand));

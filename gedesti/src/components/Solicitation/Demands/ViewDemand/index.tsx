@@ -35,7 +35,7 @@ export default function ViewDemand() {
     // 2 - Demanda Complementada
     const [stepDemand, setStepDemand] = useState(0);
     const [editDemand, setEditDemand] = useState(true);
-    const [centerCost, setCenterCost] = useState("");
+    const [centerCost, setCenterCost] = useState([]);
     const [inputDiv, setInputDiv] = useState("input-disabled");
 
     function getDemand() {
@@ -262,8 +262,7 @@ export default function ViewDemand() {
                                                 <div className="hr" />
                                                 <table>
                                                     {tr("costCenter", "nameCostCenter")}
-
-                                                    {tr(val.costCenter.costCenterCode, val.costCenter.costCenter)}
+                                                    
                                                 </table>
                                             </div>
 

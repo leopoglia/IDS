@@ -41,10 +41,9 @@ export default function ViewDemand() {
     function getDemand() {
         Services.findById(demandCode).then((response: any) => {
             console.log(response)
-            const demand = [response]
+            const demand:any = [response]
             setDemands(demand)
-
-            console.log("demanda -> " , demands)
+            setCenterCost(demand[0].costCenter.costCenter)
         })
     }
 

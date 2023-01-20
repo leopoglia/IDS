@@ -61,6 +61,15 @@
     width: 50px;
 }
 
+.no-results{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--grey59);
+    margin-top: 50px;
+}
 
 .minute iframe{
     width: 100%;

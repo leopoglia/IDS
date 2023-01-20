@@ -161,5 +161,6 @@
     "add": "Agregar",
     "proposalComissionOpinion": "Propuesta > Opinión de la comisión",
     "createProposalSelectProposal": "Propuesta > Crear propuesta > Seleccionar propuesta",
-    "selectProposal": "Seleccionar propuesta"
+    "selectProposal": "Seleccionar propuesta",
+    "noResults": "No hay resultados"
 }

@@ -149,7 +149,6 @@
     "downloadPDF": "Baixar PDF",
     "changeStatus": "Alterar status",
     "confirm": "Confirmar",
-    "createMinute": "Criar ata",
     "minuteCreateMinute": "Ata > Criar Ata",
     "interal": "Interno",
     "external": "Externo",
@@ -163,5 +162,6 @@
     "add": "Adicionar",
     "proposalComissionOpinion": "Proposta > Parecer da comissão",
     "createProposalSelectProposal": "Proposta > Criar Proposta > Selecionar Proposta",
-    "selectProposal": "Selecionar proposta"
+    "selectProposal": "Selecionar proposta",
+    "noResults": "Nenhum resultado encontrado"
 }

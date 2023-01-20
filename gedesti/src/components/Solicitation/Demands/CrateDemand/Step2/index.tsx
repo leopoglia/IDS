@@ -23,16 +23,18 @@ export default function CreateDemands2() {
     const [realCurrency, setrealCurrency] = useState("");
 
     const [potentialMonthlyValue, setPotentialMonthlyValue] = useState("");
+    const [potentialBenefitDescription, setPotentialBenefitDescription] = useState("");
     const [legalObrigation, setLegalObrigation] = useState("");
     const [potentialCurrency, setPotentialCurrency] = useState("");
 
+    const [qualitativeBenefitDescription, setQualitativeBenefitDescription] = useState("");
     const [frequencyOfUse, setFrequencyOfUse] = useState("");
     const [interalControlsRequirements, setInteralControlsRequirements] = useState("");
 
     async function cadastrarBeneficios() {
-        let realBenefits:any = await RealServices.save(Number.parseFloat(realMonthlyValue), realBenefitDescription, "real");
-        let potentialBenefits:any = await PotentialServices.save(Number.parseFloat(potentialMonthlyValue), true, "real");
-        let qualitativeBenefits:any = await QualitativeServices.save(frequencyOfUse, true);
+        let realBenefits: any = await RealServices.save(Number.parseFloat(realMonthlyValue), realBenefitDescription, "real");
+        let potentialBenefits: any = await PotentialServices.save(Number.parseFloat(potentialMonthlyValue), potentialBenefitDescription, true, "real");
+        let qualitativeBenefits: any = await QualitativeServices.save(frequencyOfUse, qualitativeBenefitDescription, true);
 
         localStorage.setItem("realBenefits", JSON.stringify(realBenefits));
         localStorage.setItem("potentialBenefits", JSON.stringify(potentialBenefits));
@@ -66,7 +68,7 @@ export default function CreateDemands2() {
                     {/* <Input label="description" required=""></Input> */}
                     <div className="input">
                         <label>{t("description")}</label>
-                        <input onChange={(e) => { setrealBenefitDescription(e.target.value)}} type="text" />
+                        <input onChange={(e) => { setrealBenefitDescription(e.target.value) }} type="text" />
                     </div>
 
                 </div>
@@ -86,7 +88,12 @@ export default function CreateDemands2() {
                         </div>
 
                         <div className="flex">
-                            <Input label="description" required=""></Input>
+                            {/* <Input label="description" required=""></Input> */}
+
+                            <div className="input">
+                                <label>{t("description")}</label>
+                                <input onChange={(e) => { setPotentialBenefitDescription(e.target.value) }} type="text" />
+                            </div>
 
                             <div className="input-checkbox">
                                 <label>{t("legalObligation")}</label>
@@ -111,7 +118,11 @@ export default function CreateDemands2() {
                     </div>
 
                     <div className="flex">
-                        <Input label="description" required=""></Input>
+                        {/* <Input label="description" required=""></Input> */}
+                        <div className="input">
+                            <label>{t("description")}</label>
+                            <input onChange={(e) => { setQualitativeBenefitDescription(e.target.value) }} type="text" />
+                        </div>
 
                         <div className="input-checkbox">
                             <label className="requirements">{t("internalControlRequirements")}</label>

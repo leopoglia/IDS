@@ -1,11 +1,12 @@
 const url = "http://localhost:8080/api/potentialbenefit"
 
 const Services = {
-    save: function (potentialMonthlyValue: Number, legalObrigation: Boolean, potentialCurrency: String) {
+    save: function (potentialMonthlyValue: Number, potentialBenefitDescription:String, legalObrigation: Boolean, potentialCurrency: String) {
         return new Promise((resolve, reject) => {
             fetch(url, {
                 method: 'POST', body: JSON.stringify({
                     potentialMonthlyValue: potentialMonthlyValue,
+                    potentialBenefitDescription: potentialBenefitDescription,
                     legalObrigation: legalObrigation,
                     potentialCurrency: potentialCurrency
                 }), headers: { 'Content-Type': 'application/json' }

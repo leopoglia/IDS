@@ -8,7 +8,7 @@ function User() {
     const [modal, setModal] = useState(false)
 
     const worker = localStorage.getItem('worker');
-    const name = JSON.parse(worker).name;
+    const name = (JSON.parse(worker).name).split(' ')[0]
     const image = name.substr(0, 1)
 
     // Drop down

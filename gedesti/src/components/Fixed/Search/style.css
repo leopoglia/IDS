@@ -91,6 +91,10 @@
         width: 100%;
     }
 
+    .search .filter-export{
+        margin-top: 20px;
+    }
+
     .search .section {
         display: flex !important;
         flex-direction: column-reverse !important;

@@ -70,7 +70,7 @@ export default function Search(props: any) {
             <div className="section">
 
                 {props.name !== "" && props.type !== "" &&
-                    <div className="display-flex">
+                    <div className="display-flex filter-export">
                         <div className="filters-on" onClick={() => { callback("", ""); props.onClick("", "") }}>
                             <div className="display-flex"><span>{props.name} - {props.type}</span><span className="material-symbols-outlined size-20">close</span></div>
                         </div>

@@ -31,7 +31,7 @@ export default function RankDemand() {
 
                         <label htmlFor="">{t("size")} *</label>
 
-                        <SelectSizeDemand />
+                        <SelectSizeDemand type="size" />
 
                     </div>
 
@@ -39,7 +39,7 @@ export default function RankDemand() {
 
                         <label htmlFor="">{t("requesterBU")} *</label>
 
-                        <SelectSizeDemand />
+                        <SelectSizeDemand type="buReq" />
 
                     </div>
 
@@ -47,7 +47,7 @@ export default function RankDemand() {
 
                         <label htmlFor="">{t("buBenefited")} *</label>
 
-                        <SelectSizeDemand />
+                        <SelectSizeDemand type="BuBen" />
 
                     </div>
 
@@ -55,7 +55,7 @@ export default function RankDemand() {
 
                         <label htmlFor="">{t("responsibleItSession")} *</label>
 
-                        <SelectSizeDemand />
+                        <SelectSizeDemand type="ti"/>
 
                     </div>
 

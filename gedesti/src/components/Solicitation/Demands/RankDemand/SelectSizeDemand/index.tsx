@@ -5,8 +5,36 @@ import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
-export default function SelectLabels() {
+export default function SelectLabels(props: any) {
     const [age, setAge] = React.useState('');
+    const [type, setType] = React.useState(props.type);
+
+    const size = ["Pequeno", "Médio", "Grande"]
+    const buReq = ["WEG 1", "WEG 2", "WEG 3"]
+    const buBen = ["WEG 1", "WEG 2", "WEG 3"]
+    const ti = ["AI", "Front", "Back"]
+
+    const typeChange = (type: string) => {
+        switch (type) {
+            case "size":
+                return size
+            case "buReq":
+                return buReq
+            case "buBen":
+                return buBen
+            case "ti":
+                return ti
+            default:
+                return size
+        }
+    }
+
+    const typeSet = () => {
+        let type = typeChange(props.type)
+        return type.map((item: string) => {
+            return <MenuItem value={item}>{item}</MenuItem>
+        })
+    }
 
     const handleChange = (event: SelectChangeEvent) => {
         setAge(event.target.value);
@@ -24,12 +52,8 @@ export default function SelectLabels() {
 
                     sx={{ height: '45px' }}
                 >
-                    <MenuItem value="">
-                        <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
+
+                    {typeSet()}
                 </Select>
             </FormControl>
         </div>

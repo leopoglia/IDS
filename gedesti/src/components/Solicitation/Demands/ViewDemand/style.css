@@ -166,3 +166,7 @@
     align-items: center;
     justify-content: center;
 }
+
+.view-demand .cost-center{
+    margin-top: 30px;
+}

@@ -70,9 +70,9 @@ export default function ViewDemand() {
 
     const [demands, setDemands] = useState([
         {
-            demandTitle: "", requesterRegistration: { workerName: "" }, demandDate: "", demandStatus: "", currentProblem: "", proposal: "",
+            demandTitle: "", requesterRegistration: { workerName: "" }, demandDate: "", demandStatus: "", currentProblem: "", demandObjective: "",
             costCenter: { costCenterCode: "", costCenter: "" }, realBenefit: { realMonthlyValue: 0, realCurrency: "", realBenefitDescription: "" },
-            potentialBenefit: { potentialMonthlyValue: 0, legalObrigation: false, description: "" }, qualitativeBenefit: { realMonthlyValue: 0, interalControlsRequirements: false, frequencyOfUse: "", description: "" },
+            potentialBenefit: { potentialMonthlyValue: 0, legalObrigation: false, potentialBenefitDescription: "" }, qualitativeBenefit: { realMonthlyValue: 0, interalControlsRequirements: false, frequencyOfUse: "", qualitativeBenefitDescription: "" },
             complements: [{ executionDeadline: "", ppm: "", epicJira: "" }]
         }]);
 
@@ -191,8 +191,8 @@ export default function ViewDemand() {
                                             <div className="situation-current">
                                                 <p className="title">{t("currentSituation")}</p>
                                                 <input className={inputDiv} type="text" value={val.currentProblem} disabled={editDemand} />
-                                                <p className="title">{t("proposal")}</p>
-                                                <input className={inputDiv} type="text" value={val.proposal} disabled={editDemand} />
+                                                <p className="title">{t("objective")}</p>
+                                                <input className={inputDiv} type="text" value={val.demandObjective} disabled={editDemand} />
                                             </div>
 
 
@@ -229,14 +229,15 @@ export default function ViewDemand() {
                                                         <span>{t("monthlyValue")}: </span><span>{val.potentialBenefit.potentialMonthlyValue}</span>
                                                     </div>
 
-                                                    <span>{t("legalObligation")}: {val.potentialBenefit.legalObrigation}</span>
+                                                    <span>{t("legalObligation")}: {
+                                                        (val.potentialBenefit.legalObrigation === true) ? (<span>Sim</span>) : (<span>Não</span>)}</span>
 
                                                 </div>
 
                                                 <div className="hr" />
 
                                                 <div className="description">
-                                                    <span className="desc">Descrição</span><span>{val.potentialBenefit.description}</span>
+                                                    <span className="desc">Descrição</span><span>{val.potentialBenefit.potentialBenefitDescription}</span>
                                                 </div>
                                             </div>
 
@@ -263,11 +264,11 @@ export default function ViewDemand() {
                                                 <div className="hr" />
 
                                                 <div className="description">
-                                                    <span className="desc">Descrição</span><span>{val.qualitativeBenefit.description}</span>
+                                                    <span className="desc">Descrição</span><span>{val.qualitativeBenefit.qualitativeBenefitDescription}</span>
                                                 </div>
                                             </div>
 
-                                            <div className="cust-center">
+                                            <div className="cost-center">
                                                 <p className="title">{t("costCenter")}</p>
                                                 <div className="hr" />
                                                 <table>
@@ -409,8 +410,8 @@ export default function ViewDemand() {
                                             <div className="situation-current">
                                                 <p className="title">{t("currentSituation")}</p>
                                                 <input className={inputDiv} type="text" value={val.currentProblem} disabled={editDemand} />
-                                                <p className="title">{t("proposal")}</p>
-                                                <input className={inputDiv} type="text" value={val.proposal} disabled={editDemand} />
+                                                <p className="title">{t("objective")}</p>
+                                                <input className={inputDiv} type="text" value={val.demandObjective} disabled={editDemand} />
                                             </div>
 
                                             <div className="cust-center">
@@ -462,7 +463,7 @@ export default function ViewDemand() {
                                                 <div className="hr" />
 
                                                 <div className="description">
-                                                    <span className="desc">Descrição</span><span>{val.potentialBenefit.description}</span>
+                                                    <span className="desc">Descrição</span><span>{val.potentialBenefit.potentialBenefitDescription}</span>
                                                 </div>
                                             </div>
 
@@ -489,7 +490,7 @@ export default function ViewDemand() {
                                                 <div className="hr" />
 
                                                 <div className="description">
-                                                    <span className="desc">Descrição</span><span>{val.qualitativeBenefit.description}</span>
+                                                    <span className="desc">Descrição</span><span>{val.qualitativeBenefit.qualitativeBenefitDescription}</span>
                                                 </div>
                                             </div>
 
@@ -565,7 +566,7 @@ export default function ViewDemand() {
 
                         <div className="box">
 
-                            <p>{t("proposals")}</p>
+                            <p>{t("proposal")}</p>
 
                             <Link to="/proposal/view">
                                 <div className="proposal-view">

@@ -1,3 +1,5 @@
+import { Update } from "@mui/icons-material";
+
 const url = "http://localhost:8080/api/classification"
 
 const Services = {
@@ -46,6 +48,29 @@ const Services = {
         return new Promise((resolve, reject) => {
             fetch(url + "/" + id, {
                 method: 'DELETE', headers: { 'Content-Type': 'application/json' }
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(resolve)
+        })
+    },
+    update: function(id: number, classificationSize: Number, itSection: String, ppmcode: String, linkEpicJira: String, requesterBu: any, beneficiaryBu: any, analistRegistry: any) {
+        let beneficiaryBuList: any = [];
+
+        for (let i = 0; i < beneficiaryBu.length; i++) {
+            beneficiaryBuList.push({ buCode: beneficiaryBu[i].buCode })
+        }
+
+        return new Promise((resolve, reject) => {
+            fetch(url + "/" + id, {
+                method: 'POST', body: JSON.stringify({
+                    classificationSize: classificationSize,
+                    itSection: itSection,
+                    ppmcode: ppmcode,
+                    linkEpicJira: linkEpicJira,
+                    analistRegistry: { workerCode: analistRegistry },
+                    requesterBu: { buCode: requesterBu },
+                    beneficiaryBu: beneficiaryBuList
+                }), headers: { 'Content-Type': 'application/json' }
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(resolve)

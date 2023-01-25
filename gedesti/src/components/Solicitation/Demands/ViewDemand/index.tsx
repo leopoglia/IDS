@@ -127,7 +127,7 @@ export default function ViewDemand() {
                                         </button>
                                     </Link>
 
-                                    <Link to="/demand/rank">
+                                    <Link to={"/demand/rank/" + demandCode}>
                                         <button className="btn-primary">
                                             <span>{t("approve")}</span>
                                         </button>

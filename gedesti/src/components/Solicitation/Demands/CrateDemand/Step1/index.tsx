@@ -19,12 +19,7 @@ export default function CreateDemands1() {
     const [demandObjective, setDemandObjective] = useState("");
     const [costCenter, setCostCenter] = useState("");
     const [costsCenters, setCostsCenters]: any = useState([]);
-    const [idCostCenter, setIdCostCenter]:any = useState([]);
-
-    localStorage.setItem("demandTitle", demandTitle);
-    localStorage.setItem("currentProblem", currentProblem);
-    localStorage.setItem("demandObjective", demandObjective);
-    localStorage.setItem("costCenter", idCostCenter);
+    const [idCostCenter, setIdCostCenter]: any = useState([]);
 
     function addCostCenter(costCenterAdd: any) {
         if (costCenterAdd === "" || costCenterAdd === " ") {
@@ -33,6 +28,7 @@ export default function CreateDemands1() {
             createCostCenter();
             costsCenters.push(costCenterAdd);
             setCostsCenters(costsCenters);
+
             setCostCenter("");
         }
     }
@@ -50,9 +46,45 @@ export default function CreateDemands1() {
 
     async function createCostCenter() {
         // criar os cost center no banco
-        let service:any = await Services.save(costCenter);
+        let service: any = await Services.save(costCenter);
         console.log("retorno -> ", service);
         idCostCenter.push(service.costCenterCode);
+    }
+
+    const handleChange = (event: any, type: String) => {
+
+        let demand = {
+            titleInput: "",
+            currentSituation: "",
+            objective: "",
+            costCenter: ""
+        };
+
+
+        if (localStorage.getItem("demand") !== null) {
+            demand = JSON.parse(localStorage.getItem("demand") || "{}");
+        }
+
+        switch (type) {
+            case "titleInput":
+                demand.titleInput = event.target.value;
+                break;
+            case "currentSituation":
+                demand.currentSituation = event.target.value;
+                break;
+            case "objective":
+                demand.objective = event.target.value;
+                break;
+            case "costCenter":
+                setCostCenter("");
+                demand.costCenter = costsCenters;
+                break;
+            default:
+                demand.titleInput = event.target.value;
+        }
+
+
+        localStorage.setItem("demand", JSON.stringify(demand));
     }
 
     return (
@@ -74,19 +106,19 @@ export default function CreateDemands1() {
 
                     <div className="input">
                         <label>{t("titleInput")} *</label>
-                        <input onChange={(e) => { setDemandTitle(e.target.value) }} type="text" />
+                        <input onChange={(e) => { handleChange(e, 'titleInput'); }} type="text" />
                     </div>
 
                     <div className="text-area">
                         <label>{t("currentSituation")} *</label>
-                        <textarea onChange={(e) => { setcurrentProblem(e.target.value) }} />
+                        <textarea onChange={(e) => { handleChange(e, 'currentSituation'); }} />
                     </div>
                     {/* 
                     <TextArea label="currentSituation" required="*" onChange={(e) => { setDemandProblem(e.target.value) }}></TextArea> */}
 
                     <div className="text-area">
                         <label>{t("objective")} *</label>
-                        <textarea onChange={(e) => { setDemandObjective(e.target.value) }} />
+                        <textarea onChange={(e) => { handleChange(e, 'objective'); }} />
                     </div>
 
                     {/* <TextArea label="proposal" required="*" onChange={(e) => { setProposal(e.target.value) }}></TextArea> */}
@@ -95,9 +127,9 @@ export default function CreateDemands1() {
                         <label>{t("costCenter")} *</label>
 
                         <div className="display-flex">
-                            <input onChange={(e) => { setCostCenter(e.target.value); }} type="text" />
+                            <input onChange={(e) => { handleChange(e, 'costCenter'); setCostCenter(e.target.value) }} type="text" />
 
-                            <div className="btn-primary w45" onClick={() => { addCostCenter(costCenter)}}>
+                            <div className="btn-primary w45" onClick={() => { addCostCenter(costCenter); handleChange(costCenter, 'costCenter'); }}>
                                 <span className="material-symbols-outlined">add</span>
                             </div>
                         </div>

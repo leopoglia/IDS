@@ -47,7 +47,7 @@ export default function RankDemand() {
 
                         <label htmlFor="">{t("buBenefited")} *</label>
 
-                        <SelectSizeDemand type="BuBen" />
+                        <SelectSizeDemand type="buBen" />
 
                     </div>
 

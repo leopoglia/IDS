@@ -6,12 +6,12 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 export default function SelectLabels(props: any) {
-    const [age, setAge] = React.useState('');
+    const [select, setSelect] = React.useState('');
     const [type, setType] = React.useState(props.type);
 
     const size = ["Pequeno", "Médio", "Grande"]
-    const buReq = ["WEG 1", "WEG 2", "WEG 3"]
-    const buBen = ["WEG 1", "WEG 2", "WEG 3"]
+    const buReq = ["WEG Motores", "WEG Tintas", "WEG Automação", "WEG Energia", "WEG Digital", "WEG Transmissão & Distribuição", "WEG Serviços"]
+    const buBen = ["WEG Motores", "WEG Tintas", "WEG Automação", "WEG Energia", "WEG Digital", "WEG Transmissão & Distribuição", "WEG Serviços"]
     const ti = ["AI", "Front", "Back"]
 
     const typeChange = (type: string) => {
@@ -37,7 +37,37 @@ export default function SelectLabels(props: any) {
     }
 
     const handleChange = (event: SelectChangeEvent) => {
-        setAge(event.target.value);
+        setSelect(event.target.value);
+
+        let classification = {
+            size: "",
+            buReq: "",
+            buBen: "",
+            ti: ""
+        };
+
+        if (localStorage.getItem("classification") !== null) {
+            classification = JSON.parse(localStorage.getItem("classification") || "{}");
+        }
+
+        switch (type) {
+            case "size":
+                classification.size = event.target.value;
+                break;
+            case "buReq":
+                classification.buReq = event.target.value;
+                break;
+            case "buBen":
+                classification.buBen = event.target.value;
+                break;
+            case "ti":
+                classification.ti = event.target.value;
+                break;
+            default:
+                classification.size = event.target.value;
+        }
+
+        localStorage.setItem("classification", JSON.stringify(classification));
     };
 
     return (
@@ -45,7 +75,7 @@ export default function SelectLabels(props: any) {
 
             <FormControl sx={{ minWidth: "100%", height: "60px" }}>
                 <Select
-                    value={age}
+                    value={select}
                     onChange={handleChange}
                     displayEmpty
                     inputProps={{ 'aria-label': 'Without label' }}

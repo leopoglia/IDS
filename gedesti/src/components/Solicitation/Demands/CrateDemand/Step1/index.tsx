@@ -87,6 +87,14 @@ export default function CreateDemands1() {
         localStorage.setItem("demand", JSON.stringify(demand));
     }
 
+    const addIDCostCenter = () => {
+        localStorage.getItem("demand");
+        let demand = JSON.parse(localStorage.getItem("demand") || "{}");
+        demand.costCenter = idCostCenter;
+        localStorage.setItem("demand", JSON.stringify(demand));
+    }
+
+
     return (
         <div className="create-demands-1">
             <Header icon="folder_copy" title="createDemand" />
@@ -150,7 +158,9 @@ export default function CreateDemands1() {
 
                 <div className="demands-footer">
                     <ButtonAction title="Voltar" click="voltar"></ButtonAction>
-                    <ButtonAction title="Avançar" click="avancar"></ButtonAction>
+                    <div onClick={ ()=> {addIDCostCenter()}}>
+                        <ButtonAction title="Avançar" click="avancar"></ButtonAction>
+                    </div>
                 </div>
 
             </div>

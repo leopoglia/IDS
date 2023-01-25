@@ -33,14 +33,21 @@ export default function CreateDemands1() {
         }
     }
 
-    function deleteCostCenter(costCenter: any) {
+    function deleteCostCenter(costCentere: any) {
         return () => {
-            const index = costsCenters.indexOf(costCenter);
+            const index = costsCenters.indexOf(costCentere);
             if (index > -1) {
                 costsCenters.splice(index, 1);
             }
             setCostsCenters(costsCenters);
-            setCostCenter(" ");
+
+            if (costCenter === " ") {
+                setCostCenter("");
+            } else {
+                setCostCenter(" ");
+            }
+
+            console.log("costsCenters 2 -> ", costCenter);
         }
     }
 
@@ -93,6 +100,7 @@ export default function CreateDemands1() {
         demand.costCenter = idCostCenter;
         localStorage.setItem("demand", JSON.stringify(demand));
     }
+    
 
 
     return (

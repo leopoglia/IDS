@@ -11,7 +11,7 @@ import Service from "../../../../services/classificationService"
 export default function RankDemand() {
     const { t } = useTranslation();
     const [buBenefited, setBuBenefited] = useState("");
-    const [buBenefiteds, setBuBenefiteds] = useState([]);
+    const [buBenefiteds, setBuBenefiteds]: any = useState([]);
 
     function saveToRank() {
         console.log("salvou");
@@ -23,11 +23,23 @@ export default function RankDemand() {
 
     console.log("buBenefiteds -> ", buBenefiteds);
 
-    const addList = () => {
-        
-    }
 
-    function deleteBuBenefited(buBenefited: any) {
+    function deleteBuBenefited(bu: any) {
+
+        return () => {
+            const index = buBenefiteds.indexOf(bu);
+            console.log("index -> ", index);
+            if (index > -1) {
+                buBenefiteds.splice(index, 1);
+            }
+            setBuBenefiteds(buBenefiteds);
+
+            if (buBenefited === " ") {
+                setBuBenefited("");
+            } else {
+                setBuBenefited(" ");
+            }
+        }
 
     }
 
@@ -78,12 +90,12 @@ export default function RankDemand() {
 
 
                         <div className="select-bu display-flex">
-                            <SelectSizeDemand setBuBenefiteds ={setBuBenefiteds} buBenefiteds={buBenefiteds} type="buBen"  />
+                            <SelectSizeDemand setBuBenefiteds={setBuBenefiteds} buBenefiteds={buBenefiteds} type="buBen" />
                         </div>
 
                         {buBenefiteds.map((bu: any) => {
                             return <div className="costCenter">{bu}
-                                <span className="material-symbols-outlined delete-cost-center" onClick={() => deleteBuBenefited(buBenefited)}>
+                                <span className="material-symbols-outlined delete-cost-center" onClick={deleteBuBenefited(bu)}>
                                     delete
                                 </span>
                             </div>

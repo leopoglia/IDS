@@ -27,8 +27,8 @@ export default function ViewDemand() {
     // 2 - Reprovar e Aprovar (Analista)
     // 3 - Classificar (Gerente de Negócios)
     // 4 - Complementar (Analista)
-    const [actionsDemand, setActionsDemand] = useState(2); 
-    
+    const [actionsDemand, setActionsDemand] = useState(2);
+
     // Situação da Demanda
     // 0 - Demanda criada
     // 1 - Demanda Classificada
@@ -41,9 +41,9 @@ export default function ViewDemand() {
     function getDemand() {
         Services.findById(demandCode).then((response: any) => {
             console.log(response)
-            const demand:any = [response]
+            const demand: any = [response]
             setDemands(demand)
-            setCenterCost(demand[0].costCenter.costCenter)
+            setCenterCost(demand[0].costCenter)
         })
     }
 
@@ -57,12 +57,22 @@ export default function ViewDemand() {
         }
     }, [office]);
 
+    const costCenter = () => {
+        return (
+            centerCost.map((item: any) => {
+                return (
+                    tr(item.costCenterCode, item.costCenter)
+                    )
+            }
+            )
+        )
+    }
 
     const [demands, setDemands] = useState([
         {
-            demandTitle: "", requesterRegistration:  {workerName: ""}, demandDate: "", demandStatus: "", currentProblem: "", proposal: "",
+            demandTitle: "", requesterRegistration: { workerName: "" }, demandDate: "", demandStatus: "", currentProblem: "", proposal: "",
             costCenter: { costCenterCode: "", costCenter: "" }, realBenefit: { realMonthlyValue: 0, realCurrency: "", realBenefitDescription: "" },
-            potentialBenefit: { potentialMonthlyValue: 0, legalObrigation: false, description: "" }, qualitativeBenefit: { realMonthlyValue: 0,  interalControlsRequirements: false, frequencyOfUse: "", description: "" },
+            potentialBenefit: { potentialMonthlyValue: 0, legalObrigation: false, description: "" }, qualitativeBenefit: { realMonthlyValue: 0, interalControlsRequirements: false, frequencyOfUse: "", description: "" },
             complements: [{ executionDeadline: "", ppm: "", epicJira: "" }]
         }]);
 
@@ -262,7 +272,8 @@ export default function ViewDemand() {
                                                 <div className="hr" />
                                                 <table>
                                                     {tr("costCenter", "nameCostCenter")}
-                                                    
+
+                                                    {costCenter()}
                                                 </table>
                                             </div>
 

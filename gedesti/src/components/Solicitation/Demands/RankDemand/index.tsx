@@ -5,10 +5,31 @@ import Nav from "../../../Fixed/Nav";
 import Title from "../../../Fixed/Search/Title";
 import SelectSizeDemand from "./SelectSizeDemand";
 import { useTranslation } from "react-i18next";
+import Service from "../../../../services/classificationService"
 
 
 export default function RankDemand() {
     const { t } = useTranslation();
+    const [buBenefited, setBuBenefited] = useState("");
+    const [buBenefiteds, setBuBenefiteds] = useState([]);
+
+    function saveToRank() {
+        console.log("salvou");
+
+        // Service.saveToRank();
+
+
+    }
+
+    console.log("buBenefiteds -> ", buBenefiteds);
+
+    const addList = () => {
+        
+    }
+
+    function deleteBuBenefited(buBenefited: any) {
+
+    }
 
     return (
         <div className="rank-demand">
@@ -35,6 +56,14 @@ export default function RankDemand() {
 
                     </div>
 
+                    <div className="ti-section">
+
+                        <label htmlFor="">{t("responsibleItSession")} *</label>
+
+                        <SelectSizeDemand type="ti" />
+
+                    </div>
+
                     <div className="bu-requester">
 
                         <label htmlFor="">{t("requesterBU")} *</label>
@@ -47,17 +76,21 @@ export default function RankDemand() {
 
                         <label htmlFor="">{t("buBenefited")} *</label>
 
-                        <SelectSizeDemand type="buBen" />
 
+                        <div className="select-bu display-flex">
+                            <SelectSizeDemand setBuBenefiteds ={setBuBenefiteds} buBenefiteds={buBenefiteds} type="buBen"  />
+                        </div>
+
+                        {buBenefiteds.map((bu: any) => {
+                            return <div className="costCenter">{bu}
+                                <span className="material-symbols-outlined delete-cost-center" onClick={() => deleteBuBenefited(buBenefited)}>
+                                    delete
+                                </span>
+                            </div>
+                        })
+                        }
                     </div>
 
-                    <div className="ti-section">
-
-                        <label htmlFor="">{t("responsibleItSession")} *</label>
-
-                        <SelectSizeDemand type="ti"/>
-
-                    </div>
 
                     <div>
                         <span>{t("attachments")}</span>
@@ -78,7 +111,7 @@ export default function RankDemand() {
                         <span>{t("return")}</span>
                     </button>
 
-                    <button className="btn-primary">
+                    <button onClick={() => saveToRank()} className="btn-primary">
                         <span>{t("toRank")}</span>
                     </button>
 

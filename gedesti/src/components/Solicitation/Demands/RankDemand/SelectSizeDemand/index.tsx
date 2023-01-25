@@ -37,6 +37,11 @@ export default function SelectLabels(props: any) {
     }
 
     const handleChange = (event: SelectChangeEvent) => {
+        if(props.type === "buBen"){
+            props.setBuBenefiteds([...props.buBenefiteds, event.target.value])
+        }
+
+
         setSelect(event.target.value);
 
         let classification = {
@@ -71,7 +76,7 @@ export default function SelectLabels(props: any) {
     };
 
     return (
-        <div>
+        <div className='SelectLabels'>
 
             <FormControl sx={{ minWidth: "100%", height: "60px" }}>
                 <Select

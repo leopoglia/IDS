@@ -16,7 +16,7 @@
     margin: 0px !important;
 }
 
-.costCenter{
+.costCenter, .buBenefited{
     width: 100%;
     height: 35px;
     display: flex;

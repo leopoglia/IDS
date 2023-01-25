@@ -2,3 +2,11 @@
     margin-right: 2px;
     margin-left: 0px;
 }
+
+.select-bu{
+    width: 100%;
+}
+
+.select-bu .SelectLabels{
+    width: 100%;
+}

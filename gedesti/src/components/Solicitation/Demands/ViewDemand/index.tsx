@@ -24,8 +24,8 @@ export default function ViewDemand() {
     // Botões superiores
     // 0 - Sem botões  
     // 1 - Gerar PDF e Editar (Solicitante) 
-    // 2 - Reprovar e Aprovar (Analista)
-    // 3 - Classificar (Gerente de Negócios)
+    // 2 - Reprovar ou Classificar (Analista)
+    // 3 - Reprovar ou Aprovar (Gerente de Negócios)
     // 4 - Complementar (Analista)
     const [actionsDemand, setActionsDemand] = useState(2);
 
@@ -129,7 +129,7 @@ export default function ViewDemand() {
 
                                     <Link to={"/demand/rank/" + demandCode}>
                                         <button className="btn-primary">
-                                            <span>{t("approve")}</span>
+                                            <span>{t("toRank")}</span>
                                         </button>
                                     </Link>
 
@@ -148,7 +148,7 @@ export default function ViewDemand() {
 
                                     <Link to="/demand/rank">
                                         <button className="btn-primary">
-                                            <span>{t("toRank")}</span>
+                                            <span>{t("approve")}</span>
                                         </button>
                                     </Link>
 

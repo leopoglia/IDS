@@ -10,11 +10,59 @@ import ProgressBar from "../../Demands/CrateDemand/ProgressBar";
 import SelectCoin from "../../Demands/CrateDemand/SelectCoin";
 import TextArea from "../../Demands/CrateDemand/TextArea";
 import "./style.css"
+import Services from "../../../../services/demandService";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function EscopeDemand() {
 
     const { t } = useTranslation();
+
+    const demandCode = parseInt(window.location.href.split("/")[5]);
+    const [centerCost, setCenterCost] = useState([]);
+
+    function getDemand() {
+        Services.findById(demandCode).then((response: any) => {
+            console.log(response)
+            const demand: any = [response]
+            setDemands(demand)
+        })
+    }
+
+    useEffect(() => {
+        getDemand();
+    });
+
+    const costCenter = () => {
+        return (
+            centerCost.map((item: any) => {
+                return (
+                    tr(item.costCenterCode, item.costCenter)
+                )
+            }
+            )
+        )
+    }
+
+    const [demands, setDemands] = useState([
+        {
+            demandTitle: "", requesterRegistration: { workerName: "" }, demandDate: "", demandStatus: "", currentProblem: "", demandObjective: "",
+            costCenter: { costCenterCode: "", costCenter: "" }, realBenefit: { realMonthlyValue: 0, realCurrency: "", realBenefitDescription: "" },
+            potentialBenefit: { potentialMonthlyValue: 0, legalObrigation: false, potentialBenefitDescription: "" }, qualitativeBenefit: { realMonthlyValue: 0, interalControlsRequirements: false, frequencyOfUse: "", qualitativeBenefitDescription: "" },
+            complements: [{ executionDeadline: "", ppm: "", epicJira: "" }]
+        }]);
+
+    const tr = (dataOne: any, dataTwo: any) => {
+        return (
+            <div>
+                <tr>
+                    <td>{t(dataOne)}</td>
+                    <td>{t(dataTwo)}</td>
+                </tr>
+                <div className="hr" />
+            </div>
+        )
+    }
 
     return (
         <div className="create-demands-1">
@@ -30,29 +78,60 @@ export default function EscopeDemand() {
                 <div className="box">
                     <p>{t("generalInformations")}</p>
 
+                    {
+                        demands.map((val, index) => {
+                            return (
+                                <div>
+                                    <div className="input">
+                                        <label>{t("titleProposal")} *</label>
+                                        <input type="text" value={val.demandTitle} />
+                                    </div>
 
-                    {/* <Input label="titleProposal" required="*" /> */}
+                                    <div className="text-area">
+                                        <label>{t("problemToBeSolved")} *</label>
+                                        <textarea value={val.currentProblem} />
+                                    </div>
 
-                    <div className="input">
-                        <label>{t("titleProposal")} *</label>
-                        <input type="text" />
-                    </div>
+                                    <div className="text-area">
+                                        <label>{t("proposal")} *</label>
+                                        <textarea value={val.demandObjective} />
+                                    </div>
 
-                    <TextArea label="problemToBeSolved" required="*" />
+                                    <div className="input">
+                                        <label>{t("costCenter")} *</label>
+                                        <input type="text" value={val.costCenter.costCenter} />
+                                    </div>
 
-                    <TextArea label="proposal" required="*" />
-
-                    <Input label="costCenter" required="*"></Input>
+                                </div>
+                            )
+                        })
+                    }
 
                 </div>
 
                 <div className="box">
+
                     <p>{t("benefitReal")}</p>
 
-                    <div className="flex">
+                    {
+                        demands.map((val, index) => {
+                            return (
+                                <div>
+
+                                    <div className="input">
+                                        <label>{t("monthlyValue")} *</label>
+                                        <input type="text" value={val.realBenefit.realMonthlyValue} />
+                                    </div>
+
+                                </div>
+                            )
+                        })
+                    }
+
+                    {/* <div className="flex">
                         <Input label="monthlyValue" required="*" />
                         <SelectCoin />
-                    </div>
+                    </div> */}
 
                     <Input label="description" required=""></Input>
 

@@ -163,5 +163,9 @@
     "proposalComissionOpinion": "Proposal > Comission opinion",
     "createProposalSelectProposal": "Proposal > Create proposal > Select proposal",
     "selectProposal": "Select proposal",
-    "noResults": "No results"
+    "noResults": "No results",
+    "demandResponsibleForTheProject": "Demand > Responsible for the project",
+    "responsibleForTheProject": "Responsible for the project",
+    "classifyDemand": "Classify demand",
+    "demandViewDemandClassify": "Demand > View demand > Classify demand"
 }

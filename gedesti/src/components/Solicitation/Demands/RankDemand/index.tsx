@@ -52,7 +52,7 @@ export default function RankDemand() {
 
     return (
         <div className="rank-demand">
-            <Header icon="bar_chart" title="rankDemand" />
+            <Header icon="bar_chart" title="classifyDemand" />
 
             <Nav />
 
@@ -61,7 +61,7 @@ export default function RankDemand() {
 
                 <div className="background-title">
 
-                    <Title nav="Demandas > Visualizar Demanda > Classificar Demanda" title="Classificar Demanda" />
+                    <Title nav="demandViewDemandClassify" title="classifyDemand" />
 
                 </div>
 

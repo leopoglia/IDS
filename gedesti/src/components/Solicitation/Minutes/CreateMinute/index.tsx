@@ -3,6 +3,8 @@ import Nav from "../../../Fixed/Nav";
 import Title from "../../../Fixed/Search/Title";
 import Editor from "../../Proposals/EditProposalScope/Editor";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+
 
 export default function CreateMinute() {
     const { t } = useTranslation();
@@ -18,9 +20,12 @@ export default function CreateMinute() {
 
                 <Editor />
 
-                <div className="display-flex-end">
-                    <button className="btn-primary">{t("save")}</button>
-                </div>
+                <Link to="/agendas">
+                    <div className="display-flex-end">
+                        <button className="btn-primary">{t("save")}</button>
+                    </div>
+                </Link>
+
 
             </div>
         </div>

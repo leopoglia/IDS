@@ -4,6 +4,8 @@ import Header from "../../../Fixed/Header";
 import Nav from "../../../Fixed/Nav";
 import Title from "../../../Fixed/Search/Title";
 import "./style.css"
+import { Link } from "react-router-dom";
+
 
 export default function DisapproveDemand() {
 
@@ -37,9 +39,13 @@ export default function DisapproveDemand() {
 
                 <div className="demands-footer">
 
-                    <button className="btn-secondary">{t("cancel")}</button>
+                    <Link to="/demand/view/1">
+                    <button className="btn-secondary">{t("return")}</button>
+                    </Link>
 
+                    <Link to="/demand/view/1">
                     <button className="btn-primary">{t("fail")}</button>
+                    </Link>
 
                 </div>
 

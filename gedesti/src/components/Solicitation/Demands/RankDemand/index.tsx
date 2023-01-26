@@ -6,6 +6,7 @@ import Title from "../../../Fixed/Search/Title";
 import SelectSizeDemand from "./SelectSizeDemand";
 import { useTranslation } from "react-i18next";
 import Service from "../../../../services/classificationService"
+import { Link } from "react-router-dom";
 
 
 export default function RankDemand() {
@@ -18,10 +19,10 @@ export default function RankDemand() {
 
         let classification = JSON.parse(localStorage.getItem("classification") || "{}");
         let analysis = JSON.parse(localStorage.getItem("worker") || "{}");
-                        
+
         Service.save(classification.size, classification.ti, -1, "", classification.buReq, classification.buBenList, analysis.id);
 
-        
+
     }
 
     console.log("buBenefiteds -> ", buBenefiteds);
@@ -113,7 +114,7 @@ export default function RankDemand() {
 
                     <div>
 
-                    <label htmlFor="">{t("attachments")} </label>
+                        <label htmlFor="">{t("attachments")} </label>
 
                         <div className="attachments">
                             <input type="file" id="file" />
@@ -127,13 +128,21 @@ export default function RankDemand() {
                 </div>
 
                 <div className="demands-footer">
-                    <button className="btn-secondary">
-                        <span>{t("return")}</span>
-                    </button>
 
-                    <button onClick={() => saveToRank()} className="btn-primary">
-                        <span>{t("toRank")}</span>
-                    </button>
+                    <Link to="/demand/view/1">
+                        <button className="btn-secondary">
+                            <span>{t("return")}</span>
+                        </button>
+                    </Link>
+
+
+                    <Link to="/demand/view/1">
+                        <button onClick={() => saveToRank()} className="btn-primary">
+                            <span>{t("toRank")}</span>
+                        </button>
+                    </Link>
+
+
 
                 </div>
 

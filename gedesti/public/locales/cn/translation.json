@@ -172,5 +172,7 @@
     "chat": "聊天",
     "chatMessages": "聊天 > 訊息",
     "sendYourMessage": "發送您的訊息",
-    "demandsCreateDemand": "需求 > 創建需求"
+    "demandsCreateDemand": "需求 > 創建需求",
+    "disapproveDemand": "拒絕需求",
+    "demandViewDisapproveDemand": "需求 > 查看需求 > 拒絕需求"
 }

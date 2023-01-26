@@ -112,7 +112,8 @@ export default function RankDemand() {
 
 
                     <div>
-                        <span>{t("attachments")}</span>
+
+                    <label htmlFor="">{t("attachments")} </label>
 
                         <div className="attachments">
                             <input type="file" id="file" />

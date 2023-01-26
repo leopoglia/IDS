@@ -18,7 +18,7 @@ export default function DisapproveDemand() {
 
                 <div className="background-title">
 
-                    <Title nav="Demandas > Visualizar Demanda > Reprovar Demanda" title="Reprovar Demanda" />
+                    <Title nav={t("demandViewDisapprove")} title={t("disapproveDemand")} />
 
                 </div>
 

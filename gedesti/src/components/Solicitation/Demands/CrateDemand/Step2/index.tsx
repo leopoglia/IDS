@@ -48,7 +48,7 @@ export default function CreateDemands2() {
 
             <div className="container">
                 <div className="background-title">
-                    <Title nav="Demandas > Criar Demanda" title="createDemand" />
+                    <Title nav="demandsCreateDemand" title="createDemand" />
 
                     <ProgressBar atual="2" />
                 </div>

@@ -7,6 +7,7 @@ import Nav from "../../../Fixed/Nav"
 import Title from "../../../Fixed/Search/Title";
 import EmojiPicker, { EmojiStyle, SkinTones, Theme, Categories, EmojiClickData, Emoji, SuggestionMode } from "emoji-picker-react";
 import Footer from "../../../Fixed/Footer";
+import { useTranslation } from "react-i18next";
 
 var stompClient = null;
 const worker = localStorage.getItem('worker');
@@ -125,6 +126,7 @@ const ChatRoom = () => {
 
     const time = new Date().toLocaleTimeString();
 
+    const { t } = useTranslation();
 
     return (
         <div className="messages">
@@ -135,7 +137,7 @@ const ChatRoom = () => {
             <div className="container">
 
                 <div className="backgroud-title">
-                    <Title nav="Mensagens > Mensagem" title="message" />
+                    <Title nav="chatMessages" title="message" />
                 </div>
 
                 <div className="box-message">
@@ -181,7 +183,7 @@ const ChatRoom = () => {
 
                                 <div className="display-flex">
                                     <div className="input-message">
-                                        <input type="text" placeholder="Envie sua mensagem"
+                                        <input type="text" placeholder={t("sendYourMessage")}
                                             onInput={(e) =>
                                                 setMessage(e.target.value)}
                                             value={userData.message} onChange={handleMessage}

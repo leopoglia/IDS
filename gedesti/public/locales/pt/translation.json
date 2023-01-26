@@ -168,5 +168,9 @@
     "responsiblesForTheProject": "Responsáveis pelo projeto",
     "classifyDemand": "Classificar demanda",
     "demandViewDemandClassify": "Demanda > Visualizar demanda > Classificar demanda",
-    "additionals":"Adicionais"
+    "additionals":"Adicionais",
+    "chat": "Chat",
+    "chatMessages": "Chat > Mensagens",
+    "sendYourMessage": "Envie sua mensagem",
+    "demandsCreateDemand": "Demandas > Criar Demanda"
 }

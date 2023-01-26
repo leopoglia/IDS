@@ -9,7 +9,7 @@ export default function Footer() {
             <img src="/images/weg-blue.png" />
 
 
-            <span>© 2022 Gedesti</span>
+            <span>© 2023 Gedesti</span>
 
 
         </footer>

@@ -172,5 +172,7 @@
     "chat": "Chat",
     "chatMessages": "Chat > Messages",
     "sendYourMessage": "Send your message",
-    "demandsCreateDemand": "Demands > Create demand"
+    "demandsCreateDemand": "Demands > Create demand",
+    "disapproveDemand": "Disapprove demand",
+    "demandViewDisapproveDemand": "Demand > View demand > Disapprove demand"
 }

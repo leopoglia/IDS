@@ -172,5 +172,7 @@
     "chat": "Chat",
     "chatMessages": "Chat > Mensagens",
     "sendYourMessage": "Envie sua mensagem",
-    "demandsCreateDemand": "Demandas > Criar Demanda"
+    "demandsCreateDemand": "Demandas > Criar Demanda",
+    "disapproveDemand": "Reprovar demanda",
+    "demandViewDisapprove": "Demanda > Visualizar demanda > Reprovar demanda"
 }

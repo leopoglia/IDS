@@ -21,11 +21,7 @@ export default function RankDemand() {
         let analysis = JSON.parse(localStorage.getItem("worker") || "{}");
 
         Service.save(classification.size, classification.ti, -1, "", classification.buReq, classification.buBenList, analysis.id);
-
-
     }
-
-    console.log("buBenefiteds -> ", buBenefiteds);
 
 
     function deleteBuBenefited(bu: any) {

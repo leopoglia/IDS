@@ -3,12 +3,10 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 export default function ButtonAction(props: {
-    title: string
     click: string
 }) {
 
     const { t } = useTranslation();
-
     const url = window.location.href.split("/")[5];
 
 
@@ -22,7 +20,7 @@ export default function ButtonAction(props: {
         return (
             <Link className="btn-primary" to="/demands">
                 <button className="btn-primary">
-                    {t("advance")}
+                    {t("finish")}
                 </button>
             </Link>
         );

@@ -46,9 +46,15 @@ export default function SelectLabels(props: any) {
         let type = typeChange(props.type)
         console.log(type)
 
-        return type.map((bu: any) => {
-            return <MenuItem value={bu.buCode}>{bu.bu}</MenuItem>
-        })
+        if (props.type === "buBen" || props.type === "buReq") {
+            return type.map((bu: any) => {
+                return <MenuItem value={bu.buCode}>{bu.buCode} &nbsp; {bu.bu}</MenuItem>
+            })
+        } else {
+            return type.map((bu: any) => {
+                return <MenuItem value={bu}>{bu}</MenuItem>
+            })
+        }
 
 
     }

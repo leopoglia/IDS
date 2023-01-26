@@ -4,11 +4,14 @@ const url = "http://localhost:8080/api/classification"
 
 const Services = {
     save: function (classificationSize: Number, itSection: String, ppmcode: Number, linkEpicJira: String, requesterBu: any, beneficiaryBu: any, analistRegistry: any) {
-        let beneficiaryBuList: any = [];
 
+        let beneficiaryBuList: any = [];
         for (let i = 0; i < beneficiaryBu.length; i++) {
-            beneficiaryBuList.push({ buCode: beneficiaryBu[i].buCode })
+            beneficiaryBuList.push({ buCode: beneficiaryBu[i] })
         }
+
+        console.log(itSection)
+
 
         return new Promise((resolve, reject) => {
             fetch(url, {
@@ -54,7 +57,7 @@ const Services = {
                 .catch(resolve)
         })
     },
-    update: function(id: number, classificationSize: Number, itSection: String, ppmcode: String, linkEpicJira: String, requesterBu: any, beneficiaryBu: any, analistRegistry: any) {
+    update: function (id: number, classificationSize: Number, itSection: String, ppmcode: String, linkEpicJira: String, requesterBu: any, beneficiaryBu: any, analistRegistry: any) {
         let beneficiaryBuList: any = [];
         for (let i = 0; i < beneficiaryBu.length; i++) {
             beneficiaryBuList.push({ buCode: beneficiaryBu[i].buCode })

@@ -14,8 +14,6 @@ export default function Form() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
-    const types = ["success", "info", "warning", "error"];
-
     const notify = () => {
         toast.error('E-mail ou senha incorretos!', {
             position: "bottom-right",

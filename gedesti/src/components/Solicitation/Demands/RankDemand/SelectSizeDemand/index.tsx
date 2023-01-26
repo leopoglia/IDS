@@ -39,6 +39,10 @@ export default function SelectLabels(props: any) {
     const handleChange = (event: SelectChangeEvent) => {
         if(props.type === "buBen"){
             props.setBuBenefiteds([...props.buBenefiteds, event.target.value])
+
+            let classfication = JSON.parse(localStorage.getItem("classification") || "{}");
+            classfication.buBenList = [...props.buBenefiteds, event.target.value];
+            localStorage.setItem("classification", JSON.stringify(classfication));
         }
 
 
@@ -47,7 +51,6 @@ export default function SelectLabels(props: any) {
         let classification = {
             size: "",
             buReq: "",
-            buBen: "",
             ti: ""
         };
 
@@ -63,7 +66,7 @@ export default function SelectLabels(props: any) {
                 classification.buReq = event.target.value;
                 break;
             case "buBen":
-                classification.buBen = event.target.value;
+                // classification.buBen = event.target.value;
                 break;
             case "ti":
                 classification.ti = event.target.value;

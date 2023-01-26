@@ -34,6 +34,10 @@ export default function RankDemand() {
             }
             setBuBenefiteds(buBenefiteds);
 
+            let classification = JSON.parse(localStorage.getItem("classification") || "{}");
+            classification.buBenList = buBenefiteds;
+            localStorage.setItem("classification", JSON.stringify(classification));
+
             if (buBenefited === " ") {
                 setBuBenefited("");
             } else {

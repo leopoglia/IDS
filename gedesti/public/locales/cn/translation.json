@@ -163,5 +163,9 @@
     "proposalComissionOpinion": "提案 > 委員會意見",
     "createProposalSelectProposal": "提案 > 創建提案 > 選擇提案",
     "selectProposal": "選擇提案",
-    "noResults": "沒有結果"
+    "noResults": "沒有結果",
+    "demandResponsibleForTheProject": "需求 > 項目負責人",
+    "responsableForTheProject": "項目負責人",
+    "classifyDemand": "分類需求",
+    "demandViewDemandClassify": "需求 > 查看需求 > 分類需求"
 }

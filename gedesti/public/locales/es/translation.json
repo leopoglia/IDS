@@ -162,5 +162,9 @@
     "proposalComissionOpinion": "Propuesta > Opinión de la comisión",
     "createProposalSelectProposal": "Propuesta > Crear propuesta > Seleccionar propuesta",
     "selectProposal": "Seleccionar propuesta",
-    "noResults": "No hay resultados"
+    "noResults": "No hay resultados",
+    "demandResponsibleForTheProject": "Demanda > Responsable del proyecto",
+    "responsableForTheProject": "Responsable del proyecto",
+    "classifyDemand": "Clasificar demanda",
+    "demandViewDemandClassify": "Demanda > Ver demanda > Clasificar demanda"
 }

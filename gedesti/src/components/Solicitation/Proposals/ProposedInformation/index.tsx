@@ -15,7 +15,7 @@ export default function ProposedInformation() {
     return (
         <div className="execution-costs">
 
-            <Header title={t("executionCosts")} icon="payments" />
+            <Header title={t("responsiblesForTheProject")} icon="payments" />
 
             <Nav />
 
@@ -23,14 +23,14 @@ export default function ProposedInformation() {
 
 
                 <div className="background-title">
-                    <Title title={t("executionCosts")} nav={t("demandExecutionCosts")} />
+                    <Title title={t("responsiblesForTheProject")} nav={t("demandResponsibleForTheProject")} />
                 </div>
 
                 <div className="box">
 
 
                     <div className="display-flex">
-                        <p>{t("executionCostsProject")}</p>
+                        <p>{t("responsiblesForTheProject")}</p>
                     </div>
 
 
@@ -43,6 +43,11 @@ export default function ProposedInformation() {
                         <div>
                             <label>{t("responsibleArea")}</label>
                             <input type="text" />
+                        </div>
+
+                        {/* addCostCenter(costCenter); handleChange(costCenter, 'costCenter'); */}
+                        <div className="btn-primary w45" onClick={() => {  }}>
+                            <span className="material-symbols-outlined">add</span>
                         </div>
                     </div>
 

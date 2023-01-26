@@ -37,7 +37,7 @@ export default function EscopeDemand() {
 
                     <div className="input">
                         <label>{t("titleProposal")} *</label>
-                        <input type="text" />
+                        <input type="text"/>
                     </div>
 
                     <TextArea label="problemToBeSolved" required="*" />

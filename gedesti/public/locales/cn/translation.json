@@ -167,5 +167,6 @@
     "demandResponsibleForTheProject": "需求 > 項目負責人",
     "responsableForTheProject": "項目負責人",
     "classifyDemand": "分類需求",
-    "demandViewDemandClassify": "需求 > 查看需求 > 分類需求"
+    "demandViewDemandClassify": "需求 > 查看需求 > 分類需求",
+    "additionals": "補充"
 }

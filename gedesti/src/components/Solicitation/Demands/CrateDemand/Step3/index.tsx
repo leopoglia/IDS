@@ -96,7 +96,7 @@ export default function CreateDemands3() {
                     <p>{t("additionals")}</p>
 
                     <div className="frequency">
-                        <label>{t("frequencyUse")}</label>
+                        <label>{t("frequencyUse")} * </label>
                         <input type="text" onChange={(e) => { setExecutionPeriod(e.target.value) }} />
                     </div>
 

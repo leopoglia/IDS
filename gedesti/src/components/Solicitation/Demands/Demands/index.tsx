@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 import { t } from "i18next"
 import Load from "../../../Fixed/Load";
 import Services from "../../../../services/demandService";
+import { toast, ToastContainer, TypeOptions } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Demands() {
     const url = window.location.href.split("/");
@@ -22,8 +24,28 @@ export default function Demands() {
         return findDemands;
     }
 
+    const notify = () => {
+        toast.error('E-mail ou senha incorretos!', {
+            position: "bottom-right",
+            autoClose: 4000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    };
+
     useEffect(() => {
         getDemands();
+        if (localStorage.getItem("route") === "create-demand") {
+
+            console.log("AAAAAAAAAAAAAAAA")
+
+            localStorage.removeItem("route");
+            notify();
+        }
     }, [])
 
     const [demands, setDemands] = useState([

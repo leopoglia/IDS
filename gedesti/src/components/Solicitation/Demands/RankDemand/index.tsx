@@ -18,13 +18,9 @@ export default function RankDemand() {
 
         let classification = JSON.parse(localStorage.getItem("classification") || "{}");
         let analysis = JSON.parse(localStorage.getItem("worker") || "{}");
-                        
+
         Service.save(classification.size, classification.ti, -1, "", classification.buReq, classification.buBenList, analysis.id);
-
-        
     }
-
-    console.log("buBenefiteds -> ", buBenefiteds);
 
 
     function deleteBuBenefited(bu: any) {
@@ -113,7 +109,7 @@ export default function RankDemand() {
 
                     <div>
 
-                    <label htmlFor="">{t("attachments")} </label>
+                        <label htmlFor="">{t("attachments")} </label>
 
                         <div className="attachments">
                             <input type="file" id="file" />

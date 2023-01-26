@@ -21,6 +21,9 @@ export default function CreateDemands3() {
 
     useEffect(() => {
         setDemand(JSON.parse(localStorage.getItem("demand") || "{}"));
+
+        localStorage.setItem("route", "create-demand")
+
     }, []);
 
     async function cadastrarDemanda() {
@@ -113,9 +116,9 @@ export default function CreateDemands3() {
                 </div>
 
                 <div className="demands-footer">
-                    <ButtonAction title="Voltar" click="voltar"></ButtonAction>
+                    <ButtonAction click="voltar"></ButtonAction>
                     <div onClick={() => { cadastrarDemanda() }}>
-                        <ButtonAction title="Avançar" click="avancar"></ButtonAction>
+                        <ButtonAction click="avancar"></ButtonAction>
                     </div>
                 </div>
             </div>

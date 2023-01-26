@@ -17,7 +17,7 @@ export default function addExpense() {
 
 
                 <div className="background-title">
-                    <Title title="Adicionar Despesa" nav="Demands > Execution Costs > Adicionar Despesa" />
+                    <Title title="Adicionar Despesa" nav="Demands > Custos de Execução > Adicionar Despesa" />
                 </div>
 
                 <div className="box">

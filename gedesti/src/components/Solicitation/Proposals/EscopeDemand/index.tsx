@@ -123,6 +123,11 @@ export default function EscopeDemand() {
                                         <input type="text" value={val.realBenefit.realMonthlyValue} />
                                     </div>
 
+                                    <div className="input">
+                                        <label>{t("description")} *</label>
+                                        <input type="text" value={val.realBenefit.realBenefitDescription} />
+                                    </div>
+
                                 </div>
                             )
                         })
@@ -133,14 +138,34 @@ export default function EscopeDemand() {
                         <SelectCoin />
                     </div> */}
 
-                    <Input label="description" required=""></Input>
+                    {/* <Input label="description" required=""></Input> */}
 
                 </div>
 
                 <div className="box">
                     <p>{t("benefitPotential")}</p>
 
-                    <div className="flex-grid">
+                    {
+                        demands.map((val, index) => {
+                            return (
+                                <div>
+
+                                    <div className="input">
+                                        <label>{t("monthlyValue")} *</label>
+                                        <input type="text" value={val.potentialBenefit.potentialMonthlyValue} />
+                                    </div>
+
+                                    <div className="input">
+                                        <label>{t("description")} *</label>
+                                        <input type="text" value={val.potentialBenefit.potentialBenefitDescription} />
+                                    </div>
+
+                                </div>
+                            )
+                        })
+                    }
+
+                    {/* <div className="flex-grid">
 
                         <div className="flex">
                             <Input label="monthlyValue" required="*" />
@@ -157,13 +182,33 @@ export default function EscopeDemand() {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className="box">
                     <p>{t("benefitQualitative")}</p>
 
-                    <div className="flex">
+                    {
+                        demands.map((val, index) => {
+                            return (
+                                <div>
+
+                                    <div className="input">
+                                        <label>{t("monthlyValue")} *</label>
+                                        <input type="text" value={val.qualitativeBenefit.realMonthlyValue} />
+                                    </div>
+
+                                    <div className="input">
+                                        <label>{t("description")} *</label>
+                                        <input type="text" value={val.qualitativeBenefit.qualitativeBenefitDescription} />
+                                    </div>
+
+                                </div>
+                            )
+                        })
+                    }
+
+                    {/* <div className="flex">
                         <Input label="monthlyValue" required="*" />
                         <SelectCoin />
                     </div>
@@ -177,7 +222,7 @@ export default function EscopeDemand() {
                                 <CheckBox />
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
                 </div>
 

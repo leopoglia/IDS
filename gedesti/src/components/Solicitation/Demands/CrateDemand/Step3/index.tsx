@@ -93,7 +93,7 @@ export default function CreateDemands3() {
 
                 <div className="box">
 
-                    <p>{t("extras")}</p>
+                    <p>{t("additionals")}</p>
 
                     <div className="frequency">
                         <label>{t("frequencyUse")}</label>

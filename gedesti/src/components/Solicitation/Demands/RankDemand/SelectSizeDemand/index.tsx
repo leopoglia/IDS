@@ -1,17 +1,30 @@
-import * as React from 'react';
-import InputLabel from '@mui/material/InputLabel';
+import { useEffect, useState } from 'react';
 import MenuItem from '@mui/material/MenuItem';
-import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
+
+import Services from '../../../../../services/buService';
+
 export default function SelectLabels(props: any) {
-    const [select, setSelect] = React.useState('');
-    const [type, setType] = React.useState(props.type);
+    const [select, setSelect] = useState('');
+    const [type, setType] = useState(props.type);
+    const [bu, setBu]: any = useState([]);
 
     const size = ["Pequeno", "Médio", "Grande"]
-    const buReq = ["WEG Motores", "WEG Tintas", "WEG Automação", "WEG Energia", "WEG Digital", "WEG Transmissão & Distribuição", "WEG Serviços"]
-    const buBen = ["WEG Motores", "WEG Tintas", "WEG Automação", "WEG Energia", "WEG Digital", "WEG Transmissão & Distribuição", "WEG Serviços"]
+
+
+    useEffect(() => {
+        Services.findAll().then((response: any) => {
+            console.log(response)
+            setBu(response)
+        }
+        )
+    }, [])
+
+
+    const buReq = bu
+    const buBen = bu
     const ti = ["AI", "Front", "Back"]
 
     const typeChange = (type: string) => {
@@ -31,13 +44,17 @@ export default function SelectLabels(props: any) {
 
     const typeSet = () => {
         let type = typeChange(props.type)
-        return type.map((item: string) => {
-            return <MenuItem value={item}>{item}</MenuItem>
+        console.log(type)
+
+        return type.map((bu: any) => {
+            return <MenuItem value={bu.buCode}>{bu.bu}</MenuItem>
         })
+
+
     }
 
     const handleChange = (event: SelectChangeEvent) => {
-        if(props.type === "buBen"){
+        if (props.type === "buBen") {
             props.setBuBenefiteds([...props.buBenefiteds, event.target.value])
 
             let classfication = JSON.parse(localStorage.getItem("classification") || "{}");

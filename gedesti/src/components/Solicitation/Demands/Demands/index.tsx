@@ -113,11 +113,11 @@ export default function Demands() {
                             })
                         }
 
-                        { demands.length === 0  && (
+                        {demands.length === 0 && (
                             <div className="no-results">
                                 <h1>{t("noResults")}</h1>
                             </div>
-                        ) }
+                        )}
 
                         {footer()}
                     </div>

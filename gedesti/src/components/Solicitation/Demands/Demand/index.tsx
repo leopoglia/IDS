@@ -46,7 +46,7 @@ export default function Demand(props: any) {
         if (props.situation === "Backlog") {
             if (office === "analyst" || office === "ti") {
                 return (
-                    <Link to="/proposal/demand">
+                    <Link to={"/proposal/demand/" + props.demandCode}>
                         <button className="btn-primary">{t("generateProposal")}</button>
                     </Link>
                 );

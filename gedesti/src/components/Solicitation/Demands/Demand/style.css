@@ -186,11 +186,54 @@
     background-color: var(--greyC4);
 }
 
-.open-modal-situation {
-    background-color: red;
+.background-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.background-modal .modal {
+    margin-left: 60px;
+    margin-top: 0px !important;
+    height: 90px;
+    width: 500px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.background-modal .modal .progress {
+    background-color: var(--greyE5);
+    height: 20px;
+    margin: 10px;
+    position: relative;
+    border-radius: 50px;
+}
+
+.background-modal .modal .progress .progress-bar {
+    background-color: var(--blue);
+    width: 0%;
+    height: 100%;
+    border-radius: 50px;
+}
+
+.situation-demand {
     z-index: 1;
     position: relative;
 }
+
+.title-situation{
+    font-size: var(--m);
+    color: var(--grey00);
+    margin: 10px;
+}
+
+
 
 @media (max-width: 768px) {
 

@@ -2,6 +2,7 @@ import "./style.css";
 import { Link } from "react-router-dom";
 import Situation from "./Situation/index";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
 
 
 export default function Demand(props: any) {
@@ -54,10 +55,21 @@ export default function Demand(props: any) {
         }
     }
 
+    const [showModal, setShowModal] = useState(false);
+
+    const handleMouseOver = () => {
+        setShowModal(true);
+    }
+
+    const handleMouseOut = () => {
+        setShowModal(false);
+    }
+
+
     const situation = () => {
         if (props.type === "demand" || props.type === "proposal") {
             return (
-                <div onMouseOver={this.handleMouseOver.bind(this)}>
+                <div className="situation-demand" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
                     <Situation type={props.type} situation={props.situation} />
                 </div>
             );
@@ -126,6 +138,17 @@ export default function Demand(props: any) {
     if (props.listDirection === false) {
         return (
             <div>
+                {showModal &&
+                    <div className="background-modal">
+                        <div className="modal">
+                            <div className="title-situation">{t("situation")}: Já foi classificada pelo Analista</div>
+                            <div className="progress">
+                                <div className="progress-bar" role="progressbar" style={{ width: "25%" }} aria-valuenow={25} aria-valuemin={0} aria-valuemax={100} />
+                            </div>
+                        </div>
+                    </div>
+                }
+
                 <Link to={"/" + props.type + "/view/" + props.demandCode}>
                     <div className="demand">
                         <section>

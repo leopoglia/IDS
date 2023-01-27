@@ -1,9 +1,9 @@
-.demands-footer{
+.demands-footer {
     display: flex;
     justify-content: space-between;
 }
 
-.w45{
+.w45 {
     width: 45px;
     min-width: 45px;
     display: flex;
@@ -12,11 +12,12 @@
     margin-left: 15px;
 }
 
-.w45 span{
+.w45 span {
     margin: 0px !important;
 }
 
-.costCenter, .buBenefited{
+.costCenter,
+.buBenefited {
     width: 100%;
     height: 35px;
     display: flex;
@@ -31,7 +32,7 @@
     border-radius: var(--r);
 }
 
-.costCenter .delete-cost-center{
+.costCenter .delete-cost-center {
     width: 30px;
     height: 30px;
     display: flex;
@@ -44,12 +45,19 @@
     cursor: pointer;
 }
 
-.costCenter .delete-cost-center:hover{
+.costCenter .delete-cost-center:hover {
     background-color: var(--greyC4);
 }
 
-@media(max-width: 1050px){
-    .create-demands-1 .progress-bar{
+.text-area {
+    width: 100%;
+    display: block;
+    margin-bottom: 15px;
+    margin-top: 15px !important;
+}
+
+@media(max-width: 1050px) {
+    .create-demands-1 .progress-bar {
         width: 70%;
     }
 }

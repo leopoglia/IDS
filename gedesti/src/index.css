@@ -258,6 +258,9 @@ textarea:focus {
   border: 1px solid var(--greyC4);
 }
 
+textarea {
+  border-radius: var(--r) !important;
+}
 
 .material-symbols-outlined {
   font-size: 24px;

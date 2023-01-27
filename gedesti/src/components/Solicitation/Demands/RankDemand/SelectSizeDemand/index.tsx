@@ -16,7 +16,6 @@ export default function SelectLabels(props: any) {
 
     useEffect(() => {
         Services.findAll().then((response: any) => {
-            console.log(response)
             setBu(response)
         }
         )
@@ -44,7 +43,6 @@ export default function SelectLabels(props: any) {
 
     const typeSet = () => {
         let type = typeChange(props.type)
-        console.log(type)
 
         if (props.type === "buBen" || props.type === "buReq") {
             return type.map((bu: any) => {

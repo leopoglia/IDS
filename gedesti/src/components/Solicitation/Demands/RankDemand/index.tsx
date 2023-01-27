@@ -1,11 +1,12 @@
 import "./style.css"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "../../../Fixed/Header";
 import Nav from "../../../Fixed/Nav";
 import Title from "../../../Fixed/Search/Title";
 import SelectSizeDemand from "./SelectSizeDemand";
 import { useTranslation } from "react-i18next";
 import Service from "../../../../services/classificationService"
+import Services from "../../../../services/demandService";
 import { Link } from "react-router-dom";
 
 
@@ -13,14 +14,38 @@ export default function RankDemand() {
     const { t } = useTranslation();
     const [buBenefited, setBuBenefited] = useState("");
     const [buBenefiteds, setBuBenefiteds]: any = useState([]);
+    const [demand, setDemand]: any = useState({});
+    const url = parseInt(window.location.href.split("/")[5]);
+
+    useEffect(() => {
+        getDemand();
+        console.log(demand)
+    }, [])
+
+    async function getDemand() {
+        setDemand(await Services.findById(url))
+    }
 
     function saveToRank() {
-        console.log("salvou");
-
         let classification = JSON.parse(localStorage.getItem("classification") || "{}");
         let analysis = JSON.parse(localStorage.getItem("worker") || "{}");
+        Service.save(classification.size, classification.ti, -1, "", classification.buReq, classification.buBenList, analysis.id).then((response: any) => {
+            console.log(response)
 
-        Service.save(classification.size, classification.ti, -1, "", classification.buReq, classification.buBenList, analysis.id);
+            let classificationCode = response.classificationCode;
+
+            Services.update(demand.demandCode, demand.demandTitle, demand.currentProblem, demand.demandObjective, demand.costCenter, demand.demandStatus, demand.score, demand.executionPeriod, demand.requesterRegistration, demand.realBenefit, demand.potentialBenefit, demand.qualitativeBenefit, demand.demandAttachment, demand.demandDate, classificationCode).then((response: any) => {
+                console.log(response)
+            }).catch((error: any) => {
+                console.log(error)
+            })
+
+
+        }).catch((error: any) => {
+            console.log(error)
+        })
+
+
     }
 
 
@@ -28,7 +53,6 @@ export default function RankDemand() {
 
         return () => {
             const index = buBenefiteds.indexOf(bu);
-            console.log("index -> ", index);
             if (index > -1) {
                 buBenefiteds.splice(index, 1);
             }

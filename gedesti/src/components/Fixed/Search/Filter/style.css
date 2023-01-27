@@ -37,17 +37,33 @@
 }
 
 @media (max-width: 768px) {
+
+
+
     .background-filter {
-        margin-left: 0px !important;
-        position: fixed !important;
-        z-index: 10;
-        left: 0;
         width: 100%;
+        margin-top: 421px;
+        margin-right: 25px;
+        top: 0;
+        right: 0;
+        margin-left: 0px !important;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
     }
 
-    .search .modal {
-        width: 100%;
-        margin-left: 90px !important;
-        margin-right: 50px !important;
+    .filter-modal .btn-primary {
+        width: 180px !important
     }
+
+    .send-filter {
+        position: absolute;
+        background-color: white;
+        width: 199px;
+        border-top: none !important;
+        border: 1px solid var(--greyC4);
+        border-radius: 0 0 4px 4px;
+        }
+
+
 }

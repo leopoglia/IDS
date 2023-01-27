@@ -17,7 +17,7 @@ export default function Filter(props: FilterProps) {
     const sendFilter = () => {
         if (filter === true) {
             return (
-                <div>
+                <div className="send-filter">
                     <div className="hr" />
 
                     <input onChange={onButtonPress} type="text" ref={inputName} placeholder="Insira o parametro aqui" />

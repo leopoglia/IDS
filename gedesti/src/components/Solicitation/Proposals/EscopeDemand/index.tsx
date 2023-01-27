@@ -37,7 +37,7 @@ export default function EscopeDemand() {
     const costCenter = () => {
         return (
             centerCost.map((item: any) => {
-                return item.costCenter && item.costCenterCode
+                return item.costCenterCode && item.costCenter
             }
             )
         )

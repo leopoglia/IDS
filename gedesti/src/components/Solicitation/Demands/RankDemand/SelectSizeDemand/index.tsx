@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-
-
 import Services from '../../../../../services/buService';
 
 export default function SelectLabels(props: any) {

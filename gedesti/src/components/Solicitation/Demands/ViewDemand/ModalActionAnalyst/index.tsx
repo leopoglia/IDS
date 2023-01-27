@@ -4,7 +4,7 @@ import "./style.css";
 import ModalChangeStatus from "../ModalChangeStatus";
 import { t } from "i18next";
 
-export default function InsetList() {
+export default function InsetList(props: any) {
 
     const [modalChangeStatus, setModalChangeStatus] = useState(false);
 
@@ -56,7 +56,7 @@ export default function InsetList() {
 
             </div>
 
-            {modalChangeStatus && <ModalChangeStatus />}
+            {modalChangeStatus && <ModalChangeStatus setModalChangeStatus={setModalChangeStatus} />}
 
         </div>
     )

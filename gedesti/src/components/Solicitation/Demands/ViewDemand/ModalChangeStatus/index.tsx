@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
 import "./style.css";
 import SelectNewStatus from "./SelectNewStatus";
 import { t } from "i18next";
+import { useEffect, useState } from 'react';
 
-export default function ModalChangeStatus() {
+export default function ModalChangeStatus(props: any) {
+
     return (
         <div className="modalChangeStatus">
             <div className="modal">
@@ -14,7 +15,7 @@ export default function ModalChangeStatus() {
 
                     <button className="closeModal">
 
-                        <span class="material-symbols-outlined">
+                        <span onClick={() => props.setModalChangeStatus(false)} className="material-symbols-outlined">
                             close
                         </span>
 
@@ -28,14 +29,14 @@ export default function ModalChangeStatus() {
                     </div>
 
                     <div className="display-flex-center">
-                        <span class="material-symbols-outlined">
+                        <span className="material-symbols-outlined">
                             sync_alt
                         </span>
                     </div>
 
 
                     <div className="new">
-                        <SelectNewStatus className="select-new-status"/>
+                        <SelectNewStatus class="select-new-status" />
                     </div>
 
                     <button className="btn-primary">{t("confirm")}</button>

@@ -40,14 +40,16 @@ export default function ProposedInformation() {
                             <input type="text" />
                         </div>
 
-                        <div>
-                            <label>{t("responsibleArea")}</label>
-                            <input type="text" />
-                        </div>
+                        <div className="display-flex">
+                            <div>
+                                <label>{t("responsibleArea")}</label>
+                                <input type="text" />
+                            </div>
 
-                        {/* addCostCenter(costCenter); handleChange(costCenter, 'costCenter'); */}
-                        <div className="btn-primary w45" onClick={() => {  }}>
-                            <span className="material-symbols-outlined">add</span>
+                            {/* addCostCenter(costCenter); handleChange(costCenter, 'costCenter'); */}
+                            <div className="btn-primary w45" onClick={() => { }}>
+                                <span className="material-symbols-outlined">add</span>
+                            </div>
                         </div>
                     </div>
 

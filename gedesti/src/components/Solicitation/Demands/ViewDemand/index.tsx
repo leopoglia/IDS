@@ -36,6 +36,7 @@ export default function ViewDemand() {
     const [stepDemand, setStepDemand] = useState(0);
     const [editDemand, setEditDemand] = useState(true);
     const [centerCost, setCenterCost] = useState([]);
+    const [classification, setClassification]: any = useState({});
     const [inputDiv, setInputDiv] = useState("input-disabled");
 
     function getDemand() {
@@ -43,6 +44,13 @@ export default function ViewDemand() {
             console.log(response)
             const demand: any = [response]
             setDemands(demand)
+
+            if (demand.classification !== null) {
+                setStepDemand(1)
+                setClassification(response.classification)
+                console.log("CLASSIFICAÇÃO ---> ", classification)
+            }
+
             setCenterCost(demand[0].costCenter)
         })
     }
@@ -62,7 +70,7 @@ export default function ViewDemand() {
             centerCost.map((item: any) => {
                 return (
                     tr(item.costCenterCode, item.costCenter)
-                    )
+                )
             }
             )
         )
@@ -277,20 +285,6 @@ export default function ViewDemand() {
                                                     {costCenter()}
                                                 </table>
                                             </div>
-
-                                            <div className="attachments">
-
-                                                <p className="title">{t("attachments")}</p>
-
-                                                <div className="attachment">
-                                                    <div className="attachment-image">
-                                                        <img src="/attachment/pdf.png" alt="" />
-                                                    </div>
-                                                    <span>attachments.pdf</span>
-                                                </div>
-
-                                            </div>
-
                                         </div>
                                     );
                                 })
@@ -315,10 +309,10 @@ export default function ViewDemand() {
 
 
                                         <tr>
-                                            <td>Pequeno - 40 - 400 horas</td>
-                                            <td>WEG II</td>
-                                            <td>WEG Motores</td>
-                                            <td>Centro WEG</td>
+                                            <td>{classification.classificationSize}</td>
+                                            <td>{classification.requesterBu.bu}</td>
+                                            <td>{classification.beneficiaryBu.bu}</td>
+                                            <td>{classification.itSection}</td>
 
                                         </tr>
 
@@ -364,7 +358,23 @@ export default function ViewDemand() {
                             ) : (
                                 <div className="null"></div>
                             )}
+
+                            <div className="attachments">
+
+                                <p className="title">{t("attachments")}</p>
+
+                                <div className="attachment">
+                                    <div className="attachment-image">
+                                        <img src="/attachment/pdf.png" alt="" />
+                                    </div>
+                                    <span>attachments.pdf</span>
+                                </div>
+
+                            </div>
+
+
                         </div>
+
                     </div>
                 </div>
             ) : url === "proposal" ? (

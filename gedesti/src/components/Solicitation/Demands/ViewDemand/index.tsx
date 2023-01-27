@@ -45,10 +45,15 @@ export default function ViewDemand() {
             const demand: any = [response]
             setDemands(demand)
 
-            if (demand.classification !== null) {
+            if (response.classification === undefined) {
+                console.log("BBBBBBBBBBBBBBBBBBBBBBBBBBBB")
+                setStepDemand(0)
+                setActionsDemand(1)
+            } else {
+                console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
                 setStepDemand(1)
                 setClassification(response.classification)
-                console.log("CLASSIFICAÇÃO ---> ", classification)
+                setActionsDemand(3)
             }
 
             setCenterCost(demand[0].costCenter)

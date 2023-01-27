@@ -48,7 +48,7 @@ export default function EscopeDemand() {
         {
             demandTitle: "", requesterRegistration: { workerName: "" }, demandDate: "", demandStatus: "", currentProblem: "", demandObjective: "",
             costCenter: { costCenterCode: "", costCenter: "" }, realBenefit: { realMonthlyValue: 0, realCurrency: "", realBenefitDescription: "" },
-            potentialBenefit: { potentialMonthlyValue: 0, legalObrigation: false, potentialBenefitDescription: "" }, qualitativeBenefit: { realMonthlyValue: 0, interalControlsRequirements: false, frequencyOfUse: "", qualitativeBenefitDescription: "" },
+            potentialBenefit: { potentialMonthlyValue: 0, legalObrigation: false, potentialBenefitDescription: "" }, qualitativeBenefit: { qualitativeMonthlyValue: 0, interalControlsRequirements: false, frequencyOfUse: "", qualitativeBenefitDescription: "" },
             complements: [{ executionDeadline: "", ppm: "", epicJira: "" }]
         }]);
 
@@ -195,7 +195,7 @@ export default function EscopeDemand() {
 
                                     <div className="input">
                                         <label>{t("monthlyValue")} *</label>
-                                        <input type="text" value={val.qualitativeBenefit.realMonthlyValue} />
+                                        <input type="text" value={val.qualitativeBenefit.frequencyOfUse} />
                                     </div>
 
                                     <div className="input">

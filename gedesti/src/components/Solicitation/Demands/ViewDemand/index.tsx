@@ -41,16 +41,13 @@ export default function ViewDemand() {
 
     function getDemand() {
         Services.findById(demandCode).then((response: any) => {
-            console.log(response)
             const demand: any = [response]
             setDemands(demand)
 
             if (response.classification === undefined || response.classification === null) {
-                console.log("BBBBBBBBBBBBBBBBBBBBBBBBBBBB")
                 setStepDemand(0)
                 setActionsDemand(1)
             } else {
-                console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
                 setStepDemand(1)
                 setClassification(response.classification)
                 setActionsDemand(3)

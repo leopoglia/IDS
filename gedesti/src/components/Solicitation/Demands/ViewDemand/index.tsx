@@ -190,7 +190,7 @@ export default function ViewDemand() {
 
                                         <div>
                                             <div className="situation-current">
-                                                <div className="display-flex-space-between">
+                                                <div className="display-flex-space-between display-solicitation-demand">
                                                     <p>{t("requester")}</p>
                                                     <div className="code">1000025500</div>
                                                 </div>

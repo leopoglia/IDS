@@ -65,7 +65,7 @@
 .demand::before {
     content: '';
     background-color: var(--blue);
-    position: absolute;
+    position: fixed;
     width: 6px;
     height: 95px;
     margin-top: -1px;

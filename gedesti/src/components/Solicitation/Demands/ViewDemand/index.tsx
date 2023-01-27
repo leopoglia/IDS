@@ -45,7 +45,7 @@ export default function ViewDemand() {
             const demand: any = [response]
             setDemands(demand)
 
-            if (response.classification === undefined) {
+            if (response.classification === undefined || response.classification === null) {
                 console.log("BBBBBBBBBBBBBBBBBBBBBBBBBBBB")
                 setStepDemand(0)
                 setActionsDemand(1)

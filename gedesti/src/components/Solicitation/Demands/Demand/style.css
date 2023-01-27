@@ -186,6 +186,12 @@
     background-color: var(--greyC4);
 }
 
+.open-modal-situation {
+    background-color: red;
+    z-index: 1;
+    position: relative;
+}
+
 @media (max-width: 768px) {
 
     .demand .infos,

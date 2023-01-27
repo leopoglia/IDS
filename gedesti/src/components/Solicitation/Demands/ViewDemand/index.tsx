@@ -183,7 +183,6 @@ export default function ViewDemand() {
 
                         <div className="box">
 
-
                             {
                                 demands.map((val, index) => {
                                     return (

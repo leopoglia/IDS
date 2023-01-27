@@ -57,10 +57,13 @@ export default function Demand(props: any) {
     const situation = () => {
         if (props.type === "demand" || props.type === "proposal") {
             return (
-                <Situation type={props.type} situation={props.situation} />
+                <div onMouseOver={this.handleMouseOver.bind(this)}>
+                    <Situation type={props.type} situation={props.situation} />
+                </div>
             );
         }
     }
+
 
     if (props.type === "minute") {
         if (props.listDirection === false) {
@@ -122,32 +125,34 @@ export default function Demand(props: any) {
 
     if (props.listDirection === false) {
         return (
-            <Link to={"/" + props.type + "/view/" + props.demandCode}>
-                <div className="demand">
-                    <section>
-                        <div className="name-code">
-                            <h1>{props.name}</h1>
+            <div>
+                <Link to={"/" + props.type + "/view/" + props.demandCode}>
+                    <div className="demand">
+                        <section>
+                            <div className="name-code">
+                                <h1>{props.name}</h1>
+                            </div>
+
+
+                            <div className="display-grid">
+
+                                {situation()}
+                            </div>
+
+                        </section>
+
+
+                        <div className="display-flex">
+
+                            {information()}
+
+                            {btnGenerateProposal()}
                         </div>
 
 
-                        <div className="display-grid">
-
-                            {situation()}
-                        </div>
-
-                    </section>
-
-
-                    <div className="display-flex">
-
-                        {information()}
-
-                        {btnGenerateProposal()}
                     </div>
-
-
-                </div>
-            </Link>
+                </Link>
+            </div>
         );
     } else {
         return (

@@ -145,11 +145,11 @@
     margin-top: 30px;
 }
 
-.view-demand .title-name{
+.view-demand .title-name {
     margin-bottom: 20px;
 }
 
-.view-demand .title-name p{
+.view-demand .title-name p {
     font-size: var(--g);
 }
 
@@ -167,11 +167,11 @@
     justify-content: center;
 }
 
-.view-demand .cost-center{
+.view-demand .cost-center {
     margin-top: 30px;
 }
 
-.display-solicitation-demand{
+.display-solicitation-demand {
     display: flex;
     align-items: flex-start !important;
     height: 50px;

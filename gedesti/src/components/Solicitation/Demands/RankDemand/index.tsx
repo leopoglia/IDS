@@ -34,7 +34,7 @@ export default function RankDemand() {
 
             let classificationCode = response.classificationCode;
 
-            Services.update(demand.demandCode, demand.demandTitle, demand.currentProblem, demand.demandObjective, demand.costCenter, demand.demandStatus, demand.score, demand.executionPeriod, demand.requesterRegistration, demand.realBenefit, demand.potentialBenefit, demand.qualitativeBenefit, demand.demandAttachment, demand.demandDate, classificationCode).then((response: any) => {
+            Services.updateClassification(demand.demandCode, classificationCode).then((response: any) => {
                 console.log(response)
             }).catch((error: any) => {
                 console.log(error)

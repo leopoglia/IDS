@@ -66,7 +66,7 @@ const Services = {
                 .catch(reject)
         })
     },
-    update: function(id: number, demandTitle: String, currentProblem: String, demandObjective: String, costCenter: any, demandStatus: String, score: Number, executionPeriod: Number, requesterRegistration: Number, realBenefit: Number, potentialBenefit: Number, qualitativeBenefit: Number, demandAttachment: any, demandDate: String) {
+    update: function(id: number, demandTitle: String, currentProblem: String, demandObjective: String, costCenter: any, demandStatus: String, score: Number, executionPeriod: Number, requesterRegistration: Number, realBenefit: Number, potentialBenefit: Number, qualitativeBenefit: Number, demandAttachment: any, demandDate: String, classificationCode: Number) {
         var formData = new FormData();
 
         let costCenters = [];
@@ -88,7 +88,8 @@ const Services = {
             "realBenefit": { "realBenefitCode": realBenefit },
             "qualitativeBenefit": { "qualitativeBenefitCode": qualitativeBenefit },
             "potentialBenefit": { "potentialBenefitCode": potentialBenefit },
-            "demandDate": demandDate
+            "demandDate": demandDate,
+            "classification": { "classificationCode": classificationCode }
         }
         formData.append('demand', JSON.stringify(demand));
         formData.append('demandAttachment', demandAttachment);

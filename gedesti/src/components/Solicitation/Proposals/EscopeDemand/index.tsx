@@ -23,9 +23,10 @@ export default function EscopeDemand() {
 
     function getDemand() {
         Services.findById(demandCode).then((response: any) => {
-            console.log(response)
             const demand: any = [response]
             setDemands(demand)
+            console.log(demand[0].costCenter)
+            setCenterCost(demand[0].costCenter)
         })
     }
 
@@ -36,9 +37,7 @@ export default function EscopeDemand() {
     const costCenter = () => {
         return (
             centerCost.map((item: any) => {
-                return (
-                    tr(item.costCenterCode, item.costCenter)
-                )
+                return item.costCenter && item.costCenterCode
             }
             )
         )
@@ -99,9 +98,8 @@ export default function EscopeDemand() {
 
                                     <div className="input">
                                         <label>{t("costCenter")} *</label>
-                                        <input type="text" value={val.costCenter.costCenter} />
+                                        <input type="text" value={costCenter()} />
                                     </div>
-
                                 </div>
                             )
                         })
@@ -133,13 +131,6 @@ export default function EscopeDemand() {
                         })
                     }
 
-                    {/* <div className="flex">
-                        <Input label="monthlyValue" required="*" />
-                        <SelectCoin />
-                    </div> */}
-
-                    {/* <Input label="description" required=""></Input> */}
-
                 </div>
 
                 <div className="box">
@@ -164,25 +155,6 @@ export default function EscopeDemand() {
                             )
                         })
                     }
-
-                    {/* <div className="flex-grid">
-
-                        <div className="flex">
-                            <Input label="monthlyValue" required="*" />
-                            <SelectCoin />
-                        </div>
-
-                        <div className="flex">
-                            <Input label="description" required=""></Input>
-
-                            <div className="input-checkbox">
-                                <label>{t("legalObligation")}</label>
-                                <div className="checkbox">
-                                    <CheckBox />
-                                </div>
-                            </div>
-                        </div>
-                    </div> */}
                 </div>
 
                 <div className="box">

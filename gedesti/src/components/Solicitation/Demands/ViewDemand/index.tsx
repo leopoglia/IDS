@@ -46,7 +46,7 @@ export default function ViewDemand() {
 
             if (response.classification === undefined || response.classification === null) {
                 setStepDemand(0)
-                setActionsDemand(1)
+                setActionsDemand(2)
             } else {
                 setStepDemand(1)
                 setClassification(response.classification)

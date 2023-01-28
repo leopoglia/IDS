@@ -28,7 +28,7 @@ export default function ViewDemand() {
     // 2 - Reprovar ou Classificar (Analista)
     // 3 - Reprovar ou Aprovar (Gerente de Negócios)
     // 4 - Complementar (Analista)
-    const [actionsDemand, setActionsDemand] = useState(2);
+    const [actionsDemand, setActionsDemand] = useState(0);
 
     // Situação da Demanda
     // 0 - Demanda criada

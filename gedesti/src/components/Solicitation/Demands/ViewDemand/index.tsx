@@ -16,6 +16,7 @@ export default function ViewDemand() {
 
     const worker: any = localStorage.getItem("worker"); // Buscar dados do usuário
     const office = JSON.parse(worker).office; // Buscar tipo de usuário
+    const workerId = JSON.parse(worker).id; // Buscar código do usuário
     const url = window.location.href.split("/")[3]; // Buscar tipo da demanda
 
     const demandCode = parseInt(window.location.href.split("/")[5]); // Buscar código da demanda
@@ -44,13 +45,24 @@ export default function ViewDemand() {
             const demand: any = [response]
             setDemands(demand)
 
-            if (response.classification === undefined || response.classification === null) {
-                setStepDemand(0)
-                setActionsDemand(2)
+            console.log(response)
+
+            if (office === "requester") {
+                if (response.requesterRegistration.workerCode === workerId) {
+                    setActionsDemand(1)
+                } else {
+                    setActionsDemand(0)
+                }
             } else {
-                setStepDemand(1)
-                setClassification(response.classification)
-                setActionsDemand(3)
+
+                if (response.classification === undefined || response.classification === null) {
+                    setStepDemand(0)
+                    setActionsDemand(2)
+                } else {
+                    setStepDemand(1)
+                    setClassification(response.classification)
+                    setActionsDemand(3)
+                }
             }
 
             setCenterCost(demand[0].costCenter)

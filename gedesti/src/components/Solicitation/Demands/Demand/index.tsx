@@ -62,7 +62,9 @@ export default function Demand(props: any) {
     }
 
     const handleMouseOut = () => {
-        setShowModal(false);
+        setTimeout(() => {
+            setShowModal(false);
+        }, 500);
     }
 
 

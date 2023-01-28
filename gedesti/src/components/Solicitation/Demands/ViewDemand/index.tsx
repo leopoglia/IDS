@@ -60,8 +60,11 @@ export default function ViewDemand() {
                     setActionsDemand(2)
                 } else {
                     setStepDemand(1)
+
                     setClassification(response.classification)
-                    setActionsDemand(3)
+                    if (office === "business") {
+                        setActionsDemand(3)
+                    }
                 }
             }
 

@@ -181,24 +181,36 @@ export default function Demand(props: any) {
         );
     } else {
         return (
-            <Link to={"/" + props.type + "/view/" + props.demandCode}>
-                <div className="demand-list">
-                    <section>
-                        <h1>{props.name}</h1>
-                    </section>
+            <div>
+                {showModal &&
+                    <div className="background-modal">
+                        <div className="modal">
+                            <div className="title-situation">{t("situation")}: Já foi classificada pelo Analista</div>
+                            <div className="progress">
+                                <div className="progress-bar" role="progressbar" style={{ width: "25%" }} aria-valuenow={25} aria-valuemin={0} aria-valuemax={100} />
+                            </div>
+                        </div>
+                    </div>
+                }
+                <Link to={"/" + props.type + "/view/" + props.demandCode}>
+                    <div className="demand-list">
+                        <section>
+                            <h1>{props.name}</h1>
+                        </section>
 
 
-                    <div className="display-flex">
-                        {information()}
+                        <div className="display-flex">
+                            {information()}
 
-                        {situation()}
+                            {situation()}
 
+
+                        </div>
 
                     </div>
 
-                </div>
-
-            </Link>
+                </Link>
+            </div>
         );
     }
 }

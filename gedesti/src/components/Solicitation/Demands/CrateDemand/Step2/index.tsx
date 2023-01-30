@@ -13,10 +13,28 @@ import { useState } from 'react';
 import RealServices from "../../../../../services/realBenefitService";
 import QualitativeServices from "../../../../../services/qualitativeBenefitService";
 import PotentialServices from "../../../../../services/potentialBenefitService";
+import { toast, ToastContainer, TypeOptions } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from 'react-router-dom';
 
 export default function CreateDemands2() {
 
     const { t } = useTranslation();
+    const navigate = useNavigate();
+
+    const notify = () => {
+        toast.error('Preencha todos os campos!', {
+            position: "bottom-right",
+            autoClose: 4000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    };
+
 
     const [realMonthlyValue, setRealMonthlyValue] = useState("");
     const [realBenefitDescription, setrealBenefitDescription] = useState("");
@@ -31,7 +49,7 @@ export default function CreateDemands2() {
     const [frequencyOfUse, setFrequencyOfUse] = useState("");
     const [interalControlsRequirements, setInteralControlsRequirements] = useState("");
 
-    async function cadastrarBeneficios() {
+    async function addBenefits() {
         let realBenefits: any = await RealServices.save(Number.parseFloat(realMonthlyValue), realBenefitDescription, "real");
         let potentialBenefits: any = await PotentialServices.save(Number.parseFloat(potentialMonthlyValue), potentialBenefitDescription, true, "real");
         let qualitativeBenefits: any = await QualitativeServices.save(frequencyOfUse, qualitativeBenefitDescription, true);
@@ -39,6 +57,18 @@ export default function CreateDemands2() {
         localStorage.setItem("realBenefits", JSON.stringify(realBenefits));
         localStorage.setItem("potentialBenefits", JSON.stringify(potentialBenefits));
         localStorage.setItem("qualitativeBenefits", JSON.stringify(qualitativeBenefits));
+    }
+
+
+    const nextStep = () => {
+
+        localStorage.getItem("demand");
+        let demand = JSON.parse(localStorage.getItem("demand") || "{}");
+
+
+        navigate('/demand/create/3');
+        // addBenefits();
+
     }
 
     return (
@@ -136,7 +166,7 @@ export default function CreateDemands2() {
 
                 <div className="demands-footer">
                     <ButtonAction click="voltar"></ButtonAction>
-                    <div onClick={() => { cadastrarBeneficios() }}>
+                    <div onClick={() => { nextStep() }}>
                         <ButtonAction click="avancar"></ButtonAction>
                     </div>
                 </div>

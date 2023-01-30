@@ -10,35 +10,17 @@ export default function ButtonAction(props: {
     const url = window.location.href.split("/")[5];
 
 
-    if (props.click === "voltar" && url === "1") {
+    if (props.click === "voltar") {
         return (
-            <Link className="btn-secondary" to="/demands">
+            <button className="btn-secondary">
                 {t("return")}
-            </Link>
-        );
-    } else if (url === "3" && props.click === "avancar") {
-        return (
-            <Link className="btn-primary" to="/demands">
-                <button className="btn-primary">
-                    {t("finish")}
-                </button>
-            </Link>
-        );
-    }
-
-
-
-    if (props.click === "voltar" && url !== "1") {
-        return (
-            <Link className="btn-secondary" to={"/demand/create/" + (parseInt(url) - 1)}>
-                {t("return")}
-            </Link>
+            </button>
         );
     } else {
         return (
-            <Link className="btn-primary" to={"/demand/create/" + (parseInt(url) + 1)}>
+            <button className="btn-primary">
                 {t("advance")}
-            </Link>
+            </button>
         );
     }
 }

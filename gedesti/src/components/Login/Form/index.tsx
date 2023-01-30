@@ -76,18 +76,20 @@ export default function Form() {
                 </div>
 
 
-                <div>
+                <div className='password'>
                     <span className="material-symbols-outlined">key</span>
                     <label>{t("password")}</label>
+                    
                     <input className={error} id="password" onChange={(e) => { setPassword(e.target.value) }} type="password" required />
+
 
                 </div>
 
                 <section>
-                    <div>
+                    {/* <div>
                         <input id="checkbox" type="checkbox" />
                         <label>{t("remember-me")}</label>
-                    </div>
+                    </div> */}
 
                     <Link to="/forget-password">
                         {t("forgotPassword")}

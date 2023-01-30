@@ -9,14 +9,28 @@ import ButtonAction from "../ButtonAction";
 import { useTranslation } from "react-i18next";
 import { useState } from 'react';
 import Services from '../../../../../services/costCenterService';
+import { toast, ToastContainer, TypeOptions } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from 'react-router-dom';
 
 export default function CreateDemands1() {
 
     const { t } = useTranslation();
+    const navigate = useNavigate();
 
-    const [demandTitle, setDemandTitle] = useState("");
-    const [currentProblem, setcurrentProblem] = useState("");
-    const [demandObjective, setDemandObjective] = useState("");
+    const notify = () => {
+        toast.error('Preencha todos os campos!', {
+            position: "bottom-right",
+            autoClose: 4000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    };
+
     const [costCenter, setCostCenter] = useState("");
     const [costsCenters, setCostsCenters]: any = useState([]);
     const [idCostCenter, setIdCostCenter]: any = useState([]);
@@ -100,7 +114,21 @@ export default function CreateDemands1() {
         demand.costCenter = idCostCenter;
         localStorage.setItem("demand", JSON.stringify(demand));
     }
-    
+
+    const nextStep = () => {
+
+        localStorage.getItem("demand");
+        let demand = JSON.parse(localStorage.getItem("demand") || "{}");
+
+
+        if (demand.titleInput === "" || demand.currentSituation === "" || demand.objective === "" || demand.costCenter.length === 0) {
+            notify();
+        } else {
+            navigate('/demand/create/2');
+            addIDCostCenter();
+        }
+    }
+
 
 
     return (
@@ -166,12 +194,14 @@ export default function CreateDemands1() {
 
                 <div className="demands-footer">
                     <ButtonAction click="voltar"></ButtonAction>
-                    <div onClick={ ()=> {addIDCostCenter()}}>
-                        <ButtonAction  click="avancar"></ButtonAction>
+                    <div onClick={() => { nextStep() }}>
+                        <ButtonAction click="avancar"></ButtonAction>
                     </div>
                 </div>
 
             </div>
+
+            <ToastContainer position="bottom-right" newestOnTop />
 
         </div>
     );

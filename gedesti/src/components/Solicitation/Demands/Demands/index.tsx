@@ -15,6 +15,7 @@ export default function Demands() {
     const url = window.location.href.split("/");
     let findDemands: any;
     const [table, setTableList] = useState(false);
+    const [routePage, setRoutePage] = useState(localStorage.getItem("route"));
 
     async function getDemands() {
         findDemands = await Services.findAll().then((res: any) => {
@@ -23,6 +24,19 @@ export default function Demands() {
         });
         return findDemands;
     }
+
+
+    useEffect(() => {
+        getDemands();
+        if (localStorage.getItem("route") === "create-demand") {
+            localStorage.removeItem("route");
+        }
+
+        if (routePage === "create-demand") {
+            notify();
+            localStorage.removeItem("route");
+        }
+    }, [])
 
     const notify = () => {
         toast.error('E-mail ou senha incorretos!', {
@@ -36,17 +50,6 @@ export default function Demands() {
             theme: "light",
         });
     };
-
-    useEffect(() => {
-        getDemands();
-        if (localStorage.getItem("route") === "create-demand") {
-
-            console.log("AAAAAAAAAAAAAAAA")
-
-            localStorage.removeItem("route");
-            notify();
-        }
-    }, [])
 
     const [demands, setDemands] = useState([
         { demandCode: 1, demandTitle: "Sistema para calcular o SCORE", requesterRegistration: { workerName: "Leonardo Heitor Poglia" }, demandDate: "27/04/2022", demandStatus: "Backlog" },
@@ -196,6 +199,9 @@ export default function Demands() {
                 </div>
             ) : (<div className="null" />)
             }
+
+            <ToastContainer position="bottom-right" newestOnTop />
+
 
         </div>
     )

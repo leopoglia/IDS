@@ -75,6 +75,12 @@ export default function CreateDemands3() {
             actualDate
         );
         console.log(realBenefits.realBenefitCode, potentialBenefits.potentialBenefitCode, qualitativeBenefits.qualitativeBenefitCode)
+
+        localStorage.removeItem("demand");
+        localStorage.removeItem("realBenefits");
+        localStorage.removeItem("potentialBenefits");
+        localStorage.removeItem("qualitativeBenefits");
+
     }
 
     const handleFileSelected = (e: any): void => {

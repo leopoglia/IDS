@@ -121,7 +121,7 @@ export default function CreateDemands1() {
         let demand = JSON.parse(localStorage.getItem("demand") || "{}");
 
 
-        if (demand.titleInput === "" || demand.currentSituation === "" || demand.objective === "" || demand.costCenter.length === 0) {
+        if (demand.titleInput === undefined || demand.titleInput === "" || demand.currentSituation === "" || demand.objective === "" || demand.costCenter.length === 0) {
             notify();
         } else {
             navigate('/demand/create/2');

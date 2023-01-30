@@ -25,7 +25,7 @@ export default function CreateDemands2() {
     const notify = () => {
         toast.error('Preencha todos os campos!', {
             position: "bottom-right",
-            autoClose: 4000,
+            autoClose: 2000,
             hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: true,
@@ -165,7 +165,7 @@ export default function CreateDemands2() {
                 </div>
 
                 <div className="demands-footer">
-                    <ButtonAction click="voltar"></ButtonAction>
+                    <ButtonAction page="1" click="voltar"></ButtonAction>
                     <div onClick={() => { nextStep() }}>
                         <ButtonAction click="avancar"></ButtonAction>
                     </div>

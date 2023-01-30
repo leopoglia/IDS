@@ -193,7 +193,7 @@ export default function CreateDemands1() {
                 </div>
 
                 <div className="demands-footer">
-                    <ButtonAction click="voltar"></ButtonAction>
+                    <ButtonAction page="0" click="voltar"></ButtonAction>
                     <div onClick={() => { nextStep() }}>
                         <ButtonAction click="avancar"></ButtonAction>
                     </div>

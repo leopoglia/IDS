@@ -27,6 +27,7 @@ export default function Demands() {
 
 
     useEffect(() => {
+        setRoutePage(localStorage.getItem("route"));
         getDemands();
         if (localStorage.getItem("route") === "create-demand") {
             localStorage.removeItem("route");
@@ -39,7 +40,7 @@ export default function Demands() {
     }, [])
 
     const notify = () => {
-        toast.error('E-mail ou senha incorretos!', {
+        toast.success('Demanda cadastrada!', {
             position: "bottom-right",
             autoClose: 4000,
             hideProgressBar: true,

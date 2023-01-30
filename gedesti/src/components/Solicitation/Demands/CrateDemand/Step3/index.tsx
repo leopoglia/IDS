@@ -116,7 +116,7 @@ export default function CreateDemands3() {
                 </div>
 
                 <div className="demands-footer">
-                    <ButtonAction click="voltar"></ButtonAction>
+                    <ButtonAction page="2" click="voltar"></ButtonAction>
                     <div onClick={() => { cadastrarDemanda() }}>
                         <ButtonAction click="avancar"></ButtonAction>
                     </div>

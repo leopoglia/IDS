@@ -6,11 +6,31 @@ import SelectCostExecution from "./SelectCostExecution";
 import { Link } from "react-router-dom";
 import "./style.css";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
 
 
 export default function ProposedInformation() {
     const { t } = useTranslation();
 
+    const [respnosibleAnalyst, setResponsibleAnalyst] = useState('');
+    const [responsibleArea, setResponsibleArea] = useState('');
+    const [start, setStart] = useState('');
+    const [end, setEnd] = useState('');
+    const [fileAttachment, setFileAttachment]: any = useState();
+
+    localStorage.setItem('responsibleAnalyst', respnosibleAnalyst);
+    localStorage.setItem('responsibleArea', responsibleArea);
+    localStorage.setItem('start', start);
+    localStorage.setItem('end', end);
+    localStorage.setItem('fileAttachment', fileAttachment);
+
+    const handleFileSelected = (e: any): void => {
+        const files = Array.from(e.target.files)
+        setFileAttachment(files[0])
+    }
+
+
+    console.log("responsible: " + respnosibleAnalyst, "area:" + responsibleArea, "start:" + start, "end: " + end, "file: " + fileAttachment);
 
     return (
         <div className="execution-costs">
@@ -37,13 +57,13 @@ export default function ProposedInformation() {
                     <div className="display-flex-grid">
                         <div className="one">
                             <label>{t("responsibleBussiness")} *</label>
-                            <input type="text" />
+                            <input type="text" onChange={(e) => {setResponsibleAnalyst(e.target.value)}} />
                         </div>
 
                         <div className="display-flex">
                             <div>
                                 <label>{t("responsibleArea")}</label>
-                                <input type="text" />
+                                <input type="text" onChange={(e) => {setResponsibleArea(e.target.value)}} />
                             </div>
 
                             {/* addCostCenter(costCenter); handleChange(costCenter, 'costCenter'); */}
@@ -56,19 +76,19 @@ export default function ProposedInformation() {
                     <div className="display-flex-grid">
                         <div className="one">
                             <label>{t("start")} *</label>
-                            <input type="date" />
+                            <input type="date" onChange={(e) => {setStart(e.target.value)}} />
                         </div>
 
                         <div>
                             <label>{t("end")} *</label>
-                            <input type="date" />
+                            <input type="date" onChange={(e) => {setEnd(e.target.value)}} />
                         </div>
                     </div>
 
                     <div className="display-btn-anexo">
                         <label>{t("attachment")}</label>
                         <div className="attachments">
-                            <input type="file" id="file" />
+                            <input type="file" id="file" onChange={handleFileSelected} />
                             <label htmlFor="file">
                                 <span className="material-symbols-outlined">
                                     upload_file

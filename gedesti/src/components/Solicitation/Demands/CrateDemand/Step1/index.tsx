@@ -12,6 +12,7 @@ import Services from '../../../../../services/costCenterService';
 import { toast, ToastContainer, TypeOptions } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from 'react-router-dom';
+import SelectCenterCost from "./SelectCenterCost";
 
 export default function CreateDemands1() {
 
@@ -77,9 +78,30 @@ export default function CreateDemands1() {
     }
 
     async function createCostCenter() {
-        // criar os cost center no banco
-        let service: any = await Services.save(costCenter);
-        idCostCenter.push(service.costCenterCode);
+
+        let costsCenterBd: any = await Services.findAll();
+
+        let igual = 0;
+        let id = 0;
+        for (let i = 0; i < costsCenterBd.length; i++) {
+            if (costsCenterBd[i].costCenter === costCenter) {
+                igual++;
+            }
+        }
+
+        if (igual === 0) {
+            let service: any = await Services.save(costCenter);
+            console.log("retorno -> ", service);
+            idCostCenter.push(service.costCenterCode);
+        } else {
+            for (let i = 0; i < costsCenterBd.length; i++) {
+                if (costsCenterBd[i].costCenter === costCenter) {
+                    id = costsCenterBd[i].costCenterCode;
+                }
+            }
+            idCostCenter.push(id);
+        }
+
     }
 
     const handleChange = (event: any, type: String) => {
@@ -188,7 +210,7 @@ export default function CreateDemands1() {
                         <label>{t("costCenter")} *</label>
 
                         <div className="display-flex">
-                            <input onChange={(e) => { handleChange(e, 'costCenter'); setCostCenter(e.target.value) }} type="text" />
+                            <SelectCenterCost setCostCenter={setCostCenter} costCenter={costCenter} addCostCenter={addCostCenter} />
 
                             <div className="btn-primary w45" onClick={() => { addCostCenter(costCenter); handleChange(costCenter, 'costCenter'); }}>
                                 <span className="material-symbols-outlined">add</span>

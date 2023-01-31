@@ -12,12 +12,12 @@ import Services from '../../../../../services/costCenterService';
 import { toast, ToastContainer, TypeOptions } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from 'react-router-dom';
-import SelectCenterCost from './SelectCenterCost';
 
 export default function CreateDemands1() {
 
     const { t } = useTranslation();
     const navigate = useNavigate();
+    const demandLocalStorage = JSON.parse(localStorage.getItem('demand') || '{}')
 
     const notify = () => {
         toast.error('Preencha todos os campos!', {
@@ -61,35 +61,16 @@ export default function CreateDemands1() {
             } else {
                 setCostCenter(" ");
             }
+
+            console.log("costsCenters 2 -> ", costCenter);
         }
     }
 
     async function createCostCenter() {
         // criar os cost center no banco
-        let costsCenterBd: any = await Services.findAll();
-
-        let igual = 0;
-        let id = 0;
-        for (let i = 0; i < costsCenterBd.length; i++) {
-            if (costsCenterBd[i].costCenter === costCenter) {
-                igual++;
-            }
-        }
-
-        if (igual === 0) {
-            let service: any = await Services.save(costCenter);
-            console.log("retorno -> ", service);
-            idCostCenter.push(service.costCenterCode);
-        } else {
-            for (let i = 0; i < costsCenterBd.length; i++) {
-                if (costsCenterBd[i].costCenter === costCenter) {
-                    id = costsCenterBd[i].costCenterCode;
-                }
-            }
-            idCostCenter.push(id);
-        }
-
-
+        let service: any = await Services.save(costCenter);
+        console.log("retorno -> ", service);
+        idCostCenter.push(service.costCenterCode);
     }
 
     const handleChange = (event: any, type: String) => {
@@ -149,6 +130,7 @@ export default function CreateDemands1() {
         }
     }
 
+
     return (
         <div className="create-demands-1">
             <Header icon="folder_copy" title="createDemand" />
@@ -168,19 +150,19 @@ export default function CreateDemands1() {
 
                     <div className="input">
                         <label>{t("titleInput")} *</label>
-                        <input onChange={(e) => { handleChange(e, 'titleInput'); }} type="text" />
+                        <input onChange={(e) => { handleChange(e, 'titleInput'); }} type="text" value={demandLocalStorage.titleInput} />
                     </div>
 
                     <div className="text-area">
                         <label>{t("currentSituation")} *</label>
-                        <textarea onChange={(e) => { handleChange(e, 'currentSituation'); }} />
+                        <textarea onChange={(e) => { handleChange(e, 'currentSituation'); }} value={demandLocalStorage.currentSituation} />
                     </div>
                     {/* 
                     <TextArea label="currentSituation" required="*" onChange={(e) => { setDemandProblem(e.target.value) }}></TextArea> */}
 
                     <div className="text-area">
                         <label>{t("objective")} *</label>
-                        <textarea onChange={(e) => { handleChange(e, 'objective'); }} />
+                        <textarea onChange={(e) => { handleChange(e, 'objective'); }} value = {demandLocalStorage.objective} />
                     </div>
 
                     {/* <TextArea label="proposal" required="*" onChange={(e) => { setProposal(e.target.value) }}></TextArea> */}
@@ -189,9 +171,7 @@ export default function CreateDemands1() {
                         <label>{t("costCenter")} *</label>
 
                         <div className="display-flex">
-                            {/* <input onChange={(e) => { handleChange(e, 'costCenter'); setCostCenter(e.target.value) }} type="text" /> */}
-
-                            <SelectCenterCost setCostCenter={setCostCenter} costCenter={costCenter} addCostCenter={addCostCenter} />
+                            <input onChange={(e) => { handleChange(e, 'costCenter'); setCostCenter(e.target.value) }} type="text" />
 
                             <div className="btn-primary w45" onClick={() => { addCostCenter(costCenter); handleChange(costCenter, 'costCenter'); }}>
                                 <span className="material-symbols-outlined">add</span>
@@ -200,8 +180,8 @@ export default function CreateDemands1() {
                     </div>
 
                     {costsCenters.map((costCenter: any) => {
-                        return <div className="costCenter">{costCenter}
-                            <span className="material-symbols-outlined delete-cost-center" onClick={deleteCostCenter(costCenter)}>
+                        return <div className="costCenter">{costCenter} 
+                            <span className="material-symbols-outlined delete-cost-center" onClick={deleteCostCenter(costCenter)} >
                                 delete
                             </span>
                         </div>

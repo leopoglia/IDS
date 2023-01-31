@@ -6,9 +6,13 @@ import Services from '../../../services/workerService';
 import React from 'react';
 import { toast, ToastContainer, TypeOptions } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Form() {
     const { t } = useTranslation();
+    const navigate = useNavigate();
+
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -45,7 +49,7 @@ export default function Form() {
 
                 localStorage.setItem("worker", JSON.stringify(worker));
 
-                window.location.href = "/demands";
+                navigate('/demands');
             }
 
             if (response?.status === 400 || response?.status === 500 || response?.status === undefined) {

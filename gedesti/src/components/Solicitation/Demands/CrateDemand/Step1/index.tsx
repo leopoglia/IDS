@@ -61,8 +61,6 @@ export default function CreateDemands1() {
             } else {
                 setCostCenter(" ");
             }
-
-            console.log("costsCenters 2 -> ", costCenter);
         }
     }
 
@@ -70,22 +68,28 @@ export default function CreateDemands1() {
         // criar os cost center no banco
         let costsCenterBd: any = await Services.findAll();
 
-        for (let costCenter of costsCenterBd) {
-            let costCenterExist = costsCenterBd.find((costCenterBd: any) => costCenterBd.costCenter === costCenter);
-            if (costCenterExist === undefined || costCenterExist === null || costCenterExist === "" || costCenterExist === " ") {
-                let service: any = await Services.save(costCenter);
-                console.log("retorno -> ", service);
-                idCostCenter.push(service.costCenterCode);
+        let igual = 0;
+        let id = 0;
+        for (let i = 0; i < costsCenterBd.length; i++) {
+            if (costsCenterBd[i].costCenter === costCenter) {
+                igual++;
             }
         }
 
-        // if (costCenter === "" || costCenter === " ") {
+        if (igual === 0) {
+            let service: any = await Services.save(costCenter);
+            console.log("retorno -> ", service);
+            idCostCenter.push(service.costCenterCode);
+        } else {
+            for (let i = 0; i < costsCenterBd.length; i++) {
+                if (costsCenterBd[i].costCenter === costCenter) {
+                    id = costsCenterBd[i].costCenterCode;
+                }
+            }
+            idCostCenter.push(id);
+        }
 
 
-        //     let service: any = await Services.save(costCenter);
-        //     console.log("retorno -> ", service);
-        //     idCostCenter.push(service.costCenterCode);
-        // }
     }
 
     const handleChange = (event: any, type: String) => {
@@ -144,9 +148,6 @@ export default function CreateDemands1() {
             addIDCostCenter();
         }
     }
-
-    console.log("costsCenters -> ", costCenter);
-
 
     return (
         <div className="create-demands-1">

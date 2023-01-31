@@ -7,10 +7,12 @@ import ButtonAction from "../ButtonAction";
 import { useTranslation } from "react-i18next";
 import { useState, useEffect } from 'react';
 import Services from "../../../../../services/demandService";
+import { useNavigate } from "react-router";
 
 export default function CreateDemands3() {
 
     const { t } = useTranslation();
+    const navigate = useNavigate();
 
     const [demandAttachment, setdemandAttachment]: any = useState("");
     const [executionPeriod, setExecutionPeriod]: any = useState("");
@@ -80,6 +82,9 @@ export default function CreateDemands3() {
         localStorage.removeItem("realBenefits");
         localStorage.removeItem("potentialBenefits");
         localStorage.removeItem("qualitativeBenefits");
+
+
+        navigate("/demands");
 
     }
 

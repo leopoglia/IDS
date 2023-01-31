@@ -173,5 +173,6 @@
     "sendYourMessage": "Envía tu mensaje",
     "demandsCreateDemand": "Demanda > Crear demanda",
     "disapproveDemand": "Desaprobar demanda",
-    "demandViewDisapproveDemand": "Demanda > Ver demanda > Desaprobar demanda"
+    "demandViewDisapproveDemand": "Demanda > Ver demanda > Desaprobar demanda",
+    "user": "Usuario"
 }

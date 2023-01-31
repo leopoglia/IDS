@@ -12,6 +12,7 @@ import Services from '../../../../../services/costCenterService';
 import { toast, ToastContainer, TypeOptions } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from 'react-router-dom';
+import SelectCenterCost from './SelectCenterCost';
 
 export default function CreateDemands1() {
 
@@ -67,9 +68,24 @@ export default function CreateDemands1() {
 
     async function createCostCenter() {
         // criar os cost center no banco
-        let service: any = await Services.save(costCenter);
-        console.log("retorno -> ", service);
-        idCostCenter.push(service.costCenterCode);
+        let costsCenterBd: any = await Services.findAll();
+
+        for (let costCenter of costsCenterBd) {
+            let costCenterExist = costsCenterBd.find((costCenterBd: any) => costCenterBd.costCenter === costCenter);
+            if (costCenterExist === undefined || costCenterExist === null || costCenterExist === "" || costCenterExist === " ") {
+                let service: any = await Services.save(costCenter);
+                console.log("retorno -> ", service);
+                idCostCenter.push(service.costCenterCode);
+            }
+        }
+
+        // if (costCenter === "" || costCenter === " ") {
+
+
+        //     let service: any = await Services.save(costCenter);
+        //     console.log("retorno -> ", service);
+        //     idCostCenter.push(service.costCenterCode);
+        // }
     }
 
     const handleChange = (event: any, type: String) => {
@@ -129,6 +145,7 @@ export default function CreateDemands1() {
         }
     }
 
+    console.log("costsCenters -> ", costCenter);
 
 
     return (
@@ -171,7 +188,9 @@ export default function CreateDemands1() {
                         <label>{t("costCenter")} *</label>
 
                         <div className="display-flex">
-                            <input onChange={(e) => { handleChange(e, 'costCenter'); setCostCenter(e.target.value) }} type="text" />
+                            {/* <input onChange={(e) => { handleChange(e, 'costCenter'); setCostCenter(e.target.value) }} type="text" /> */}
+
+                            <SelectCenterCost setCostCenter={setCostCenter} costCenter={costCenter} addCostCenter={addCostCenter} />
 
                             <div className="btn-primary w45" onClick={() => { addCostCenter(costCenter); handleChange(costCenter, 'costCenter'); }}>
                                 <span className="material-symbols-outlined">add</span>

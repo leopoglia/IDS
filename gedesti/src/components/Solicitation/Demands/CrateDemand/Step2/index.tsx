@@ -73,8 +73,8 @@ export default function CreateDemands2() {
 
 
     async function addBenefits() {
-        let realBenefits: any = await RealServices.save(Number.parseFloat(realMonthlyValue), realBenefitDescription, "real");
-        let potentialBenefits: any = await PotentialServices.save(Number.parseFloat(potentialMonthlyValue), potentialBenefitDescription, true, "real");
+        let realBenefits: any = await RealServices.save(Number.parseFloat(realMonthlyValue), realBenefitDescription, realCurrency);
+        let potentialBenefits: any = await PotentialServices.save(Number.parseFloat(potentialMonthlyValue), potentialBenefitDescription, true, potentialCurrency);
         let qualitativeBenefits: any = await QualitativeServices.save("1", qualitativeBenefitDescription, true);
 
         localStorage.setItem("realBenefits", JSON.stringify(realBenefits));
@@ -113,7 +113,7 @@ export default function CreateDemands2() {
                             <label>{t("monthlyValue")} *</label>
                             <input type="text" onChange={(e) => { setRealMonthlyValue(e.target.value) }} value={realMonthlyValue} />
                         </div>
-                        <SelectCoin />
+                        <SelectCoin setrealCurrency={setrealCurrency} type="real" value={realCurrency} />
                     </div>
 
                     {/* <Input label="description" required=""></Input> */}
@@ -135,7 +135,7 @@ export default function CreateDemands2() {
                                 <label>{t("monthlyValue")} *</label>
                                 <input type="text" onChange={(e) => { setPotentialMonthlyValue(e.target.value) }} value={potentialMonthlyValue} />
                             </div>
-                            <SelectCoin />
+                            <SelectCoin setPotentialCurrency={setPotentialCurrency} type="potencial" value={potentialCurrency} />
                         </div>
 
                         <div className="flex">

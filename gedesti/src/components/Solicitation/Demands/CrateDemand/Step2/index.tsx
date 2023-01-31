@@ -21,6 +21,9 @@ export default function CreateDemands2() {
 
     const { t } = useTranslation();
     const navigate = useNavigate();
+    const realBenefitsLocalStorage = JSON.parse(localStorage.getItem('realBenefits') || '{}')
+    const potentialBenefitsLocalStorage = JSON.parse(localStorage.getItem('potentialBenefits') || '{}')
+    const qualitativeBenefitsLocalStorage = JSON.parse(localStorage.getItem('qualitativeBenefits') || '{}')
 
     const notify = () => {
         toast.error('Preencha todos os campos!', {
@@ -69,6 +72,7 @@ export default function CreateDemands2() {
         navigate('/demand/create/3');
     }
 
+    console.log(realBenefitsLocalStorage)
     return (
         <div className="create-demands-2">
             <Header icon="folder_copy" title="createDemand" />
@@ -88,7 +92,7 @@ export default function CreateDemands2() {
                         {/* <Input label="monthlyValue" required="*" /> */}
                         <div className="input">
                             <label>{t("monthlyValue")} *</label>
-                            <input type="text" onChange={(e) => { setRealMonthlyValue(e.target.value) }} />
+                            <input type="text" onChange={(e) => { setRealMonthlyValue(e.target.value) }} value= {realBenefitsLocalStorage.realMonthlyValue}/>
                         </div>
                         <SelectCoin />
                     </div>
@@ -96,7 +100,7 @@ export default function CreateDemands2() {
                     {/* <Input label="description" required=""></Input> */}
                     <div className="input">
                         <label>{t("description")}</label>
-                        <input onChange={(e) => { setrealBenefitDescription(e.target.value) }} type="text" />
+                        <input onChange={(e) => { setrealBenefitDescription(e.target.value) }} type="text" value= {realBenefitsLocalStorage.realBenefitDescription}/>
                     </div>
 
                 </div>
@@ -110,7 +114,7 @@ export default function CreateDemands2() {
                             {/* <Input label="monthlyValue" required="*" /> */}
                             <div className="input">
                                 <label>{t("monthlyValue")} *</label>
-                                <input type="text" onChange={(e) => { setPotentialMonthlyValue(e.target.value) }} />
+                                <input type="text" onChange={(e) => { setPotentialMonthlyValue(e.target.value) }} value= {potentialBenefitsLocalStorage.monthlyValue}/>
                             </div>
                             <SelectCoin />
                         </div>
@@ -120,7 +124,7 @@ export default function CreateDemands2() {
 
                             <div className="input">
                                 <label>{t("description")}</label>
-                                <input onChange={(e) => { setPotentialBenefitDescription(e.target.value) }} type="text" />
+                                <input onChange={(e) => { setPotentialBenefitDescription(e.target.value) }} type="text" value={potentialBenefitsLocalStorage.description}/>
                             </div>
 
                             <div className="input-checkbox">
@@ -140,7 +144,7 @@ export default function CreateDemands2() {
                         {/* <Input label="monthlyValue" required="*" /> */}
                         <div className="input">
                             <label>{t("monthlyValue")} *</label>
-                            <input type="text" onChange={(e) => { setFrequencyOfUse(e.target.value) }} />
+                            <input type="text" onChange={(e) => { setFrequencyOfUse(e.target.value) }}  value= {qualitativeBenefitsLocalStorage.monthlyValue}/>
                         </div>
                         <SelectCoin />
                     </div>
@@ -149,7 +153,7 @@ export default function CreateDemands2() {
                         {/* <Input label="description" required=""></Input> */}
                         <div className="input">
                             <label>{t("description")}</label>
-                            <input onChange={(e) => { setQualitativeBenefitDescription(e.target.value) }} type="text" />
+                            <input onChange={(e) => { setQualitativeBenefitDescription(e.target.value) }} type="text" value= {qualitativeBenefitsLocalStorage.description}/>
                         </div>
 
                         <div className="input-checkbox">

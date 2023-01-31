@@ -114,7 +114,7 @@ export default function CreateDemands2() {
                             {/* <Input label="monthlyValue" required="*" /> */}
                             <div className="input">
                                 <label>{t("monthlyValue")} *</label>
-                                <input type="text" onChange={(e) => { setPotentialMonthlyValue(e.target.value) }} value= {potentialBenefitsLocalStorage.monthlyValue}/>
+                                <input type="text" onChange={(e) => { setPotentialMonthlyValue(e.target.value) }} value= {potentialBenefitsLocalStorage.potentialMonthlyValue}/>
                             </div>
                             <SelectCoin />
                         </div>
@@ -124,7 +124,7 @@ export default function CreateDemands2() {
 
                             <div className="input">
                                 <label>{t("description")}</label>
-                                <input onChange={(e) => { setPotentialBenefitDescription(e.target.value) }} type="text" value={potentialBenefitsLocalStorage.description}/>
+                                <input onChange={(e) => { setPotentialBenefitDescription(e.target.value) }} type="text" value={potentialBenefitsLocalStorage.potentialBenefitDescription}/>
                             </div>
 
                             <div className="input-checkbox">

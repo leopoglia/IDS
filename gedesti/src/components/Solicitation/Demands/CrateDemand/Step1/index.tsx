@@ -7,7 +7,7 @@ import Input from "../Input";
 import TextArea from "../TextArea";
 import ButtonAction from "../ButtonAction";
 import { useTranslation } from "react-i18next";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Services from '../../../../../services/costCenterService';
 import { toast, ToastContainer, TypeOptions } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
@@ -17,7 +17,19 @@ export default function CreateDemands1() {
 
     const { t } = useTranslation();
     const navigate = useNavigate();
-    const demandLocalStorage = JSON.parse(localStorage.getItem('demand') || '{}')
+    const [titleDemand, setTitleDemand]: any = useState("")
+    const [currentSituation, setCurrentSituation]: any = useState("")
+    const [objective, setObjective]: any = useState("")
+
+
+    useEffect(() => {
+        let demand = JSON.parse(localStorage.getItem('demand') || '{}')
+
+        setTitleDemand(demand.titleInput)
+        setCurrentSituation(demand.currentSituation)
+        setObjective(demand.objective)
+    }, [])
+
 
     const notify = () => {
         toast.error('Preencha todos os campos!', {
@@ -61,48 +73,53 @@ export default function CreateDemands1() {
             } else {
                 setCostCenter(" ");
             }
-
-            console.log("costsCenters 2 -> ", costCenter);
         }
     }
 
     async function createCostCenter() {
         // criar os cost center no banco
         let service: any = await Services.save(costCenter);
-        console.log("retorno -> ", service);
         idCostCenter.push(service.costCenterCode);
     }
 
     const handleChange = (event: any, type: String) => {
 
+        if (titleDemand === undefined) {
+            localStorage.setItem("demand", JSON.stringify({ titleInput: '', currentSituation: '', objective: '' }))
+        }
+
         let demand = {
             titleInput: "",
             currentSituation: "",
             objective: "",
-            costCenter: ""
-        };
-
-
-        if (localStorage.getItem("demand") !== null) {
-            demand = JSON.parse(localStorage.getItem("demand") || "{}");
+            costCenter: []
         }
+
+
 
         switch (type) {
             case "titleInput":
-                demand.titleInput = event.target.value;
+                setTitleDemand(event.target.value);
                 break;
             case "currentSituation":
-                demand.currentSituation = event.target.value;
+                setCurrentSituation(event.target.value);
                 break;
             case "objective":
-                demand.objective = event.target.value;
+                setObjective(event.target.value);
                 break;
             case "costCenter":
                 setCostCenter("");
                 demand.costCenter = costsCenters;
                 break;
             default:
-                demand.titleInput = event.target.value;
+                setTitleDemand(event.target.value);
+        }
+
+        demand = {
+            titleInput: titleDemand,
+            currentSituation: currentSituation,
+            objective: objective,
+            costCenter: costsCenters
         }
 
 
@@ -150,19 +167,19 @@ export default function CreateDemands1() {
 
                     <div className="input">
                         <label>{t("titleInput")} *</label>
-                        <input onChange={(e) => { handleChange(e, 'titleInput'); }} type="text" value={demandLocalStorage.titleInput} />
+                        <input onChange={(e) => { handleChange(e, 'titleInput'); }} type="text" value={titleDemand} />
                     </div>
 
                     <div className="text-area">
                         <label>{t("currentSituation")} *</label>
-                        <textarea onChange={(e) => { handleChange(e, 'currentSituation'); }} value={demandLocalStorage.currentSituation} />
+                        <textarea onChange={(e) => { handleChange(e, 'currentSituation'); }} value={currentSituation} />
                     </div>
                     {/* 
                     <TextArea label="currentSituation" required="*" onChange={(e) => { setDemandProblem(e.target.value) }}></TextArea> */}
 
                     <div className="text-area">
                         <label>{t("objective")} *</label>
-                        <textarea onChange={(e) => { handleChange(e, 'objective'); }} value = {demandLocalStorage.objective} />
+                        <textarea onChange={(e) => { handleChange(e, 'objective'); }} value={objective} />
                     </div>
 
                     {/* <TextArea label="proposal" required="*" onChange={(e) => { setProposal(e.target.value) }}></TextArea> */}
@@ -180,7 +197,7 @@ export default function CreateDemands1() {
                     </div>
 
                     {costsCenters.map((costCenter: any) => {
-                        return <div className="costCenter">{costCenter} 
+                        return <div className="costCenter">{costCenter}
                             <span className="material-symbols-outlined delete-cost-center" onClick={deleteCostCenter(costCenter)} >
                                 delete
                             </span>

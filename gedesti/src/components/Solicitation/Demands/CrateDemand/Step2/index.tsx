@@ -92,7 +92,7 @@ export default function CreateDemands2() {
                         {/* <Input label="monthlyValue" required="*" /> */}
                         <div className="input">
                             <label>{t("monthlyValue")} *</label>
-                            <input type="text" onChange={(e) => { setRealMonthlyValue(e.target.value) }} value= {realBenefitsLocalStorage.realMonthlyValue}/>
+                            <input type="text" onChange={(e) => { setRealMonthlyValue(e.target.value) }} value={realBenefitsLocalStorage.realMonthlyValue}/>
                         </div>
                         <SelectCoin />
                     </div>
@@ -144,7 +144,7 @@ export default function CreateDemands2() {
                         {/* <Input label="monthlyValue" required="*" /> */}
                         <div className="input">
                             <label>{t("monthlyValue")} *</label>
-                            <input type="text" onChange={(e) => { setFrequencyOfUse(e.target.value) }}  value= {qualitativeBenefitsLocalStorage.monthlyValue}/>
+                            <input type="text" onChange={(e) => { setFrequencyOfUse(e.target.value) }}  value= {qualitativeBenefitsLocalStorage.qualitativeMonthlyValue}/>
                         </div>
                         <SelectCoin />
                     </div>
@@ -153,7 +153,7 @@ export default function CreateDemands2() {
                         {/* <Input label="description" required=""></Input> */}
                         <div className="input">
                             <label>{t("description")}</label>
-                            <input onChange={(e) => { setQualitativeBenefitDescription(e.target.value) }} type="text" value= {qualitativeBenefitsLocalStorage.description}/>
+                            <input onChange={(e) => { setQualitativeBenefitDescription(e.target.value) }} type="text" value= {qualitativeBenefitsLocalStorage.qualitativrBenefitDescription}/>
                         </div>
 
                         <div className="input-checkbox">

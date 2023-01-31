@@ -64,7 +64,7 @@
     padding: 0px !important;
 }
 
-fieldset{
+.select-cost-center fieldset{
     border: none !important;
     outline: none !important;
 }

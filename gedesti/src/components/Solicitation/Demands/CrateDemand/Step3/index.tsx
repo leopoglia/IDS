@@ -16,7 +16,7 @@ export default function CreateDemands3() {
 
     const [demandAttachment, setdemandAttachment]: any = useState("");
     const [executionPeriod, setExecutionPeriod]: any = useState("");
-    const [demand, setDemand]: any = useState("");
+    const [demandInitial, setDemand]: any = useState({});
     const [fileAttachment, setFileAttachment]: any = useState();
 
 
@@ -29,10 +29,12 @@ export default function CreateDemands3() {
     }, []);
 
     async function cadastrarDemanda() {
-        let demandTitle: any = demand.titleInput;
-        let currentProblem: any = demand.currentSituation
-        let demandObjective: any = demand.objective
-        let costCenter: any = demand.costCenter
+        console.log(demandInitial)
+
+        let demandTitle: any = demandInitial.titleInput;
+        let currentProblem: any = demandInitial.currentSituation
+        let demandObjective: any = demandInitial.objective
+        let costCenter: any = demandInitial.costCenter
 
         let realBenefits: any = localStorage.getItem("realBenefits");
         let realBenefitCode = JSON.parse(realBenefits).realBenefitCode;

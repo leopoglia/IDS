@@ -65,10 +65,8 @@ export default function CreateDemands2() {
         localStorage.getItem("demand");
         let demand = JSON.parse(localStorage.getItem("demand") || "{}");
 
-
+        addBenefits();
         navigate('/demand/create/3');
-        // addBenefits();
-
     }
 
     return (

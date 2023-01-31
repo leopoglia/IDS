@@ -54,7 +54,12 @@ export default function CreateDemands2() {
 
     useEffect(() => {
         let realBenefits = JSON.parse(localStorage.getItem("realBenefits") || "{}");
-        setRealMonthlyValue(realBenefits.realMonthlyValue);
+        if (realBenefits.realMonthlyValue !== undefined) {
+            setRealMonthlyValue(realBenefits.realMonthlyValue);
+        } else {
+            setPotentialCurrency("real");
+        }
+
         setrealBenefitDescription(realBenefits.realBenefitDescription);
         setrealCurrency(realBenefits.realCurrency);
 
@@ -62,7 +67,11 @@ export default function CreateDemands2() {
         setPotentialMonthlyValue(potentialBenefits.potentialMonthlyValue);
         setPotentialBenefitDescription(potentialBenefits.potentialBenefitDescription);
         setLegalObrigation(potentialBenefits.legalObrigation);
-        setPotentialCurrency(potentialBenefits.potentialCurrency);
+        if (potentialBenefits.potentialCurrency !== undefined) {
+            setPotentialCurrency(potentialBenefits.potentialCurrency);
+        } else {
+            setPotentialCurrency("real");
+        }
 
         let qualitativeBenefits = JSON.parse(localStorage.getItem("qualitativeBenefits") || "{}");
         setQualitativeBenefitDescription(qualitativeBenefits.qualitativeBenefitDescription);
@@ -89,7 +98,11 @@ export default function CreateDemands2() {
         let demand = JSON.parse(localStorage.getItem("demand") || "{}");
 
         addBenefits();
-        navigate('/demand/create/3');
+        if (realMonthlyValue === "" || realBenefitDescription === "" || potentialMonthlyValue === "" || potentialBenefitDescription === "" || qualitativeBenefitDescription === "") {
+            notify();
+        } else {
+            navigate('/demand/create/3');
+        }
     }
 
     return (
@@ -191,8 +204,9 @@ export default function CreateDemands2() {
                     </div>
                 </div>
 
-
             </div>
+
+            <ToastContainer position="bottom-right" newestOnTop />
 
         </div>
     );

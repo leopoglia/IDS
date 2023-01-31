@@ -10,11 +10,16 @@ export default function SelectLabels(props: any) {
     const [coin, setCoin] = React.useState('');
 
     useEffect(() => {
-        if (props.type === 'real') {
-            setCoin(props.realCurrency);
-        } else {
-            setCoin(props.potentialCurrency);
+        if (props.value !== undefined) {
+            if (props.type === 'real') {
+                setCoin(props.value);
+            } else {
+                setCoin(props.value);
+            }
+        }else{
+            setCoin('real');
         }
+
     }, []);
 
     const handleChange = (event: SelectChangeEvent) => {

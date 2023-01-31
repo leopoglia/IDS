@@ -91,7 +91,7 @@ export default function CreateDemands1() {
 
         if (igual === 0) {
             let service: any = await Services.save(costCenter);
-            console.log("retorno -> ", service);
+
             idCostCenter.push(service.costCenterCode);
         } else {
             for (let i = 0; i < costsCenterBd.length; i++) {

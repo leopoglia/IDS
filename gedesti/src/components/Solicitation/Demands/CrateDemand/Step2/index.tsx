@@ -9,7 +9,7 @@ import ButtonAction from "../ButtonAction";
 import SelectCoin from "../SelectCoin";
 import CheckBox from "../CheckBox";
 import { useTranslation } from "react-i18next";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import RealServices from "../../../../../services/realBenefitService";
 import QualitativeServices from "../../../../../services/qualitativeBenefitService";
 import PotentialServices from "../../../../../services/potentialBenefitService";
@@ -52,10 +52,30 @@ export default function CreateDemands2() {
     const [frequencyOfUse, setFrequencyOfUse] = useState("");
     const [interalControlsRequirements, setInteralControlsRequirements] = useState("");
 
+    useEffect(() => {
+        let realBenefits = JSON.parse(localStorage.getItem("realBenefits") || "{}");
+        setRealMonthlyValue(realBenefits.realMonthlyValue);
+        setrealBenefitDescription(realBenefits.realBenefitDescription);
+        setrealCurrency(realBenefits.realCurrency);
+
+        let potentialBenefits = JSON.parse(localStorage.getItem("potentialBenefits") || "{}");
+        setPotentialMonthlyValue(potentialBenefits.potentialMonthlyValue);
+        setPotentialBenefitDescription(potentialBenefits.potentialBenefitDescription);
+        setLegalObrigation(potentialBenefits.legalObrigation);
+        setPotentialCurrency(potentialBenefits.potentialCurrency);
+
+        let qualitativeBenefits = JSON.parse(localStorage.getItem("qualitativeBenefits") || "{}");
+        setQualitativeBenefitDescription(qualitativeBenefits.qualitativeBenefitDescription);
+        setFrequencyOfUse(qualitativeBenefits.frequencyOfUse);
+        setInteralControlsRequirements(qualitativeBenefits.interalControlsRequirements);
+
+    }, [])
+
+
     async function addBenefits() {
         let realBenefits: any = await RealServices.save(Number.parseFloat(realMonthlyValue), realBenefitDescription, "real");
         let potentialBenefits: any = await PotentialServices.save(Number.parseFloat(potentialMonthlyValue), potentialBenefitDescription, true, "real");
-        let qualitativeBenefits: any = await QualitativeServices.save(frequencyOfUse, qualitativeBenefitDescription, true);
+        let qualitativeBenefits: any = await QualitativeServices.save("1", qualitativeBenefitDescription, true);
 
         localStorage.setItem("realBenefits", JSON.stringify(realBenefits));
         localStorage.setItem("potentialBenefits", JSON.stringify(potentialBenefits));
@@ -72,7 +92,6 @@ export default function CreateDemands2() {
         navigate('/demand/create/3');
     }
 
-    console.log(realBenefitsLocalStorage)
     return (
         <div className="create-demands-2">
             <Header icon="folder_copy" title="createDemand" />
@@ -92,7 +111,7 @@ export default function CreateDemands2() {
                         {/* <Input label="monthlyValue" required="*" /> */}
                         <div className="input">
                             <label>{t("monthlyValue")} *</label>
-                            <input type="text" onChange={(e) => { setRealMonthlyValue(e.target.value) }} value={realBenefitsLocalStorage.realMonthlyValue}/>
+                            <input type="text" onChange={(e) => { setRealMonthlyValue(e.target.value) }} value={realMonthlyValue} />
                         </div>
                         <SelectCoin />
                     </div>
@@ -100,7 +119,7 @@ export default function CreateDemands2() {
                     {/* <Input label="description" required=""></Input> */}
                     <div className="input">
                         <label>{t("description")}</label>
-                        <input onChange={(e) => { setrealBenefitDescription(e.target.value) }} type="text" value= {realBenefitsLocalStorage.realBenefitDescription}/>
+                        <input onChange={(e) => { setrealBenefitDescription(e.target.value) }} type="text" value={realBenefitDescription} />
                     </div>
 
                 </div>
@@ -114,7 +133,7 @@ export default function CreateDemands2() {
                             {/* <Input label="monthlyValue" required="*" /> */}
                             <div className="input">
                                 <label>{t("monthlyValue")} *</label>
-                                <input type="text" onChange={(e) => { setPotentialMonthlyValue(e.target.value) }} value= {potentialBenefitsLocalStorage.potentialMonthlyValue}/>
+                                <input type="text" onChange={(e) => { setPotentialMonthlyValue(e.target.value) }} value={potentialMonthlyValue} />
                             </div>
                             <SelectCoin />
                         </div>
@@ -124,7 +143,7 @@ export default function CreateDemands2() {
 
                             <div className="input">
                                 <label>{t("description")}</label>
-                                <input onChange={(e) => { setPotentialBenefitDescription(e.target.value) }} type="text" value={potentialBenefitsLocalStorage.potentialBenefitDescription}/>
+                                <input onChange={(e) => { setPotentialBenefitDescription(e.target.value) }} type="text" value={potentialBenefitDescription} />
                             </div>
 
                             <div className="input-checkbox">
@@ -142,18 +161,17 @@ export default function CreateDemands2() {
 
                     <div className="flex">
                         {/* <Input label="monthlyValue" required="*" /> */}
-                        <div className="input">
+                        {/* <div className="input">
                             <label>{t("monthlyValue")} *</label>
-                            <input type="text" onChange={(e) => { setFrequencyOfUse(e.target.value) }}  value= {qualitativeBenefitsLocalStorage.qualitativeMonthlyValue}/>
-                        </div>
-                        <SelectCoin />
+                            <input type="text" onChange={(e) => { setFrequencyOfUse(e.target.value) }} value={qualitativeMonthlyValue} />
+                        </div> */}
                     </div>
 
                     <div className="flex">
                         {/* <Input label="description" required=""></Input> */}
                         <div className="input">
                             <label>{t("description")}</label>
-                            <input onChange={(e) => { setQualitativeBenefitDescription(e.target.value) }} type="text" value= {qualitativeBenefitsLocalStorage.qualitativrBenefitDescription}/>
+                            <input onChange={(e) => { setQualitativeBenefitDescription(e.target.value) }} type="text" value={qualitativeBenefitDescription} />
                         </div>
 
                         <div className="input-checkbox">

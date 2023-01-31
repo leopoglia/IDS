@@ -174,5 +174,6 @@
     "sendYourMessage": "Send your message",
     "demandsCreateDemand": "Demands > Create demand",
     "disapproveDemand": "Disapprove demand",
-    "demandViewDisapproveDemand": "Demand > View demand > Disapprove demand"
+    "demandViewDisapproveDemand": "Demand > View demand > Disapprove demand",
+    "user": "User"
 }

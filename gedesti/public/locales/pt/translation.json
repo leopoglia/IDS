@@ -174,5 +174,6 @@
     "sendYourMessage": "Envie sua mensagem",
     "demandsCreateDemand": "Demandas > Criar Demanda",
     "disapproveDemand": "Reprovar demanda",
-    "demandViewDisapprove": "Demanda > Visualizar demanda > Reprovar demanda"
+    "demandViewDisapprove": "Demanda > Visualizar demanda > Reprovar demanda",
+    "user": "Usuário"
 }

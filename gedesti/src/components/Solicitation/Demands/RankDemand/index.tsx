@@ -62,6 +62,7 @@ export default function RankDemand() {
                 // Atualizando a classificação da demanda
                 Services.updateClassification(demand.demandCode, classificationCode).then((response: any) => {
                     navigate("/demand/view/" + url)
+                    localStorage.setItem("route", "classification");
                     localStorage.removeItem("classification");
                 }).catch((error: any) => {
                     console.log(error)

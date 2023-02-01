@@ -18,9 +18,7 @@ export default function ViewDemand() {
     const office = JSON.parse(worker).office; // Buscar tipo de usuário
     const workerId = JSON.parse(worker).id; // Buscar código do usuário
     const url = window.location.href.split("/")[3]; // Buscar tipo da demanda
-
     const demandCode = parseInt(window.location.href.split("/")[5]); // Buscar código da demanda
-    console.log(demandCode)
 
     // Botões superiores
     // 0 - Sem botões  
@@ -45,16 +43,15 @@ export default function ViewDemand() {
             const demand: any = [response]
             setDemands(demand)
 
-            console.log(response)
-
+            // Verificar se o usuário é o solicitante
             if (office === "requester") {
                 if (response.requesterRegistration.workerCode === workerId) {
-                    setActionsDemand(1)
+                    setActionsDemand(1);
                 } else {
                     setActionsDemand(0)
                 }
             } else {
-
+                // Verificar se a demanda foi classificada
                 if (response.classification === undefined || response.classification === null) {
                     setStepDemand(0)
                     setActionsDemand(2)
@@ -73,8 +70,10 @@ export default function ViewDemand() {
     }
 
     useEffect(() => {
+        // Buscar dados da demanda
         getDemand();
 
+        // Buscar ações de acordo com o tipo de usuário
         if (office === "bussines") {
             setActionsDemand(2);
         } else if (office === "analyst") {

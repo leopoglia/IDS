@@ -8,10 +8,14 @@ import { useTranslation } from "react-i18next";
 import Service from "../../../../services/classificationService"
 import Services from "../../../../services/demandService";
 import { Link } from "react-router-dom";
+import { toast, ToastContainer, TypeOptions } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 
 export default function RankDemand() {
     const { t } = useTranslation();
+    const navigate = useNavigate();
     const [buBenefited, setBuBenefited] = useState("");
     const [buBenefiteds, setBuBenefiteds]: any = useState([]);
     const [demand, setDemand]: any = useState({});
@@ -26,24 +30,52 @@ export default function RankDemand() {
         setDemand(await Services.findById(url))
     }
 
+
+    const notify = () => {
+        toast.error('Preencha todos os campos!', {
+            position: "bottom-right",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    };
+
     function saveToRank() {
         let classification = JSON.parse(localStorage.getItem("classification") || "{}");
         let analysis = JSON.parse(localStorage.getItem("worker") || "{}");
-        Service.save(classification.size, classification.ti, -1, "", classification.buReq, classification.buBenList, analysis.id).then((response: any) => {
-            console.log(response)
 
-            let classificationCode = response.classificationCode;
 
-            Services.updateClassification(demand.demandCode, classificationCode).then((response: any) => {
+        if (classification.size === "" || classification.ti === "" || classification.buReq === "" || classification.buBenList.length === 0) {
+            notify();
+            return;
+        } else {
+
+            Service.save(classification.size, classification.ti, -1, "", classification.buReq, classification.buBenList, analysis.id).then((response: any) => {
                 console.log(response)
+
+                let classificationCode = response.classificationCode;
+
+                Services.updateClassification(demand.demandCode, classificationCode).then((response: any) => {
+                    console.log(response)
+
+                    navigate("/demand/view/" + url)
+
+                    localStorage.removeItem("classification");
+
+                }).catch((error: any) => {
+                    console.log(error)
+                })
+
+
             }).catch((error: any) => {
                 console.log(error)
             })
+        }
 
-
-        }).catch((error: any) => {
-            console.log(error)
-        })
 
 
     }
@@ -149,18 +181,16 @@ export default function RankDemand() {
 
                 <div className="demands-footer">
 
-                    <Link to="/demand/view/1">
+                    <Link to={"/demand/view/" + url}>
                         <button className="btn-secondary">
                             <span>{t("return")}</span>
                         </button>
                     </Link>
 
 
-                    <Link to="/demand/view/1">
-                        <button onClick={() => saveToRank()} className="btn-primary">
-                            <span>{t("toRank")}</span>
-                        </button>
-                    </Link>
+                    <button onClick={() => saveToRank()} className="btn-primary">
+                        <span>{t("toRank")}</span>
+                    </button>
 
 
 

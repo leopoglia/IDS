@@ -16,11 +16,12 @@ export default function CreateDemands3() {
     const { t } = useTranslation();
     const navigate = useNavigate();
 
-    const [demandAttachment, setdemandAttachment]: any = useState("");
-    const [executionPeriod, setExecutionPeriod]: any = useState("");
-    const [demandInitial, setDemand]: any = useState({});
-    const [fileAttachment, setFileAttachment]: any = useState();
+    // const [demandAttachment, setdemandAttachment]: any = useState(""); 
+    const [executionPeriod, setExecutionPeriod]: any = useState(""); // Periodo de execução
+    const [demandInitial, setDemand]: any = useState({}); // Demanda inicial
+    const [fileAttachment, setFileAttachment]: any = useState(); // Anexo
 
+    // Notificação de erro ao preencher os campos obrigatórios
     const notify = () => {
         toast.error('Preencha todos os campos!', {
             position: "bottom-right",
@@ -36,38 +37,33 @@ export default function CreateDemands3() {
 
 
     useEffect(() => {
+        // Pegando a demanda inicial
         setDemand(JSON.parse(localStorage.getItem("demand") || "{}"));
     }, []);
 
     async function cadastrarDemanda() {
-
-
+        // Verificando se os campos obrigatórios foram preenchidos
         if (executionPeriod === "") {
             notify();
             return;
         }
 
-        let demandTitle: any = demandInitial.titleInput;
-        let currentProblem: any = demandInitial.currentSituation
-        let demandObjective: any = demandInitial.objective
-        let costCenter: any = demandInitial.costCenter
+        let demandTitle: any = demandInitial.titleInput; // Título da demanda
+        let currentProblem: any = demandInitial.currentSituation; // Problema atual
+        let demandObjective: any = demandInitial.objective; // Objetivo 
+        let costCenter: any = demandInitial.costCenter; // Centro de custo
 
-        let realBenefits: any = localStorage.getItem("realBenefits");
-        let realBenefitCode = JSON.parse(realBenefits).realBenefitCode;
-        let potentialBenefits: any = localStorage.getItem("potentialBenefits");
-        let potentialBenefitCode = JSON.parse(potentialBenefits).potentialBenefitCode;
-        let qualitativeBenefits: any = localStorage.getItem("qualitativeBenefits");
-        let qualitativeBenefitCode = JSON.parse(qualitativeBenefits).qualitativeBenefitCode;
+        let realBenefits: any = localStorage.getItem("realBenefits"); // Pegando o benefício real
+        let realBenefitCode = JSON.parse(realBenefits).realBenefitCode; // Código do benefício real
+        let potentialBenefits: any = localStorage.getItem("potentialBenefits"); // Pegando o benefício potencial
+        let potentialBenefitCode = JSON.parse(potentialBenefits).potentialBenefitCode; // Código do benefício potencial
+        let qualitativeBenefits: any = localStorage.getItem("qualitativeBenefits"); // Pegando o benefício qualitativo
+        let qualitativeBenefitCode = JSON.parse(qualitativeBenefits).qualitativeBenefitCode; // Código do benefício qualitativo
+        let worker: any = localStorage.getItem("worker"); // Pegando o funcionário logado
+        let workerCode = JSON.parse(worker).id; // Código do funcionário
+        let actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear(); // Data atual
 
-        let worker: any = localStorage.getItem("worker");
-        let workerCode = JSON.parse(worker).id;
-
-
-
-        let actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear();
-
-
-
+        // Salvando a demanda
         await Services.save(demandTitle,
             currentProblem,
             demandObjective,
@@ -82,22 +78,22 @@ export default function CreateDemands3() {
             fileAttachment,
             actualDate
         ).then((response) => {
-            console.log("RESPONSEEEEEEEEEEEEEE ---> ", response)
+            // Salvando a rota para redirecionar para a página de demandas
             localStorage.setItem("route", "create-demand")
+            // Redirecionando para a página de demandas
             navigate("/demands");
         }).catch((error) => {
             console.log(error)
         })
 
-
+        // Limpando o localStorage 
         localStorage.removeItem("demand");
         localStorage.removeItem("realBenefits");
         localStorage.removeItem("potentialBenefits");
         localStorage.removeItem("qualitativeBenefits");
-
-
     }
 
+    // Função para pegar o arquivo selecionado
     const handleFileSelected = (e: any): void => {
         const files = Array.from(e.target.files)
         setFileAttachment(files[0])

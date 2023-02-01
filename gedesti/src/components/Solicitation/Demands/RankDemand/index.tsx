@@ -16,21 +16,22 @@ import { useNavigate } from "react-router-dom";
 export default function RankDemand() {
     const { t } = useTranslation();
     const navigate = useNavigate();
-    const [buBenefited, setBuBenefited] = useState("");
-    const [buBenefiteds, setBuBenefiteds]: any = useState([]);
-    const [demand, setDemand]: any = useState({});
-    const url = parseInt(window.location.href.split("/")[5]);
+
+    const [buBenefited, setBuBenefited] = useState(""); // Unidade de negócio beneficiada
+    const [buBenefiteds, setBuBenefiteds]: any = useState([]); // Unidades de negócio beneficiadas
+    const [demand, setDemand]: any = useState({}); // Demanda
+    const url = parseInt(window.location.href.split("/")[5]); // Pegando o id da demanda
 
     useEffect(() => {
+        // Pegando a demanda inicial
         getDemand();
-        console.log(demand)
     }, [])
 
     async function getDemand() {
-        setDemand(await Services.findById(url))
+        setDemand(await Services.findById(url));
     }
 
-
+    // Notificação de erro ao preencher os campos obrigatórios
     const notify = () => {
         toast.error('Preencha todos os campos!', {
             position: "bottom-right",
@@ -44,33 +45,27 @@ export default function RankDemand() {
         });
     };
 
+    // Salvando a classificação da demanda
     function saveToRank() {
-        let classification = JSON.parse(localStorage.getItem("classification") || "{}");
-        let analysis = JSON.parse(localStorage.getItem("worker") || "{}");
+        let classification = JSON.parse(localStorage.getItem("classification") || "{}"); // Pegando os dados da classificação
+        let analysis = JSON.parse(localStorage.getItem("worker") || "{}"); // Pegando os dados do analista
 
 
-        if (classification.size === "" || classification.ti === "" || classification.buReq === "" || classification.buBenList.length === 0) {
+        if (classification.size === "" || classification.ti === "" || classification.buReq === "" || classification.buBenList === undefined) {
             notify();
             return;
         } else {
-
+            // Salvando a classificação
             Service.save(classification.size, classification.ti, -1, "", classification.buReq, classification.buBenList, analysis.id).then((response: any) => {
-                console.log(response)
+                let classificationCode = response.classificationCode; // Pegando o código da classificação
 
-                let classificationCode = response.classificationCode;
-
+                // Atualizando a classificação da demanda
                 Services.updateClassification(demand.demandCode, classificationCode).then((response: any) => {
-                    console.log(response)
-
                     navigate("/demand/view/" + url)
-
                     localStorage.removeItem("classification");
-
                 }).catch((error: any) => {
                     console.log(error)
                 })
-
-
             }).catch((error: any) => {
                 console.log(error)
             })
@@ -80,7 +75,7 @@ export default function RankDemand() {
 
     }
 
-
+    // Deletando a unidade de negócio beneficiada
     function deleteBuBenefited(bu: any) {
 
         return () => {
@@ -197,6 +192,9 @@ export default function RankDemand() {
                 </div>
 
             </div>
+
+            <ToastContainer position="bottom-right" newestOnTop />
+
         </div>
 
     );

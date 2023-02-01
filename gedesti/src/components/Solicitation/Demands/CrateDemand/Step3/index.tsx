@@ -7,6 +7,8 @@ import ButtonAction from "../ButtonAction";
 import { useTranslation } from "react-i18next";
 import { useState, useEffect } from 'react';
 import Services from "../../../../../services/demandService";
+import { toast, ToastContainer, TypeOptions } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router";
 
 export default function CreateDemands3() {
@@ -19,6 +21,18 @@ export default function CreateDemands3() {
     const [demandInitial, setDemand]: any = useState({});
     const [fileAttachment, setFileAttachment]: any = useState();
 
+    const notify = () => {
+        toast.error('Preencha todos os campos!', {
+            position: "bottom-right",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    };
 
 
     useEffect(() => {
@@ -26,7 +40,12 @@ export default function CreateDemands3() {
     }, []);
 
     async function cadastrarDemanda() {
-        console.log(demandInitial)
+
+
+        if (executionPeriod === "") {
+            notify();
+            return;
+        }
 
         let demandTitle: any = demandInitial.titleInput;
         let currentProblem: any = demandInitial.currentSituation
@@ -48,6 +67,7 @@ export default function CreateDemands3() {
         let actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear();
 
 
+
         await Services.save(demandTitle,
             currentProblem,
             demandObjective,
@@ -61,16 +81,20 @@ export default function CreateDemands3() {
             qualitativeBenefitCode,
             fileAttachment,
             actualDate
-        );
-        console.log(realBenefits.realBenefitCode, potentialBenefits.potentialBenefitCode, qualitativeBenefits.qualitativeBenefitCode)
+        ).then((response) => {
+            console.log("RESPONSEEEEEEEEEEEEEE ---> ", response)
+            localStorage.setItem("route", "create-demand")
+            navigate("/demands");
+        }).catch((error) => {
+            console.log(error)
+        })
+
 
         localStorage.removeItem("demand");
         localStorage.removeItem("realBenefits");
         localStorage.removeItem("potentialBenefits");
         localStorage.removeItem("qualitativeBenefits");
 
-        localStorage.setItem("route", "create-demand")
-        navigate("/demands");
 
     }
 
@@ -119,6 +143,8 @@ export default function CreateDemands3() {
                     </div>
                 </div>
             </div>
+
+            <ToastContainer position="bottom-right" newestOnTop />
 
         </div>
     );

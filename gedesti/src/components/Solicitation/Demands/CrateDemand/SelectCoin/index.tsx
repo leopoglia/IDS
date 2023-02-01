@@ -11,6 +11,10 @@ export default function SelectLabels(props: any) {
 
     useEffect(() => {
         addChange();
+        if (coin === "" || coin === undefined) {
+            setCoin('real')
+        }
+
     }, []);
 
     const addChange = () => {
@@ -23,8 +27,6 @@ export default function SelectLabels(props: any) {
 
     const handleChange = (event: SelectChangeEvent) => {
         setCoin(event.target.value);
-
-
 
         if (props.type === 'real') {
             props.setrealCurrency(event.target.value);

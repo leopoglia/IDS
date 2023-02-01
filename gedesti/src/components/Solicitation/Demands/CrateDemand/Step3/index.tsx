@@ -23,9 +23,6 @@ export default function CreateDemands3() {
 
     useEffect(() => {
         setDemand(JSON.parse(localStorage.getItem("demand") || "{}"));
-
-        localStorage.setItem("route", "create-demand")
-
     }, []);
 
     async function cadastrarDemanda() {
@@ -50,19 +47,6 @@ export default function CreateDemands3() {
 
         let actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear();
 
-        console.log("demandTitle -> ", demandTitle);
-        console.log("currentProblem -> ", currentProblem);
-        console.log("demandObjective -> ", demandObjective);
-        console.log("costCenter -> ", costCenter);
-        console.log("realBenefitCode -> ", realBenefitCode);
-        console.log("potentialBenefitCode -> ", potentialBenefitCode);
-        console.log("qualitativeBenefitCode -> ", qualitativeBenefitCode);
-        console.log("workerCode -> ", workerCode);
-        console.log("actualDate -> ", actualDate);
-        console.log("demandAttachment -> ", demandAttachment);
-        console.log("executionPeriod -> ", executionPeriod);
-        console.log("fileAttachment -> ", fileAttachment);
-
 
         await Services.save(demandTitle,
             currentProblem,
@@ -85,7 +69,7 @@ export default function CreateDemands3() {
         localStorage.removeItem("potentialBenefits");
         localStorage.removeItem("qualitativeBenefits");
 
-
+        localStorage.setItem("route", "create-demand")
         navigate("/demands");
 
     }

@@ -59,8 +59,6 @@ export default function CreateDemands2() {
         setRealMonthlyValue(realBenefits.realMonthlyValue);
         setPotentialCurrency("real");
 
-        console.log("REAL BENEFITS --------> ", realBenefits);
-
         setrealBenefitDescription(realBenefits.realBenefitDescription);
         setrealCurrency(realBenefits.realCurrency);
 
@@ -84,8 +82,23 @@ export default function CreateDemands2() {
 
 
     async function addBenefits() {
-        let realBenefits: any = await RealServices.save(Number.parseFloat(realMonthlyValue), realBenefitDescription, realCurrency);
-        let potentialBenefits: any = await PotentialServices.save(Number.parseFloat(potentialMonthlyValue), potentialBenefitDescription, true, potentialCurrency);
+        let realCurrencyFinal = realCurrency;
+        let potentialCurrencyFinal = potentialCurrency;
+
+        if (realCurrency === undefined || realCurrency === "") {
+            realCurrencyFinal = "real";
+        }
+
+        if (potentialCurrency === undefined || potentialCurrency === "") {
+            potentialCurrencyFinal = "real";
+        }
+
+        console.log("REAL CURRENCY FINAL" , realCurrencyFinal);
+        console.log("POTENTIAL CURRENCY FINAL" , potentialCurrencyFinal);
+
+
+        let realBenefits: any = await RealServices.save(Number.parseFloat(realMonthlyValue), realBenefitDescription, realCurrencyFinal);
+        let potentialBenefits: any = await PotentialServices.save(Number.parseFloat(potentialMonthlyValue), potentialBenefitDescription, true, potentialCurrencyFinal);
         let qualitativeBenefits: any = await QualitativeServices.save("1", qualitativeBenefitDescription, true);
 
         localStorage.setItem("realBenefits", JSON.stringify(realBenefits));
@@ -95,12 +108,12 @@ export default function CreateDemands2() {
 
 
     const nextStep = () => {
-
         localStorage.getItem("demand");
         let demand = JSON.parse(localStorage.getItem("demand") || "{}");
 
         addBenefits();
-        if (realMonthlyValue === "" || realBenefitDescription === "" || potentialMonthlyValue === "" || potentialBenefitDescription === "" || qualitativeBenefitDescription === "") {
+        if (realMonthlyValue === undefined || realBenefitDescription === undefined || potentialMonthlyValue === undefined || potentialBenefitDescription === undefined || qualitativeBenefitDescription === undefined ||
+            realMonthlyValue === "" || realBenefitDescription === "" || potentialMonthlyValue === "" || potentialBenefitDescription === "" || qualitativeBenefitDescription === "") {
             notify();
         } else {
             navigate('/demand/create/3');

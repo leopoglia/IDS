@@ -14,31 +14,34 @@ import "react-toastify/dist/ReactToastify.css";
 export default function Demands() {
     const url = window.location.href.split("/");
     let findDemands: any;
-    const [table, setTableList] = useState(false);
-    const [routePage, setRoutePage] = useState(localStorage.getItem("route"));
 
+
+    const [table, setTableList] = useState(false); // Estado para mostrar a tabela de demandas
+    const [search, setSearch]: any = useState(""); // Retorno do campo de busca de demandas
+
+    console.log(search)
+
+    // Entra na página e busca as demandas cadastradas
+    useEffect(() => {
+        getDemands(); // Busca as demandas cadastradas
+
+        // Verifica se a rota da página anterior é a de cadastro de demanda
+        if (localStorage.getItem("route") === "create-demand") {
+            localStorage.removeItem("route");
+            notify();
+        }
+    }, [])
+
+
+    // Buscar as demandas cadastradas
     async function getDemands() {
         findDemands = await Services.findAll().then((res: any) => {
-            setDemands(res);
-            console.log(res)
+            setDemands(res); // Atualiza o estado das demandas
         });
         return findDemands;
     }
 
-
-    useEffect(() => {
-        setRoutePage(localStorage.getItem("route"));
-        getDemands();
-        if (localStorage.getItem("route") === "create-demand") {
-            localStorage.removeItem("route");
-        }
-
-        if (routePage === "create-demand") {
-            notify();
-            localStorage.removeItem("route");
-        }
-    }, [])
-
+    // Função para notificar o usuário que a demanda foi cadastrada
     const notify = () => {
         toast.success('Demanda cadastrada!', {
             position: "bottom-right",
@@ -51,6 +54,7 @@ export default function Demands() {
             theme: "light",
         });
     };
+
 
     const [demands, setDemands] = useState([
         { demandCode: 1, demandTitle: "Sistema para calcular o SCORE", requesterRegistration: { workerName: "Leonardo Heitor Poglia" }, demandDate: "27/04/2022", demandStatus: "Backlog" },
@@ -76,6 +80,7 @@ export default function Demands() {
         { name: "Ata 001", date: "27/04/2022", situation: "unallocated", number: "10/2021", director: "Vytor Augusto Rosa", coordinator: "Leonardo Heitor Poglia" },
     ]);
 
+    // Função para mostrar o navigator
     const footer = () => {
         return (
             <div>
@@ -91,14 +96,15 @@ export default function Demands() {
         )
     }
 
+    // Função para setar o estado da tabela
     const setTable = () => {
         setTableList(!table);
     }
 
     const [minute, setMinute] = useState(false);
+    const [nameFilter, setName] = useState<string>(""); // Busca o que foi digitado no input do filtro
+    const [typeFilter, setType] = useState<string>(""); // Busca qual filtro foi selecionado
 
-    const [nameFilter, setName] = useState<string>("")
-    const [typeFilter, setType] = useState<string>("")
     const callback = (name: string, type: string) => {
         setName(name)
         setType(type)
@@ -122,14 +128,21 @@ export default function Demands() {
                     <Nav />
                     <div className="container">
 
-                        <Search onClick={callback} name={nameFilter} type={typeFilter} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1" setTable={setTable} />
+                        <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1" setTable={setTable} />
                         {
                             demands.map((val, index) => {
-                                if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined)) {
+                                if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
                                     return (
                                         <Demand demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />
                                     );
                                 } else {
+
+                                    if (search !== "" && val.demandTitle.toUpperCase().includes(search.toUpperCase())) {
+                                        return (
+                                            <Demand demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />
+                                        );
+                                    }
+
                                     if (typeFilter === "requester" && val.requesterRegistration.workerName.toUpperCase().includes(nameFilter.toUpperCase())) {
                                         return (
                                             <Demand demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />

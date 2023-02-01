@@ -84,7 +84,7 @@ export default function Search(props: any) {
                 <div className="input-search">
 
                     <span className="material-symbols-outlined">search</span>
-                    <input type="text" placeholder={search()} required />
+                    <input onChange={(e) => { props.setSearch(e.target.value) }} type="text" placeholder={search()} required />
                 </div>
 
 

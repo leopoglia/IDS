@@ -18,21 +18,6 @@ export default function Form() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
-    const notify = () => {
-        toast.error('E-mail ou senha incorretos!', {
-            position: "bottom-right",
-            autoClose: 4000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-        });
-    };
-
-
-
     async function login() {
 
         if ((email !== "" || password !== "") && email.includes("@")) {
@@ -83,7 +68,7 @@ export default function Form() {
                 <div className='password'>
                     <span className="material-symbols-outlined">key</span>
                     <label>{t("password")}</label>
-                    
+
                     <input className={error} id="password" onChange={(e) => { setPassword(e.target.value) }} type="password" required />
 
 
@@ -111,3 +96,17 @@ export default function Form() {
         </div>
     )
 }
+
+// Notificação de erro ao preencher os campos obrigatórios
+const notify = () => {
+    toast.error('E-mail ou senha incorretos!', {
+        position: "bottom-right",
+        autoClose: 4000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+};

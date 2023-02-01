@@ -8,7 +8,8 @@ import Footer from "../../../Fixed/Footer";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-
+import { toast, ToastContainer, TypeOptions } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 export default function ViewDemand() {
 
@@ -79,6 +80,13 @@ export default function ViewDemand() {
         } else if (office === "analyst") {
             setActionsDemand(3);
         }
+
+        if (localStorage.getItem("route") === "classification") {
+            console.log("route --------> ", localStorage.getItem("route"))
+            notify();
+            localStorage.removeItem("route");
+        }
+
     }, [office]);
 
     const costCenter = () => {
@@ -629,6 +637,24 @@ export default function ViewDemand() {
             {url !== "agenda" ? (
                 <Footer />)
                 : null}
+
+
+            <ToastContainer position="bottom-right" newestOnTop />
+
         </div>
     );
 }
+
+// Função para notificar o usuário que a classificação foi cadastrada
+const notify = () => {
+    toast.success('Classificação cadastrada!', {
+        position: "bottom-right",
+        autoClose: 4000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+};

@@ -31,20 +31,6 @@ export default function CreateDemands1() {
         setObjective(demand.objective)
     }, [])
 
-
-    const notify = () => {
-        toast.error('Preencha todos os campos!', {
-            position: "bottom-right",
-            autoClose: 4000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-        });
-    };
-
     const [costCenter, setCostCenter] = useState("");
     const [costsCenters, setCostsCenters]: any = useState([]);
     const [idCostCenter, setIdCostCenter]: any = useState([]);
@@ -245,3 +231,17 @@ export default function CreateDemands1() {
         </div>
     );
 }
+
+// Notificação de erro ao preencher os campos obrigatórios
+const notify = () => {
+    toast.error('Preencha todos os campos!', {
+        position: "bottom-right",
+        autoClose: 4000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+};

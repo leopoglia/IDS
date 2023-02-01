@@ -25,20 +25,6 @@ export default function CreateDemands2() {
     const potentialBenefitsLocalStorage = JSON.parse(localStorage.getItem('potentialBenefits') || '{}')
     const qualitativeBenefitsLocalStorage = JSON.parse(localStorage.getItem('qualitativeBenefits') || '{}')
 
-    const notify = () => {
-        toast.error('Preencha todos os campos!', {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-        });
-    };
-
-
     const [realMonthlyValue, setRealMonthlyValue] = useState("");
     const [realBenefitDescription, setrealBenefitDescription] = useState("");
     const [realCurrency, setrealCurrency] = useState("");
@@ -93,8 +79,8 @@ export default function CreateDemands2() {
             potentialCurrencyFinal = "real";
         }
 
-        console.log("REAL CURRENCY FINAL" , realCurrencyFinal);
-        console.log("POTENTIAL CURRENCY FINAL" , potentialCurrencyFinal);
+        console.log("REAL CURRENCY FINAL", realCurrencyFinal);
+        console.log("POTENTIAL CURRENCY FINAL", potentialCurrencyFinal);
 
 
         let realBenefits: any = await RealServices.save(Number.parseFloat(realMonthlyValue), realBenefitDescription, realCurrencyFinal);
@@ -226,3 +212,17 @@ export default function CreateDemands2() {
         </div>
     );
 }
+
+// Notificação de erro ao preencher os campos obrigatórios
+const notify = () => {
+    toast.error('Preencha todos os campos!', {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+};

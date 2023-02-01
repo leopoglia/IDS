@@ -31,20 +31,6 @@ export default function RankDemand() {
         setDemand(await Services.findById(url));
     }
 
-    // Notificação de erro ao preencher os campos obrigatórios
-    const notify = () => {
-        toast.error('Preencha todos os campos!', {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-        });
-    };
-
     // Salvando a classificação da demanda
     function saveToRank() {
         let classification = JSON.parse(localStorage.getItem("classification") || "{}"); // Pegando os dados da classificação
@@ -200,3 +186,17 @@ export default function RankDemand() {
 
     );
 }
+
+// Notificação de erro ao preencher os campos obrigatórios
+const notify = () => {
+    toast.error('Preencha todos os campos!', {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+};

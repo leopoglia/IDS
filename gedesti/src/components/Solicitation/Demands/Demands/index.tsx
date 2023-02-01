@@ -19,7 +19,6 @@ export default function Demands() {
     const [table, setTableList] = useState(false); // Estado para mostrar a tabela de demandas
     const [search, setSearch]: any = useState(""); // Retorno do campo de busca de demandas
 
-    console.log(search)
 
     // Entra na página e busca as demandas cadastradas
     useEffect(() => {
@@ -40,21 +39,6 @@ export default function Demands() {
         });
         return findDemands;
     }
-
-    // Função para notificar o usuário que a demanda foi cadastrada
-    const notify = () => {
-        toast.success('Demanda cadastrada!', {
-            position: "bottom-right",
-            autoClose: 4000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-        });
-    };
-
 
     const [demands, setDemands] = useState([
         { demandCode: 1, demandTitle: "Sistema para calcular o SCORE", requesterRegistration: { workerName: "Leonardo Heitor Poglia" }, demandDate: "27/04/2022", demandStatus: "Backlog" },
@@ -220,3 +204,17 @@ export default function Demands() {
         </div>
     )
 }
+
+// Função para notificar o usuário que a demanda foi cadastrada
+const notify = () => {
+    toast.success('Demanda cadastrada!', {
+        position: "bottom-right",
+        autoClose: 4000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+};

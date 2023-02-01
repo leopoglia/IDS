@@ -21,21 +21,6 @@ export default function CreateDemands3() {
     const [demandInitial, setDemand]: any = useState({}); // Demanda inicial
     const [fileAttachment, setFileAttachment]: any = useState(); // Anexo
 
-    // Notificação de erro ao preencher os campos obrigatórios
-    const notify = () => {
-        toast.error('Preencha todos os campos!', {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-        });
-    };
-
-
     useEffect(() => {
         // Pegando a demanda inicial
         setDemand(JSON.parse(localStorage.getItem("demand") || "{}"));
@@ -145,3 +130,17 @@ export default function CreateDemands3() {
         </div>
     );
 }
+
+// Notificação de erro ao preencher os campos obrigatórios
+const notify = () => {
+    toast.error('Preencha todos os campos!', {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+};

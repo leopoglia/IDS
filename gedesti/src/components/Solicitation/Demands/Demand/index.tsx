@@ -15,7 +15,7 @@ export default function Demand(props: any) {
             if (props.director == null) {
                 return (
                     (<div className="infos">
-                        <div className="code">1000025500</div>
+                        <div className="code">{props.demandCode}</div>
                         <div className="requester"><p>{t("requester")}: {props.requester}</p></div>
                         <div><p>{t("date")}: {props.date}</p></div>
                         <div className="situation"><p>{t("situation")}: {props.situation}</p></div>
@@ -24,7 +24,7 @@ export default function Demand(props: any) {
             } else {
                 return (
                     (<div className="infos">
-                        <div className="code">1000025500</div>
+                        <div className="code">{props.demandCode}</div>
                         <div className="requester"><p>{t("director")}: {props.director}</p></div>
                         <div><p>{t("date")}: {props.date}</p></div>
                         <div className="analyst"><p>{t("coordinator")}: {props.coordinator}</p></div>
@@ -34,7 +34,7 @@ export default function Demand(props: any) {
         } else if (props.analyst != null) {
             return (
                 (<div className="infos">
-                    <div className="code">1000025500</div>
+                    <div className="code">{props.demandCode}</div>
                     <div className="requester"><p>{t("requester")}: {props.requester}</p></div>
                     <div><p>{t("date")}: {props.date}</p></div>
                     <div className="analyst"><p>{t("analyst")}: {props.analyst}</p></div>

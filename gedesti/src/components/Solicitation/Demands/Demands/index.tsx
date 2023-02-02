@@ -88,6 +88,7 @@ export default function Demands() {
     const [minute, setMinute] = useState(false);
     const [nameFilter, setName] = useState<string>(""); // Busca o que foi digitado no input do filtro
     const [typeFilter, setType] = useState<string>(""); // Busca qual filtro foi selecionado
+    console.log("TYPE FILTER --------------> ", typeFilter)
 
     const callback = (name: string, type: string) => {
         setName(name)
@@ -112,7 +113,7 @@ export default function Demands() {
                     <Nav />
                     <div className="container">
 
-                        <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1" setTable={setTable} />
+                        <Search setSearch={setSearch} onClick={callback} name={nameFilter} setType={setType} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1" setTable={setTable} />
                         {
                             demands.map((val, index) => {
                                 if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
@@ -122,15 +123,11 @@ export default function Demands() {
                                 } else {
 
                                     if (search !== "" && val.demandTitle.toUpperCase().includes(search.toUpperCase())) {
-                                        return (
-                                            <Demand demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />
-                                        );
+                                        return (<Demand demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />);
                                     }
 
                                     if (typeFilter === "requester" && val.requesterRegistration.workerName.toUpperCase().includes(nameFilter.toUpperCase())) {
-                                        return (
-                                            <Demand demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />
-                                        );
+                                        return (<Demand demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />);
                                     }
                                 }
                             })

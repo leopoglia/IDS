@@ -20,7 +20,7 @@ export default function DisapproveDemand() {
 
 
     const nextStep = () => {
-        if (disapprovalReason === undefined || disapprovalReason === "") {
+        if (disapprovalReason === undefined || disapprovalReason === undefined) {
             notify();
         } else {
             navigate('/demand/view/' + url);
@@ -64,7 +64,6 @@ export default function DisapproveDemand() {
 
                     <div onClick={() => { nextStep() }}>
                         <ButtonAction click="fail"></ButtonAction>
-                        {/* <button className="btn-primary">{t("fail")}</button> */}
                     </div>
 
                 </div>

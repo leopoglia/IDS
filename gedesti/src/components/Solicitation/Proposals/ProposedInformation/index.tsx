@@ -7,15 +7,19 @@ import { Link } from "react-router-dom";
 import "./style.css";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer, TypeOptions } from 'react-toastify';
+import ButtonAction from "../../Demands/CrateDemand/ButtonAction";
 
 
 export default function ProposedInformation() {
     const { t } = useTranslation();
+    const navigate = useNavigate();
 
-    const [respnosibleAnalyst, setResponsibleAnalyst] = useState('');
-    const [responsibleArea, setResponsibleArea] = useState('');
-    const [start, setStart] = useState('');
-    const [end, setEnd] = useState('');
+    const [respnosibleAnalyst, setResponsibleAnalyst] = useState("");
+    const [responsibleArea, setResponsibleArea] = useState("");
+    const [start, setStart] = useState("");
+    const [end, setEnd] = useState("");
     const [fileAttachment, setFileAttachment]: any = useState();
 
     localStorage.setItem('responsibleAnalyst', respnosibleAnalyst);
@@ -31,6 +35,15 @@ export default function ProposedInformation() {
 
 
     console.log("responsible: " + respnosibleAnalyst, "area:" + responsibleArea, "start:" + start, "end: " + end, "file: " + fileAttachment);
+
+
+    const nextStep = () => {
+        if (respnosibleAnalyst === "" || responsibleArea === "" || end === "" || start === "") {
+            notify();
+        } else {
+            navigate('/proposal/execution-costs');
+        }
+    }
 
     return (
         <div className="execution-costs">
@@ -103,12 +116,28 @@ export default function ProposedInformation() {
                     <Link to="/proposal/edit-scope">
                         <button className="btn-secondary">{t("return")}</button>
                     </Link>
-                    <Link to="/proposal/execution-costs">
-                        <button className="btn-primary">{t("advance")}</button>
-                    </Link>
+
+                    <div onClick={() => { nextStep() }}>
+                        <ButtonAction click="advance"></ButtonAction>
+                    </div>
                 </div>
             </div>
+            <ToastContainer position="bottom-right" newestOnTop />
 
         </div>
     );
 }
+
+// Notificação de erro ao preencher os campos obrigatórios
+const notify = () => {
+    toast.error('Preencha todos os campos!', {
+        position: "bottom-right",
+        autoClose: 4000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+};

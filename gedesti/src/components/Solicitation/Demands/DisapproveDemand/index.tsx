@@ -16,14 +16,14 @@ export default function DisapproveDemand() {
 
     const [disapprovalReason, setDisapprovalReason]: any = useState("");
     const navigate = useNavigate();
-    const url = 
+    const url = window.location.href.split("/")[5];
 
 
     const nextStep = () => {
         if (disapprovalReason === undefined || disapprovalReason === "") {
             notify();
         } else {
-            navigate('/demand/view/1');
+            navigate('/demand/view/' + url);
         }
     }
 
@@ -57,7 +57,7 @@ export default function DisapproveDemand() {
 
                 <div className="demands-footer">
 
-                    <Link to="/demand/view/1">
+                    <Link to={"/demand/view/" + url}>
                         <button className="btn-secondary">{t("return")}</button>
                     </Link>
 

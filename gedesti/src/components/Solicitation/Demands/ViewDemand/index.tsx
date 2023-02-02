@@ -153,7 +153,7 @@ export default function ViewDemand() {
                             ) : (actionsDemand === 2) ? (
                                 <div className="display-flex">
 
-                                    <Link to="/demand/disapprove">
+                                    <Link to={"/demand/disapprove/" + demandCode}>
                                         <button className="btn-secondary">
                                             <span>{t("fail")}</span>
                                         </button>
@@ -172,7 +172,7 @@ export default function ViewDemand() {
                             ) : (actionsDemand === 3) ? (
                                 <div className="display-flex">
 
-                                    <Link to="/demand/disapprove">
+                                    <Link to={"/demand/disapprove/" + demandCode}>
                                         <button className="btn-secondary">
                                             <span>{t("fail")}</span>
                                         </button>

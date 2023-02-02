@@ -51,6 +51,7 @@ export default function Search(props: any) {
 
     const [name, setName] = useState<string | undefined>("")
     const [type, setType] = useState<string>("")
+    
     const callback = (name: string | undefined, type: string) => {
         setName(name)
         setType(type)

@@ -5,9 +5,27 @@ import Nav from "../../../Fixed/Nav";
 import Title from "../../../Fixed/Search/Title";
 import "./style.css"
 import { Link } from "react-router-dom";
+import { toast, ToastContainer, TypeOptions } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import ButtonAction from "../CrateDemand/ButtonAction";
+
 
 
 export default function DisapproveDemand() {
+
+    const [disapprovalReason, setDisapprovalReason]: any = useState("");
+    const navigate = useNavigate();
+    const url = 
+
+
+    const nextStep = () => {
+        if (disapprovalReason === undefined || disapprovalReason === "") {
+            notify();
+        } else {
+            navigate('/demand/view/1');
+        }
+    }
 
     return (
         <div className="disapprove-demand">
@@ -31,7 +49,7 @@ export default function DisapproveDemand() {
                         <div className="display-grid">
                             <label htmlFor="">{t("reasonForDisapproval")} *</label>
 
-                            <textarea />
+                            <textarea onChange={(e) => { setDisapprovalReason(e.target.value) }} />
                         </div>
                     </div>
 
@@ -40,19 +58,36 @@ export default function DisapproveDemand() {
                 <div className="demands-footer">
 
                     <Link to="/demand/view/1">
-                    <button className="btn-secondary">{t("return")}</button>
+                        <button className="btn-secondary">{t("return")}</button>
                     </Link>
 
-                    <Link to="/demand/view/1">
-                    <button className="btn-primary">{t("fail")}</button>
-                    </Link>
+
+                    <div onClick={() => { nextStep() }}>
+                        <ButtonAction click="fail"></ButtonAction>
+                        {/* <button className="btn-primary">{t("fail")}</button> */}
+                    </div>
 
                 </div>
 
                 <Footer />
 
             </div>
+            <ToastContainer position="bottom-right" newestOnTop />
 
         </div>
     );
 }
+
+
+const notify = () => {
+    toast.error('Preencha todos os campos!', {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+};

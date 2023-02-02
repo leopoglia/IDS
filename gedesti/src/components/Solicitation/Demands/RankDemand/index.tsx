@@ -53,6 +53,14 @@ export default function RankDemand() {
                 }).catch((error: any) => {
                     console.log(error)
                 })
+
+                Services.updateStatus(url, "BacklogRanked").then((response: any) => {
+                    console.log(response)
+                }).catch((error: any) => {
+                    console.log(error)
+                })
+
+
             }).catch((error: any) => {
                 console.log(error)
             })

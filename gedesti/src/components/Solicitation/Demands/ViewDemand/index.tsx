@@ -82,7 +82,6 @@ export default function ViewDemand() {
         }
 
         if (localStorage.getItem("route") === "classification") {
-            console.log("route --------> ", localStorage.getItem("route"))
             notify();
             localStorage.removeItem("route");
         }

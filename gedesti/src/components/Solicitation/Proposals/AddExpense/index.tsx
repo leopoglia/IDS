@@ -90,8 +90,9 @@ export default function AddExpense() {
                 <div className="display-flex-end">
 
                     <div onClick={() => { nextStep() }}>
-                        <ButtonAction className="btn-primary" click="add"></ButtonAction>
+                        <button className="btn-primary" onClick={() => createExpense()}>{t("add")}</button>
                     </div>
+
                 </div>
             </div>
 

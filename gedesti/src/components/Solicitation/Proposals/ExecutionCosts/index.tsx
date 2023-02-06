@@ -25,10 +25,10 @@ export default function ExecutionCosts() {
 
     const nextStep = () => {
 
-        if (payingCostCenter === '' ) {
+        if (payingCostCenter === '') {
             notify()
         } else {
-            navigate('/propossals');
+            navigate('/proposals');
         }
     }
 
@@ -69,7 +69,7 @@ export default function ExecutionCosts() {
                                 <label>{t("payingCostCenter")} *</label>
 
                                 <div className="display-flex">
-                                    <SelectCostExecution setPayingCostCenter={setPayingCostCenter} type="payingCostCenter"/>
+                                    <SelectCostExecution setPayingCostCenter={setPayingCostCenter} type="payingCostCenter" />
 
                                     <button className="btn-primary btn-center-cost">
                                         <span className="material-symbols-outlined">
@@ -108,9 +108,12 @@ export default function ExecutionCosts() {
 
                         </div>
 
-                        <Link to="/proposals">
+                        {/* <Link to="/proposals">
+                        </Link> */}
+
+                        <div onClick={() => { nextStep() }}>
                             <button className="btn-primary">{t("generateProposal")}</button>
-                        </Link>
+                        </div>
                     </div>
                 </div>
             </div>

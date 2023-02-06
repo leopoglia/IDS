@@ -43,7 +43,6 @@ export default function ViewDemand() {
         Services.findById(demandCode).then((response: any) => {
             const demand: any = [response]
             setDemands(demand)
-            console.log(demand)
 
             // Verificar se o usuário é o solicitante
             if (office === "requester") {
@@ -53,25 +52,28 @@ export default function ViewDemand() {
                     setActionsDemand(0)
                 }
             } else {
-                // Verificar se a demanda foi classificada
+
+
                 if (response.classification === undefined || response.classification === null) {
-                    console.log("ENTROU 1")
-                    console.log("response.classification", response.classification)
+
                     if (office === "analyst" && response.demandStatus === "Backlog") {
                         setStepDemand(0)
                         setActionsDemand(2)
                     }
                 } else {
-                    console.log("ENTROU 2")
                     setStepDemand(1)
 
-                    setClassification(response.classification)
-                    if (office === "business") {
+                    if (office === "analyst" && response.demandStatus === "BacklogRankApproved") {
+                        console.log("-----------------> 3")
+                        setStepDemand(1)
+                        setActionsDemand(4)
+                    } else if (office === "business") {
                         console.log("response.stepDemand", response.stepDemand)
                         if (response.demandStatus === "BacklogRanked") {
                             setActionsDemand(3)
                         }
                     }
+                    setClassification(response.classification)
                 }
             }
 

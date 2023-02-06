@@ -7,12 +7,18 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useTranslation } from "react-i18next";
 
 export default function SelectLabels(props: any) {
-    const [age, setAge] = React.useState('');
+    const [select, setSelect] = React.useState('');
 
     const { t } = useTranslation();
 
     const handleChange = (event: SelectChangeEvent) => {
-        setAge(event.target.value);
+        if (props.type === "typeOfExpense") {
+            props.setTypeOfExpense(event.target.value);
+            setSelect(event.target.value)
+        }else{
+            props.setExpenseProfile(event.target.value)
+            setSelect(event.target.value)
+        }
     };
 
     return (
@@ -20,7 +26,7 @@ export default function SelectLabels(props: any) {
 
             <FormControl sx={{ minWidth: "100%", height: "60px" }}>
                 <Select
-                    value={age}
+                    value={select}
                     onChange={handleChange}
                     displayEmpty
                     inputProps={{ 'aria-label': 'Without label' }}
@@ -28,16 +34,16 @@ export default function SelectLabels(props: any) {
                     sx={{ height: '45px' }}
                 >
 
-                    {props.type === "typeOfExpense" ? <MenuItem value={10}>{t("internal")}</MenuItem>
+                    {props.type === "typeOfExpense" ? <MenuItem value={"internal"}>{t("internal")}</MenuItem>
                         : null}
 
-                    {props.type === "typeOfExpense" ? <MenuItem value={20}>{t("external")}</MenuItem>
+                    {props.type === "typeOfExpense" ? <MenuItem value={"external"}>{t("external")}</MenuItem>
                         : null}
 
-                    {props.type === "expenseProfile" ? <MenuItem value={10}>{t("development")}</MenuItem>
+                    {props.type === "expenseProfile" ? <MenuItem value={"development"}>{t("development")}</MenuItem>
                         : null}
 
-                    {props.type === "expenseProfile" ? <MenuItem value={20}>{t("infraestructure")}</MenuItem>
+                    {props.type === "expenseProfile" ? <MenuItem value={"infraestructure"}>{t("infraestructure")}</MenuItem>
                         : null}
 
                 </Select>

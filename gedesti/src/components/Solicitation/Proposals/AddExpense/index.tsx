@@ -6,7 +6,7 @@ import Title from "../../../Fixed/Search/Title";
 import SelectAddExpense from "./SelectAddExpense";
 import "./style.css";
 import { useState } from "react";
-// import { useNavigate } from "react-router-dom";;
+import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer, TypeOptions } from 'react-toastify';
 import ButtonAction from "../../Demands/CrateDemand/ButtonAction";
 import { useTranslation } from "react-i18next";
@@ -15,28 +15,26 @@ import Services from "../../../../services/expenseService";
 
 export default function AddExpense() {
     const { t } = useTranslation();
+    const navigate = useNavigate();
 
     const [typeOfExpense, setTypeOfExpense] = useState('');
     const [expenseProfile, setExpenseProfile] = useState('');
-    const [periodOfExecutionMonth, setPeriodOfExecutionMonth]:any = useState('');
-    const [necessityHoursQuantity, setNecessityHoursQuantity]:any = useState('');
-    const [hourValue, setHourValue]:any = useState('');
+    const [periodOfExecutionMonth, setPeriodOfExecutionMonth]: any = useState('');
+    const [necessityHoursQuantity, setNecessityHoursQuantity]: any = useState('');
+    const [hourValue, setHourValue]: any = useState('');
     const expenseTotalValue = necessityHoursQuantity * hourValue;
 
-    async function createExpense(){
+    async function createExpense() {
         await Services.save("typeOfExpense", "expenseProfile", periodOfExecutionMonth, necessityHoursQuantity, hourValue, expenseTotalValue, 1);
     }
 
     const nextStep = () => {
 
-        localStorage.getItem("add-expense");
-        let addExpense = JSON.parse(localStorage.getItem("add-expense") || "{}");
 
-        if (addExpense.expenseType === "" || addExpense.expenseProfile === "" || addExpense.periodOfExecutionMonth === "" || addExpense.necessityHoursQuantity === "" ||
-            addExpense.hourValue === "" || addExpense.expenseTotalValue === "") {
-            notify();
+        if (typeOfExpense === '' || expenseProfile === '' || periodOfExecutionMonth === '' || necessityHoursQuantity === '' || hourValue === '') {
+            notify()
         } else {
-            // navigate('/proposal/execution-costs');
+            navigate('/proposal/execution-costs');
         }
     }
 
@@ -60,27 +58,27 @@ export default function AddExpense() {
 
                     <div className="display-flex-grid">
                         <label>{t("expenseType")} *</label>
-                        <SelectAddExpense type="typeOfExpense" />
+                        <SelectAddExpense setTypeOfExpense={setTypeOfExpense} type="typeOfExpense" />
                     </div>
 
                     <div className="display-flex-grid">
                         <label>{t("expenseProfile")} *</label>
-                        <SelectAddExpense type="expenseProfile" />
+                        <SelectAddExpense setExpenseProfile={setExpenseProfile} type="expenseProfile" />
                     </div>
 
                     <div className="display-flex-grid">
                         <label>{t("periodOfExecutionMonth")} *</label>
-                        <input type="number" onChange={(e) => {setPeriodOfExecutionMonth(e.target.value)}} />
+                        <input type="number" onChange={(e) => { setPeriodOfExecutionMonth(e.target.value) }} />
                     </div>
 
                     <div className="display-flex-grid">
                         <label>{t("necessityHoursQuantity")} *</label>
-                        <input type="number" onChange={(e) => {setNecessityHoursQuantity(e.target.value)}}/>
+                        <input type="number" onChange={(e) => { setNecessityHoursQuantity(e.target.value) }} />
                     </div>
 
                     <div className="display-flex-grid">
                         <label>{t("hourValue")} *</label>
-                        <input type="number" onChange={(e) => {setHourValue(e.target.value)}}/>
+                        <input type="number" onChange={(e) => { setHourValue(e.target.value) }} />
                     </div>
 
                     <div className="display-flex-grid">
@@ -90,18 +88,15 @@ export default function AddExpense() {
                 </div>
 
                 <div className="display-flex-end">
-                    {/* <Link to="/proposal/execution-costs">
-                        <button className="btn-primary">{t("add")}</button>
-                    </Link> */}
 
                     <div onClick={() => { nextStep() }}>
-                        <ButtonAction click="add"></ButtonAction>
+                        <ButtonAction className="btn-primary" click="add"></ButtonAction>
                     </div>
-                    <Link to="/proposal/execution-costs">
-                        <button className="btn-primary" onClick={() => createExpense()}>{t("add")}</button>
-                    </Link>
                 </div>
             </div>
+
+            <ToastContainer position="bottom-right" newestOnTop />
+
         </div>
     );
 }

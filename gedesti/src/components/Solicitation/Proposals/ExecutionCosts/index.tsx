@@ -7,10 +7,30 @@ import SelectCostExecution from "./SelectCostExecution";
 import { Link } from "react-router-dom";
 import "./style.css"
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer, TypeOptions } from 'react-toastify';
+import ButtonAction from "../../Demands/CrateDemand/ButtonAction";
+import { useState } from "react";
+
 
 
 export default function ExecutionCosts() {
     const { t } = useTranslation();
+    const navigate = useNavigate();
+
+
+    const [payingCostCenter, setPayingCostCenter] = useState('');
+
+
+
+    const nextStep = () => {
+
+        if (payingCostCenter === '' ) {
+            notify()
+        } else {
+            navigate('/propossals');
+        }
+    }
 
     return (
         <div className="execution-costs">
@@ -49,7 +69,7 @@ export default function ExecutionCosts() {
                                 <label>{t("payingCostCenter")} *</label>
 
                                 <div className="display-flex">
-                                    <SelectCostExecution />
+                                    <SelectCostExecution setPayingCostCenter={setPayingCostCenter} type="payingCostCenter"/>
 
                                     <button className="btn-primary btn-center-cost">
                                         <span className="material-symbols-outlined">
@@ -95,6 +115,22 @@ export default function ExecutionCosts() {
                 </div>
             </div>
 
+            <ToastContainer position="bottom-right" newestOnTop />
+
         </div>
     );
 }
+
+// Notificação de erro ao preencher campo obrigatório
+const notify = () => {
+    toast.error('Preencha todos os campos!', {
+        position: "bottom-right",
+        autoClose: 4000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+};

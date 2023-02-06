@@ -6,9 +6,12 @@ import Title from "../../../Fixed/Search/Title"
 import SelectSizeDemand from "../RankDemand/SelectSizeDemand"
 import Services from "../../../../services/classificationService"
 import ServicesDemand from "../../../../services/demandService"
+import { toast, ToastContainer, TypeOptions } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import './style.css'
 
 export default function ComplementDemand() {
+
 
     const codeDemand = parseInt(window.location.href.split("/")[5])
     const [ppmCode, setPpmCode] = useState("")
@@ -16,22 +19,16 @@ export default function ComplementDemand() {
     const [deadlineDemand, setDeadlineDemand] = useState("")
 
     function complementary() {
-        ServicesDemand.findById(codeDemand).then((response: any) => {
-            console.log(response.classification)
+        if (ppmCode === "" || linkEpicJira === "" || deadlineDemand === "") {
+            notifyError();
+        } else {
+            ServicesDemand.findById(codeDemand).then((response: any) => {
 
-            Services.update(response.classificationCode, response.classificationSize, response.itSection, ppmCode, linkEpicJira, response.requesterBu, response.beneficiaryBu, response.analistRegistry, deadlineDemand).then((response: any) => {
-                console.log(response)
-
-
-            }
-            ).catch((error: any) => {
+            }).catch((error: any) => {
                 console.log(error)
-            }
-            )
+            })
+        }
 
-        }).catch((error: any) => {
-            console.log(error)
-        })
     }
 
 
@@ -70,25 +67,30 @@ export default function ComplementDemand() {
 
 
 
-                    <div className="attatchments-complements">
-                        <span>{t("attachments")}</span>
-
-                        <div className="attachments">
-                            <input type="file" id="file" />
-                            <label htmlFor="file">
-                                <span className="material-symbols-outlined">
-                                    upload_file
-                                </span>{t("sendAttachment")}</label>
-                        </div>
-
-                    </div>
-
+                  
                 </div>
                 <div className="display-flex-end">
 
                     <button onClick={() => complementary()} className="btn-primary">{t("complementary")}</button>
                 </div>
             </div>
-        </div >
+
+            <ToastContainer position="bottom-right" newestOnTop />
+
+        </div>
     )
 }
+
+// Função para notificar o usuário que a classificação foi cadastrada
+const notifyError = () => {
+    toast.error('Preencha todos os campos!', {
+        position: "bottom-right",
+        autoClose: 4000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+};

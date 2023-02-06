@@ -59,6 +59,7 @@ const Services = {
         })
     },
     update: function (id: number, classificationSize: Number, itSection: String, ppmcode: String, linkEpicJira: String, requesterBu: any, beneficiaryBu: any, analistRegistry: any, deadline: any) {
+
         let beneficiaryBuList: any = [];
         for (let i = 0; i < beneficiaryBu.length; i++) {
             beneficiaryBuList.push({ buCode: beneficiaryBu[i].buCode })

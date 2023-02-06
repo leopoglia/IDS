@@ -19,12 +19,19 @@ export default function ComplementDemand() {
     const [deadlineDemand, setDeadlineDemand] = useState("")
 
     function complementary() {
+
+        console.log(ppmCode, linkEpicJira, deadlineDemand)
+
         if (ppmCode === "" || linkEpicJira === "" || deadlineDemand === "") {
             notifyError();
         } else {
-            Services.updateComplement(codeDemand, ppmCode, linkEpicJira, deadlineDemand).then((response) => {
-                ServicesDemand.updateStatus(codeDemand, "BacklogComplement").then((response) => {
+            ServicesDemand.findById(codeDemand).then((response) => {
+                let demand:any = response;
 
+                Services.updateComplement(demand.classification.classificationCode, ppmCode, linkEpicJira, deadlineDemand).then((response) => {
+                    ServicesDemand.updateStatus(codeDemand, "BacklogComplement").then((response) => {
+
+                    })
                 })
             })
         }
@@ -54,7 +61,7 @@ export default function ComplementDemand() {
                 <div className="box">
                     <div className="display-grid-select">
                         <label htmlFor="">{t("deadlineDemand")} *</label>
-                        <SelectSizeDemand setDeadlineDemand={setDeadlineDemand} />
+                        <SelectSizeDemand setDeadlineDemand={setDeadlineDemand} type="deadline" />
                     </div>
                     <div className="display-grid">
                         <label htmlFor="">{t("ppmCode")} *</label>

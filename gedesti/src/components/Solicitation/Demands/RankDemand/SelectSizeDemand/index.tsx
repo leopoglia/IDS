@@ -64,8 +64,8 @@ export default function SelectLabels(props: any) {
             localStorage.setItem("classification", JSON.stringify(classfication));
         }
 
-        if (props.type === "size") {
-            props.setSize(event.target.value)
+        if (props.type === "deadline") {
+            props.setDeadlineDemand(event.target.value)
         }
 
 

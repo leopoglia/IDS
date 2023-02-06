@@ -1,4 +1,3 @@
-import { Update } from "@mui/icons-material";
 
 const url = "http://localhost:8080/api/classification"
 
@@ -85,9 +84,12 @@ const Services = {
 
     updateComplement: function (id: number, ppmcode: String, linkEpicJira: String, deadline: any) {
 
+        console.log(id, ppmcode, linkEpicJira, deadline)
+
+
         return new Promise((resolve, reject) => {
             fetch(url + "/update/" + id, {
-                method: 'POST', body: JSON.stringify({
+                method: 'PUT', body: JSON.stringify({
                     ppmcode: ppmcode,
                     linkEpicJira: linkEpicJira,
                     deadline: deadline

@@ -44,7 +44,7 @@ export default function Router() {
                 <Route path="/demand/view/:id" element={<ViewDemand />} />
                 <Route path="/demand/rank/:id" element={<RankDemand />} />
                 <Route path="/demand/disapprove/:id" element={<DisapproveDemand />} />
-                <Route path="/demand/complement" element={<ComplementDemand />} />
+                <Route path="/demand/complement/:id" element={<ComplementDemand />} />
                 <Route path="/demand/historical" element={<HistoricalDemand />} />
 
                 <Route path="/proposals" element={<Demands />} />

@@ -43,6 +43,7 @@ export default function ViewDemand() {
         Services.findById(demandCode).then((response: any) => {
             const demand: any = [response]
             setDemands(demand)
+            console.log(demand)
 
             // Verificar se o usuário é o solicitante
             if (office === "requester") {
@@ -54,14 +55,22 @@ export default function ViewDemand() {
             } else {
                 // Verificar se a demanda foi classificada
                 if (response.classification === undefined || response.classification === null) {
-                    setStepDemand(0)
-                    setActionsDemand(2)
+                    console.log("ENTROU 1")
+                    console.log("response.classification", response.classification)
+                    if (office === "analyst" && response.demandStatus === "Backlog") {
+                        setStepDemand(0)
+                        setActionsDemand(2)
+                    }
                 } else {
+                    console.log("ENTROU 2")
                     setStepDemand(1)
 
                     setClassification(response.classification)
                     if (office === "business") {
-                        setActionsDemand(3)
+                        console.log("response.stepDemand", response.stepDemand)
+                        if (response.demandStatus === "BacklogRanked") {
+                            setActionsDemand(3)
+                        }
                     }
                 }
             }
@@ -74,12 +83,6 @@ export default function ViewDemand() {
         // Buscar dados da demanda
         getDemand();
 
-        // Buscar ações de acordo com o tipo de usuário
-        if (office === "bussines") {
-            setActionsDemand(2);
-        } else if (office === "analyst") {
-            setActionsDemand(3);
-        }
 
         if (localStorage.getItem("route") === "classification") {
             console.log("route --------> ", localStorage.getItem("route"))
@@ -118,6 +121,15 @@ export default function ViewDemand() {
                 <div className="hr" />
             </div>
         )
+    }
+
+    function approveDemand() {
+        Services.updateStatus(demandCode, "BacklogRankApproved").then((response: any) => {
+            notifyApprove();
+            getDemand();
+        }).catch((error: any) => {
+            notifyError();
+        })
     }
 
     return (
@@ -178,11 +190,9 @@ export default function ViewDemand() {
                                         </button>
                                     </Link>
 
-                                    <Link to="/demand/rank">
-                                        <button className="btn-primary">
-                                            <span>{t("approve")}</span>
-                                        </button>
-                                    </Link>
+                                    <button onClick={() => { approveDemand() }} className="btn-primary">
+                                        <span>{t("approve")}</span>
+                                    </button>
 
 
                                     <ButtonActionAnalyst />
@@ -648,6 +658,33 @@ export default function ViewDemand() {
 // Função para notificar o usuário que a classificação foi cadastrada
 const notify = () => {
     toast.success('Classificação cadastrada!', {
+        position: "bottom-right",
+        autoClose: 4000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+};
+
+// Função para notificar o Gerente de Negócio que a demanda foi aprovada
+const notifyApprove = () => {
+    toast.success('Demanda aprovada!', {
+        position: "bottom-right",
+        autoClose: 4000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+};
+
+const notifyError = () => {
+    toast.error('Algo deu errado!', {
         position: "bottom-right",
         autoClose: 4000,
         hideProgressBar: true,

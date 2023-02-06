@@ -175,5 +175,8 @@
     "demandsCreateDemand": "需求 > 創建需求",
     "disapproveDemand": "拒絕需求",
     "demandViewDisapproveDemand": "需求 > 查看需求 > 拒絕需求",
-    "user": "用戶"
+    "user": "用戶",
+    "Backlog": "待辦事項",
+    "BacklogRanked": "待辦事項",
+    "BacklogRankApproved": "待辦事項"
 }

@@ -175,5 +175,7 @@
     "demandsCreateDemand": "Demands > Create demand",
     "disapproveDemand": "Disapprove demand",
     "demandViewDisapproveDemand": "Demand > View demand > Disapprove demand",
-    "user": "User"
+    "user": "User",
+    "BacklogRanked": "Backlog",
+    "BacklogRankApproved": "Backlog"
 }

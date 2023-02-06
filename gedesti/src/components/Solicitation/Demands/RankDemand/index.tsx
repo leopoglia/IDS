@@ -47,19 +47,19 @@ export default function RankDemand() {
 
                 // Atualizando a classificação da demanda
                 Services.updateClassification(demand.demandCode, classificationCode).then((response: any) => {
-                    navigate("/demand/view/" + url)
-                    localStorage.setItem("route", "classification");
-                    localStorage.removeItem("classification");
+
+                    Services.updateStatus(url, "BacklogRanked").then((response: any) => {
+                        localStorage.setItem("route", "classification");
+                        localStorage.removeItem("classification");
+
+                        navigate("/demand/view/" + url)
+                    }).catch((error: any) => {
+                        console.log(error)
+                    })
+
                 }).catch((error: any) => {
                     console.log(error)
                 })
-
-                Services.updateStatus(url, "BacklogRanked").then((response: any) => {
-                    console.log(response)
-                }).catch((error: any) => {
-                    console.log(error)
-                })
-
 
             }).catch((error: any) => {
                 console.log(error)

@@ -22,10 +22,10 @@ export default function ComplementDemand() {
         if (ppmCode === "" || linkEpicJira === "" || deadlineDemand === "") {
             notifyError();
         } else {
-            ServicesDemand.findById(codeDemand).then((response: any) => {
+            Services.updateComplement(codeDemand, ppmCode, linkEpicJira, deadlineDemand).then((response) => {
+                ServicesDemand.updateStatus(codeDemand, "BacklogComplement").then((response) => {
 
-            }).catch((error: any) => {
-                console.log(error)
+                })
             })
         }
 
@@ -67,7 +67,7 @@ export default function ComplementDemand() {
 
 
 
-                  
+
                 </div>
                 <div className="display-flex-end">
 

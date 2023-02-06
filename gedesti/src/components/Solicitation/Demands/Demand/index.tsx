@@ -2,13 +2,14 @@ import "./style.css";
 import { Link } from "react-router-dom";
 import Situation from "./Situation/index";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 export default function Demand(props: any) {
     const worker: any = localStorage.getItem("worker");
     const office = JSON.parse(worker).office;
     const { t } = useTranslation();
+
 
     const information = () => {
         if (props.analyst == null) {
@@ -18,7 +19,7 @@ export default function Demand(props: any) {
                         <div className="code">{props.demandCode}</div>
                         <div className="requester"><p>{t("requester")}: {props.requester}</p></div>
                         <div><p>{t("date")}: {props.date}</p></div>
-                        <div className="situation"><p>{t("situation")}: {props.situation}</p></div>
+                        <div className="situation"><p>{t("situation")}: {t(props.situation)}</p></div>
                     </div>)
                 )
             } else {
@@ -44,7 +45,7 @@ export default function Demand(props: any) {
     }
 
     const btnGenerateProposal = () => {
-        if (props.situation === "Backlog") {
+        if (props.situation === "Backlog" || props.situation === "BacklogRanked") {
             if (office === "analyst" || office === "ti") {
                 return (
                     <Link to={"/proposal/demand/" + props.demandCode}>

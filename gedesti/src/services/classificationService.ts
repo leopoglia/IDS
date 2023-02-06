@@ -22,7 +22,8 @@ const Services = {
                     linkEpicJira: linkEpicJira,
                     analistRegistry: { workerCode: analistRegistry },
                     requesterBu: { buCode: requesterBu },
-                    beneficiaryBu: beneficiaryBuList
+                    beneficiaryBu: beneficiaryBuList,
+                    deadline: ""
                 }), headers: { 'Content-Type': 'application/json' }
             }).then(function (result) { return result.json(); })
                 .then(resolve)
@@ -57,7 +58,7 @@ const Services = {
                 .catch(resolve)
         })
     },
-    update: function (id: number, classificationSize: Number, itSection: String, ppmcode: String, linkEpicJira: String, requesterBu: any, beneficiaryBu: any, analistRegistry: any) {
+    update: function (id: number, classificationSize: Number, itSection: String, ppmcode: String, linkEpicJira: String, requesterBu: any, beneficiaryBu: any, analistRegistry: any, deadline: any) {
         let beneficiaryBuList: any = [];
         for (let i = 0; i < beneficiaryBu.length; i++) {
             beneficiaryBuList.push({ buCode: beneficiaryBu[i].buCode })
@@ -72,7 +73,8 @@ const Services = {
                     linkEpicJira: linkEpicJira,
                     analistRegistry: { workerCode: analistRegistry },
                     requesterBu: { buCode: requesterBu },
-                    beneficiaryBu: beneficiaryBuList
+                    beneficiaryBu: beneficiaryBuList,
+                    deadline: deadline
                 }), headers: { 'Content-Type': 'application/json' }
             }).then(function (result) { return result.json(); })
                 .then(resolve)

@@ -19,7 +19,7 @@ export default function ComplementDemand() {
         ServicesDemand.findById(codeDemand).then((response: any) => {
             console.log(response.classification)
 
-            Services.update(response.classificationCode, response.classificationSize, response.itSection, ppmCode, linkEpicJira, response.requesterBu, response.beneficiaryBu, response.analistRegistry).then((response: any) => {
+            Services.update(response.classificationCode, response.classificationSize, response.itSection, ppmCode, linkEpicJira, response.requesterBu, response.beneficiaryBu, response.analistRegistry, deadlineDemand).then((response: any) => {
                 console.log(response)
 
 
@@ -57,15 +57,15 @@ export default function ComplementDemand() {
                 <div className="box">
                     <div className="display-grid-select">
                         <label htmlFor="">{t("deadlineDemand")} *</label>
-                        <SelectSizeDemand />
+                        <SelectSizeDemand setDeadlineDemand={setDeadlineDemand} />
                     </div>
                     <div className="display-grid">
                         <label htmlFor="">{t("ppmCode")} *</label>
-                        <input type="text" />
+                        <input onChange={(e) => setPpmCode(e.target.value)} type="text" />
                     </div>
                     <div className="display-grid">
                         <label htmlFor="">{t("linkEpicJira")} *</label>
-                        <input type="text" />
+                        <input onChange={(e) => setLinkEpicJira(e.target.value)} type="text" />
                     </div>
 
 

@@ -222,9 +222,11 @@ export default function ViewDemand() {
                                 <div className="display-flex">
                                     <Link to={"/proposal/demand/" + demandCode} >
                                         <button className="btn-primary">
-                                            <span>{t("complementary")}</span>
+                                            <span>{t("generateProposal")}</span>
                                         </button>
                                     </Link>
+
+                                    <ButtonActionAnalyst />
                                 </div>
                             ) : (
                                 null

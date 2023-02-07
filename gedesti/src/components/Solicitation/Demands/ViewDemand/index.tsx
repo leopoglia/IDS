@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast, ToastContainer, TypeOptions } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import jsPDF from 'jspdf';
 
 export default function ViewDemand() {
 
@@ -168,7 +169,7 @@ export default function ViewDemand() {
 
                             {(actionsDemand === 1) ? (
                                 <div className="display-flex">
-                                    <button className="btn-primary">
+                                    <button className="btn-primary" onClick={generatePDF}>
                                         <span className="material-symbols-outlined">
                                             download
                                         </span>
@@ -243,7 +244,7 @@ export default function ViewDemand() {
 
                         </div>
 
-                        <div className="box">
+                        <div className="box" id="box">
 
                             {
                                 demands.map((val, index) => {
@@ -750,4 +751,13 @@ const notifyError = () => {
         progress: undefined,
         theme: "light",
     });
+};
+
+
+const generatePDF = () => {
+    const pdf = new jsPDF();
+    const content = 'Conteúdo dinâmico';
+
+    pdf.text(content, 10, 10);
+    pdf.save('document.pdf');
 };

@@ -8,6 +8,8 @@ export default function InsetList(props: any) {
 
     const [modalChangeStatus, setModalChangeStatus] = useState(false);
 
+
+
     return (
         <div className="inset-list">
             <div className="modal">
@@ -34,16 +36,14 @@ export default function InsetList(props: any) {
                     </div>
                 </Link>
 
-                <Link to="/">
-                    <div className="li">
-                        <span className="material-symbols-outlined">
-                            download
-                        </span>
-                        <span>
-                            {t("downloadPDF")}
-                        </span>
-                    </div>
-                </Link>
+                <div className="li">
+                    <span className="material-symbols-outlined">
+                        download
+                    </span>
+                    <span>
+                        {t("downloadPDF")}
+                    </span>
+                </div>
 
                 <div className="li" onClick={() => { setModalChangeStatus(!modalChangeStatus) }}>
                     <span className="material-symbols-outlined">

@@ -46,16 +46,19 @@ export default function ViewDemand() {
 
             // Verificar se o usuário é o solicitante
             if (office === "requester") {
+                // Verificar se o usuário é o solicitante
                 if (response.requesterRegistration.workerCode === workerId) {
+                    // Seta botões superiores para o solicitante
                     setActionsDemand(1);
                 } else {
+                    // Deixa os botões superiores vazios
                     setActionsDemand(0)
                 }
             } else {
 
-
+                // Verificar se a demanda foi classificada
                 if (response.classification === undefined || response.classification === null) {
-
+                    // Seta botões superiores de Reprovar ou Classificar para o analista
                     if (office === "analyst" && response.demandStatus === "Backlog") {
                         setStepDemand(0)
                         setActionsDemand(2)
@@ -63,15 +66,20 @@ export default function ViewDemand() {
                 } else {
                     setStepDemand(1)
 
+                    // Seta botões superiores de  Complementar para o analista
                     if (office === "analyst" && response.demandStatus === "BacklogRankApproved") {
-                        console.log("-----------------> 3")
                         setStepDemand(1)
                         setActionsDemand(4)
+                        // Verificar se o usuário é o gerente de negócios
                     } else if (office === "business") {
-                        console.log("response.stepDemand", response.stepDemand)
+                        // Verificar se a demanda foi classificada
                         if (response.demandStatus === "BacklogRanked") {
+                            // Seta botões superiores de Reprovar ou Aprovar para o gerente de negócios
                             setActionsDemand(3)
                         }
+                    } else if (office === "analyst" && response.demandStatus === "BacklogComplement") {
+                        setStepDemand(2)
+                        setActionsDemand(5)
                     }
                     setClassification(response.classification)
                 }
@@ -210,8 +218,17 @@ export default function ViewDemand() {
 
                                     <ButtonActionAnalyst />
                                 </div>
-                            ) : null}
-
+                            ) : (actionsDemand === 5) ? (
+                                <div className="display-flex">
+                                    <Link to={"/proposal/demand/" + demandCode} >
+                                        <button className="btn-primary">
+                                            <span>{t("complementary")}</span>
+                                        </button>
+                                    </Link>
+                                </div>
+                            ) : (
+                                null
+                            )}
 
                         </div>
 

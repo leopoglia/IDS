@@ -95,8 +95,13 @@ export default function ViewDemand() {
 
 
         if (localStorage.getItem("route") === "classification") {
-            console.log("route --------> ", localStorage.getItem("route"))
             notify();
+            localStorage.removeItem("route");
+        } else if (localStorage.getItem("route") === "complement") {
+            notifyComplement();
+            localStorage.removeItem("route");
+        } else if (localStorage.getItem("route") === "reprove") {
+            notifyReproved();
             localStorage.removeItem("route");
         }
 
@@ -679,6 +684,32 @@ export default function ViewDemand() {
 // Função para notificar o usuário que a classificação foi cadastrada
 const notify = () => {
     toast.success('Classificação cadastrada!', {
+        position: "bottom-right",
+        autoClose: 4000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+};
+
+const notifyComplement = () => {
+    toast.success('Classificação complementada!', {
+        position: "bottom-right",
+        autoClose: 4000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+};
+
+const notifyReproved = () => {
+    toast.error('Demanda reprovada!', {
         position: "bottom-right",
         autoClose: 4000,
         hideProgressBar: true,

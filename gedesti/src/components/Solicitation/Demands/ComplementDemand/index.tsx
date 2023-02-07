@@ -31,7 +31,7 @@ export default function ComplementDemand() {
 
                 Services.updateComplement(demand.classification.classificationCode, ppmCode, linkEpicJira, deadlineDemand).then((response) => {
                     ServicesDemand.updateStatus(codeDemand, "BacklogComplement").then((response) => {
-                        localStorage.setItem("route", "classification");
+                        localStorage.setItem("route", "complement");
                         navigate("/demand/view/" + codeDemand)
                     })
                 })

@@ -41,6 +41,7 @@ export default function DisapproveDemand() {
             notify();
         } else {
             disapproveDemand();
+            localStorage.setItem('route', 'reprove')
             navigate('/demand/view/' + demandCode);
         }
     }

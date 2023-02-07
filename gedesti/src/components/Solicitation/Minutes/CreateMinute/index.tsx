@@ -1,7 +1,6 @@
 import Header from "../../../Fixed/Header";
 import Nav from "../../../Fixed/Nav";
 import Title from "../../../Fixed/Search/Title";
-import Editor from "../../Proposals/EditProposalScope/Editor";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
@@ -18,7 +17,7 @@ export default function CreateMinute() {
                     <Title title={t("createMinute")} nav={t("minuteCreateMinute")} />
                 </div>
 
-                <Editor />
+                {/* <Editor /> */}
 
                 <Link to="/agendas">
                     <div className="display-flex-end">

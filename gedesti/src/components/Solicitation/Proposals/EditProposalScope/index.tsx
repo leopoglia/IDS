@@ -2,7 +2,7 @@ import Header from "../../../Fixed/Header";
 import Nav from "../../../Fixed/Nav";
 import Title from "../../../Fixed/Search/Title";
 import { Link } from "react-router-dom";
-import Editor from "./Editor"
+import Editor from "./Editor";
 import "./style.css"
 import { useTranslation } from "react-i18next";
 

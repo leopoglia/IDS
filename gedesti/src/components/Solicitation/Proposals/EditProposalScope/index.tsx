@@ -14,13 +14,15 @@ export default function EditProposalScope() {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
+  const demandCode = parseInt(window.location.href.split("/")[5]);
+
   const [content, setContent] = useState('');
 
   const nextStep = () => {
     if (content === "" || content === undefined) {
       notify()
     } else {
-      navigate('/proposal/informations');
+      navigate('/proposal/informations/' + demandCode);
     }
   }
 
@@ -43,7 +45,7 @@ export default function EditProposalScope() {
 
 
         <div className="demands-footer">
-          <Link to="/proposal/demand">
+          <Link to={"/proposal/demand/" + demandCode}>
             <button className="btn-secondary">{t("return")}</button>
           </Link>
 

@@ -18,6 +18,7 @@ export default function ExecutionCosts() {
     const { t } = useTranslation();
     const navigate = useNavigate();
 
+    const demandCode = parseInt(window.location.href.split("/")[5]);
 
     const [payingCostCenter, setPayingCostCenter] = useState('');
 
@@ -94,7 +95,7 @@ export default function ExecutionCosts() {
 
 
                 <div className="demands-footer">
-                    <Link to="/proposal/informations">
+                    <Link to={"/proposal/informations/" + demandCode}>
                         <button className="btn-secondary">{t("return")}</button>
                     </Link>
 

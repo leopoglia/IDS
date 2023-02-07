@@ -9,21 +9,37 @@ import { toast, ToastContainer, TypeOptions } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import ButtonAction from "../CrateDemand/ButtonAction";
-
+import DemandService from "../../../../services/demandService";
+import Services from "../../../../services/reproachService";
 
 
 export default function DisapproveDemand() {
 
     const [disapprovalReason, setDisapprovalReason]: any = useState("");
     const navigate = useNavigate();
-    const url = window.location.href.split("/")[5];
+    const url = window.location.href.split("/")[3];
+    const demandCode = parseInt(window.location.href.split("/")[5]);
 
+    function disapproveDemand() {
+        Services.save(disapprovalReason, demandCode).then((response) => {
+            console.log(response);
+        }).catch((error) => {
+            console.log(error);
+        }
+        );
+        DemandService.updateStatus(demandCode, "Cancelled").then((response) => {
+            console.log(response);
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
 
     const nextStep = () => {
         if (disapprovalReason === undefined || disapprovalReason === undefined) {
             notify();
         } else {
-            navigate('/demand/view/' + url);
+            disapproveDemand();
+            navigate('/demand/view/' + demandCode);
         }
     }
 

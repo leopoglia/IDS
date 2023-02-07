@@ -177,5 +177,6 @@
     "demandViewDisapproveDemand": "Demand > View demand > Disapprove demand",
     "user": "User",
     "BacklogRanked": "Backlog",
-    "BacklogRankApproved": "Backlog"
+    "BacklogRankApproved": "Backlog",
+    "BacklogComplement": "Backlog"
 }

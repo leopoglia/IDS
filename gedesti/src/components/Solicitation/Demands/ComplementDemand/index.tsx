@@ -9,10 +9,11 @@ import ServicesDemand from "../../../../services/demandService"
 import { toast, ToastContainer, TypeOptions } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import './style.css'
+import { useNavigate } from "react-router-dom";
 
 export default function ComplementDemand() {
 
-
+    const navigate = useNavigate();
     const codeDemand = parseInt(window.location.href.split("/")[5])
     const [ppmCode, setPpmCode] = useState("")
     const [linkEpicJira, setLinkEpicJira] = useState("")
@@ -30,7 +31,8 @@ export default function ComplementDemand() {
 
                 Services.updateComplement(demand.classification.classificationCode, ppmCode, linkEpicJira, deadlineDemand).then((response) => {
                     ServicesDemand.updateStatus(codeDemand, "BacklogComplement").then((response) => {
-
+                        localStorage.setItem("route", "classification");
+                        navigate("/demand/view/" + codeDemand)
                     })
                 })
             })

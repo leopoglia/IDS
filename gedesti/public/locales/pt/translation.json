@@ -177,6 +177,6 @@
     "demandViewDisapprove": "Demanda > Visualizar demanda > Reprovar demanda",
     "user": "Usuário",
     "BacklogRanked": "Backlog",
-    "BacklogRankApproved": "Backlog"
-
+    "BacklogRankApproved": "Backlog",
+    "BacklogComplement": "Backlog"
 }

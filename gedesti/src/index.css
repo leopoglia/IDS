@@ -126,6 +126,14 @@ textarea {
   font-size: var(--p) !important;
 }
 
+textarea{
+  resize: none;
+  border: 1px solid var(--greyC4);
+  width: 100%;
+  padding: 10px;
+  min-height: 100px;
+}
+
 input[type=checkbox]:checked {
   outline: none;
 }

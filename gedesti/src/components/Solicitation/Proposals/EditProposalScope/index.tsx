@@ -1,15 +1,28 @@
+
+import { useState } from "react";
 import Header from "../../../Fixed/Header";
 import Nav from "../../../Fixed/Nav";
 import Title from "../../../Fixed/Search/Title";
-import { Link } from "react-router-dom";
 import Editor from "./Editor";
 import "./style.css"
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-
+import { toast, ToastContainer, TypeOptions } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 export default function EditProposalScope() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
+  const [content, setContent] = useState('');
+
+  const nextStep = () => {
+    if (content === "" || content === undefined) {
+      notify()
+    } else {
+      navigate('/proposal/informations');
+    }
+  }
 
   return (
     <div className="edit-proposal-scope">
@@ -26,7 +39,7 @@ export default function EditProposalScope() {
 
 
 
-        <Editor />
+        <Editor setContent={setContent} />
 
 
         <div className="demands-footer">
@@ -34,15 +47,28 @@ export default function EditProposalScope() {
             <button className="btn-secondary">{t("return")}</button>
           </Link>
 
-          <Link to="/proposal/informations">
-            <button className="btn-primary">{t("advance")}</button>
-          </Link>
+          <button onClick={() => nextStep()} className="btn-primary">{t("advance")}</button>
         </div>
 
 
       </div>
+      <ToastContainer position="bottom-right" newestOnTop />
 
     </div>
   );
 
 }
+
+// Notificação de erro ao preencher campo obrigatório
+const notify = () => {
+  toast.error('Preencha todos os campos!', {
+    position: "bottom-right",
+    autoClose: 4000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+};

@@ -15,11 +15,12 @@ import Services from "../../../../services/reproachService";
 
 export default function DisapproveDemand() {
 
-    const [disapprovalReason, setDisapprovalReason]: any = useState("");
     const navigate = useNavigate();
+    const [disapprovalReason, setDisapprovalReason]: any = useState(""); // Motivo de reprovação
     const url = window.location.href.split("/")[3];
     const demandCode = parseInt(window.location.href.split("/")[5]);
 
+    // Função para reprovar demanda
     function disapproveDemand() {
         Services.save(disapprovalReason, demandCode).then((response) => {
             console.log(response);
@@ -35,7 +36,8 @@ export default function DisapproveDemand() {
     }
 
     const nextStep = () => {
-        if (disapprovalReason === undefined || disapprovalReason === undefined) {
+        // Função para verificar se o motivo de reprovação foi preenchido
+        if (disapprovalReason === undefined || disapprovalReason === "") {
             notify();
         } else {
             disapproveDemand();
@@ -93,7 +95,7 @@ export default function DisapproveDemand() {
     );
 }
 
-
+// Notificação de erro ao tentar cadastrar sem preencher todos os campos
 const notify = () => {
     toast.error('Preencha todos os campos!', {
         position: "bottom-right",

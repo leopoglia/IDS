@@ -407,7 +407,7 @@ export default function ViewDemand() {
                                         <tr>
                                             <td>4 meses</td>
                                             <td>98765432</td>
-                                            <td><a target="_blank" href="https://ctw2022.atlassian.net/jira/software/projects/P2/boards/1/roadmap?shared=&atlOrigin=eyJpIjoiNmQ5YjMzOWUyNWNmNGNiZTgyMmI2MGNjMTRmNmZiYjEiLCJwIjoiaiJ9">Abrir JIRA</a></td>
+                                            <td><a target="_blank" href={"http://" + classification.epicJiraLink}>Abrir JIRA</a></td>
 
                                         </tr>
 

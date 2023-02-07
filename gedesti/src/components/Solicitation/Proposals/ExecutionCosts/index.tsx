@@ -59,7 +59,7 @@ export default function ExecutionCosts() {
 
                         <div className="display-flex-space-between">
 
-                            <Link to="add-expense">
+                            <Link to={"/proposal/execution-costs/add-expense/" + demandCode}>
                                 <button className="btn-secondary">{t("addExpense")}</button>
                             </Link>
                         </div>

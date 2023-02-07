@@ -79,8 +79,6 @@ export default function CreateDemands2() {
             potentialCurrencyFinal = "real";
         }
 
-        console.log("REAL CURRENCY FINAL", realCurrencyFinal);
-        console.log("POTENTIAL CURRENCY FINAL", potentialCurrencyFinal);
 
 
         let realBenefits: any = await RealServices.save(Number.parseFloat(realMonthlyValue), realBenefitDescription, realCurrencyFinal);

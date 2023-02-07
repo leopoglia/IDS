@@ -21,8 +21,6 @@ export default function ComplementDemand() {
 
     function complementary() {
 
-        console.log(ppmCode, linkEpicJira, deadlineDemand)
-
         if (ppmCode === "" || linkEpicJira === "" || deadlineDemand === "") {
             notifyError();
         } else {

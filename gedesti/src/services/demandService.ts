@@ -9,8 +9,6 @@ const Services = {
             costCenters.push({ "costCenterCode": costCenter[i] });
         }
 
-        console.log("cost centers -> ", costCenters)
-
         let demand = {
             "demandTitle": demandTitle,
             "currentProblem": currentProblem,
@@ -28,7 +26,6 @@ const Services = {
         formData.append('demand', JSON.stringify(demand));
         formData.append('demandAttachment', demandAttachment);
 
-        console.log(formData.get("demand"));
 
         return new Promise((resolve, reject) => {
             fetch(url, {
@@ -74,7 +71,6 @@ const Services = {
             costCenters.push({ "costCenterCode": costCenter[i] });
         }
 
-        console.log("cost centers -> ", costCenters)
 
         let demand = {
             "demandTitle": demandTitle,
@@ -94,7 +90,6 @@ const Services = {
         formData.append('demand', JSON.stringify(demand));
         formData.append('demandAttachment', demandAttachment);
 
-        console.log(formData.get("demand"));
 
         return new Promise((resolve, reject) => {
             fetch(url + "/" + id, {

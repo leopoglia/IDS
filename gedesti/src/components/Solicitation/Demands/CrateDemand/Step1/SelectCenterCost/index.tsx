@@ -17,7 +17,6 @@ export default function FreeSolo(props: any) {
     function getBu() {
         Services.findAll().then((response) => {
             const bu: any = response;
-            console.log("bu->", bu)
             setCenterCost(bu);
         });
     }

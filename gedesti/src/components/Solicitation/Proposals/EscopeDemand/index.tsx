@@ -25,7 +25,6 @@ export default function EscopeDemand() {
         Services.findById(demandCode).then((response: any) => {
             const demand: any = [response]
             setDemands(demand)
-            console.log(demand[0].costCenter)
             setCenterCost(demand[0].costCenter)
         })
     }

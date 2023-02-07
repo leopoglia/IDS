@@ -93,7 +93,7 @@ export default function ViewDemand() {
         // Buscar dados da demanda
         getDemand();
 
-
+        // Verificações para notificações
         if (localStorage.getItem("route") === "classification") {
             notify();
             localStorage.removeItem("route");
@@ -105,7 +105,11 @@ export default function ViewDemand() {
             localStorage.removeItem("route");
         }
 
+        console.log(classification)
+
     }, [office]);
+
+
 
     const costCenter = () => {
         return (
@@ -405,9 +409,9 @@ export default function ViewDemand() {
 
 
                                         <tr>
-                                            <td>4 meses</td>
-                                            <td>98765432</td>
-                                            <td><a target="_blank" href={"http://" + classification.epicJiraLink}>Abrir JIRA</a></td>
+                                            <td>{classification.deadline}</td>
+                                            <td>{classification.ppmCode}</td>
+                                            <td><a target="_blank" href={"http://" + classification.epicJiraLink}>{classification.epicJiraLink}</a></td>
 
                                         </tr>
 

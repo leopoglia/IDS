@@ -34,9 +34,6 @@ export default function ProposedInformation() {
     }
 
 
-    console.log("responsible: " + respnosibleAnalyst, "area:" + responsibleArea, "start:" + start, "end: " + end, "file: " + fileAttachment);
-
-
     const nextStep = () => {
         if (respnosibleAnalyst === "" || responsibleArea === "" || end === "" || start === "") {
             notify();

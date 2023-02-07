@@ -88,7 +88,6 @@ export default function Demands() {
     const [minute, setMinute] = useState(false);
     const [nameFilter, setName] = useState<string>(""); // Busca o que foi digitado no input do filtro
     const [typeFilter, setType] = useState<string>(""); // Busca qual filtro foi selecionado
-    console.log("TYPE FILTER --------------> ", typeFilter)
 
     const callback = (name: string, type: string) => {
         setName(name)

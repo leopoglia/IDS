@@ -9,8 +9,6 @@ const Services = {
             beneficiaryBuList.push({ buCode: beneficiaryBu[i] })
         }
 
-        console.log(itSection)
-
 
         return new Promise((resolve, reject) => {
             fetch(url, {
@@ -83,9 +81,6 @@ const Services = {
     },
 
     updateComplement: function (id: number, ppmcode: String, linkEpicJira: String, deadline: any) {
-
-        console.log(id, ppmcode, linkEpicJira, deadline)
-
 
         return new Promise((resolve, reject) => {
             fetch(url + "/update/" + id, {

@@ -45,7 +45,7 @@ export default function Demand(props: any) {
     }
 
     const btnGenerateProposal = () => {
-        if (props.situation === "Backlog" || props.situation === "BacklogRanked") {
+        if (props.situation === "BacklogComplement") {
             if (office === "analyst" || office === "ti") {
                 return (
                     <Link to={"/proposal/demand/" + props.demandCode}>
@@ -56,23 +56,13 @@ export default function Demand(props: any) {
         }
     }
 
-    const [showModal, setShowModal] = useState(false);
 
-    const handleMouseOver = () => {
-        setShowModal(true);
-    }
-
-    const handleMouseOut = () => {
-        setTimeout(() => {
-            setShowModal(false);
-        }, 500);
-    }
 
 
     const situation = () => {
         if (props.type === "demand" || props.type === "proposal") {
             return (
-                <div className="situation-demand" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+                <div className="situation-demand">
                     <Situation type={props.type} situation={props.situation} />
                 </div>
             );
@@ -141,16 +131,6 @@ export default function Demand(props: any) {
     if (props.listDirection === false) {
         return (
             <div>
-                {showModal &&
-                    <div className="background-modal">
-                        <div className="modal">
-                            <div className="title-situation">{t("situation")}: Já foi classificada pelo Analista</div>
-                            <div className="progress">
-                                <div className="progress-bar" role="progressbar" style={{ width: "25%" }} aria-valuenow={25} aria-valuemin={0} aria-valuemax={100} />
-                            </div>
-                        </div>
-                    </div>
-                }
 
                 <Link to={"/" + props.type + "/view/" + props.demandCode}>
                     <div className="demand">
@@ -183,16 +163,7 @@ export default function Demand(props: any) {
     } else {
         return (
             <div>
-                {showModal &&
-                    <div className="background-modal">
-                        <div className="modal">
-                            <div className="title-situation">{t("situation")}: Já foi classificada pelo Analista</div>
-                            <div className="progress">
-                                <div className="progress-bar" role="progressbar" style={{ width: "25%" }} aria-valuenow={25} aria-valuemin={0} aria-valuemax={100} />
-                            </div>
-                        </div>
-                    </div>
-                }
+
                 <Link to={"/" + props.type + "/view/" + props.demandCode}>
                     <div className="demand-list">
                         <section>

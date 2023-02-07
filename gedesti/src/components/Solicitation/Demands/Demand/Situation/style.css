@@ -52,6 +52,7 @@
 
 .graphic .situation-backlog-ranked,
 .graphic .situation-backlog-ranked-approved,
+.situation-backlog-complement,
 .graphic .situation-backlog,
 .graphic .situation-to-do,
 .graphic .situation-done,
@@ -67,20 +68,23 @@
 
 
 .graphic .situation-backlog {
+    width: 18%;
+}
+
+.graphic .situation-backlog-ranked {
     width: 20%;
 }
 
-.graphic .situation-backlog-ranked{
+.graphic .situation-backlog-ranked-approved {
     width: 25%;
 }
 
-.graphic .situation-backlog-ranked-approved{
+.graphic .situation-backlog-complement {
     width: 30%;
 }
 
-
 .graphic .situation-assesment {
-    width: 30%;
+    width: 35%;
 }
 
 .graphic .situation-business-case {
@@ -105,6 +109,7 @@
 .graphic .situation-backlog,
 .graphic .situation-backlog-ranked,
 .graphic .situation-backlog-ranked-approved,
+.graphic .situation-backlog-complement,
 .graphic .situation-to-do,
 .graphic .situation-done,
 .graphic .situation-cancelled,

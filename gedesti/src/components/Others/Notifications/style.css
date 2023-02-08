@@ -1,21 +1,22 @@
-.backgroud-title{
+.backgroud-title {
     margin-bottom: 20px;
 }
 
-.bia, .barrier{
+.bia,
+.barrier {
     position: absolute;
     bottom: 0;
     right: 0;
     user-select: none;
 }
 
-.barrier{
+.barrier {
     width: 339px;
     height: 536px;
     z-index: 1;
-} 
+}
 
-.bubble{
+.bubble {
     right: 0;
     width: 300px;
     margin-right: 220px;
@@ -24,5 +25,23 @@
     padding-right: 5px !important;
     color: var(--blue);
     font-size: var(--p);
-    word-break:keep-all;
+    word-break: keep-all;
+}
+
+.notification{
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
+.notification .date-horary{
+    display: flex;
+    margin-left: 20px;
+}
+
+.notification span {
+    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
 }

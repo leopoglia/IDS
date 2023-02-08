@@ -11,13 +11,14 @@ import { toast, ToastContainer, TypeOptions } from 'react-toastify';
 import ButtonAction from "../../Demands/CrateDemand/ButtonAction";
 import { useTranslation } from "react-i18next";
 import Services from "../../../../services/expenseService";
+import { List } from "reselect/es/types";
 
 
 export default function AddExpense() {
     const { t } = useTranslation();
     const navigate = useNavigate();
 
-    const demandCode = parseInt(window.location.href.split("/")[5]);
+    const demandCode = parseInt(window.location.href.split("/")[6]);
 
     const [typeOfExpense, setTypeOfExpense] = useState('');
     const [expenseProfile, setExpenseProfile] = useState('');
@@ -26,14 +27,19 @@ export default function AddExpense() {
     const [hourValue, setHourValue]: any = useState('');
     const expenseTotalValue = necessityHoursQuantity * hourValue;
 
+    const expense = { typeOfExpense: typeOfExpense, expenseProfile: expenseProfile, periodOfExecutionMonth: periodOfExecutionMonth, necessityHoursQuantity: necessityHoursQuantity, hourValue: hourValue, expenseTotalValue: expenseTotalValue };
+    const [expenseList, setExpenseList]:any = useState([]);
+
     async function createExpense() {
-        await Services.save("typeOfExpense", "expenseProfile", periodOfExecutionMonth, necessityHoursQuantity, hourValue, expenseTotalValue, 1);
+        await Services.save(typeOfExpense, expenseProfile, periodOfExecutionMonth, necessityHoursQuantity, hourValue, expenseTotalValue, 1);
     }
 
     const nextStep = () => {
         if (typeOfExpense === '' || expenseProfile === '' || periodOfExecutionMonth === '' || necessityHoursQuantity === '' || hourValue === '') {
             notify()
         } else {
+            expenseList.push(expense);
+            localStorage.setItem('expenseList', JSON.stringify(expenseList));
             navigate('/proposal/execution-costs/' + demandCode);
         }
     }

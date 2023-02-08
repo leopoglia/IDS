@@ -19,6 +19,13 @@ export default function ExecutionCosts() {
     const navigate = useNavigate();
 
     const demandCode = parseInt(window.location.href.split("/")[5]);
+    const expenseListStorage:any = localStorage.getItem('expenseList');
+    // const lista:any = useState('');
+    // lista.push(expenseListStorage);
+    // console.log(lista);
+
+    // const expenseList:any = [];
+    // expenseList.push(JSON.parse(expenseListStorage));
 
     const [payingCostCenter, setPayingCostCenter] = useState('');
 

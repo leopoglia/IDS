@@ -292,7 +292,7 @@ export default function ViewDemand() {
 
                                                     <div>
 
-                                                        <span>{t("monthlyValue")}: </span><span>
+                                                        <span className="bold-text">{t("monthlyValue")}: </span><span>
 
                                                             {val.realBenefit.realCurrency === "real" ? (
                                                                 <span>R$</span>

@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 import { toast, ToastContainer, TypeOptions } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import jsPDF from 'jspdf';
+import PDF from "./PDF";
 
 export default function ViewDemand() {
 
@@ -18,9 +19,11 @@ export default function ViewDemand() {
 
     const worker: any = localStorage.getItem("worker"); // Buscar dados do usuário
     const office = JSON.parse(worker).office; // Buscar tipo de usuário
+    const workerName = JSON.parse(worker).name; // Buscar nome do usuário
     const workerId = JSON.parse(worker).id; // Buscar código do usuário
     const url = window.location.href.split("/")[3]; // Buscar tipo da demanda
     const demandCode = parseInt(window.location.href.split("/")[5]); // Buscar código da demanda
+
 
     // Botões superiores
     // 0 - Sem botões  
@@ -106,7 +109,7 @@ export default function ViewDemand() {
             localStorage.removeItem("route");
         }
 
-        console.log(classification)
+        console.log(demands)
 
     }, [office]);
 
@@ -125,8 +128,8 @@ export default function ViewDemand() {
 
     const [demands, setDemands] = useState([
         {
-            demandTitle: "", requesterRegistration: { workerName: "" }, demandDate: "", demandStatus: "", currentProblem: "", demandObjective: "",
-            costCenter: { costCenterCode: "", costCenter: "" }, realBenefit: { realMonthlyValue: 0, realCurrency: "", realBenefitDescription: "" },
+            demandCode: 0, demandTitle: "", requesterRegistration: { workerName: "" }, demandDate: "", demandStatus: "", currentProblem: "", demandObjective: "",
+            costCenter: { costCenterCode: "", costCenter: "" }, demandAttachment: { type: "", name: "", dice: "" }, realBenefit: { realMonthlyValue: 0, realCurrency: "", realBenefitDescription: "" },
             potentialBenefit: { potentialMonthlyValue: 0, legalObrigation: false, potentialBenefitDescription: "" }, qualitativeBenefit: { realMonthlyValue: 0, interalControlsRequirements: false, frequencyOfUse: "", qualitativeBenefitDescription: "" },
             complements: [{ executionDeadline: "", ppm: "", epicJira: "" }]
         }]);
@@ -152,8 +155,22 @@ export default function ViewDemand() {
         })
     }
 
+    const [pdf, setPdf] = useState(false);
+
+    const generatePDF = () => {
+        setPdf(true);
+    }
+
+    const attatchmentType = () => {
+        if (demands[0].demandAttachment.type === "image/png") {
+            return "png";
+        }
+    }
+
+
     return (
         <div className="view-demand">
+            {pdf ? <PDF requester={workerName} demandTitle={demands[0].demandTitle} demandCode={demands[0].demandCode} /> : null}
 
             {url === "demand" ? (
                 <div>
@@ -427,11 +444,12 @@ export default function ViewDemand() {
 
                                 <p className="title">{t("attachments")}</p>
 
+
                                 <div className="attachment">
                                     <div className="attachment-image">
-                                        <img src="/attachment/pdf.png" alt="" />
+                                        <img src={"/attachment/" + attatchmentType() + ".png"} alt="" />
                                     </div>
-                                    <span>attachments.pdf</span>
+                                    <span>{demands[0].demandAttachment.name}</span>
                                 </div>
 
                             </div>
@@ -754,10 +772,3 @@ const notifyError = () => {
 };
 
 
-const generatePDF = () => {
-    const pdf = new jsPDF();
-    const content = 'Conteúdo dinâmico';
-
-    pdf.text(content, 10, 10);
-    pdf.save('document.pdf');
-};

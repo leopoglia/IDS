@@ -1,0 +1,49 @@
+.background-pdf {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pdf {
+    width: 35%;
+    height: 86%;
+    padding: 20px;
+    background-color: white !important;
+    border: 1px solid var(--greyC4);
+}
+
+.pdf p,
+.pdf span {
+    color: #000 !important;
+}
+
+.pdf img {
+    width: 50px;
+
+}
+
+.pdf .headerPDF {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0px 20px;
+}
+
+.pdf p {
+    font-size: var(--pp);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    position: relative;
+    z-index: 101;
+}
+
+.pdf span {
+    font-size: var(--p);
+}

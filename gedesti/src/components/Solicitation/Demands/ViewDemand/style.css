@@ -33,6 +33,10 @@
     align-items: center;
 }
 
+.view-demand tr{
+    height: 40px;
+}
+
 .view-demand tr:hover {
     background-color: var(--blueF4);
 }

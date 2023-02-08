@@ -64,7 +64,6 @@ export default function Form() {
                 <img src="/images/weg-blue.png" alt="" />
             </header>
 
-
             <main>
                 <div>
                     <span className="material-symbols-outlined">alternate_email</span>

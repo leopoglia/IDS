@@ -16,6 +16,8 @@ export default function ProposedInformation() {
     const { t } = useTranslation();
     const navigate = useNavigate();
 
+    const demandCode = parseInt(window.location.href.split("/")[5]);
+
     const [respnosibleAnalyst, setResponsibleAnalyst] = useState("");
     const [responsibleArea, setResponsibleArea] = useState("");
     const [start, setStart] = useState("");
@@ -38,7 +40,7 @@ export default function ProposedInformation() {
         if (respnosibleAnalyst === "" || responsibleArea === "" || end === "" || start === "") {
             notify();
         } else {
-            navigate('/proposal/execution-costs');
+            navigate('/proposal/execution-costs/' + demandCode);
         }
     }
 
@@ -110,7 +112,7 @@ export default function ProposedInformation() {
                 </div>
 
                 <div className="demands-footer">
-                    <Link to="/proposal/edit-scope">
+                    <Link to={"/proposal/edit-scope/" + demandCode}>
                         <button className="btn-secondary">{t("return")}</button>
                     </Link>
 

@@ -17,6 +17,8 @@ export default function AddExpense() {
     const { t } = useTranslation();
     const navigate = useNavigate();
 
+    const demandCode = parseInt(window.location.href.split("/")[5]);
+
     const [typeOfExpense, setTypeOfExpense] = useState('');
     const [expenseProfile, setExpenseProfile] = useState('');
     const [periodOfExecutionMonth, setPeriodOfExecutionMonth]: any = useState('');
@@ -29,12 +31,10 @@ export default function AddExpense() {
     }
 
     const nextStep = () => {
-
-
         if (typeOfExpense === '' || expenseProfile === '' || periodOfExecutionMonth === '' || necessityHoursQuantity === '' || hourValue === '') {
             notify()
         } else {
-            navigate('/proposal/execution-costs');
+            navigate('/proposal/execution-costs/' + demandCode);
         }
     }
 

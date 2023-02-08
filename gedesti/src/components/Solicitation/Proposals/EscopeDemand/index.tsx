@@ -198,7 +198,7 @@ export default function EscopeDemand() {
                 </div>
 
                 <div className="display-flex-end">
-                    <Link to="/proposal/edit-scope">
+                    <Link to={"/proposal/edit-scope/" + demandCode}>
                         <button className="btn-primary">{t("advance")}</button>
                     </Link>
                 </div>

@@ -302,7 +302,7 @@ export default function ViewDemand() {
                                                                 <span>€</span>
                                                             )}
 
-                                                            &nbsp; 
+                                                            &nbsp;
                                                             {val.realBenefit.realMonthlyValue.toLocaleString()}</span>
 
 
@@ -310,7 +310,6 @@ export default function ViewDemand() {
 
                                                 </div>
 
-                                                <div className="hr" />
 
                                                 <div className="description">
                                                     <span className="desc">Descrição:</span><span>{val.realBenefit.realBenefitDescription}</span>
@@ -336,13 +335,14 @@ export default function ViewDemand() {
                                                             &nbsp;
                                                             {val.potentialBenefit.potentialMonthlyValue.toLocaleString()}</span>
                                                     </div>
-
-                                                    <span>{t("legalObligation")}: {
-                                                        (val.potentialBenefit.legalObrigation === true) ? (<span>Sim</span>) : (<span>Não</span>)}</span>
-
                                                 </div>
 
-                                                <div className="hr" />
+
+                                                <div className="infos">
+                                                    <span>{t("legalObligation")}: {
+                                                        (val.potentialBenefit.legalObrigation === true) ? (<span>Sim</span>) : (<span>Não</span>)}</span>
+                                                </div>
+
 
                                                 <div className="description">
                                                     <span className="desc">Descrição:</span><span>{val.potentialBenefit.potentialBenefitDescription}</span>
@@ -360,11 +360,8 @@ export default function ViewDemand() {
                                                         <span>{t("legalObligation")}: {val.qualitativeBenefit.frequencyOfUse}</span>
                                                     </div>
 
-                                                    <span>{t("internalControlRequirements")}: {val.qualitativeBenefit.interalControlsRequirements}</span>
-
                                                 </div>
 
-                                                <div className="hr" />
 
                                                 <div className="description">
                                                     <span className="desc">Descrição:</span><span>{val.qualitativeBenefit.qualitativeBenefitDescription}</span>

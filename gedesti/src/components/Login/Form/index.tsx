@@ -95,7 +95,7 @@ export default function Form() {
 
 
             <footer>
-                <button onClick={() => login("", "")}>{t("login")}</button>
+                <button>{t("login")}</button>
             </footer>
 
             <ToastContainer position="bottom-right" newestOnTop />

@@ -46,6 +46,7 @@ export default function ViewDemand() {
     function getDemand() {
         Services.findById(demandCode).then((response: any) => {
             const demand: any = [response]
+            console.log(demand)
             setDemands(demand)
 
             // Verificar se o usuário é o solicitante
@@ -109,8 +110,6 @@ export default function ViewDemand() {
             localStorage.removeItem("route");
         }
 
-        console.log(demands)
-
     }, [office]);
 
 
@@ -130,7 +129,7 @@ export default function ViewDemand() {
         {
             demandCode: 0, demandTitle: "", requesterRegistration: { workerName: "" }, demandDate: "", demandStatus: "", currentProblem: "", demandObjective: "",
             costCenter: { costCenterCode: "", costCenter: "" }, demandAttachment: { type: "", name: "", dice: "" }, realBenefit: { realMonthlyValue: 0, realCurrency: "", realBenefitDescription: "" },
-            potentialBenefit: { potentialMonthlyValue: 0, legalObrigation: false, potentialBenefitDescription: "" }, qualitativeBenefit: { realMonthlyValue: 0, interalControlsRequirements: false, frequencyOfUse: "", qualitativeBenefitDescription: "" },
+            potentialBenefit: { potentialMonthlyValue: 0, legalObrigation: false, potentialBenefitDescription: "", potentialCurrency: "" }, qualitativeBenefit: { realMonthlyValue: 0, interalControlsRequirements: false, frequencyOfUse: "", qualitativeBenefitDescription: "" },
             complements: [{ executionDeadline: "", ppm: "", epicJira: "" }]
         }]);
 
@@ -289,12 +288,24 @@ export default function ViewDemand() {
                                             <div className="real-benefit">
                                                 <p className="title">{t("benefitReal")}</p>
 
-                                                <div className="hr" />
-
                                                 <div className="infos">
 
                                                     <div>
-                                                        <span>{t("monthlyValue")}: </span><span>{val.realBenefit.realMonthlyValue}</span>
+
+                                                        <span>{t("monthlyValue")}: </span><span>
+
+                                                            {val.realBenefit.realCurrency === "real" ? (
+                                                                <span>R$</span>
+                                                            ) : (val.realBenefit.realCurrency === "dollar") ? (
+                                                                <span>$</span>
+                                                            ) : (
+                                                                <span>€</span>
+                                                            )}
+
+                                                            &nbsp; 
+                                                            {val.realBenefit.realMonthlyValue.toLocaleString()}</span>
+
+
                                                     </div>
 
                                                 </div>
@@ -302,7 +313,7 @@ export default function ViewDemand() {
                                                 <div className="hr" />
 
                                                 <div className="description">
-                                                    <span className="desc">Descrição</span><span>{val.realBenefit.realBenefitDescription}</span>
+                                                    <span className="desc">Descrição:</span><span>{val.realBenefit.realBenefitDescription}</span>
                                                 </div>
                                             </div>
 
@@ -310,12 +321,20 @@ export default function ViewDemand() {
                                             <div className="potential-benefit">
                                                 <p className="title">{t("benefitPotential")}</p>
 
-                                                <div className="hr" />
-
                                                 <div className="infos">
 
                                                     <div>
-                                                        <span>{t("monthlyValue")}: </span><span>{val.potentialBenefit.potentialMonthlyValue}</span>
+                                                        <span>{t("monthlyValue")}: </span><span>
+                                                            {val.potentialBenefit.potentialCurrency === "real" ? (
+                                                                <span>R$</span>
+                                                            ) : (val.realBenefit.realCurrency === "dollar") ? (
+                                                                <span>$</span>
+                                                            ) : (
+                                                                <span>€</span>
+                                                            )}
+
+                                                            &nbsp;
+                                                            {val.potentialBenefit.potentialMonthlyValue.toLocaleString()}</span>
                                                     </div>
 
                                                     <span>{t("legalObligation")}: {
@@ -326,21 +345,16 @@ export default function ViewDemand() {
                                                 <div className="hr" />
 
                                                 <div className="description">
-                                                    <span className="desc">Descrição</span><span>{val.potentialBenefit.potentialBenefitDescription}</span>
+                                                    <span className="desc">Descrição:</span><span>{val.potentialBenefit.potentialBenefitDescription}</span>
                                                 </div>
                                             </div>
 
                                             <div className="qualitative-benefit">
                                                 <p className="title">{t("benefitQualitative")}</p>
 
-                                                <div className="hr" />
-
                                                 <div className="infos">
 
-                                                    <div>
-                                                        <span>{t("monthlyValue")}: </span><span>{val.qualitativeBenefit.realMonthlyValue}</span>
 
-                                                    </div>
 
                                                     <div>
                                                         <span>{t("legalObligation")}: {val.qualitativeBenefit.frequencyOfUse}</span>
@@ -353,7 +367,7 @@ export default function ViewDemand() {
                                                 <div className="hr" />
 
                                                 <div className="description">
-                                                    <span className="desc">Descrição</span><span>{val.qualitativeBenefit.qualitativeBenefitDescription}</span>
+                                                    <span className="desc">Descrição:</span><span>{val.qualitativeBenefit.qualitativeBenefitDescription}</span>
                                                 </div>
                                             </div>
 

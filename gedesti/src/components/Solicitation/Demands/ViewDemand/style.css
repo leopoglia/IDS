@@ -15,6 +15,7 @@
     display: flex;
     margin-top: 10px;
     padding: 10px;
+    padding-right: 0px;
 }
 
 .view-demand .complement {
@@ -29,6 +30,7 @@
     width: 100%;
     height: 45px;
     padding: 10px;
+    padding-right: 0px;
     display: flex;
     align-items: center;
 }
@@ -39,11 +41,6 @@
 
 .view-demand tr:hover {
     background-color: var(--blueF4);
-}
-
-.view-demand .infos div {
-    padding-right: 20px;
-    margin-right: 25px;
 }
 
 .view-demand .attachments .attachment {
@@ -124,9 +121,18 @@
     margin-left: 15px;
 }
 
+.view-demand .infos input{
+    margin-left: 2px !important;
+}
+
 .view-demand .input-disabled {
+    width: 100%;
     border: none;
     color: var(--grey3d);
+}
+
+.view-demand .display-flex-center{
+    width: 100%;
 }
 
 .view-demand .input-disabled:hover {
@@ -184,4 +190,8 @@
 .display-solicitation-demand p {
     margin-bottom: 0px !important;
     margin-top: 15px;
+}
+
+.bold-text{
+    min-width: 100px;
 }

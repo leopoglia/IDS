@@ -31,6 +31,7 @@ export default function ViewDemand() {
     // 2 - Reprovar ou Classificar (Analista)
     // 3 - Reprovar ou Aprovar (Gerente de Negócios)
     // 4 - Complementar (Analista)
+    // 5 - Gerar Proposta (Analista)
     const [actionsDemand, setActionsDemand] = useState(0);
 
     // Situação da Demanda
@@ -43,10 +44,10 @@ export default function ViewDemand() {
     const [classification, setClassification]: any = useState({});
     const [inputDiv, setInputDiv] = useState("input-disabled");
 
+
     function getDemand() {
         Services.findById(demandCode).then((response: any) => {
             const demand: any = [response]
-            console.log(demand)
             setDemands(demand)
 
             // Verificar se o usuário é o solicitante
@@ -59,35 +60,45 @@ export default function ViewDemand() {
                     // Deixa os botões superiores vazios
                     setActionsDemand(0)
                 }
-            } else {
+            }
 
-                // Verificar se a demanda foi classificada
-                if (response.classification === undefined || response.classification === null) {
+            // Verifica se o usuário é o analista
+            if (office === "analyst") {
+                // Verificações do status da demanda
+                if (response.demandStatus === "Backlog" && response.classification !== undefined) {
                     // Seta botões superiores de Reprovar ou Classificar para o analista
-                    if (office === "analyst" && response.demandStatus === "Backlog") {
-                        setStepDemand(0)
-                        setActionsDemand(2)
-                    }
-                } else {
-                    setStepDemand(1)
-
-                    // Seta botões superiores de  Complementar para o analista
-                    if (office === "analyst" && response.demandStatus === "BacklogRankApproved") {
-                        setStepDemand(1)
-                        setActionsDemand(4)
-                        // Verificar se o usuário é o gerente de negócios
-                    } else if (office === "business") {
-                        // Verificar se a demanda foi classificada
-                        if (response.demandStatus === "BacklogRanked") {
-                            // Seta botões superiores de Reprovar ou Aprovar para o gerente de negócios
-                            setActionsDemand(3)
-                        }
-                    } else if (office === "analyst" && response.demandStatus === "BacklogComplement") {
-                        setStepDemand(2)
-                        setActionsDemand(5)
-                    }
-                    setClassification(response.classification)
+                    setActionsDemand(2)
+                } else if (response.demandStatus === "BacklogRankApproved") {
+                    // Seta botões superiores de Complementar para o analista
+                    setActionsDemand(4)
+                } else if (response.demandStatus === "BacklogComplement") {
+                    // Seta botões superiores de Gerar Proposta para o analista
+                    setActionsDemand(5)
                 }
+
+            }
+
+            // Verifica se o usuário é o gerente de negócios
+            if (office === "business") {
+                // Verificar se a demanda foi classificada
+                if (response.demandStatus === "BacklogRanked") {
+                    // Seta botões superiores de Reprovar ou Aprovar para o gerente de negócios
+                    setActionsDemand(3)
+                }
+            }
+
+
+            // Verificar se a demanda foi classificada
+            if (response.classification !== "") {
+                setClassification(response.classification)
+            }
+
+            if (response.demandStatus === "Backlog") {
+                setStepDemand(0)
+            } else if (response.demandStatus === "BacklogRank") {
+                setStepDemand(1)
+            } else if (response.demandStatus === "BacklogComplement") {
+                setStepDemand(2)
             }
 
             setCenterCost(demand[0].costCenter)
@@ -128,7 +139,7 @@ export default function ViewDemand() {
     const [demands, setDemands] = useState([
         {
             demandCode: 0, demandTitle: "", requesterRegistration: { workerName: "" }, demandDate: "", demandStatus: "", currentProblem: "", demandObjective: "",
-            costCenter: { costCenterCode: "", costCenter: "" }, demandAttachment: { type: "", name: "", dice: "" }, realBenefit: { realMonthlyValue: 0, realCurrency: "", realBenefitDescription: "" },
+            costCenter: { costCenterCode: "", costCenter: "" }, demandAttachment: { type: "", name: "", dice: new Blob([""]) }, realBenefit: { realMonthlyValue: 0, realCurrency: "", realBenefitDescription: "" },
             potentialBenefit: { potentialMonthlyValue: 0, legalObrigation: false, potentialBenefitDescription: "", potentialCurrency: "" }, qualitativeBenefit: { realMonthlyValue: 0, interalControlsRequirements: false, frequencyOfUse: "", qualitativeBenefitDescription: "" },
             complements: [{ executionDeadline: "", ppm: "", epicJira: "" }]
         }]);
@@ -144,6 +155,9 @@ export default function ViewDemand() {
             </div>
         )
     }
+
+    console.log(demands)
+
 
     function approveDemand() {
         Services.updateStatus(demandCode, "BacklogRankApproved").then((response: any) => {
@@ -169,10 +183,13 @@ export default function ViewDemand() {
 
     return (
         <div className="view-demand">
+
             {pdf ? <PDF requester={workerName} demandTitle={demands[0].demandTitle} demandCode={demands[0].demandCode} /> : null}
 
             {url === "demand" ? (
                 <div>
+
+
                     <Header title="viewDemand" icon="visibility" />
 
                     <Nav />
@@ -290,29 +307,28 @@ export default function ViewDemand() {
 
                                                 <div className="infos">
 
-                                                    <div>
 
-                                                        <span className="bold-text">{t("monthlyValue")}: </span><span>
+                                                    <div className="display-flex-center">
+                                                        <span className="bold-text">{t("monthlyValue")}: </span>
+                                                        {val.realBenefit.realCurrency === "real" ? (
+                                                            <span>R$</span>
+                                                        ) : (val.realBenefit.realCurrency === "dollar") ? (
+                                                            <span>$</span>
+                                                        ) : (
+                                                            <span>€</span>
+                                                        )}
 
-                                                            {val.realBenefit.realCurrency === "real" ? (
-                                                                <span>R$</span>
-                                                            ) : (val.realBenefit.realCurrency === "dollar") ? (
-                                                                <span>$</span>
-                                                            ) : (
-                                                                <span>€</span>
-                                                            )}
-
-                                                            &nbsp;
-                                                            {val.realBenefit.realMonthlyValue.toLocaleString()}</span>
-
-
+                                                        <input className={inputDiv} type="text" value={val.realBenefit.realMonthlyValue.toLocaleString()} disabled={editDemand} />
                                                     </div>
 
                                                 </div>
 
 
                                                 <div className="description">
-                                                    <span className="desc">Descrição:</span><span>{val.realBenefit.realBenefitDescription}</span>
+                                                    <div className="display-flex-center">
+                                                        <span className="desc">Descrição:</span>
+                                                        <input className={inputDiv} type="text" value={val.realBenefit.realBenefitDescription} disabled={editDemand} />
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -322,18 +338,17 @@ export default function ViewDemand() {
 
                                                 <div className="infos">
 
-                                                    <div>
-                                                        <span>{t("monthlyValue")}: </span><span>
-                                                            {val.potentialBenefit.potentialCurrency === "real" ? (
-                                                                <span>R$</span>
-                                                            ) : (val.realBenefit.realCurrency === "dollar") ? (
-                                                                <span>$</span>
-                                                            ) : (
-                                                                <span>€</span>
-                                                            )}
+                                                    <div className="display-flex-center">
+                                                        <span className="bold-text">{t("monthlyValue")}: </span>
+                                                        {val.potentialBenefit.potentialCurrency === "real" ? (
+                                                            <span>R$</span>
+                                                        ) : (val.potentialBenefit.potentialCurrency === "dollar") ? (
+                                                            <span>$</span>
+                                                        ) : (
+                                                            <span>€</span>
+                                                        )}
 
-                                                            &nbsp;
-                                                            {val.potentialBenefit.potentialMonthlyValue.toLocaleString()}</span>
+                                                        <input className={inputDiv} type="text" value={val.potentialBenefit.potentialMonthlyValue.toLocaleString()} disabled={editDemand} />
                                                     </div>
                                                 </div>
 
@@ -345,7 +360,13 @@ export default function ViewDemand() {
 
 
                                                 <div className="description">
-                                                    <span className="desc">Descrição:</span><span>{val.potentialBenefit.potentialBenefitDescription}</span>
+                                                    <div className="display-flex-center">
+
+                                                        <span className="desc">Descrição:</span>
+                                                        <input className={inputDiv} type="text" value={val.potentialBenefit.potentialBenefitDescription} disabled={editDemand} />
+
+                                                    </div>
+
                                                 </div>
                                             </div>
 
@@ -364,7 +385,12 @@ export default function ViewDemand() {
 
 
                                                 <div className="description">
-                                                    <span className="desc">Descrição:</span><span>{val.qualitativeBenefit.qualitativeBenefitDescription}</span>
+                                                    <div className="display-flex-center">
+
+                                                        <span className="desc">Descrição:</span>
+                                                        <input className={inputDiv} type="text" value={val.qualitativeBenefit.qualitativeBenefitDescription} disabled={editDemand} />
+
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -455,13 +481,15 @@ export default function ViewDemand() {
 
                                 <p className="title">{t("attachments")}</p>
 
-
-                                <div className="attachment">
-                                    <div className="attachment-image">
-                                        <img src={"/attachment/" + attatchmentType() + ".png"} alt="" />
+                                <a href={URL.createObjectURL(new Blob([demands[0].demandAttachment.dice], { type: demands[0].demandAttachment.type }))} download={"teste"} target="_blank">
+                                    <div className="attachment">
+                                        <div className="attachment-image">
+                                            <img src={"/attachment/" + attatchmentType() + ".png"} alt="" />
+                                        </div>
+                                        <span>{demands[0].demandAttachment.name}</span>
                                     </div>
-                                    <span>{demands[0].demandAttachment.name}</span>
-                                </div>
+                                </a>
+
 
                             </div>
 

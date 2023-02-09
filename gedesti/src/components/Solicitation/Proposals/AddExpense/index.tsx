@@ -5,7 +5,7 @@ import Nav from "../../../Fixed/Nav";
 import Title from "../../../Fixed/Search/Title";
 import SelectAddExpense from "./SelectAddExpense";
 import "./style.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer, TypeOptions } from 'react-toastify';
 import ButtonAction from "../../Demands/CrateDemand/ButtonAction";
@@ -29,6 +29,10 @@ export default function AddExpense() {
 
     const expense = { typeOfExpense: typeOfExpense, expenseProfile: expenseProfile, periodOfExecutionMonth: periodOfExecutionMonth, necessityHoursQuantity: necessityHoursQuantity, hourValue: hourValue, expenseTotalValue: expenseTotalValue };
     const [expenseList, setExpenseList]:any = useState([]);
+
+    useEffect(() => {
+        setExpenseList(JSON.parse(localStorage.getItem('expenseList') || '[]'));
+    }, []);
 
     async function createExpense() {
         await Services.save(typeOfExpense, expenseProfile, periodOfExecutionMonth, necessityHoursQuantity, hourValue, expenseTotalValue, 1);

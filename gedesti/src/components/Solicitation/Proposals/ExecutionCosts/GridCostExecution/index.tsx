@@ -21,6 +21,8 @@ const StyledBox = styled(Box)(({ theme }) => ({
     },
 }));
 
+const expenseList = JSON.parse(localStorage.getItem('expenseList') || '[]');
+
 const rows: GridRowsProp = [
     {
         id: 1,
@@ -118,18 +120,20 @@ export default function ConditionalValidationGrid() {
             </tr>
 
             <div className='hr' />
-
-
-            <tr>
-                <td>Interno</td>
-                <td>Infraestrutura</td>
-                <td>20 meses</td>
-                <td>400 horas</td>
-                <td>50</td>
-                <td>1000</td>
-
-            </tr>
-
+            {
+                expenseList.map((val:any) => {
+                    return (
+                        <tr>
+                            <td>{val.typeOfExpense}</td>
+                            <td>{val.expenseProfile}</td>
+                            <td>{val.periodOfExecutionMonth}</td>
+                            <td>{val.necessityHoursQuantity}h</td>
+                            <td>R$ {val.hourValue}</td>
+                            <td>R$ {val.expenseTotalValue}</td>
+                        </tr>
+                    )
+                })
+            }
             <div className='hr' />
         </table>
 

@@ -63,13 +63,6 @@ export default function Nav() {
 
     }, []);
 
-    function attNotification() {
-        return numNotification;
-
-    }
-
-
-
     return (
         <nav className={nav}>
             <div id={nav} />
@@ -144,8 +137,11 @@ export default function Nav() {
 
                 <Link to="/notifications">
                     <li id={hover("notifications")}>
-
-                        <div className="booble">{attNotification()}</div>
+                        {numNotification > 0 &&
+                            <div className="booble">
+                                <span>{numNotification}</span>
+                            </div>
+                        }
 
                         <div>
                             <span className="material-symbols-outlined">

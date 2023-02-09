@@ -4,12 +4,22 @@ import Nav from "../../Fixed/Nav"
 import Title from "../../Fixed/Search/Title";
 import Notification from "./Notification";
 import Footer from "../../Fixed/Footer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Services from "../../../services/notificationService";
 
 export default function Notifications() {
 
     const speaks = ["Olá, eu sou a Bia e estou aqui para ajudá-lo no sistema de demandas Gedesti. O que posso fazer por você hoje?"]
-    
+    const [notifications, setNotifications]:any = useState([])
+
+    useEffect(() => {
+        Services.findAll().then((response) => {
+            setNotifications(response)
+        })
+    }, [])
+
+
+
     return (
         <div className="notifications">
 
@@ -27,10 +37,15 @@ export default function Notifications() {
                     <Title nav="notifications" title="notifications" />
                 </div>
 
-                <Notification />
-                <Notification />
-                <Notification />
-                <Notification />
+                {notifications.map((notification:any) => {
+                    return (
+                        <Notification
+                            description={notification.description}
+                            date={notification.date}
+                            icnon={notification.icon}
+                        />
+                    )
+                }, [])}
 
                 <Footer />
 

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import "./style.css"
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from "react-i18next";
+import ServicesNotification from "../../../services/notificationService";
 
 export default function Nav() {
 
@@ -11,7 +12,9 @@ export default function Nav() {
     const [current, setCurrent] = useState("current");
     const url = window.location.pathname.split("/")[1];
     const worker: any = localStorage.getItem("worker");
+    const workerCode = JSON.parse(worker).id;
     const office = JSON.parse(worker).office;
+    const [numNotification, setNumNotification] = useState(0);
 
     function hover(li: string): string {
         if (url === li || url === li.substring(0, li.length - 1)) {
@@ -38,7 +41,33 @@ export default function Nav() {
         } else {
             setNav("nav");
         }
+
+
+        ServicesNotification.findAll().then((response: any) => {
+            let num = 0;
+
+            for (let i = 0; i < response.length; i++) {
+                if (response[i].worker.workerCode === workerCode) {
+                    console.log("tem notificação")
+                    num++;
+                }
+            }
+
+            setNumNotification(num);
+
+
+        }).catch((error: any) => {
+            console.log(error);
+        });
+
+
     }, []);
+
+    function attNotification() {
+        return numNotification;
+
+    }
+
 
 
     return (
@@ -115,6 +144,9 @@ export default function Nav() {
 
                 <Link to="/notifications">
                     <li id={hover("notifications")}>
+
+                        <div className="booble">{attNotification()}</div>
+
                         <div>
                             <span className="material-symbols-outlined">
                                 notifications

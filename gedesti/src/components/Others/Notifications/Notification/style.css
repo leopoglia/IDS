@@ -21,6 +21,18 @@
 
 .notification .informations .material-symbols-outlined {
     margin-right: 10px;
+    color: var(--grey59);
+    background-color: var(--greyF7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: var(--r);
+    border: 1px solid transparent;
+}
+
+.notification .informations .material-symbols-outlined:hover{
+    background-color: var(--greyE5);
 }
 
 .notification .date-horary .date {

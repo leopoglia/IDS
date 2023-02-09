@@ -75,7 +75,7 @@ body {
 
 .container {
   margin-left: 65px;
-  padding: 20px 110px;
+  padding: 20px 150px;
 }
 
 body {
@@ -342,6 +342,11 @@ hr {
   background-color: var(--greyE5);
 }
 
+@media(max-width: 1280px) {
+  .container {
+    padding: 20px 110px;
+  }
+}
 
 @media(max-width: 768px) {
   .container {

@@ -4,12 +4,13 @@ import Header from "../../../Fixed/Header"
 import Nav from "../../../Fixed/Nav"
 import Title from "../../../Fixed/Search/Title"
 import SelectSizeDemand from "../RankDemand/SelectSizeDemand"
-import Services from "../../../../services/classificationService"
-import ServicesDemand from "../../../../services/demandService"
 import { toast, ToastContainer, TypeOptions } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import './style.css'
 import { useNavigate } from "react-router-dom";
+import Services from "../../../../services/classificationService"
+import ServicesDemand from "../../../../services/demandService"
+import ServicesNotification from "../../../../services/notificationService";
 
 export default function ComplementDemand() {
 
@@ -29,6 +30,8 @@ export default function ComplementDemand() {
 
                 Services.updateComplement(demand.classification.classificationCode, ppmCode, linkEpicJira, deadlineDemand).then((response) => {
                     ServicesDemand.updateStatus(codeDemand, "BacklogComplement").then((response) => {
+                        ServicesNotification.save("Um analista complementou a sua demanda de código  " + demand.demandCode, demand.requesterRegistration.workerCode, "done");
+
                         localStorage.setItem("route", "complement");
                         navigate("/demand/view/" + codeDemand)
                     })

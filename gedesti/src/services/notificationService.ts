@@ -2,23 +2,27 @@ const url = "http://localhost:8080/api/notification";
 
 const Services = {
 
-    // save: function (minuteName: String, minuteProblem: String, attachment: any, agenda: Number) {
-    //     return new Promise((resolve, reject) => {
+    save: function (description: string, workerCode: number, icon: string) {
+        return new Promise((resolve, reject) => {
+
+            const date = new Date();
             
-    //         var formData = new FormData();
-    //         let minute = {"minuteName": minuteName, "minuteProblem": minuteProblem, "agenda": { agendaCode: agenda }}
-    //         formData.append('minute', JSON.stringify(minute));
-    //         formData.append('attachment', attachment);
-            
-    //         fetch(url, {
-    //             method: 'POST', 
-    //             body: formData,
-    //             headers: { 'Content-Type': 'application/json' }
-    //         }).then(function (result) { return result.json(); })
-    //             .then(resolve)
-    //             .catch(resolve)
-    //     })
-    // },
+            const notification = {
+                date: date,
+                description: description,
+                worker: {workerCode: workerCode},
+                icon: icon
+            }
+    
+            fetch(url, {
+                method: 'POST', 
+                body: JSON.stringify(notification),
+                headers: { 'Content-Type': 'application/json' }
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(resolve)
+        })
+    },
     findAll: async function () {
         return new Promise((resolve, reject) => {
             fetch(url, {

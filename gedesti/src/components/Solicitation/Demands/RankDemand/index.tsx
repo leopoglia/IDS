@@ -5,8 +5,9 @@ import Nav from "../../../Fixed/Nav";
 import Title from "../../../Fixed/Search/Title";
 import SelectSizeDemand from "./SelectSizeDemand";
 import { useTranslation } from "react-i18next";
-import Service from "../../../../services/classificationService"
-import Services from "../../../../services/demandService";
+import ServicesClassification from "../../../../services/classificationService"
+import ServicesDemand from "../../../../services/demandService";
+import ServicesNotification from "../../../../services/notificationService";
 import { Link } from "react-router-dom";
 import { toast, ToastContainer, TypeOptions } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
@@ -28,7 +29,7 @@ export default function RankDemand() {
     }, [])
 
     async function getDemand() {
-        setDemand(await Services.findById(url));
+        setDemand(await ServicesDemand.findById(url));
     }
 
     // Salvando a classificação da demanda
@@ -42,15 +43,17 @@ export default function RankDemand() {
             return;
         } else {
             // Salvando a classificação
-            Service.save(classification.size, classification.ti, -1, "", classification.buReq, classification.buBenList, analysis.id).then((response: any) => {
+            ServicesClassification.save(classification.size, classification.ti, -1, "", classification.buReq, classification.buBenList, analysis.id).then((response: any) => {
                 let classificationCode = response.classificationCode; // Pegando o código da classificação
 
                 // Atualizando a classificação da demanda
-                Services.updateClassification(demand.demandCode, classificationCode).then((response: any) => {
+                ServicesDemand.updateClassification(demand.demandCode, classificationCode).then((response: any) => {
 
-                    Services.updateStatus(url, "BacklogRanked").then((response: any) => {
+                    ServicesDemand.updateStatus(url, "BacklogRanked").then((response: any) => {
                         localStorage.setItem("route", "classification");
                         localStorage.removeItem("classification");
+
+                        ServicesNotification.save("Um analista classificou a sua demanda de código  " + demand.demandCode, demand.requesterRegistration.workerCode , "done");
 
                         navigate("/demand/view/" + url)
                     }).catch((error: any) => {

@@ -11,6 +11,18 @@ export default function Notification(props: any) {
         let dataArrumada = data[0].split("-")
         let dataFinal = dataArrumada[2] + "/" + dataArrumada[1] + "/" + dataArrumada[0]
 
+
+        if(localStorage.getItem("i18nextLng") == "en"){
+            dataFinal = dataArrumada[1] + "/" + dataArrumada[2] + "/" + dataArrumada[0]
+        }else if(localStorage.getItem("i18nextLng") == "es"){
+            dataFinal = dataArrumada[2] + "/" + dataArrumada[1] + "/" + dataArrumada[0]
+        }else if(localStorage.getItem("i18nextLng") == "pt"){
+            dataFinal = dataArrumada[2] + "/" + dataArrumada[1] + "/" + dataArrumada[0]
+        }else if(localStorage.getItem("i18nextLng") == "cn"){
+            dataFinal = dataArrumada[2] + "/" + dataArrumada[1] + "/" + dataArrumada[0]
+        }
+
+
         if (data[1] != undefined) {
             let horario = data[1].split(":")
             dataFinal = dataFinal + " " + horario[0] + ":" + horario[1]
@@ -41,7 +53,7 @@ export default function Notification(props: any) {
 
             <div className="informations">
                 <span className="material-symbols-outlined">
-                    info
+                    {props.icon}
                 </span>
                 <span>{props.description}</span>
             </div>

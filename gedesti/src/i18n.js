@@ -8,6 +8,7 @@ i18n
     .use(Backend)
     // Habilita a detecção automática de linguagem
     .use(LanguageDetector)
+
     // Habilita o módulo de inicialização do hook
     .use(initReactI18next)
     .init({

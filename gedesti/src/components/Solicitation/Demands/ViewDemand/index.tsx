@@ -4,6 +4,7 @@ import Nav from "../../../Fixed/Nav"
 import Title from "../../../Fixed/Search/Title";
 import ButtonActionAnalyst from "./ButtonActionAnalyst";
 import Services from "../../../../services/demandService";
+import ServicesNotification from "../../../../services/notificationService";
 import Footer from "../../../Fixed/Footer";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -97,6 +98,8 @@ export default function ViewDemand() {
                 setStepDemand(0)
             } else if (response.demandStatus === "BacklogRank") {
                 setStepDemand(1)
+            }else if(response.demandStatus === "BacklogRankApproved"){
+                setStepDemand(1)
             } else if (response.demandStatus === "BacklogComplement") {
                 setStepDemand(2)
             }
@@ -138,7 +141,7 @@ export default function ViewDemand() {
 
     const [demands, setDemands] = useState([
         {
-            demandCode: 0, demandTitle: "", requesterRegistration: { workerName: "" }, demandDate: "", demandStatus: "", currentProblem: "", demandObjective: "",
+            demandCode: 0, demandTitle: "", requesterRegistration: { workerName: "", workerCode: 0 }, demandDate: "", demandStatus: "", currentProblem: "", demandObjective: "",
             costCenter: { costCenterCode: "", costCenter: "" }, demandAttachment: { type: "", name: "", dice: new Blob([""]) }, realBenefit: { realMonthlyValue: 0, realCurrency: "", realBenefitDescription: "" },
             potentialBenefit: { potentialMonthlyValue: 0, legalObrigation: false, potentialBenefitDescription: "", potentialCurrency: "" }, qualitativeBenefit: { realMonthlyValue: 0, interalControlsRequirements: false, frequencyOfUse: "", qualitativeBenefitDescription: "" },
             complements: [{ executionDeadline: "", ppm: "", epicJira: "" }]
@@ -161,6 +164,10 @@ export default function ViewDemand() {
 
     function approveDemand() {
         Services.updateStatus(demandCode, "BacklogRankApproved").then((response: any) => {
+
+            ServicesNotification.save("Um Gerente de Negócio aprovou a sua demanda de código  " + demands[0].demandCode, demands[0].requesterRegistration.workerCode , "done");
+
+
             notifyApprove();
             getDemand();
         }).catch((error: any) => {

@@ -11,10 +11,13 @@ export default function Notifications() {
 
     const speaks = ["Olá, eu sou a Bia e estou aqui para ajudá-lo no sistema de demandas Gedesti. O que posso fazer por você hoje?"]
     const [notifications, setNotifications]:any = useState([])
+    const worker = JSON.parse(localStorage.getItem("worker") || "{}")
+
 
     useEffect(() => {
         Services.findAll().then((response) => {
             setNotifications(response)
+            console.log(response)
         })
     }, [])
 
@@ -38,11 +41,12 @@ export default function Notifications() {
                 </div>
 
                 {notifications.map((notification:any) => {
+                    if(notification.worker.workerCode == worker.id)
                     return (
                         <Notification
                             description={notification.description}
                             date={notification.date}
-                            icnon={notification.icon}
+                            icon={notification.icon}
                         />
                     )
                 }, [])}

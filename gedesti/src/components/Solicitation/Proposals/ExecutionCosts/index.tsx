@@ -70,7 +70,7 @@ export default function ExecutionCosts() {
 
     const nextStep = () => {
 
-        if (payingCostCenter === '') {
+        if (costsCenters.length === 0) {
             notify()
         } else {
             navigate('/proposals');
@@ -125,13 +125,13 @@ export default function ExecutionCosts() {
 
                                     {costsCenters.map((costCenter: any) => {
                                         return <div className="cost-center">
-                                        <span>{costCenter}</span>
+                                            <span>{costCenter}</span>
 
-                                        <div>
-                                            <input type="number" />
-                                            <label htmlFor="">%</label>
+                                            <div>
+                                                <input type="number" />
+                                                <label htmlFor="">%</label>
+                                            </div>
                                         </div>
-                                    </div>
                                     })
                                     }
                                 </div>

@@ -41,14 +41,7 @@ export default function Demands() {
     }
 
     const [demands, setDemands] = useState([
-        { demandCode: 1, demandTitle: "Sistema para calcular o SCORE", requesterRegistration: { workerName: "Leonardo Heitor Poglia" }, demandDate: "27/04/2022", demandStatus: "Backlog" },
-        { demandCode: 2, demandTitle: "Calculadora de custos para projeto de demandas", requesterRegistration: { workerName: "Vytor Augusto Rosa" }, demandDate: "21/11/2022", demandStatus: "Assesment" },
-        { demandCode: 3, demandTitle: "Programa que identifica falhas de proteção constantes no Gitlab", requesterRegistration: { workerName: "Eduarda B" }, demandDate: "21/11/2022", demandStatus: "Business Case" },
-        { demandCode: 4, demandTitle: "Projeto para inovações", requesterRegistration: { workerName: "Ester G" }, demandDate: "21/11/2022", demandStatus: "To-do" },
-        { demandCode: 5, demandTitle: "Alterar custo de uso do projeto GEDESTI", requesterRegistration: { workerName: "Romário H" }, demandDate: "21/11/2022", demandStatus: "Design and Build" },
-        { demandCode: 6, demandTitle: "Nova área de leitura online", requesterRegistration: { workerName: "Josué do Amarante" }, demandDate: "21/11/2022", demandStatus: "Cancelled" },
-        { demandCode: 7, demandTitle: "GPS para se localizar na fabrica", requesterRegistration: { workerName: "Tati" }, demandDate: "21/11/2022", demandStatus: "Support" },
-        { demandCode: 8, demandTitle: "Sistema para solicitação de demandas de TI", requesterRegistration: { workerName: "Jair" }, demandDate: "21/11/2022", demandStatus: "Done" }
+        { demandCode: 0, demandTitle: "", requesterRegistration: { workerName: "" }, demandDate: "", demandStatus: "" }
     ]);
 
     const [proposals] = useState([

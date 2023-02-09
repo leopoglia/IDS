@@ -11,23 +11,62 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer, TypeOptions } from 'react-toastify';
 import ButtonAction from "../../Demands/CrateDemand/ButtonAction";
 import { useState } from "react";
-
+import Services from "../../../../services/costCenterService";
 
 
 export default function ExecutionCosts() {
     const { t } = useTranslation();
     const navigate = useNavigate();
 
+    const [costCenter, setCostCenter] = useState("");
+    const [costsCenters, setCostsCenters]: any = useState([]);
     const demandCode = parseInt(window.location.href.split("/")[5]);
-    let expenseListStorage:any = JSON.parse(localStorage.getItem('expenseList') || '[]');
-    
+    let expenseListStorage: any = JSON.parse(localStorage.getItem('expenseList') || '[]');
+    const [idCostCenter, setIdCostCenter]: any = useState([]);
 
     // const expenseList:any = [];
     // expenseList.push(JSON.parse(expenseListStorage));
 
     const [payingCostCenter, setPayingCostCenter] = useState('');
 
+    function addCostCenter(costCenterAdd: any) {
+        if (costCenterAdd === "" || costCenterAdd === " ") {
+            alert("Digite um centro de custo");
+        } else {
+            createCostCenter();
+            costsCenters.push(costCenterAdd);
+            setCostsCenters(costsCenters);
 
+            setCostCenter("");
+        }
+    }
+
+    async function createCostCenter() {
+
+        let costsCenterBd: any = await Services.findAll();
+
+        let igual = 0;
+        let id = 0;
+        for (let i = 0; i < costsCenterBd.length; i++) {
+            if (costsCenterBd[i].costCenter === costCenter) {
+                igual++;
+            }
+        }
+
+        if (igual === 0) {
+            let service: any = await Services.save(costCenter);
+
+            idCostCenter.push(service.costCenterCode);
+        } else {
+            for (let i = 0; i < costsCenterBd.length; i++) {
+                if (costsCenterBd[i].costCenter === costCenter) {
+                    id = costsCenterBd[i].costCenterCode;
+                }
+            }
+            idCostCenter.push(id);
+        }
+
+    }
 
     const nextStep = () => {
 
@@ -69,33 +108,36 @@ export default function ExecutionCosts() {
                             </Link>
                         </div>
 
+                        <div className="input">
+                            <div className="display-flex-grid">
+                                <div>
+                                    <label>{t("payingCostCenter")} *</label>
 
-                        <div className="display-flex-grid">
-                            <div>
-                                <label>{t("payingCostCenter")} *</label>
+                                    <div className="display-flex">
+                                        <SelectCostExecution setCostCenter={setCostCenter} costCenter={costCenter} addCostCenter={addCostCenter} type="payingCostCenter" />
 
-                                <div className="display-flex">
-                                    <SelectCostExecution setPayingCostCenter={setPayingCostCenter} type="payingCostCenter" />
-
-                                    <button className="btn-primary btn-center-cost">
-                                        <span className="material-symbols-outlined">
-                                            add
-                                        </span>
-                                    </button>
-                                </div>
-
-                                <div className="cost-center">
-                                    <span>Centro de Custo Tal</span>
-
-                                    <div>
-                                        <input type="number" />
-                                        <label htmlFor="">%</label>
+                                        <button className="btn-primary btn-center-cost" onClick={() => { addCostCenter(costCenter) }}>
+                                            <span className="material-symbols-outlined">
+                                                add
+                                            </span>
+                                        </button>
                                     </div>
+
+                                    {costsCenters.map((costCenter: any) => {
+                                        return <div className="cost-center">
+                                        <span>{costCenter}</span>
+
+                                        <div>
+                                            <input type="number" />
+                                            <label htmlFor="">%</label>
+                                        </div>
+                                    </div>
+                                    })
+                                    }
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
 
 

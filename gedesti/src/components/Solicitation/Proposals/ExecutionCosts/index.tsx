@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer, TypeOptions } from 'react-toastify';
 import ButtonAction from "../../Demands/CrateDemand/ButtonAction";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Services from "../../../../services/costCenterService";
 
 
@@ -24,10 +24,24 @@ export default function ExecutionCosts() {
     let expenseListStorage: any = JSON.parse(localStorage.getItem('expenseList') || '[]');
     const [idCostCenter, setIdCostCenter]: any = useState([]);
 
+ 
+    let totalsCosts = 0;
+    let externalCosts = 0;
+    let internalCosts = 0;
+
     // const expenseList:any = [];
     // expenseList.push(JSON.parse(expenseListStorage));
 
     const [payingCostCenter, setPayingCostCenter] = useState('');
+
+    for (let i = 0; i < expenseListStorage.length; i++) {
+        if (expenseListStorage[i].typeOfExpense === "internal") {
+            internalCosts += expenseListStorage[i].expenseTotalValue;
+        } else {
+            externalCosts += expenseListStorage[i].expenseTotalValue;
+        }
+        totalsCosts += expenseListStorage[i].expenseTotalValue;
+    }
 
     function addCostCenter(costCenterAdd: any) {
         if (costCenterAdd === "" || costCenterAdd === " ") {
@@ -148,11 +162,11 @@ export default function ExecutionCosts() {
 
                     <div className="display-flex-center">
                         <div className="costs-execution">
-                            <span>{t("totalsCosts")}: R$ 0,00</span>
+                            <span>{t("totalsCosts")}: R$ {totalsCosts}</span>
 
-                            <span>{t("externalCosts")}: R$ 0,00</span>
+                            <span>{t("externalCosts")}: R$ {externalCosts}</span>
 
-                            <span>{t("internalsCosts")}: R$ 0,00</span>
+                            <span>{t("internalsCosts")}: R$ {internalCosts}</span>
 
                         </div>
 

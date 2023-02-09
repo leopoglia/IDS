@@ -27,6 +27,8 @@ nav {
     width: 175px;
 }
 
+
+
 nav a {
     text-decoration: none !important;
 }
@@ -144,6 +146,14 @@ nav li {
     position: fixed;
     bottom: 0;
     transition: 0.1s !important;
+}
+
+@media(min-width: 1280px) {
+
+    .nav-open,
+    #nav-open {
+        width: 185px;
+    }
 }
 
 @media(max-width: 768px) {

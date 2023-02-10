@@ -53,7 +53,7 @@ export default function Notification(props: any) {
 
     function viewNotification() {
         Services.updateNotificationVisualized(props.id).then((response: any) => {
-            navigate('/demand/view/' + props.description[props.description.length - 1], { replace: true });
+            navigate('/' + props.type + '/view/' + props.description[props.description.length - 1], { replace: true });
         }).catch((error: any) => {
             console.log(error)
         })

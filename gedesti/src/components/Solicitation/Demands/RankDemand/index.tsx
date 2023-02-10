@@ -53,7 +53,7 @@ export default function RankDemand() {
                         localStorage.setItem("route", "classification");
                         localStorage.removeItem("classification");
 
-                        ServicesNotification.save("Um analista classificou a sua demanda de código  " + demand.demandCode, demand.requesterRegistration.workerCode , "done");
+                        ServicesNotification.save("Um analista classificou a sua demanda de código  " + demand.demandCode, demand.requesterRegistration.workerCode , "done", "demand");
 
                         navigate("/demand/view/" + url)
                     }).catch((error: any) => {

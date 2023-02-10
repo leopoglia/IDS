@@ -49,6 +49,7 @@ export default function Notifications() {
                                 date={notification.date}
                                 icon={notification.icon}
                                 view={notification.visualized}
+                                type={notification.type}
                             />
                         )
                 }, [])}

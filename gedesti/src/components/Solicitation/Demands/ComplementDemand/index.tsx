@@ -30,7 +30,7 @@ export default function ComplementDemand() {
 
                 Services.updateComplement(demand.classification.classificationCode, ppmCode, linkEpicJira, deadlineDemand).then((response) => {
                     ServicesDemand.updateStatus(codeDemand, "BacklogComplement").then((response) => {
-                        ServicesNotification.save("Um analista complementou a sua demanda de código  " + demand.demandCode, demand.requesterRegistration.workerCode, "done");
+                        ServicesNotification.save("Um analista complementou a sua demanda de código  " + demand.demandCode, demand.requesterRegistration.workerCode, "done", "demand");
 
                         localStorage.setItem("route", "complement");
                         navigate("/demand/view/" + codeDemand)

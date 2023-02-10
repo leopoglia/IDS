@@ -165,7 +165,7 @@ export default function ViewDemand() {
     function approveDemand() {
         Services.updateStatus(demandCode, "BacklogRankApproved").then((response: any) => {
 
-            ServicesNotification.save("Um Gerente de Negócio aprovou a sua demanda de código  " + demands[0].demandCode, demands[0].requesterRegistration.workerCode , "done");
+            ServicesNotification.save("Um Gerente de Negócio aprovou a sua demanda de código  " + demands[0].demandCode, demands[0].requesterRegistration.workerCode , "done", "demand");
 
 
             notifyApprove();

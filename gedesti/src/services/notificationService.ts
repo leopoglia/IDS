@@ -2,7 +2,7 @@ const url = "http://localhost:8080/api/notification";
 
 const Services = {
 
-    save: function (description: string, workerCode: number, icon: string) {
+    save: function (description: string, workerCode: number, icon: string, type: string) {
         return new Promise((resolve, reject) => {
 
             const date = new Date();
@@ -11,7 +11,8 @@ const Services = {
                 date: date,
                 description: description,
                 worker: {workerCode: workerCode},
-                icon: icon
+                icon: icon,
+                type: type,
             }
     
             fetch(url, {

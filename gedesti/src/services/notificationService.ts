@@ -51,6 +51,17 @@ const Services = {
     //     })
     // }
 
+    updateNotificationVisualized: function (id: number) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/update/" + id, {
+                method: 'PUT', headers: { 'Content-Type': 'application/json' }
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(resolve)
+        })
+        
+    }
+
 }
 
 export default Services;

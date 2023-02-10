@@ -10,13 +10,13 @@ import Services from "../../../services/notificationService";
 export default function Notifications() {
 
     const speaks = ["Olá, eu sou a Bia e estou aqui para ajudá-lo no sistema de demandas Gedesti. O que posso fazer por você hoje?"]
-    const [notifications, setNotifications]:any = useState([])
+    const [notifications, setNotifications]: any = useState([])
     const worker = JSON.parse(localStorage.getItem("worker") || "{}")
 
 
     useEffect(() => {
-        Services.findAll().then((response) => {
-            setNotifications(response)
+        Services.findAll().then((response:any) => {
+            setNotifications(response.reverse())
             console.log(response)
         })
     }, [])
@@ -40,15 +40,17 @@ export default function Notifications() {
                     <Title nav="notifications" title="notifications" />
                 </div>
 
-                {notifications.map((notification:any) => {
-                    if(notification.worker.workerCode == worker.id)
-                    return (
-                        <Notification
-                            description={notification.description}
-                            date={notification.date}
-                            icon={notification.icon}
-                        />
-                    )
+                {notifications.map((notification: any) => {
+                    if (notification.worker.workerCode == worker.id)
+                        return (
+                            <Notification
+                                id={notification.notificationCode}
+                                description={notification.description}
+                                date={notification.date}
+                                icon={notification.icon}
+                                view={notification.visualized}
+                            />
+                        )
                 }, [])}
 
                 <Footer />

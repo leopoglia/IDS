@@ -1,7 +1,11 @@
 import "./style.css"
+import Services from "../../../../services/notificationService"
+import { useNavigate } from "react-router"
 
 
 export default function Notification(props: any) {
+
+    const navigate = useNavigate()
 
     function arrumarData() {
 
@@ -12,13 +16,13 @@ export default function Notification(props: any) {
         let dataFinal = dataArrumada[2] + "/" + dataArrumada[1] + "/" + dataArrumada[0]
 
 
-        if(localStorage.getItem("i18nextLng") == "en"){
+        if (localStorage.getItem("i18nextLng") == "en") {
             dataFinal = dataArrumada[1] + "/" + dataArrumada[2] + "/" + dataArrumada[0]
-        }else if(localStorage.getItem("i18nextLng") == "es"){
+        } else if (localStorage.getItem("i18nextLng") == "es") {
             dataFinal = dataArrumada[2] + "/" + dataArrumada[1] + "/" + dataArrumada[0]
-        }else if(localStorage.getItem("i18nextLng") == "pt"){
+        } else if (localStorage.getItem("i18nextLng") == "pt") {
             dataFinal = dataArrumada[2] + "/" + dataArrumada[1] + "/" + dataArrumada[0]
-        }else if(localStorage.getItem("i18nextLng") == "cn"){
+        } else if (localStorage.getItem("i18nextLng") == "cn") {
             dataFinal = dataArrumada[2] + "/" + dataArrumada[1] + "/" + dataArrumada[0]
         }
 
@@ -47,9 +51,16 @@ export default function Notification(props: any) {
     }
 
 
+    function viewNotification() {
+        Services.updateNotificationVisualized(props.id).then((response: any) => {
+            navigate('/demand/view/' + props.description[props.description.length - 1], { replace: true });
+        }).catch((error: any) => {
+            console.log(error)
+        })
+    }
 
     return (
-        <div className="notification">
+        <div  onClick={() => viewNotification()} className={"notification-" + props.view}>
 
             <div className="informations">
                 <span className="material-symbols-outlined">

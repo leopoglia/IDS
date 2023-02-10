@@ -14,7 +14,7 @@ export default function Nav() {
     const worker: any = localStorage.getItem("worker");
     const workerCode = JSON.parse(worker).id;
     const office = JSON.parse(worker).office;
-    const [numNotification, setNumNotification] = useState(0);
+    const [numNotification, setNumNotification]:any = useState(0);
 
     function hover(li: string): string {
         if (url === li || url === li.substring(0, li.length - 1)) {
@@ -48,11 +48,13 @@ export default function Nav() {
 
             for (let i = 0; i < response.length; i++) {
                 if (response[i].worker.workerCode === workerCode) {
-                    console.log("tem notificação")
-                    num++;
+                    if (response[i].visualized === false) {
+                        console.log("tem notificação")
+                        num++;
+                    }
+
                 }
             }
-
             setNumNotification(num);
 
 
@@ -137,7 +139,7 @@ export default function Nav() {
 
                 <Link to="/notifications">
                     <li id={hover("notifications")}>
-                        {numNotification > 0 &&
+                        {numNotification > 0  &&
                             <div className="booble">
                                 <span>{numNotification}</span>
                             </div>

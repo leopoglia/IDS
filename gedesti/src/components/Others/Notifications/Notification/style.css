@@ -1,4 +1,5 @@
-.notification {
+.notification-true,
+.notification-false {
     width: 100%;
     height: 60px;
     display: flex;
@@ -10,16 +11,26 @@
     cursor: pointer;
 }
 
-.notification:hover {
+.notification-true{
+    background-color: var(--greyF7);
+}
+
+
+.notification-true:hover,
+.notification-false:hover {
     background-color: var(--blueF4);
 }
 
-.notification .informations {
+
+
+.notification-true .informations,
+.notification-false .informations {
     display: flex;
     align-items: center;
 }
 
-.notification .informations .material-symbols-outlined {
+.notification-true .informations .material-symbols-outlined,
+.notification-false .informations .material-symbols-outlined {
     margin-right: 10px;
     color: var(--grey59);
     background-color: var(--greyF7);
@@ -31,10 +42,12 @@
     border: 1px solid transparent;
 }
 
-.notification .informations .material-symbols-outlined:hover{
+.notification-true .informations .material-symbols-outlined:hover
+.notification-false .informations .material-symbols-outlined:hover {
     background-color: var(--greyE5);
 }
 
-.notification .date-horary .date {
+.notification-true .date-horary .date,
+.notification-false .date-horary .date {
     margin-right: 15px;
 }

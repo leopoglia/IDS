@@ -12,6 +12,7 @@ import { toast, ToastContainer, TypeOptions } from 'react-toastify';
 import ButtonAction from "../../Demands/CrateDemand/ButtonAction";
 import { useState, useEffect } from "react";
 import Services from "../../../../services/costCenterService";
+import ProposalServices from "../../../../services/proposalService";
 
 
 export default function ExecutionCosts() {
@@ -23,7 +24,7 @@ export default function ExecutionCosts() {
     const demandCode = parseInt(window.location.href.split("/")[5]);
     let expenseListStorage: any = JSON.parse(localStorage.getItem('expenseList') || '[]');
     const [idCostCenter, setIdCostCenter]: any = useState([]);
-
+    const proposal = JSON.parse(localStorage.getItem('proposal') || '{}');
  
     let totalsCosts = 0;
     let externalCosts = 0;
@@ -87,6 +88,8 @@ export default function ExecutionCosts() {
         if (costsCenters.length === 0) {
             notify()
         } else {
+            console.log("proposta", "backlog", 1, proposal.start, proposal.end, "aaaaaa", proposal.respnosibleAnalyst, "", "", totalsCosts, externalCosts, internalCosts, demandCode);
+            ProposalServices.save("proposta", "backlog", 1, proposal.start, proposal.end, "aaaaaa", proposal.respnosibleAnalyst, "", "", totalsCosts, externalCosts, internalCosts, demandCode);
             navigate('/proposals');
         }
     }

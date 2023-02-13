@@ -24,11 +24,8 @@ export default function ProposedInformation() {
     const [end, setEnd] = useState("");
     const [fileAttachment, setFileAttachment]: any = useState();
 
-    localStorage.setItem('responsibleAnalyst', respnosibleAnalyst);
-    localStorage.setItem('responsibleArea', responsibleArea);
-    localStorage.setItem('start', start);
-    localStorage.setItem('end', end);
-    localStorage.setItem('fileAttachment', fileAttachment);
+    let proposal = {respnosibleAnalyst, responsibleArea, start, end, fileAttachment}
+    localStorage.setItem('proposal', JSON.stringify(proposal));
 
     const handleFileSelected = (e: any): void => {
         const files = Array.from(e.target.files)

@@ -57,6 +57,9 @@
 
 .view-demand .attachments .attachment span {
     font-size: var(--pp) !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .view-demand .attachment .attachment-image {

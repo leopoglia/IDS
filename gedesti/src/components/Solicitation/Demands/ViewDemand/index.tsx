@@ -98,7 +98,7 @@ export default function ViewDemand() {
                 setStepDemand(0)
             } else if (response.demandStatus === "BacklogRank") {
                 setStepDemand(1)
-            }else if(response.demandStatus === "BacklogRankApproved"){
+            } else if (response.demandStatus === "BacklogRankApproved") {
                 setStepDemand(1)
             } else if (response.demandStatus === "BacklogComplement") {
                 setStepDemand(2)
@@ -106,6 +106,8 @@ export default function ViewDemand() {
 
             setCenterCost(demand[0].costCenter)
         })
+
+
     }
 
     useEffect(() => {
@@ -159,13 +161,10 @@ export default function ViewDemand() {
         )
     }
 
-    console.log(demands)
-
-
     function approveDemand() {
         Services.updateStatus(demandCode, "BacklogRankApproved").then((response: any) => {
 
-            ServicesNotification.save("Um Gerente de Negócio aprovou a sua demanda de código  " + demands[0].demandCode, demands[0].requesterRegistration.workerCode , "done", "demand");
+            ServicesNotification.save("Um Gerente de Negócio aprovou a sua demanda de código  " + demands[0].demandCode, demands[0].requesterRegistration.workerCode, "done", "demand");
 
 
             notifyApprove();
@@ -182,11 +181,47 @@ export default function ViewDemand() {
     }
 
     const attatchmentType = () => {
-        if (demands[0].demandAttachment.type === "image/png") {
+        if (demands[0].demandAttachment.type === "image/png" || demands[0].demandAttachment.type === "image/jpeg") {
             return "png";
+        } else if (demands[0].demandAttachment.type === "application/pdf") {
+            return "pdf";
+        } else if (demands[0].demandAttachment.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
+            return "word";
+        } else if (demands[0].demandAttachment.type === "application/msword") {
+            return "excel";
+        } else if(demands[0].demandAttachment.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
+            return "excel";
+        } else if(demands[0].demandAttachment.type === "application/vnd.ms-excel") {
+            return "excel";
+        } else if(demands[0].demandAttachment.type === "application/zip") {
+            return "zip";
+        } else if(demands[0].demandAttachment.type === "application/x-rar-compressed") {
+            return "rar";
         }
     }
 
+    function donwloadAttachment(base64: any, type: any, name: any) {
+        const buffer = base64ToArrayBuffer(base64);
+        const blob = new Blob([buffer], { type: type });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        document.body.appendChild(a);
+        a.href = url;
+        a.download = name;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
+
+    function base64ToArrayBuffer(base64: string): ArrayBuffer {
+        const binaryString = window.atob(base64);
+        const len = binaryString.length;
+        const bytes = new Uint8Array(len);
+        for (let i = 0; i < len; i++) {
+            bytes[i] = binaryString.charCodeAt(i);
+        }
+        return bytes.buffer;
+    }
 
     return (
         <div className="view-demand">
@@ -488,7 +523,7 @@ export default function ViewDemand() {
 
                                 <p className="title">{t("attachments")}</p>
 
-                                <a href={URL.createObjectURL(new Blob([demands[0].demandAttachment.dice], { type: demands[0].demandAttachment.type }))} download={"teste"} target="_blank">
+                                <a onClick={() => donwloadAttachment(demands[0].demandAttachment.dice, demands[0].demandAttachment.type, demands[0].demandAttachment.name)} download={"teste.jpg"} target="_blank">
                                     <div className="attachment">
                                         <div className="attachment-image">
                                             <img src={"/attachment/" + attatchmentType() + ".png"} alt="" />

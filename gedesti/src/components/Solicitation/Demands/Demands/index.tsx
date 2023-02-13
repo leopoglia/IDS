@@ -7,7 +7,8 @@ import Footer from "../../../Fixed/Footer";
 import { useEffect, useState } from "react";
 import { t } from "i18next"
 import Load from "../../../Fixed/Load";
-import Services from "../../../../services/demandService";
+import ServicesDemand from "../../../../services/demandService";
+import ServicesProposal from "../../../../services/proposalService";
 import { toast, ToastContainer, TypeOptions } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
@@ -22,20 +23,35 @@ export default function Demands() {
 
     // Entra na página e busca as demandas cadastradas
     useEffect(() => {
-        getDemands(); // Busca as demandas cadastradas
+
+
+        if (url[3] === "demands") {
+            getDemands(); // Busca as demandas cadastradas
+        } else if (url[3] === "proposals") {
+            getProposals(); // Busca as demandas cadastradas
+        }
+
 
         // Verifica se a rota da página anterior é a de cadastro de demanda
         if (localStorage.getItem("route") === "create-demand") {
             localStorage.removeItem("route");
             notify();
         }
-    }, [])
+    }, [url[3]])
 
 
     // Buscar as demandas cadastradas
     async function getDemands() {
-        findDemands = await Services.findAll().then((res: any) => {
+        findDemands = await ServicesDemand.findAll().then((res: any) => {
             setDemands(res); // Atualiza o estado das demandas
+        });
+        return findDemands;
+    }
+
+    // Buscar as propostas cadastradas
+    async function getProposals() {
+        findDemands = await ServicesProposal.findAll().then((res: any) => {
+            setProposals(res); // Atualiza o estado das demandas
         });
         return findDemands;
     }
@@ -44,7 +60,8 @@ export default function Demands() {
         { demandCode: 0, demandTitle: "", requesterRegistration: { workerName: "" }, demandDate: "", demandStatus: "" }
     ]);
 
-    const [proposals] = useState([
+    const [proposals, setProposals] = useState([
+        { proposalCode: "", demand: {demandTitle: "", requesterRegistration: { workerName: ""}, demandDate: "" }, proposalTitle: "", requesterRegistration: { workerName: "" }, responsibleAnalyst: { workerName: ""}, proposalDate: "", proposalStatus: "" },
         { name: "Proposta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "Approved" },
         { name: "Proposta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "Rejected" },
         { name: "Proposta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "Pending" },
@@ -143,7 +160,7 @@ export default function Demands() {
                         {
                             proposals.map((val, index) => {
                                 return (
-                                    <Demand listDirection={table} name={val.name} requester={val.requester} analyst={val.analyst} date={val.date} situation={val.situation} type="proposal" />
+                                    <Demand  listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />
                                 );
                             })
                         }

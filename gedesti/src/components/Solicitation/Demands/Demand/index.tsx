@@ -10,7 +10,6 @@ export default function Demand(props: any) {
     const office = JSON.parse(worker).office;
     const { t } = useTranslation();
 
-
     const information = () => {
         if (props.analyst == null) {
             if (props.director == null) {

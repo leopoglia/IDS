@@ -44,6 +44,7 @@
 .demand-list .graphic-proposal {
     display: flex;
     align-items: center;
+    font-size: var(--p);
 }
 
 .demand-list .graphic {

@@ -187,15 +187,12 @@ export default function ViewDemand() {
             return "pdf";
         } else if (demands[0].demandAttachment.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
             return "word";
-        } else if (demands[0].demandAttachment.type === "application/msword") {
+        } else if (demands[0].demandAttachment.type === "application/msword" || demands[0].demandAttachment.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||
+            demands[0].demandAttachment.type === "application/vnd.ms-excel") {
             return "excel";
-        } else if(demands[0].demandAttachment.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
-            return "excel";
-        } else if(demands[0].demandAttachment.type === "application/vnd.ms-excel") {
-            return "excel";
-        } else if(demands[0].demandAttachment.type === "application/zip") {
+        } else if (demands[0].demandAttachment.type === "application/zip") {
             return "zip";
-        } else if(demands[0].demandAttachment.type === "application/x-rar-compressed") {
+        } else if (demands[0].demandAttachment.type === "application/x-rar-compressed") {
             return "rar";
         }
     }

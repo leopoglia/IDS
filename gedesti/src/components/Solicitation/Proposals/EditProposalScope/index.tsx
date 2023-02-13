@@ -22,6 +22,9 @@ export default function EditProposalScope() {
     if (content === "" || content === undefined) {
       notify()
     } else {
+
+      localStorage.setItem('proposalScope', content);
+
       navigate('/proposal/informations/' + demandCode);
     }
   }

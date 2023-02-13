@@ -13,11 +13,13 @@ import ButtonAction from "../../Demands/CrateDemand/ButtonAction";
 import { useState, useEffect } from "react";
 import Services from "../../../../services/costCenterService";
 import ProposalServices from "../../../../services/proposalService";
-
+import DemandService from "../../../../services/demandService";
 
 export default function ExecutionCosts() {
     const { t } = useTranslation();
     const navigate = useNavigate();
+
+    
 
     const [costCenter, setCostCenter] = useState("");
     const [costsCenters, setCostsCenters]: any = useState([]);
@@ -25,10 +27,18 @@ export default function ExecutionCosts() {
     let expenseListStorage: any = JSON.parse(localStorage.getItem('expenseList') || '[]');
     const [idCostCenter, setIdCostCenter]: any = useState([]);
     const proposal = JSON.parse(localStorage.getItem('proposal') || '{}');
- 
+    const scope:any = localStorage.getItem('proposalScope');
+    let actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear(); // Data atual
+
     let totalsCosts = 0;
     let externalCosts = 0;
     let internalCosts = 0;
+
+    DemandService.findById(demandCode).then((demand: any) => {
+        localStorage.setItem('demand', JSON.stringify(demand));
+    });
+
+    const demandData:any = JSON.parse(localStorage.getItem('demand') || '{}');
 
     // const expenseList:any = [];
     // expenseList.push(JSON.parse(expenseListStorage));
@@ -88,8 +98,8 @@ export default function ExecutionCosts() {
         if (costsCenters.length === 0) {
             notify()
         } else {
-            console.log("proposta", "backlog", 1, proposal.start, proposal.end, "aaaaaa", proposal.respnosibleAnalyst, "", "", totalsCosts, externalCosts, internalCosts, demandCode);
-            ProposalServices.save("proposta", "backlog", 1, proposal.start, proposal.end, "aaaaaa", proposal.respnosibleAnalyst, "", "", totalsCosts, externalCosts, internalCosts, demandCode);
+            console.log(demandData.demandTitle, "backlog", 1, proposal.start, proposal.end, "aaaaaa", proposal.respnosibleAnalyst, "", "", totalsCosts, externalCosts, internalCosts, demandCode, actualDate);
+            ProposalServices.save(demandData.demandTitle, "Pending", 1, proposal.start, proposal.end, scope, proposal.respnosibleAnalyst, "", "", totalsCosts, externalCosts, internalCosts, demandCode, actualDate);
             navigate('/proposals');
         }
     }

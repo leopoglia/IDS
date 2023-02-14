@@ -45,8 +45,6 @@ export default function ViewDemand() {
     const [classification, setClassification]: any = useState({}); // Dados da classificação
     const [inputDiv, setInputDiv] = useState("input-disabled"); // Habilitar ou desabilitar input
 
-    const [boxDiv, setBoxDiv] = useState("box-demand"); // Habilitar ou desabilitar box
-
     // Dados da demanda
     const [demand, setDemand]: any = useState({
         requesterRegistration: {
@@ -187,7 +185,6 @@ export default function ViewDemand() {
             setStepDemand(2) // Seta o passo da demanda
             setClassification(response.demand.classification) // Seta a classificação da demanda
             setCenterCost(response.demand.costCenter) // Seta o centro de custo da demanda
-            setBoxDiv("box-proposal") // Seta o box da proposta
         })
     }
 
@@ -277,16 +274,6 @@ export default function ViewDemand() {
         return bytes.buffer;
     }
 
-    function setBoxProposal() {
-        if (url === "proposal") {
-            if (boxDiv === "box-proposal") {
-                setBoxDiv("box-demand")
-            } else {
-                setBoxDiv("box-proposal")
-            }
-        }
-
-    }
 
     return (
 
@@ -392,7 +379,7 @@ export default function ViewDemand() {
 
                         </div>
 
-                        <div onClick={() => { setBoxProposal() }} className={"box " + boxDiv} id="box">
+                        <div className="box" id="box">
                             <div>
                                 <div className="situation-current">
                                     <div className="display-flex-space-between display-solicitation-demand">

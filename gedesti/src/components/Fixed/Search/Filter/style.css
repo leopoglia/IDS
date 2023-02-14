@@ -19,7 +19,7 @@
 }
 
 .hr {
-    border-bottom: 1px solid var(--greyC4);
+    color: #ffffffb5;
 }
 
 .filter-modal .btn-primary {

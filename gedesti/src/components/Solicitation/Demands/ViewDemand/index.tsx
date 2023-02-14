@@ -407,17 +407,18 @@ export default function ViewDemand() {
 
                                     <div className="display-flex">
                                         <p className="title">{t("currentSituation")}:</p>
-                                        <input className={inputDiv} type="text" value={demand.currentProblem} disabled={editDemand} />
+                                        <textarea className={inputDiv} value={demand.currentProblem} disabled={editDemand} />
                                     </div>
 
                                     <div className="display-flex">
-                                        <p className="title">{t("objective")}:</p>
-                                        <input className={inputDiv} type="text" value={demand.demandObjective} disabled={editDemand} />
+                                        <p className="title objective">{t("objective")}:</p>
+                                        <textarea className={inputDiv} value={demand.demandObjective} disabled={editDemand} />
                                     </div>
                                 </div>
 
                                 <div className="real-benefit">
                                     <p className="title">{t("benefitReal")}</p>
+
 
                                     <div className="infos">
 

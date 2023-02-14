@@ -1,3 +1,9 @@
+.view-demand textarea {
+    min-height: auto !important;
+    height: 100% !important;
+    box-sizing: border-box;
+}
+
 .view-demand .box div span {
     font-size: var(--p);
 }
@@ -13,6 +19,10 @@
 .view-demand .box .title {
     margin-top: 10px !important;
     margin-right: 5px;
+}
+
+.view-demand .box .objective{
+    min-width: 127px
 }
 
 .view-demand .description {
@@ -171,6 +181,7 @@
 .view-demand .complement,
 .view-demand .attachments {
     margin-top: 15px;
+    padding: 10px;
     border: 1px solid var(--greyC4);
     border-radius: var(--r);
 }
@@ -183,14 +194,8 @@
 
 .view-demand .cost-center .title,
 .view-demand .classification .title,
-.view-demand .complement .title,
-.view-demand .attachments .title,
-.view-demand .real-benefit .title,
-.view-demand .potential-benefit .title,
-.view-demand .qualitative-benefit .title,
-.view-demand .situation-current .title {
-
-    padding: 5px;
+.view-demand .complement .title {
+    padding: 5px 10px;
 }
 
 .view-demand .cost-center tr:last-child,

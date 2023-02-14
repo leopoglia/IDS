@@ -1,14 +1,3 @@
-.box-proposal{
-    height: 70px !important;
-    overflow: hidden;
-}
-
-.box-proposal:hover{
-    background-color: var(--greyF7);
-    cursor: pointer;
-}
-
-
 .view-demand .box div span {
     font-size: var(--p);
 }

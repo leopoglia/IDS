@@ -380,20 +380,23 @@ export default function ViewDemand() {
 
                         <div className="box" id="box">
                             <div>
+                                <div className="display-flex-space-between display-solicitation-demand">
+                                    <p className="title">{demand.demandTitle}</p>
+                                    <div className="code">{demand.demandCode}</div>
+                                </div>
+
                                 <div className="situation-current">
-                                    <div className="display-flex-space-between display-solicitation-demand">
-                                        <p>{demand.demandTitle}</p>
-                                        <div className="code">{demand.demandCode}</div>
+
+
+                                    <div className="display-flex">
+                                        <p className="title" >{t("requester")}:</p>
+                                        <input className={inputDiv} type="text" value={demand.requesterRegistration.workerName} disabled={editDemand} />
                                     </div>
-
-
-                                    <p>{t("requester")}</p>
-                                    <input className={inputDiv} type="text" value={demand.requesterRegistration.workerName} disabled={editDemand} />
 
                                     {
                                         proposal.responsibleAnalyst.workerName !== "" ? (
-                                            <div className="responsibleAnalyst">
-                                                <p>{t("responsibleAnalyst")}</p>
+                                            <div className="responsibleAnalyst display-flex">
+                                                <p className="title">{t("responsibleAnalyst")}:</p>
                                                 <input className={inputDiv} type="text" value={proposal.responsibleAnalyst.workerName} disabled={editDemand} />
                                             </div>
                                         ) : (
@@ -401,13 +404,16 @@ export default function ViewDemand() {
                                         )
                                     }
 
-                                </div>
 
-                                <div className="situation-current">
-                                    <p className="title">{t("currentSituation")}</p>
-                                    <input className={inputDiv} type="text" value={demand.currentProblem} disabled={editDemand} />
-                                    <p className="title">{t("objective")}</p>
-                                    <input className={inputDiv} type="text" value={demand.demandObjective} disabled={editDemand} />
+                                    <div className="display-flex">
+                                        <p className="title">{t("currentSituation")}:</p>
+                                        <input className={inputDiv} type="text" value={demand.currentProblem} disabled={editDemand} />
+                                    </div>
+
+                                    <div className="display-flex">
+                                        <p className="title">{t("objective")}:</p>
+                                        <input className={inputDiv} type="text" value={demand.demandObjective} disabled={editDemand} />
+                                    </div>
                                 </div>
 
 
@@ -419,7 +425,7 @@ export default function ViewDemand() {
 
 
                                         <div className="display-flex-center">
-                                            <span className="bold-text">{t("monthlyValue")}: </span>
+                                            <span className="bold-text">{t("monthlyValue")}:  </span>
                                             {demand.realBenefit.realCurrency === "real" ? (
                                                 <span>R$</span>
                                             ) : (demand.realBenefit.realCurrency === "dollar") ? (

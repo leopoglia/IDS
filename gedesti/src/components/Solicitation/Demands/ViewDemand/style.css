@@ -37,7 +37,13 @@
 
 .view-demand tr{
     height: 40px;
+    border-bottom: 1px solid var(--greyC4);
 }
+
+.view-demand tr:first-child {
+    border-top: 1px solid var(--greyC4);
+}
+
 
 .view-demand tr:hover {
     background-color: var(--blueF4);

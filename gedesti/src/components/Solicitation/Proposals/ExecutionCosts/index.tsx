@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import "./style.css"
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { toast, ToastContainer, TypeOptions } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import ButtonAction from "../../Demands/CrateDemand/ButtonAction";
 import { useState, useEffect } from "react";
 import Services from "../../../../services/costCenterService";

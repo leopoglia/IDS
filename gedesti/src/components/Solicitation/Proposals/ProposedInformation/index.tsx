@@ -8,7 +8,7 @@ import "./style.css";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { toast, ToastContainer, TypeOptions } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import ButtonAction from "../../Demands/CrateDemand/ButtonAction";
 
 

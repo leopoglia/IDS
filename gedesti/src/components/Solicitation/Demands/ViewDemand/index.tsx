@@ -10,7 +10,7 @@ import Footer from "../../../Fixed/Footer";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { toast, ToastContainer, TypeOptions } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import PDF from "./PDF";
 
@@ -204,13 +204,12 @@ export default function ViewDemand() {
     // Função para criar tabela (tr)
     const tr = (dataOne: any, dataTwo: any) => {
         return (
-            <div>
+            <>
                 <tr>
                     <td>{t(dataOne)}</td>
                     <td>{t(dataTwo)}</td>
                 </tr>
-                <div className="hr" />
-            </div>
+            </>
         )
     }
 
@@ -507,11 +506,12 @@ export default function ViewDemand() {
 
                                 <div className="cost-center">
                                     <p className="title">{t("costCenter")}</p>
-                                    <div className="hr" />
                                     <table>
-                                        {tr("costCenter", "nameCostCenter")}
+                                        <tbody>
+                                            {tr("costCenter", "nameCostCenter")}
 
-                                        {costCenter()}
+                                            {costCenter()}
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -526,28 +526,22 @@ export default function ViewDemand() {
 
 
                                     <table>
-                                        <div className="hr" />
-                                        <tr>
-                                            <td>{t("size")}</td>
-                                            <td>{t("requesterBU")}</td>
-                                            <td>{t("buBenefited")}</td>
-                                            <td>{t("responsibleItSession")}</td>
-                                        </tr>
+                                        <tbody>
+                                            <tr>
+                                                <td>{t("size")}</td>
+                                                <td>{t("requesterBU")}</td>
+                                                <td>{t("buBenefited")}</td>
+                                                <td>{t("responsibleItSession")}</td>
+                                            </tr>
 
-                                        <div className="hr" />
+                                            <tr>
+                                                <td>{classification.classificationSize}</td>
+                                                <td>{classification.requesterBu.bu}</td>
+                                                <td>{classification.beneficiaryBu.bu}</td>
+                                                <td>{classification.itSection}</td>
 
-
-                                        <tr>
-                                            <td>{classification.classificationSize}</td>
-                                            <td>{classification.requesterBu.bu}</td>
-                                            <td>{classification.beneficiaryBu.bu}</td>
-                                            <td>{classification.itSection}</td>
-
-                                        </tr>
-
-                                        <div className="hr" />
-
-
+                                            </tr>
+                                        </tbody>
                                     </table>
                                 </div>
 
@@ -563,25 +557,23 @@ export default function ViewDemand() {
                                     <p>{t("complements")}</p>
 
                                     <table>
-                                        <div className="hr" />
-                                        <tr>
-                                            <td>{t("deadline")}</td>
-                                            <td>{t("ppmCode")}</td>
-                                            <td>{t("linkEpicJira")}</td>
+                                        <tbody>
+                                            <tr>
+                                                <td>{t("deadline")}</td>
+                                                <td>{t("ppmCode")}</td>
+                                                <td>{t("linkEpicJira")}</td>
 
-                                        </tr>
-
-                                        <div className="hr" />
+                                            </tr>
 
 
-                                        <tr>
-                                            <td>{classification.deadline}</td>
-                                            <td>{classification.ppmCode}</td>
-                                            <td><a target="_blank" href={"http://" + classification.epicJiraLink}>{classification.epicJiraLink}</a></td>
 
-                                        </tr>
+                                            <tr>
+                                                <td>{classification.deadline}</td>
+                                                <td>{classification.ppmCode}</td>
+                                                <td><a target="_blank" href={"http://" + classification.epicJiraLink}>{classification.epicJiraLink}</a></td>
 
-                                        <div className="hr" />
+                                            </tr>
+                                        </tbody>
                                     </table>
                                 </div>
                             ) : (

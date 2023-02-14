@@ -281,7 +281,7 @@ textarea {
 
 
 
-table {
+table, tbody {
   width: 100%;
   display: block;
   overflow: auto;

@@ -9,7 +9,7 @@ import ServicesClassification from "../../../../services/classificationService"
 import ServicesDemand from "../../../../services/demandService";
 import ServicesNotification from "../../../../services/notificationService";
 import { Link } from "react-router-dom";
-import { toast, ToastContainer, TypeOptions } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 

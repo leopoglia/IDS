@@ -5,7 +5,7 @@ import Nav from "../../../Fixed/Nav";
 import Title from "../../../Fixed/Search/Title";
 import "./style.css"
 import { Link } from "react-router-dom";
-import { toast, ToastContainer, TypeOptions } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import ButtonAction from "../CrateDemand/ButtonAction";

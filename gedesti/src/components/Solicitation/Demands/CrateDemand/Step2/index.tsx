@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react';
 import RealServices from "../../../../../services/realBenefitService";
 import QualitativeServices from "../../../../../services/qualitativeBenefitService";
 import PotentialServices from "../../../../../services/potentialBenefitService";
-import { toast, ToastContainer, TypeOptions } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from 'react-router-dom';
 

@@ -7,7 +7,7 @@ import Editor from "./Editor";
 import "./style.css"
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { toast, ToastContainer, TypeOptions } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
 export default function EditProposalScope() {

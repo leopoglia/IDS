@@ -9,7 +9,7 @@ import ButtonAction from "../ButtonAction";
 import { useTranslation } from "react-i18next";
 import { useState, useEffect } from 'react';
 import Services from '../../../../../services/costCenterService';
-import { toast, ToastContainer, TypeOptions } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from 'react-router-dom';
 import SelectCenterCost from "./SelectCenterCost";

@@ -4,7 +4,7 @@ import Header from "../../../Fixed/Header"
 import Nav from "../../../Fixed/Nav"
 import Title from "../../../Fixed/Search/Title"
 import SelectSizeDemand from "../RankDemand/SelectSizeDemand"
-import { toast, ToastContainer, TypeOptions } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import './style.css'
 import { useNavigate } from "react-router-dom";

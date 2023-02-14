@@ -204,7 +204,8 @@
 
 .display-solicitation-demand p {
     margin-bottom: 0px !important;
-    font-size: var(--g)
+    font-size: var(--g);
+    margin-top: 2px;
 }
 
 .bold-text{

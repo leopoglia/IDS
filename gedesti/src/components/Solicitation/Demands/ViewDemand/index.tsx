@@ -51,7 +51,7 @@ export default function ViewDemand() {
             workerCode: "",
             workerName: "",
         },
-        demandtatus: "",
+        demandStatus: "",
         demandType: "",
         demandDescription: "",
         demandDate: "",
@@ -110,8 +110,6 @@ export default function ViewDemand() {
             const demand: any = response
             setDemand(demand)
 
-            console.log(demand)
-
             // Verificar se o usuário é o solicitante
             if (office === "requester") {
                 // Verificar se o usuário é o solicitante
@@ -127,13 +125,13 @@ export default function ViewDemand() {
             // Verifica se o usuário é o analista
             if (office === "analyst") {
                 // Verificações do status da demanda
-                if (response.demandtatus === "Backlog" && response.classification !== undefined) {
+                if (response.demandStatus === "Backlog" && response.classification !== undefined) {
                     // Seta botões superiores de Reprovar ou Classificar para o analista
                     setActionsDemand(2)
-                } else if (response.demandtatus === "BacklogRankApproved") {
+                } else if (response.demandStatus === "BacklogRankApproved") {
                     // Seta botões superiores de Complementar para o analista
                     setActionsDemand(4)
-                } else if (response.demandtatus === "BacklogComplement") {
+                } else if (response.demandStatus === "BacklogComplement") {
                     // Seta botões superiores de Gerar Proposta para o analista
                     setActionsDemand(5)
                 }
@@ -143,7 +141,7 @@ export default function ViewDemand() {
             // Verifica se o usuário é o gerente de negócios
             if (office === "business") {
                 // Verificar se a demanda foi classificada
-                if (response.demandtatus === "BacklogRanked") {
+                if (response.demandStatus === "BacklogRanked") {
                     // Seta botões superiores de Reprovar ou Aprovar para o gerente de negócios
                     setActionsDemand(3)
                 }
@@ -155,14 +153,17 @@ export default function ViewDemand() {
                 setClassification(response.classification)
             }
 
-            if (response.demandtatus === "Backlog") {
+
+            if (response?.demandStatus === "Backlog") {
                 setStepDemand(0)
-            } else if (response.demandtatus === "BacklogRank") {
+            } else if (response?.demandStatus === "BacklogRank") {
                 setStepDemand(1)
-            } else if (response.demandtatus === "BacklogRankApproved") {
+            } else if (response?.demandStatus === "BacklogRankApproved") {
                 setStepDemand(1)
-            } else if (response.demandtatus === "BacklogComplement") {
+            } else if (response?.demandStatus === "BacklogComplement") {
                 setStepDemand(2)
+            } else {
+                setStepDemand(0)
             }
 
             setCenterCost(demand.costCenter)
@@ -173,9 +174,10 @@ export default function ViewDemand() {
     function getProposal() {
         ServicesProposal.findById(demandCode).then((response: any) => {
             const proposal: any = response
-            setDemand(response.demand)
-
-            setCenterCost(proposal.demand.costCenter)
+            setDemand(response.demand); // Seta a demanda da proposta
+            setStepDemand(2) 
+            setClassification(response.demand.classification) // Seta a classificação da demanda
+            setCenterCost(response.demand.costCenter) // Seta o centro de custo da demanda
         })
     }
 

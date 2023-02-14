@@ -162,13 +162,29 @@
     color: var(--grey59);
 }
 
-.view-demand .benefits,
-.situation-current {
+.view-demand .real-benefit,
+.view-demand .potential-benefit,
+.view-demand .qualitative-benefit,
+.situation-current,
+.view-demand .cost-center {
     margin-top: 15px;
     border: 1px solid var(--greyC4);
     padding: 5px;
     border-radius: var(--r);
 }
+
+.view-demand .cost-center {
+    padding: 0px;
+}
+
+.view-demand .cost-center .title{
+    padding: 5px;
+}
+
+.view-demand .cost-center tr:last-child {
+    border-bottom: none;
+}
+
 
 .view-demand .title-name {
     margin-bottom: 20px;

@@ -416,97 +416,94 @@ export default function ViewDemand() {
                                     </div>
                                 </div>
 
+                                <div className="real-benefit">
+                                    <p className="title">{t("benefitReal")}</p>
 
-                                <div className="benefits">
-                                    <div className="real-benefit">
-                                        <p className="title">{t("benefitReal")}</p>
-
-                                        <div className="infos">
+                                    <div className="infos">
 
 
-                                            <div className="display-flex-center">
-                                                <span className="bold-text">{t("monthlyValue")}:  </span>
-                                                {demand.realBenefit.realCurrency === "real" ? (
-                                                    <span>R$</span>
-                                                ) : (demand.realBenefit.realCurrency === "dollar") ? (
-                                                    <span>$</span>
-                                                ) : (
-                                                    <span>€</span>
-                                                )}
+                                        <div className="display-flex-center">
+                                            <span className="bold-text">{t("monthlyValue")}:  </span>
+                                            {demand.realBenefit.realCurrency === "real" ? (
+                                                <span>R$</span>
+                                            ) : (demand.realBenefit.realCurrency === "dollar") ? (
+                                                <span>$</span>
+                                            ) : (
+                                                <span>€</span>
+                                            )}
 
-                                                <input className={inputDiv} type="text" value={demand.realBenefit.realMonthlyValue.toLocaleString()} disabled={editDemand} />
-                                            </div>
-
+                                            <input className={inputDiv} type="text" value={demand.realBenefit.realMonthlyValue.toLocaleString()} disabled={editDemand} />
                                         </div>
 
+                                    </div>
 
-                                        <div className="description">
-                                            <div className="display-flex-center">
-                                                <span className="desc">Descrição:</span>
-                                                <input className={inputDiv} type="text" value={demand.realBenefit.realBenefitDescription} disabled={editDemand} />
-                                            </div>
+
+                                    <div className="description">
+                                        <div className="display-flex-center">
+                                            <span className="desc">Descrição:</span>
+                                            <input className={inputDiv} type="text" value={demand.realBenefit.realBenefitDescription} disabled={editDemand} />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div className="potential-benefit">
+                                    <p className="title">{t("benefitPotential")}</p>
+
+                                    <div className="infos">
+
+                                        <div className="display-flex-center">
+                                            <span className="bold-text">{t("monthlyValue")}: </span>
+                                            {demand.potentialBenefit.potentialCurrency === "real" ? (
+                                                <span>R$</span>
+                                            ) : (demand.potentialBenefit.potentialCurrency === "dollar") ? (
+                                                <span>$</span>
+                                            ) : (
+                                                <span>€</span>
+                                            )}
+
+                                            <input className={inputDiv} type="text" value={demand.potentialBenefit.potentialMonthlyValue.toLocaleString()} disabled={editDemand} />
                                         </div>
                                     </div>
 
 
-                                    <div className="potential-benefit">
-                                        <p className="title">{t("benefitPotential")}</p>
-
-                                        <div className="infos">
-
-                                            <div className="display-flex-center">
-                                                <span className="bold-text">{t("monthlyValue")}: </span>
-                                                {demand.potentialBenefit.potentialCurrency === "real" ? (
-                                                    <span>R$</span>
-                                                ) : (demand.potentialBenefit.potentialCurrency === "dollar") ? (
-                                                    <span>$</span>
-                                                ) : (
-                                                    <span>€</span>
-                                                )}
-
-                                                <input className={inputDiv} type="text" value={demand.potentialBenefit.potentialMonthlyValue.toLocaleString()} disabled={editDemand} />
-                                            </div>
-                                        </div>
-
-
-                                        <div className="infos">
-                                            <span>{t("legalObligation")}: {
-                                                (demand.potentialBenefit.legalObrigation === true) ? (<span>Sim</span>) : (<span>Não</span>)}</span>
-                                        </div>
-
-
-                                        <div className="description">
-                                            <div className="display-flex-center">
-
-                                                <span className="desc">Descrição:</span>
-                                                <input className={inputDiv} type="text" value={demand.potentialBenefit.potentialBenefitDescription} disabled={editDemand} />
-
-                                            </div>
-
-                                        </div>
+                                    <div className="infos">
+                                        <span>{t("legalObligation")}: {
+                                            (demand.potentialBenefit.legalObrigation === true) ? (<span>Sim</span>) : (<span>Não</span>)}</span>
                                     </div>
 
-                                    <div className="qualitative-benefit">
-                                        <p className="title">{t("benefitQualitative")}</p>
 
-                                        <div className="infos">
+                                    <div className="description">
+                                        <div className="display-flex-center">
 
-
-
-                                            <div>
-                                                <span>{t("legalObligation")}: {demand.qualitativeBenefit.frequencyOfUse}</span>
-                                            </div>
+                                            <span className="desc">Descrição:</span>
+                                            <input className={inputDiv} type="text" value={demand.potentialBenefit.potentialBenefitDescription} disabled={editDemand} />
 
                                         </div>
 
+                                    </div>
+                                </div>
 
-                                        <div className="description">
-                                            <div className="display-flex-center">
+                                <div className="qualitative-benefit">
+                                    <p className="title">{t("benefitQualitative")}</p>
 
-                                                <span className="desc">Descrição:</span>
-                                                <input className={inputDiv} type="text" value={demand.qualitativeBenefit.qualitativeBenefitDescription} disabled={editDemand} />
+                                    <div className="infos">
 
-                                            </div>
+
+
+                                        <div>
+                                            <span>{t("legalObligation")}: {demand.qualitativeBenefit.frequencyOfUse}</span>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div className="description">
+                                        <div className="display-flex-center">
+
+                                            <span className="desc">Descrição:</span>
+                                            <input className={inputDiv} type="text" value={demand.qualitativeBenefit.qualitativeBenefitDescription} disabled={editDemand} />
+
                                         </div>
                                     </div>
                                 </div>

@@ -175,7 +175,7 @@ export default function ViewDemand() {
         ServicesProposal.findById(demandCode).then((response: any) => {
             const proposal: any = response
             setDemand(response.demand); // Seta a demanda da proposta
-            setStepDemand(2) 
+            setStepDemand(2)
             setClassification(response.demand.classification) // Seta a classificação da demanda
             setCenterCost(response.demand.costCenter) // Seta o centro de custo da demanda
         })
@@ -268,11 +268,14 @@ export default function ViewDemand() {
     }
 
     return (
+        
         <div className="view-demand">
 
             {pdf ? <PDF requester={workerName} demandTitle={demand.demandTitle} demandCode={demand.demandCode} /> : null}
 
-            {url === "demand" || url === "proposal" ? (
+
+
+            { /* Verifica se é uma demanda ou uma proposta */  url === "demand" || url === "proposal" ? (
                 <div>
 
                     <Header title="viewDemand" icon="visibility" />
@@ -285,7 +288,8 @@ export default function ViewDemand() {
 
                             <Title nav={t("demandViewDemand")} title="viewDemand" />
 
-                            {(actionsDemand === 1) ? (
+
+                            {  /* Botões superiores 1 - Download e Edit */  (actionsDemand === 1) ? (
                                 <div className="display-flex">
                                     <button className="btn-primary" onClick={generatePDF}>
                                         <span className="material-symbols-outlined">
@@ -300,7 +304,7 @@ export default function ViewDemand() {
                                         </span>
                                     </button>
                                 </div>
-                            ) : (actionsDemand === 2) ? (
+                            ) :/* Botões superiores 2 - Reprovar e Classificar */  (actionsDemand === 2) ? (
                                 <div className="display-flex">
 
                                     <Link to={"/demand/disapprove/" + demandCode}>
@@ -319,7 +323,7 @@ export default function ViewDemand() {
                                     <ButtonActionAnalyst />
                                 </div>
 
-                            ) : (actionsDemand === 3) ? (
+                            ) : /* Botões superiores 3 - Reprovar e Aprovar */ (actionsDemand === 3) ? (
                                 <div className="display-flex">
 
                                     <Link to={"/demand/disapprove/" + demandCode}>
@@ -336,7 +340,7 @@ export default function ViewDemand() {
                                     <ButtonActionAnalyst />
                                 </div>
 
-                            ) : (actionsDemand === 4) ? (
+                            ) : /* Botões superiores 4 - Complementar*/ (actionsDemand === 4) ? (
                                 <div className="display-flex">
                                     <Link to={"/demand/complement/" + demandCode} >
                                         <button className="btn-primary">
@@ -346,7 +350,7 @@ export default function ViewDemand() {
 
                                     <ButtonActionAnalyst />
                                 </div>
-                            ) : (actionsDemand === 5) ? (
+                            ) : /* Botões superiores 5 - Gerar Proposta */ (actionsDemand === 5) ? (
                                 <div className="display-flex">
                                     <Link to={"/proposal/demand/" + demandCode} >
                                         <button className="btn-primary">

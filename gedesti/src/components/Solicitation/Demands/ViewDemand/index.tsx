@@ -294,7 +294,12 @@ export default function ViewDemand() {
 
                         <div className="background-title">
 
-                            <Title nav={t("demandViewDemand")} title="viewDemand" />
+                            { /* Verifica se é uma demanda ou uma proposta */  url === "demand" ? (
+                                <Title nav={t("demandViewDemand")} title="viewDemand" />
+                            ) : (
+                                <Title nav={t("proposalViewProposal")} title="viewProposal" />
+
+                            )}
 
 
                             {  /* Botões superiores 1 - Download e Edit */  (actionsDemand === 1) ? (

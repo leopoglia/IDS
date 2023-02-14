@@ -1,6 +1,5 @@
 import Header from "../../../Fixed/Header";
 import Nav from "../../../Fixed/Nav";
-import Footer from "../../../Fixed/Footer";
 import Title from "../../../Fixed/Search/Title";
 import GridCostExecution from "./GridCostExecution";
 import SelectCostExecution from "./SelectCostExecution";
@@ -10,7 +9,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import ButtonAction from "../../Demands/CrateDemand/ButtonAction";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Services from "../../../../services/costCenterService";
 import ProposalServices from "../../../../services/proposalService";
 import DemandService from "../../../../services/demandService";
@@ -19,15 +18,13 @@ export default function ExecutionCosts() {
     const { t } = useTranslation();
     const navigate = useNavigate();
 
-    
-
     const [costCenter, setCostCenter] = useState("");
     const [costsCenters, setCostsCenters]: any = useState([]);
     const demandCode = parseInt(window.location.href.split("/")[5]);
     let expenseListStorage: any = JSON.parse(localStorage.getItem('expenseList') || '[]');
     const [idCostCenter, setIdCostCenter]: any = useState([]);
     const proposal = JSON.parse(localStorage.getItem('proposal') || '{}');
-    const scope:any = localStorage.getItem('proposalScope');
+    const scope: any = localStorage.getItem('proposalScope');
     let actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear(); // Data atual
 
     let totalsCosts = 0;
@@ -38,7 +35,7 @@ export default function ExecutionCosts() {
         localStorage.setItem('demand', JSON.stringify(demand));
     });
 
-    const demandData:any = JSON.parse(localStorage.getItem('demand') || '{}');
+    const demandData: any = JSON.parse(localStorage.getItem('demand') || '{}');
 
     // const expenseList:any = [];
     // expenseList.push(JSON.parse(expenseListStorage));

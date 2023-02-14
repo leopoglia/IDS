@@ -1,6 +1,5 @@
 import Header from "../../../Fixed/Header";
 import Nav from "../../../Fixed/Nav";
-import Footer from "../../../Fixed/Footer";
 import Title from "../../../Fixed/Search/Title";
 import SelectCostExecution from "./SelectCostExecution";
 import { Link } from "react-router-dom";

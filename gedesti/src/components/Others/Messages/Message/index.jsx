@@ -5,12 +5,10 @@ import "./style.css"
 import Header from "../../../Fixed/Header"
 import Nav from "../../../Fixed/Nav"
 import Title from "../../../Fixed/Search/Title";
-import EmojiPicker, { EmojiStyle, SkinTones, Theme, Categories, EmojiClickData, Emoji, SuggestionMode } from "emoji-picker-react";
-import Footer from "../../../Fixed/Footer";
+import EmojiPicker from "emoji-picker-react";
 import { useTranslation } from "react-i18next";
 
 var stompClient = null;
-const worker = localStorage.getItem('worker');
 const nameWorker = "JSON.parse(worker).name;"
 
 

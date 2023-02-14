@@ -1,0 +1,14 @@
+.gridCostExcution {
+    margin-top: 15px;
+    padding: 0px;
+    border: 1px solid var(--greyC4);
+    border-radius: var(--r);
+}
+
+.gridCostExcution tr{
+    border-bottom: 1px solid var(--greyC4);
+}
+
+.gridCostExcution tr:last-child{
+    border-bottom: none !important;
+}

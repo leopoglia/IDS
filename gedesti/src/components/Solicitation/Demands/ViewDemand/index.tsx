@@ -526,7 +526,7 @@ export default function ViewDemand() {
                             {(stepDemand === 1 || stepDemand === 2) ? (
                                 <div className="classification" >
 
-                                    <p>{t("classification")}</p>
+                                    <p className="title">{t("classification")}</p>
 
 
                                     <table>
@@ -558,7 +558,7 @@ export default function ViewDemand() {
                             {(stepDemand === 2) ? (
 
                                 <div className="complement" >
-                                    <p>{t("complements")}</p>
+                                    <p className="title">{t("complements")}</p>
 
                                     <table>
                                         <tbody>

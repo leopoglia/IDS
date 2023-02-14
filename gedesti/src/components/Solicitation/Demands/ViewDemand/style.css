@@ -166,22 +166,36 @@
 .view-demand .potential-benefit,
 .view-demand .qualitative-benefit,
 .situation-current,
-.view-demand .cost-center {
+.view-demand .cost-center,
+.view-demand .classification,
+.view-demand .complement,
+.view-demand .attachments {
     margin-top: 15px;
     border: 1px solid var(--greyC4);
-    padding: 5px;
     border-radius: var(--r);
 }
 
-.view-demand .cost-center {
+.view-demand .cost-center,
+.view-demand .classification,
+.view-demand .complement {
     padding: 0px;
 }
 
-.view-demand .cost-center .title{
+.view-demand .cost-center .title,
+.view-demand .classification .title,
+.view-demand .complement .title,
+.view-demand .attachments .title,
+.view-demand .real-benefit .title,
+.view-demand .potential-benefit .title,
+.view-demand .qualitative-benefit .title,
+.view-demand .situation-current .title {
+
     padding: 5px;
 }
 
-.view-demand .cost-center tr:last-child {
+.view-demand .cost-center tr:last-child,
+.view-demand .classification tr:last-child,
+.view-demand .complement tr:last-child {
     border-bottom: none;
 }
 

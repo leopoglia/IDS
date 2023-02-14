@@ -198,3 +198,9 @@
 .bold-text{
     min-width: 100px;
 }
+/* 
+@media(max-width: 768px) {
+    .view-demand .box div span {
+        font-size: var(--pp);
+    }
+} */

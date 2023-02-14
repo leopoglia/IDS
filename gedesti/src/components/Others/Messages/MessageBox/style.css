@@ -9,6 +9,8 @@
     padding: 20px;
     cursor: pointer;
     font-weight: 400;
+    overflow-y: hidden;
+    overflow-x: auto;
 }
 
 .message:hover{
@@ -34,7 +36,15 @@
     margin-left: 15px;
 }
 
+.message .username,
+.message .last-message {
+    white-space: nowrap;
+    width: 100%;
+    margin: 0px;
+}
+
 
 .message .date-horary .date{
     margin-right: 15px;
+    margin-left: 15px;
 }

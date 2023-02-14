@@ -169,22 +169,6 @@
     width: 150px;
 }
 
-.demand::-webkit-scrollbar,
-.demand-list::-webkit-scrollbar {
-    width: 10px;
-    height: 4px;
-}
-
-.demand::-webkit-scrollbar-thumb,
-.demand-list::-webkit-scrollbar-thumb {
-    background-color: var(--greyD9);
-}
-
-.demand::-webkit-scrollbar-thumb:hover,
-.demand-list::-webkit-scrollbar-thumb:hover {
-    background-color: var(--greyD9);
-    background-color: var(--greyC4);
-}
 
 .background-modal {
     position: fixed;
@@ -235,8 +219,7 @@
 
 
 @media(max-width: 1380px) {
-    .demand,
-    .demand-list {
+    .demand {
         height: 110px;
     }
 

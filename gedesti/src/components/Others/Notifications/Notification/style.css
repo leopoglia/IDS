@@ -9,7 +9,18 @@
     color: var(--grey59);
     padding: 20px;
     cursor: pointer;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
+
+.notification-true span,
+.notification-false span{
+    white-space: nowrap;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+} 
 
 .notification-true{
     background-color: var(--greyF7);
@@ -50,4 +61,12 @@
 .notification-true .date-horary .date,
 .notification-false .date-horary .date {
     margin-right: 15px;
+    margin-left: 30px;
+}
+
+@media(max-width: 768px){
+    .notification-true,
+    .notification-false{
+        height: 70px;
+    }
 }

@@ -147,8 +147,8 @@
         justify-content: space-between;
     }
 
-    .search .display-flex a,
-    .search .display-flex .btn-primary {
+    .display-flex a,
+    .display-flex .btn-primary {
         width: 100%;
     }
 }

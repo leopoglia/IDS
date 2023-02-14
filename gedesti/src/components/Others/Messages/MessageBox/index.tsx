@@ -9,8 +9,8 @@ export default function Message() {
                 <div className="profile">
                     <img className="user-picture" src="https://media-exp1.licdn.com/dms/image/C5603AQGoPhhWyeL2-Q/profile-displayphoto-shrink_200_200/0/1516833080377?e=2147483647&v=beta&t=O_q0eYPuycqoRh8ACadEX5gQhrVbPnomvJKRFQTIycI" alt="" />
                     <div className="message-name">
-                        <span className="username">Jair - Analista da demanda 01</span>
-                        <span className="last-message">Eduarda: Demanda ok!</span>
+                        <p className="username">Jair - Analista da demanda 01</p>
+                        <p className="last-message">Eduarda: Demanda ok!</p>
                     </div>
                 </div>
 

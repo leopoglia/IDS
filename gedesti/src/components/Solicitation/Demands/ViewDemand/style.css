@@ -1,3 +1,14 @@
+.box-proposal{
+    height: 70px !important;
+    overflow: hidden;
+}
+
+.box-proposal:hover{
+    background-color: var(--greyF7);
+    cursor: pointer;
+}
+
+
 .view-demand .box div span {
     font-size: var(--p);
 }
@@ -188,11 +199,12 @@
     display: flex;
     align-items: flex-start !important;
     height: 50px;
+    margin-bottom: 20px;
 }
 
 .display-solicitation-demand p {
     margin-bottom: 0px !important;
-    margin-top: 15px;
+    font-size: var(--g)
 }
 
 .bold-text{

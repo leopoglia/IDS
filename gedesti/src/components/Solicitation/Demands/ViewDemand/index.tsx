@@ -40,10 +40,12 @@ export default function ViewDemand() {
     // 1 - Demanda Classificada
     // 2 - Demanda Complementada
     const [stepDemand, setStepDemand] = useState(0);
-    const [editDemand, setEditDemand] = useState(true);
-    const [centerCost, setCenterCost] = useState([]);
-    const [classification, setClassification]: any = useState({});
-    const [inputDiv, setInputDiv] = useState("input-disabled");
+    const [editDemand, setEditDemand] = useState(true); // Habilitar ou desabilitar edição da demanda
+    const [centerCost, setCenterCost] = useState([]); // Dados do centro de custo
+    const [classification, setClassification]: any = useState({}); // Dados da classificação
+    const [inputDiv, setInputDiv] = useState("input-disabled"); // Habilitar ou desabilitar input
+
+    const [boxDiv, setBoxDiv] = useState("box-demand"); // Habilitar ou desabilitar box
 
     // Dados da demanda
     const [demand, setDemand]: any = useState({
@@ -181,11 +183,11 @@ export default function ViewDemand() {
     function getProposal() {
         ServicesProposal.findById(demandCode).then((response: any) => {
             setProposal(response)
-            console.log(response)
             setDemand(response.demand); // Seta a demanda da proposta
-            setStepDemand(2)
+            setStepDemand(2) // Seta o passo da demanda
             setClassification(response.demand.classification) // Seta a classificação da demanda
             setCenterCost(response.demand.costCenter) // Seta o centro de custo da demanda
+            setBoxDiv("box-proposal") // Seta o box da proposta
         })
     }
 
@@ -273,6 +275,17 @@ export default function ViewDemand() {
             bytes[i] = binaryString.charCodeAt(i);
         }
         return bytes.buffer;
+    }
+
+    function setBoxProposal() {
+        if (url === "proposal") {
+            if (boxDiv === "box-proposal") {
+                setBoxDiv("box-demand")
+            } else {
+                setBoxDiv("box-proposal")
+            }
+        }
+
     }
 
     return (
@@ -379,14 +392,16 @@ export default function ViewDemand() {
 
                         </div>
 
-                        <div className="box" id="box">
+                        <div onClick={() => { setBoxProposal() }} className={"box " + boxDiv} id="box">
                             <div>
                                 <div className="situation-current">
                                     <div className="display-flex-space-between display-solicitation-demand">
-                                        <p>{t("requester")}</p>
-                                        <div className="code">1000025500</div>
+                                        <p>{demand.demandTitle}</p>
+                                        <div className="code">{demand.demandCode}</div>
                                     </div>
 
+
+                                    <p>{t("requester")}</p>
                                     <input className={inputDiv} type="text" value={demand.requesterRegistration.workerName} disabled={editDemand} />
 
                                     {

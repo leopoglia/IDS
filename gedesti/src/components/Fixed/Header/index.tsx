@@ -21,7 +21,7 @@ export default function Header(props: {
                     <img src="/images/weg-white.png" alt="logo" />
                 </Link>
 
-                <div className="title">
+                {/* <div className="title">
                     <div className="flex">
                         <span className="material-symbols-outlined">
                             {props.icon}
@@ -30,7 +30,7 @@ export default function Header(props: {
                     </div>
 
                     <div className="trace" />
-                </div>
+                </div> */}
             </div>
 
             <div className="right">

@@ -81,6 +81,14 @@ export default function ViewDemand() {
         }
     });
 
+    // Dados da proposta
+    const [proposal, setProposal]: any = useState({
+        responsibleAnalyst: {
+            workerCode: "",
+            workerName: "",
+        }
+    });
+
     // Chama função ao entrar na página
     useEffect(() => {
         // Buscar dados da demanda
@@ -107,8 +115,7 @@ export default function ViewDemand() {
 
     function getDemand() {
         ServicesDemand.findById(demandCode).then((response: any) => {
-            const demand: any = response
-            setDemand(demand)
+            setDemand(response)
 
             // Verificar se o usuário é o solicitante
             if (office === "requester") {
@@ -166,14 +173,15 @@ export default function ViewDemand() {
                 setStepDemand(0)
             }
 
-            setCenterCost(demand.costCenter)
+            setCenterCost(response.costCenter)
         })
     }
 
     // Buscar proposta
     function getProposal() {
         ServicesProposal.findById(demandCode).then((response: any) => {
-            const proposal: any = response
+            setProposal(response)
+            console.log(response)
             setDemand(response.demand); // Seta a demanda da proposta
             setStepDemand(2)
             setClassification(response.demand.classification) // Seta a classificação da demanda
@@ -268,7 +276,7 @@ export default function ViewDemand() {
     }
 
     return (
-        
+
         <div className="view-demand">
 
             {pdf ? <PDF requester={workerName} demandTitle={demand.demandTitle} demandCode={demand.demandCode} /> : null}
@@ -367,9 +375,6 @@ export default function ViewDemand() {
                         </div>
 
                         <div className="box" id="box">
-
-
-
                             <div>
                                 <div className="situation-current">
                                     <div className="display-flex-space-between display-solicitation-demand">
@@ -378,6 +383,18 @@ export default function ViewDemand() {
                                     </div>
 
                                     <input className={inputDiv} type="text" value={demand.requesterRegistration.workerName} disabled={editDemand} />
+
+                                    {
+                                        proposal.responsibleAnalyst.workerName !== "" ? (
+                                            <div className="responsibleAnalyst">
+                                                <p>{t("responsibleAnalyst")}</p>
+                                                <input className={inputDiv} type="text" value={proposal.responsibleAnalyst.workerName} disabled={editDemand} />
+                                            </div>
+                                        ) : (
+                                            null
+                                        )
+                                    }
+
                                 </div>
 
                                 <div className="situation-current">

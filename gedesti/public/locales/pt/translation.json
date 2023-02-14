@@ -178,5 +178,6 @@
     "user": "Usuário",
     "BacklogRanked": "Backlog",
     "BacklogRankApproved": "Backlog",
-    "BacklogComplement": "Backlog"
+    "BacklogComplement": "Backlog",
+    "responsibleAnalyst": "Analista responsável"
 }

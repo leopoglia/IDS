@@ -198,6 +198,12 @@
 .bold-text{
     min-width: 100px;
 }
+
+.responsibleAnalyst{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
 /* 
 @media(max-width: 768px) {
     .view-demand .box div span {

@@ -162,9 +162,7 @@
     color: var(--grey59);
 }
 
-.view-demand .real-benefit,
-.view-demand .potential-benefit,
-.view-demand .qualitative-benefit,
+.view-demand .benefits,
 .situation-current {
     margin-top: 15px;
     border: 1px solid var(--greyC4);

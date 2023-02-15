@@ -276,7 +276,10 @@ export default function ViewDemand() {
     const [situationCorrentOpen, setSituationCorrentOpen] = useState(false);
     const [benefitRealOpen, setBenefitRealOpen] = useState(false);
     const [benefitPotentialOpen, setBenefitPotentialOpen] = useState(false);
-    const [costRealOpen, setCostRealOpen] = useState(false);
+    const [benefitQualitativeOpen, setBenefitQualitativeOpen] = useState(false);
+    const [costCenterOpen, setCostCenterOpen] = useState(false);
+    const [classificationOpen, setClassificationOpen] = useState(false);
+    const [complementOpen, setComplementOpen] = useState(false);
 
 
 
@@ -509,12 +512,12 @@ export default function ViewDemand() {
                                     </div>
                                 </div>
 
-                                <div className="qualitative-benefit">
+                                <div className={"qualitative-benefit " +  benefitQualitativeOpen}>
 
                                     <div className="display-flex-space-between">
                                         <p className="title">{t("benefitQualitative")}</p>
 
-                                        <span  className="material-symbols-outlined arrow-expend">
+                                        <span onClick={() => setBenefitQualitativeOpen(!benefitQualitativeOpen)}  className="material-symbols-outlined arrow-expend">
                                             expand_more
                                         </span>
                                     </div>
@@ -540,11 +543,11 @@ export default function ViewDemand() {
                                     </div>
                                 </div>
 
-                                <div className="cost-center">
+                                <div className={"cost-center " +  costCenterOpen}>
                                     <div className="display-flex-space-between">
                                         <p className="title">{t("costCenter")}</p>
 
-                                        <span className="material-symbols-outlined arrow-expend">
+                                        <span onClick={() => setCostCenterOpen(!costCenterOpen)} className="material-symbols-outlined arrow-expend">
                                             expand_more
                                         </span>
                                     </div>
@@ -563,12 +566,12 @@ export default function ViewDemand() {
 
 
                             {(stepDemand === 1 || stepDemand === 2) ? (
-                                <div className="classification" >
+                                <div className={"classification " +  classificationOpen} >
                                     <div className="display-flex-space-between">
 
                                         <p className="title">{t("classification")}</p>
 
-                                        <span className="material-symbols-outlined arrow-expend">
+                                        <span onClick={() => setClassificationOpen(!classificationOpen)}  className="material-symbols-outlined arrow-expend">
                                             expand_more
                                         </span>
                                     </div>
@@ -602,11 +605,11 @@ export default function ViewDemand() {
 
                             {(stepDemand === 2) ? (
 
-                                <div className="complement" >
+                                <div className={"complement " + complementOpen } >
                                     <div className="display-flex-space-between">
 
                                         <p className="title">{t("complements")}</p>
-                                        <span className="material-symbols-outlined arrow-expend">
+                                        <span  onClick={() => setComplementOpen(!complementOpen)} className="material-symbols-outlined arrow-expend">
                                             expand_more
                                         </span>
                                     </div>

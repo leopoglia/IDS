@@ -11,6 +11,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import ButtonAction from "../../Demands/CrateDemand/ButtonAction";
 import { useState } from "react";
 import Services from "../../../../services/costCenterService";
+import ServicesDemand from "../../../../services/demandService";
 import ProposalServices from "../../../../services/proposalService";
 import DemandService from "../../../../services/demandService";
 import ExpenseService from "../../../../services/expenseService";
@@ -102,8 +103,16 @@ export default function ExecutionCosts() {
         if (costsCenters.length === 0) {
             notify()
         } else {
-            console.log(demandData.demandTitle, "backlog", 1, proposal.start, proposal.end, "aaaaaa", proposal.respnosibleAnalyst, "", "", totalsCosts, externalCosts, internalCosts, demandCode, actualDate);
-            ProposalServices.save(demandData.demandTitle, "Pending", 1, proposal.start, proposal.end, scope, proposal.respnosibleAnalyst, "", "", totalsCosts, externalCosts, internalCosts, demandCode, actualDate);
+            ProposalServices.save(demandData.demandTitle, "Pending", 1, proposal.start, proposal.end, scope, proposal.respnosibleAnalyst, "", "", totalsCosts, externalCosts, internalCosts, demandCode, actualDate).then((proposal: any) => {
+                DemandService.updateStatus(demandCode, "Assesment");
+                localStorage.removeItem('proposal');
+                localStorage.removeItem('expenseList');
+            }).catch((error: any) => {
+                console.log(error);
+            });
+
+
+
             console.log(proposalByDemand);
             // for (let i = 0; i < expenseListStorage.length; i++) {
             //     ExpenseService.save(expenseListStorage[i].typeOfExpense,

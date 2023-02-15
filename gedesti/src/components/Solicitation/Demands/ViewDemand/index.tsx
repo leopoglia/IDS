@@ -180,6 +180,7 @@ export default function ViewDemand() {
     // Buscar proposta
     function getProposal() {
         ServicesProposal.findById(demandCode).then((response: any) => {
+            console.log(response)
             setProposal(response)
             setDemand(response.demand); // Seta a demanda da proposta
             setStepDemand(2) // Seta o passo da demanda

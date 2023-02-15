@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import { DataGrid, GridColumns, GridRowsProp } from '@mui/x-data-grid';
 import { randomPrice } from '@mui/x-data-grid-generator';
 import { useTranslation } from "react-i18next";
+import "./style.css"
 
 
 
@@ -115,8 +116,7 @@ export default function ConditionalValidationGrid() {
     ];
 
     return (
-        <table>
-            <div className='hr' />
+        <table className='gridCostExcution'>
             <tr>
                 <td>{t("expenseType")}</td>
                 <td>{t("expenseProfile")}</td>
@@ -127,7 +127,6 @@ export default function ConditionalValidationGrid() {
 
             </tr>
 
-            <div className='hr' />
             {
                 expenseList.map((val: any) => {
                     return (
@@ -142,7 +141,6 @@ export default function ConditionalValidationGrid() {
                     )
                 })
             }
-            <div className='hr' />
         </table>
 
 

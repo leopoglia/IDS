@@ -165,6 +165,7 @@ export default function ExecutionCosts() {
                                         </button>
                                     </div>
 
+
                                     {costsCenters.map((costCenter: any) => {
                                         return <div className="cost-center">
                                             <span>{costCenter}</span>

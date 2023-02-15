@@ -273,6 +273,12 @@ export default function ViewDemand() {
         return bytes.buffer;
     }
 
+    const [situationCorrentOpen, setSituationCorrentOpen] = useState(false);
+    const [benefitRealOpen, setBenefitRealOpen] = useState(false);
+    const [benefitPotentialOpen, setBenefitPotentialOpen] = useState(false);
+    const [costRealOpen, setCostRealOpen] = useState(false);
+
+
 
     return (
 
@@ -385,12 +391,16 @@ export default function ViewDemand() {
                                     <div className="code">{demand.demandCode}</div>
                                 </div>
 
-                                <div className="situation-current">
+                                <div className={"situation-current " + situationCorrentOpen }>
 
 
                                     <div className="display-flex">
                                         <p className="title" >{t("requester")}:</p>
                                         <input className={inputDiv} type="text" value={demand.requesterRegistration.workerName} disabled={editDemand} />
+
+                                        <span onClick={() => setSituationCorrentOpen(!situationCorrentOpen)} className="material-symbols-outlined arrow-expend">
+                                            expand_more
+                                        </span>
                                     </div>
 
                                     {
@@ -408,6 +418,7 @@ export default function ViewDemand() {
                                     <div className="display-flex">
                                         <p className="title">{t("currentSituation")}:</p>
                                         <textarea className={inputDiv} value={demand.currentProblem} disabled={editDemand} />
+
                                     </div>
 
                                     <div className="display-flex">
@@ -416,8 +427,15 @@ export default function ViewDemand() {
                                     </div>
                                 </div>
 
-                                <div className="real-benefit">
-                                    <p className="title">{t("benefitReal")}</p>
+                                <div className={"real-benefit " +  benefitRealOpen}>
+
+                                    <div className="display-flex-space-between ">
+                                        <p className="title">{t("benefitReal")}</p>
+
+                                        <span onClick={() => setBenefitRealOpen(!benefitRealOpen)} className="material-symbols-outlined arrow-expend">
+                                            expand_more
+                                        </span>
+                                    </div>
 
 
                                     <div className="infos">
@@ -448,8 +466,14 @@ export default function ViewDemand() {
                                 </div>
 
 
-                                <div className="potential-benefit">
-                                    <p className="title">{t("benefitPotential")}</p>
+                                <div className={"potential-benefit " +  benefitPotentialOpen}>
+                                    <div className="display-flex-space-between">
+                                        <p className="title">{t("benefitPotential")}</p>
+
+                                        <span onClick={() => setBenefitPotentialOpen(!benefitPotentialOpen)}  className="material-symbols-outlined arrow-expend">
+                                            expand_more
+                                        </span>
+                                    </div>
 
                                     <div className="infos">
 
@@ -486,7 +510,14 @@ export default function ViewDemand() {
                                 </div>
 
                                 <div className="qualitative-benefit">
-                                    <p className="title">{t("benefitQualitative")}</p>
+
+                                    <div className="display-flex-space-between">
+                                        <p className="title">{t("benefitQualitative")}</p>
+
+                                        <span  className="material-symbols-outlined arrow-expend">
+                                            expand_more
+                                        </span>
+                                    </div>
 
                                     <div className="infos">
 
@@ -510,7 +541,14 @@ export default function ViewDemand() {
                                 </div>
 
                                 <div className="cost-center">
-                                    <p className="title">{t("costCenter")}</p>
+                                    <div className="display-flex-space-between">
+                                        <p className="title">{t("costCenter")}</p>
+
+                                        <span className="material-symbols-outlined arrow-expend">
+                                            expand_more
+                                        </span>
+                                    </div>
+
                                     <table>
                                         <tbody>
                                             {tr("costCenter", "nameCostCenter")}
@@ -526,8 +564,14 @@ export default function ViewDemand() {
 
                             {(stepDemand === 1 || stepDemand === 2) ? (
                                 <div className="classification" >
+                                    <div className="display-flex-space-between">
 
-                                    <p className="title">{t("classification")}</p>
+                                        <p className="title">{t("classification")}</p>
+
+                                        <span className="material-symbols-outlined arrow-expend">
+                                            expand_more
+                                        </span>
+                                    </div>
 
 
                                     <table>
@@ -559,7 +603,13 @@ export default function ViewDemand() {
                             {(stepDemand === 2) ? (
 
                                 <div className="complement" >
-                                    <p className="title">{t("complements")}</p>
+                                    <div className="display-flex-space-between">
+
+                                        <p className="title">{t("complements")}</p>
+                                        <span className="material-symbols-outlined arrow-expend">
+                                            expand_more
+                                        </span>
+                                    </div>
 
                                     <table>
                                         <tbody>

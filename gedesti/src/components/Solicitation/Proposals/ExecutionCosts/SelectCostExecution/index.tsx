@@ -17,6 +17,9 @@ export default function SelectLabels(props: any) {
     const [centerCost, setCenterCost] = React.useState([{ costCenter: "" }]);
     // const [select, setSelect] = React.useState('');
 
+    const [bu, setBu] = useState([{ costCenter: "" }]);
+
+
     useEffect(() => {
         getBu();
     }, []);

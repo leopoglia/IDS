@@ -9,10 +9,6 @@ import { useTranslation } from "react-i18next";
 
 export default function ConditionalValidationGrid() {
 
-    useEffect(() => {
-
-    }, []);
-
     const StyledBox = styled(Box)(({ theme }) => ({
         height: 300,
         width: '100%',
@@ -34,7 +30,7 @@ export default function ConditionalValidationGrid() {
 
     useEffect(() => {
         setExpenseList(JSON.parse(localStorage.getItem('expenseList') || '[]'))
-    }, [expenseList]);
+    }, []);
 
     const rows: GridRowsProp = [
         {

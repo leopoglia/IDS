@@ -13,6 +13,7 @@ import { useState } from "react";
 import Services from "../../../../services/costCenterService";
 import ProposalServices from "../../../../services/proposalService";
 import DemandService from "../../../../services/demandService";
+import ExpenseService from "../../../../services/expenseService";
 
 export default function ExecutionCosts() {
     const { t } = useTranslation();
@@ -31,11 +32,17 @@ export default function ExecutionCosts() {
     let externalCosts = 0;
     let internalCosts = 0;
 
+    ProposalServices.findByDemand(demandCode).then((proposal: any) => {
+        localStorage.setItem('proposal', JSON.stringify(proposal));
+    });
+
     DemandService.findById(demandCode).then((demand: any) => {
         localStorage.setItem('demand', JSON.stringify(demand));
     });
 
     const demandData: any = JSON.parse(localStorage.getItem('demand') || '{}');
+
+    let proposalByDemand = JSON.parse(localStorage.getItem('proposal') || '{}');
 
     // const expenseList:any = [];
     // expenseList.push(JSON.parse(expenseListStorage));
@@ -97,6 +104,17 @@ export default function ExecutionCosts() {
         } else {
             console.log(demandData.demandTitle, "backlog", 1, proposal.start, proposal.end, "aaaaaa", proposal.respnosibleAnalyst, "", "", totalsCosts, externalCosts, internalCosts, demandCode, actualDate);
             ProposalServices.save(demandData.demandTitle, "Pending", 1, proposal.start, proposal.end, scope, proposal.respnosibleAnalyst, "", "", totalsCosts, externalCosts, internalCosts, demandCode, actualDate);
+            console.log(proposalByDemand);
+            // for (let i = 0; i < expenseListStorage.length; i++) {
+            //     ExpenseService.save(expenseListStorage[i].typeOfExpense,
+            //         expenseListStorage[i].expenseProfile,
+            //         expenseListStorage[i].periodOfExecutionMonth,
+            //         expenseListStorage[i].necessityHoursQuantity,
+            //         expenseListStorage[i].hourValue,
+            //         expenseListStorage[i].expenseTotalValue,
+            //         proposalByDemand.proposalCode
+            //         );
+            // }
             navigate('/proposals');
         }
     }

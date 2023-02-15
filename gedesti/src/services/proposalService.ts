@@ -50,6 +50,15 @@ const Services = {
                 .catch(resolve)
         })
     },
+    findByDemand: function (demandCode: number) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/demand/" + demandCode, {
+                method: 'GET', headers: { 'Content-Type': 'application/json' }
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(resolve)
+        })
+    },
     delete: function (id: number) {
         return new Promise((resolve, reject) => {
             fetch(url + "/" + id, {

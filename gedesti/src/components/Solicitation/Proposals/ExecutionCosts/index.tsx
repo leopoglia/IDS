@@ -22,7 +22,7 @@ export default function ExecutionCosts() {
 
     const [costCenter, setCostCenter] = useState("");
     const [costsCenters, setCostsCenters]: any = useState([]);
-    const demandCode = parseInt(window.location.href.split("/")[5]);
+    const [ demandCode, setDemandCode ] = useState(parseInt(window.location.href.split("/")[5]));
     let expenseListStorage: any = JSON.parse(localStorage.getItem('expenseList') || '[]');
     const [idCostCenter, setIdCostCenter]: any = useState([]);
     const proposal = JSON.parse(localStorage.getItem('proposal') || '{}');
@@ -32,6 +32,8 @@ export default function ExecutionCosts() {
     let totalsCosts = 0;
     let externalCosts = 0;
     let internalCosts = 0;
+
+    console.log(demandCode)
 
     ProposalServices.findByDemand(demandCode).then((proposal: any) => {
         localStorage.setItem('proposal', JSON.stringify(proposal));
@@ -113,7 +115,7 @@ export default function ExecutionCosts() {
 
 
 
-            console.log(proposalByDemand);
+            // console.log(proposalByDemand);
             // for (let i = 0; i < expenseListStorage.length; i++) {
             //     ExpenseService.save(expenseListStorage[i].typeOfExpense,
             //         expenseListStorage[i].expenseProfile,

@@ -17,7 +17,6 @@ export default function Notifications() {
     useEffect(() => {
         Services.findAll().then((response:any) => {
             setNotifications(response.reverse())
-            console.log(response)
         })
     }, [])
 

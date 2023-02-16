@@ -4,6 +4,7 @@ import Nav from "../../Fixed/Nav"
 import Title from "../../Fixed/Search/Title";
 import Footer from "../../Fixed/Footer";
 import { useTranslation } from "react-i18next";
+import ServicesWorker from "../../../services/workerService";
 
 
 export default function Configuration() {
@@ -12,7 +13,12 @@ export default function Configuration() {
     const worker: any = localStorage.getItem("worker");
     const name: any = JSON.parse(worker).name;
     const email = JSON.parse(worker).email;
-    const image = name.substr(0, 1)
+    const image = name.substr(0, 1);
+
+
+    function changeName(){
+    }
+
 
     return (
         <div className="configuration">
@@ -51,25 +57,6 @@ export default function Configuration() {
 
                             <input type="password" className="input-password" value={"123456789124354235423516534424354235234532345678"} disabled />
                         </div>
-                    </div>
-
-                    <div className="change-configuration">
-                        <span className="title-confuration">{t("accessibility")}</span>
-
-                        <div className="display-flex font">
-                            <span className="subtitle-confuration">{t("fontSize")}</span>
-
-                            <span className="material-symbols-outlined">
-                                remove
-                            </span>
-
-                            <input className="font-size" type="number" />
-
-                            <span className="material-symbols-outlined">
-                                add
-                            </span>
-                        </div>
-
                     </div>
 
                     <div className="change-configuration">

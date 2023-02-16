@@ -30,7 +30,7 @@ export default function CreateAgenda() {
                     <div className="proposals-agenda">
                         <div className="proposal">
                             <div className="proposal-agenda">
-                                <p>{t("proposalName")}</p>
+                                <span>{t("proposalName")}</span>
 
 
                                 <div className="delete-proposal-agenda">

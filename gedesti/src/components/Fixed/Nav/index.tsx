@@ -49,7 +49,6 @@ export default function Nav() {
             for (let i = 0; i < response.length; i++) {
                 if (response[i].worker.workerCode === workerCode) {
                     if (response[i].visualized === false) {
-                        console.log("tem notificação")
                         num++;
                     }
 

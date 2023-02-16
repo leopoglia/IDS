@@ -29,7 +29,6 @@ export default function DisapproveDemand() {
         }
         );
         DemandService.updateStatus(demandCode, "Cancelled").then((response) => {
-            console.log(response);
         }).catch((error) => {
             console.log(error);
         });

@@ -27,7 +27,6 @@ export default function Form() {
 
 
         if (emailRef.includes("@")) {
-            console.log(emailRef, passwordRef);
 
             const response: any = await Services.login(emailRef, passwordRef);
 

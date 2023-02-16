@@ -117,21 +117,21 @@ export default function ExecutionCosts() {
                 console.log(error);
             });
 
-            setInterval(() => {
-            findProposalByDemand();
-            }, 10000);
+            // setInterval(() => {
+            // findProposalByDemand();
+            // }, 10000);
 
-            console.log(proposalByDemand);
-            for (let i = 0; i < expenseListStorage.length; i++) {
-                ExpenseService.save(expenseListStorage[i].typeOfExpense,
-                    expenseListStorage[i].expenseProfile,
-                    expenseListStorage[i].periodOfExecutionMonth,
-                    expenseListStorage[i].necessityHoursQuantity,
-                    expenseListStorage[i].hourValue,
-                    expenseListStorage[i].expenseTotalValue,
-                    proposalByDemand.proposalCode
-                    );
-            }
+            // console.log(proposalByDemand);
+            // for (let i = 0; i < expenseListStorage.length; i++) {
+            //     ExpenseService.save(expenseListStorage[i].typeOfExpense,
+            //         expenseListStorage[i].expenseProfile,
+            //         expenseListStorage[i].periodOfExecutionMonth,
+            //         expenseListStorage[i].necessityHoursQuantity,
+            //         expenseListStorage[i].hourValue,
+            //         expenseListStorage[i].expenseTotalValue,
+            //         proposalByDemand.proposalCode
+            //         );
+            // }
             navigate('/proposals');
         }
     }

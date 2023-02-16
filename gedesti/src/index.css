@@ -305,7 +305,6 @@ tr td {
   overflow: hidden;
   text-overflow: ellipsis;
   direction: ltr;
-  color: var(--grey59);
   font-size: var(--p);
 }
 

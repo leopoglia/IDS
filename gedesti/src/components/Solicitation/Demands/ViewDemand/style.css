@@ -143,7 +143,6 @@
 .view-demand .title {
     margin-left: 10px !important;
     white-space: nowrap;
-    margin-bottom: 3px !important;
 }
 
 .view-demand .proposal-view-buttons {
@@ -185,7 +184,6 @@
 
 .view-demand .box a {
     text-decoration: none;
-    color: var(--grey59);
 }
 
 .view-demand .real-benefit,

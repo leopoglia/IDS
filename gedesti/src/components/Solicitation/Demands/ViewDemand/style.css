@@ -14,10 +14,6 @@
     font-size: var(--p);
 }
 
-.view-demand {
-    color: var(--grey3d) !important;
-}
-
 .view-demand .box .title {
     margin-top: 10px !important;
     margin-right: 5px;
@@ -168,7 +164,6 @@
 .view-demand .text-information {
     width: 100%;
     border: none;
-    color: var(--grey59);
     padding: 10px;
     text-align: justify;
     font-size: var(--p);
@@ -298,6 +293,11 @@
 .classification .display-flex-space-between,
 .complement .display-flex-space-between {
     padding-right: 10px;
+}
+
+.view-demand .descriptiveProposal h1{
+    font-size: var(--m) !important;
+    color: var(--blue) !important;
 }
 
 /* 

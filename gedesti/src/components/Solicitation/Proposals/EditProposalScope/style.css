@@ -1,25 +1,33 @@
-.ql-snow.ql-toolbar::after, .ql-snow .ql-toolbar::after {
+.ql-snow.ql-toolbar::after,
+.ql-snow .ql-toolbar::after {
     content: none;
 }
 
-.ql-editor{
+.ql-editor {
     min-height: 300px;
     max-height: 300px;
 }
 
-.quill{
+.quill {
     overflow: auto;
     margin-bottom: 20px;
 }
 
-.ql-toolbar{
+.ql-toolbar {
     border-radius: var(--r) var(--r) 0 0;
 }
 
-.ql-editor, .ql-container, .quill{
+.ql-editor,
+.ql-container,
+.quill {
     border-radius: 0 0 var(--r) var(--r);
 }
 
-.ql-formats svg{
+.ql-formats svg {
     height: auto;
+}
+
+.ql-editor h1 {
+    font-size: var(--m) !important;
+    color: var(--blue);
 }

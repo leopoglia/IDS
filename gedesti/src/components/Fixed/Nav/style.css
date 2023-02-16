@@ -100,9 +100,9 @@ nav .title-li {
 #current .material-symbols-outlined {
     font-variation-settings:
         'FILL' 1,
-        'wght' 400,
+        'wght' 350,
         'GRAD' -25,
-        'opsz' 50
+        'opsz' 50 !important;
 }
 
 

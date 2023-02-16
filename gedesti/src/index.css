@@ -169,6 +169,7 @@ input[type=checkbox]:checked {
 
 .material-symbols-outlined {
   user-select: none;
+  font-variation-settings: 'wght' 350, 'GRAD' -25, 'opsz' 50 !important;
 }
 
 .box {

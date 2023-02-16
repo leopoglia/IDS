@@ -35,9 +35,9 @@ export default function ExecutionCosts() {
 
     console.log(demandCode)
 
-    ProposalServices.findByDemand(demandCode).then((proposal: any) => {
-        localStorage.setItem('proposal', JSON.stringify(proposal));
-    });
+    // ProposalServices.findByDemand(demandCode).then((proposal: any) => {
+    //     localStorage.setItem('proposal', JSON.stringify(proposal));
+    // });
 
     DemandService.findById(demandCode).then((demand: any) => {
         localStorage.setItem('demand', JSON.stringify(demand));

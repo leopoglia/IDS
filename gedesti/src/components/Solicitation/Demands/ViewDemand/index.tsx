@@ -13,6 +13,7 @@ import { useTranslation } from "react-i18next";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import PDF from "./PDF";
+import HtmlReactParser from 'html-react-parser';
 
 export default function ViewDemand() {
 
@@ -43,7 +44,6 @@ export default function ViewDemand() {
     const [editDemand, setEditDemand] = useState(true); // Habilitar ou desabilitar edição da demanda
     const [centerCost, setCenterCost] = useState([]); // Dados do centro de custo
     const [classification, setClassification]: any = useState({}); // Dados da classificação
-    const [inputDiv, setInputDiv] = useState("input-disabled"); // Habilitar ou desabilitar input
 
     // Dados da demanda
     const [demand, setDemand]: any = useState({
@@ -321,7 +321,7 @@ export default function ViewDemand() {
                                         <span>{t("generatePDF")}</span>
                                     </button>
 
-                                    <button onClick={() => { setEditDemand(!editDemand); if (inputDiv === "") { setInputDiv("input-disabled") } else { setInputDiv("") } }} className="btn-primary btn-download btn-mini">
+                                    <button className="btn-primary btn-download btn-mini">
                                         <span className="material-symbols-outlined">
                                             edit
                                         </span>
@@ -401,7 +401,7 @@ export default function ViewDemand() {
 
                                     <div className="display-flex">
                                         <p className="title" >{t("requester")}:</p>
-                                        <input className={inputDiv} type="text" value={demand.requesterRegistration.workerName} disabled={editDemand} />
+                                        <div className="text-information workerName">{demand.requesterRegistration.workerName}</div>
 
                                         <span onClick={() => setSituationCorrentOpen(!situationCorrentOpen)} className="material-symbols-outlined arrow-expend">
                                             expand_more
@@ -410,9 +410,12 @@ export default function ViewDemand() {
 
                                     {
                                         proposal.responsibleAnalyst.workerName !== "" ? (
-                                            <div className="responsibleAnalyst display-flex">
-                                                <p className="title">{t("responsibleAnalyst")}:</p>
-                                                <input className={inputDiv} type="text" value={proposal.responsibleAnalyst.workerName} disabled={editDemand} />
+                                            <div className="responsibleAnalyst">
+                                                <div className="display-flex">
+
+                                                    <p className="title">{t("responsibleAnalyst")}:</p>
+                                                    <div className="text-information workerName">{proposal.responsibleAnalyst.workerName}</div>
+                                                </div>
                                             </div>
                                         ) : (
                                             null
@@ -420,17 +423,44 @@ export default function ViewDemand() {
                                     }
 
 
-                                    <div className="display-flex">
+                                    <div className="display-grid">
                                         <p className="title">{t("currentSituation")}:</p>
-                                        <textarea className={inputDiv} value={demand.currentProblem} disabled={editDemand} />
+                                        <div className="text-information" >{demand.currentProblem}</div>
 
                                     </div>
 
-                                    <div className="display-flex">
+                                    <div className="display-grid">
                                         <p className="title objective">{t("objective")}:</p>
-                                        <textarea className={inputDiv} value={demand.demandObjective} disabled={editDemand} />
+                                        <div className="text-information">{demand.demandObjective}</div>
                                     </div>
                                 </div>
+
+                                {
+                                    (url === "proposal") ? (
+                                        <div className={"proposalScope " + proposalScopeOpen} >
+                                            <div className="display-flex-space-between">
+
+                                                <p className="title">{t("proposalScope")}</p>
+                                                <span onClick={() => setProposalScopeOpen(!proposalScopeOpen)} className="material-symbols-outlined arrow-expend">
+                                                    expand_more
+                                                </span>
+                                            </div>
+
+
+                                            {proposal.descriptiveProposal ? (
+                                                <div className="descriptiveProposal">
+                                                    {HtmlReactParser(proposal.descriptiveProposal)}
+                                                </div>
+                                            ) : (
+                                                null
+                                            )}
+
+                                        </div>
+                                    ) : (
+                                        null
+                                    )
+                                }
+
 
                                 <div className={"real-benefit " + benefitRealOpen}>
 
@@ -456,16 +486,17 @@ export default function ViewDemand() {
                                                 <span>€</span>
                                             )}
 
-                                            <input className={inputDiv} type="text" value={demand.realBenefit.realMonthlyValue.toLocaleString()} disabled={editDemand} />
+                                            <div className="text-information">{demand.realBenefit.realMonthlyValue.toLocaleString()}</div>
                                         </div>
 
                                     </div>
 
 
                                     <div className="description">
-                                        <div className="display-flex-center">
+                                        <div className="display-flex-start">
                                             <span className="desc">Descrição:</span>
-                                            <input className={inputDiv} type="text" value={demand.realBenefit.realBenefitDescription} disabled={editDemand} />
+                                            <div className="text-information">{demand.realBenefit.realBenefitDescription}</div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -492,7 +523,8 @@ export default function ViewDemand() {
                                                 <span>€</span>
                                             )}
 
-                                            <input className={inputDiv} type="text" value={demand.potentialBenefit.potentialMonthlyValue.toLocaleString()} disabled={editDemand} />
+                                            <div className="text-information">{demand.potentialBenefit.potentialMonthlyValue.toLocaleString()}</div>
+
                                         </div>
                                     </div>
 
@@ -504,10 +536,11 @@ export default function ViewDemand() {
 
 
                                     <div className="description">
-                                        <div className="display-flex-center">
+                                        <div className="display-flex-start">
 
                                             <span className="desc">Descrição:</span>
-                                            <input className={inputDiv} type="text" value={demand.potentialBenefit.potentialBenefitDescription} disabled={editDemand} />
+
+                                            <div className="text-information">{demand.potentialBenefit.potentialBenefitDescription}</div>
 
                                         </div>
 
@@ -536,10 +569,11 @@ export default function ViewDemand() {
 
 
                                     <div className="description">
-                                        <div className="display-flex-center">
+                                        <div className="display-flex-start">
 
                                             <span className="desc">Descrição:</span>
-                                            <input className={inputDiv} type="text" value={demand.qualitativeBenefit.qualitativeBenefitDescription} disabled={editDemand} />
+                                            <div className="text-information">{demand.qualitativeBenefit.qualitativeBenefitDescription}</div>
+
 
                                         </div>
                                     </div>
@@ -640,26 +674,6 @@ export default function ViewDemand() {
                                 <div className="null"></div>
                             )}
 
-                            {
-                                (url === "proposal") ? (
-                                    <div className={"proposalScope " + proposalScopeOpen} >
-                                        <div className="display-flex-space-between">
-
-                                            <p className="title">{t("proposalScope")}</p>
-                                            <span onClick={() => setProposalScopeOpen(!proposalScopeOpen)} className="material-symbols-outlined arrow-expend">
-                                                expand_more
-                                            </span>
-                                        </div>
-
-                                        <div>
-                                            {proposal.descriptiveProposal}
-                                        </div>
-
-                                    </div>
-                                ) : (
-                                    null
-                                )
-                            }
 
                             <div className="attachments">
 

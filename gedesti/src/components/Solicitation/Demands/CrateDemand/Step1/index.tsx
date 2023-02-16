@@ -179,16 +179,18 @@ export default function CreateDemands1() {
                     </div>
 
                     <div className="text-area">
+                        <label>{t("objective")} *</label>
+                        <textarea onChange={(e) => { handleChange(e, 'objective'); }} value={objective} />
+                    </div>
+
+                    <div className="text-area">
                         <label>{t("currentSituation")} *</label>
                         <textarea onChange={(e) => { handleChange(e, 'currentSituation'); }} value={currentSituation} />
                     </div>
                     {/* 
                     <TextArea label="currentSituation" required="*" onChange={(e) => { setDemandProblem(e.target.value) }}></TextArea> */}
 
-                    <div className="text-area">
-                        <label>{t("objective")} *</label>
-                        <textarea onChange={(e) => { handleChange(e, 'objective'); }} value={objective} />
-                    </div>
+             
 
                     {/* <TextArea label="proposal" required="*" onChange={(e) => { setProposal(e.target.value) }}></TextArea> */}
 

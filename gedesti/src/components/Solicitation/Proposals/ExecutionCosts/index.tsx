@@ -33,11 +33,16 @@ export default function ExecutionCosts() {
     let externalCosts = 0;
     let internalCosts = 0;
 
-    console.log(demandCode)
+    let proposalByDemand: any;
 
-    // ProposalServices.findByDemand(demandCode).then((proposal: any) => {
-    //     localStorage.setItem('proposal', JSON.stringify(proposal));
-    // });
+    async function findProposalByDemand() {
+    await ProposalServices.findByDemand(demandCode).then((proposal:any) => {
+        console.log(proposal);
+        proposalByDemand = proposal;
+    }).catch((err: any) => {
+        console.log(err);
+    });
+    }
 
     DemandService.findById(demandCode).then((demand: any) => {
         localStorage.setItem('demand', JSON.stringify(demand));
@@ -45,7 +50,6 @@ export default function ExecutionCosts() {
 
     const demandData: any = JSON.parse(localStorage.getItem('demand') || '{}');
 
-    let proposalByDemand = JSON.parse(localStorage.getItem('proposal') || '{}');
 
     // const expenseList:any = [];
     // expenseList.push(JSON.parse(expenseListStorage));
@@ -113,19 +117,21 @@ export default function ExecutionCosts() {
                 console.log(error);
             });
 
+            setInterval(() => {
+            findProposalByDemand();
+            }, 10000);
 
-
-            // console.log(proposalByDemand);
-            // for (let i = 0; i < expenseListStorage.length; i++) {
-            //     ExpenseService.save(expenseListStorage[i].typeOfExpense,
-            //         expenseListStorage[i].expenseProfile,
-            //         expenseListStorage[i].periodOfExecutionMonth,
-            //         expenseListStorage[i].necessityHoursQuantity,
-            //         expenseListStorage[i].hourValue,
-            //         expenseListStorage[i].expenseTotalValue,
-            //         proposalByDemand.proposalCode
-            //         );
-            // }
+            console.log(proposalByDemand);
+            for (let i = 0; i < expenseListStorage.length; i++) {
+                ExpenseService.save(expenseListStorage[i].typeOfExpense,
+                    expenseListStorage[i].expenseProfile,
+                    expenseListStorage[i].periodOfExecutionMonth,
+                    expenseListStorage[i].necessityHoursQuantity,
+                    expenseListStorage[i].hourValue,
+                    expenseListStorage[i].expenseTotalValue,
+                    proposalByDemand.proposalCode
+                    );
+            }
             navigate('/proposals');
         }
     }

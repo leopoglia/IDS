@@ -281,6 +281,7 @@ export default function ViewDemand() {
     const [costCenterOpen, setCostCenterOpen] = useState(false);
     const [classificationOpen, setClassificationOpen] = useState(false);
     const [complementOpen, setComplementOpen] = useState(false);
+    const [proposalScopeOpen, setProposalScopeOpen] = useState(false);
 
 
 
@@ -395,7 +396,7 @@ export default function ViewDemand() {
                                     <div className="code">{demand.demandCode}</div>
                                 </div>
 
-                                <div className={"situation-current " + situationCorrentOpen }>
+                                <div className={"situation-current " + situationCorrentOpen}>
 
 
                                     <div className="display-flex">
@@ -431,7 +432,7 @@ export default function ViewDemand() {
                                     </div>
                                 </div>
 
-                                <div className={"real-benefit " +  benefitRealOpen}>
+                                <div className={"real-benefit " + benefitRealOpen}>
 
                                     <div className="display-flex-space-between ">
                                         <p className="title">{t("benefitReal")}</p>
@@ -470,11 +471,11 @@ export default function ViewDemand() {
                                 </div>
 
 
-                                <div className={"potential-benefit " +  benefitPotentialOpen}>
+                                <div className={"potential-benefit " + benefitPotentialOpen}>
                                     <div className="display-flex-space-between">
                                         <p className="title">{t("benefitPotential")}</p>
 
-                                        <span onClick={() => setBenefitPotentialOpen(!benefitPotentialOpen)}  className="material-symbols-outlined arrow-expend">
+                                        <span onClick={() => setBenefitPotentialOpen(!benefitPotentialOpen)} className="material-symbols-outlined arrow-expend">
                                             expand_more
                                         </span>
                                     </div>
@@ -513,12 +514,12 @@ export default function ViewDemand() {
                                     </div>
                                 </div>
 
-                                <div className={"qualitative-benefit " +  benefitQualitativeOpen}>
+                                <div className={"qualitative-benefit " + benefitQualitativeOpen}>
 
                                     <div className="display-flex-space-between">
                                         <p className="title">{t("benefitQualitative")}</p>
 
-                                        <span onClick={() => setBenefitQualitativeOpen(!benefitQualitativeOpen)}  className="material-symbols-outlined arrow-expend">
+                                        <span onClick={() => setBenefitQualitativeOpen(!benefitQualitativeOpen)} className="material-symbols-outlined arrow-expend">
                                             expand_more
                                         </span>
                                     </div>
@@ -544,7 +545,7 @@ export default function ViewDemand() {
                                     </div>
                                 </div>
 
-                                <div className={"cost-center " +  costCenterOpen}>
+                                <div className={"cost-center " + costCenterOpen}>
                                     <div className="display-flex-space-between">
                                         <p className="title">{t("costCenter")}</p>
 
@@ -567,12 +568,12 @@ export default function ViewDemand() {
 
 
                             {(stepDemand === 1 || stepDemand === 2) ? (
-                                <div className={"classification " +  classificationOpen} >
+                                <div className={"classification " + classificationOpen} >
                                     <div className="display-flex-space-between">
 
                                         <p className="title">{t("classification")}</p>
 
-                                        <span onClick={() => setClassificationOpen(!classificationOpen)}  className="material-symbols-outlined arrow-expend">
+                                        <span onClick={() => setClassificationOpen(!classificationOpen)} className="material-symbols-outlined arrow-expend">
                                             expand_more
                                         </span>
                                     </div>
@@ -606,11 +607,11 @@ export default function ViewDemand() {
 
                             {(stepDemand === 2) ? (
 
-                                <div className={"complement " + complementOpen } >
+                                <div className={"complement " + complementOpen} >
                                     <div className="display-flex-space-between">
 
                                         <p className="title">{t("complements")}</p>
-                                        <span  onClick={() => setComplementOpen(!complementOpen)} className="material-symbols-outlined arrow-expend">
+                                        <span onClick={() => setComplementOpen(!complementOpen)} className="material-symbols-outlined arrow-expend">
                                             expand_more
                                         </span>
                                     </div>
@@ -638,6 +639,27 @@ export default function ViewDemand() {
                             ) : (
                                 <div className="null"></div>
                             )}
+
+                            {
+                                (url === "proposal") ? (
+                                    <div className={"proposalScope " + proposalScopeOpen} >
+                                        <div className="display-flex-space-between">
+
+                                            <p className="title">{t("proposalScope")}</p>
+                                            <span onClick={() => setProposalScopeOpen(!proposalScopeOpen)} className="material-symbols-outlined arrow-expend">
+                                                expand_more
+                                            </span>
+                                        </div>
+
+                                        <div>
+                                            {proposal.descriptiveProposal}
+                                        </div>
+
+                                    </div>
+                                ) : (
+                                    null
+                                )
+                            }
 
                             <div className="attachments">
 

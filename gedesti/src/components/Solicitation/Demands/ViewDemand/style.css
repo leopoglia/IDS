@@ -198,6 +198,7 @@
 .view-demand .cost-center,
 .view-demand .classification,
 .view-demand .complement,
+.view-demand .proposalScope,
 .view-demand .attachments {
     margin-top: 15px;
     padding: 10px;

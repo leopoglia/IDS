@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import ButtonAction from "../../Demands/CrateDemand/ButtonAction";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Services from "../../../../services/costCenterService";
 import ServicesDemand from "../../../../services/demandService";
 import ProposalServices from "../../../../services/proposalService";
@@ -32,18 +32,6 @@ export default function ExecutionCosts() {
     let totalsCosts = 0;
     let externalCosts = 0;
     let internalCosts = 0;
-
-    let proposalByDemand: any;
-
-    async function findProposalByDemand() {
-    await ProposalServices.findByDemand(demandCode).then((proposal:any) => {
-        console.log(proposal);
-        proposalByDemand = proposal;
-    }).catch((err: any) => {
-        console.log(err);
-    });
-    }
-
     DemandService.findById(demandCode).then((demand: any) => {
         localStorage.setItem('demand', JSON.stringify(demand));
     });
@@ -112,26 +100,26 @@ export default function ExecutionCosts() {
             ProposalServices.save(demandData.demandTitle, "Pending", 1, proposal.start, proposal.end, scope, proposal.respnosibleAnalyst, "", "", totalsCosts, externalCosts, internalCosts, demandCode, actualDate).then((proposal: any) => {
                 DemandService.updateStatus(demandCode, "Assesment");
                 localStorage.removeItem('proposal');
-                localStorage.removeItem('expenseList');
+
+                for (let i = 0; i < expenseListStorage.length; i++) {
+                    ExpenseService.save(expenseListStorage[i].typeOfExpense,
+                        expenseListStorage[i].expenseProfile,
+                        expenseListStorage[i].periodOfExecutionMonth,
+                        expenseListStorage[i].necessityHoursQuantity,
+                        expenseListStorage[i].hourValue,
+                        expenseListStorage[i].expenseTotalValue,
+                        proposal.proposalCode
+                        ).then((expense: any) => {   
+                        localStorage.removeItem('expenseList');
+                    }).catch((error: any) => {
+                        console.log(error);
+                    });
+                }
+
             }).catch((error: any) => {
                 console.log(error);
             });
-
-            // setInterval(() => {
-            // findProposalByDemand();
-            // }, 10000);
-
-            // console.log(proposalByDemand);
-            // for (let i = 0; i < expenseListStorage.length; i++) {
-            //     ExpenseService.save(expenseListStorage[i].typeOfExpense,
-            //         expenseListStorage[i].expenseProfile,
-            //         expenseListStorage[i].periodOfExecutionMonth,
-            //         expenseListStorage[i].necessityHoursQuantity,
-            //         expenseListStorage[i].hourValue,
-            //         expenseListStorage[i].expenseTotalValue,
-            //         proposalByDemand.proposalCode
-            //         );
-            // }
+            
             navigate('/proposals');
         }
     }

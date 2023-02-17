@@ -178,5 +178,6 @@
     "BacklogRanked": "Backlog",
     "BacklogRankApproved": "Backlog",
     "BacklogComplement": "Backlog",
-    "responsibleAnalyst": "Analista responsable"
+    "responsibleAnalyst": "Analista responsable",
+    "noProposal": "No hay propuestas"
 }

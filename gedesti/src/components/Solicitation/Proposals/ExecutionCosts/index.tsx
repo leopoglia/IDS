@@ -116,11 +116,17 @@ export default function ExecutionCosts() {
                     });
                 }
 
+                localStorage.removeItem('proposalScope');
+                localStorage.removeItem('demand');
+                localStorage.removeItem('proposalScope');
+                localStorage.removeItem('classification')
+                navigate('/proposals');
+
+
             }).catch((error: any) => {
                 console.log(error);
             });
             
-            navigate('/proposals');
         }
     }
 

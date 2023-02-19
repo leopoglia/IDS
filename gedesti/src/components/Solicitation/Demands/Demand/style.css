@@ -218,7 +218,7 @@
 }
 
 
-@media(max-width: 1380px) {
+/* @media(max-width: 1380px) {
     .demand {
         height: 110px;
     }
@@ -235,4 +235,4 @@
     .demand-list .infos {
         height: auto;
     }
-}
+} */

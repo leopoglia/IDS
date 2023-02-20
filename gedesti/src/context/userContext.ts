@@ -6,6 +6,7 @@ type MyContextType = {
     office: string,
     name: string,
     email: string,
+    language: string,
   },
   setWorker: any
 };

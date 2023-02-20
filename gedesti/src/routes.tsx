@@ -35,7 +35,8 @@ export default function Router() {
         id: "",
         office: "",
         name: "",
-        email: ""
+        email: "",
+        language: ""
     });
 
 
@@ -50,6 +51,7 @@ export default function Router() {
                         office: response.workerOffice,
                         name: response.workerName,
                         email: response.corporateEmail,
+                        language: response.language
                     }
                     setWorker(worker);
                 });

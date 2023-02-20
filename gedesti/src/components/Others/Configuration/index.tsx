@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import "./style.css"
 import Header from "../../Fixed/Header"
 import Nav from "../../Fixed/Nav"
@@ -5,14 +6,15 @@ import Title from "../../Fixed/Search/Title";
 import Footer from "../../Fixed/Footer";
 import { useTranslation } from "react-i18next";
 import ServicesWorker from "../../../services/workerService";
+import UserContext from "../../../context/userContext";
 
 
 export default function Configuration() {
     const { t } = useTranslation();
 
-    const worker: any = localStorage.getItem("worker");
-    const name: any = JSON.parse(worker).name;
-    const email = JSON.parse(worker).email;
+    const worker: any = useContext(UserContext).worker;
+    const name: any = worker.name;
+    const email = worker.email;
     const image = name.substr(0, 1);
 
 
@@ -22,7 +24,7 @@ export default function Configuration() {
 
     return (
         <div className="configuration">
-            <Header icon="settings" title="configurations" />
+            <Header/>
             <Nav />
 
             <div className="container">

@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import "./style.css"
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useTranslation } from "react-i18next";
 import ServicesNotification from "../../../services/notificationService";
+import UserContext from "../../../context/userContext";
 
 export default function Nav() {
 
@@ -11,10 +12,11 @@ export default function Nav() {
     const [nav, setNav] = useState(localStorage.getItem("nav") || "nav");
     const [current, setCurrent] = useState("current");
     const url = window.location.pathname.split("/")[1];
-    const worker: any = localStorage.getItem("worker");
-    const workerCode = JSON.parse(worker).id;
-    const office = JSON.parse(worker).office;
+    const worker: any = useContext(UserContext).worker;
+    const workerCode = worker.id;
+    const office = worker.office;
     const [numNotification, setNumNotification]:any = useState(0);
+
 
     function hover(li: string): string {
         if (url === li || url === li.substring(0, li.length - 1)) {

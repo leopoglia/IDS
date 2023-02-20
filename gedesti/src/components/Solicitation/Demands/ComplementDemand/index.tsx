@@ -46,7 +46,7 @@ export default function ComplementDemand() {
     return (
         <div className="complement-demand">
 
-            <Header icon="playlist_add" title="complement-demand" />
+            <Header />
 
             <Nav />
 

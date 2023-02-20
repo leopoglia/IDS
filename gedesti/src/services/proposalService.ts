@@ -3,10 +3,10 @@ const url = "http://localhost:8080/api/proposal"
 const Services = {
     save: function (proposalName: String, proposalStatus: String, payback: Number, initialRunPeriod: any, finalExecutionPeriod: any, descriptiveProposal: String, responsibleAnalyst: any, agendaCode: any, workers: any, totalsCosts: Number, externalCosts: Number, internalCosts: Number, demandCode: any, proposalDate: String) {
 
-        let workersList:any = [];
+        let workersList: any = [];
 
-        for(let i = 0; i < workers.length; i++){
-            workersList.push({comissionCode: workers[i].comissionCode})
+        for (let i = 0; i < workers.length; i++) {
+            workersList.push({ comissionCode: workers[i].comissionCode })
         }
 
         return new Promise((resolve, reject) => {
@@ -18,13 +18,13 @@ const Services = {
                     initialRunPeriod: initialRunPeriod,
                     finalExecutionPeriod: finalExecutionPeriod,
                     descriptiveProposal: descriptiveProposal,
-                    responsibleAnalyst: {workerCode: responsibleAnalyst},
-                    agendaCode: {agendaCode: agendaCode},
+                    responsibleAnalyst: { workerCode: responsibleAnalyst },
+                    agendaCode: { agendaCode: agendaCode },
                     workers: workersList,
                     totalCosts: totalsCosts,
                     externalCosts: externalCosts,
                     internalCosts: internalCosts,
-                    demand: {demandCode: demandCode},
+                    demand: { demandCode: demandCode },
                     proposalDate: proposalDate
                 }), headers: { 'Content-Type': 'application/json' }
             }).then(function (result) { return result.json(); })

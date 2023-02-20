@@ -47,7 +47,7 @@ export default function AddExpense() {
 
     return (
         <div className="add-expense">
-            <Header title="Adicionar Despesa" icon="add" />
+            <Header />
 
             <Nav />
 

@@ -1,5 +1,5 @@
 import "./style.css"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Header from "../../../Fixed/Header";
 import Nav from "../../../Fixed/Nav";
 import Title from "../../../Fixed/Search/Title";
@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import UserContext from "../../../../context/userContext";
 
 
 export default function RankDemand() {
@@ -33,9 +34,11 @@ export default function RankDemand() {
     }
 
     // Salvando a classificação da demanda
+    let analysis = useContext(UserContext).worker; // Pegando o analista
+
+
     function saveToRank() {
         let classification = JSON.parse(localStorage.getItem("classification") || "{}"); // Pegando os dados da classificação
-        let analysis = JSON.parse(localStorage.getItem("worker") || "{}"); // Pegando os dados do analista
 
 
         if (classification.size === "" || classification.ti === "" || classification.buReq === "" || classification.buBenList === undefined) {
@@ -53,7 +56,7 @@ export default function RankDemand() {
                         localStorage.setItem("route", "classification");
                         localStorage.removeItem("classification");
 
-                        ServicesNotification.save("Um analista classificou a sua demanda de código  " + demand.demandCode, demand.requesterRegistration.workerCode , "done", "demand");
+                        ServicesNotification.save("Um analista classificou a sua demanda de código  " + demand.demandCode, demand.requesterRegistration.workerCode, "done", "demand");
 
                         navigate("/demand/view/" + url)
                     }).catch((error: any) => {
@@ -98,7 +101,7 @@ export default function RankDemand() {
 
     return (
         <div className="rank-demand">
-            <Header icon="bar_chart" title="classifyDemand" />
+            <Header />
 
             <Nav />
 

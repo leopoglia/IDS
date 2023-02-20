@@ -10,7 +10,7 @@ export default function CreateMinute() {
 
     return (
         <div className="create-minute">
-            <Header icon="file_copy" title="createMinute" />
+            <Header/>
             <Nav />
             <div className="container">
                 <div className="background-title">

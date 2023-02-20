@@ -44,9 +44,22 @@ export default function CreateAgenda() {
         getProposal();
     }
 
+    const saveAgenda = () => {
+        let proposals = JSON.parse(localStorage.getItem("proposals") || "[]");
+        
+        let agenda = {
+            agendaCode: 0,
+            sequentialNumber: "",
+            yearAgenda: ""
+        }
+
+        
+        
+    }
+
     return (
         <div className="create-agenda">
-            <Header icon="file_copy" title="createAgenda" />
+            <Header/>
             <Nav />
             <div className="container">
                 <div className="background-title">
@@ -116,7 +129,6 @@ export default function CreateAgenda() {
 
 
                     <div className="display-flex">
-                        <Input label={t("agendaName")} required="*" />
                         <Input label={t("number")} required="*" />
                         <Input label={t("year")} required="*" />
                     </div>
@@ -127,7 +139,7 @@ export default function CreateAgenda() {
 
                 <div className="display-flex-end">
                     <Link to="/agendas">
-                        <button className="btn-primary">{t("save")}</button>
+                        <button onClick={saveAgenda} className="btn-primary">{t("save")}</button>
                     </Link>
                 </div>
 

@@ -118,7 +118,7 @@ export default function Demands() {
 
             {(url[3] === "demands") ? (
                 <div className="demands">
-                    <Header icon="folder_copy" title="demands" />
+                    <Header/>
                     <Nav />
                     <div className="container">
 
@@ -153,7 +153,7 @@ export default function Demands() {
                 </div>
             ) : (url[3] === "proposals") ? (
                 <div className="proposals">
-                    <Header icon="content_paste" title="proposals" />
+                    <Header/>
                     <Nav />
                     <div className="container">
                         <Search onClick={callback} name={nameFilter} type={typeFilter} nav={t("proposalViewProposal")} title="proposals" button="createProposal" link="/demands" setTable={setTable} />
@@ -169,7 +169,7 @@ export default function Demands() {
                 </div>
             ) : (url[3] === "agendas") ? (
                 <div className="agendas">
-                    <Header icon="file_copy" title="agendas" />
+                    <Header/>
                     <Nav />
                     <div className="container">
                         <Search onClick={callback} name={nameFilter} type={typeFilter} nav={t("agendaViewAgenda")} title="agendas" button="createAgenda" link="/agenda/create" setTable={setTable} />
@@ -185,7 +185,7 @@ export default function Demands() {
                 </div>
             ) : (url[3] === "minutes") ? (
                 <div className="minutes">
-                    <Header icon="description" title="minutes" />
+                    <Header/>
                     <Nav />
                     <div className="container">
                         <Search onClick={callback} name={nameFilter} type={typeFilter} nav={t("minuteViewMinute")} title="minutes" button="createMinute" link="/agendas" setTable={setTable} />

@@ -9,7 +9,7 @@ import Message from "./MessageBox";
 export default function Messages() {
     return (
         <div className="messages">
-            <Header icon="chat" title="messages" />
+            <Header />
             <Nav />
 
             <div className="container">

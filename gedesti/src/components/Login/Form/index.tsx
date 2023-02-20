@@ -1,20 +1,21 @@
 import './style.css';
 import { Link } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
-import { useRef } from 'react';
+import { useRef, useContext } from 'react';
 import Services from '../../../services/workerService';
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from 'react-router-dom';
+import UserContext from '../../../context/userContext';
 
 
 export default function Form() {
     const { t } = useTranslation();
     const navigate = useNavigate();
-
-
     const emailRef: any = useRef(null);
     const passwordRef: any = useRef(null);
+
+    const { worker, setWorker } = useContext(UserContext);
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
@@ -39,8 +40,9 @@ export default function Form() {
                     email: response.corporateEmail,
                 }
 
-                localStorage.setItem("worker", JSON.stringify(worker));
+                setWorker(worker);
 
+                localStorage.setItem("id", JSON.stringify(worker.id));
                 navigate('/demands');
             }
 

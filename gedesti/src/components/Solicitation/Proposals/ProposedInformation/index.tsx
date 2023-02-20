@@ -43,7 +43,7 @@ export default function ProposedInformation() {
     return (
         <div className="execution-costs">
 
-            <Header title={t("responsiblesForTheProject")} icon="payments" />
+            <Header />
 
             <Nav />
 

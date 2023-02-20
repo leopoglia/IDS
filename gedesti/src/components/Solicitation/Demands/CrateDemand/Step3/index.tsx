@@ -1,3 +1,4 @@
+import { useState, useEffect, useContext } from 'react';
 import "./style.css"
 import Header from "../../../../Fixed/Header"
 import Nav from "../../../../Fixed/Nav"
@@ -5,11 +6,11 @@ import Title from "../../../../Fixed/Search/Title";
 import ProgressBar from "../ProgressBar";
 import ButtonAction from "../ButtonAction";
 import { useTranslation } from "react-i18next";
-import { useState, useEffect } from 'react';
 import Services from "../../../../../services/demandService";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router";
+import UserContext from "../../../../../context/userContext";
 
 export default function CreateDemands3() {
 
@@ -25,6 +26,9 @@ export default function CreateDemands3() {
         // Pegando a demanda inicial
         setDemand(JSON.parse(localStorage.getItem("demand") || "{}"));
     }, []);
+
+    let worker: any = useContext(UserContext).worker; // Pegando o funcionário
+    let workerCode = worker.id; // Código do funcionário
 
     async function cadastrarDemanda() {
         // Verificando se os campos obrigatórios foram preenchidos
@@ -44,8 +48,7 @@ export default function CreateDemands3() {
         let potentialBenefitCode = JSON.parse(potentialBenefits).potentialBenefitCode; // Código do benefício potencial
         let qualitativeBenefits: any = localStorage.getItem("qualitativeBenefits"); // Pegando o benefício qualitativo
         let qualitativeBenefitCode = JSON.parse(qualitativeBenefits).qualitativeBenefitCode; // Código do benefício qualitativo
-        let worker: any = localStorage.getItem("worker"); // Pegando o funcionário logado
-        let workerCode = JSON.parse(worker).id; // Código do funcionário
+
         let actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear(); // Data atual
 
         // Salvando a demanda
@@ -86,7 +89,7 @@ export default function CreateDemands3() {
 
     return (
         <div className="create-demands-3">
-            <Header icon="folder_copy" title="createDemand" />
+            <Header />
             <Nav />
 
             <div className="container">

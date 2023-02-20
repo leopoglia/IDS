@@ -128,7 +128,7 @@ const ChatRoom = () => {
 
     return (
         <div className="messages">
-            <Header icon="chat" title="chat" />
+            <Header/>
             <Nav />
 
 

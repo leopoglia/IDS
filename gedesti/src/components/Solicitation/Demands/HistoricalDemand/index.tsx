@@ -8,7 +8,7 @@ export default function HistoricalDemand() {
     return (
         <div className="historical-demand">
 
-            <Header icon="folder_copy" title="historicalDemand" />
+            <Header/>
 
             <Nav />
 

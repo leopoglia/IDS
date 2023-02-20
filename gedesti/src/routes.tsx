@@ -1,4 +1,4 @@
-import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { Route, Routes, BrowserRouter, useNavigate } from "react-router-dom";
 
 import Form from './components/Login/Login';
 import ForgetPassword from './components/Login/ForgotPassword';
@@ -24,48 +24,95 @@ import ProposedInformation from "./components/Solicitation/Proposals/ProposedInf
 import EscopeDemand from "./components/Solicitation/Proposals/EscopeDemand";
 import CreateMinute from "./components/Solicitation/Minutes/CreateMinute";
 import Message from "./components/Others/Messages/Message";
+import UserContext from "./context/userContext";
+import { useState, useEffect } from "react";
+import ServicesWorker from "./services/workerService";
+
 
 export default function Router() {
+
+    const [worker, setWorker] = useState({
+        id: "",
+        office: "",
+        name: "",
+        email: ""
+    });
+
+
+
+    useEffect(() => {
+        if (worker.id === "") {
+            const id = localStorage.getItem("id");
+            if (id !== null) {
+                ServicesWorker.findById(JSON.parse(id)).then((response: any) => {
+                    const worker = {
+                        id: response.workerCode,
+                        office: response.workerOffice,
+                        name: response.workerName,
+                        email: response.corporateEmail,
+                    }
+                    setWorker(worker);
+                });
+            } else {
+                if (window.location.pathname !== "/") {
+                    window.location.href = "/";
+                }
+            }
+        }
+
+        console.log(worker);
+    }, [worker.id]);
+
+
+
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Form />} />
-                <Route path="/forget-password" element={<ForgetPassword />} />
+        <UserContext.Provider
+            value={{
+                worker: worker,
+                setWorker
+            }}>
+            <BrowserRouter>
 
-                <Route path="/messages" element={<Messages />} />
-                <Route path="/messages/message" element={<Message />} />
-                <Route path="/notifications" element={<Notifications />} />
-                <Route path="/configuration" element={<Configuration />} />
+                <Routes>
+                    <Route path="/" element={<Form />} />
+                    <Route path="/forget-password" element={<ForgetPassword />} />
 
-                <Route path="/demands" element={<Demands />} />
-                <Route path="/demand/create/1" element={<CreateDemands1 />} />
-                <Route path="/demand/create/2" element={<CreateDemands2 />} />
-                <Route path="/demand/create/3" element={<CreateDemands3 />} />
-                <Route path="/demand/view/:id" element={<ViewDemand />} />
-                <Route path="/demand/rank/:id" element={<RankDemand />} />
-                <Route path="/demand/disapprove/:id" element={<DisapproveDemand />} />
-                <Route path="/demand/complement/:id" element={<ComplementDemand />} />
-                <Route path="/demand/historical" element={<HistoricalDemand />} />
+                    <Route path="/messages" element={<Messages />} />
+                    <Route path="/messages/message" element={<Message />} />
+                    <Route path="/notifications" element={<Notifications />} />
+                    <Route path="/configuration" element={<Configuration />} />
 
-                <Route path="/proposals" element={<Demands />} />
-                <Route path="/proposal/view/:id" element={<ViewDemand />} />
-                <Route path="/proposal/execution-costs/:id" element={<ExecutionCosts />} />
-                <Route path="proposal/execution-costs/add-expense/:id" element={<AddExpense />} />
-                <Route path="/proposal/demand/:id" element={<EscopeDemand />} />
-                <Route path="/proposal/edit-scope/:id" element={<EditProposalScope />} />
-                <Route path="/proposal/comission-opinion" element={<CommissionOpinion />} />
-                <Route path="/proposal/informations/:id" element={<ProposedInformation />} />
-
-                <Route path="/agendas" element={<Demands />} />
-                <Route path="/agenda/create" element={<CreateAgenda />} />
-                <Route path="/agenda/view/:id" element={<ViewDemand />} />
-                <Route path="/agenda/select-proposals" element={<SelectProposal />} />
-
-                <Route path="/minutes" element={<Demands />} />
-                <Route path="/minutes/create" element={<CreateMinute />} />
+                    <Route path="/demands" element={<Demands />} />
+                    <Route path="/demand/create/1" element={<CreateDemands1 />} />
+                    <Route path="/demand/create/2" element={<CreateDemands2 />} />
+                    <Route path="/demand/create/3" element={<CreateDemands3 />} />
+                    <Route path="/demand/view/:id" element={<ViewDemand />} />
+                    <Route path="/demand/rank/:id" element={<RankDemand />} />
+                    <Route path="/demand/disapprove/:id" element={<DisapproveDemand />} />
+                    <Route path="/demand/complement/:id" element={<ComplementDemand />} />
+                    <Route path="/demand/historical" element={<HistoricalDemand />} />
 
 
-            </Routes>
-        </BrowserRouter>
+                    <Route path="/proposals" element={<Demands />} />
+                    <Route path="/proposal/view/:id" element={<ViewDemand />} />
+                    <Route path="/proposal/execution-costs/:id" element={<ExecutionCosts />} />
+                    <Route path="proposal/execution-costs/add-expense/:id" element={<AddExpense />} />
+                    <Route path="/proposal/demand/:id" element={<EscopeDemand />} />
+                    <Route path="/proposal/edit-scope/:id" element={<EditProposalScope />} />
+                    <Route path="/proposal/comission-opinion" element={<CommissionOpinion />} />
+                    <Route path="/proposal/informations/:id" element={<ProposedInformation />} />
+
+                    <Route path="/agendas" element={<Demands />} />
+                    <Route path="/agenda/create" element={<CreateAgenda />} />
+                    <Route path="/agenda/view/:id" element={<ViewDemand />} />
+                    <Route path="/agenda/select-proposals" element={<SelectProposal />} />
+
+                    <Route path="/minutes" element={<Demands />} />
+                    <Route path="/minutes/create" element={<CreateMinute />} />
+
+                </Routes>
+            </BrowserRouter >
+        </UserContext.Provider>
+
     )
 }

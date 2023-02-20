@@ -1,3 +1,4 @@
+import { useEffect, useState, useContext } from "react";
 import "./style.css"
 import Header from "../../../Fixed/Header"
 import Nav from "../../../Fixed/Nav"
@@ -8,21 +9,21 @@ import ServicesProposal from "../../../../services/proposalService";
 import ServicesNotification from "../../../../services/notificationService";
 import Footer from "../../../Fixed/Footer";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import PDF from "./PDF";
 import HtmlReactParser from 'html-react-parser';
+import UserContext from "../../../../context/userContext";
 
 export default function ViewDemand() {
 
     const { t } = useTranslation();
 
-    const worker: any = localStorage.getItem("worker"); // Buscar dados do usuário
-    const office = JSON.parse(worker).office; // Buscar tipo de usuário
-    const workerName = JSON.parse(worker).name; // Buscar nome do usuário
-    const workerId = JSON.parse(worker).id; // Buscar código do usuário
+    const worker: any = useContext(UserContext).worker; // Buscar dados do usuário
+    const office = worker.office; // Buscar tipo de usuário
+    const workerName = worker.name; // Buscar nome do usuário
+    const workerId = worker.id; // Buscar código do usuário
     const url = window.location.href.split("/")[3]; // Buscar tipo da demanda
     const demandCode = parseInt(window.location.href.split("/")[5]); // Buscar código da demanda
 
@@ -295,7 +296,7 @@ export default function ViewDemand() {
             { /* Verifica se é uma demanda ou uma proposta */  url === "demand" || url === "proposal" ? (
                 <div>
 
-                    <Header title="viewDemand" icon="visibility" />
+                    <Header/>
 
                     <Nav />
 
@@ -697,7 +698,7 @@ export default function ViewDemand() {
                 </div>
             ) : url === "agenda" ? (
                 <div>
-                    <Header title="viewAgenda" icon="visibility" />
+                    <Header/>
 
                     <Nav />
 

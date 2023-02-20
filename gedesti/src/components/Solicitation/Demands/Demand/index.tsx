@@ -2,12 +2,13 @@ import "./style.css";
 import { Link } from "react-router-dom";
 import Situation from "./Situation/index";
 import { useTranslation } from "react-i18next";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import UserContext from "../../../../context/userContext";
 
 
 export default function Demand(props: any) {
-    const worker: any = localStorage.getItem("worker");
-    const office = JSON.parse(worker).office;
+    const worker: any = useContext(UserContext).worker;
+    const office = worker.office;
     const { t } = useTranslation();
 
     const information = () => {

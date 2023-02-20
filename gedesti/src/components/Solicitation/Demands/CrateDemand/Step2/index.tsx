@@ -106,7 +106,7 @@ export default function CreateDemands2() {
 
     return (
         <div className="create-demands-2">
-            <Header icon="folder_copy" title="createDemand" />
+            <Header />
             <Nav />
 
             <div className="container">

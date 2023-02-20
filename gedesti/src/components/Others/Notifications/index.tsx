@@ -4,14 +4,15 @@ import Nav from "../../Fixed/Nav"
 import Title from "../../Fixed/Search/Title";
 import Notification from "./Notification";
 import Footer from "../../Fixed/Footer";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Services from "../../../services/notificationService";
+import UserContext from "../../../context/userContext";
 
 export default function Notifications() {
 
     const speaks = ["Olá, eu sou a Bia e estou aqui para ajudá-lo no sistema de demandas Gedesti. O que posso fazer por você hoje?"]
     const [notifications, setNotifications]: any = useState([])
-    const worker = JSON.parse(localStorage.getItem("worker") || "{}")
+    const worker = useContext(UserContext).worker
 
 
     useEffect(() => {
@@ -31,7 +32,7 @@ export default function Notifications() {
                 {speaks[0]}
             </div> */}
 
-            <Header icon="notifications" title="notifications" />
+            <Header/>
             <Nav />
 
             <div className="container">

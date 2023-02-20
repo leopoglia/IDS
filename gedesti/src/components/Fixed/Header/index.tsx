@@ -4,13 +4,9 @@ import { Link } from "react-router-dom";
 import User from "../User";
 import { useTranslation } from "react-i18next";
 
-export default function Header(props: {
-    icon: string;
-    title: string;
-}) {
+export default function Header() {
 
     const { t } = useTranslation();
-
 
     return (
         <header className="header">

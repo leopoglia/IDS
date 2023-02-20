@@ -48,7 +48,7 @@ export default function DisapproveDemand() {
     return (
         <div className="disapprove-demand">
 
-            <Header icon="close" title="disapproveDemand" />
+            <Header/>
 
             <Nav />
 

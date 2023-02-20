@@ -64,7 +64,7 @@ export default function EscopeDemand() {
 
     return (
         <div className="create-demands-1">
-            <Header icon="folder_copy" title="createDemand" />
+            <Header/>
             <Nav />
 
             <div className="container">

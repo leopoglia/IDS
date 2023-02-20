@@ -12,7 +12,7 @@ export default function CommissionOpinion() {
     return (
         <div className="commission-opinion">
 
-            <Header title="Parecer da  Comissão" icon="edit" />
+            <Header />
 
             <Nav />
 

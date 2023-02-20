@@ -1,14 +1,15 @@
 import './style.css'
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import onClickOutside from "react-onclickoutside";
 import Modal from './Modal'
+import UserContext from '../../../context/userContext';
 
 
 function User() {
     const [modal, setModal] = useState(false)
 
-    const worker = localStorage.getItem('worker');
-    const name = (JSON.parse(worker).name).split(' ')[0]
+    const worker = useContext(UserContext).worker;
+    const name = (worker.name).split(' ')[0]
     const image = name.substr(0, 1)
 
     // Drop down

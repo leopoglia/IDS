@@ -6,8 +6,10 @@ const Services = {
         let comissionList:any = [];
 
         for(let i = 0; i < commission.length; i++){
-            comissionList.push({comissionCode: commission[i].comissionCode})
+            comissionList.push({workerCode: commission[i]})
         }
+
+        console.log("comissionList --> ", comissionList)
 
         return new Promise((resolve, reject) => {
             fetch(url, {

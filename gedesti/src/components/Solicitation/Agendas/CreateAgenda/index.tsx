@@ -7,6 +7,7 @@ import Input from "../../Demands/CrateDemand/Input";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import ServicesProposals from "../../../../services/proposalService";
+import Services from "../../../../services/agendaService";
 
 export default function CreateAgenda() {
 
@@ -45,21 +46,28 @@ export default function CreateAgenda() {
     }
 
     const saveAgenda = () => {
-        let proposals = JSON.parse(localStorage.getItem("proposals") || "[]");
-        
-        let agenda = {
-            agendaCode: 0,
-            sequentialNumber: "",
-            yearAgenda: ""
-        }
+        Services.save(1, 1, [1]).then((response: any) => {
+            console.log(response);
+            let agendaCode = response.agendaCode;
 
-        
-        
+            // for (let i = 0; i < proposals.length; i++) {
+            //     let proposal: any = proposals[i];
+            //     proposal.agenda = agendaCode;
+
+            //     ServicesProposals.updateAgenda(proposal.proposalCode, proposal).then((response: any) => {
+            //         console.log(response);
+            //     })
+            // }
+        })
+
+        console.log(proposals)
+
+
     }
 
     return (
         <div className="create-agenda">
-            <Header/>
+            <Header />
             <Nav />
             <div className="container">
                 <div className="background-title">

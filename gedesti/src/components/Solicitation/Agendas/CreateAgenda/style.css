@@ -24,7 +24,7 @@
     margin-right: 15px;
 }
 
-.create-agenda .addProposal{
+.create-agenda .addProposal {
     margin: 10px 0px 25px 0px;
 }
 
@@ -78,4 +78,13 @@
 
 .create-agenda .footer-btn .display-flex {
     justify-content: flex-end
+}
+
+.create-agenda .w100{
+    width: 100%;
+}
+
+.comission-flex{
+    display: flex;
+    align-items: flex-end;
 }

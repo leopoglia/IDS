@@ -8,12 +8,19 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import ServicesProposals from "../../../../services/proposalService";
 import Services from "../../../../services/agendaService";
+import SelectWorker from "../SelectWorker";
+import ServicesWorker from "../../../../services/workerService";
 
 export default function CreateAgenda() {
 
     const { t } = useTranslation();
 
     const [proposals, setProposals] = useState([]);
+    const [agendaNumber, setAgendaNumber] = useState("");
+    const [comission, setComission]: any = useState([]);
+    const [worker, setWorker] = useState("");
+
+    console.log(comission);
 
     useEffect(() => {
         getProposal();
@@ -37,6 +44,7 @@ export default function CreateAgenda() {
 
     }
 
+
     const deleteProposal = (id: any) => {
         let proposals = JSON.parse(localStorage.getItem("proposals") || "[]");
         let index = proposals.indexOf(id);
@@ -46,21 +54,65 @@ export default function CreateAgenda() {
     }
 
     const saveAgenda = () => {
-        Services.save(1, 1, [1]).then((response: any) => {
-            console.log(response);
-            let agendaCode = response.agendaCode;
 
-            for (let i = 0; i < proposals.length; i++) {
-                let proposal: any = proposals[i];
-                proposal.agenda = { agenda: { agendaCode: agendaCode } };
+        ServicesWorker.findAll().then((response: any) => {
+            let workers: any = [];
 
-                ServicesProposals.updateAgenda(proposal.proposalCode, proposal).then((response: any) => {
-                    console.log(response);
+            response.map((worker: any) => {
+                comission.map((workerSelected: any) => {
+                    if (worker.workerCode === workerSelected) {
+                        workers.push(worker.workerCode);
+                    }
                 })
-            }
+            })
+
+            Services.save(1, 1, workers).then((response: any) => {
+                console.log(response);
+                let agendaCode = response.agendaCode;
+    
+                for (let i = 0; i < proposals.length; i++) {
+                    let proposal: any = proposals[i];
+                    proposal.agenda = { agenda: { agendaCode: agendaCode } };
+    
+                    ServicesProposals.updateAgenda(proposal.proposalCode, proposal).then((response: any) => {
+                        console.log(response);
+                    })
+                }
+            })
         })
+        
+
+
+        
 
     }
+
+    function addWorker(worker: any) {
+        if (worker === "") {
+            alert("Digite um Worker");
+        } else {
+            comission.push(worker);
+            setComission(comission);
+            setWorker("");
+        }
+    }
+
+    function deleteWorker(woker: any) {
+        return () => {
+            const index = comission.indexOf(woker);
+            if (index > -1) {
+                comission.splice(index, 1);
+            }
+            setComission(comission);
+
+            if (worker === " ") {
+                setWorker("");
+            } else {
+                setWorker(" ");
+            }
+        }
+    }
+
 
     return (
         <div className="create-agenda">
@@ -137,6 +189,29 @@ export default function CreateAgenda() {
                         <Input label={t("number")} required="*" />
                         <Input label={t("year")} required="*" />
                     </div>
+
+                    <div className="input">
+
+                        <div className="display-flex comission-flex">
+                            <div className="w100">
+                                <span>Comissão</span>
+                                <SelectWorker setWorker={setWorker} worker={worker} />
+                            </div>
+
+                            <div className="btn-primary w45" onClick={() => { addWorker(worker) }}>
+                                <span className="material-symbols-outlined">add</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {comission.map((worker: any) => {
+                        return <div className="costCenter">{worker}
+                            <span className="material-symbols-outlined delete-cost-center" onClick={deleteWorker(worker)} >
+                                delete
+                            </span>
+                        </div>
+                    })
+                    }
 
 
                 </div>

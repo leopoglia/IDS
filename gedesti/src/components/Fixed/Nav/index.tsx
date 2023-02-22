@@ -15,7 +15,7 @@ export default function Nav() {
     const worker: any = useContext(UserContext).worker;
     const workerCode = worker.id;
     const office = worker.office;
-    const [numNotification, setNumNotification]:any = useState(0);
+    const [numNotification, setNumNotification]: any = useState(0);
 
 
     function hover(li: string): string {
@@ -140,10 +140,10 @@ export default function Nav() {
 
                 <Link to="/notifications">
                     <li id={hover("notifications")}>
-                        {numNotification > 0  &&
-                            <div className="booble">
+                        {numNotification > 0 &&
+                            <li className="booble">
                                 <span>{numNotification}</span>
-                            </div>
+                            </li>
                         }
 
                         <div>

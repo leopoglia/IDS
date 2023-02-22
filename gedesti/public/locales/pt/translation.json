@@ -180,5 +180,6 @@
     "BacklogRankApproved": "Backlog",
     "BacklogComplement": "Backlog",
     "responsibleAnalyst": "Analista responsável",
-    "noProposal": "Nenhuma proposta"
+    "noProposal": "Nenhuma proposta",
+    "sequentialNumber": "Número sequencial"
 }

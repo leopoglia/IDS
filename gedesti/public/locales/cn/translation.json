@@ -181,5 +181,6 @@
     "BacklogRankApproved": "待辦事項",
     "BacklogComplement": "待辦事項",
     "responsibleAnalyst": "負責分析師",
-    "noProposal": "沒有提案"
+    "noProposal": "沒有提案",
+    "sequentialNumber": "序號"
 }

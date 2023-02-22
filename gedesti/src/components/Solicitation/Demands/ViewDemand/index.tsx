@@ -97,6 +97,12 @@ export default function ViewDemand() {
             getDemand();
         } else if (url === "proposal") {
             getProposal();
+            localStorage.removeItem('proposalScope');
+            localStorage.removeItem('demand');
+            localStorage.removeItem('proposalScope');
+            localStorage.removeItem('classification')
+        } else if(url === "agenda") {
+            getProposalSpecific();
         }
 
         // Verificações para notificações
@@ -186,6 +192,16 @@ export default function ViewDemand() {
             setStepDemand(2) // Seta o passo da demanda
             setClassification(response.demand.classification) // Seta a classificação da demanda
             setCenterCost(response.demand.costCenter) // Seta o centro de custo da demanda
+        })
+    }
+
+    // Buscar proposta específica
+    function getProposalSpecific() {
+        ServicesProposal.findAll().then((response: any) => {
+            console.log(response.agendaCode)
+            if(response.agendaCode.agendaCode === demandCode){
+                console.log(response)
+            }
         })
     }
 

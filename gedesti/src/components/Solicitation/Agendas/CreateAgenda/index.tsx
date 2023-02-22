@@ -50,14 +50,14 @@ export default function CreateAgenda() {
             console.log(response);
             let agendaCode = response.agendaCode;
 
-            // for (let i = 0; i < proposals.length; i++) {
-            //     let proposal: any = proposals[i];
-            //     proposal.agenda = agendaCode;
+            for (let i = 0; i < proposals.length; i++) {
+                let proposal: any = proposals[i];
+                proposal.agenda = { agenda: { agendaCode: agendaCode } };
 
-            //     ServicesProposals.updateAgenda(proposal.proposalCode, proposal).then((response: any) => {
-            //         console.log(response);
-            //     })
-            // }
+                ServicesProposals.updateAgenda(proposal.proposalCode, proposal).then((response: any) => {
+                    console.log(response);
+                })
+            }
         })
 
         console.log(proposals)

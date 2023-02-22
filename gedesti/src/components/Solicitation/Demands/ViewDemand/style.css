@@ -211,10 +211,6 @@
 .view-demand .cost-center .title,
 .view-demand .classification .title,
 .view-demand .complement .title {
-    padding: 8.5px 10px !important;
-}
-
-.view-demand .cost-center .title{
     padding: 9px 10px !important;
 }
 
@@ -223,6 +219,7 @@
 .view-demand .complement tr:last-child {
     border-bottom: none;
 }
+
 
 .view-demand .descriptiveProposal{
     margin-top: 15px;
@@ -301,6 +298,11 @@
 .view-demand .descriptiveProposal h1{
     font-size: var(--m) !important;
     color: var(--blue) !important;
+}
+
+.view-demand .descriptiveProposal p{
+    font-size: var(--p) !important;
+    color: var(--grey4D) !important;
 }
 
 /* 

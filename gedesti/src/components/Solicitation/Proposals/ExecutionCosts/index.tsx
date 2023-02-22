@@ -115,13 +115,7 @@ export default function ExecutionCosts() {
                         console.log(error);
                     });
                 }
-
-                localStorage.removeItem('proposalScope');
-                localStorage.removeItem('demand');
-                localStorage.removeItem('proposalScope');
-                localStorage.removeItem('classification')
                 navigate('/proposals');
-
 
             }).catch((error: any) => {
                 console.log(error);

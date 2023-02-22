@@ -68,11 +68,11 @@ const Services = {
                 .catch(resolve)
         })
     },
-    updateAgenda: function(id: Number, classificationCode: Number) {
+    updateAgenda: function(id: Number, agenda: Number) {
         return new Promise((resolve, reject) => {
             fetch(url + "/agenda/" + id, {
                 method: 'PUT',
-                body: JSON.stringify({ "classification": { "classificationCode": classificationCode } }),
+                body: JSON.stringify({ "agenda": { "agendaCode": id } }),
                 headers: { 'Content-Type': 'application/json' }}).then(function (result) { return result.json(); }).then(resolve).catch(reject) 
         })
     },

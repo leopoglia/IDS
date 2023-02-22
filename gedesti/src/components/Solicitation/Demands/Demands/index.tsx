@@ -9,6 +9,7 @@ import { t } from "i18next"
 import Load from "../../../Fixed/Load";
 import ServicesDemand from "../../../../services/demandService";
 import ServicesProposal from "../../../../services/proposalService";
+import ServicesAgenda from "../../../../services/agendaService";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
@@ -29,6 +30,8 @@ export default function Demands() {
             getDemands(); // Busca as demandas cadastradas
         } else if (url[3] === "proposals") {
             getProposals(); // Busca as demandas cadastradas
+        } else if (url[3] === "agendas") {
+            getAgendas(); // Busca as demandas cadastradas
         }
 
 
@@ -56,22 +59,32 @@ export default function Demands() {
         return findDemands;
     }
 
+    // Buscar as pautas cadastradas
+    async function getAgendas() {
+        findDemands = await ServicesAgenda.findAll().then((res: any) => {
+            setAgendas(res); // Atualiza o estado das demandas
+
+            console.log(res);
+        });
+        return findDemands;
+    }
+
     const [demands, setDemands] = useState([
         { demandCode: 0, demandTitle: "", requesterRegistration: { workerName: "" }, demandDate: "", demandStatus: "" }
     ]);
 
     const [proposals, setProposals] = useState([
-        { proposalCode: "", demand: {demandTitle: "", requesterRegistration: { workerName: ""}, demandDate: "" }, proposalTitle: "", requesterRegistration: { workerName: "" }, responsibleAnalyst: { workerName: ""}, proposalDate: "", proposalStatus: "" },
+        { proposalCode: "", demand: { demandTitle: "", requesterRegistration: { workerName: "" }, demandDate: "" }, proposalTitle: "", requesterRegistration: { workerName: "" }, responsibleAnalyst: { workerName: "" }, proposalDate: "", proposalStatus: "" },
         { name: "Proposta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "Approved" },
         { name: "Proposta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "Rejected" },
         { name: "Proposta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "Pending" },
 
     ]);
-    const [agendas] = useState([
-        { name: "Pauta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "unallocated" },
+    const [agendas, setAgendas] = useState([
+        { agendaCode: "", sequentialNumber: 0, yearAgenda: 0 },
     ]);
     const [minutes] = useState([
-        { name: "Ata 001", date: "27/04/2022", situation: "unallocated", number: "10/2021", director: "Vytor Augusto Rosa", coordinator: "Leonardo Heitor Poglia" },
+        { minuteCode: "1", name: "Ata 001", date: "27/04/2022", situation: "unallocated", number: "10/2021", director: "Vytor Augusto Rosa", coordinator: "Leonardo Heitor Poglia" },
     ]);
 
     // Função para mostrar o navigator
@@ -118,7 +131,7 @@ export default function Demands() {
 
             {(url[3] === "demands") ? (
                 <div className="demands">
-                    <Header/>
+                    <Header />
                     <Nav />
                     <div className="container">
 
@@ -153,14 +166,14 @@ export default function Demands() {
                 </div>
             ) : (url[3] === "proposals") ? (
                 <div className="proposals">
-                    <Header/>
+                    <Header />
                     <Nav />
                     <div className="container">
                         <Search onClick={callback} name={nameFilter} type={typeFilter} nav={t("proposalViewProposal")} title="proposals" button="createProposal" link="/demands" setTable={setTable} />
                         {
                             proposals.map((val, index) => {
                                 return (
-                                    <Demand  listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />
+                                    <Demand listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />
                                 );
                             })
                         }
@@ -169,14 +182,14 @@ export default function Demands() {
                 </div>
             ) : (url[3] === "agendas") ? (
                 <div className="agendas">
-                    <Header/>
+                    <Header />
                     <Nav />
                     <div className="container">
                         <Search onClick={callback} name={nameFilter} type={typeFilter} nav={t("agendaViewAgenda")} title="agendas" button="createAgenda" link="/agenda/create" setTable={setTable} />
                         {
                             agendas.map((val, index) => {
                                 return (
-                                    <Demand listDirection={table} name={val.name} requester={val.requester} analyst={val.analyst} date={val.date} situation={val.situation} type="agenda" />
+                                    <Demand listDirection={table} name={"Pauta da reunião  " + val.agendaCode} demandCode={val.agendaCode}  number={val.sequentialNumber} year={val.yearAgenda} type="agenda" />
                                 );
                             })
                         }
@@ -185,7 +198,7 @@ export default function Demands() {
                 </div>
             ) : (url[3] === "minutes") ? (
                 <div className="minutes">
-                    <Header/>
+                    <Header />
                     <Nav />
                     <div className="container">
                         <Search onClick={callback} name={nameFilter} type={typeFilter} nav={t("minuteViewMinute")} title="minutes" button="createMinute" link="/agendas" setTable={setTable} />
@@ -193,7 +206,7 @@ export default function Demands() {
                             minutes.map((val, index) => {
                                 return (
                                     <div onClick={() => setMinute(true)}>
-                                        <Demand listDirection={table} name={val.name} director={val.director} coordinator={val.coordinator} number={val.number} date={val.date} situation={val.situation} type="minute" />
+                                        <Demand listDirection={table} demandCode={val.minuteCode} name={val.name} director={val.director} coordinator={val.coordinator} number={val.number} date={val.date} situation={val.situation} type="minute" />
                                     </div>
                                 );
                             })

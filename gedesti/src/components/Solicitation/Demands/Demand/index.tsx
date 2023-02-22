@@ -12,33 +12,41 @@ export default function Demand(props: any) {
     const { t } = useTranslation();
 
     const information = () => {
-        if (props.analyst == null) {
-            if (props.director == null) {
-                return (
-                    (<div className="infos">
-                        <div className="code">{props.demandCode}</div>
-                        <div className="requester"><p>{t("requester")}: {props.requester}</p></div>
-                        <div><p>{t("date")}: {props.date}</p></div>
-                        <div className="situation"><p>{t("situation")}: {t(props.situation)}</p></div>
-                    </div>)
-                )
-            } else {
-                return (
-                    (<div className="infos">
-                        <div className="code">{props.demandCode}</div>
-                        <div className="requester"><p>{t("director")}: {props.director}</p></div>
-                        <div><p>{t("date")}: {props.date}</p></div>
-                        <div className="analyst"><p>{t("coordinator")}: {props.coordinator}</p></div>
-                    </div>)
-                )
-            }
-        } else if (props.analyst != null) {
+        if (props.type === "demand") {
+            return (
+                (<div className="infos">
+                    <div className="code">{props.demandCode}</div>
+                    <div className="requester"><p>{t("requester")}: {props.requester}</p></div>
+                    <div><p>{t("date")}: {props.date}</p></div>
+                    <div className="situation"><p>{t("situation")}: {t(props.situation)}</p></div>
+                </div>)
+            )
+
+        } else if (props.type === "proposal") {
             return (
                 (<div className="infos">
                     <div className="code">{props.demandCode}</div>
                     <div className="requester"><p>{t("requester")}: {props.requester}</p></div>
                     <div><p>{t("date")}: {props.date}</p></div>
                     <div className="analyst"><p>{t("analyst")}: {props.analyst}</p></div>
+                </div>)
+            )
+        } else if (props.type === "agenda") {
+            return (
+                (<div className="infos">
+                    <div className="code">{props.demandCode}</div>
+                    <div className="requester"><p>{t("sequentialNumber")}: {props.number}</p></div>
+                    <div><p>{t("date")}: {props.date}</p></div>
+                    <div className="analyst"><p>{t("year")}: {props.year}</p></div>
+                </div>)
+            )
+        } else if (props.type === "minute") {
+            return (
+                (<div className="infos">
+                    <div className="code">{props.demandCode}</div>
+                    <div className="requester"><p>{t("sequentialNumber")}: {props.number}</p></div>
+                    <div><p>{t("date")}: {props.date}</p></div>
+                    <div className="analyst"><p>{t("director")}: {props.director}</p></div>
                 </div>)
             )
         }
@@ -74,28 +82,29 @@ export default function Demand(props: any) {
         if (props.listDirection === false) {
             return (
                 <div className="demand">
-                    <section>
-                        <div className="name-code">
-                            <h1>{props.name}</h1>
+                    <div className="content-demand">
+                        <section>
+                            <div className="name-code">
+                                <h1>{props.name}</h1>
+                            </div>
+
+
+                            <div className="display-grid">
+
+                                {situation()}
+                            </div>
+
+                        </section>
+
+
+                        <div className="display-flex">
+
+                            {information()}
+
+                            {btnGenerateProposal()}
                         </div>
 
-
-                        <div className="display-grid">
-
-                            {situation()}
-                        </div>
-
-                    </section>
-
-
-                    <div className="display-flex">
-
-                        {information()}
-
-                        {btnGenerateProposal()}
                     </div>
-
-
                 </div>
             )
         } else {
@@ -131,30 +140,31 @@ export default function Demand(props: any) {
     if (props.listDirection === false) {
         return (
             <div>
-
                 <Link to={"/" + props.type + "/view/" + props.demandCode}>
                     <div className="demand">
-                        <section>
-                            <div className="name-code">
-                                <h1>{props.name}</h1>
+                        <div className="content-demand">
+
+                            <section>
+                                <div className="name-code">
+                                    <h1>{props.name}</h1>
+                                </div>
+
+
+                                <div className="display-grid">
+
+                                    {situation()}
+                                </div>
+
+                            </section>
+
+
+                            <div className="display-flex">
+
+                                {information()}
+
+                                {btnGenerateProposal()}
                             </div>
-
-
-                            <div className="display-grid">
-
-                                {situation()}
-                            </div>
-
-                        </section>
-
-
-                        <div className="display-flex">
-
-                            {information()}
-
-                            {btnGenerateProposal()}
                         </div>
-
 
                     </div>
                 </Link>

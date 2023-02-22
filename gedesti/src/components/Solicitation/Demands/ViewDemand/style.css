@@ -50,6 +50,7 @@
     font-size: 25px !important;
     width: 40px;
     height: 40px;
+    min-width: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -211,6 +212,10 @@
 .view-demand .classification .title,
 .view-demand .complement .title {
     padding: 8.5px 10px !important;
+}
+
+.view-demand .cost-center .title{
+    padding: 9px 10px !important;
 }
 
 .view-demand .cost-center tr:last-child,

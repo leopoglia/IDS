@@ -25,11 +25,16 @@
     align-items: center;
 }
 
+.content-demand{
+    margin-left: 6px
+}
+
 .demand .code,
 .demand-list .code {
     background-color: var(--greyE5);
     padding: 4px;
     width: 100px;
+    height: 30px;
     margin-left: 15px;
     border-radius: var(--r);
     font-size: var(--pp) !important;

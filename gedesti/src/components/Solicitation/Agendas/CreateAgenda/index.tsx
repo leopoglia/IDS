@@ -60,9 +60,6 @@ export default function CreateAgenda() {
             }
         })
 
-        console.log(proposals)
-
-
     }
 
     return (

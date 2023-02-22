@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, JSXElementConstructor, ReactElement, ReactFragment, ReactPortal } from "react";
 import "./style.css"
 import Header from "../../../Fixed/Header"
 import Nav from "../../../Fixed/Nav"
@@ -9,7 +9,7 @@ import ServicesProposal from "../../../../services/proposalService";
 import ServicesNotification from "../../../../services/notificationService";
 import Footer from "../../../Fixed/Footer";
 import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import { ReactI18NextChild, useTranslation } from "react-i18next";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import PDF from "./PDF";
@@ -90,6 +90,19 @@ export default function ViewDemand() {
         }
     });
 
+    // Dados da proposta específica
+    const [proposalSpecific, setProposalSpecific]: any = useState([{
+        proposalCode: "",
+        proposalStatus: "",
+        proposalDate: "",
+        proposalDescription: "",
+        demand: {
+            demandCode: "",
+            demandDescription: "",
+            demandObjective: ""
+        }
+    }]);
+
     // Chama função ao entrar na página
     useEffect(() => {
         // Buscar dados da demanda
@@ -101,7 +114,7 @@ export default function ViewDemand() {
             localStorage.removeItem('demand');
             localStorage.removeItem('proposalScope');
             localStorage.removeItem('classification')
-        } else if(url === "agenda") {
+        } else if (url === "agenda") {
             getProposalSpecific();
         }
 
@@ -117,7 +130,7 @@ export default function ViewDemand() {
             localStorage.removeItem("route");
         }
 
-    }, [office]);
+    }, [url]);
 
 
     function getDemand() {
@@ -198,13 +211,18 @@ export default function ViewDemand() {
     // Buscar proposta específica
     function getProposalSpecific() {
         ServicesProposal.findAll().then((response: any) => {
-            console.log(response.agendaCode)
-            if(response.agendaCode.agendaCode === demandCode){
-                console.log(response)
+
+            let proposalSpecific: any = [];
+
+            for (let i = 0; i < response.length; i++) {
+                if (response[i].agenda.agendaCode === demandCode) {
+                    proposalSpecific.push(response[i])
+                }
             }
+
+            setProposalSpecific(proposalSpecific)
         })
     }
-
 
     // Função para buscar centro de custos
     const costCenter = () => {
@@ -312,7 +330,7 @@ export default function ViewDemand() {
             { /* Verifica se é uma demanda ou uma proposta */  url === "demand" || url === "proposal" ? (
                 <div>
 
-                    <Header/>
+                    <Header />
 
                     <Nav />
 
@@ -714,7 +732,7 @@ export default function ViewDemand() {
                 </div>
             ) : url === "agenda" ? (
                 <div>
-                    <Header/>
+                    <Header />
 
                     <Nav />
 
@@ -730,22 +748,29 @@ export default function ViewDemand() {
 
                             <p>{t("proposal")}</p>
 
-                            <Link to="/proposal/view">
-                                <div className="proposal-view">
 
-                                    <p>{t("proposalName")}</p>
 
-                                    <span>
-                                        Nunc maximus purus sit amet est lacinia condimentum. Praesent sodales leo a finibus semper. Nunc luctus libero fermentum varius imperdiet. Aliquam tellus leo, volutpat ac scelerisque eget, gravida in urna. Curabitur ac urna bibendum, faucibus eros quis, auctor nibh. Etiam auctor rhoncus velit. Nulla finibus fringilla magna, eu tempus nisl molestie sed. Vivamus efficitur dui at malesuada lobortis.
-                                    </span>
+                            {proposalSpecific[0].proposalName !== "" &&
+                                proposalSpecific.map((val: any) => (
+                                    <Link to={"/proposal/view/" + val.proposalCode}>
+                                        <div className="proposal-view">
 
-                                    <div className="proposal-view-buttons">
-                                        <Link to="/proposal/comission-opinion">
-                                            <button className="btn-primary">{t("insertCommissionOpinion")}</button>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </Link>
+                                            <p>{val.proposalName}</p>
+                                            <span>
+                                                {val.demand.demandObjective}
+                                            </span>
+
+                                            <div className="proposal-view-buttons">
+                                                <Link to="/proposal/comission-opinion">
+                                                    <button className="btn-primary">{t("insertCommissionOpinion")}</button>
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    </Link>
+
+                                ))
+
+                            }
                         </div>
 
                         <div className="display-flex-end">

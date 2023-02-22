@@ -9,8 +9,6 @@ const Services = {
             comissionList.push({workerCode: commission[i]})
         }
 
-        console.log("comissionList --> ", comissionList)
-
         return new Promise((resolve, reject) => {
             fetch(url, {
                 method: 'POST', body: JSON.stringify({

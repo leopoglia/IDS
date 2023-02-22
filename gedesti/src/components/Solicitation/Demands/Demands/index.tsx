@@ -63,8 +63,6 @@ export default function Demands() {
     async function getAgendas() {
         findDemands = await ServicesAgenda.findAll().then((res: any) => {
             setAgendas(res); // Atualiza o estado das demandas
-
-            console.log(res);
         });
         return findDemands;
     }

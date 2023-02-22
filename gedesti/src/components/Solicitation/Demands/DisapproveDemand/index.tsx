@@ -23,7 +23,6 @@ export default function DisapproveDemand() {
     // Função para reprovar demanda
     function disapproveDemand() {
         Services.save(disapprovalReason, demandCode).then((response) => {
-            console.log(response);
         }).catch((error) => {
             console.log(error);
         }

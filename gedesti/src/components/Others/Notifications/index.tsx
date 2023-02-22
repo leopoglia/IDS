@@ -7,16 +7,18 @@ import Footer from "../../Fixed/Footer";
 import { useState, useEffect, useContext } from "react";
 import Services from "../../../services/notificationService";
 import UserContext from "../../../context/userContext";
+import { t } from "i18next";
 
 export default function Notifications() {
 
     const speaks = ["Olá, eu sou a Bia e estou aqui para ajudá-lo no sistema de demandas Gedesti. O que posso fazer por você hoje?"]
     const [notifications, setNotifications]: any = useState([])
+    const [haveNotification, setHaveNotification]: any = useState(0)
     const worker = useContext(UserContext).worker
 
 
     useEffect(() => {
-        Services.findAll().then((response:any) => {
+        Services.findAll().then((response: any) => {
             setNotifications(response.reverse())
         })
     }, [])
@@ -32,7 +34,7 @@ export default function Notifications() {
                 {speaks[0]}
             </div> */}
 
-            <Header/>
+            <Header />
             <Nav />
 
             <div className="container">
@@ -41,7 +43,7 @@ export default function Notifications() {
                 </div>
 
                 {notifications.map((notification: any) => {
-                    if (notification.worker.workerCode == worker.id)
+                    if (notification.worker.workerCode == worker.id) {
                         return (
                             <Notification
                                 id={notification.notificationCode}
@@ -52,7 +54,20 @@ export default function Notifications() {
                                 type={notification.type}
                             />
                         )
-                }, [])}
+                    }
+
+
+                    if (notification.worker.workerCode == worker.id) {
+                        setHaveNotification(haveNotification + 1)
+                    }
+
+
+                }, [])
+                }
+
+
+
+
 
                 <Footer />
 

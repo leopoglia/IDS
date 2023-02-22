@@ -19,8 +19,6 @@ export default function Messages() {
 
                 <Message />
 
-                <Message />
-
                 <Footer />
 
             </div>

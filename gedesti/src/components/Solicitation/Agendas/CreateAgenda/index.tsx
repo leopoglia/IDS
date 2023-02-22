@@ -60,14 +60,16 @@ export default function CreateAgenda() {
 
             response.map((worker: any) => {
                 comission.map((workerSelected: any) => {
-                    if (worker.workerCode === workerSelected) {
+                    if (worker.workerName === workerSelected) {
                         workers.push(worker.workerCode);
                     }
                 })
             })
 
+            console.log(workers);
+
+
             Services.save(1, 1, workers).then((response: any) => {
-                console.log(response);
                 let agendaCode = response.agendaCode;
     
                 for (let i = 0; i < proposals.length; i++) {

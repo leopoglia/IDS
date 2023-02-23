@@ -74,7 +74,7 @@ export default function DisapproveDemand() {
 
                 <div className="demands-footer">
 
-                    <Link to={"/demand/view/" + url}>
+                    <Link to={"/demand/view/" + demandCode}>
                         <button className="btn-secondary">{t("return")}</button>
                     </Link>
 

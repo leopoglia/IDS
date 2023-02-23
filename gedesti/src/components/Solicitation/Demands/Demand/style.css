@@ -14,10 +14,10 @@
 
 .demand-list section h1 {
     display: inline-block;
-    white-space: nowrap;
-    max-width: 510px;
-    text-overflow: ellipsis;
-    overflow: hidden;
+    white-space: nowrap !important;
+    max-width: 510px !important;
+    text-overflow: ellipsis !important;
+    overflow: hidden !important;
 }
 
 .demand section .display-flex,

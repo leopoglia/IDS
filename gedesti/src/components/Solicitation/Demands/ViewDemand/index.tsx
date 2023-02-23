@@ -7,6 +7,7 @@ import ButtonActionAnalyst from "./ButtonActionAnalyst";
 import ServicesDemand from "../../../../services/demandService";
 import ServicesProposal from "../../../../services/proposalService";
 import ServicesNotification from "../../../../services/notificationService";
+import ServicesAgenda from "../../../../services/agendaService";
 import Footer from "../../../Fixed/Footer";
 import { Link } from "react-router-dom";
 import { ReactI18NextChild, useTranslation } from "react-i18next";
@@ -45,6 +46,7 @@ export default function ViewDemand() {
     const [editDemand, setEditDemand] = useState(true); // Habilitar ou desabilitar edição da demanda
     const [centerCost, setCenterCost] = useState([]); // Dados do centro de custo
     const [classification, setClassification]: any = useState({}); // Dados da classificação
+    const [comission, setComission] = useState([]); // Dados da comissão
 
     // Dados da demanda
     const [demand, setDemand]: any = useState({
@@ -221,7 +223,16 @@ export default function ViewDemand() {
             }
 
             setProposalSpecific(proposalSpecific)
+
+
+            ServicesAgenda.findById(demandCode).then((response: any) => {
+                console.log("COMISSION--> ", response[0].commission)
+                setComission(response[0].commission)
+            })
+
         })
+
+
     }
 
     // Função para buscar centro de custos
@@ -769,8 +780,18 @@ export default function ViewDemand() {
                                     </Link>
 
                                 ))
-
                             }
+
+                            <p>{t("comission")}</p>
+
+                            {comission.map((val: any) => (
+
+                                <div className="costCenter">
+                                    {val.workerName}
+                                </div>
+                            ))}
+
+
                         </div>
 
                         <div className="display-flex-end">

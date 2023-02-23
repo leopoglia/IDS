@@ -27,10 +27,10 @@ export default function ConditionalValidationGrid() {
     }));
 
 
-    const [expenseList, setExpenseList] = useState<any>(JSON.parse(localStorage.getItem('expenseList') || '[]'));	
+    const [expenseList, setExpenseList] = useState<any>(JSON.parse(localStorage.getItem('expenseList') || '[""]'));	
 
     useEffect(() => {
-        setExpenseList(JSON.parse(localStorage.getItem('expenseList') || '[]'))
+        setExpenseList(JSON.parse(localStorage.getItem('expenseList') || '[""]'))
     }, []);
 
     const rows: GridRowsProp = [

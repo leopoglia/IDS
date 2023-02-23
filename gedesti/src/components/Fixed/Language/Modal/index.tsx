@@ -34,6 +34,7 @@ export default function DropdownList({ handleClick }: any): any {
                     <div className='flag' onClick={() => changeLanguages('cn')}>
                         <img src="/flags/cn.png" alt="" />
                     </div>
+                    
 
                 </div>
 

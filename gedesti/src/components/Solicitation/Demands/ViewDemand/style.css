@@ -146,6 +146,12 @@
     white-space: nowrap;
 }
 
+.view-demand .display-solicitation-demand .title{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .view-demand .proposal-view-buttons {
     display: flex;
     align-items: center;

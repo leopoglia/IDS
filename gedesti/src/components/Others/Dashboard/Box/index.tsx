@@ -65,7 +65,6 @@ export default function Box() {
                 <Graphic />
             </div>
 
-
         </div>
     )
 }

@@ -1,5 +1,12 @@
+import React from 'react'
+
+export default function MyChart() {
 
 
-export default function Graphic() {
-    
+    return (
+        <div>
+
+        </div>
+    )
+
 }

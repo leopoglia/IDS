@@ -1,20 +1,58 @@
 .dashboard .box {
-    width: 20%;
     margin-right: 20px;
+}
+
+.dashboard svg{
+    width: 100%;
+    height: 100%;
 }
 
 .dashboard .content {
     margin-top: 20px;
 }
 
+.dashboard .display-flex{
+    align-items: center;
+}
+
 .dashboard .gg {
     font-size: var(--gg);
     color: var(--grey3d) !important;
+    transition: color 0.5s ease-in-out;
+    animation: aumentar 1s linear;
+    width: 80px;
+    text-align: center;
 }
+
 
 .dashboard .box .material-symbols-outlined {
     font-size: var(--gg);
-    color: var(--grey3d) !important;
+    color: var(--blue) !important;
+    font-variation-settings: 'wght' 300, 'FILL' 1, 'GRAD' -25, 'opsz' 50 !important;
+}
+
+.dashboard .display-grid{
+    margin-bottom: 0px !important;
+}
+
+.dashboard .display-grid span{
+    font-size: var(--pp);
+    color: var(--grey3d);
+}
+
+.dashboard .display-grid .material-symbols-outlined{
+    font-size: var(--p);
+}
+
+
+.dashboard .display-grid p{
+    font-size: var(--p);
+    margin-bottom: 0;
+    margin-left: 5px;
+}
+
+.dashboard .display-grid .display-flex-center{
+    justify-content: space-between;
 }
 
 @media(max-width: 1024px) {

@@ -1,0 +1,28 @@
+.dashboard .box {
+    width: 20%;
+    margin-right: 20px;
+}
+
+.dashboard .content {
+    margin-top: 20px;
+}
+
+.dashboard .gg {
+    font-size: var(--gg);
+    color: var(--grey3d) !important;
+}
+
+.dashboard .box .material-symbols-outlined {
+    font-size: var(--gg);
+    color: var(--grey3d) !important;
+}
+
+@media(max-width: 1024px) {
+    .dashboard .box {
+        width: 100% !important;
+    }
+
+    .dashboard .display-flex {
+        flex-direction: column;
+    }
+}

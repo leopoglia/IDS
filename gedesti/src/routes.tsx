@@ -24,6 +24,7 @@ import ProposedInformation from "./components/Solicitation/Proposals/ProposedInf
 import EscopeDemand from "./components/Solicitation/Proposals/EscopeDemand";
 import CreateMinute from "./components/Solicitation/Minutes/CreateMinute";
 import Message from "./components/Others/Messages/Message";
+import Dashboard from "./components/Others/Dashboard";
 import UserContext from "./context/userContext";
 import { useState, useEffect } from "react";
 import ServicesWorker from "./services/workerService";
@@ -83,6 +84,7 @@ export default function Router() {
                     <Route path="/messages/message" element={<Message />} />
                     <Route path="/notifications" element={<Notifications />} />
                     <Route path="/configuration" element={<Configuration />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
 
                     <Route path="/demands" element={<Demands />} />
                     <Route path="/demand/create/1" element={<CreateDemands1 />} />

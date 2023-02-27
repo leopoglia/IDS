@@ -351,16 +351,26 @@ hr {
 .demand-list::-webkit-scrollbar,
 .message::-webkit-scrollbar,
 .notification-true::-webkit-scrollbar,
-.notification-false::-webkit-scrollbar {
+.notification-false::-webkit-scrollbar,
+.container-background::-webkit-scrollbar {
   width: 10px;
   height: 4px;
+}
+
+.container-background::-webkit-scrollbar{
+  width: 6px;
+}
+
+.container-background::-webkit-scrollbar-thumb {
+  border-radius: 10px
 }
 
 .demand::-webkit-scrollbar-thumb,
 .demand-list::-webkit-scrollbar-thumb,
 .message::-webkit-scrollbar-thumb,
 .notification-true::-webkit-scrollbar-thumb,
-.notification-false::-webkit-scrollbar-thumb {
+.notification-false::-webkit-scrollbar-thumb,
+.container-background::-webkit-scrollbar-thumb {
   background-color: var(--greyD9);
 }
 
@@ -368,7 +378,8 @@ hr {
 .demand-list::-webkit-scrollbar-thumb:hover,
 .message::-webkit-scrollbar-thumb:hover,
 .notification-true::-webkit-scrollbar-thumb:hover,
-.notification-false::-webkit-scrollbar-thumb:hover {
+.notification-false::-webkit-scrollbar-thumb:hover,
+.container-background::-webkit-scrollbar-thumb:hover {
   background-color: var(--greyD9);
 }
 

@@ -7,6 +7,8 @@
     padding: 20px;
     display: flex;
     align-items: center;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .list-dashboard:hover{
@@ -17,6 +19,8 @@
     color: var(--blue);
     margin-left: 10px;
     height: fit-content;
+    white-space: nowrap;
+
 }
 
 .list-dashboard .material-symbols-outlined {

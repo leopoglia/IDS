@@ -46,6 +46,7 @@
     color: var(--grey3d);
 }
 
+
 .dashboard .display-grid .material-symbols-outlined {
     font-size: var(--p);
 }
@@ -68,6 +69,11 @@
 .dashboard .lists-dashboard {
     width: 100%;
     height: 100%;
+    overflow: hidden;
+}
+
+.h190{
+    height: 190px;
 }
 
 @media(max-width: 1024px) {

@@ -10,47 +10,42 @@ export default function Dashboard() {
 
     const listDashBoard = [
         {
-            title: "Número de Demandas criadas",
+            title: "Demandas criadas",
             number: (Math.random() * 100).toFixed(0),
             icon: "check",
         },
         {
-            title: "Número de Demandas esperando classificação",
+            title: "Demandas classificadas",
             number: (Math.random() * 100).toFixed(0),
             icon: "check",
         },
         {
-            title: "Número de Demandas esperando aprovação",
+            title: "Demandas aprovadas pelo gerente",
             number: (Math.random() * 100).toFixed(0),
             icon: "check",
         },
         {
-            title: "Número de Demandas esperando complemento",
+            title: "Demandas complementada",
             number: (Math.random() * 100).toFixed(0),
             icon: "check",
         },
         {
-            title: "Número de Demandas esperando criação da proposta",
+            title: "Demandas canceladas",
             number: (Math.random() * 100).toFixed(0),
             icon: "check",
         },
         {
-            title: "Número de Propostas",
+            title: "Propostas criadas",
             number: (Math.random() * 100).toFixed(0),
             icon: "check",
         },
         {
-            title: "Número de Pautas",
+            title: "Pautas criadas",
             number: (Math.random() * 100).toFixed(0),
             icon: "check",
         },
         {
-            title: "Número de Pautas Atas",
-            number: (Math.random() * 100).toFixed(0),
-            icon: "check",
-        },
-        {
-            title: "Número de Usuários",
+            title: "Atas criadas",
             number: (Math.random() * 100).toFixed(0),
             icon: "check",
         }

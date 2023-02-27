@@ -24,16 +24,16 @@ export default function Box() {
     return (
         <div className="box">
 
-            <p>Novas propostas</p>
 
             <div className="display-flex flex-box">
 
-             
-
-                <div className='display-block'>
 
 
-                
+                <div className='display-block h190'>
+
+
+                    <p>Novas propostas</p>
+
 
                     <div className='display-flex'>
                         <span className="gg">{valor}</span>
@@ -66,7 +66,7 @@ export default function Box() {
                             </div>
                         </div>
                     </div>
-                  
+
                 </div>
 
                 <Graphic />

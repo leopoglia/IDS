@@ -76,6 +76,19 @@ export default function Nav() {
                     </span>
                 </li>
 
+                {(office === "analyst" || office === "ti") &&
+                    <><Link to="/dashboard">
+                        <li id={hover("demands")}>
+                            <div>
+                                <span className="material-symbols-outlined">
+                                    monitoring
+                                </span>
+                                <span className="title-li">{t("dashboard")}</span>
+                            </div>
+                        </li>
+                    </Link>
+                    </>
+                }
 
                 <Link to="/demands">
                     <li id={hover("demands")}>

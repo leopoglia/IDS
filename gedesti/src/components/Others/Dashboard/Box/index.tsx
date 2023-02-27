@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Graphic from '../Graphic';
 
-export default function Box() {
+export default function Box(props: any) {
 
 
     const [valor, setValor] = useState(0);
-    const valorFinal = 10;
+    const valorFinal = props.number;
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -17,7 +17,7 @@ export default function Box() {
                     return valor + 1;
                 }
             });
-        }, 100);
+        }, 20);
     }, []);
 
 
@@ -32,10 +32,10 @@ export default function Box() {
                 <div className='display-block h190'>
 
 
-                    <p>Novas propostas</p>
+                    <p>{props.title}</p>
 
 
-                    <div className='display-flex'>
+                    <div className='display-block'>
                         <span className="gg">{valor}</span>
 
                         <div className="display-grid">

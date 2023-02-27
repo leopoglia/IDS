@@ -51,6 +51,24 @@ export default function Dashboard() {
         }
     ]
 
+    const boxDashBoard = [
+        {
+            title: "Novas demandas",
+            number: (Math.random() * 1000).toFixed(0),
+            icon: "check",
+        },
+        {
+            title: "Novas Propostas",
+            number: (Math.random() * 1000).toFixed(0),
+            icon: "check",
+        },
+        {
+            title: "Novas Pautas",
+            number: (Math.random() * 1000).toFixed(0),
+            icon: "check",
+        }
+    ]
+
     return (<div className="dashboard">
 
 
@@ -67,9 +85,11 @@ export default function Dashboard() {
 
                 <div className="display-flex dashboard-content">
                     <div>
-                        <Box />
-                        <Box />
-                        <Box />
+
+                        {boxDashBoard.map((item, index) => {
+                            return <Box key={index} title={item.title} number={item.number} icon={item.icon} />
+                        })
+                        }
                     </div>
 
                     <div className="lists-dashboard">

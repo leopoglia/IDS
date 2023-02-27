@@ -43,7 +43,7 @@ export const data = {
         {
             fill: true,
             label: 'Dataset 2',
-            data: labels.map(() => 100),
+            data: labels.map((val) => Math.random() * 100),
             borderColor: '#00579D',
             backgroundColor: '#1976d2d1',
         },

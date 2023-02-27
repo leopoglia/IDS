@@ -58,7 +58,7 @@ export default function Form() {
     return (
         <form onSubmit={handleSubmit} className="login-form">
             <header>
-                <h1>{t("title")}<b>GEDESTI</b></h1>
+                <h1>{t("title")}<b>WEG IDS</b></h1>
 
 
 

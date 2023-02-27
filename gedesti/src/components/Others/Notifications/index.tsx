@@ -11,7 +11,7 @@ import { t } from "i18next";
 
 export default function Notifications() {
 
-    const speaks = ["Olá, eu sou a Bia e estou aqui para ajudá-lo no sistema de demandas Gedesti. O que posso fazer por você hoje?"]
+    const speaks = ["Olá, eu sou a Wid e estou aqui para ajudá-lo no sistema de demandas WEG IDS. O que posso fazer por você hoje?"]
     const [notifications, setNotifications]: any = useState([])
     const [haveNotification, setHaveNotification]: any = useState(0)
     const worker = useContext(UserContext).worker

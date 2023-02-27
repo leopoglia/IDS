@@ -70,7 +70,7 @@ export default function AddExpense() {
 
                     <div className="display-flex-grid">
                         <label>{t("expenseProfile")} *</label>
-                        <SelectAddExpense setExpenseProfile={setExpenseProfile} type="expenseProfile" />
+                        <input onChange={ (e) => { setExpenseProfile(e.target.value)}} type="expenseProfile" />
                     </div>
 
                     <div className="display-flex-grid">

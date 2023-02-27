@@ -80,14 +80,13 @@ const Services = {
         })
     },
 
-    updateComplement: function (id: number, ppmcode: String, linkEpicJira: String, deadline: any) {
+    updateComplement: function (id: number, ppmcode: String, linkEpicJira: String) {
 
         return new Promise((resolve, reject) => {
             fetch(url + "/update/" + id, {
                 method: 'PUT', body: JSON.stringify({
                     ppmCode: ppmcode,
-                    epicJiraLink: linkEpicJira,
-                    deadline: deadline
+                    epicJiraLink: linkEpicJira
                 }), headers: { 'Content-Type': 'application/json' }
             }).then(function (result) { return result.json(); })
                 .then(resolve)

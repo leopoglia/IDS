@@ -43,7 +43,12 @@ export default function Form() {
                 setWorker(worker);
 
                 localStorage.setItem("id", JSON.stringify(worker.id));
+
+                if(worker.office !== "analyst"){
                 navigate('/demands');
+                } else{
+                    navigate('/dashboard');
+                }
             }
 
             if (response?.status === 400 || response?.status === 500 || response?.status === undefined) {

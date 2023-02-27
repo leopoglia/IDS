@@ -1,7 +1,7 @@
 const url = "http://localhost:8080/api/proposal"
 
 const Services = {
-    save: function (proposalName: String, proposalStatus: String, payback: Number, initialRunPeriod: any, finalExecutionPeriod: any, descriptiveProposal: String, responsibleAnalyst: any, agendaCode: any, workers: any, totalsCosts: Number, externalCosts: Number, internalCosts: Number, demandCode: any, proposalDate: String) {
+    save: function (proposalName: String, proposalStatus: String, payback: String, initialRunPeriod: any, finalExecutionPeriod: any, descriptiveProposal: String, responsibleAnalyst: any, agendaCode: any, workers: any, totalsCosts: Number, externalCosts: Number, internalCosts: Number, demandCode: any, proposalDate: String) {
 
         let workersList: any = [];
 

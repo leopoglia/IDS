@@ -18,17 +18,16 @@ export default function ComplementDemand() {
     const codeDemand = parseInt(window.location.href.split("/")[5])
     const [ppmCode, setPpmCode] = useState("")
     const [linkEpicJira, setLinkEpicJira] = useState("")
-    const [deadlineDemand, setDeadlineDemand] = useState("")
 
     function complementary() {
 
-        if (ppmCode === "" || linkEpicJira === "" || deadlineDemand === "") {
+        if (ppmCode === "" || linkEpicJira === "") {
             notifyError();
         } else {
             ServicesDemand.findById(codeDemand).then((response) => {
                 let demand:any = response;
 
-                Services.updateComplement(demand.classification.classificationCode, ppmCode, linkEpicJira, deadlineDemand).then((response) => {
+                Services.updateComplement(demand.classification.classificationCode, ppmCode, linkEpicJira).then((response) => {
                     ServicesDemand.updateStatus(codeDemand, "BacklogComplement").then((response) => {
                         ServicesNotification.save("Um analista complementou a sua demanda de código  " + demand.demandCode, demand.requesterRegistration.workerCode, "done", "demand");
 
@@ -62,10 +61,6 @@ export default function ComplementDemand() {
 
 
                 <div className="box">
-                    <div className="display-grid-select">
-                        <label htmlFor="">{t("deadlineDemand")} *</label>
-                        <SelectSizeDemand setDeadlineDemand={setDeadlineDemand} type="deadline" />
-                    </div>
                     <div className="display-grid">
                         <label htmlFor="">{t("ppmCode")} *</label>
                         <input onChange={(e) => setPpmCode(e.target.value)} type="text" />

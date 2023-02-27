@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { over } from 'stompjs';
-import SockJS from 'sockjs-client';
-import EmojiPicker from "emoji-picker-react";
+// import { over } from 'stompjs';
+// import SockJS from 'sockjs-client';
+// import EmojiPicker from "emoji-picker-react";
 import { useTranslation } from "react-i18next";
 import "./style.css"
 import Header from "../../../Fixed/Header"

@@ -330,7 +330,7 @@ hr {
   height: var(--h);
   padding: 11px;
   background-color: var(--greyF7);
-  color: var(--grey59) !important;
+  color: var(--grey3d) !important;
   border: 1px solid var(--greyC4);
   border-radius: var(--r);
   text-align: center;

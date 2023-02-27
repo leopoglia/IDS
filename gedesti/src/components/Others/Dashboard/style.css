@@ -22,7 +22,7 @@
     justify-content: space-between;
 }
 
-.box p {
+.dashboard .box p {
     width: 100%;
     white-space: nowrap;
 }
@@ -70,6 +70,9 @@
 
 .dashboard .chart {
     width: 380px;
+    max-width: 380px;
+    min-width: 380px;
+    margin-left: 20px;
 }
 
 .dashboard .lists-dashboard {

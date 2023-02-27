@@ -5,48 +5,117 @@ import "./style.css";
 import { useEffect, useState } from "react";
 import Box from "./Box";
 import List from "./List";
+import ServicesDemand from '../../../services/demandService';
+import ServicesProposal from '../../../services/proposalService';
+import ServicesAgenda from '../../../services/agendaService';
+import ServicesMinutes from "../../../services/minuteService";
 
 export default function Dashboard() {
+
+    const [demands, setDemands] = useState(0);
+    const [demandsRanked, setDemandsRankes] = useState(0);
+    const [demandsApproved, setDemandsApproved] = useState(0);
+    const [demandsCompleted, setDemandsCompleted] = useState(0);
+    const [demandsCanceled, setDemandsCanceled] = useState(0);
+    const [proposal, setProposal] = useState(0);
+    const [agendas, setAgendas] = useState(0);
+    const [minutes, setMinutes] = useState(0);
+
+    function getDemands() {
+        ServicesDemand.findAll().then((response: any) => {
+            setDemands(response?.length);
+
+            for(let i = 0; i < response.length; i++) {
+                if(response[i].demandStatus === "BacklogRanked") {
+                    setDemandsRankes(demandsRanked + 1);
+                }
+                if(response[i].demandStatus === "BacklogRankApproved") {
+                    setDemandsApproved(demandsApproved + 1);
+                }
+                if(response[i].demandStatus === "BacklogComplement") {
+                    setDemandsCompleted(demandsCompleted + 1);
+                }
+                if(response[i].demandStatus === "Cancelled") {
+                    setDemandsCanceled(demandsCanceled + 1);
+                }
+            }
+
+
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+
+    function getProposal() {
+        ServicesProposal.findAll().then((response: any) => {
+            setProposal(response?.length);
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+
+    function getAgendas() {
+        ServicesAgenda.findAll().then((response: any) => {
+            setAgendas(response?.length);
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+
+    function getMinutes() {
+        ServicesMinutes.findAll().then((response: any) => {
+            setMinutes(response?.length);
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+
+    useEffect(() => {
+        getDemands();
+        getProposal();
+        getAgendas();
+        getMinutes();
+    }, []);
 
     const listDashBoard = [
         {
             title: "Demandas criadas",
-            number: (Math.random() * 100).toFixed(0),
+            number: demands,
             icon: "check",
         },
         {
             title: "Demandas classificadas",
-            number: (Math.random() * 100).toFixed(0),
+            number: demandsRanked,
             icon: "check",
         },
         {
             title: "Demandas aprovadas pelo gerente",
-            number: (Math.random() * 100).toFixed(0),
+            number: demandsApproved,
             icon: "check",
         },
         {
             title: "Demandas complementada",
-            number: (Math.random() * 100).toFixed(0),
+            number: demandsCompleted,
             icon: "check",
         },
         {
             title: "Demandas canceladas",
-            number: (Math.random() * 100).toFixed(0),
+            number: demandsCanceled,
             icon: "check",
         },
         {
             title: "Propostas criadas",
-            number: (Math.random() * 100).toFixed(0),
+            number: proposal,
             icon: "check",
         },
         {
             title: "Pautas criadas",
-            number: (Math.random() * 100).toFixed(0),
+            number: agendas,
             icon: "check",
         },
         {
             title: "Atas criadas",
-            number: (Math.random() * 100).toFixed(0),
+            number: minutes,
             icon: "check",
         }
     ]
@@ -54,20 +123,25 @@ export default function Dashboard() {
     const boxDashBoard = [
         {
             title: "Novas demandas",
-            number: (Math.random() * 1000).toFixed(0),
+            type: "demands",
+            number: demands,
             icon: "check",
         },
         {
             title: "Novas Propostas",
-            number: (Math.random() * 1000).toFixed(0),
+            type: "proposal",
+            number: proposal,
             icon: "check",
         },
         {
             title: "Novas Pautas",
-            number: (Math.random() * 1000).toFixed(0),
+            type: "agendas",
+            number: agendas,
             icon: "check",
         }
     ]
+
+
 
     return (<div className="dashboard">
 
@@ -85,11 +159,12 @@ export default function Dashboard() {
 
                 <div className="display-flex dashboard-content">
                     <div>
-
-                        {boxDashBoard.map((item, index) => {
-                            return <Box key={index} title={item.title} number={item.number} icon={item.icon} />
-                        })
+                        {demands > 0 &&
+                            boxDashBoard.map((item, index) => {
+                                return <Box key={index} title={item.title} number={item.number} icon={item.icon} />
+                            })
                         }
+
                     </div>
 
                     <div className="lists-dashboard">

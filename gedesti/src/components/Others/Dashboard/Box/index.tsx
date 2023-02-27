@@ -18,8 +18,8 @@ export default function Box(props: any) {
                 }
             });
         }, 20);
-    }, []);
 
+    }, []);
 
     return (
         <div className="box">
@@ -69,7 +69,7 @@ export default function Box(props: any) {
 
                 </div>
 
-                <Graphic />
+                <Graphic type={props.type} number={valor} />
             </div>
 
         </div>

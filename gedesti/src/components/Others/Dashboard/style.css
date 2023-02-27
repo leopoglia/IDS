@@ -4,6 +4,10 @@
     height: fit-content;
 }
 
+.dashboard .box:hover{
+    background-color: var(--greyF7);
+}
+
 .dashboard svg {
     width: 100%;
     height: 100%;

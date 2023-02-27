@@ -9,6 +9,10 @@
     align-items: center;
 }
 
+.list-dashboard:hover{
+    background-color: var(--greyF7);
+}
+
 .list-dashboard-header p {
     color: var(--blue);
     margin-left: 10px;
@@ -32,6 +36,35 @@
 
 .number-list {
     margin-left: 10px;
+    margin-right: 20px;
     font-size: var(--g);
     color: var(--grey3d);
+}
+
+.alteration-numbers {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.alteration-numbers .span {
+    font-size: var(--p);
+    color: var(--grey3d);
+}
+
+.alteration-numbers p {
+    font-size: var(--p);
+    margin-top: 0px;
+}
+
+.alteration-numbers .display-flex-center {
+    display: grid;
+}
+
+.number-list .display-flex {
+    align-items: center;
+}
+
+.ml10{
+    margin-left: 10px;
 }

@@ -9,7 +9,7 @@ export default function SelectLabels(props: any) {
     const [type, setType] = useState(props.type);
     const [bu, setBu]: any = useState([]);
 
-    const size = ["Pequeno", "Médio", "Grande"]
+    const size = ["Muito Pequeno", "Pequeno", "Médio", "Grande", "Muito Grande"]
 
 
     useEffect(() => {

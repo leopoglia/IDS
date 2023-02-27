@@ -1,5 +1,7 @@
 .dashboard .box {
     margin-right: 20px;
+    width: fit-content;
+    height: fit-content;
 }
 
 .dashboard svg{
@@ -11,7 +13,7 @@
     margin-top: 20px;
 }
 
-.dashboard .display-flex{
+.dashboard .box .display-flex{
     align-items: center;
 }
 
@@ -35,7 +37,7 @@
     margin-bottom: 0px !important;
 }
 
-.dashboard .display-grid span{
+.box .display-grid span{
     font-size: var(--pp);
     color: var(--grey3d);
 }
@@ -53,6 +55,15 @@
 
 .dashboard .display-grid .display-flex-center{
     justify-content: space-between;
+}
+
+.dashboard .chart{
+    width: 300px;
+}
+
+.dashboard .lists-dashboard{
+    width: 100%;
+    height: 100%;
 }
 
 @media(max-width: 1024px) {

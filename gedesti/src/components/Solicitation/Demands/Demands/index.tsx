@@ -116,7 +116,7 @@ export default function Demands() {
     }
 
     return (
-        <div>
+        <div className="solicitation">
             {minute && (
                 <div className="background-minute" onClick={() => setMinute(false)}>
                     <div className="minute">

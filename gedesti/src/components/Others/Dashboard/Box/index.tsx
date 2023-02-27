@@ -26,40 +26,47 @@ export default function Box() {
 
             <p>Novas propostas</p>
 
-            <div className="display-flex">
+            <div className="display-flex flex-box">
 
-                <div className="material-simbols-outlined">
-                    <span className="material-symbols-outlined">request_quote</span>
-                </div>
+             
 
-                <span className="gg">{valor}</span>
+                <div className='display-block'>
 
-                <div className="display-grid">
 
-                    <div className="display-flex-center">
-                        <span>1S</span>
+                
 
-                        <span className="material-symbols-outlined">
-                            trending_up
-                        </span>
-                        <p>+50%</p>
+                    <div className='display-flex'>
+                        <span className="gg">{valor}</span>
+
+                        <div className="display-grid">
+
+                            <div className="display-flex-center">
+                                <span>1S</span>
+
+                                <span className="material-symbols-outlined">
+                                    trending_up
+                                </span>
+                                <p>+50%</p>
+                            </div>
+
+                            <div className="display-flex-center">
+                                <span>1M</span>
+                                <span className="material-symbols-outlined">
+                                    trending_up
+                                </span>
+                                <p>+50%</p>
+                            </div>
+
+                            <div className="display-flex-center">
+                                <span>1A</span>
+                                <span className="material-symbols-outlined">
+                                    trending_up
+                                </span>
+                                <p>+50%</p>
+                            </div>
+                        </div>
                     </div>
-
-                    <div className="display-flex-center">
-                        <span>1M</span>
-                        <span className="material-symbols-outlined">
-                            trending_up
-                        </span>
-                        <p>+50%</p>
-                    </div>
-
-                    <div className="display-flex-center">
-                        <span>1A</span>
-                        <span className="material-symbols-outlined">
-                            trending_up
-                        </span>
-                        <p>+50%</p>
-                    </div>
+                  
                 </div>
 
                 <Graphic />

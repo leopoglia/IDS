@@ -11,42 +11,47 @@ export default function Dashboard() {
     const listDashBoard = [
         {
             title: "Número de Demandas criadas",
-            number: 150,
+            number: (Math.random() * 100).toFixed(0),
             icon: "check",
         },
         {
             title: "Número de Demandas esperando classificação",
-            number: 30,
+            number: (Math.random() * 100).toFixed(0),
             icon: "check",
         },
         {
             title: "Número de Demandas esperando aprovação",
-            number: 10,
+            number: (Math.random() * 100).toFixed(0),
             icon: "check",
         },
         {
             title: "Número de Demandas esperando complemento",
-            number: 10,
+            number: (Math.random() * 100).toFixed(0),
             icon: "check",
         },
         {
             title: "Número de Demandas esperando criação da proposta",
-            number: 10,
+            number: (Math.random() * 100).toFixed(0),
             icon: "check",
         },
         {
             title: "Número de Propostas",
-            number: 10,
+            number: (Math.random() * 100).toFixed(0),
             icon: "check",
         },
         {
             title: "Número de Pautas",
-            number: 10,
+            number: (Math.random() * 100).toFixed(0),
             icon: "check",
         },
         {
             title: "Número de Pautas Atas",
-            number: 10,
+            number: (Math.random() * 100).toFixed(0),
+            icon: "check",
+        },
+        {
+            title: "Número de Usuários",
+            number: (Math.random() * 100).toFixed(0),
             icon: "check",
         }
     ]
@@ -65,7 +70,7 @@ export default function Dashboard() {
 
             <div className="content">
 
-                <div className="display-flex">
+                <div className="display-flex dashboard-content">
                     <div>
                         <Box />
                         <Box />

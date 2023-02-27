@@ -134,24 +134,26 @@ export default function Demands() {
                     <div className="container">
 
                         <Search setSearch={setSearch} onClick={callback} name={nameFilter} setType={setType} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1" setTable={setTable} />
-                        {
-                            demands.map((val, index) => {
-                                if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
-                                    return (
-                                        <Demand demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />
-                                    );
-                                } else {
+                        <div className="container-background">
+                            {
+                                demands.map((val, index) => {
+                                    if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
+                                        return (
+                                            <Demand demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />
+                                        );
+                                    } else {
 
-                                    if (search !== "" && val.demandTitle.toUpperCase().includes(search.toUpperCase())) {
-                                        return (<Demand demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />);
-                                    }
+                                        if (search !== "" && val.demandTitle.toUpperCase().includes(search.toUpperCase())) {
+                                            return (<Demand demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />);
+                                        }
 
-                                    if (typeFilter === "requester" && val.requesterRegistration.workerName.toUpperCase().includes(nameFilter.toUpperCase())) {
-                                        return (<Demand demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />);
+                                        if (typeFilter === "requester" && val.requesterRegistration.workerName.toUpperCase().includes(nameFilter.toUpperCase())) {
+                                            return (<Demand demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />);
+                                        }
                                     }
-                                }
-                            })
-                        }
+                                })
+                            }
+                        </div>
 
                         {demands.length === 0 && (
                             <div className="no-results">
@@ -168,13 +170,15 @@ export default function Demands() {
                     <Nav />
                     <div className="container">
                         <Search onClick={callback} name={nameFilter} type={typeFilter} nav={t("proposalViewProposal")} title="proposals" button="createProposal" link="/demands" setTable={setTable} />
-                        {
-                            proposals.map((val, index) => {
-                                return (
-                                    <Demand listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />
-                                );
-                            })
-                        }
+                        <div className="container-background">
+                            {
+                                proposals.map((val, index) => {
+                                    return (
+                                        <Demand listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />
+                                    );
+                                })
+                            }
+                        </div>
                         {footer()}
                     </div>
                 </div>
@@ -184,13 +188,15 @@ export default function Demands() {
                     <Nav />
                     <div className="container">
                         <Search onClick={callback} name={nameFilter} type={typeFilter} nav={t("agendaViewAgenda")} title="agendas" button="createAgenda" link="/agenda/create" setTable={setTable} />
-                        {
-                            agendas.map((val, index) => {
-                                return (
-                                    <Demand listDirection={table} name={"Pauta da reunião  " + val.agendaCode} demandCode={val.agendaCode}  number={val.sequentialNumber} year={val.yearAgenda} type="agenda" />
-                                );
-                            })
-                        }
+                        <div className="container-background">
+                            {
+                                agendas.map((val, index) => {
+                                    return (
+                                        <Demand listDirection={table} name={"Pauta da reunião  " + val.agendaCode} demandCode={val.agendaCode} number={val.sequentialNumber} year={val.yearAgenda} type="agenda" />
+                                    );
+                                })
+                            }
+                        </div>
                         {footer()}
                     </div>
                 </div>
@@ -200,15 +206,17 @@ export default function Demands() {
                     <Nav />
                     <div className="container">
                         <Search onClick={callback} name={nameFilter} type={typeFilter} nav={t("minuteViewMinute")} title="minutes" button="createMinute" link="/agendas" setTable={setTable} />
-                        {
-                            minutes.map((val, index) => {
-                                return (
-                                    <div onClick={() => setMinute(true)}>
-                                        <Demand listDirection={table} demandCode={val.minuteCode} name={val.name} director={val.director} coordinator={val.coordinator} number={val.number} date={val.date} situation={val.situation} type="minute" />
-                                    </div>
-                                );
-                            })
-                        }
+                        <div className="container-background">
+                            {
+                                minutes.map((val, index) => {
+                                    return (
+                                        <div onClick={() => setMinute(true)}>
+                                            <Demand listDirection={table} demandCode={val.minuteCode} name={val.name} director={val.director} coordinator={val.coordinator} number={val.number} date={val.date} situation={val.situation} type="minute" />
+                                        </div>
+                                    );
+                                })
+                            }
+                        </div>
                         {footer()}
                     </div>
                 </div>

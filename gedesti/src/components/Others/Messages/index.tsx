@@ -17,7 +17,31 @@ export default function Messages() {
                     <Title nav="messages" title="messages" />
                 </div>
 
-                <Message />
+                <div className="container-background">
+                    <Message />
+                    <Message />
+                    <Message />
+                    <Message />
+                    <Message />
+                    <Message />
+                    <Message />
+                    <Message />
+                    <Message />
+                    <Message />
+                    <Message />
+                    <Message />
+                    <Message />
+                    <Message />
+                    <Message />
+                    <Message />
+                    <Message />
+                    <Message />
+                    <Message />
+                    <Message />
+                    <Message />
+
+                </div>
+
 
                 <Footer />
 

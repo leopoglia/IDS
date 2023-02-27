@@ -42,32 +42,30 @@ export default function Notifications() {
                     <Title nav="notifications" title="notifications" />
                 </div>
 
-                {notifications.map((notification: any) => {
-                    if (notification.worker.workerCode == worker.id) {
-                        return (
-                            <Notification
-                                id={notification.notificationCode}
-                                description={notification.description}
-                                date={notification.date}
-                                icon={notification.icon}
-                                view={notification.visualized}
-                                type={notification.type}
-                            />
-                        )
+                <div className="container-background">
+                    {notifications.map((notification: any) => {
+                        if (notification.worker.workerCode == worker.id) {
+                            return (
+                                <Notification
+                                    id={notification.notificationCode}
+                                    description={notification.description}
+                                    date={notification.date}
+                                    icon={notification.icon}
+                                    view={notification.visualized}
+                                    type={notification.type}
+                                />
+                            )
+                        }
+
+
+                        if (notification.worker.workerCode == worker.id) {
+                            setHaveNotification(haveNotification + 1)
+                        }
+
+
+                    }, [])
                     }
-
-
-                    if (notification.worker.workerCode == worker.id) {
-                        setHaveNotification(haveNotification + 1)
-                    }
-
-
-                }, [])
-                }
-
-
-
-
+                </div>
 
                 <Footer />
 

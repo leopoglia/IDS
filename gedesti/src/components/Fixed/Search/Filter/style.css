@@ -36,6 +36,10 @@
     margin-top: 10px;
 }
 
+.font-p{
+    font-size: var(--p);
+}
+
 @media (max-width: 768px) {
 
 

@@ -25,17 +25,17 @@ export default function Dashboard() {
         ServicesDemand.findAll().then((response: any) => {
             setDemands(response?.length);
 
-            for(let i = 0; i < response.length; i++) {
-                if(response[i].demandStatus === "BacklogRanked") {
+            for (let i = 0; i < response.length; i++) {
+                if (response[i].demandStatus === "BacklogRanked") {
                     setDemandsRankes(demandsRanked + 1);
                 }
-                if(response[i].demandStatus === "BacklogRankApproved") {
+                if (response[i].demandStatus === "BacklogRankApproved") {
                     setDemandsApproved(demandsApproved + 1);
                 }
-                if(response[i].demandStatus === "BacklogComplement") {
+                if (response[i].demandStatus === "BacklogComplement") {
                     setDemandsCompleted(demandsCompleted + 1);
                 }
-                if(response[i].demandStatus === "Cancelled") {
+                if (response[i].demandStatus === "Cancelled") {
                     setDemandsCanceled(demandsCanceled + 1);
                 }
             }
@@ -65,6 +65,7 @@ export default function Dashboard() {
     function getMinutes() {
         ServicesMinutes.findAll().then((response: any) => {
             setMinutes(response?.length);
+            console.log(response.length);
         }).catch((error) => {
             console.log(error);
         });

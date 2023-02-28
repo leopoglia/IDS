@@ -19,6 +19,7 @@ export default function CreateAgenda() {
     const [agendaNumber, setAgendaNumber] = useState("");
     const [comission, setComission]: any = useState([]);
     const [worker, setWorker] = useState("");
+    let actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear();
 
     console.log(comission);
 
@@ -69,7 +70,7 @@ export default function CreateAgenda() {
             console.log(workers);
 
 
-            Services.save(1, 1, workers).then((response: any) => {
+            Services.save(1, 1, workers, actualDate).then((response: any) => {
                 let agendaCode = response.agendaCode;
     
                 for (let i = 0; i < proposals.length; i++) {

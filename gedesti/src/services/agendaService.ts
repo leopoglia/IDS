@@ -1,7 +1,7 @@
 const url = "http://localhost:8080/api/agenda";
 
 const Services = {
-    save: function (sequentialNumber: Number, yearAgenda: Number, commission: any) {
+    save: function (sequentialNumber: Number, yearAgenda: Number, commission: any, agendaDate: String) {
 
         let comissionList:any = [];
 
@@ -14,7 +14,8 @@ const Services = {
                 method: 'POST', body: JSON.stringify({
                     sequentialNumber: sequentialNumber,
                     yearAgenda: yearAgenda,
-                    commission: comissionList
+                    commission: comissionList,
+                    agendaDate: agendaDate
                 }), headers: { 'Content-Type': 'application/json' }
             }).then(function (result) { return result.json(); })
                 .then(resolve)

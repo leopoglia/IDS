@@ -63,7 +63,6 @@ export default function Dashboard() {
             for (let i = 0; i < response.length; i++) {
                 let dates: any = proposalDates;
                 dates.push(response[i].proposalDate);
-                setProposalDates(dates);
             }
 
         }).catch((error) => {
@@ -76,10 +75,8 @@ export default function Dashboard() {
             setAgendas(response?.length);
 
             for (let i = 0; i < response.length; i++) {
-
                 let dates: any = agendaDates;
                 dates.push(response[i].agendaDate);
-                setAgendaDates(dates);
             }
         }).catch((error) => {
             console.log(error);

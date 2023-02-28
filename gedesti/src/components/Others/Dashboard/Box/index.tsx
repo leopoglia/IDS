@@ -18,11 +18,6 @@ export default function Box(props: any) {
                 }
             });
         }, 20);
-
-
-        // pegar o mes do props.dates e separar em um array com os meses como string
-
-
     }, []);
 
     return (
@@ -73,7 +68,7 @@ export default function Box(props: any) {
 
                 </div>
 
-                <Graphic type={props.type} number={valor} />
+                <Graphic type={props.type} number={valor} dates={props.dates} />
             </div>
 
         </div>

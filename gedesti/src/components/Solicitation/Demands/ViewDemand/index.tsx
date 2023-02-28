@@ -132,7 +132,7 @@ export default function ViewDemand() {
             localStorage.removeItem("route");
         }
 
-    }, [url]);
+    }, [url, demand]);
 
 
     function getDemand() {

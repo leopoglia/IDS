@@ -38,29 +38,33 @@ export const options = {
 };
 
 
-
-
-
-
-
-
-
 export default function Graphic(props: any) {
 
     const monthNames = [
-        "Jan", 
-        "Feb", 
-        "Mar", 
-        "Apr", 
-        "May", 
-        "Jun", 
-        "Jul", 
-        "Aug", 
-        "Sep", 
-        "Oct", 
-        "Nov", 
-        "Dec"
-      ];
+        { month: "Jan", numbers: 0 },
+        { month: "Feb", numbers: 0 },
+        { month: "Mar", numbers: 0 },
+        { month: "Apr", numbers: 0 },
+        { month: "May", numbers: 0 },
+        { month: "Jun", numbers: 0 },
+        { month: "Jul", numbers: 0 },
+        { month: "Aug", numbers: 0 },
+        { month: "Sep", numbers: 0 },
+        { month: "Oct", numbers: 0 },
+        { month: "Nov", numbers: 0 },
+        { month: "Dec", numbers: 0 }
+    ];
+
+
+    useEffect(() => {
+
+        for (let i = 0; i < props.dates.length; i++) {
+            console.log("PROPS DATES --> ", props.dates[i])
+        }
+
+
+
+    }, []);
 
     // Obtém a data atual
     const currenDate = new Date();

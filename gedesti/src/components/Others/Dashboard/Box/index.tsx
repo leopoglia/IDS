@@ -19,7 +19,7 @@ export default function Box(props: any) {
             });
         }, 20);
 
-    }, []);
+    }, [props]);
 
     return (
         <div className="box">

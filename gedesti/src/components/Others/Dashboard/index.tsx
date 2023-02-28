@@ -76,7 +76,7 @@ export default function Dashboard() {
         getProposal();
         getAgendas();
         getMinutes();
-    }, []);
+    }, [demands, proposal, agendas, minutes]);
 
     const listDashBoard = [
         {

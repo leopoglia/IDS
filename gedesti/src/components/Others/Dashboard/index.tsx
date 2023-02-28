@@ -13,6 +13,11 @@ import ServicesMinutes from "../../../services/minuteService";
 export default function Dashboard() {
 
     const [demands, setDemands] = useState(0);
+
+    const [demandsDates, setDemandsDates] = useState([]);
+    const [proposalDates, setProposalDates] = useState([]);
+    const [agendaDates, setAgendaDates] = useState([]);
+
     const [demandsRanked, setDemandsRankes] = useState(0);
     const [demandsApproved, setDemandsApproved] = useState(0);
     const [demandsCompleted, setDemandsCompleted] = useState(0);
@@ -38,6 +43,7 @@ export default function Dashboard() {
                 if (response[i].demandStatus === "Cancelled") {
                     setDemandsCanceled(demandsCanceled + 1);
                 }
+                setDemandsDates(response[i].demandDate);
             }
 
 
@@ -49,6 +55,11 @@ export default function Dashboard() {
     function getProposal() {
         ServicesProposal.findAll().then((response: any) => {
             setProposal(response?.length);
+
+            for(let i = 0; i < response.length; i++){
+                setProposalDates(response[i].proposalDate);
+            }
+
         }).catch((error) => {
             console.log(error);
         });
@@ -57,6 +68,10 @@ export default function Dashboard() {
     function getAgendas() {
         ServicesAgenda.findAll().then((response: any) => {
             setAgendas(response?.length);
+
+            for(let i = 0; i < response.length; i++){
+                setAgendaDates(response[i].agendaDate);
+            }
         }).catch((error) => {
             console.log(error);
         });
@@ -65,12 +80,11 @@ export default function Dashboard() {
     function getMinutes() {
         ServicesMinutes.findAll().then((response: any) => {
             setMinutes(response?.length);
-            console.log(response.length);
         }).catch((error) => {
             console.log(error);
         });
     }
-    
+
 
     useEffect(() => {
         getDemands();
@@ -128,23 +142,26 @@ export default function Dashboard() {
             type: "demands",
             number: demands,
             icon: "check",
+            dates: demandsDates
         },
         {
             title: "Novas Propostas",
             type: "proposal",
             number: proposal,
             icon: "check",
+            dates: proposalDates
         },
         {
             title: "Novas Pautas",
             type: "agendas",
             number: agendas,
             icon: "check",
+            dates: 1
         }
     ]
 
 
-
+    console.log("BOX DASHBOARD --> " , boxDashBoard)
     return (<div className="dashboard">
 
 
@@ -163,7 +180,7 @@ export default function Dashboard() {
                     <div>
                         {demands > 0 &&
                             boxDashBoard.map((item, index) => {
-                                return <Box key={index} title={item.title} number={item.number} icon={item.icon} />
+                                return <Box key={index} title={item.title} dates={item.dates} number={item.number} icon={item.icon} />
                             })
                         }
 

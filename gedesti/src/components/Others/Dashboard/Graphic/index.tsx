@@ -77,10 +77,6 @@ export default function Graphic(props: any) {
     const nameCurrentMonth = monthNames[currenDate.getMonth()];
     monthNames7.push(nameCurrentMonth);
 
-    // Imprime o array com os nomes dos últimos sete meses
-    console.log(monthNames7);
-
-
     const labels = monthNames7;
 
     const data = {

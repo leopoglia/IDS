@@ -14,9 +14,9 @@ export default function Dashboard() {
 
     const [demands, setDemands] = useState(0);
 
-    const [demandsDates, setDemandsDates] = useState([]);
-    const [proposalDates, setProposalDates] = useState([]);
-    const [agendaDates, setAgendaDates] = useState([]);
+    const [demandsDates, setDemandsDates]: any = useState([]);
+    const [proposalDates, setProposalDates]: any = useState([]);
+    const [agendaDates, setAgendaDates]: any = useState([]);
 
     const [demandsRanked, setDemandsRankes] = useState(0);
     const [demandsApproved, setDemandsApproved] = useState(0);
@@ -43,7 +43,9 @@ export default function Dashboard() {
                 if (response[i].demandStatus === "Cancelled") {
                     setDemandsCanceled(demandsCanceled + 1);
                 }
-                setDemandsDates(response[i].demandDate);
+
+                let dates: any = demandsDates.push(response[i].demandDate)
+                setDemandsDates(dates);
             }
 
 
@@ -56,8 +58,9 @@ export default function Dashboard() {
         ServicesProposal.findAll().then((response: any) => {
             setProposal(response?.length);
 
-            for(let i = 0; i < response.length; i++){
-                setProposalDates(response[i].proposalDate);
+            for (let i = 0; i < response.length; i++) {
+                let dates: any = proposalDates.push(response[i].proposalDate)
+                setProposalDates(dates);
             }
 
         }).catch((error) => {
@@ -69,8 +72,9 @@ export default function Dashboard() {
         ServicesAgenda.findAll().then((response: any) => {
             setAgendas(response?.length);
 
-            for(let i = 0; i < response.length; i++){
-                setAgendaDates(response[i].agendaDate);
+            for (let i = 0; i < response.length; i++) {
+                let dates: any = agendaDates.push(response[i].agendaDate)
+                setAgendaDates(dates);
             }
         }).catch((error) => {
             console.log(error);
@@ -159,11 +163,8 @@ export default function Dashboard() {
             dates: 1
         }
     ]
-
-
-    console.log("BOX DASHBOARD --> " , boxDashBoard)
+    
     return (<div className="dashboard">
-
 
         <Header />
         <Nav />

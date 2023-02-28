@@ -95,7 +95,13 @@ export default function Demands() {
         return (
             <div>
                 <div className="navigator" >
-                    <div onClick={() => navigate("/demands/" + (parseInt(page)-1))} >{"<"}</div>
+                    <div onClick={() => {
+                        let subPage = page;
+                        if (parseInt(subPage) > 1) {
+                            subPage = parseInt(subPage) - 1;
+                        }
+                        navigate("/demands/" + subPage)
+                        }} >{"<"}</div>
                     <div className="current" onClick={() => navigate("/demands/1")} >1</div>
                     <div onClick={() => navigate("/demands/2")} >2</div>
                     <div onClick={() => navigate("/demands/3")} >3</div>

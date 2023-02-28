@@ -25,7 +25,7 @@
     align-items: center;
 }
 
-.content-demand{
+.content-demand {
     margin-left: 6px
 }
 
@@ -70,7 +70,7 @@
 .demand::before {
     content: '';
     background-color: var(--blue);
-    position: absolute;
+    position: fixed;
     width: 8px;
     height: 98.6px;
     margin-top: -0.6px;
@@ -216,7 +216,7 @@
     position: relative;
 }
 
-.title-situation{
+.title-situation {
     font-size: var(--m);
     color: var(--grey00);
     margin: 10px;

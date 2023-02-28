@@ -25,9 +25,10 @@ export default function Dashboard() {
     const [proposal, setProposal] = useState(0);
     const [agendas, setAgendas] = useState(0);
     const [minutes, setMinutes] = useState(0);
+    let url = window.location.href;
 
-    function getDemands() {
-        ServicesDemand.findAll().then((response: any) => {
+    async function getDemands() {
+        await ServicesDemand.findAll().then((response: any) => {
             setDemands(response?.length);
 
             for (let i = 0; i < response.length; i++) {
@@ -55,8 +56,8 @@ export default function Dashboard() {
         });
     }
 
-    function getProposal() {
-        ServicesProposal.findAll().then((response: any) => {
+    async function getProposal() {
+        await ServicesProposal.findAll().then((response: any) => {
             setProposal(response?.length);
 
             for (let i = 0; i < response.length; i++) {
@@ -70,8 +71,8 @@ export default function Dashboard() {
         });
     }
 
-    function getAgendas() {
-        ServicesAgenda.findAll().then((response: any) => {
+    async function getAgendas() {
+        await ServicesAgenda.findAll().then((response: any) => {
             setAgendas(response?.length);
 
             for (let i = 0; i < response.length; i++) {
@@ -85,8 +86,8 @@ export default function Dashboard() {
         });
     }
 
-    function getMinutes() {
-        ServicesMinutes.findAll().then((response: any) => {
+    async function getMinutes() {
+        await ServicesMinutes.findAll().then((response: any) => {
             setMinutes(response?.length);
         }).catch((error) => {
             console.log(error);
@@ -98,8 +99,8 @@ export default function Dashboard() {
         getDemands();
         getProposal();
         getAgendas();
-        getMinutes();
-    }, [demands, proposal, agendas, minutes]);
+        // getMinutes();
+    }, [demands, proposal, agendas, minutes, url]);
 
     const listDashBoard = [
         {

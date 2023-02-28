@@ -21,6 +21,25 @@ export default function Demands() {
     const [table, setTableList] = useState(false); // Estado para mostrar a tabela de demandas
     const [search, setSearch]: any = useState(""); // Retorno do campo de busca de demandas
 
+    const [demands, setDemands] = useState([
+        { demandCode: 0, demandTitle: "", requesterRegistration: { workerName: "" }, demandDate: "", demandStatus: "" }
+    ]);
+
+    const [proposals, setProposals] = useState([
+        { proposalCode: "", demand: { demandTitle: "", requesterRegistration: { workerName: "" }, demandDate: "" }, proposalTitle: "", requesterRegistration: { workerName: "" }, responsibleAnalyst: { workerName: "" }, proposalDate: "", proposalStatus: "" },
+        { name: "Proposta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "Approved" },
+        { name: "Proposta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "Rejected" },
+        { name: "Proposta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "Pending" },
+
+    ]);
+    const [agendas, setAgendas] = useState([
+        { agendaCode: "", sequentialNumber: 0, yearAgenda: 0 },
+    ]);
+    const [minutes] = useState([
+        { minuteCode: "1", name: "Ata 001", date: "27/04/2022", situation: "unallocated", number: "10/2021", director: "Vytor Augusto Rosa", coordinator: "Leonardo Heitor Poglia" },
+    ]);
+
+
 
     // Entra na página e busca as demandas cadastradas
     useEffect(() => {
@@ -40,7 +59,7 @@ export default function Demands() {
             localStorage.removeItem("route");
             notify();
         }
-    }, [url[3]])
+    }, [url[3], demands, proposals, agendas])
 
 
     // Buscar as demandas cadastradas
@@ -67,24 +86,7 @@ export default function Demands() {
         return findDemands;
     }
 
-    const [demands, setDemands] = useState([
-        { demandCode: 0, demandTitle: "", requesterRegistration: { workerName: "" }, demandDate: "", demandStatus: "" }
-    ]);
-
-    const [proposals, setProposals] = useState([
-        { proposalCode: "", demand: { demandTitle: "", requesterRegistration: { workerName: "" }, demandDate: "" }, proposalTitle: "", requesterRegistration: { workerName: "" }, responsibleAnalyst: { workerName: "" }, proposalDate: "", proposalStatus: "" },
-        { name: "Proposta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "Approved" },
-        { name: "Proposta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "Rejected" },
-        { name: "Proposta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "Pending" },
-
-    ]);
-    const [agendas, setAgendas] = useState([
-        { agendaCode: "", sequentialNumber: 0, yearAgenda: 0 },
-    ]);
-    const [minutes] = useState([
-        { minuteCode: "1", name: "Ata 001", date: "27/04/2022", situation: "unallocated", number: "10/2021", director: "Vytor Augusto Rosa", coordinator: "Leonardo Heitor Poglia" },
-    ]);
-
+   
     // Função para mostrar o navigator
     const footer = () => {
         return (

@@ -98,7 +98,6 @@ export default function Demands() {
                     <div>4</div>
                     <div>{">"}</div>
                 </div >
-                <Footer />
             </div >
         )
     }
@@ -157,15 +156,29 @@ export default function Demands() {
                             }
 
                             {demands.length === 0 && (
-                                <div className="no-results">
-                                    <h1>{t("noResults")}</h1>
+                                <div>
+                                    <div className="no-results">
+                                        <h1>{t("noResults")}</h1>
+                                    </div>
+
                                 </div>
                             )}
+
+
+
                         </div>
 
 
+                        {demands.length !== 0 && (
+                            footer()
+                        )
+                        }
 
-                        {footer()}
+                        <Footer />
+
+
+
+
                     </div>
                 </div>
             ) : (url[3] === "proposals") ? (
@@ -182,8 +195,24 @@ export default function Demands() {
                                     );
                                 })
                             }
+
+
+                            {proposals.length === 0 && (
+                                <div>
+                                    <div className="no-results">
+                                        <h1>{t("noResults")}</h1>
+                                    </div>
+
+                                </div>
+                            )}
                         </div>
-                        {footer()}
+
+                        {demands.length !== 0 && (
+                            footer()
+                        )
+                        }
+
+                        <Footer />
                     </div>
                 </div>
             ) : (url[3] === "agendas") ? (
@@ -200,8 +229,28 @@ export default function Demands() {
                                     );
                                 })
                             }
+
+                            {agendas.length === 0 && (
+                                <div>
+                                    <div className="no-results">
+                                        <h1>{t("noResults")}</h1>
+                                    </div>
+
+                                </div>
+                            )}
+
                         </div>
-                        {footer()}
+
+
+
+
+
+                        {demands.length !== 0 && (
+                            footer()
+                        )
+                        }
+
+                        <Footer />
                     </div>
                 </div>
             ) : (url[3] === "minutes") ? (

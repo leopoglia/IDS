@@ -47,7 +47,6 @@ export default function Dashboard() {
 
                 let dates: any = demandsDates;
                 dates.push(response[i].demandDate);
-                setDemandsDates(dates);
             }
 
 
@@ -162,7 +161,7 @@ export default function Dashboard() {
             type: "agendas",
             number: agendas,
             icon: "check",
-            dates: 1
+            dates: agendaDates
         }
     ]
 

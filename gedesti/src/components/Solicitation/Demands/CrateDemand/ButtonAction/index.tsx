@@ -11,7 +11,7 @@ export default function ButtonAction(props: any) {
     if (props.click === "voltar") {
         if (props.page === "0") {
             return (
-                <Link to="/demands">
+                <Link to="/demands/1">
                     <button className="btn-secondary">
                         {t("return")}
                     </button>

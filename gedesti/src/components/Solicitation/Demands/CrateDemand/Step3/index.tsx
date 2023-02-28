@@ -69,7 +69,7 @@ export default function CreateDemands3() {
             // Salvando a rota para redirecionar para a página de demandas
             localStorage.setItem("route", "create-demand")
             // Redirecionando para a página de demandas
-            navigate("/demands");
+            navigate("/demands/1");
         }).catch((error) => {
             console.log(error)
         })

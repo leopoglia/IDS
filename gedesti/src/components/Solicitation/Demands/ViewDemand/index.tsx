@@ -132,7 +132,7 @@ export default function ViewDemand() {
             localStorage.removeItem("route");
         }
 
-    }, [url, demand]);
+    }, [url, demand.demandStatus]);
 
 
     function getDemand() {
@@ -268,6 +268,7 @@ export default function ViewDemand() {
 
             notifyApprove(); // Notificação para o gerente de negócios
             getDemand();
+            setActionsDemand(0);
         }).catch((error: any) => {
             notifyError();
         })

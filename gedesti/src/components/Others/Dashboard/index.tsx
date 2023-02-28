@@ -44,7 +44,8 @@ export default function Dashboard() {
                     setDemandsCanceled(demandsCanceled + 1);
                 }
 
-                let dates: any = demandsDates.push(response[i].demandDate)
+                let dates: any = demandsDates;
+                dates.push(response[i].demandDate);
                 setDemandsDates(dates);
             }
 
@@ -59,7 +60,8 @@ export default function Dashboard() {
             setProposal(response?.length);
 
             for (let i = 0; i < response.length; i++) {
-                let dates: any = proposalDates.push(response[i].proposalDate)
+                let dates: any = proposalDates;
+                dates.push(response[i].proposalDate);
                 setProposalDates(dates);
             }
 
@@ -73,7 +75,9 @@ export default function Dashboard() {
             setAgendas(response?.length);
 
             for (let i = 0; i < response.length; i++) {
-                let dates: any = agendaDates.push(response[i].agendaDate)
+
+                let dates: any = agendaDates;
+                dates.push(response[i].agendaDate);
                 setAgendaDates(dates);
             }
         }).catch((error) => {
@@ -163,7 +167,7 @@ export default function Dashboard() {
             dates: 1
         }
     ]
-    
+
     return (<div className="dashboard">
 
         <Header />

@@ -23,8 +23,10 @@ export default function Box(props: any) {
             console.log("DATES ----> , ", props.dates[i]);
         }
 
+        // pegar o mes do props.dates e separar em um array com os meses como string
+        
 
-    }, [props]);
+    }, []);
 
     return (
         <div className="box">

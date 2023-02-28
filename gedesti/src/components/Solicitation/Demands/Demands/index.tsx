@@ -49,7 +49,13 @@ export default function Demands() {
 
 
         if (url[3] === "demands") {
+            if(search === ""){
             getDemands(); // Busca as demandas cadastradas
+            } else {
+                ServicesDemand.findAll().then((res: any) => {
+                    setDemands(res);
+                });
+            }
         } else if (url[3] === "proposals") {
             getProposals(); // Busca as demandas cadastradas
         } else if (url[3] === "agendas") {
@@ -62,7 +68,7 @@ export default function Demands() {
             localStorage.removeItem("route");
             notify();
         }
-    }, [url[3], demands, proposals, agendas])
+    }, [url[3], demands, proposals, agendas, search])
 
 
     // Buscar as demandas cadastradas
@@ -101,12 +107,12 @@ export default function Demands() {
                             subPage = parseInt(subPage) - 1;
                         }
                         navigate("/demands/" + subPage)
-                        }} >{"<"}</div>
+                    }} >{"<"}</div>
                     <div className="current" onClick={() => navigate("/demands/1")} >1</div>
                     <div onClick={() => navigate("/demands/2")} >2</div>
                     <div onClick={() => navigate("/demands/3")} >3</div>
                     <div onClick={() => navigate("/demands/4")} >4</div>
-                    <div onClick={() => navigate("/demands/" + (parseInt(page)+1))} >{">"}</div>
+                    <div onClick={() => navigate("/demands/" + (parseInt(page) + 1))} >{">"}</div>
                 </div >
                 <Footer />
             </div >

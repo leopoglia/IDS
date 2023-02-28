@@ -43,9 +43,11 @@ export default function Graphic(props: any) {
 
     let [labels, setLabels]: any = useState([]);
 
+    const [valor, setValor] = useState(0);
+
     useEffect(() => {
         getMonthName();
-    }, [props.dates]);
+    }, [valor]);
 
     function getMonthName() {
 

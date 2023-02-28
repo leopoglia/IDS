@@ -97,7 +97,7 @@ export default function ExecutionCosts() {
         if (costsCenters.length === 0) {
             notify()
         } else {
-            ProposalServices.save(demandData.demandTitle, "Pending", "1 mês", proposal.start, proposal.end, scope, proposal.respnosibleAnalyst, 0, "", totalsCosts, externalCosts, internalCosts, demandCode, actualDate).then((proposal: any) => {
+            ProposalServices.save(demandData.demandTitle, "Pending", 1, proposal.start, proposal.end, scope, proposal.respnosibleAnalyst, 0, "", totalsCosts, externalCosts, internalCosts, demandCode, actualDate).then((proposal: any) => {
                 DemandService.updateStatus(demandCode, "Assesment");
                 localStorage.removeItem('proposal');
 

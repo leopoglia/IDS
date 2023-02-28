@@ -13,6 +13,11 @@ import ServicesMinutes from "../../../services/minuteService";
 export default function Dashboard() {
 
     const [demands, setDemands] = useState(0);
+
+    const [demandsDates, setDemandsDates]: any = useState([]);
+    const [proposalDates, setProposalDates]: any = useState([]);
+    const [agendaDates, setAgendaDates]: any = useState([]);
+
     const [demandsRanked, setDemandsRankes] = useState(0);
     const [demandsApproved, setDemandsApproved] = useState(0);
     const [demandsCompleted, setDemandsCompleted] = useState(0);
@@ -38,6 +43,9 @@ export default function Dashboard() {
                 if (response[i].demandStatus === "Cancelled") {
                     setDemandsCanceled(demandsCanceled + 1);
                 }
+
+                let dates: any = demandsDates.push(response[i].demandDate)
+                setDemandsDates(dates);
             }
 
 
@@ -49,6 +57,12 @@ export default function Dashboard() {
     function getProposal() {
         ServicesProposal.findAll().then((response: any) => {
             setProposal(response?.length);
+
+            for (let i = 0; i < response.length; i++) {
+                let dates: any = proposalDates.push(response[i].proposalDate)
+                setProposalDates(dates);
+            }
+
         }).catch((error) => {
             console.log(error);
         });
@@ -57,6 +71,11 @@ export default function Dashboard() {
     function getAgendas() {
         ServicesAgenda.findAll().then((response: any) => {
             setAgendas(response?.length);
+
+            for (let i = 0; i < response.length; i++) {
+                let dates: any = agendaDates.push(response[i].agendaDate)
+                setAgendaDates(dates);
+            }
         }).catch((error) => {
             console.log(error);
         });
@@ -65,18 +84,18 @@ export default function Dashboard() {
     function getMinutes() {
         ServicesMinutes.findAll().then((response: any) => {
             setMinutes(response?.length);
-            console.log(response.length);
         }).catch((error) => {
             console.log(error);
         });
     }
+
 
     useEffect(() => {
         getDemands();
         getProposal();
         getAgendas();
         getMinutes();
-    }, []);
+    }, [demands, proposal, agendas, minutes]);
 
     const listDashBoard = [
         {
@@ -127,25 +146,25 @@ export default function Dashboard() {
             type: "demands",
             number: demands,
             icon: "check",
+            dates: demandsDates
         },
         {
             title: "Novas Propostas",
             type: "proposal",
             number: proposal,
             icon: "check",
+            dates: proposalDates
         },
         {
             title: "Novas Pautas",
             type: "agendas",
             number: agendas,
             icon: "check",
+            dates: 1
         }
     ]
-
-
-
+    
     return (<div className="dashboard">
-
 
         <Header />
         <Nav />
@@ -162,7 +181,7 @@ export default function Dashboard() {
                     <div>
                         {demands > 0 &&
                             boxDashBoard.map((item, index) => {
-                                return <Box key={index} title={item.title} number={item.number} icon={item.icon} />
+                                return <Box key={index} title={item.title} dates={item.dates} number={item.number} icon={item.icon} />
                             })
                         }
 

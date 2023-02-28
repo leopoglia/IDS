@@ -19,7 +19,12 @@ export default function Box(props: any) {
             });
         }, 20);
 
-    }, []);
+        for (let i = 0; i < props.dates.length; i++) {
+            console.log("DATES ----> , ", props.dates[i]);
+        }
+
+
+    }, [props]);
 
     return (
         <div className="box">

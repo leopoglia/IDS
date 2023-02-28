@@ -70,7 +70,7 @@
 .demand::before {
     content: '';
     background-color: var(--blue);
-    position: fixed;
+    position: absolute;
     width: 8px;
     height: 98.6px;
     margin-top: -0.6px;

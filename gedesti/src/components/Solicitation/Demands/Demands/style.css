@@ -19,6 +19,10 @@
     border-radius: var(--r);
     margin-left: 10px;
     cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .navigator div:hover {
@@ -79,11 +83,15 @@
 }
 
 .container-background {
-    min-height: calc(100vh - 320px) !important;
-    max-height: calc(100vh - 320px) !important;
+    min-height: calc(100vh - 399px) !important;
+    max-height: calc(100vh - 399px) !important;
     overflow: auto;
+    position: relative;
 }
 
+.h45{
+    height: 45px;
+}
 
 @media (max-width: 768px) {
     .minute {

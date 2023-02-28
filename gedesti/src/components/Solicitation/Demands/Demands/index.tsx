@@ -46,11 +46,9 @@ export default function Demands() {
 
     // Entra na página e busca as demandas cadastradas
     useEffect(() => {
-
-
         if (url[3] === "demands") {
-            if(search === ""){
-            getDemands(); // Busca as demandas cadastradas
+            if (search === "") {
+                getDemands(); // Busca as demandas cadastradas
             } else {
                 ServicesDemand.findAll().then((res: any) => {
                     setDemands(res);
@@ -98,25 +96,29 @@ export default function Demands() {
 
     // Função para mostrar o navigator
     const footer = () => {
-        return (
-            <div>
-                <div className="navigator" >
-                    <div onClick={() => {
-                        let subPage = page;
-                        if (parseInt(subPage) > 1) {
-                            subPage = parseInt(subPage) - 1;
-                        }
-                        navigate("/demands/" + subPage)
-                    }} >{"<"}</div>
-                    <div className="current" onClick={() => navigate("/demands/1")} >1</div>
-                    <div onClick={() => navigate("/demands/2")} >2</div>
-                    <div onClick={() => navigate("/demands/3")} >3</div>
-                    <div onClick={() => navigate("/demands/4")} >4</div>
-                    <div onClick={() => navigate("/demands/" + (parseInt(page) + 1))} >{">"}</div>
+        if (search === "") {
+            return (
+                <div className="h45">
+                    {demands.length > 0 && (
+                        <div className="navigator" >
+
+                            <div onClick={() => {
+                                let subPage = page;
+                                if (parseInt(subPage) > 1) {
+                                    subPage = parseInt(subPage) - 1;
+                                }
+                                navigate("/demands/" + subPage)
+                            }} >{"<"}</div>
+                            <div className="current" onClick={() => navigate("/demands/1")} >1</div>
+                            <div onClick={() => navigate("/demands/2")} >2</div>
+                            <div onClick={() => navigate("/demands/3")} >3</div>
+                            <div onClick={() => navigate("/demands/4")} >4</div>
+                            <div onClick={() => navigate("/demands/" + (parseInt(page) + 1))} >{">"}</div>
+                        </div >
+                    )}
                 </div >
-                <Footer />
-            </div >
-        )
+            )
+        }
     }
 
     // Função para setar o estado da tabela
@@ -161,9 +163,21 @@ export default function Demands() {
                                         );
                                     } else {
 
-                                        if (search !== "" && val.demandTitle.toUpperCase().includes(search.toUpperCase())) {
-                                            return (<Demand demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />);
+                                        if (search !== "") {
+
+                                            if (val.demandTitle.toUpperCase().includes(search.toUpperCase())) {
+                                                return (<Demand demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />);
+
+                                            } else if (index === demands.length - 1) {
+                                                return (
+                                                    <div className="no-results">
+                                                        <h1>{t("noResults")}</h1>
+                                                    </div>
+                                                );
+
+                                            }
                                         }
+
 
                                         if (typeFilter === "requester" && val.requesterRegistration.workerName.toUpperCase().includes(nameFilter.toUpperCase())) {
                                             return (<Demand demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />);
@@ -179,9 +193,12 @@ export default function Demands() {
                             )}
                         </div>
 
+                        {
+                            footer()
+                        }
 
+                        <Footer />
 
-                        {footer()}
                     </div>
                 </div>
             ) : (url[3] === "proposals") ? (

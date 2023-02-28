@@ -86,7 +86,7 @@ export default function Demands() {
         return findDemands;
     }
 
-   
+
     // Função para mostrar o navigator
     const footer = () => {
         return (
@@ -155,13 +155,15 @@ export default function Demands() {
                                     }
                                 })
                             }
+
+                            {demands.length === 0 && (
+                                <div className="no-results">
+                                    <h1>{t("noResults")}</h1>
+                                </div>
+                            )}
                         </div>
 
-                        {demands.length === 0 && (
-                            <div className="no-results">
-                                <h1>{t("noResults")}</h1>
-                            </div>
-                        )}
+
 
                         {footer()}
                     </div>

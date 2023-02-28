@@ -13,7 +13,7 @@ export default function Header() {
 
 
             <div className="left">
-                <Link to="/demands">
+                <Link to="/demands/1">
                     <img src="/images/weg-white.png" alt="logo" />
                 </Link>
 

@@ -45,7 +45,7 @@ export default function Form() {
                 localStorage.setItem("id", JSON.stringify(worker.id));
 
                 if(worker.office !== "analyst"){
-                navigate('/demands');
+                navigate('/demands/1');
                 } else{
                     navigate('/dashboard');
                 }

@@ -90,7 +90,7 @@ export default function Nav() {
                     </>
                 }
 
-                <Link to="/demands">
+                <Link to="/demands/1">
                     <li id={hover("demands")}>
                         <div>
                             <span className="material-symbols-outlined">

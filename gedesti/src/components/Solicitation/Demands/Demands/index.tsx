@@ -12,14 +12,17 @@ import ServicesProposal from "../../../../services/proposalService";
 import ServicesAgenda from "../../../../services/agendaService";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Demands() {
     const url = window.location.href.split("/");
     let findDemands: any;
+    let navigate = useNavigate();
 
 
     const [table, setTableList] = useState(false); // Estado para mostrar a tabela de demandas
     const [search, setSearch]: any = useState(""); // Retorno do campo de busca de demandas
+    const page: any = url[4]
 
     const [demands, setDemands] = useState([
         { demandCode: 0, demandTitle: "", requesterRegistration: { workerName: "" }, demandDate: "", demandStatus: "" }
@@ -64,8 +67,8 @@ export default function Demands() {
 
     // Buscar as demandas cadastradas
     async function getDemands() {
-        findDemands = await ServicesDemand.findAll().then((res: any) => {
-            setDemands(res); // Atualiza o estado das demandas
+        findDemands = await ServicesDemand.findByPage(page, 5).then((res: any) => {
+            setDemands(res.content); // Atualiza o estado das demandas
         });
         return findDemands;
     }
@@ -92,12 +95,14 @@ export default function Demands() {
         return (
             <div>
                 <div className="navigator" >
-                    <div className="current">1</div>
-                    <div>2</div>
-                    <div>3</div>
-                    <div>4</div>
-                    <div>{">"}</div>
+                    <div onClick={() => navigate("/demands/" + (parseInt(page)-1))} >{"<"}</div>
+                    <div className="current" onClick={() => navigate("/demands/1")} >1</div>
+                    <div onClick={() => navigate("/demands/2")} >2</div>
+                    <div onClick={() => navigate("/demands/3")} >3</div>
+                    <div onClick={() => navigate("/demands/4")} >4</div>
+                    <div onClick={() => navigate("/demands/" + (parseInt(page)+1))} >{">"}</div>
                 </div >
+                <Footer />
             </div >
         )
     }
@@ -156,29 +161,15 @@ export default function Demands() {
                             }
 
                             {demands.length === 0 && (
-                                <div>
-                                    <div className="no-results">
-                                        <h1>{t("noResults")}</h1>
-                                    </div>
-
+                                <div className="no-results">
+                                    <h1>{t("noResults")}</h1>
                                 </div>
                             )}
-
-
-
                         </div>
 
 
-                        {demands.length !== 0 && (
-                            footer()
-                        )
-                        }
 
-                        <Footer />
-
-
-
-
+                        {footer()}
                     </div>
                 </div>
             ) : (url[3] === "proposals") ? (
@@ -195,24 +186,8 @@ export default function Demands() {
                                     );
                                 })
                             }
-
-
-                            {proposals.length === 0 && (
-                                <div>
-                                    <div className="no-results">
-                                        <h1>{t("noResults")}</h1>
-                                    </div>
-
-                                </div>
-                            )}
                         </div>
-
-                        {demands.length !== 0 && (
-                            footer()
-                        )
-                        }
-
-                        <Footer />
+                        {footer()}
                     </div>
                 </div>
             ) : (url[3] === "agendas") ? (
@@ -229,28 +204,8 @@ export default function Demands() {
                                     );
                                 })
                             }
-
-                            {agendas.length === 0 && (
-                                <div>
-                                    <div className="no-results">
-                                        <h1>{t("noResults")}</h1>
-                                    </div>
-
-                                </div>
-                            )}
-
                         </div>
-
-
-
-
-
-                        {demands.length !== 0 && (
-                            footer()
-                        )
-                        }
-
-                        <Footer />
+                        {footer()}
                     </div>
                 </div>
             ) : (url[3] === "minutes") ? (

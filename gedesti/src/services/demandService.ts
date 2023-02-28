@@ -115,6 +115,15 @@ const Services = {
                 body: JSON.stringify({ "demandStatus": demandStatus }),
                 headers: { 'Content-Type': 'application/json' }}).then(function (result) { return result.json(); }).then(resolve).catch(reject) 
         })
+    },
+    findByPage: function(page: Number, size: Number) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/page?page=" + page + "&size=" + size, {
+                method: 'GET', headers: { 'Content-Type': 'application/json' }
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(reject)
+        })
     }
 }
 

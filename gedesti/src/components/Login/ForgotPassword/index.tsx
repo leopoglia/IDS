@@ -34,7 +34,7 @@ export default function Form() {
                     </main>
 
                     <footer>
-                        <Link to="/demands">
+                        <Link to="/demands/1">
                             <button type="submit">{t("send")}</button>
                         </Link>
                     </footer>

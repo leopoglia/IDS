@@ -86,7 +86,7 @@ export default function Router() {
                     <Route path="/configuration" element={<Configuration />} />
                     <Route path="/dashboard" element={<Dashboard />} />
 
-                    <Route path="/demands" element={<Demands />} />
+                    <Route path="/demands/:page" element={<Demands />} />
                     <Route path="/demand/create/1" element={<CreateDemands1 />} />
                     <Route path="/demand/create/2" element={<CreateDemands2 />} />
                     <Route path="/demand/create/3" element={<CreateDemands3 />} />

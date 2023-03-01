@@ -5,7 +5,8 @@ export default function Box(props: any) {
 
 
     const [valor, setValor] = useState(0);
-    const valorFinal = props.number;
+    let valorFinal = props.number;
+
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -18,7 +19,7 @@ export default function Box(props: any) {
                 }
             });
         }, 20);
-    }, []);
+    }, [valorFinal]);
 
     return (
         <div className="box">

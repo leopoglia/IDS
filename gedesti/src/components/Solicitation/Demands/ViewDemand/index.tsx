@@ -344,6 +344,7 @@ export default function ViewDemand() {
     const [costCenterOpen, setCostCenterOpen] = useState(false);
     const [classificationOpen, setClassificationOpen] = useState(false);
     const [complementOpen, setComplementOpen] = useState(false);
+    const [expenseOpen, setExpenseOpen] = useState(false);
     const [proposalScopeOpen, setProposalScopeOpen] = useState(false);
 
 
@@ -742,11 +743,11 @@ export default function ViewDemand() {
 
                             {proposalExpense.map((proposalExpense: any) => {
                                 return (
-                                    <div className={"complement " + complementOpen} >
+                                    <div className={"complement " + expenseOpen} >
                                         <div className="display-flex-space-between">
 
                                             <p className="title">{t("expenseInformation")}</p>
-                                            <span onClick={() => setComplementOpen(!complementOpen)} className="material-symbols-outlined arrow-expend">
+                                            <span onClick={() => setExpenseOpen(!expenseOpen)} className="material-symbols-outlined arrow-expend">
                                                 expand_more
                                             </span>
                                         </div>

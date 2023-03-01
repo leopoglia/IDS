@@ -43,16 +43,9 @@ export default function Messages() {
                 </div>
 
 
-                <div>
-                    <div className="navigator" >
-                        <div className="current">1</div>
-                        <div>2</div>
-                        <div>3</div>
-                        <div>4</div>
-                        <div>{">"}</div>
-                    </div >
-                    <Footer />
-                </div >
+                <div className="h45"></div >
+
+                <Footer />
             </div>
 
 

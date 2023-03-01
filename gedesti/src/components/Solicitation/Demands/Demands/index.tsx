@@ -100,7 +100,7 @@ export default function Demands() {
         if (search === "") {
             return (
                 <div className="h45">
-                    {demands.length > 0 || proposals.length > 0 || agendas.length > 0 || minutes.length > 0 && (
+                    {demands.length > 0 && (
                         <div className="navigator" >
 
                             <div onClick={() => {

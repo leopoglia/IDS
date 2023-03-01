@@ -20,7 +20,6 @@ export default function Box(props: any) {
             });
         }, 20);
 
-        console.log(props.type);
     }, [valorFinal]);
 
     return (

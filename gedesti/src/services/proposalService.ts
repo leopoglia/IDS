@@ -5,8 +5,6 @@ const Services = {
 
         let workersList: any = [];
 
-        console.log("proposalName: " + proposalName + "proposalStatus: " + proposalStatus + "payback: " + payback + "initialRunPeriod: " + initialRunPeriod + "finalExecutionPeriod: " + finalExecutionPeriod + "descriptiveProposal: " + descriptiveProposal + "responsibleAnalyst: " + responsibleAnalyst + "agendaCode: " + agendaCode + "workers: " + workers + "totalsCosts: " + totalsCosts + "externalCosts: " + externalCosts + "internalCosts: " + internalCosts + "demandCode: " + demandCode + "proposalDate: " + proposalDate)
-
         for (let i = 0; i < workers.length; i++) {
             workersList.push({ comissionCode: workers[i].comissionCode })
         }

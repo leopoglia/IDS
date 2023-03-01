@@ -226,7 +226,6 @@ export default function ViewDemand() {
 
 
             ServicesAgenda.findById(demandCode).then((response: any) => {
-                console.log("COMISSION--> ", response[0].commission)
                 setComission(response[0].commission)
             })
 

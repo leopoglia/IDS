@@ -21,7 +21,6 @@ export default function CreateAgenda() {
     const [worker, setWorker] = useState("");
     let actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear();
 
-    console.log(comission);
 
     useEffect(() => {
         getProposal();
@@ -67,7 +66,6 @@ export default function CreateAgenda() {
                 })
             })
 
-            console.log(workers);
 
 
             Services.save(1, 1, workers, actualDate).then((response: any) => {
@@ -78,7 +76,6 @@ export default function CreateAgenda() {
                     proposal.agenda = { agenda: { agendaCode: agendaCode } };
     
                     ServicesProposals.updateAgenda(proposal.proposalCode, proposal).then((response: any) => {
-                        console.log(response);
                     })
                 }
             })

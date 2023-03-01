@@ -25,7 +25,7 @@ export default function AddExpense() {
     const expenseTotalValue = necessityHoursQuantity * hourValue;
 
     const expense = { typeOfExpense: typeOfExpense, expenseProfile: expenseProfile, periodOfExecutionMonth: periodOfExecutionMonth, necessityHoursQuantity: necessityHoursQuantity, hourValue: hourValue, expenseTotalValue: expenseTotalValue };
-    const [expenseList, setExpenseList]:any = useState([]);
+    const [expenseList, setExpenseList]: any = useState([]);
 
     useEffect(() => {
         setExpenseList(JSON.parse(localStorage.getItem('expenseList') || '[]'));
@@ -64,14 +64,15 @@ export default function AddExpense() {
 
 
                     <div className="display-flex-grid">
+                        <label>{t("expenseProfile")} *</label>
+                        <input onChange={(e) => { setExpenseProfile(e.target.value) }} type="expenseProfile" />
+                    </div>
+
+                    <div className="display-flex-grid">
                         <label>{t("expenseType")} *</label>
                         <SelectAddExpense setTypeOfExpense={setTypeOfExpense} type="typeOfExpense" />
                     </div>
 
-                    <div className="display-flex-grid">
-                        <label>{t("expenseProfile")} *</label>
-                        <input onChange={ (e) => { setExpenseProfile(e.target.value)}} type="expenseProfile" />
-                    </div>
 
                     <div className="display-flex-grid">
                         <label>{t("periodOfExecutionMonth")} *</label>

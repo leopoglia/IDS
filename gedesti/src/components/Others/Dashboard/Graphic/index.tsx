@@ -41,6 +41,7 @@ export const options = {
 export default function Graphic(props: any) {
 
     let [labels, setLabels]: any = useState([]);
+    let url = window.location.href;
 
     const [valor, setValor] = useState(0);
 

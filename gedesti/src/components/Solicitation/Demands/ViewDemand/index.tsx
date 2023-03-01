@@ -8,6 +8,7 @@ import ServicesDemand from "../../../../services/demandService";
 import ServicesProposal from "../../../../services/proposalService";
 import ServicesNotification from "../../../../services/notificationService";
 import ServicesAgenda from "../../../../services/agendaService";
+import ServicesExpense from "../../../../services/expenseService";
 import Footer from "../../../Fixed/Footer";
 import { Link } from "react-router-dom";
 import { ReactI18NextChild, useTranslation } from "react-i18next";
@@ -105,6 +106,7 @@ export default function ViewDemand() {
         }
     }]);
 
+
     // Chama função ao entrar na página
     useEffect(() => {
         // Buscar dados da demanda
@@ -199,6 +201,9 @@ export default function ViewDemand() {
         })
     }
 
+    const [proposalExpense, setProposalExpense]: any = useState([]);
+
+
     // Buscar proposta
     function getProposal() {
         ServicesProposal.findById(demandCode).then((response: any) => {
@@ -207,6 +212,19 @@ export default function ViewDemand() {
             setStepDemand(2) // Seta o passo da demanda
             setClassification(response.demand.classification) // Seta a classificação da demanda
             setCenterCost(response.demand.costCenter) // Seta o centro de custo da demanda
+
+
+            ServicesExpense.findAll().then((response: any) => {
+                let expense: any = [];
+
+                for (let i = 0; i < response.length; i++) {
+                    if (response[i].proposal.proposalCode === demandCode) {
+                        expense.push(response[i])
+                    }
+                }
+                console.log(expense)
+                setProposalExpense(expense)
+            })
         })
     }
 
@@ -718,6 +736,45 @@ export default function ViewDemand() {
                             ) : (
                                 <div className="null"></div>
                             )}
+
+
+
+
+                            {proposalExpense.map((proposalExpense: any) => {
+                                return (
+                                    <div className={"complement " + complementOpen} >
+                                        <div className="display-flex-space-between">
+
+                                            <p className="title">{t("expenseInformation")}</p>
+                                            <span onClick={() => setComplementOpen(!complementOpen)} className="material-symbols-outlined arrow-expend">
+                                                expand_more
+                                            </span>
+                                        </div>
+
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td>{t("expenseProfile")}</td>
+                                                    <td>{t("expenseType")}</td>
+                                                    <td>{t("hourValue")}</td>
+                                                    <td>{t("expenseTotalValue")}</td>
+                                                </tr>
+
+
+
+                                                <tr>
+                                                    <td>{proposalExpense.expenseProfile}</td>
+                                                    <td>{proposalExpense.expenseType}</td>
+                                                    <td>{proposalExpense.hourValue}</td>
+                                                    <td>{proposalExpense.totalValue}</td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                )
+                            })}
+
 
 
                             <div className="attachments">

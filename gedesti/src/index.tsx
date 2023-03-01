@@ -10,7 +10,7 @@ import Router from './routes';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-      <Router />
+    <Router />
   </React.StrictMode>
 )
 

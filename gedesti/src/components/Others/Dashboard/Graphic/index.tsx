@@ -40,14 +40,15 @@ export const options = {
 
 export default function Graphic(props: any) {
 
-
     let [labels, setLabels]: any = useState([]);
 
     const [valor, setValor] = useState(0);
 
     useEffect(() => {
+        setValor(valor + 1);
         getMonthName();
-    }, [valor, props]);
+
+    }, [props]);
 
     function getMonthName() {
 
@@ -68,7 +69,6 @@ export default function Graphic(props: any) {
 
         if (props.dates.length > 0) {
             for (let i = 0; i < props.dates.length; i++) {
-                console.log(props.dates[i]);
                 let mes = JSON.parse(props.dates[i].split("/")[1]);
                 let ano = JSON.parse(props.dates[i].split("/")[2]);
                 let anoAtual = new Date().getFullYear();
@@ -95,7 +95,6 @@ export default function Graphic(props: any) {
             }
         }
 
-
         // Obtém a data atual
         const currenDate = new Date();
 
@@ -119,8 +118,9 @@ export default function Graphic(props: any) {
 
         let labelsPrefix = monthNames7;
 
-
-        setLabels(labelsPrefix);
+        if (valor === 1) {
+            setLabels(labelsPrefix);
+        }
     }
 
 
@@ -131,7 +131,7 @@ export default function Graphic(props: any) {
         datasets: [
             {
                 fill: true,
-                label: 'Dataset 2',
+                label: "",
                 data: labels.map((val: any) => val.numbers),
                 borderColor: '#00579D',
                 backgroundColor: '#1976d2d1',

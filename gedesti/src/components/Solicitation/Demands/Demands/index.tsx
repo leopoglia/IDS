@@ -67,13 +67,15 @@ export default function Demands() {
             notify();
         }
 
-    }, [url[3], demands, proposals, agendas, search])
+    }, [url[3], page, search])
 
 
     // Buscar as demandas cadastradas
     async function getDemands() {
         findDemands = await ServicesDemand.findByPage(page, 5).then((res: any) => {
             setDemands(res.content); // Atualiza o estado das demandas
+
+            console.log("PAGES --> ", res)
         });
         return findDemands;
     }

@@ -83,8 +83,8 @@
 }
 
 .container-background {
-    min-height: calc(100vh - 399px) !important;
-    max-height: calc(100vh - 399px) !important;
+    min-height: calc(100vh - 350px) !important;
+    max-height: calc(100vh - 350px) !important;
     overflow: auto;
     position: relative;
 }

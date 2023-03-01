@@ -99,29 +99,43 @@ export default function Demands() {
 
     // Função para mostrar o navigator
     const footer = () => {
-        if (search === "") {
-            return (
-                <div className="h45">
-                    {demands.length > 0 && (
-                        <div className="navigator" >
 
-                            <div onClick={() => {
-                                let subPage = page;
-                                if (parseInt(subPage) > 1) {
-                                    subPage = parseInt(subPage) - 1;
-                                }
-                                navigate("/demands/" + subPage)
-                            }} >{"<"}</div>
-                            <div className="current" onClick={() => navigate("/demands/1")} >1</div>
-                            <div onClick={() => navigate("/demands/2")} >2</div>
-                            <div onClick={() => navigate("/demands/3")} >3</div>
-                            <div onClick={() => navigate("/demands/4")} >4</div>
-                            <div onClick={() => navigate("/demands/" + (parseInt(page) + 1))} >{">"}</div>
-                        </div >
-                    )}
-                </div >
-            )
+        let nav: any;
+
+        if (url[3] === "demands") {
+            console.log("DEMANDS --> ", demands.length)
+            nav = demands.length;
+        } else if (url[3] === "proposals") {
+            nav = proposals.length;
+        } else if (url[3] === "agendas") {
+            nav = agendas.length;
         }
+
+        console.log("NAV --> ", nav)
+
+        return (
+            <div className="h45">
+                {search === "" && nav >= 5 && (
+                    <div className="navigator" >
+
+                        <div onClick={() => {
+                            let subPage = page;
+                            if (parseInt(subPage) > 1) {
+                                subPage = parseInt(subPage) - 1;
+                            }
+                            navigate("/demands/" + subPage)
+                        }} >{"<"}</div>
+                        <div className="current" onClick={() => navigate("/demands/1")} >1</div>
+                        <div onClick={() => navigate("/demands/2")} >2</div>
+                        <div onClick={() => navigate("/demands/3")} >3</div>
+                        <div onClick={() => navigate("/demands/4")} >4</div>
+                        <div onClick={() => navigate("/demands/" + (parseInt(page) + 1))} >{">"}</div>
+                    </div >
+
+                )
+                }
+            </div >
+        )
     }
 
     // Função para setar o estado da tabela

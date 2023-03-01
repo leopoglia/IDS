@@ -176,7 +176,7 @@ export default function Dashboard() {
 
                 <div className="display-flex dashboard-content">
                     <div>
-                        {demands > 0 &&
+                        {
                             boxDashBoard.map((item, index) => {
                                 return <Box key={index} title={item.title} dates={item.dates} number={item.number} icon={item.icon} />
                             })

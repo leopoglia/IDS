@@ -18,13 +18,13 @@ export default function Configuration() {
     const image = name.substr(0, 1);
 
 
-    function changeName(){
+    function changeName() {
     }
 
 
     return (
         <div className="configuration">
-            <Header/>
+            <Header />
             <Nav />
 
             <div className="container">
@@ -32,53 +32,58 @@ export default function Configuration() {
                     <Title nav="configurations" title="configurations" />
                 </div>
 
-                <div className="box">
-                    <div className="profile">
-                        <div className="picture-profile">{image}</div>
-                        <div className="email-name">
+                <div className="container-background">
+                    <div className="box">
+                        <div className="profile">
+                            <div className="picture-profile">{image}</div>
+                            <div className="email-name">
+                                <div className="flex">
+                                    <span className="name">{name}</span>
+                                    <span className="material-symbols-outlined">
+                                        edit
+                                    </span>
+                                </div>
+                                <span className="email">{email}</span>
+                            </div>
+                        </div>
+
+                        <div className="change-configuration">
                             <div className="flex">
-                                <span className="name">{name}</span>
+                                <span className="title-confuration">{t("password")}</span>
                                 <span className="material-symbols-outlined">
                                     edit
                                 </span>
                             </div>
-                            <span className="email">{email}</span>
-                        </div>
-                    </div>
 
-                    <div className="change-configuration">
-                        <div className="flex">
-                            <span className="title-confuration">{t("password")}</span>
-                            <span className="material-symbols-outlined">
-                                edit
-                            </span>
+                            <div className="display-flex">
+                                <span className="subtitle-confuration">{t("changePassword")}</span>
+
+                                <input type="password" className="input-password" value={"123456789124354235423516534424354235234532345678"} disabled />
+                            </div>
                         </div>
 
-                        <div className="display-flex">
-                            <span className="subtitle-confuration">{t("changePassword")}</span>
+                        <div className="change-configuration">
+                            <span className="title-confuration">{t("notifications")}</span>
 
-                            <input type="password" className="input-password" value={"123456789124354235423516534424354235234532345678"} disabled />
-                        </div>
-                    </div>
+                            <div className="display-flex">
+                                <span className="subtitle-confuration">{t("messagesNotify")}</span>
 
-                    <div className="change-configuration">
-                        <span className="title-confuration">{t("notifications")}</span>
+                                <div className="switch">
+                                    <input type="checkbox" id="switch" name="switch" />
+                                    <label htmlFor="switch" />
+                                </div>
 
-                        <div className="display-flex">
-                            <span className="subtitle-confuration">{t("messagesNotify")}</span>
-
-                            <div className="switch">
-                                <input type="checkbox" id="switch" name="switch" />
-                                <label htmlFor="switch" />
                             </div>
 
                         </div>
-
                     </div>
+
+
                 </div>
 
-                <Footer />
+                <div className="h45"></div>
 
+                <Footer />
 
             </div>
 

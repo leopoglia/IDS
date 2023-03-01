@@ -100,7 +100,7 @@ export default function Demands() {
         if (search === "") {
             return (
                 <div className="h45">
-                    {demands.length > 0 && (
+                    {demands.length > 0 || proposals.length > 0 || agendas.length > 0 || minutes.length > 0 && (
                         <div className="navigator" >
 
                             <div onClick={() => {
@@ -218,6 +218,9 @@ export default function Demands() {
                             }
                         </div>
                         {footer()}
+
+                        <Footer />
+
                     </div>
                 </div>
             ) : (url[3] === "agendas") ? (
@@ -235,8 +238,19 @@ export default function Demands() {
                                 })
                             }
                         </div>
+
+                        {agendas.length === 0 && (
+                            <div className="no-results">
+                                <h1>{t("noResults")}</h1>
+                            </div>
+                        )}
+
                         {footer()}
+
+                        <Footer />
+
                     </div>
+
                 </div>
             ) : (url[3] === "minutes") ? (
                 <div className="minutes">
@@ -256,6 +270,9 @@ export default function Demands() {
                             }
                         </div>
                         {footer()}
+
+                        <Footer />
+
                     </div>
                 </div>
             ) : (<div className="null" />)

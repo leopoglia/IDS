@@ -47,7 +47,7 @@ export default function Graphic(props: any) {
 
     useEffect(() => {
         getMonthName();
-    }, [valor]);
+    }, [valor, props]);
 
     function getMonthName() {
 

@@ -69,9 +69,7 @@
 }
 
 .dashboard .chart {
-    width: 380px;
-    max-width: 380px;
-    min-width: 380px;
+    height: 150px;
     margin-left: 20px;
 }
 
@@ -80,10 +78,6 @@
     height: 100%;
     overflow: hidden;
     margin-left: 20px;
-}
-
-.h190 {
-    height: 190px;
 }
 
 @media(max-width: 1024px) {

@@ -9,6 +9,7 @@ import ServicesDemand from '../../../services/demandService';
 import ServicesProposal from '../../../services/proposalService';
 import ServicesAgenda from '../../../services/agendaService';
 import ServicesMinutes from "../../../services/minuteService";
+import Footer from "../../Fixed/Footer";
 
 export default function Dashboard() {
 
@@ -133,11 +134,6 @@ export default function Dashboard() {
             title: "Pautas criadas",
             number: agendas,
             icon: "check",
-        },
-        {
-            title: "Atas criadas",
-            number: minutes,
-            icon: "check",
         }
     ]
 
@@ -200,6 +196,8 @@ export default function Dashboard() {
 
 
                 </div>
+
+                <Footer />
 
             </div>
 

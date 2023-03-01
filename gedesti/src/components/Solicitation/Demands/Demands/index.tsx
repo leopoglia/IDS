@@ -66,6 +66,7 @@ export default function Demands() {
             localStorage.removeItem("route");
             notify();
         }
+
     }, [url[3], demands, proposals, agendas, search])
 
 

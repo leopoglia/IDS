@@ -25,7 +25,4 @@
 }
 
 @media(max-width: 1280px) {
-    .footer {
-        display: none;
-    }
 }

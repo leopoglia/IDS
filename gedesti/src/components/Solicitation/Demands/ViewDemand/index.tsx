@@ -234,8 +234,10 @@ export default function ViewDemand() {
             let proposalSpecific: any = [];
 
             for (let i = 0; i < response.length; i++) {
-                if (response[i].agenda.agendaCode === demandCode) {
-                    proposalSpecific.push(response[i])
+                if (response[i].agenda !== null) {
+                    if (response[i].agenda.agendaCode === demandCode) {
+                        proposalSpecific.push(response[i])
+                    }
                 }
             }
 

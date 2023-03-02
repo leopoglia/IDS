@@ -10,7 +10,7 @@ function User() {
 
     const worker = useContext(UserContext).worker;
     const name = (worker.name).split(' ')[0]
-    const image = name.substr(0, 1)
+    const image = name.substring(0, 1)
 
     // Drop down
     User.handleClickOutside = () => {

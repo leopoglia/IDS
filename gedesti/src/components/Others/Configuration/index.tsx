@@ -15,7 +15,7 @@ export default function Configuration() {
     const worker: any = useContext(UserContext).worker;
     const name: any = worker.name;
     const email = worker.email;
-    const image = name.substr(0, 1);
+    const image = name.substring(0, 1);
 
 
     function changeName() {

@@ -67,8 +67,7 @@ export default function Notifications() {
                     }
                 </div>
 
-                <div className="h45">
-                </div >
+                <div className="h45"></div >
 
                 <Footer />
 

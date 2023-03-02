@@ -74,8 +74,6 @@ export default function Demands() {
     async function getDemands() {
         findDemands = await ServicesDemand.findByPage(page, 5).then((res: any) => {
             setDemands(res.content); // Atualiza o estado das demandas
-
-            console.log("PAGES --> ", res)
         });
         return findDemands;
     }
@@ -103,15 +101,12 @@ export default function Demands() {
         let nav: any;
 
         if (url[3] === "demands") {
-            console.log("DEMANDS --> ", demands.length)
             nav = demands.length;
         } else if (url[3] === "proposals") {
             nav = proposals.length;
         } else if (url[3] === "agendas") {
             nav = agendas.length;
         }
-
-        console.log("NAV --> ", nav)
 
         return (
             <div className="h45">
@@ -176,14 +171,14 @@ export default function Demands() {
                                 demands.map((val, index) => {
                                     if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
                                         return (
-                                            <Demand demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />
+                                            <Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />
                                         );
                                     } else {
 
                                         if (search !== "") {
 
                                             if (val.demandTitle.toUpperCase().includes(search.toUpperCase())) {
-                                                return (<Demand demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />);
+                                                return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />);
 
                                             } else if (index === demands.length - 1) {
                                                 return (
@@ -197,7 +192,7 @@ export default function Demands() {
 
 
                                         if (typeFilter === "requester" && val.requesterRegistration.workerName.toUpperCase().includes(nameFilter.toUpperCase())) {
-                                            return (<Demand demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />);
+                                            return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />);
                                         }
                                     }
                                 })
@@ -228,7 +223,7 @@ export default function Demands() {
                             {
                                 proposals.map((val, index) => {
                                     return (
-                                        <Demand listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />
+                                        <Demand key={val.proposalCode} listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />
                                     );
                                 })
                             }
@@ -249,7 +244,7 @@ export default function Demands() {
                             {
                                 agendas.map((val, index) => {
                                     return (
-                                        <Demand listDirection={table} name={"Pauta da reunião  " + val.agendaCode} demandCode={val.agendaCode} number={val.sequentialNumber} year={val.yearAgenda} type="agenda" />
+                                        <Demand val={val.agendaCode} listDirection={table} name={"Pauta da reunião  " + val.agendaCode} demandCode={val.agendaCode} number={val.sequentialNumber} year={val.yearAgenda} type="agenda" />
                                     );
                                 })
                             }
@@ -279,7 +274,7 @@ export default function Demands() {
                                 minutes.map((val, index) => {
                                     return (
                                         <div onClick={() => setMinute(true)}>
-                                            <Demand listDirection={table} demandCode={val.minuteCode} name={val.name} director={val.director} coordinator={val.coordinator} number={val.number} date={val.date} situation={val.situation} type="minute" />
+                                            <Demand key={val.minuteCode} listDirection={table} demandCode={val.minuteCode} name={val.name} director={val.director} coordinator={val.coordinator} number={val.number} date={val.date} situation={val.situation} type="minute" />
                                         </div>
                                     );
                                 })

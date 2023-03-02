@@ -222,7 +222,6 @@ export default function ViewDemand() {
                         expense.push(response[i])
                     }
                 }
-                console.log(expense)
                 setProposalExpense(expense)
             })
         })

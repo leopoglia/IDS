@@ -63,7 +63,7 @@ export default function Router() {
             }
         }
 
-        console.log(worker);
+        // console.log(worker);
     }, [worker.id]);
 
 

@@ -243,6 +243,12 @@ export default function Demands() {
                                     );
                                 })
                             }
+
+                            {proposals.length === 0 && (
+                                <div className="no-results">
+                                    <h1>{t("noResults")}</h1>
+                                </div>
+                            )}
                         </div>
                         {footer()}
 
@@ -264,13 +270,15 @@ export default function Demands() {
                                     );
                                 })
                             }
+
+                            {agendas.length === 0 && (
+                                <div className="no-results">
+                                    <h1>{t("noResults")}</h1>
+                                </div>
+                            )}
                         </div>
 
-                        {agendas.length === 0 && (
-                            <div className="no-results">
-                                <h1>{t("noResults")}</h1>
-                            </div>
-                        )}
+
 
                         {footer()}
 

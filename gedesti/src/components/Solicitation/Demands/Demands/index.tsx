@@ -23,6 +23,7 @@ export default function Demands() {
     const [table, setTableList] = useState(false); // Estado para mostrar a tabela de demandas
     const [search, setSearch]: any = useState(""); // Retorno do campo de busca de demandas
     const page: any = url[4]
+    const [pages, setPages] = useState(0); // Quantidade de páginas
 
     const [demands, setDemands] = useState([
         { demandCode: 0, demandTitle: "", requesterRegistration: { workerName: "" }, demandDate: "", demandStatus: "" }
@@ -74,6 +75,8 @@ export default function Demands() {
     async function getDemands() {
         findDemands = await ServicesDemand.findByPage(page, 5).then((res: any) => {
             setDemands(res.content); // Atualiza o estado das demandas
+            setPages(res.totalPages); // Atualiza o estado das páginas
+            console.log("RES --------> ", res)
         });
         return findDemands;
     }
@@ -82,6 +85,7 @@ export default function Demands() {
     async function getProposals() {
         findDemands = await ServicesProposal.findAll().then((res: any) => {
             setProposals(res); // Atualiza o estado das demandas
+            setPages(res.totalPages); // Atualiza o estado das páginas
         });
         return findDemands;
     }
@@ -90,6 +94,7 @@ export default function Demands() {
     async function getAgendas() {
         findDemands = await ServicesAgenda.findAll().then((res: any) => {
             setAgendas(res); // Atualiza o estado das demandas
+            setPages(res.totalPages); // Atualiza o estado das páginas
         });
         return findDemands;
     }
@@ -110,26 +115,34 @@ export default function Demands() {
 
         return (
             <div className="h45">
-                {search === "" && nav >= 5 && (
-                    <div className="navigator" >
+                {search === "" && pages > 1 && (
+                    <div className="navigator">
+                        {page > 1 && (
+                            <div onClick={() => {
+                                navigate("/demands/" + (parseInt(page) - 1));
+                            }}>{"<"}</div>
+                        )}
+                        {[...Array(pages)].map((_, index) => {
+                            const pageNumber = index + 1;
+                            return (
+                                <div
+                                    key={pageNumber}
+                                    className={pageNumber === parseInt(page) ? "current" : ""}
+                                    onClick={() => navigate(`/demands/${pageNumber}`)}
+                                >
+                                    {pageNumber}
+                                </div>
+                            );
+                        })}
+                        {page < pages && (
+                            <div onClick={() => {
+                                navigate("/demands/" + (parseInt(page) + 1));
+                            }}>{">"}</div>
+                        )}
+                    </div>
+                )}
+            </div>
 
-                        <div onClick={() => {
-                            let subPage = page;
-                            if (parseInt(subPage) > 1) {
-                                subPage = parseInt(subPage) - 1;
-                            }
-                            navigate("/demands/" + subPage)
-                        }} >{"<"}</div>
-                        <div className="current" onClick={() => navigate("/demands/1")} >1</div>
-                        <div onClick={() => navigate("/demands/2")} >2</div>
-                        <div onClick={() => navigate("/demands/3")} >3</div>
-                        <div onClick={() => navigate("/demands/4")} >4</div>
-                        <div onClick={() => navigate("/demands/" + (parseInt(page) + 1))} >{">"}</div>
-                    </div >
-
-                )
-                }
-            </div >
         )
     }
 

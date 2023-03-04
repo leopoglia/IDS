@@ -117,10 +117,12 @@ export default function Demands() {
             <div className="h45">
                 {search === "" && pages > 1 && (
                     <div className="navigator">
-                        {page > 1 && (
+                        {page > 1 ? (
                             <div onClick={() => {
                                 navigate("/demands/" + (parseInt(page) - 1));
                             }}>{"<"}</div>
+                        ) : (
+                            <div className="arrow-disabled">{"<"}</div>
                         )}
                         {[...Array(pages)].map((_, index) => {
                             const pageNumber = index + 1;
@@ -134,10 +136,12 @@ export default function Demands() {
                                 </div>
                             );
                         })}
-                        {page < pages && (
+                        {page < pages ? (
                             <div onClick={() => {
                                 navigate("/demands/" + (parseInt(page) + 1));
                             }}>{">"}</div>
+                        ) : (
+                            <div className="arrow-disabled">{">"}</div>
                         )}
                     </div>
                 )}

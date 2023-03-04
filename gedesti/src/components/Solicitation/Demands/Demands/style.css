@@ -94,6 +94,19 @@
     margin-top: 25px;
 }
 
+.h45 .arrow-disabled{
+    background-color: var(--greyF7);
+    color: var(--grey59);
+    cursor: not-allowed;
+}
+
+.h45 .arrow-disabled:hover{
+    background-color: var(--greyF7);
+    color: var(--grey59);
+    cursor: not-allowed;
+}
+
+
 @media (max-width: 768px) {
     .minute {
         width: 90%;

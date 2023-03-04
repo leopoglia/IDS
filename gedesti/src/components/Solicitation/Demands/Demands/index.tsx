@@ -76,7 +76,6 @@ export default function Demands() {
         findDemands = await ServicesDemand.findByPage(page, 5).then((res: any) => {
             setDemands(res.content); // Atualiza o estado das demandas
             setPages(res.totalPages); // Atualiza o estado das páginas
-            console.log("RES --------> ", res)
         });
         return findDemands;
     }

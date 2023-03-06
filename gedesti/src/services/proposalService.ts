@@ -81,7 +81,7 @@ const Services = {
             fetch(url + "/status/" + id, {
                 method: 'PUT',
                 body: JSON.stringify({ "proposalStatus": status,
-                                       "comissionOpinion": comissionOpinion }),
+                                       "commissionOpinion": comissionOpinion }),
                 headers: { 'Content-Type': 'application/json' }}).then(function (result) { return result.json(); }).then(resolve).catch(reject) 
         })
     }

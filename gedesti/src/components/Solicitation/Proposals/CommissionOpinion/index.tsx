@@ -17,6 +17,7 @@ export default function CommissionOpinion() {
     const { t } = useTranslation();
 
     function addOpinion(){
+        console.log(proposalStatus, commissionOpinion);
         ProposalService.addOpinion(proposalCode, proposalStatus, commissionOpinion);
     }
 

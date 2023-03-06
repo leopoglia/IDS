@@ -76,7 +76,9 @@ export default function CreateAgenda() {
                     proposal.agenda = { agenda: { agendaCode: agendaCode } };
     
                     ServicesProposals.updateAgenda(proposal.proposalCode, proposal).then((response: any) => {
+                        ServicesProposals.updateStatus(proposal.proposalCode, "Approved")
                     })
+                    
                 }
             })
         })

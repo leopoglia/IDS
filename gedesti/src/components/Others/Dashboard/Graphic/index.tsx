@@ -43,10 +43,7 @@ export default function Graphic(props: any) {
     let [labels, setLabels]: any = useState([]);
     let url = window.location.href;
 
-    const [valor, setValor] = useState(0);
-
     useEffect(() => {
-        setValor(valor + 1);
         getMonthName();
 
     }, [props]);
@@ -117,10 +114,18 @@ export default function Graphic(props: any) {
         const month = { month: nameCurrentMonth, numbers: monthNumber };
         monthNames7.push(month);
 
-        let labelsPrefix = monthNames7;
 
-        if (valor === 1) {
-            setLabels(labelsPrefix);
+        let totalNumbersPrefix = 0;
+
+        for (let i = 0; i < monthNames7.length; i++) {
+            totalNumbersPrefix += monthNames7[i].numbers;
+        }
+
+        console.log("TOTAL NUMBERS PREFIX ---> ", props.type, ": ", totalNumbersPrefix, " ================ ", props.number)
+
+        if (props.number === totalNumbersPrefix) {
+            setLabels(monthNames7);
+        } else {
         }
     }
 

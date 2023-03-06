@@ -70,7 +70,7 @@ export default function Box(props: any) {
 
                 </div>
 
-                <Graphic type={props.type} number={valor} dates={props.dates} />
+                <Graphic type={props.type} number={props.number} dates={props.dates} />
             </div>
 
         </div>

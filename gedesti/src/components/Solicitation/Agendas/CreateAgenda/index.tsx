@@ -72,25 +72,23 @@ export default function CreateAgenda() {
 
             Services.save(1, 1, workers, actualDate).then((response: any) => {
                 let agendaCode = response.agendaCode;
-    
+
                 for (let i = 0; i < proposals.length; i++) {
                     let proposal: any = proposals[i];
                     proposal.agenda = { agenda: { agendaCode: agendaCode } };
-    
+
                     ServicesProposals.updateAgenda(proposal.proposalCode, proposal).then((response: any) => {
-                        navigate("/agenda/view/" + agendaCode);
                     })
-                    
+
                 }
 
-                
-
+                navigate("/agenda/view/" + agendaCode);
             })
         })
-        
 
 
-        
+
+
 
     }
 
@@ -225,7 +223,7 @@ export default function CreateAgenda() {
 
 
                 <div className="display-flex-end">
-                        <button onClick={saveAgenda} className="btn-primary">{t("save")}</button>
+                    <button onClick={saveAgenda} className="btn-primary">{t("save")}</button>
                 </div>
 
             </div>

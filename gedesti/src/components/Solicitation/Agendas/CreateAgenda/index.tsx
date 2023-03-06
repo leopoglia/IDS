@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Input from "../../Demands/CrateDemand/Input";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ServicesProposals from "../../../../services/proposalService";
 import Services from "../../../../services/agendaService";
 import SelectWorker from "../SelectWorker";
@@ -14,6 +15,7 @@ import ServicesWorker from "../../../../services/workerService";
 export default function CreateAgenda() {
 
     const { t } = useTranslation();
+    const navigate = useNavigate();
 
     const [proposals, setProposals] = useState([]);
     const [agendaNumber, setAgendaNumber] = useState("");
@@ -75,9 +77,14 @@ export default function CreateAgenda() {
                     let proposal: any = proposals[i];
                     proposal.agenda = { agenda: { agendaCode: agendaCode } };
     
-                    ServicesProposals.updateAgenda(proposal.proposalCode, proposal).then((response: any) => {})
+                    ServicesProposals.updateAgenda(proposal.proposalCode, proposal).then((response: any) => {
+                        navigate("/agenda/view/" + agendaCode);
+                    })
                     
                 }
+
+                
+
             })
         })
         
@@ -218,9 +225,7 @@ export default function CreateAgenda() {
 
 
                 <div className="display-flex-end">
-                    <Link to="/agendas">
                         <button onClick={saveAgenda} className="btn-primary">{t("save")}</button>
-                    </Link>
                 </div>
 
             </div>

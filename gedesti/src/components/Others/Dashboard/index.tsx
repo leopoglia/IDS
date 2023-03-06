@@ -26,7 +26,6 @@ export default function Dashboard() {
     const [proposal, setProposal] = useState(0);
     const [agendas, setAgendas] = useState(0);
     const [minutes, setMinutes] = useState(0);
-    let url = window.location.href;
 
     async function getDemands() {
         await ServicesDemand.findAll().then((response: any) => {
@@ -96,8 +95,7 @@ export default function Dashboard() {
         getDemands();
         getProposal();
         getAgendas();
-        // getMinutes();
-    }, [demands, proposal, agendas, minutes, url]);
+    }, [demands, proposal, agendas, minutes]);
 
     const listDashBoard = [
         {

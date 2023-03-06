@@ -45,6 +45,7 @@ export default function Graphic(props: any) {
 
     useEffect(() => {
         getMonthName();
+        console.log(props.dates);
 
     }, [props]);
 
@@ -125,7 +126,6 @@ export default function Graphic(props: any) {
 
         if (props.number === totalNumbersPrefix) {
             setLabels(monthNames7);
-        } else {
         }
     }
 

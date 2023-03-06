@@ -49,7 +49,7 @@ export default function CommissionOpinion() {
                         <div className="display-grid">
 
                             <label htmlFor="no">{t("fail")}</label>
-                            <input type="radio" id="no" name="parecer" onChange={(e) => { setProposalStatus("Repproved") }} />
+                            <input type="radio" id="no" name="parecer" onChange={(e) => { setProposalStatus("Rejected") }} />
                         </div>
                     </div>
 

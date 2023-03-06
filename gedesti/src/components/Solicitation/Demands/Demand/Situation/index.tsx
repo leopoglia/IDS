@@ -1,9 +1,27 @@
 import "./style.css"
 import { useTranslation } from "react-i18next";
+import Tooltip from '@mui/material/Tooltip';
+import { useEffect, useState } from "react";
 
 export default function Situation(props: any) {
 
     const { t } = useTranslation();
+
+    const [situationSeparate, setSituationSeparate] = useState("");
+
+    useEffect(() => {
+
+        if (props.situation) {
+            console.log(props.situation);
+            // dar espaço quando a letra for maiuscula no props.situation
+            setSituationSeparate(props.situation.replace(/([A-Z])/g, ' $1'));
+        }
+
+
+
+
+    }, [props.situation])
+
 
     const situation = () => {
         if (props.situation === "Backlog") {
@@ -12,7 +30,7 @@ export default function Situation(props: any) {
             return (<div className="situation-backlog-ranked">15%</div>);
         } else if (props.situation === "BacklogRankApproved") {
             return (<div className="situation-backlog-ranked-approved">20%</div>);
-        } else if(props.situation === "BacklogComplement"){
+        } else if (props.situation === "BacklogComplement") {
             return (<div className="situation-backlog-complement">25%</div>);
         } else if (props.situation === "Assesment") {
             return (<div className="situation-assesment">30%</div>);
@@ -41,15 +59,19 @@ export default function Situation(props: any) {
 
     if (props.type === "demand") {
         return (
-            <div className="graphic">
-                {situation()}
-            </div>
+            <Tooltip title={situationSeparate} arrow>
+                <div className="graphic">
+                    {situation()}
+                </div>
+            </Tooltip>
         );
     } else if (props.type === "proposal") {
         return (
-            <div className="graphic-proposal">
-                {situation()}
-            </div>
+            <Tooltip title={situationSeparate} arrow>
+                <div className="graphic-proposal">
+                    {situation()}
+                </div>
+            </Tooltip>
         );
     } else {
         return (

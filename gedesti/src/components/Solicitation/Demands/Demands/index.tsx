@@ -233,7 +233,7 @@ export default function Demands() {
                     <Header />
                     <Nav />
                     <div className="container">
-                        <Search onClick={callback} name={nameFilter} type={typeFilter} nav={t("proposalViewProposal")} title="proposals" button="createProposal" link="/demands" setTable={setTable} />
+                        <Search onClick={callback} name={nameFilter} type={typeFilter} nav={t("proposalViewProposal")} title="proposals" button="createProposal" link="/demands/1" setTable={setTable} />
                         <div className="container-background">
                             {
                                 proposals.map((val, index) => {

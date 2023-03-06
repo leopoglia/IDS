@@ -10,14 +10,13 @@ import { useEffect, useState } from "react";
 export default function CommissionOpinion() {
 
     const proposalCode = parseInt(window.location.href.split("/")[5]);
-
     const [commissionOpinion, setCommissionOpinion] = useState("");
     const [proposalStatus, setProposalStatus] = useState("");
+    const agendaCode = localStorage.getItem("agendaCode");
 
     const { t } = useTranslation();
 
     function addOpinion(){
-        console.log(proposalStatus, commissionOpinion);
         ProposalService.addOpinion(proposalCode, proposalStatus, commissionOpinion);
     }
 
@@ -61,7 +60,7 @@ export default function CommissionOpinion() {
                 </div>
 
                 <div className="display-flex-end">
-                    <Link to="/agendas">
+                    <Link to={"/agenda/view/" + agendaCode}>
                         <button className="btn-primary" onClick={addOpinion}>{t("save")}</button>
                     </Link>
                 </div>

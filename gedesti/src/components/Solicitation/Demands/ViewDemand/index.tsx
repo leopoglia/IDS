@@ -831,6 +831,7 @@ export default function ViewDemand() {
 
                             {proposalSpecific[0].proposalName !== "" &&
                                 proposalSpecific.map((val: any) => (
+                                    localStorage.setItem("agendaCode", window.location.pathname.split("/")[3]),
                                     <Link to={"/proposal/view/" + val.proposalCode}>
                                         <div className="proposal-view">
 

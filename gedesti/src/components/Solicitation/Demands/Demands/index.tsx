@@ -31,7 +31,7 @@ export default function Demands() {
 
     const [proposals, setProposals] = useState([
         { proposalCode: "", demand: { demandTitle: "", requesterRegistration: { workerName: "" }, demandDate: "" }, proposalTitle: "", requesterRegistration: { workerName: "" }, responsibleAnalyst: { workerName: "" }, proposalDate: "", proposalStatus: "" },
-        { name: "Proposta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "Approved" },
+        { name: "Proposta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "ApproproposalSpecificved" },
         { name: "Proposta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "Rejected" },
         { name: "Proposta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "Pending" },
 
@@ -69,7 +69,6 @@ export default function Demands() {
         }
 
     }, [url[3], page, search])
-
 
     // Buscar as demandas cadastradas
     async function getDemands() {
@@ -118,7 +117,7 @@ export default function Demands() {
                     <div className="navigator">
                         {page > 1 ? (
                             <div onClick={() => {
-                                navigate("/demands/" + (parseInt(page) - 1));
+                                navigate("/" + url[3] + "/" + (parseInt(page) - 1));
                             }}>{"<"}</div>
                         ) : (
                             <div className="arrow-disabled">{"<"}</div>
@@ -129,7 +128,7 @@ export default function Demands() {
                                 <div
                                     key={pageNumber}
                                     className={pageNumber === parseInt(page) ? "current" : ""}
-                                    onClick={() => navigate(`/demands/${pageNumber}`)}
+                                    onClick={() => navigate(`/${url[3]}/${pageNumber}`)}
                                 >
                                     {pageNumber}
                                 </div>
@@ -137,7 +136,7 @@ export default function Demands() {
                         })}
                         {page < pages ? (
                             <div onClick={() => {
-                                navigate("/demands/" + (parseInt(page) + 1));
+                                navigate("/" + url[3] + "/" + (parseInt(page) + 1));
                             }}>{">"}</div>
                         ) : (
                             <div className="arrow-disabled">{">"}</div>

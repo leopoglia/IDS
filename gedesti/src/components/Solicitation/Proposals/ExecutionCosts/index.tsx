@@ -22,12 +22,12 @@ export default function ExecutionCosts() {
 
     const [costCenter, setCostCenter] = useState("");
     const [costsCenters, setCostsCenters]: any = useState([]);
-    const [ demandCode, setDemandCode ] = useState(parseInt(window.location.href.split("/")[5]));
-    let expenseListStorage: any = JSON.parse(localStorage.getItem('expenseList') || '[]');
+    const [demandCode, setDemandCode] = useState(parseInt(window.location.href.split("/")[5]));
     const [idCostCenter, setIdCostCenter]: any = useState([]);
     const proposal = JSON.parse(localStorage.getItem('proposal') || '{}');
     const scope: any = localStorage.getItem('proposalScope');
     let actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear(); // Data atual
+    let expenseListStorage: any = JSON.parse(localStorage.getItem('expenseList') || '[]');
 
     let totalsCosts = 0;
     let externalCosts = 0;
@@ -92,6 +92,8 @@ export default function ExecutionCosts() {
 
     }
 
+    console.log("COST CENTERS ------------------------------> ", costsCenters)
+
     const nextStep = () => {
 
         if (costsCenters.length === 0) {
@@ -109,7 +111,7 @@ export default function ExecutionCosts() {
                         expenseListStorage[i].hourValue,
                         expenseListStorage[i].expenseTotalValue,
                         proposal.proposalCode
-                        ).then((expense: any) => {   
+                    ).then((expense: any) => {
                         localStorage.removeItem('expenseList');
                     }).catch((error: any) => {
                         console.log(error);
@@ -120,7 +122,7 @@ export default function ExecutionCosts() {
             }).catch((error: any) => {
                 console.log(error);
             });
-            
+
         }
     }
 
@@ -148,41 +150,53 @@ export default function ExecutionCosts() {
                     <div className="block">
                         <GridCostExecution />
 
-                        <div className="display-flex-space-between">
-
-                            <Link to={"/proposal/execution-costs/add-expense/" + demandCode}>
-                                <button className="btn-secondary">{t("addExpense")}</button>
-                            </Link>
-                        </div>
 
                         <div className="input">
                             <div className="display-flex-grid">
-                                <div>
-                                    <label>{t("payingCostCenter")} *</label>
+                                {expenseListStorage.length !== 0 &&
 
-                                    <div className="display-flex">
-                                        <SelectCostExecution setCostCenter={setCostCenter} costCenter={costCenter} addCostCenter={addCostCenter} type="payingCostCenter" />
+                                    <div>
 
-                                        <button className="btn-primary btn-center-cost" onClick={() => { addCostCenter(costCenter) }}>
-                                            <span className="material-symbols-outlined">
-                                                add
-                                            </span>
-                                        </button>
+                                        <label>{t("payingCostCenter")} *</label>
+
+
+                                        <div className="display-flex">
+                                            <SelectCostExecution setCostCenter={setCostCenter} costCenter={costCenter} addCostCenter={addCostCenter} type="payingCostCenter" />
+
+                                            <button className="btn-primary btn-center-cost" onClick={() => { addCostCenter(costCenter) }}>
+                                                <span className="material-symbols-outlined">
+                                                    add
+                                                </span>
+                                            </button>
+                                        </div>
+
+
+
+                                        {costsCenters.map((costCenter: any) => {
+                                            return <div className="cost-center">
+                                                <span>{costCenter}</span>
+
+                                                <div>
+                                                    <input type="number" />
+                                                    <label htmlFor="">%</label>
+                                                </div>
+                                            </div>
+                                        })
+                                        }
                                     </div>
 
 
-                                    {costsCenters.map((costCenter: any) => {
-                                        return <div className="cost-center">
-                                            <span>{costCenter}</span>
 
-                                            <div>
-                                                <input type="number" />
-                                                <label htmlFor="">%</label>
-                                            </div>
-                                        </div>
-                                    })
-                                    }
-                                </div>
+                                }
+                            </div>
+
+                            <div className="hr"></div>
+
+                            <div className="display-flex-space-between">
+
+                                <Link to={"/proposal/execution-costs/add-expense/" + demandCode}>
+                                    <button className="btn-secondary">{t("addExpense")}</button>
+                                </Link>
                             </div>
                         </div>
                     </div>

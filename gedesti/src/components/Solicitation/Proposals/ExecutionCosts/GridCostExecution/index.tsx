@@ -1,9 +1,10 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColumns, GridRowsProp } from '@mui/x-data-grid';
 import { randomPrice } from '@mui/x-data-grid-generator';
 import { useTranslation } from "react-i18next";
+import SelectCostCenter from '../SelectCostExecution';
 import "./style.css"
 
 
@@ -27,7 +28,7 @@ export default function ConditionalValidationGrid() {
     }));
 
 
-    const [expenseList, setExpenseList] = useState<any>(JSON.parse(localStorage.getItem('expenseList') || '[""]'));	
+    const [expenseList, setExpenseList] = useState<any>(JSON.parse(localStorage.getItem('expenseList') || '[""]'));
 
     useEffect(() => {
         setExpenseList(JSON.parse(localStorage.getItem('expenseList') || '[""]'))

@@ -95,6 +95,7 @@ export default function ViewDemand() {
 
     // Dados da proposta específica
     const [proposalSpecific, setProposalSpecific]: any = useState([{
+        proposalName: "",
         proposalCode: "",
         proposalStatus: "",
         proposalDate: "",
@@ -220,9 +221,14 @@ export default function ViewDemand() {
                 for (let i = 0; i < response.length; i++) {
                     if (response[i].proposal.proposalCode === demandCode) {
                         expense.push(response[i])
+
                     }
                 }
+
+                if(expense.length !== 0){
                 setProposalExpense(expense)
+                }
+
             })
         })
     }
@@ -236,9 +242,12 @@ export default function ViewDemand() {
             for (let i = 0; i < response.length; i++) {
                 if (response[i].agenda !== null) {
                     if (response[i].agenda.agendaCode === demandCode) {
-                        proposalSpecific.push(response[i])
+                        if (response[i].proposalName !== undefined) {
+                            proposalSpecific.push(response[i])
+                        }
                     }
                 }
+
             }
 
             setProposalSpecific(proposalSpecific)

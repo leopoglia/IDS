@@ -323,7 +323,12 @@ hr {
   margin: 0px;
 }
 
-
+.hr{
+  width: 100%;
+  height: 1px;
+  background-color: var(--greyC4);
+  margin: 20px 0;
+}
 
 .attachments label {
   width: 250px;

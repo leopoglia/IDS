@@ -92,8 +92,6 @@ export default function ExecutionCosts() {
 
     }
 
-    console.log("COST CENTERS ------------------------------> ", costsCenters)
-
     const nextStep = () => {
 
         if (costsCenters.length === 0) {

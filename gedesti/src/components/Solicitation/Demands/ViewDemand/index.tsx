@@ -831,7 +831,7 @@ export default function ViewDemand() {
                                             </span>
 
                                             <div className="proposal-view-buttons">
-                                                <Link to="/proposal/comission-opinion">
+                                                <Link to={"/proposal/comission-opinion/" + val.proposalCode}>
                                                     <button className="btn-primary">{t("insertCommissionOpinion")}</button>
                                                 </Link>
                                             </div>

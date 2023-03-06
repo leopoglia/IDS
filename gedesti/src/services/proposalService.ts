@@ -76,11 +76,12 @@ const Services = {
                 headers: { 'Content-Type': 'application/json' }}).then(function (result) { return result.json(); }).then(resolve).catch(reject) 
         })
     },
-    updateStatus: function(id: Number, status: String) {
+    addOpinion: function(id: Number, status: String, comissionOpinion: String) {
         return new Promise((resolve, reject) => {
             fetch(url + "/status/" + id, {
                 method: 'PUT',
-                body: JSON.stringify({ "proposalStatus": status }),
+                body: JSON.stringify({ "proposalStatus": status,
+                                       "comissionOpinion": comissionOpinion }),
                 headers: { 'Content-Type': 'application/json' }}).then(function (result) { return result.json(); }).then(resolve).catch(reject) 
         })
     }

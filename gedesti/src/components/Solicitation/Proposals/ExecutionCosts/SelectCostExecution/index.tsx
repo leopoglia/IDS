@@ -30,11 +30,7 @@ export default function SelectLabels(props: any) {
             for (let i = 0; i < response.costCenter.length; i++) {
                 bus.push({ costCenter: response.costCenter[i].costCenter });
             }
-
-            console.log(bus);
             setCenterCost(bus);
-
-
         });
     }
 

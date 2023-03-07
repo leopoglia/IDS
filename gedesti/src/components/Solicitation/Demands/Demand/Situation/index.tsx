@@ -12,7 +12,6 @@ export default function Situation(props: any) {
     useEffect(() => {
 
         if (props.situation) {
-            console.log(props.situation);
             // dar espaço quando a letra for maiuscula no props.situation
             setSituationSeparate(props.situation.replace(/([A-Z])/g, ' $1'));
         }

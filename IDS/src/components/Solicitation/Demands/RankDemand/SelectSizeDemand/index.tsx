@@ -22,7 +22,20 @@ export default function SelectLabels(props: any) {
 
     const buReq = bu
     const buBen = bu
-    const ti = ["AI", "Front", "Back"]
+    const ti = [
+        "SVE - Seção Desenvolvimento Sistemas de Vendas e E - commerce",
+        "SIM – Seção Desenvolvimento Sistemas de manufatura",
+        "SIE – Seção Desenvolvimento Sistemas de Engenhar",
+        "SDO – Setor Desenvolvimento Plataforma Orchestra",
+        "SCO – Seção Desenvolvimento Sistemas Corporativos",
+        "PTI – Seção Projetos de TI",
+        "AGD – Seção Arquitetura e Governança de Dados",
+        "STD – Seção Desenvolvimento Tecnologias Digitais",
+        "TIN – Seção Tecnologia de Infraestrutura",
+        "SGI - Secao Suporte Global Infraestrutura",
+        "SEG - Secao Seguranca da Informacao e Riscos TI",
+        "AAS – Atendimento e serviços TI – América do Sul",
+    ]
 
     const typeChange = (type: string) => {
         switch (type) {
@@ -44,7 +57,7 @@ export default function SelectLabels(props: any) {
 
         if (props.type === "buBen" || props.type === "buReq") {
             return type.map((bu: any) => {
-                return <MenuItem value={bu.buCode}>{bu.buCode} &nbsp; {bu.bu}</MenuItem>
+                return <MenuItem value={bu.buCode}>{bu.bu}</MenuItem>
             })
         } else {
             return type.map((bu: any) => {

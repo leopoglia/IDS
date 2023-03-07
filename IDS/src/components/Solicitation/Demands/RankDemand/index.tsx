@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import ServicesClassification from "../../../../services/classificationService"
 import ServicesDemand from "../../../../services/demandService";
 import ServicesNotification from "../../../../services/notificationService";
+import ServicesBu from "../../../../services/buService";
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
@@ -21,13 +22,26 @@ export default function RankDemand() {
 
     const [buBenefited, setBuBenefited] = useState(""); // Unidade de negócio beneficiada
     const [buBenefiteds, setBuBenefiteds]: any = useState([]); // Unidades de negócio beneficiadas
+    const [buBenefitedsList, setBuBenefitedsList]: any = useState([]); // Lista de unidades de negócio beneficiadas
     const [demand, setDemand]: any = useState({}); // Demanda
     const url = parseInt(window.location.href.split("/")[5]); // Pegando o id da demanda
 
     useEffect(() => {
         // Pegando a demanda inicial
         getDemand();
-    }, [])
+
+        for (let i = 0; i < buBenefiteds.length; i++) {
+
+
+            ServicesBu.findById(buBenefiteds[i]).then((response: any) => {
+                setBuBenefitedsList([...buBenefitedsList, response]);
+            }).catch((error: any) => {
+                console.log(error)
+            })
+        }
+
+
+    }, [buBenefiteds])
 
     async function getDemand() {
         setDemand(await ServicesDemand.findById(url));
@@ -78,14 +92,14 @@ export default function RankDemand() {
 
     // Deletando a unidade de negócio beneficiada
     function deleteBuBenefited(bu: any) {
-
         return () => {
-            const index = buBenefiteds.indexOf(bu);
+            const index = buBenefiteds.indexOf(bu.buCode);
             if (index > -1) {
                 buBenefiteds.splice(index, 1);
+                buBenefitedsList.splice(index, 1);
             }
             setBuBenefiteds(buBenefiteds);
-
+            setBuBenefitedsList(buBenefitedsList);
             let classification = JSON.parse(localStorage.getItem("classification") || "{}");
             classification.buBenList = buBenefiteds;
             localStorage.setItem("classification", JSON.stringify(classification));
@@ -149,8 +163,8 @@ export default function RankDemand() {
                             <SelectSizeDemand setBuBenefiteds={setBuBenefiteds} buBenefiteds={buBenefiteds} type="buBen" />
                         </div>
 
-                        {buBenefiteds.map((bu: any) => {
-                            return <div className="costCenter">{bu}
+                        {buBenefitedsList.map((bu: any) => {
+                            return <div className="costCenter">{bu.bu}
                                 <span className="material-symbols-outlined delete-cost-center" onClick={deleteBuBenefited(bu)}>
                                     delete
                                 </span>

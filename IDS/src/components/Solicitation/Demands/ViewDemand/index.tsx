@@ -142,6 +142,8 @@ export default function ViewDemand() {
         ServicesDemand.findById(demandCode).then((response: any) => {
             setDemand(response)
 
+            console.log(response)
+
             // Verificar se o usuário é o solicitante
             if (office === "requester") {
                 // Verificar se o usuário é o solicitante
@@ -188,7 +190,7 @@ export default function ViewDemand() {
 
             if (response?.demandStatus === "Backlog") {
                 setStepDemand(0)
-            } else if (response?.demandStatus === "BacklogRank") {
+            } else if (response?.demandStatus === "BacklogRanked") {
                 setStepDemand(1)
             } else if (response?.demandStatus === "BacklogRankApproved") {
                 setStepDemand(1)

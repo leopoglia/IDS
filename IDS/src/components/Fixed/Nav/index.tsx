@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import ServicesNotification from "../../../services/notificationService";
 import UserContext from "../../../context/userContext";
 
+
 export default function Nav() {
 
     const { t } = useTranslation();
@@ -76,19 +77,7 @@ export default function Nav() {
                     </span>
                 </li>
 
-                {(office === "analyst" || office === "ti") &&
-                    <><Link to="/dashboard">
-                        <li id={hover("dashboard")}>
-                            <div>
-                                <span className="material-symbols-outlined">
-                                    insert_chart
-                                </span>
-                                <span className="title-li">{t("dashboard")}</span>
-                            </div>
-                        </li>
-                    </Link>
-                    </>
-                }
+
 
                 <Link to="/demands/1">
                     <li id={hover("demands")}>
@@ -136,6 +125,16 @@ export default function Nav() {
                             </li>
                         </Link>
 
+                        <Link to="/dashboard">
+                            <li id={hover("dashboard")}>
+                                <div>
+                                    <span className="material-symbols-outlined">
+                                        insert_chart
+                                    </span>
+                                    <span className="title-li">{t("dashboard")}</span>
+                                </div>
+                            </li>
+                        </Link>
 
                         <Link to="/messages">
                             <li id={hover("messages")}>
@@ -147,7 +146,10 @@ export default function Nav() {
                                 </div>
                             </li>
                         </Link>
+
+
                     </>
+
                     )
                 }
 

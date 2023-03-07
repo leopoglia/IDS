@@ -44,11 +44,8 @@ export default function Form() {
 
                 localStorage.setItem("id", JSON.stringify(worker.id));
 
-                if(worker.office !== "analyst"){
                 navigate('/demands/1');
-                } else{
-                    navigate('/dashboard');
-                }
+
             }
 
             if (response?.status === 400 || response?.status === 500 || response?.status === undefined) {

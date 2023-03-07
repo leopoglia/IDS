@@ -225,8 +225,8 @@ export default function ViewDemand() {
                     }
                 }
 
-                if(expense.length !== 0){
-                setProposalExpense(expense)
+                if (expense.length !== 0) {
+                    setProposalExpense(expense)
                 }
 
             })
@@ -258,8 +258,6 @@ export default function ViewDemand() {
             })
 
         })
-
-
     }
 
     // Função para buscar centro de custos
@@ -358,6 +356,7 @@ export default function ViewDemand() {
     const [proposalScopeOpen, setProposalScopeOpen] = useState(false);
 
 
+    console.log("CLASSIFICAÇÃO -----> ", classification)
 
     return (
 
@@ -699,7 +698,15 @@ export default function ViewDemand() {
                                             <tr>
                                                 <td>{classification.classificationSize}</td>
                                                 <td>{classification.requesterBu.bu}</td>
-                                                <td>{classification.beneficiaryBu.bu}</td>
+                                                <td>
+                                                    {classification.beneficiaryBu.map((bu: any) => {
+                                                        return (
+                                                            <div>{bu.bu}</div>
+                                                        )
+                                                    })
+
+                                                    }
+                                                </td>
                                                 <td>{classification.itSection}</td>
 
                                             </tr>

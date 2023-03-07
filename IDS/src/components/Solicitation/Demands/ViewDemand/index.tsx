@@ -142,8 +142,6 @@ export default function ViewDemand() {
         ServicesDemand.findById(demandCode).then((response: any) => {
             setDemand(response)
 
-            console.log(response)
-
             // Verificar se o usuário é o solicitante
             if (office === "requester") {
                 // Verificar se o usuário é o solicitante

@@ -19,27 +19,7 @@ export default function Messages() {
 
                 <div className="container-background">
                     <Message />
-                    <Message />
-                    <Message />
-                    <Message />
-                    <Message />
-                    <Message />
-                    <Message />
-                    <Message />
-                    <Message />
-                    <Message />
-                    <Message />
-                    <Message />
-                    <Message />
-                    <Message />
-                    <Message />
-                    <Message />
-                    <Message />
-                    <Message />
-                    <Message />
-                    <Message />
-                    <Message />
-
+                
                 </div>
 
 

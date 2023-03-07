@@ -11,6 +11,7 @@ import ServicesDemand from "../../../../services/demandService";
 import ServicesProposal from "../../../../services/proposalService";
 import ServicesAgenda from "../../../../services/agendaService";
 import { toast, ToastContainer } from 'react-toastify';
+import { useTranslation } from "react-i18next";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
@@ -18,29 +19,18 @@ export default function Demands() {
     const url = window.location.href.split("/");
     let findDemands: any;
     let navigate = useNavigate();
-
+    const { t } = useTranslation();
 
     const [table, setTableList] = useState(false); // Estado para mostrar a tabela de demandas
     const [search, setSearch]: any = useState(""); // Retorno do campo de busca de demandas
     const page: any = url[4]
     const [pages, setPages] = useState(0); // Quantidade de páginas
 
-    const [demands, setDemands] = useState([
-        { demandCode: 0, demandTitle: "", requesterRegistration: { workerName: "" }, demandDate: "", demandStatus: "" }
-    ]);
-
-    const [proposals, setProposals] = useState([
-        { proposalCode: "", demand: { demandTitle: "", requesterRegistration: { workerName: "" }, demandDate: "" }, proposalTitle: "", requesterRegistration: { workerName: "" }, responsibleAnalyst: { workerName: "" }, proposalDate: "", proposalStatus: "" },
-        { name: "Proposta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "ApproproposalSpecificved" },
-        { name: "Proposta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "Rejected" },
-        { name: "Proposta 001", requester: "Leonardo Heitor Poglia", analyst: "Vytor Augusto Rosa", date: "27/04/2022", situation: "Pending" },
-
-    ]);
-    const [agendas, setAgendas] = useState([
-        { agendaCode: "", sequentialNumber: 0, yearAgenda: 0 },
-    ]);
+    const [demands, setDemands] = useState([]);
+    const [proposals, setProposals] = useState([]);
+    const [agendas, setAgendas] = useState([]);
     const [minutes] = useState([
-        { minuteCode: "1", name: "Ata 001", date: "27/04/2022", situation: "unallocated", number: "10/2021", director: "Vytor Augusto Rosa", coordinator: "Leonardo Heitor Poglia" },
+        // { minuteCode: "1", name: "Ata 001", date: "27/04/2022", situation: "unallocated", number: "10/2021", director: "Vytor Augusto Rosa", coordinator: "Leonardo Heitor Poglia" },
     ]);
 
 
@@ -183,7 +173,7 @@ export default function Demands() {
                         <Search setSearch={setSearch} onClick={callback} name={nameFilter} setType={setType} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1" setTable={setTable} />
                         <div className="container-background">
                             {
-                                demands.map((val, index) => {
+                                demands.map((val: any, index) => {
                                     if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
                                         return (
                                             <Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />
@@ -236,7 +226,7 @@ export default function Demands() {
                         <Search onClick={callback} name={nameFilter} type={typeFilter} nav={t("proposalViewProposal")} title="proposals" button="createProposal" link="/demands/1" setTable={setTable} />
                         <div className="container-background">
                             {
-                                proposals.map((val, index) => {
+                                proposals.map((val: any, index) => {
                                     return (
                                         <Demand key={val.proposalCode} listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />
                                     );
@@ -263,7 +253,7 @@ export default function Demands() {
                         <Search onClick={callback} name={nameFilter} type={typeFilter} nav={t("agendaViewAgenda")} title="agendas" button="createAgenda" link="/agenda/create" setTable={setTable} />
                         <div className="container-background">
                             {
-                                agendas.map((val, index) => {
+                                agendas.map((val: any, index) => {
                                     return (
                                         <Demand val={val.agendaCode} listDirection={table} name={"Pauta da reunião  " + val.agendaCode} demandCode={val.agendaCode} number={val.sequentialNumber} year={val.yearAgenda} type="agenda" />
                                     );
@@ -294,7 +284,7 @@ export default function Demands() {
                         <Search onClick={callback} name={nameFilter} type={typeFilter} nav={t("minuteViewMinute")} title="minutes" button="createMinute" link="/agendas" setTable={setTable} />
                         <div className="container-background">
                             {
-                                minutes.map((val, index) => {
+                                minutes.map((val: any, index) => {
                                     return (
                                         <div onClick={() => setMinute(true)}>
                                             <Demand key={val.minuteCode} listDirection={table} demandCode={val.minuteCode} name={val.name} director={val.director} coordinator={val.coordinator} number={val.number} date={val.date} situation={val.situation} type="minute" />
@@ -302,6 +292,12 @@ export default function Demands() {
                                     );
                                 })
                             }
+
+                            {minutes.length === 0 && (
+                                <div className="no-results">
+                                    <h1>{t("noResults")}</h1>
+                                </div>
+                            )}
                         </div>
                         {footer()}
 

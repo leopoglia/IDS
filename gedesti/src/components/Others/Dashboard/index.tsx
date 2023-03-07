@@ -13,6 +13,7 @@ import Footer from "../../Fixed/Footer";
 
 export default function Dashboard() {
 
+    const [url, setUrl] = useState(window.location.href);
     const [demands, setDemands] = useState(0);
 
     const [demandsDates, setDemandsDates]: any = useState([]);
@@ -30,6 +31,8 @@ export default function Dashboard() {
     async function getDemands() {
         await ServicesDemand.findAll().then((response: any) => {
             setDemands(response?.length);
+            let dates: any = [];
+
 
             for (let i = 0; i < response.length; i++) {
                 if (response[i].demandStatus === "BacklogRanked") {
@@ -45,10 +48,10 @@ export default function Dashboard() {
                     setDemandsCanceled(demandsCanceled + 1);
                 }
 
-                let dates: any = demandsDates;
                 dates.push(response[i].demandDate);
             }
 
+            setDemandsDates(dates);
 
         }).catch((error) => {
             console.log(error);
@@ -58,11 +61,12 @@ export default function Dashboard() {
     async function getProposal() {
         await ServicesProposal.findAll().then((response: any) => {
             setProposal(response?.length);
-
+            let dates: any = [];
             for (let i = 0; i < response.length; i++) {
-                let dates: any = proposalDates;
                 dates.push(response[i].proposalDate);
             }
+
+            setProposalDates(dates);
 
         }).catch((error) => {
             console.log(error);
@@ -72,11 +76,13 @@ export default function Dashboard() {
     async function getAgendas() {
         await ServicesAgenda.findAll().then((response: any) => {
             setAgendas(response?.length);
+            let dates: any = [];
 
             for (let i = 0; i < response.length; i++) {
-                let dates: any = agendaDates;
                 dates.push(response[i].agendaDate);
             }
+
+            setAgendaDates(dates);
         }).catch((error) => {
             console.log(error);
         });
@@ -95,7 +101,8 @@ export default function Dashboard() {
         getDemands();
         getProposal();
         getAgendas();
-    }, [demands, proposal, agendas, minutes]);
+
+    }, [demands, proposal, agendas, minutes, url]);
 
     const listDashBoard = [
         {

@@ -71,34 +71,6 @@
     background-color: var(--blueF4);
 }
 
-.view-demand .attachments .attachment {
-    cursor: pointer;
-    margin-left: 0px !important;
-    width: 100px;
-    height: 80px;
-    padding: 5px;
-    border-radius: 4px;
-    display: grid;
-    align-items: center;
-    justify-content: center;
-}
-
-.view-demand .attachments .attachment span {
-    font-size: var(--pp) !important;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.view-demand .attachment .attachment-image {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.view-demand .attachments .attachment:hover {
-    background-color: var(--greyF7);
-}
 
 .view-demand .btn-secondary {
     margin-right: 15px !important;

@@ -20,7 +20,7 @@ export default function CreateDemands3() {
     // const [demandAttachment, setdemandAttachment]: any = useState(""); 
     const [executionPeriod, setExecutionPeriod]: any = useState(""); // Periodo de execução
     const [demandInitial, setDemand]: any = useState({}); // Demanda inicial
-    const [fileAttachment, setFileAttachment]: any = useState(); // Anexo
+    const [fileAttachment, setFileAttachment]: any = useState([]); // Anexo
 
     useEffect(() => {
         // Pegando a demanda inicial
@@ -84,7 +84,29 @@ export default function CreateDemands3() {
     // Função para pegar o arquivo selecionado
     const handleFileSelected = (e: any): void => {
         const files = Array.from(e.target.files)
-        setFileAttachment(files[0])
+        let filesArray: any = [];
+        for (let i = 0; i < files.length; i++) {
+            filesArray.push(files[i]);
+        }
+
+        setFileAttachment(filesArray);
+    }
+
+    const attatchmentType = (demand:any) => {
+        if (demand.type === "image/png" || demand.type === "image/jpeg") {
+            return "png";
+        } else if (demand.type === "application/pdf") {
+            return "pdf";
+        } else if (demand.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
+            return "word";
+        } else if (demand.type === "application/msword" || demand.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||
+            demand.demandAttachment.type === "application/vnd.ms-excel") {
+            return "excel";
+        } else if (demand.type === "application/zip") {
+            return "zip";
+        } else if (demand.type === "application/x-rar-compressed") {
+            return "rar";
+        }
     }
 
     return (
@@ -110,12 +132,31 @@ export default function CreateDemands3() {
 
                     <label>{t("attachments")}</label>
 
-                    <div className="attachments">
-                        <input type="file" id="file" onChange={handleFileSelected} />
+                    <div className="attachments display-flex">
+                        <input type="file" id="file" onChange={handleFileSelected} multiple />
                         <label htmlFor="file">
                             <span className="material-symbols-outlined">
                                 upload_file
                             </span>{t("sendAttachment")}</label>
+
+
+                        {
+                            fileAttachment.map((file: any) => {
+                                return (
+                                    <div className="attachments">
+
+                                        <div className="attachment">
+                                            <div className="attachment-image">
+                                                <img src={"/attachment/" + attatchmentType(file) + ".png"} alt="" />
+                                            </div>
+                                            <span>{file.name}</span>
+                                        </div>
+
+
+                                    </div>
+                                )
+                            })
+                        }
                     </div>
 
                 </div>

@@ -388,6 +388,38 @@ hr {
   background-color: var(--greyD9);
 }
 
+
+/* ATTACHMENTS */
+
+.attachment {
+  cursor: pointer;
+  margin-left: 0px !important;
+  width: 100px;
+  height: 80px;
+  padding: 5px;
+  border-radius: 4px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.attachment span {
+  font-size: var(--pp) !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.attachment-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.attachment:hover {
+  background-color: var(--greyF7);
+}
+
 @media(max-width: 1280px) {
   .container {
     padding: 20px 110px;

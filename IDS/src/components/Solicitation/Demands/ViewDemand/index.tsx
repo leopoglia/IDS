@@ -235,29 +235,24 @@ export default function ViewDemand() {
 
     // Buscar proposta específica
     function getProposalSpecific() {
-        ServicesProposal.findAll().then((response: any) => {
 
-            let proposalSpecific: any = [];
+        ServicesAgenda.findById(demandCode).then((response: any) => {
+            let proposals: any = [];
+            console.log("PROPOSAL --> ", response[0].proposals)
 
-            for (let i = 0; i < response.length; i++) {
-                if (response[i].agenda !== null) {
-                    if (response[i].agenda.agendaCode === demandCode) {
-                        if (response[i].proposalName !== undefined) {
-                            proposalSpecific.push(response[i])
-                        }
-                    }
-                }
 
+
+            setComission(response[0].commission)
+
+            for (let i = 0; i < response[0].proposals.length; i++) {
+                proposals.push(response[0].proposals[i])
             }
 
-            setProposalSpecific(proposalSpecific)
 
-
-            ServicesAgenda.findById(demandCode).then((response: any) => {
-                setComission(response[0].commission)
-            })
-
+            setProposalSpecific(proposals)
         })
+
+
     }
 
     // Função para buscar centro de custos
@@ -354,9 +349,6 @@ export default function ViewDemand() {
     const [complementOpen, setComplementOpen] = useState(false);
     const [expenseOpen, setExpenseOpen] = useState(false);
     const [proposalScopeOpen, setProposalScopeOpen] = useState(false);
-
-
-    console.log("CLASSIFICAÇÃO -----> ", classification)
 
     return (
 

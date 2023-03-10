@@ -71,7 +71,7 @@ export default function CreateAgenda() {
         
             Services.save(1, 1, workers, actualDate, proposals).then((response: any) => {
                 console.log(response);
-                navigate("/agenda/view" + response.agendaCode);
+                navigate("/agenda/view/" + response.agendaCode);
             })
         })
 

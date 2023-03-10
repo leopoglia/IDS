@@ -4,16 +4,19 @@ const Services = {
     save: function (sequentialNumber: Number, yearAgenda: Number, commission: any, agendaDate: String, proposals: any) {
 
         let proposalList: any = [];
-        for(let i = 0; i < proposals.length; i++){
-            proposalList.push({ proposalCode: proposals[i] })
+        for (let i = 0; i < proposals.length; i++) {
+            proposalList.push({ proposalCode: proposals[i].proposalCode })
         }
 
+        console.log("PROPOSAL LIST ---> ", proposalList);
 
         let comissionList: any = [];
-
         for (let i = 0; i < commission.length; i++) {
             comissionList.push({ workerCode: commission[i] })
         }
+
+        console.log("COMISSION LIST ---> ", comissionList);
+
 
         return new Promise((resolve, reject) => {
             fetch(url, {

@@ -68,21 +68,10 @@ export default function CreateAgenda() {
                 })
             })
 
-
-
-            Services.save(1, 1, workers, actualDate).then((response: any) => {
-                let agendaCode = response.agendaCode;
-
-                for (let i = 0; i < proposals.length; i++) {
-                    let proposal: any = proposals[i];
-                    proposal.agenda = { agenda: { agendaCode: agendaCode } };
-
-                    ServicesProposals.updateAgenda(proposal.proposalCode, proposal).then((response: any) => {
-                    })
-
-                }
-
-                navigate("/agenda/view/" + agendaCode);
+        
+            Services.save(1, 1, workers, actualDate, proposals).then((response: any) => {
+                console.log(response);
+                navigate("/agenda/view" + response.agendaCode);
             })
         })
 

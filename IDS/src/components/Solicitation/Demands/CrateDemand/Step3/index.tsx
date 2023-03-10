@@ -63,7 +63,7 @@ export default function CreateDemands3() {
             realBenefitCode,
             potentialBenefitCode,
             qualitativeBenefitCode,
-            fileAttachment,
+            fileAttachment[0],
             actualDate
         ).then((response) => {
             // Salvando a rota para redirecionar para a página de demandas

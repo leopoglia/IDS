@@ -850,14 +850,24 @@ export default function ViewDemand() {
                                 ))
                             }
 
-                            <p>{t("comission")}</p>
 
-                            {comission.map((val: any) => (
+                            <div className="complement">
 
-                                <div className="costCenter">
-                                    {val.workerName}
-                                </div>
-                            ))}
+                                <p className="title">{t("comission")}</p>
+
+                                <table>
+                                    <tbody>
+                                        {comission.map((val: any) => (
+                                            <tr>
+                                                <td className="display-flex-start pl20">
+                                                    {val.workerName}
+                                                </td>
+                                            </tr>
+
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
 
 
                         </div>

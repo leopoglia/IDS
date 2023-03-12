@@ -141,6 +141,7 @@ input[type=checkbox]:checked {
 
 .display-flex,
 .display-flex-end,
+.display-flex-start,
 .display-flex-center,
 .display-flex-space-between {
   display: flex;
@@ -162,6 +163,10 @@ input[type=checkbox]:checked {
 .display-flex-space-between {
   justify-content: space-between;
   align-items: center;
+}
+
+.display-flex-start{
+  justify-content: flex-start;
 }
 
 .text-bold {

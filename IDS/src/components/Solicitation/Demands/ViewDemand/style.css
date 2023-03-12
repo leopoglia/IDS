@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-.true{
+.true {
     height: 60px !important;
     overflow: hidden;
     transition: 0.5s;
@@ -45,7 +45,7 @@
 }
 
 
-.view-demand .arrow-expend{
+.view-demand .arrow-expend {
     color: var(--grey59);
     font-size: 25px !important;
     width: 40px;
@@ -58,7 +58,7 @@
     border-radius: 40px;
 }
 
-.view-demand .arrow-expend:hover{
+.view-demand .arrow-expend:hover {
     background-color: var(--greyF7);
 }
 
@@ -114,7 +114,7 @@
     white-space: nowrap;
 }
 
-.view-demand .display-solicitation-demand .title{
+.view-demand .display-solicitation-demand .title {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -138,16 +138,19 @@
 .view-demand .text-information {
     width: 100%;
     border: none;
-    padding: 10px;
     text-align: justify;
     font-size: var(--p);
 }
 
-.view-demand .description .text-information{
+.view-demand .situation-current .text-information {
+    padding: 10px;
+}
+
+.view-demand .description .text-information {
     padding-left: 0px !important;
 }
 
-.workerName{
+.workerName {
     padding: 0px !important;
     display: flex;
     align-items: center;
@@ -195,7 +198,7 @@
 }
 
 
-.view-demand .descriptiveProposal{
+.view-demand .descriptiveProposal {
     margin-top: 15px;
     padding: 12px;
     padding-bottom: 0px;
@@ -259,7 +262,7 @@
 }
 
 
-.view-demand .responsibleAnalyst .workerName{
+.view-demand .responsibleAnalyst .workerName {
     margin-top: 6px
 }
 
@@ -269,17 +272,17 @@
     padding-right: 10px;
 }
 
-.view-demand .descriptiveProposal h1{
+.view-demand .descriptiveProposal h1 {
     font-size: var(--m) !important;
     color: var(--blue) !important;
 }
 
-.view-demand .descriptiveProposal p{
+.view-demand .descriptiveProposal p {
     font-size: var(--p) !important;
     color: var(--grey4D) !important;
 }
 
-.view-demand .pl20{
+.view-demand .pl20 {
     padding-left: 20px !important;
 }
 

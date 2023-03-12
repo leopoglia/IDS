@@ -165,7 +165,7 @@ input[type=checkbox]:checked {
   align-items: center;
 }
 
-.display-flex-start{
+.display-flex-start {
   justify-content: flex-start;
 }
 
@@ -288,7 +288,8 @@ textarea {
 
 
 
-table, tbody {
+table,
+tbody {
   width: 100%;
   display: block;
   overflow: auto;
@@ -308,9 +309,10 @@ tr td {
   display: flex;
   align-items: center;
   justify-content: center;
-  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis !important;
+  position: relative;
+
   direction: ltr;
   font-size: var(--p);
 }
@@ -328,7 +330,7 @@ hr {
   margin: 0px;
 }
 
-.hr{
+.hr {
   width: 100%;
   height: 1px;
   background-color: var(--greyC4);
@@ -367,7 +369,7 @@ hr {
   height: 4px;
 }
 
-.container-background::-webkit-scrollbar{
+.container-background::-webkit-scrollbar {
   width: 6px;
 }
 

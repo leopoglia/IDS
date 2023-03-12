@@ -17,6 +17,8 @@ import "react-toastify/dist/ReactToastify.css";
 import PDF from "./PDF";
 import HtmlReactParser from 'html-react-parser';
 import UserContext from "../../../../context/userContext";
+import Tooltip from '@mui/material/Tooltip';
+
 
 export default function ViewDemand() {
 
@@ -688,18 +690,29 @@ export default function ViewDemand() {
                                             </tr>
 
                                             <tr>
-                                                <td>{classification.classificationSize}</td>
-                                                <td>{classification.requesterBu.bu}</td>
-                                                <td>
-                                                    {classification.beneficiaryBu.map((bu: any) => {
-                                                        return (
-                                                            <div>{bu.bu}</div>
-                                                        )
-                                                    })
+                                                <Tooltip title={classification.classificationSize} arrow>
+                                                    <td>{classification.classificationSize}</td>
+                                                </Tooltip>
 
-                                                    }
-                                                </td>
-                                                <td>{classification.itSection}</td>
+                                                <Tooltip title={classification.requesterBu.bu} arrow>
+                                                    <td>{classification.requesterBu.bu}</td>
+                                                </Tooltip>
+
+                                                <Tooltip title={classification.beneficiaryBu.map((bu: any) => bu.bu)} arrow>
+                                                    <td>
+                                                        {classification.beneficiaryBu.map((bu: any) => {
+                                                            return (
+                                                                <div>{bu.bu}</div>
+                                                            )
+                                                        })
+
+                                                        }
+                                                    </td>
+                                                </Tooltip>
+
+                                                <Tooltip title={classification.itSection} arrow>
+                                                    <td>{classification.itSection}</td>
+                                                </Tooltip>
 
                                             </tr>
                                         </tbody>

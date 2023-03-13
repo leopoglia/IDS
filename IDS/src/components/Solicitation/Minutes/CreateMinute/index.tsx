@@ -19,7 +19,7 @@ export default function CreateMinute() {
 
                 {/* <Editor /> */}
 
-                <Link to="/agendas">
+                <Link to="/agendas/1">
                     <div className="display-flex-end">
                         <button className="btn-primary">{t("save")}</button>
                     </div>

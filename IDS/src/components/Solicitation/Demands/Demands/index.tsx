@@ -50,11 +50,17 @@ export default function Demands() {
                 getProposals(); // Busca as demandas cadastradas
             } else {
                 ServicesProposal.findAll().then((res: any) => {
-                    setDemands(res);
+                    setProposals(res);
                 });
             }
         } else if (url[3] === "agendas") {
-            getAgendas(); // Busca as demandas cadastradas
+            if (search === "") {
+                getAgendas(); // Busca as demandas cadastradas
+            } else {
+                ServicesAgenda.findAll().then((res: any) => {
+                    setAgendas(res);
+                });
+            }
         }
 
 
@@ -86,8 +92,8 @@ export default function Demands() {
 
     // Buscar as pautas cadastradas
     async function getAgendas() {
-        findDemands = await ServicesAgenda.findAll().then((res: any) => {
-            setAgendas(res); // Atualiza o estado das demandas
+        findDemands = await ServicesAgenda.findByPage(page, 5).then((res: any) => {
+            setAgendas(res.content); // Atualiza o estado das demandas
             setPages(res.totalPages); // Atualiza o estado das páginas
         });
         return findDemands;
@@ -287,7 +293,7 @@ export default function Demands() {
                     <Header />
                     <Nav />
                     <div className="container">
-                        <Search onClick={callback} name={nameFilter} type={typeFilter} nav={t("minuteViewMinute")} title="minutes" button="createMinute" link="/agendas" setTable={setTable} />
+                        <Search onClick={callback} name={nameFilter} type={typeFilter} nav={t("minuteViewMinute")} title="minutes" button="createMinute" link="/agendas/1" setTable={setTable} />
                         <div className="container-background">
                             {
                                 minutes.map((val: any, index) => {

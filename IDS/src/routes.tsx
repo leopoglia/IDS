@@ -103,7 +103,7 @@ export default function Router() {
                     <Route path="/proposal/comission-opinion/:id" element={<CommissionOpinion />} />
                     <Route path="/proposal/informations/:id" element={<ProposedInformation />} />
 
-                    <Route path="/agendas" element={<Demands />} />
+                    <Route path="/agendas/:id" element={<Demands />} />
                     <Route path="/agenda/create" element={<CreateAgenda />} />
                     <Route path="/agenda/view/:id" element={<ViewDemand />} />
                     <Route path="/agenda/select-proposals" element={<SelectProposal />} />

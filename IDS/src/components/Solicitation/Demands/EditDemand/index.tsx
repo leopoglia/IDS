@@ -24,30 +24,25 @@ export default function EscopeDemand() {
 
     function getDemand() {
         ServicesDemand.findById(demandCode).then((response: any) => {
-            const demand: any = [response]
+            const demand: any = response
             setDemands(demand)
 
+            console.log(demand);
+
             let fileAttachmentArray = fileAttachment;
-            fileAttachmentArray.push(demand[0].demandAttachment);
+            fileAttachmentArray.push(demand.demandAttachment);
             setFileAttachment(fileAttachmentArray);
 
-            for (let i = 0; i < demand[0].costCenter.length; i++) {
+            for (let i = 0; i < demand.costCenter.length; i++) {
                 let costCenterArray = costsCenters;
-                costCenterArray.push(demand[0].costCenter[i].costCenter);
+                costCenterArray.push(demand.costCenter[i].costCenter);
                 setCostsCenters(costCenterArray);
-                createCostCenter(demand[0].costCenter[i].costCenter);
+                createCostCenter(demand.costCenter[i].costCenter);
             }
         })
     }
 
-    const [demands, setDemands] = useState([
-        {
-            demandTitle: "", requesterRegistration: { workerName: "" }, demandDate: "", demandStatus: "", currentProblem: "", demandObjective: "",
-            costCenter: [], realBenefit: { realMonthlyValue: 0, realCurrency: "", realBenefitDescription: "" },
-            potentialBenefit: { potentialMonthlyValue: 0, legalObrigation: false, potentialBenefitDescription: "" }, qualitativeBenefit: { qualitativeMonthlyValue: 0, interalControlsRequirements: false, frequencyOfUse: "", qualitativeBenefitDescription: "" },
-            complements: [{ executionDeadline: "", ppm: "", epicJira: "" }]
-        }
-    ]);
+    const [demands, setDemands]: any = useState();
 
 
     useEffect(() => {
@@ -150,144 +145,142 @@ export default function EscopeDemand() {
         }
     }
 
+    const handleChangeDemand = (e: any, type: any) => {
+
+        let demandsArray = demands;
+
+        if (type === "title") {
+            demands[0].demandTitle = e.target.value;
+        } else if (type === "situation") {
+            demands[0].currentProblem = e.target.value;
+        } else if (type === "objective") {
+            demands[0].demandObjective = e.target.value;
+        }
+
+        setDemands(demandsArray);
+    }
+
 
     return (
         <div className="create-demands-1">
             <Header />
             <Nav />
+            {demands &&
+                <div className="container">
+                    <div className="background-title">
+                        <Title nav="demandEditDemand" title="editDemand" />
 
-            <div className="container">
-                <div className="background-title">
-                    <Title nav="proposalEditDemand" title="proposal" />
+                    </div>
 
-                </div>
+                    <div className="box">
+                        <p>{t("generalInformations")}</p>
 
-                <div className="box">
-                    <p>{t("generalInformations")}</p>
 
-                    {
-                        demands.map((val, index) => {
-                            return (
-                                <div>
-                                    <div className="input">
-                                        <label>{t("titleProposal")} *</label>
-                                        <input type="text" value={val.demandTitle} />
+                        <div>
+                            <div className="input">
+                                <label>{t("titleProposal")} *</label>
+                                <input type="text" value={demands.demandTitle} onChange={(e) => handleChangeDemand(e, "title")} />
+                            </div>
+
+                            <div className="text-area">
+                                <label>{t("problemToBeSolved")} *</label>
+                                <textarea value={demands.currentProblem} onChange={(e) => handleChangeDemand(e, "situation")} />
+                            </div>
+
+                            <div className="text-area">
+                                <label>{t("proposal")} *</label>
+                                <textarea value={demands.demandObjective} onChange={(e) => handleChangeDemand(e, "objective")} />
+                            </div>
+
+                            <div className="input">
+                                <label>{t("costCenter")} *</label>
+
+                                <div className="display-flex">
+                                    <SelectCenterCost setCostCenter={setCostCenter} costCenter={costCenter} addCostCenter={addCostCenter} />
+
+                                    <div className="btn-primary w45" onClick={() => { addCostCenter(costCenter); handleChange(costCenter); }}>
+                                        <span className="material-symbols-outlined">add</span>
                                     </div>
-
-                                    <div className="text-area">
-                                        <label>{t("problemToBeSolved")} *</label>
-                                        <textarea value={val.currentProblem} />
-                                    </div>
-
-                                    <div className="text-area">
-                                        <label>{t("proposal")} *</label>
-                                        <textarea value={val.demandObjective} />
-                                    </div>
-
-                                    <div className="input">
-                                        <label>{t("costCenter")} *</label>
-
-                                        <div className="display-flex">
-                                            <SelectCenterCost setCostCenter={setCostCenter} costCenter={costCenter} addCostCenter={addCostCenter} />
-
-                                            <div className="btn-primary w45" onClick={() => { addCostCenter(costCenter); handleChange(costCenter); }}>
-                                                <span className="material-symbols-outlined">add</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    {costsCenters.map((costCenter: any) => {
-                                        return <div className="costCenter">{costCenter}
-                                            <span className="material-symbols-outlined delete-cost-center" onClick={deleteCostCenter(costCenter)}>
-                                                delete
-                                            </span>
-                                        </div>
-                                    })
-                                    }
-
-
                                 </div>
-                            )
-                        })
-                    }
+                            </div>
 
-                </div>
 
-                <div className="box">
-
-                    <p>{t("benefitReal")}</p>
-
-                    {
-                        demands.map((val, index) => {
-                            return (
-                                <div>
-
-                                    <div className="input">
-                                        <label>{t("monthlyValue")} *</label>
-                                        <input type="text" value={val.realBenefit.realMonthlyValue} />
-                                    </div>
-
-                                    <div className="input">
-                                        <label>{t("description")} *</label>
-                                        <input type="text" value={val.realBenefit.realBenefitDescription} />
-                                    </div>
-
+                            {costsCenters.map((costCenter: any) => {
+                                return <div className="costCenter">{costCenter}
+                                    <span className="material-symbols-outlined delete-cost-center" onClick={deleteCostCenter(costCenter)}>
+                                        delete
+                                    </span>
                                 </div>
-                            )
-                        })
-                    }
+                            })
+                            }
 
-                </div>
 
-                <div className="box">
-                    <p>{t("benefitPotential")}</p>
+                        </div>
 
-                    {
-                        demands.map((val, index) => {
-                            return (
-                                <div>
 
-                                    <div className="input">
-                                        <label>{t("monthlyValue")} *</label>
-                                        <input type="text" value={val.potentialBenefit.potentialMonthlyValue} />
-                                    </div>
+                    </div>
 
-                                    <div className="input">
-                                        <label>{t("description")} *</label>
-                                        <input type="text" value={val.potentialBenefit.potentialBenefitDescription} />
-                                    </div>
+                    <div className="box">
 
-                                </div>
-                            )
-                        })
-                    }
-                </div>
+                        <p>{t("benefitReal")}</p>
 
-                <div className="box">
-                    <p>{t("benefitQualitative")}</p>
 
-                    {
-                        demands.map((val, index) => {
-                            return (
-                                <div>
+                        <div>
 
-                                    <div className="input">
-                                        <label>{t("monthlyValue")} *</label>
-                                        <input type="text" value={val.qualitativeBenefit.frequencyOfUse} />
-                                    </div>
+                            <div className="input">
+                                <label>{t("monthlyValue")} *</label>
+                                <input type="text" value={demands.realBenefit.realMonthlyValue} />
+                            </div>
 
-                                    <div className="input">
-                                        <label>{t("description")} *</label>
-                                        <input type="text" value={val.qualitativeBenefit.qualitativeBenefitDescription} />
-                                    </div>
+                            <div className="input">
+                                <label>{t("description")} *</label>
+                                <input type="text" value={demands.realBenefit.realBenefitDescription} />
+                            </div>
 
-                                </div>
-                            )
-                        })
-                    }
+                        </div>
 
-                    {/* <div className="flex">
+
+                    </div>
+
+                    <div className="box">
+                        <p>{t("benefitPotential")}</p>
+
+
+                        <div>
+
+                            <div className="input">
+                                <label>{t("monthlyValue")} *</label>
+                                <input type="text" value={demands.potentialBenefit.potentialMonthlyValue} />
+                            </div>
+
+                            <div className="input">
+                                <label>{t("description")} *</label>
+                                <input type="text" value={demands.potentialBenefit.potentialBenefitDescription} />
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div className="box">
+                        <p>{t("benefitQualitative")}</p>
+
+
+                        <div>
+
+                            <div className="input">
+                                <label>{t("monthlyValue")} *</label>
+                                <input type="text" value={demands.qualitativeBenefit.frequencyOfUse} />
+                            </div>
+
+                            <div className="input">
+                                <label>{t("description")} *</label>
+                                <input type="text" value={demands.qualitativeBenefit.qualitativeBenefitDescription} />
+                            </div>
+
+                        </div>
+
+                        {/* <div className="flex">
                         <Input label="monthlyValue" required="*" />
                         <SelectCoin />
                     </div>
@@ -303,55 +296,56 @@ export default function EscopeDemand() {
                         </div>
                     </div> */}
 
-                </div>
-
-                <div className="box">
-
-                    <p>{t("additionals")}</p>
-
-                    <div className="frequency">
-                        <label>{t("frequencyUse")} * </label>
-                        <input type="text" onChange={(e) => { setExecutionPeriod(e.target.value) }} />
                     </div>
 
-                    <label>{t("attachments")}</label>
+                    <div className="box">
 
-                    <div className="attachments display-flex">
-                        <input type="file" id="file" onChange={handleFileSelected} multiple />
-                        <label htmlFor="file">
-                            <span className="material-symbols-outlined">
-                                upload_file
-                            </span>{t("sendAttachment")}</label>
+                        <p>{t("additionals")}</p>
+
+                        <div className="frequency">
+                            <label>{t("frequencyUse")} * </label>
+                            <input type="text" value={demands.qualitativeBenefit.frequencyOfUse} onChange={(e) => { setExecutionPeriod(e.target.value) }} />
+                        </div>
+
+                        <label>{t("attachments")}</label>
+
+                        <div className="attachments display-flex">
+                            <input type="file" id="file" onChange={handleFileSelected} multiple />
+                            <label htmlFor="file">
+                                <span className="material-symbols-outlined">
+                                    upload_file
+                                </span>{t("sendAttachment")}</label>
 
 
-                        {
-                            fileAttachment.map((file: any) => {
-                                return (
-                                    <div className="attachments">
+                            {
+                                fileAttachment.map((file: any) => {
+                                    return (
+                                        <div className="attachments">
 
-                                        <div className="attachment">
-                                            <div className="attachment-image">
-                                                <img src={"/attachment/" + attatchmentType(file) + ".png"} alt="" />
+                                            <div className="attachment">
+                                                <div className="attachment-image">
+                                                    <img src={"/attachment/" + attatchmentType(file) + ".png"} alt="" />
+                                                </div>
+                                                <span>{file.name}</span>
                                             </div>
-                                            <span>{file.name}</span>
+
+
                                         </div>
+                                    )
+                                })
+                            }
+                        </div>
 
+                    </div>
 
-                                    </div>
-                                )
-                            })
-                        }
+                    <div className="display-flex-end">
+                        <Link to={"/proposal/edit-scope/"}>
+                            <button className="btn-primary">{t("advance")}</button>
+                        </Link>
                     </div>
 
                 </div>
-
-                <div className="display-flex-end">
-                    <Link to={"/proposal/edit-scope/"}>
-                        <button className="btn-primary">{t("advance")}</button>
-                    </Link>
-                </div>
-
-            </div>
+            }
 
         </div>
     );

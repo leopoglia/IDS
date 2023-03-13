@@ -175,6 +175,7 @@
     "demandsCreateDemand": "Demandas > Criar Demanda",
     "disapproveDemand": "Reprovar demanda",
     "demandViewDisapprove": "Demanda > Visualizar demanda > Reprovar demanda",
+    "demandEditDemand": "Demanda > Editar demanda",
     "user": "Usuário",
     "BacklogRanked": "Backlog",
     "BacklogRankApproved": "Backlog",
@@ -184,5 +185,6 @@
     "sequentialNumber": "Número sequencial",
     "comission": "Comissão",
     "dashboard": "Dashboard",
-    "giveback": "Devolver"
+    "giveback": "Devolver",
+    "editDemand": "Editar demanda"
 }

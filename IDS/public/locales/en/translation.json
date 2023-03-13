@@ -175,6 +175,7 @@
     "demandsCreateDemand": "Demands > Create demand",
     "disapproveDemand": "Disapprove demand",
     "demandViewDisapproveDemand": "Demand > View demand > Disapprove demand",
+    "demandEditDemand": "Demand > Edit demand",
     "user": "User",
     "BacklogRanked": "Backlog",
     "BacklogRankApproved": "Backlog",
@@ -184,5 +185,6 @@
     "sequentialNumber": "Sequential number",
     "comission": "Comission",
     "dashboard": "Dashboard",
-    "giveback": "Giveback"
+    "giveback": "Giveback",
+    "editDemand": "Edit demand"
 }

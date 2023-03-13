@@ -165,6 +165,7 @@
     "selectProposal": "選擇提案",
     "noResults": "沒有結果",
     "demandResponsibleForTheProject": "需求 > 項目負責人",
+    "demandEditDemand": "需求 > 編輯需求",
     "responsableForTheProject": "項目負責人",
     "classifyDemand": "分類需求",
     "demandViewDemandClassify": "需求 > 查看需求 > 分類需求",
@@ -185,5 +186,6 @@
     "sequentialNumber": "序號",
     "comission": "委員會",
     "dashboard": "儀表板",
-    "giveback": "退回"
+    "giveback": "退回",
+    "editDemand": "編輯需求"
 }

@@ -388,11 +388,13 @@ export default function ViewDemand() {
                                         <span>{t("generatePDF")}</span>
                                     </button>
 
-                                    <button className="btn-primary btn-download btn-mini">
-                                        <span className="material-symbols-outlined">
-                                            edit
-                                        </span>
-                                    </button>
+                                    <Link to={"/demand/edit/" + demandCode}>
+                                        <button className="btn-primary btn-download btn-mini">
+                                            <span className="material-symbols-outlined">
+                                                edit
+                                            </span>
+                                        </button>
+                                    </Link>
                                 </div>
                             ) :/* Botões superiores 2 - Reprovar e Classificar */  (actionsDemand === 2) ? (
                                 <div className="display-flex">

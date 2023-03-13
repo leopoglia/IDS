@@ -14,15 +14,22 @@ export default function EscopeDemand() {
 
     const { t } = useTranslation();
 
-    const demandCode = parseInt(window.location.href.split("/")[5]);
-    const [costsCenters, setCostsCenters]: any = useState([]);
-    const [costCenter, setCostCenter] = useState("");
-    const [idCostCenter, setIdCostCenter]: any = useState([]);
+    const demandCode = parseInt(window.location.href.split("/")[5]); // Código da demanda
+    const [costsCenters, setCostsCenters]: any = useState([]); // Centros de custo
+    const [costCenter, setCostCenter] = useState(""); // Centro de custo
+    const [idCostCenter, setIdCostCenter]: any = useState([]); // Id do centro de custo
+    const [fileAttachment, setFileAttachment]: any = useState([]); // Anexo
+    const [executionPeriod, setExecutionPeriod]: any = useState(""); // Periodo de execução
+
 
     function getDemand() {
         ServicesDemand.findById(demandCode).then((response: any) => {
             const demand: any = [response]
             setDemands(demand)
+
+            let fileAttachmentArray = fileAttachment;
+            fileAttachmentArray.push(demand[0].demandAttachment);
+            setFileAttachment(fileAttachmentArray);
 
             for (let i = 0; i < demand[0].costCenter.length; i++) {
                 let costCenterArray = costsCenters;
@@ -33,10 +40,6 @@ export default function EscopeDemand() {
         })
     }
 
-    useEffect(() => {
-        getDemand();
-    }, [])
-
     const [demands, setDemands] = useState([
         {
             demandTitle: "", requesterRegistration: { workerName: "" }, demandDate: "", demandStatus: "", currentProblem: "", demandObjective: "",
@@ -46,7 +49,11 @@ export default function EscopeDemand() {
         }
     ]);
 
-    console.log(idCostCenter)
+
+    useEffect(() => {
+        getDemand();
+    }, [])
+
 
 
     function addCostCenter(costCenterAdd: any) {
@@ -114,6 +121,35 @@ export default function EscopeDemand() {
     const handleChange = (event: any) => {
         localStorage.setItem("costCenter", JSON.stringify(costCenter));
     }
+
+    // Função para pegar o arquivo selecionado
+    const handleFileSelected = (e: any): void => {
+        const files = Array.from(e.target.files)
+        let filesArray: any = [];
+        for (let i = 0; i < files.length; i++) {
+            filesArray.push(files[i]);
+        }
+
+        setFileAttachment(filesArray);
+    }
+
+    const attatchmentType = (demand: any) => {
+        if (demand.type === "image/png" || demand.type === "image/jpeg") {
+            return "png";
+        } else if (demand.type === "application/pdf") {
+            return "pdf";
+        } else if (demand.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
+            return "word";
+        } else if (demand.type === "application/msword" || demand.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||
+            demand.demandAttachment.type === "application/vnd.ms-excel") {
+            return "excel";
+        } else if (demand.type === "application/zip") {
+            return "zip";
+        } else if (demand.type === "application/x-rar-compressed") {
+            return "rar";
+        }
+    }
+
 
     return (
         <div className="create-demands-1">
@@ -266,6 +302,46 @@ export default function EscopeDemand() {
                             </div>
                         </div>
                     </div> */}
+
+                </div>
+
+                <div className="box">
+
+                    <p>{t("additionals")}</p>
+
+                    <div className="frequency">
+                        <label>{t("frequencyUse")} * </label>
+                        <input type="text" onChange={(e) => { setExecutionPeriod(e.target.value) }} />
+                    </div>
+
+                    <label>{t("attachments")}</label>
+
+                    <div className="attachments display-flex">
+                        <input type="file" id="file" onChange={handleFileSelected} multiple />
+                        <label htmlFor="file">
+                            <span className="material-symbols-outlined">
+                                upload_file
+                            </span>{t("sendAttachment")}</label>
+
+
+                        {
+                            fileAttachment.map((file: any) => {
+                                return (
+                                    <div className="attachments">
+
+                                        <div className="attachment">
+                                            <div className="attachment-image">
+                                                <img src={"/attachment/" + attatchmentType(file) + ".png"} alt="" />
+                                            </div>
+                                            <span>{file.name}</span>
+                                        </div>
+
+
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
 
                 </div>
 

@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import SelectCenterCost from "../CrateDemand/Step1/SelectCenterCost";
 import Services from "../../../../services/costCenterService";
+import SelectCoin from "../CrateDemand/SelectCoin";
 
 export default function EscopeDemand() {
 
@@ -20,6 +21,12 @@ export default function EscopeDemand() {
     const [idCostCenter, setIdCostCenter]: any = useState([]); // Id do centro de custo
     const [fileAttachment, setFileAttachment]: any = useState([]); // Anexo
     const [executionPeriod, setExecutionPeriod]: any = useState(""); // Periodo de execução
+    const [potentialCurrency, setPotentialCurrency]: any = useState(""); // Moeda potencial
+    const [demands, setDemands]: any = useState();
+
+    const [demandTitle, setDemandTitle] = useState("");
+    const [demandObjective, setDemandObjective] = useState("");
+    const [demandProblem, setDemandProblem] = useState("");
 
 
     function getDemand() {
@@ -27,7 +34,10 @@ export default function EscopeDemand() {
             const demand: any = response
             setDemands(demand)
 
-            console.log(demand);
+            setDemandTitle(demand.demandTitle);
+            setDemandObjective(demand.demandObjective);
+            setDemandProblem(demand.currentProblem);
+
 
             let fileAttachmentArray = fileAttachment;
             fileAttachmentArray.push(demand.demandAttachment);
@@ -42,7 +52,6 @@ export default function EscopeDemand() {
         })
     }
 
-    const [demands, setDemands]: any = useState();
 
 
     useEffect(() => {
@@ -145,22 +154,6 @@ export default function EscopeDemand() {
         }
     }
 
-    const handleChangeDemand = (e: any, type: any) => {
-
-        let demandsArray = demands;
-
-        if (type === "title") {
-            demands[0].demandTitle = e.target.value;
-        } else if (type === "situation") {
-            demands[0].currentProblem = e.target.value;
-        } else if (type === "objective") {
-            demands[0].demandObjective = e.target.value;
-        }
-
-        setDemands(demandsArray);
-    }
-
-
     return (
         <div className="create-demands-1">
             <Header />
@@ -179,17 +172,17 @@ export default function EscopeDemand() {
                         <div>
                             <div className="input">
                                 <label>{t("titleProposal")} *</label>
-                                <input type="text" value={demands.demandTitle} onChange={(e) => handleChangeDemand(e, "title")} />
+                                <input type="text" value={demandTitle} onChange={(e) => { setDemandTitle(e.target.value) }} />
                             </div>
 
                             <div className="text-area">
                                 <label>{t("problemToBeSolved")} *</label>
-                                <textarea value={demands.currentProblem} onChange={(e) => handleChangeDemand(e, "situation")} />
+                                <textarea value={demandProblem} onChange={(e) => { setDemandProblem(e.target.value) }} />
                             </div>
 
                             <div className="text-area">
                                 <label>{t("proposal")} *</label>
-                                <textarea value={demands.demandObjective} onChange={(e) => handleChangeDemand(e, "objective")} />
+                                <textarea value={demandObjective} onChange={(e) => { setDemandObjective(e.target.value) }} />
                             </div>
 
                             <div className="input">
@@ -224,20 +217,23 @@ export default function EscopeDemand() {
 
                         <p>{t("benefitReal")}</p>
 
-
-                        <div>
+                        <div className="flex">
 
                             <div className="input">
                                 <label>{t("monthlyValue")} *</label>
                                 <input type="text" value={demands.realBenefit.realMonthlyValue} />
+
                             </div>
 
-                            <div className="input">
-                                <label>{t("description")} *</label>
-                                <input type="text" value={demands.realBenefit.realBenefitDescription} />
-                            </div>
-
+                            <SelectCoin setPotentialCurrency={setPotentialCurrency} type="potencial" value={potentialCurrency} />
                         </div>
+
+
+                        <div className="input">
+                            <label>{t("description")} *</label>
+                            <input type="text" value={demands.realBenefit.realBenefitDescription} />
+                        </div>
+
 
 
                     </div>
@@ -347,6 +343,6 @@ export default function EscopeDemand() {
                 </div>
             }
 
-        </div>
+        </div >
     );
 }

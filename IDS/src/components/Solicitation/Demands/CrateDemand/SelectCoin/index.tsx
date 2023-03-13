@@ -15,6 +15,15 @@ export default function SelectLabels(props: any) {
             setCoin('real')
         }
 
+        if(props.value === 'real'){
+            setCoin('real')
+        }else if(props.value === 'dolar'){
+            setCoin('dolar')
+        }else if(props.value === 'euro'){
+            setCoin('euro')
+        }
+            
+
     }, []);
 
     const addChange = () => {
@@ -37,7 +46,7 @@ export default function SelectLabels(props: any) {
     };
 
     return (
-        <div>
+        <div className='w130'>
             <FormControl sx={{ m: 1 }}>
                 <Select
                     value={coin}

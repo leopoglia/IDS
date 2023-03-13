@@ -337,6 +337,10 @@ hr {
   margin: 20px 0;
 }
 
+.w130{
+  width: 135px !important;
+}
+
 .attachments label {
   width: 250px;
   height: var(--h);

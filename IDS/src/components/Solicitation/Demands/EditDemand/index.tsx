@@ -22,7 +22,7 @@ export default function EscopeDemand() {
     const [fileAttachment, setFileAttachment]: any = useState([]); // Anexo
     const [executionPeriod, setExecutionPeriod]: any = useState(""); // Periodo de execução
     const [potentialCurrency, setPotentialCurrency]: any = useState(""); // Moeda potencial
-    const [realCurrency, setRealCurrency]: any = useState(""); // Moeda real
+    const [realCurrency, setrealCurrency]: any = useState(""); // Moeda real
     const [demands, setDemands]: any = useState();
 
     const [demandTitle, setDemandTitle] = useState("");
@@ -40,7 +40,7 @@ export default function EscopeDemand() {
             setDemandObjective(demand.demandObjective);
             setDemandProblem(demand.currentProblem);
             setPotentialCurrency(demand.potentialBenefit.potentialCurrency);
-            setRealCurrency(demand.realBenefit.realCurrency);
+            setrealCurrency(demand.realBenefit.realCurrency);
 
 
             let fileAttachmentArray = fileAttachment;
@@ -229,7 +229,7 @@ export default function EscopeDemand() {
 
                             </div>
 
-                            <SelectCoin setPotentialCurrency={setRealCurrency} type="real" value={realCurrency} />
+                            <SelectCoin setrealCurrency={setrealCurrency} type="real" value={realCurrency} />
                         </div>
 
 
@@ -253,7 +253,7 @@ export default function EscopeDemand() {
                                     <input type="text" value={demands.potentialBenefit.potentialMonthlyValue} />
                                 </div>
 
-                                <SelectCoin setPotentialCurrency={setRealCurrency} type="potencial" value={realCurrency} />
+                                <SelectCoin setPotentialCurrency={setPotentialCurrency} type="potencial" value={potentialCurrency} />
                             </div>
 
                             <div className="input">

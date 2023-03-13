@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import ServicesProposals from "../../../../services/proposalService";
 import Services from "../../../../services/agendaService";
 import SelectWorker from "../SelectWorker";
-import ServicesWorker from "../../../../services/workerService";
+import ServicesWorker from "../../../../services/commissionService";
 
 export default function CreateAgenda() {
 
@@ -19,8 +19,8 @@ export default function CreateAgenda() {
 
     const [proposals, setProposals] = useState([]);
     const [agendaNumber, setAgendaNumber] = useState("");
-    const [comission, setComission]: any = useState([]);
-    const [worker, setWorker] = useState("");
+    const [comissionList, setComissionList]: any = useState([]);
+    const [commission, setCommission] = useState("");
     let actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear();
 
 
@@ -61,9 +61,9 @@ export default function CreateAgenda() {
             let workers: any = [];
 
             response.map((worker: any) => {
-                comission.map((workerSelected: any) => {
-                    if (worker.workerName === workerSelected) {
-                        workers.push(worker.workerCode);
+                comissionList.map((workerSelected: any) => {
+                    if (worker.commissionName === workerSelected) {
+                        workers.push(worker.commissionCode);
                     }
                 })
             })
@@ -85,24 +85,24 @@ export default function CreateAgenda() {
         if (worker === "") {
             alert("Digite um Worker");
         } else {
-            comission.push(worker);
-            setComission(comission);
-            setWorker("");
+            comissionList.push(worker);
+            setComissionList(comissionList);
+            setCommission("");
         }
     }
 
     function deleteWorker(woker: any) {
         return () => {
-            const index = comission.indexOf(woker);
+            const index = comissionList.indexOf(woker);
             if (index > -1) {
-                comission.splice(index, 1);
+                comissionList.splice(index, 1);
             }
-            setComission(comission);
+            setComissionList(comissionList);
 
-            if (worker === " ") {
-                setWorker("");
+            if (commission === " ") {
+                setCommission("");
             } else {
-                setWorker(" ");
+                setCommission(" ");
             }
         }
     }
@@ -189,16 +189,16 @@ export default function CreateAgenda() {
                         <div className="display-flex comission-flex">
                             <div className="w100">
                                 <span>Comissão</span>
-                                <SelectWorker setWorker={setWorker} worker={worker} />
+                                <SelectWorker setCommission={setCommission} worker={commission} />
                             </div>
 
-                            <div className="btn-primary w45" onClick={() => { addWorker(worker) }}>
+                            <div className="btn-primary w45" onClick={() => { addWorker(commission) }}>
                                 <span className="material-symbols-outlined">add</span>
                             </div>
                         </div>
                     </div>
 
-                    {comission.map((worker: any) => {
+                    {comissionList.map((worker: any) => {
                         return <div className="costCenter">{worker}
                             <span className="material-symbols-outlined delete-cost-center" onClick={deleteWorker(worker)} >
                                 delete

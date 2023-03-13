@@ -1,13 +1,11 @@
 import * as React from 'react';
-import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
-import Autocomplete from '@mui/material/Autocomplete';
-import Services from '../../../../services/workerService';
+import Services from '../../../../services/commissionService';
 import { useState, useEffect } from 'react';
+import { Autocomplete, Stack, TextField } from '@mui/material';
 
 export default function FreeSolo(props: any) {
 
-    const [worker, setWorker] = useState([{ workerName: "" }]);
+    const [commission, setCommission] = useState([{ comissionName: "" }]);
 
     useEffect(() => {
         getWorker();
@@ -16,16 +14,16 @@ export default function FreeSolo(props: any) {
 
     function getWorker() {
         Services.findAll().then((response) => {
-            const worker: any = response;
-            setWorker(worker);
+            const commission: any = response;
+            setCommission(commission);
         });
     }
 
     const handleChange = (event: any, type: string) => {
         if (type === 'text') {
-            props.setWorker(event.target.value);
+            props.setCommission(event.target.value);
         } else {
-            props.setWorker(event.target.textContent);
+            props.setCommission(event.target.textContent);
         }
     };
 
@@ -36,13 +34,13 @@ export default function FreeSolo(props: any) {
                     freeSolo
                     id="free-solo-2-demo"
                     disableClearable
-                    options={worker.map((worker) => worker.workerName)}
-                    value={props.worker}
-                    onChange={(e) => handleChange(e, 'auto')}
-                    renderInput={(params) => (
+                    options={commission.map((commission) => commission.comissionName)}
+                    value={props.commission}
+                    onChange={(e: any) => handleChange(e, 'auto')}
+                    renderInput={(params: any) => (
                         <TextField
-                            value={props.worker}
-                            onChange={(e) => handleChange(e, 'text')}
+                            value={props.commission}
+                            onChange={(e: any) => handleChange(e, 'text')}
                             {...params}
                             InputProps={{
                                 ...params.InputProps,

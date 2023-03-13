@@ -25,6 +25,7 @@ import EscopeDemand from "./components/Solicitation/Proposals/EscopeDemand";
 import CreateMinute from "./components/Solicitation/Minutes/CreateMinute";
 import Message from "./components/Others/Messages/Message";
 import Dashboard from "./components/Others/Dashboard";
+import EditDemand from "./components/Solicitation/Demands/EditDemand";
 import UserContext from "./context/userContext";
 import { useState, useEffect } from "react";
 import ServicesWorker from "./services/workerService";
@@ -39,8 +40,6 @@ export default function Router() {
         email: "",
         language: ""
     });
-
-
 
     useEffect(() => {
         if (worker.id === "") {
@@ -65,8 +64,6 @@ export default function Router() {
 
         // console.log(worker);
     }, [worker.id]);
-
-
 
     return (
         <UserContext.Provider
@@ -94,8 +91,8 @@ export default function Router() {
                     <Route path="/demand/rank/:id" element={<RankDemand />} />
                     <Route path="/demand/disapprove/:id" element={<DisapproveDemand />} />
                     <Route path="/demand/complement/:id" element={<ComplementDemand />} />
-                    <Route path="/demand/historical" element={<HistoricalDemand />} />
-
+                    <Route path="/demand/historical/:id" element={<HistoricalDemand />} />
+                    <Route path="/demand/edit/:id" element={<EditDemand />} />
 
                     <Route path="/proposals" element={<Demands />} />
                     <Route path="/proposal/view/:id" element={<ViewDemand />} />

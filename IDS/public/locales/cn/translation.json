@@ -137,7 +137,7 @@
     "complementary": "補充",
     "agendaViewAgenda": "議程 > 查看議程",
     "minuteViewMinute": "會議記錄 > 查看會議記錄",
-    "reasonForDisapproval": "拒絕原因", 
+    "reasonForDisapproval": "拒絕原因",
     "cancel": "取消",
     "returnVersion": "返回版本",
     "alterationDate": "更改日期",
@@ -184,5 +184,6 @@
     "noProposal": "沒有提案",
     "sequentialNumber": "序號",
     "comission": "委員會",
-    "dashboard": "儀表板"
+    "dashboard": "儀表板",
+    "giveback": "退回"
 }

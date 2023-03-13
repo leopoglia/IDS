@@ -92,7 +92,7 @@ export default function Nav() {
                 </Link>
 
                 {(office === "analyst" || office === "ti") &&
-                    (<><Link to="/proposals">
+                    (<><Link to="/proposals/1">
                         <li id={hover("proposals")}>
                             <div>
                                 <span className="material-symbols-outlined">

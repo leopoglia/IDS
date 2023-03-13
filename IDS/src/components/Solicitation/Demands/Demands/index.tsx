@@ -46,7 +46,13 @@ export default function Demands() {
                 });
             }
         } else if (url[3] === "proposals") {
-            getProposals(); // Busca as demandas cadastradas
+            if (search === "") {
+                getProposals(); // Busca as demandas cadastradas
+            } else {
+                ServicesProposal.findAll().then((res: any) => {
+                    setDemands(res);
+                });
+            }
         } else if (url[3] === "agendas") {
             getAgendas(); // Busca as demandas cadastradas
         }
@@ -71,8 +77,8 @@ export default function Demands() {
 
     // Buscar as propostas cadastradas
     async function getProposals() {
-        findDemands = await ServicesProposal.findAll().then((res: any) => {
-            setProposals(res); // Atualiza o estado das demandas
+        findDemands = await ServicesProposal.findByPage(page, 5).then((res: any) => {
+            setProposals(res.content); // Atualiza o estado das demandas
             setPages(res.totalPages); // Atualiza o estado das páginas
         });
         return findDemands;

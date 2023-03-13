@@ -94,7 +94,7 @@ export default function Router() {
                     <Route path="/demand/historical/:id" element={<HistoricalDemand />} />
                     <Route path="/demand/edit/:id" element={<EditDemand />} />
 
-                    <Route path="/proposals" element={<Demands />} />
+                    <Route path="/proposals/:id" element={<Demands />} />
                     <Route path="/proposal/view/:id" element={<ViewDemand />} />
                     <Route path="/proposal/execution-costs/:id" element={<ExecutionCosts />} />
                     <Route path="proposal/execution-costs/add-expense/:id" element={<AddExpense />} />

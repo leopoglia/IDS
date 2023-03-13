@@ -115,7 +115,7 @@ export default function ExecutionCosts() {
                         console.log(error);
                     });
                 }
-                navigate('/proposals');
+                navigate('/proposals/1');
 
             }).catch((error: any) => {
                 console.log(error);

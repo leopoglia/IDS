@@ -16,18 +16,32 @@ export default function EscopeDemand() {
     const { t } = useTranslation();
 
     const demandCode = parseInt(window.location.href.split("/")[5]); // Código da demanda
+    const [demands, setDemands]: any = useState(); // Demanda
+
+    const [demandTitle, setDemandTitle] = useState(""); // Titulo da demanda
+    const [demandObjective, setDemandObjective] = useState(""); // Objetivo da demanda
+    const [demandProblem, setDemandProblem] = useState(""); // Problema atual
+
     const [costsCenters, setCostsCenters]: any = useState([]); // Centros de custo
     const [costCenter, setCostCenter] = useState(""); // Centro de custo
     const [idCostCenter, setIdCostCenter]: any = useState([]); // Id do centro de custo
+
     const [fileAttachment, setFileAttachment]: any = useState([]); // Anexo
     const [executionPeriod, setExecutionPeriod]: any = useState(""); // Periodo de execução
-    const [potentialCurrency, setPotentialCurrency]: any = useState(""); // Moeda potencial
-    const [realCurrency, setrealCurrency]: any = useState(""); // Moeda real
-    const [demands, setDemands]: any = useState();
 
-    const [demandTitle, setDemandTitle] = useState("");
-    const [demandObjective, setDemandObjective] = useState("");
-    const [demandProblem, setDemandProblem] = useState("");
+    const [potentialCurrency, setPotentialCurrency]: any = useState(""); // Moeda potencial
+    const [potentialBenefitDescription, setPotentialBenefitDescription]: any = useState(""); // Descrição do beneficio potencial
+    const [potentialBenefitValue, setPotentialBenefitValue]: any = useState(""); // Valor do beneficio potencial
+
+    const [realCurrency, setrealCurrency]: any = useState(""); // Moeda real
+    const [realBenefitDescription, setRealBenefitDescription]: any = useState(""); // Descrição do beneficio real
+    const [realBenefitValue, setRealBenefitValue]: any = useState(""); // Valor do beneficio real
+
+    const [qualitativeBenefitValue, setQualitativeBenefitValue]: any = useState(""); // Valor do beneficio qualitativo
+    const [qualitativeBenefitDescription, setQualitativeBenefitDescription]: any = useState(""); // Descrição do beneficio qualitativo
+    const [frequencyOfUse, setFrequencyOfUse]: any = useState(""); // Frequencia de uso
+
+
 
 
     function getDemand() {

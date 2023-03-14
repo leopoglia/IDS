@@ -1,5 +1,5 @@
 import { t } from "i18next";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Header from "../../../Fixed/Header";
 import Nav from "../../../Fixed/Nav";
 import Title from "../../../Fixed/Search/Title";
@@ -19,6 +19,9 @@ import CheckBox from "../CrateDemand/CheckBox";
 export default function EscopeDemand() {
 
 	const { t } = useTranslation();
+	const navigate = useNavigate();
+
+	const [url, setUrl] = useState(window.location.href.split("/")[4]); // Url da página
 
 	const demandCode = parseInt(window.location.href.split("/")[5]); // Código da demanda
 	const [demands, setDemands]: any = useState(); // Demanda
@@ -228,6 +231,11 @@ export default function EscopeDemand() {
 
 		ServicesDemand.update(demandCode, demandTitle, demandProblem, demandObjective, costsCentersId, frequencyOfUse, realBenefitCode, potentialBenefitCode, qualitativeBenefitCode, fileAttachment[0], demandDate, demandStatus, demandScore, demandRequester, demandClassification).then((response: any) => { 
 			console.log(response);
+
+			if(url === "edit"){
+				navigate("/demand/view/" + demandCode);
+			}
+
 		});
 
 	}

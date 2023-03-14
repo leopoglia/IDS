@@ -37,6 +37,7 @@ export default function Demands() {
 
     // Entra na página e busca as demandas cadastradas
     useEffect(() => {
+
         if (url[3] === "demands") {
             if (search === "") {
                 getDemands(); // Busca as demandas cadastradas
@@ -70,7 +71,7 @@ export default function Demands() {
             notify();
         }
 
-    }, [url[3], page, search])
+    }, [url[3], page])
 
     // Buscar as demandas cadastradas
     async function getDemands() {
@@ -235,13 +236,28 @@ export default function Demands() {
                     <Header />
                     <Nav />
                     <div className="container">
-                        <Search onClick={callback} name={nameFilter} type={typeFilter} nav={t("proposalViewProposal")} title="proposals" button="createProposal" link="/demands/1" setTable={setTable} />
+                        <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} nav={t("proposalViewProposal")} title="proposals" button="createProposal" link="/demands/1" setTable={setTable} />
                         <div className="container-background">
                             {
                                 proposals.map((val: any, index) => {
-                                    return (
-                                        <Demand key={val.proposalCode} listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />
-                                    );
+                                    if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
+
+                                        return (
+                                            <Demand key={val.proposalCode} listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />
+                                        );
+                                    } else if (search !== "") {
+
+                                        if (val.demand?.demandTitle.toUpperCase().includes(search.toUpperCase())) {
+                                            return (<Demand key={val.proposalCode} listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />);
+                                        } else {
+                                            return (
+                                                <div className="no-results">
+                                                    <h1>{t("noResults")}</h1>
+                                                </div>
+                                            );
+                                        }
+                                    }
+
                                 })
                             }
 
@@ -262,13 +278,27 @@ export default function Demands() {
                     <Header />
                     <Nav />
                     <div className="container">
-                        <Search onClick={callback} name={nameFilter} type={typeFilter} nav={t("agendaViewAgenda")} title="agendas" button="createAgenda" link="/agenda/create" setTable={setTable} />
+                        <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} nav={t("agendaViewAgenda")} title="agendas" button="createAgenda" link="/agenda/create" setTable={setTable} />
                         <div className="container-background">
                             {
                                 agendas.map((val: any, index) => {
+                                    if((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
                                     return (
                                         <Demand val={val.agendaCode} listDirection={table} name={"Pauta da reunião  " + val.agendaCode} demandCode={val.agendaCode} number={val.sequentialNumber} year={val.yearAgenda} type="agenda" />
                                     );
+                                    } else if (search !== "") {
+                                        if (val.agendaCode.toString().includes(search)) {
+                                            return (
+                                                <Demand val={val.agendaCode} listDirection={table} name={"Pauta da reunião  " + val.agendaCode} demandCode={val.agendaCode} number={val.sequentialNumber} year={val.yearAgenda} type="agenda" />
+                                            );
+                                        } else {
+                                            return (
+                                                <div className="no-results">
+                                                    <h1>{t("noResults")}</h1>
+                                                </div>
+                                            );
+                                        }
+                                    }
                                 })
                             }
 

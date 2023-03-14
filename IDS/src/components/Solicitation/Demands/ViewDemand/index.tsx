@@ -135,6 +135,9 @@ export default function ViewDemand() {
         } else if (localStorage.getItem("route") === "reprove") {
             notifyReproved();
             localStorage.removeItem("route");
+        } else if(localStorage.getItem("route") === "edit") {
+            notifyEdit();
+            localStorage.removeItem("route");
         }
 
     }, [url, demand.demandStatus]);
@@ -915,6 +918,20 @@ export default function ViewDemand() {
         </div >
     );
 }
+
+// Função para notificar o usuário que a demanda foi editada
+const notifyEdit = () => {
+    toast.success('Demand editada!', {
+        position: "bottom-right",
+        autoClose: 4000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+};
 
 // Função para notificar o usuário que a classificação foi cadastrada
 const notify = () => {

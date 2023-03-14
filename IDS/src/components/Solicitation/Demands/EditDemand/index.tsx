@@ -229,10 +229,15 @@ export default function EscopeDemand() {
 
 		ServicesQualitativeBenefit.update(qualitativeBenefitCode, qualitativeBenefitDescription, true, frequencyOfUse).then((response: any) => { });
 
-		ServicesDemand.update(demandCode, demandTitle, demandProblem, demandObjective, costsCentersId, frequencyOfUse, realBenefitCode, potentialBenefitCode, qualitativeBenefitCode, fileAttachment[0], demandDate, demandStatus, demandScore, demandRequester, demandClassification).then((response: any) => { 
+		console.log("FILE ====> ", fileAttachment[0])
+
+		let file = new File([fileAttachment[0]], fileAttachment[0].name, { type: fileAttachment[0].type });
+
+		ServicesDemand.update(demandCode, demandTitle, demandProblem, demandObjective, costsCentersId, frequencyOfUse, realBenefitCode, potentialBenefitCode, qualitativeBenefitCode, file, demandDate, demandStatus, demandScore, demandRequester, demandClassification).then((response: any) => { 
 			console.log(response);
 
 			if(url === "edit"){
+				localStorage.setItem("route", "edit");
 				navigate("/demand/view/" + demandCode);
 			}
 

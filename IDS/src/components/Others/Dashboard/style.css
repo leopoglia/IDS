@@ -71,6 +71,21 @@
 .dashboard .chart {
     height: 150px;
     margin-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard .h190 .display-block{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard .h190 p{
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
 
 .dashboard .lists-dashboard {

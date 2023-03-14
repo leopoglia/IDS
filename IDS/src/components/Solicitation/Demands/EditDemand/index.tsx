@@ -48,6 +48,12 @@ export default function EscopeDemand() {
 	const [qualitativeBenefitDescription, setQualitativeBenefitDescription]: any = useState(""); // Descrição do beneficio qualitativo
 	const [frequencyOfUse, setFrequencyOfUse]: any = useState(""); // Frequencia de uso
 
+	const [demandStatus, setDemandStatus]: any = useState(""); // Status da demanda
+	const [demandScore, setDemandScore]: any = useState(""); // Score da demanda
+	const [demandClassification, setDemandClassification]: any = useState(""); // Classificação da demanda
+	const [demandRequester, setDemandRequester]: any = useState(""); // Solicitante da demanda
+	const [demandDate, setDemandDate]: any = useState(""); // Data da demanda
+
 
 
 
@@ -56,7 +62,6 @@ export default function EscopeDemand() {
 			const demand: any = response
 			setDemands(demand)
 
-			console.log(response);
 			setDemandTitle(demand.demandTitle);
 			setDemandObjective(demand.demandObjective);
 			setDemandProblem(demand.currentProblem);
@@ -74,7 +79,22 @@ export default function EscopeDemand() {
 			setQualitativeBenefitCode(demand.qualitativeBenefit.qualitativeBenefitCode);
 			setQualitativeBenefitDescription(demand.qualitativeBenefit.qualitativeBenefitDescription);
 
-			setCostsCentersId(demand.costCenter.costCenterCode);
+			setDemandStatus(demand.demandStatus);
+			setDemandScore(demand.demandScore);
+			setDemandRequester(demand.requesterRegistration.workerCode);
+			setDemandDate(demand.demandDate);
+			if (window.location.href.split("/")[4] !== "edit") {
+				setDemandClassification(demand.classification.classificationCode);
+			}
+
+			let costCenterArray = [];
+			for (let i = 0; i < demand.costCenter.length; i++) {
+				costCenterArray.push(demand.costCenter[i].costCenterCode);
+			}
+
+			setCostsCentersId(costCenterArray);
+
+
 			setFrequencyOfUse(demand.qualitativeBenefit.frequencyOfUse);
 
 			let fileAttachmentArray = fileAttachment;
@@ -107,6 +127,7 @@ export default function EscopeDemand() {
 			let costCentersArray = costsCenters;
 			costCentersArray.push(costCenterAdd);
 			setCostsCenters(costCentersArray);
+
 			setCostCenter("");
 		}
 	}
@@ -118,6 +139,7 @@ export default function EscopeDemand() {
 			if (index > -1) {
 				costsCenters.splice(index, 1);
 				idCostCenter.splice(indexId, 1);
+				costsCentersId.splice(indexId, 1);
 			}
 			setCostsCenters(costsCenters);
 
@@ -141,9 +163,10 @@ export default function EscopeDemand() {
 		}
 
 		if (igual === 0) {
-			let service: any = await Services.save(costCenterParameter);
+			let service: any = await Services.save(costCenterParameter)
 
 			idCostCenter.push(service.costCenterCode);
+			costsCentersId.push(service.costCenterCode);
 		} else {
 			for (let i = 0; i < costsCenterBd.length; i++) {
 				if (costsCenterBd[i].costCenter === costCenterParameter) {
@@ -151,6 +174,7 @@ export default function EscopeDemand() {
 				}
 			}
 			idCostCenter.push(id);
+			costsCentersId.push(id);
 		}
 
 		if (costCenter === " ") {
@@ -176,47 +200,38 @@ export default function EscopeDemand() {
 		setFileAttachment(filesArray);
 	}
 
-	const attatchmentType = (demand: any) => {
-		if (demand.type === "image/png" || demand.type === "image/jpeg") {
+
+	const attatchmentType = (demands: any) => {
+		if (demands.type === "image/png" || demands.type === "image/jpeg") {
 			return "png";
-		} else if (demand.type === "application/pdf") {
+		} else if (demands.type === "application/pdf") {
 			return "pdf";
-		} else if (demand.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
+		} else if (demands.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
 			return "word";
-		} else if (demand.type === "application/msword" || demand.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||
-			demand.demandAttachment.type === "application/vnd.ms-excel") {
+		} else if (demands.type === "application/msword" || demands.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||
+			demands.demandAttachment.type === "application/vnd.ms-excel") {
 			return "excel";
-		} else if (demand.type === "application/zip") {
+		} else if (demands.type === "application/zip") {
 			return "zip";
-		} else if (demand.type === "application/x-rar-compressed") {
+		} else if (demands.type === "application/x-rar-compressed") {
 			return "rar";
 		}
 	}
 
 	function editDemand() {
 
-		ServicesRealBenefit.update(realBenefitCode, realBenefitValue, realBenefitDescription, realCurrency).then((response: any) => {
+		ServicesRealBenefit.update(realBenefitCode, realBenefitValue, realBenefitDescription, realCurrency).then((response: any) => { });
+
+		ServicesPotentialBenefit.update(potentialBenefitCode, potentialBenefitValue, potentialBenefitDescription, true, potentialCurrency).then((response: any) => { });
+
+		ServicesQualitativeBenefit.update(qualitativeBenefitCode, qualitativeBenefitDescription, true, frequencyOfUse).then((response: any) => { });
+
+		ServicesDemand.update(demandCode, demandTitle, demandProblem, demandObjective, costsCentersId, frequencyOfUse, realBenefitCode, potentialBenefitCode, qualitativeBenefitCode, fileAttachment[0], demandDate, demandStatus, demandScore, demandRequester, demandClassification).then((response: any) => { 
 			console.log(response);
 		});
-
-		ServicesPotentialBenefit.update(potentialBenefitCode, potentialBenefitValue, potentialBenefitDescription, true, potentialCurrency).then((response: any) => {
-			console.log(response);
-		});
-
-		ServicesQualitativeBenefit.update(qualitativeBenefitCode, qualitativeBenefitDescription, true, frequencyOfUse).then((response: any) => {
-			console.log(response);
-		});
-
-		ServicesCostCenter.update(costsCentersId, idCostCenter).then((response: any) => {
-			console.log(response);
-		});
-
-		ServicesDemand.update(demandCode, demandTitle, demandProblem, demandObjective, costsCentersId, frequencyOfUse, realBenefitCode, potentialBenefitCode, qualitativeBenefitCode, fileAttachment[0]).then((response: any) => {
-			console.log(response);
-		});
-
 
 	}
+
 
 	return (
 		<div className="create-demands-1">
@@ -376,23 +391,26 @@ export default function EscopeDemand() {
 								</span>{t("sendAttachment")}</label>
 
 
-							{
-								fileAttachment.map((file: any) => {
-									return (
-										<div className="attachments">
 
-											<div className="attachment">
-												<div className="attachment-image">
-													<img src={"/attachment/" + attatchmentType(file) + ".png"} alt="" />
+							{/* {
+								(
+									fileAttachment.map((file: any) => {
+										return (
+											<div className="attachments">
+
+												<div className="attachment">
+													<div className="attachment-image">
+														<img src={"/attachment/" + attatchmentType(file) + ".png"} alt="" />
+													</div>
+													<span>{file.name}</span>
 												</div>
-												<span>{file.name}</span>
+
+
 											</div>
-
-
-										</div>
-									)
-								})
-							}
+										)
+									})
+								)
+							} */}
 						</div>
 
 					</div>

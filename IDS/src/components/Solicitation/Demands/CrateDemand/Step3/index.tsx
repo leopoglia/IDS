@@ -92,7 +92,7 @@ export default function CreateDemands3() {
         setFileAttachment(filesArray);
     }
 
-    const attatchmentType = (demand:any) => {
+    const attatchmentType = (demand: any) => {
         if (demand.type === "image/png" || demand.type === "image/jpeg") {
             return "png";
         } else if (demand.type === "application/pdf") {
@@ -141,9 +141,9 @@ export default function CreateDemands3() {
 
 
                         {
-                            fileAttachment.map((file: any) => {
+                            fileAttachment.map((file: any, index: any) => {
                                 return (
-                                    <div className="attachments">
+                                    <div className="attachments" key={index}>
 
                                         <div className="attachment">
                                             <div className="attachment-image">

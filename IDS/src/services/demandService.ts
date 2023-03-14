@@ -64,7 +64,9 @@ const Services = {
                 .catch(reject)
         })
     },
-    update: function (id: number, demandTitle: String, currentProblem: String, demandObjective: String, costCenter: any, executionPeriod: Number, realBenefit: Number, potentialBenefit: Number, qualitativeBenefit: Number, demandAttachment: any) {
+    update: function (id: number, demandTitle: String, currentProblem: String, demandObjective: String, costCenter: any, executionPeriod: Number,
+        realBenefit: Number, potentialBenefit: Number, qualitativeBenefit: Number, demandAttachment: any, demandDate: String, demandStatus: any,
+        demandScore: any, demandRequester: any, classificationCode: any) {
         var formData = new FormData();
 
         let costCenters = [];
@@ -72,17 +74,41 @@ const Services = {
             costCenters.push({ "costCenterCode": costCenter[i] });
         }
 
+        let demand = {}
+        if (classificationCode === null ||
+            classificationCode === undefined || 
+            classificationCode === "") {
 
-        let demand = {
-            "demandTitle": demandTitle,
-            "currentProblem": currentProblem,
-            "demandObjective": demandObjective,
-            "costCenter": costCenters,
-            "executionPeriod": executionPeriod,
-            "realBenefit": { "realBenefitCode": realBenefit },
-            "qualitativeBenefit": { "qualitativeBenefitCode": qualitativeBenefit },
-            "potentialBenefit": { "potentialBenefitCode": potentialBenefit },
+            demand = {
+                "demandTitle": demandTitle,
+                "currentProblem": currentProblem,
+                "demandObjective": demandObjective,
+                "costCenter": costCenters,
+                "executionPeriod": executionPeriod,
+                "requesterRegistration": { "workerCode": demandRequester },
+                "realBenefit": { "realBenefitCode": realBenefit },
+                "qualitativeBenefit": { "qualitativeBenefitCode": qualitativeBenefit },
+                "potentialBenefit": { "potentialBenefitCode": potentialBenefit },
+                "demandDate": demandDate,
+                "demandStatus": demandStatus
+            }
+        } else {
+            demand = {
+                "demandTitle": demandTitle,
+                "currentProblem": currentProblem,
+                "demandObjective": demandObjective,
+                "costCenter": costCenters,
+                "executionPeriod": executionPeriod,
+                "requesterRegistration": { "workerCode": demandRequester },
+                "realBenefit": { "realBenefitCode": realBenefit },
+                "qualitativeBenefit": { "qualitativeBenefitCode": qualitativeBenefit },
+                "potentialBenefit": { "potentialBenefitCode": potentialBenefit },
+                "demandDate": demandDate,
+                "demandStatus": demandStatus,
+                "classification": { "classificationCode": classificationCode }
+            }
         }
+
         formData.append('demand', JSON.stringify(demand));
         formData.append('demandAttachment', demandAttachment);
 

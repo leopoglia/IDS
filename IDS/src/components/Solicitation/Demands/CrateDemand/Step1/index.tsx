@@ -147,7 +147,7 @@ export default function CreateDemands1() {
         let demand = JSON.parse(localStorage.getItem("demand") || "{}");
 
 
-        if ( demand.titleInput === "" || demand.currentSituation === "" || demand.objective === "" || (demand.costCenter === undefined || demand.costCenter.length === 0 )) {
+        if (demand.titleInput === "" || demand.currentSituation === "" || demand.objective === "" || (demand.costCenter === undefined || demand.costCenter.length === 0)) {
             notify();
         } else {
             navigate('/demand/create/2');
@@ -158,7 +158,7 @@ export default function CreateDemands1() {
 
     return (
         <div className="create-demands-1">
-            <Header/>
+            <Header />
             <Nav />
 
             <div className="container">
@@ -190,7 +190,7 @@ export default function CreateDemands1() {
                     {/* 
                     <TextArea label="currentSituation" required="*" onChange={(e) => { setDemandProblem(e.target.value) }}></TextArea> */}
 
-             
+
 
                     {/* <TextArea label="proposal" required="*" onChange={(e) => { setProposal(e.target.value) }}></TextArea> */}
 
@@ -206,8 +206,8 @@ export default function CreateDemands1() {
                         </div>
                     </div>
 
-                    {costsCenters.map((costCenter: any) => {
-                        return <div className="costCenter">{costCenter}
+                    {costsCenters.map((costCenter: any, index: any) => {
+                        return <div className="costCenter" key={index}>{costCenter}
                             <span className="material-symbols-outlined delete-cost-center" onClick={deleteCostCenter(costCenter)} >
                                 delete
                             </span>

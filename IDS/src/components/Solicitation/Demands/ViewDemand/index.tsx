@@ -135,7 +135,7 @@ export default function ViewDemand() {
         } else if (localStorage.getItem("route") === "reprove") {
             notifyReproved();
             localStorage.removeItem("route");
-        } else if(localStorage.getItem("route") === "edit") {
+        } else if (localStorage.getItem("route") === "edit") {
             notifyEdit();
             localStorage.removeItem("route");
         }
@@ -407,6 +407,11 @@ export default function ViewDemand() {
                                             <span>{t("fail")}</span>
                                         </button>
                                     </Link>
+
+                                    <button className="btn-secondary">
+                                        <span>{t("giveback")}</span>
+                                    </button>
+
 
                                     <Link to={"/demand/rank/" + demandCode}>
                                         <button className="btn-primary">

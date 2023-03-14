@@ -23,6 +23,7 @@ const Services = {
             "potentialBenefit": { "potentialBenefitCode": potentialBenefit },
             "demandDate": demandDate
         }
+
         formData.append('demand', JSON.stringify(demand));
         formData.append('demandAttachment', demandAttachment);
 
@@ -63,7 +64,7 @@ const Services = {
                 .catch(reject)
         })
     },
-    update: function(id: number, demandTitle: String, currentProblem: String, demandObjective: String, costCenter: any, demandStatus: String, score: Number, executionPeriod: Number, requesterRegistration: Number, realBenefit: Number, potentialBenefit: Number, qualitativeBenefit: Number, demandAttachment: any, demandDate: String, classificationCode: Number) {
+    update: function (id: number, demandTitle: String, currentProblem: String, demandObjective: String, costCenter: any, executionPeriod: Number, realBenefit: Number, potentialBenefit: Number, qualitativeBenefit: Number, demandAttachment: any) {
         var formData = new FormData();
 
         let costCenters = [];
@@ -77,15 +78,10 @@ const Services = {
             "currentProblem": currentProblem,
             "demandObjective": demandObjective,
             "costCenter": costCenters,
-            "demandStatus": demandStatus,
-            "score": score,
             "executionPeriod": executionPeriod,
-            "requesterRegistration": { "workerCode": requesterRegistration },
             "realBenefit": { "realBenefitCode": realBenefit },
             "qualitativeBenefit": { "qualitativeBenefitCode": qualitativeBenefit },
             "potentialBenefit": { "potentialBenefitCode": potentialBenefit },
-            "demandDate": demandDate,
-            "classification": { "classificationCode": classificationCode }
         }
         formData.append('demand', JSON.stringify(demand));
         formData.append('demandAttachment', demandAttachment);
@@ -100,23 +96,25 @@ const Services = {
                 .catch(reject)
         })
     },
-    updateClassification: function(id: Number, classificationCode: Number) {
+    updateClassification: function (id: Number, classificationCode: Number) {
         return new Promise((resolve, reject) => {
             fetch(url + "/updateclassification/" + id, {
                 method: 'PUT',
                 body: JSON.stringify({ "classification": { "classificationCode": classificationCode } }),
-                headers: { 'Content-Type': 'application/json' }}).then(function (result) { return result.json(); }).then(resolve).catch(reject) 
+                headers: { 'Content-Type': 'application/json' }
+            }).then(function (result) { return result.json(); }).then(resolve).catch(reject)
         })
     },
-    updateStatus: function(id: Number, demandStatus: String) {
+    updateStatus: function (id: Number, demandStatus: String) {
         return new Promise((resolve, reject) => {
             fetch(url + "/updatestatus/" + id, {
                 method: 'PUT',
                 body: JSON.stringify({ "demandStatus": demandStatus }),
-                headers: { 'Content-Type': 'application/json' }}).then(function (result) { return result.json(); }).then(resolve).catch(reject) 
+                headers: { 'Content-Type': 'application/json' }
+            }).then(function (result) { return result.json(); }).then(resolve).catch(reject)
         })
     },
-    findByPage: function(page: Number, size: Number) {
+    findByPage: function (page: Number, size: Number) {
         return new Promise((resolve, reject) => {
             fetch(url + "/page?page=" + page + "&size=" + size, {
                 method: 'GET', headers: { 'Content-Type': 'application/json' }

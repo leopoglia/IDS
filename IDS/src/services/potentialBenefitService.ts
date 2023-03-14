@@ -1,7 +1,7 @@
 const url = "http://localhost:8080/api/potentialbenefit"
 
 const Services = {
-    save: function (potentialMonthlyValue: Number, potentialBenefitDescription:String, legalObrigation: Boolean, potentialCurrency: String) {
+    save: function (potentialMonthlyValue: Number, potentialBenefitDescription: String, legalObrigation: Boolean, potentialCurrency: String) {
         return new Promise((resolve, reject) => {
             fetch(url, {
                 method: 'POST', body: JSON.stringify({
@@ -37,6 +37,21 @@ const Services = {
         return new Promise((resolve, reject) => {
             fetch(url + "/" + id, {
                 method: 'DELETE', headers: { 'Content-Type': 'application/json' }
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(resolve)
+        })
+    },
+    update: function (potentialBenefitCode: Number, potentialMonthlyValue: Number, potentialBenefitDescription: String, legalObrigation: true, potentialCurrency: String) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/" + potentialBenefitCode, {
+                method: 'PUT', body: JSON.stringify({
+                    potentialBenefitCode: potentialBenefitCode,
+                    potentialMonthlyValue: potentialMonthlyValue,
+                    potentialBenefitDescription: potentialBenefitDescription,
+                    legalObrigation: legalObrigation,
+                    potentialCurrency: potentialCurrency
+                }), headers: { 'Content-Type': 'application/json' }
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(resolve)

@@ -38,6 +38,18 @@ const Services = {
                 .then(resolve)
                 .catch(resolve)
         })
+    },
+    update: function (costCenterCode: Number, costCenter: String) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/" + costCenterCode, {
+                method: 'PUT', body: JSON.stringify({
+                    costCenterCode: costCenterCode,
+                    costCenter: costCenter
+                }), headers: { 'Content-Type': 'application/json' }
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(resolve)
+        })
     }
 }
 

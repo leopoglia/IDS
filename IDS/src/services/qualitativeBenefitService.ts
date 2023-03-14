@@ -40,6 +40,20 @@ const Services = {
                 .then(resolve)
                 .catch(resolve)
         })
+    },
+    update: function (qualitativeBenefitCode: Number, qualitativeBenefitDescription:String, interalControlsRequirements: Boolean, frequencyOfUse: String,) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/" + qualitativeBenefitCode, {
+                method: 'PUT', body: JSON.stringify({
+                    qualitativeBenefitCode: qualitativeBenefitCode,
+                    frequencyOfUse: frequencyOfUse,
+                    qualitativeBenefitDescription: qualitativeBenefitDescription,
+                    interalControlsRequirements: interalControlsRequirements
+                }), headers: { 'Content-Type': 'application/json' }
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(resolve)
+        })
     }
 }
 

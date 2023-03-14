@@ -8,6 +8,10 @@ import "./style.css"
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import SelectCenterCost from "../CrateDemand/Step1/SelectCenterCost";
+import ServicesRealBenefit from "../../../../services/realBenefitService";
+import ServicesPotentialBenefit from "../../../../services/potentialBenefitService";
+import ServicesQualitativeBenefit from "../../../../services/qualitativeBenefitService";
+import ServicesCostCenter from "../../../../services/costCenterService";
 import Services from "../../../../services/costCenterService";
 import SelectCoin from "../CrateDemand/SelectCoin";
 import CheckBox from "../CrateDemand/CheckBox";
@@ -23,22 +27,24 @@ export default function EscopeDemand() {
 	const [demandObjective, setDemandObjective] = useState(""); // Objetivo da demanda
 	const [demandProblem, setDemandProblem] = useState(""); // Problema atual
 
+	const [costsCentersId, setCostsCentersId]: any = useState([]); // Id dos centros de custo
 	const [costsCenters, setCostsCenters]: any = useState([]); // Centros de custo
 	const [costCenter, setCostCenter] = useState(""); // Centro de custo
 	const [idCostCenter, setIdCostCenter]: any = useState([]); // Id do centro de custo
 
 	const [fileAttachment, setFileAttachment]: any = useState([]); // Anexo
-	const [executionPeriod, setExecutionPeriod]: any = useState(""); // Periodo de execução
 
+	const [potentialBenefitCode, setPotentialBenefitCode]: any = useState(""); // Código do beneficio potencial
 	const [potentialCurrency, setPotentialCurrency]: any = useState(""); // Moeda potencial
 	const [potentialBenefitDescription, setPotentialBenefitDescription]: any = useState(""); // Descrição do beneficio potencial
 	const [potentialBenefitValue, setPotentialBenefitValue]: any = useState(""); // Valor do beneficio potencial
 
+	const [realBenefitCode, setRealBenefitCode]: any = useState(""); // Código do beneficio real
 	const [realCurrency, setrealCurrency]: any = useState(""); // Moeda real
 	const [realBenefitDescription, setRealBenefitDescription]: any = useState(""); // Descrição do beneficio real
 	const [realBenefitValue, setRealBenefitValue]: any = useState(""); // Valor do beneficio real
 
-	const [qualitativeBenefitValue, setQualitativeBenefitValue]: any = useState(""); // Valor do beneficio qualitativo
+	const [qualitativeBenefitCode, setQualitativeBenefitCode]: any = useState(""); // Código do beneficio qualitativo
 	const [qualitativeBenefitDescription, setQualitativeBenefitDescription]: any = useState(""); // Descrição do beneficio qualitativo
 	const [frequencyOfUse, setFrequencyOfUse]: any = useState(""); // Frequencia de uso
 
@@ -54,18 +60,22 @@ export default function EscopeDemand() {
 			setDemandTitle(demand.demandTitle);
 			setDemandObjective(demand.demandObjective);
 			setDemandProblem(demand.currentProblem);
+
 			setPotentialCurrency(demand.potentialBenefit.potentialCurrency);
+			setPotentialBenefitCode(demand.potentialBenefit.potentialBenefitCode);
+			setPotentialBenefitValue(demand.potentialBenefit.potentialMonthlyValue);
+			setPotentialBenefitDescription(demand.potentialBenefit.potentialBenefitDescription);
+
 			setrealCurrency(demand.realBenefit.realCurrency);
 			setRealBenefitValue(response.realBenefit.realMonthlyValue);
 			setRealBenefitDescription(demand.realBenefit.realBenefitDescription);
-			setPotentialBenefitValue(demand.potentialBenefit.potentialMonthlyValue);
-			setPotentialBenefitDescription(demand.potentialBenefit.potentialBenefitDescription);
-			setQualitativeBenefitValue(demand.qualitativeBenefit.qualitativeMonthlyValue);
+			setRealBenefitCode(demand.realBenefit.realBenefitCode);
+
+			setQualitativeBenefitCode(demand.qualitativeBenefit.qualitativeBenefitCode);
 			setQualitativeBenefitDescription(demand.qualitativeBenefit.qualitativeBenefitDescription);
+
+			setCostsCentersId(demand.costCenter.costCenterCode);
 			setFrequencyOfUse(demand.qualitativeBenefit.frequencyOfUse);
-			setExecutionPeriod(demand.executionPeriod);
-
-
 
 			let fileAttachmentArray = fileAttachment;
 			fileAttachmentArray.push(demand.demandAttachment);
@@ -183,6 +193,31 @@ export default function EscopeDemand() {
 		}
 	}
 
+	function editDemand() {
+
+		ServicesRealBenefit.update(realBenefitCode, realBenefitValue, realBenefitDescription, realCurrency).then((response: any) => {
+			console.log(response);
+		});
+
+		ServicesPotentialBenefit.update(potentialBenefitCode, potentialBenefitValue, potentialBenefitDescription, true, potentialCurrency).then((response: any) => {
+			console.log(response);
+		});
+
+		ServicesQualitativeBenefit.update(qualitativeBenefitCode, qualitativeBenefitDescription, true, frequencyOfUse).then((response: any) => {
+			console.log(response);
+		});
+
+		ServicesCostCenter.update(costsCentersId, idCostCenter).then((response: any) => {
+			console.log(response);
+		});
+
+		ServicesDemand.update(demandCode, demandTitle, demandProblem, demandObjective, costsCentersId, frequencyOfUse, realBenefitCode, potentialBenefitCode, qualitativeBenefitCode, fileAttachment[0]).then((response: any) => {
+			console.log(response);
+		});
+
+
+	}
+
 	return (
 		<div className="create-demands-1">
 			<Header />
@@ -288,7 +323,7 @@ export default function EscopeDemand() {
 
 								<div className="input">
 									<label>{t("description")} *</label>
-									<input type="text" value={demands.potentialBenefit.potentialBenefitDescription} onChange={(e) => { setPotentialBenefitDescription(e.target.value) }} />
+									<input type="text" value={potentialBenefitDescription} onChange={(e) => { setPotentialBenefitDescription(e.target.value) }} />
 								</div>
 
 								<div className="input-checkbox">
@@ -309,7 +344,7 @@ export default function EscopeDemand() {
 						<div className="flex">
 							<div className="input">
 								<label>{t("description")} *</label>
-								<input type="text" value={demands.qualitativeBenefit.qualitativeBenefitDescription} />
+								<input type="text" value={qualitativeBenefitDescription} onChange={(e) => { setQualitativeBenefitDescription(e.target.value) }} />
 							</div>
 
 							<div className="input-checkbox requirements">
@@ -328,7 +363,7 @@ export default function EscopeDemand() {
 
 						<div className="frequency">
 							<label>{t("frequencyUse")} * </label>
-							<input type="text" value={executionPeriod} onChange={(e) => { setExecutionPeriod(e.target.value) }} />
+							<input type="text" value={frequencyOfUse} onChange={(e) => { setFrequencyOfUse(e.target.value) }} />
 						</div>
 
 						<label>{t("attachments")}</label>
@@ -363,7 +398,7 @@ export default function EscopeDemand() {
 					</div>
 
 					<div className="display-flex-end">
-						<button className="btn-primary">{t("editDemand")}</button>
+						<button onClick={() => editDemand()} className="btn-primary">{t("editDemand")}</button>
 					</div>
 
 				</div>

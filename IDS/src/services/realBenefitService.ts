@@ -41,6 +41,20 @@ const Services = {
                 .then(resolve)
                 .catch(resolve)
         })
+    },
+    update: function (realBenefitCode: Number, realMonthlyValue: Number, realBenefitDescription: String, realCurrency: String) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/" + realBenefitCode, {
+                method: 'PUT', body: JSON.stringify({
+                    realBenefitCode: realBenefitCode,
+                    realMonthlyValue: realMonthlyValue,
+                    realBenefitDescription: realBenefitDescription,
+                    realCurrency: realCurrency
+                }), headers: { 'Content-Type': 'application/json' }
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(resolve)
+        })
     }
 
 }

@@ -18,7 +18,6 @@
 }
 
 .dashboard .box .display-flex {
-    align-items: center;
     justify-content: space-between;
 }
 
@@ -76,17 +75,13 @@
     justify-content: center;
 }
 
-.dashboard .h190 .display-block{
+.dashboard .h190 .display-block {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.dashboard .h190 p{
-    display: flex;
-    justify-content: center;
-    text-align: center;
-}
+
 
 .dashboard .lists-dashboard {
     width: 100%;
@@ -109,7 +104,17 @@
         width: 100%;
     }
 
+    .dashboard .box .display-flex{
+        align-items: center;
+    }
+
     .dashboard .lists-dashboard {
         margin-left: 0px;
+    }
+
+    .dashboard .h190 p {
+        display: flex;
+        justify-content: center;
+        text-align: center;
     }
 }

@@ -12,7 +12,7 @@ const Services = {
 
         let comissionList: any = [];
         for (let i = 0; i < commission.length; i++) {
-            comissionList.push({ workerCode: commission[i] })
+            comissionList.push({ comissionCode: commission[i] })
         }
 
         console.log("COMISSION LIST ---> ", comissionList);

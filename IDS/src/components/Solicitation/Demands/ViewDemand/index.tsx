@@ -141,9 +141,7 @@ export default function ViewDemand() {
         }
 
     }, [url, demand.demandStatus]);
-
-    console.log(demand)
-
+    
     function getDemand() {
         ServicesDemand.findById(demandCode).then((response: any) => {
             setDemand(response)
@@ -244,44 +242,25 @@ export default function ViewDemand() {
 
         ServicesAgenda.findById(demandCode).then((response: any) => {
             let proposals: any = [];
-            console.log("PROPOSAL --> ", response[0].proposals)
-
-
-
             setComission(response[0].commission)
 
             for (let i = 0; i < response[0].proposals.length; i++) {
                 proposals.push(response[0].proposals[i])
             }
-
-
             setProposalSpecific(proposals)
         })
 
 
     }
 
-    // Função para buscar centro de custos
-    const costCenter = () => {
-        return (
-            centerCost.map((item: any) => {
-                return (
-                    tr(item.costCenterCode, item.costCenter)
-                )
-            }
-            )
-        )
-    }
 
     // Função para criar tabela (tr)
-    const tr = (dataOne: any, dataTwo: any) => {
+    const tr = (dataOne: any, dataTwo: any, index: any) => {
         return (
-            <>
-                <tr>
-                    <td>{t(dataOne)}</td>
-                    <td>{t(dataTwo)}</td>
-                </tr>
-            </>
+            <tr key="index">
+                <td>{t(dataOne)}</td>
+                <td>{t(dataTwo)}</td>
+            </tr>
         )
     }
 
@@ -368,8 +347,6 @@ export default function ViewDemand() {
     const [complementOpen, setComplementOpen] = useState(false);
     const [expenseOpen, setExpenseOpen] = useState(false);
     const [proposalScopeOpen, setProposalScopeOpen] = useState(false);
-
-    console.log(demand.demandStatus)
 
     return (
 
@@ -685,9 +662,15 @@ export default function ViewDemand() {
 
                                     <table>
                                         <tbody>
-                                            {tr("costCenter", "nameCostCenter")}
-
-                                            {costCenter()}
+                                            {tr("costCenter", "nameCostCenter", "index")}
+                                            {
+                                                centerCost.map((item: any, index: any) => {
+                                                    return (
+                                                        tr(item.costCenterCode, item.costCenter, index)
+                                                    )
+                                                }
+                                                )
+                                            }
                                         </tbody>
                                     </table>
                                 </div>
@@ -727,7 +710,7 @@ export default function ViewDemand() {
                                                 </Tooltip>
 
                                                 <Tooltip title={classification.beneficiaryBu.map((bu: any) => bu.bu)} arrow>
-                                                    <td>
+                                                    <td key="bu.bu">
                                                         {classification.beneficiaryBu.map((bu: any) => {
                                                             return (
                                                                 <div>{bu.bu}</div>
@@ -791,9 +774,9 @@ export default function ViewDemand() {
 
 
 
-                            {proposalExpense.map((proposalExpense: any) => {
+                            {proposalExpense.map((proposalExpense: any, index: any) => {
                                 return (
-                                    <div className={"complement " + expenseOpen} >
+                                    <div key={index} className={"complement " + expenseOpen} >
                                         <div className="display-flex-space-between">
 
                                             <p className="title">{t("expenseInformation")}</p>
@@ -876,7 +859,7 @@ export default function ViewDemand() {
                             {
                                 proposalSpecific.map((val: any) => (
                                     localStorage.setItem("agendaCode", window.location.pathname.split("/")[3]),
-                                    <Link to={"/proposal/view/" + val.proposalCode}>
+                                    <Link key={val.proposalCode} to={"/proposal/view/" + val.proposalCode}>
                                         <div className="proposal-view">
 
                                             <p>{val.proposalName}</p>
@@ -902,8 +885,8 @@ export default function ViewDemand() {
 
                                 <table>
                                     <tbody>
-                                        {comission.map((val: any) => (
-                                            <tr>
+                                        {comission.map((val: any, index: any) => (
+                                            <tr key={index}>
                                                 <td className="display-flex-start pl20">
                                                     {val.workerName}
                                                 </td>
@@ -1039,6 +1022,3 @@ const notifyError = () => {
         theme: "light",
     });
 };
-
-
-

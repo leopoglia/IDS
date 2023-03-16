@@ -103,8 +103,6 @@ export default function CreateDemands1() {
             costCenter: []
         }
 
-
-
         switch (type) {
             case "titleInput":
                 setTitleDemand(event.target.value);

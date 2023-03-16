@@ -2,7 +2,6 @@
 .demand-list {
     width: 100%;
     height: 99px;
-    margin-bottom: 15px;
     border-radius: var(--r);
     border: 1px solid var(--greyC4);
     color: var(--grey59);
@@ -10,6 +9,10 @@
     font-weight: 400;
     overflow-y: hidden;
     overflow-x: auto;
+}
+
+.demand {
+    margin-bottom: 15px;
 }
 
 .demand-list section h1 {
@@ -45,7 +48,7 @@
 }
 
 .demand-list {
-    height: 70px;
+    height: 60px;
     border: 0px;
     display: flex;
     border-bottom: 1px solid var(--greyC4);

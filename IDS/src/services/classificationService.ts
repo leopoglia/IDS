@@ -21,6 +21,8 @@ const Services = {
             "deadline": ""
         }
 
+        console.log(classificationAttachment)
+
         formData.append('classification', JSON.stringify(classification));
         formData.append('classificationAttachment', classificationAttachment);
 

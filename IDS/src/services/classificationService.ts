@@ -2,26 +2,32 @@
 const url = "https://localhost:8443/api/classification"
 
 const Services = {
-    save: function (classificationSize: Number, itSection: String, ppmcode: Number, linkEpicJira: String, requesterBu: any, beneficiaryBu: any, analistRegistry: any) {
+    save: function (classificationSize: Number, itSection: String, ppmcode: Number, linkEpicJira: String, requesterBu: any, beneficiaryBu: any, analistRegistry: any, classificationAttachment: any) {
+        var formData = new FormData();
 
         let beneficiaryBuList: any = [];
         for (let i = 0; i < beneficiaryBu.length; i++) {
             beneficiaryBuList.push({ buCode: beneficiaryBu[i] })
         }
 
+        const classification = {
+            "classificationSize": classificationSize,
+            "itSection": itSection,
+            "ppmCode": ppmcode,
+            "linkEpicJira": linkEpicJira,
+            "analistRegistry": { workerCode: analistRegistry },
+            "requesterBu": { buCode: requesterBu },
+            "beneficiaryBu": beneficiaryBuList,
+            "deadline": ""
+        }
+
+        formData.append('classification', JSON.stringify(classification));
+        formData.append('classificationAttachment', classificationAttachment);
 
         return new Promise((resolve, reject) => {
             fetch(url, {
-                method: 'POST', body: JSON.stringify({
-                    classificationSize: classificationSize,
-                    itSection: itSection,
-                    ppmcode: ppmcode,
-                    linkEpicJira: linkEpicJira,
-                    analistRegistry: { workerCode: analistRegistry },
-                    requesterBu: { buCode: requesterBu },
-                    beneficiaryBu: beneficiaryBuList,
-                    deadline: ""
-                }), headers: { 'Content-Type': 'application/json' }
+                method: 'POST',
+                body: formData
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(resolve)

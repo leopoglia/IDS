@@ -24,6 +24,7 @@ export default function RankDemand() {
     const [buBenefiteds, setBuBenefiteds]: any = useState([]); // Unidades de negócio beneficiadas
     const [buBenefitedsList, setBuBenefitedsList]: any = useState([]); // Lista de unidades de negócio beneficiadas
     const [demand, setDemand]: any = useState({}); // Demanda
+    const [fileAttachment, setFileAttachment]: any = useState([]);
     const url = parseInt(window.location.href.split("/")[5]); // Pegando o id da demanda
 
     useEffect(() => {
@@ -31,8 +32,6 @@ export default function RankDemand() {
         getDemand();
 
         for (let i = 0; i < buBenefiteds.length; i++) {
-
-
             ServicesBu.findById(buBenefiteds[i]).then((response: any) => {
                 setBuBenefitedsList([...buBenefitedsList, response]);
             }).catch((error: any) => {
@@ -60,7 +59,7 @@ export default function RankDemand() {
             return;
         } else {
             // Salvando a classificação
-            ServicesClassification.save(classification.size, classification.ti, -1, "", classification.buReq, classification.buBenList, analysis.id).then((response: any) => {
+            ServicesClassification.save(classification.size, classification.ti, -1, "", classification.buReq, classification.buBenList, analysis.id, fileAttachment[0]).then((response: any) => {
                 let classificationCode = response.classificationCode; // Pegando o código da classificação
 
                 // Atualizando a classificação da demanda
@@ -111,6 +110,34 @@ export default function RankDemand() {
             }
         }
 
+    }
+
+    const handleFileSelected = (e: any): void => {
+        const files = Array.from(e.target.files)
+        let filesArray: any = [];
+        for (let i = 0; i < files.length; i++) {
+            filesArray.push(files[i]);
+        }
+
+        setFileAttachment(filesArray);
+    }
+
+
+    const attatchmentType = (demand: any) => {
+        if (demand.type === "image/png" || demand.type === "image/jpeg") {
+            return "png";
+        } else if (demand.type === "application/pdf") {
+            return "pdf";
+        } else if (demand.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
+            return "word";
+        } else if (demand.type === "application/msword" || demand.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||
+            demand.demandAttachment.type === "application/vnd.ms-excel") {
+            return "excel";
+        } else if (demand.type === "application/zip") {
+            return "zip";
+        } else if (demand.type === "application/x-rar-compressed") {
+            return "rar";
+        }
     }
 
     return (
@@ -179,11 +206,27 @@ export default function RankDemand() {
                         <label htmlFor="">{t("attachments")} </label>
 
                         <div className="attachments">
-                            <input type="file" id="file" />
+                            <input type="file" id="file" onChange={handleFileSelected} />
                             <label htmlFor="file">
                                 <span className="material-symbols-outlined">
                                     upload_file
                                 </span>{t("sendAttachment")}</label>
+
+                            {
+                                fileAttachment.map((file: any, index: any) => {
+                                    return (
+                                        <div className="attachments" key={index}>
+
+                                            <div className="attachment">
+                                                <div className="attachment-image">
+                                                    <img src={"/attachment/" + attatchmentType(file) + ".png"} alt="" />
+                                                </div>
+                                                <span>{file.name}</span>
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
                         </div>
 
                     </div>

@@ -697,60 +697,61 @@ export default function ViewDemand() {
 
 
                             {(stepDemand === 1 || stepDemand === 2) ? (
-                                <div className={"classification " + classificationOpen} >
-                                    <div className="display-flex-space-between">
 
-                                        <p className="title">{t("classification")}</p>
+                                    <div className={"classification " + classificationOpen} >
+                                        <div className="display-flex-space-between">
 
-                                        <span onClick={() => setClassificationOpen(!classificationOpen)} className="material-symbols-outlined arrow-expend">
-                                            expand_more
-                                        </span>
+                                            <p className="title">{t("classification")}</p>
+
+                                            <span onClick={() => setClassificationOpen(!classificationOpen)} className="material-symbols-outlined arrow-expend">
+                                                expand_more
+                                            </span>
+                                        </div>
+
+
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td>{t("size")}</td>
+                                                    <td>{t("requesterBU")}</td>
+                                                    <td>{t("buBenefited")}</td>
+                                                    <td>{t("responsibleItSession")}</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <Tooltip title={classification.classificationSize} arrow>
+                                                        <td>{classification.classificationSize}</td>
+                                                    </Tooltip>
+
+                                                    <Tooltip title={classification.requesterBu.bu} arrow>
+                                                        <td>{classification.requesterBu.bu}</td>
+                                                    </Tooltip>
+
+                                                    <Tooltip title={classification.beneficiaryBu.map((bu: any) => bu.bu)} arrow>
+                                                        <td>
+                                                            {classification.beneficiaryBu.map((bu: any) => {
+                                                                return (
+                                                                    <div>{bu.bu}</div>
+                                                                )
+                                                            })
+
+                                                            }
+                                                        </td>
+                                                    </Tooltip>
+
+                                                    <Tooltip title={classification.itSection} arrow>
+                                                        <td>{classification.itSection}</td>
+                                                    </Tooltip>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
-
-
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td>{t("size")}</td>
-                                                <td>{t("requesterBU")}</td>
-                                                <td>{t("buBenefited")}</td>
-                                                <td>{t("responsibleItSession")}</td>
-                                            </tr>
-
-                                            <tr>
-                                                <Tooltip title={classification.classificationSize} arrow>
-                                                    <td>{classification.classificationSize}</td>
-                                                </Tooltip>
-
-                                                <Tooltip title={classification.requesterBu.bu} arrow>
-                                                    <td>{classification.requesterBu.bu}</td>
-                                                </Tooltip>
-
-                                                <Tooltip title={classification.beneficiaryBu.map((bu: any) => bu.bu)} arrow>
-                                                    <td>
-                                                        {classification.beneficiaryBu.map((bu: any) => {
-                                                            return (
-                                                                <div>{bu.bu}</div>
-                                                            )
-                                                        })
-
-                                                        }
-                                                    </td>
-                                                </Tooltip>
-
-                                                <Tooltip title={classification.itSection} arrow>
-                                                    <td>{classification.itSection}</td>
-                                                </Tooltip>
-
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
 
 
 
                             ) : (
-                                <div className="null"></div>
+                            <div className="null"></div>
                             )}
 
                             {(stepDemand === 2) ? (

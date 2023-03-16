@@ -1,4 +1,4 @@
-const url = "http://localhost:8080/api/costcenter"
+const url = "https://localhost:8443/api/costcenter"
 
 const Services = {
     save: function (costCenter: String) {

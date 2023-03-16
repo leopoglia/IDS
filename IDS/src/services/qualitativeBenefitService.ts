@@ -1,4 +1,4 @@
-const url = "http://localhost:8080/api/qualitativebenefit"
+const url = "https://localhost:8443/api/qualitativebenefit"
 
 const Services = {
     save: function (frequencyOfUse: String, qualitativeBenefitDescription:String, interalControlsRequirements: Boolean) {

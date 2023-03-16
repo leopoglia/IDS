@@ -1,4 +1,4 @@
-const url = "http://localhost:8080/api/minute";
+const url = "https://localhost:8443/api/minute";
 
 const Services = {
 

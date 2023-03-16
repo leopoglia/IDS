@@ -1,4 +1,4 @@
-const url = "http://localhost:8080/api/expense";
+const url = "https://localhost:8443/api/expense";
 
 const Services = {
     save: function (expenseType: String, expenseProfile: String, runTime: Number, amountOfHours: Number, hourValue: Number, totalValue: Number, proposal:Number) {

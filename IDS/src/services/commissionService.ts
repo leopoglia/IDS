@@ -1,4 +1,4 @@
-const url = "http://localhost:8080/api/commission";
+const url = "https://localhost:8443/api/commission";
 
 const Services = {
     save: function (commissionName: String, commissionAcronym: String) {

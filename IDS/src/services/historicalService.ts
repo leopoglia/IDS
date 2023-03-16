@@ -1,4 +1,4 @@
-const url = "http://localhost:8080/api/historical";
+const url = "https://localhost:8443/api/historical";
 
 const Services = {
     save: function (demand: Number, historicalAttachment: any) {

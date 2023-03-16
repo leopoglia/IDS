@@ -47,6 +47,7 @@ export default function Notifications() {
                         if (notification.worker.workerCode == worker.id) {
                             return (
                                 <Notification
+                                    key={notification.notificationCode}
                                     id={notification.notificationCode}
                                     description={notification.description}
                                     date={notification.date}

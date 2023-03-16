@@ -34,7 +34,10 @@ export default function Search(props: any) {
         } else {
             setFilter(true)
         }
-        props.setFilter(filter);
+
+        if (props.setFilter) {
+            props.setFilter(filter);
+        }
     }
 
     const search = () => {
@@ -51,7 +54,7 @@ export default function Search(props: any) {
 
     const [name, setName] = useState<string | undefined>("")
     const [type, setType] = useState<string>("")
-    
+
     const callback = (name: string | undefined, type: string) => {
         setName(name)
         setType(type)

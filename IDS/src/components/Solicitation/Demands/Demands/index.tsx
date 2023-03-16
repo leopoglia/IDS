@@ -285,12 +285,12 @@ export default function Demands() {
                                 agendas.map((val: any, index) => {
                                     if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
                                         return (
-                                            <Demand val={val.agendaCode} listDirection={table} name={"Pauta da reunião  " + val.agendaCode} demandCode={val.agendaCode} number={val.sequentialNumber} year={val.yearAgenda} type="agenda" />
+                                            <Demand key={val.agendaCode} val={val.agendaCode} listDirection={table} name={"Pauta da reunião  " + val.agendaCode} demandCode={val.agendaCode} number={val.sequentialNumber} year={val.yearAgenda} type="agenda" />
                                         );
                                     } else if (search !== "") {
                                         if (val.agendaCode.toString().includes(search)) {
                                             return (
-                                                <Demand val={val.agendaCode} listDirection={table} name={"Pauta da reunião  " + val.agendaCode} demandCode={val.agendaCode} number={val.sequentialNumber} year={val.yearAgenda} type="agenda" />
+                                                <Demand key={val.agendaCode} val={val.agendaCode} listDirection={table} name={"Pauta da reunião  " + val.agendaCode} demandCode={val.agendaCode} number={val.sequentialNumber} year={val.yearAgenda} type="agenda" />
                                             );
                                         } else {
                                             return (

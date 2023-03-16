@@ -1,122 +1,101 @@
-import './style.css';
-import { Link } from 'react-router-dom';
+import "./style.css";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useRef, useContext } from 'react';
-import Services from '../../../services/workerService';
-import { toast, ToastContainer } from 'react-toastify';
+import { useRef, useContext } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import UserContext from "../../../context/userContext";
+import Services from "../../../services/workerService";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from 'react-router-dom';
-import UserContext from '../../../context/userContext';
 
+export default function LoginForm() {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const { setWorker } = useContext(UserContext);
 
-export default function Form() {
-    const { t } = useTranslation();
-    const navigate = useNavigate();
-    const emailRef: any = useRef(null);
-    const passwordRef: any = useRef(null);
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const email:string | undefined = emailRef.current?.value;
+    const password:string | undefined = passwordRef.current?.value;
+    login(email, password);
+  };
 
-    const { worker, setWorker } = useContext(UserContext);
+  async function login(email: string | undefined,  password: string | undefined) {
 
-    const handleSubmit = (e: any) => {
-        e.preventDefault();
-        const email = emailRef.current.value;
-        const password = passwordRef.current.value;
-        login(email, password)
-    };
+    console.log(email)
+    console.log(password)
 
-    async function login(emailRef: any, passwordRef: any) {
-
-
-        if (emailRef.includes("@")) {
-
-            const response: any = await Services.login(emailRef, passwordRef);
-
-            if (response.workerOffice !== undefined) {
-
-                const worker = {
-                    id: response.workerCode,
-                    office: response.workerOffice,
-                    name: response.workerName,
-                    email: response.corporateEmail,
-                }
-
-                setWorker(worker);
-
-                localStorage.setItem("id", JSON.stringify(worker.id));
-
-                navigate('/demands/1');
-
-            }
-
-            if (response?.status === 400 || response?.status === 500 || response?.status === undefined) {
-                notify();
-            }
+    if (email?.includes("@")) {
+      try {
+        const response: any = await Services.login(email, password);
+        if (response.workerOffice !== undefined) {
+          const worker = {
+            id: response.workerCode,
+            office: response.workerOffice,
+            name: response.workerName,
+            email: response.corporateEmail,
+          };
+          setWorker(worker);
+          localStorage.setItem("id", JSON.stringify(worker.id));
+          navigate("/demands/1");
         } else {
-            notify();
+          notifyError();
         }
-
+      } catch (error) {
+        notifyError();
+      }
+    } else {
+      notifyError();
     }
+  }
 
-    return (
-        <form onSubmit={handleSubmit} className="login-form">
-            <header>
-                <h1>{t("title")}<b>WEG IDS</b></h1>
-
-
-
-                <img src="/images/weg-blue.png" alt="" />
-            </header>
-
-            <main>
-                <div>
-                    <span className="material-symbols-outlined">alternate_email</span>
-                    <label>{t("email")}</label>
-                    <input id="email" type="text" ref={emailRef} required />
-                </div>
-
-
-                <div className='password'>
-                    <span className="material-symbols-outlined">key</span>
-                    <label>{t("password")}</label>
-
-                    <input id="password" type="password" ref={passwordRef} required />
-
-
-                </div>
-
-                <section>
-                    {/* <div>
-                        <input id="checkbox" type="checkbox" />
-                        <label>{t("remember-me")}</label>
-                    </div> */}
-
-                    <Link to="/forget-password">
-                        {t("forgotPassword")}
-                    </Link>
-                </section>
-            </main>
-
-
-            <footer>
-                <button>{t("login")}</button>
-            </footer>
-
-            <ToastContainer position="bottom-right" newestOnTop />
-
-        </form>
-    )
-}
-
-// Notificação de erro ao preencher os campos obrigatórios
-const notify = () => {
-    toast.error('E-mail ou senha incorretos!', {
-        position: "bottom-right",
-        autoClose: 4000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
+  const notifyError = () => {
+    toast.error(t("wrongEmailOrPassword"), {
+      position: "bottom-right",
+      autoClose: 4000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
     });
-};
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="login-form">
+      <header>
+        <h1>
+          {t("title")}
+          <b>WEG IDS</b>
+        </h1>
+        <img src="/images/weg-blue.png" alt="" />
+      </header>
+
+      <main>
+        <div>
+          <span className="material-symbols-outlined">alternate_email</span>
+          <label htmlFor="email">{t("email")}</label>
+          <input id="email" type="text" ref={emailRef} required />
+        </div>
+
+        <div className="password">
+          <span className="material-symbols-outlined">key</span>
+          <label htmlFor="password">{t("password")}</label>
+          <input id="password" type="password" ref={passwordRef} required />
+        </div>
+
+        <section>
+          <Link to="/forget-password">{t("forgotPassword")}</Link>
+        </section>
+      </main>
+
+      <footer>
+        <button>{t("login")}</button>
+      </footer>
+
+      <ToastContainer position="bottom-right" newestOnTop />
+    </form>
+  );
+}

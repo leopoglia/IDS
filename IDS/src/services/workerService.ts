@@ -51,7 +51,7 @@ const Services = {
                 .catch(resolve)
         })
     },
-    login: function (corporateEmail: String, workerPassword: String) {
+    login: function (corporateEmail: string | undefined, workerPassword: string | undefined) {
         return new Promise((resolve, reject) => {
             fetch(url + '/login', {
                 method: 'POST', body: JSON.stringify({

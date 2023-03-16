@@ -187,5 +187,6 @@
     "comission": "Comission",
     "dashboard": "Dashboard",
     "giveback": "Giveback",
-    "editDemand": "Edit demand"
+    "editDemand": "Edit demand",
+    "wrongEmailOrPassword": "E-mail ou senha incorretos"
 }

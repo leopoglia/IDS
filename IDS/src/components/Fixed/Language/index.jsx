@@ -6,7 +6,7 @@ import DropdownList from "./Modal";
 
 
 function Language() {
-    const [language, setLanguage] = useState('pt');
+    const [language, setLanguage] = useState();
     const [showDropdown, setShowDropdown] = useState(false);
 
     // Drop down
@@ -33,7 +33,7 @@ function Language() {
             ) : language === 'cn' || language === '"cn"' ? (
                 <img src="/flags/cn.png" alt="" />
             ) : (
-                <img src="/flags/br.png" alt="" />
+                <img src="null" />
             )}
 
             {showDropdown ? <DropdownList handleClick={handleClick} children="language" /> : null}

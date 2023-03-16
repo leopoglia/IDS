@@ -11,7 +11,7 @@ import ServicesAgenda from "../../../../services/agendaService";
 import ServicesExpense from "../../../../services/expenseService";
 import Footer from "../../../Fixed/Footer";
 import { Link } from "react-router-dom";
-import { ReactI18NextChild, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import PDF from "./PDF";
@@ -142,6 +142,7 @@ export default function ViewDemand() {
 
     }, [url, demand.demandStatus]);
 
+    console.log(demand)
 
     function getDemand() {
         ServicesDemand.findById(demandCode).then((response: any) => {
@@ -289,11 +290,24 @@ export default function ViewDemand() {
         ServicesDemand.updateStatus(demandCode, "BacklogRankApproved").then((response: any) => {
 
             // Notificação para o solicitante
-            ServicesNotification.save("Um Gerente de Negócio aprovou a sua demanda de código  " + demand.demandCode, demand.requesterRegistration.workerCode, "done", "demand");
+            ServicesNotification.save("Um gerente de Negócio aprovou a sua demanda de código  " + demand.demandCode, demand.requesterRegistration.workerCode, "done", "demand");
 
             notifyApprove(); // Notificação para o gerente de negócios
             getDemand();
             setActionsDemand(0);
+        }).catch((error: any) => {
+            notifyError();
+        })
+    }
+
+    // Devolver demanda (Analista)
+    function giveBack() {
+
+        ServicesDemand.updateStatus(demandCode, "BacklogEdit").then((response: any) => {
+            // Notificação para o solicitante
+            ServicesNotification.save("Um analista devolveu a sua demanda de código  " + demand.demandCode, demand.requesterRegistration.workerCode, "info", "demand");
+            notifyGiveBack(); // Notificação para o analista
+            getDemand();
         }).catch((error: any) => {
             notifyError();
         })
@@ -355,6 +369,8 @@ export default function ViewDemand() {
     const [expenseOpen, setExpenseOpen] = useState(false);
     const [proposalScopeOpen, setProposalScopeOpen] = useState(false);
 
+    console.log(demand.demandStatus)
+
     return (
 
         <div className="view-demand">
@@ -382,7 +398,7 @@ export default function ViewDemand() {
                             )}
 
 
-                            {  /* Botões superiores 1 - Download e Edit */  (actionsDemand === 1) ? (
+                            {  /* Botões superiores 1 - Download e Edit */  demand.requesterRegistration.workerCode === workerId ? (
                                 <div className="display-flex">
                                     <button className="btn-primary" onClick={generatePDF}>
                                         <span className="material-symbols-outlined">
@@ -391,13 +407,15 @@ export default function ViewDemand() {
                                         <span>{t("generatePDF")}</span>
                                     </button>
 
-                                    <Link to={"/demand/edit/" + demandCode}>
-                                        <button className="btn-primary btn-download btn-mini">
-                                            <span className="material-symbols-outlined">
-                                                edit
-                                            </span>
-                                        </button>
-                                    </Link>
+                                    {demand.demandStatus === "BacklogEdit" &&
+                                        <Link to={"/demand/edit/" + demandCode}>
+                                            <button className="btn-primary btn-download btn-mini">
+                                                <span className="material-symbols-outlined">
+                                                    edit
+                                                </span>
+                                            </button>
+                                        </Link>
+                                    }
                                 </div>
                             ) :/* Botões superiores 2 - Reprovar e Classificar */  (actionsDemand === 2) ? (
                                 <div className="display-flex">
@@ -408,7 +426,7 @@ export default function ViewDemand() {
                                         </button>
                                     </Link>
 
-                                    <button className="btn-secondary">
+                                    <button onClick={() => giveBack()} className="btn-secondary">
                                         <span>{t("giveback")}</span>
                                     </button>
 
@@ -809,22 +827,26 @@ export default function ViewDemand() {
                             })}
 
 
+                            {demand.demandAttachment ? (
+                                <div className="attachments">
 
-                            <div className="attachments">
+                                    <p className="title">{t("attachments")}</p>
 
-                                <p className="title">{t("attachments")}</p>
-
-                                <a onClick={() => donwloadAttachment(demand.demandAttachment.dice, demand.demandAttachment.type, demand.demandAttachment.name)} download={"teste.jpg"} target="_blank">
-                                    <div className="attachment">
-                                        <div className="attachment-image">
-                                            <img src={"/attachment/" + attatchmentType() + ".png"} alt="" />
+                                    <a onClick={() => donwloadAttachment(demand.demandAttachment.dice, demand.demandAttachment.type, demand.demandAttachment.name)} download={"teste.jpg"} target="_blank">
+                                        <div className="attachment">
+                                            <div className="attachment-image">
+                                                <img src={"/attachment/" + attatchmentType() + ".png"} alt="" />
+                                            </div>
+                                            <span>{demand.demandAttachment.name}</span>
                                         </div>
-                                        <span>{demand.demandAttachment.name}</span>
-                                    </div>
-                                </a>
+                                    </a>
 
 
-                            </div>
+
+                                </div>
+                            ) : (
+                                <div className="null"></div>
+                            )}
 
 
                         </div>
@@ -992,6 +1014,18 @@ const notifyApprove = () => {
     });
 };
 
+function notifyGiveBack() {
+    toast.success('Demanda devolvida!', {
+        position: "bottom-right",
+        autoClose: 4000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+}
 
 const notifyError = () => {
     toast.error('Algo deu errado!', {
@@ -1005,5 +1039,6 @@ const notifyError = () => {
         theme: "light",
     });
 };
+
 
 

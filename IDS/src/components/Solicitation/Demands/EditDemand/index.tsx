@@ -236,6 +236,9 @@ export default function EscopeDemand() {
 		ServicesDemand.update(demandCode, demandTitle, demandProblem, demandObjective, costsCentersId, frequencyOfUse, realBenefitCode, potentialBenefitCode, qualitativeBenefitCode, file, demandDate, demandStatus, demandScore, demandRequester, demandClassification).then((response: any) => { 
 			console.log(response);
 
+			ServicesDemand.updateStatus(demandCode, "Backlog").then((response: any) => { });
+
+
 			if(url === "edit"){
 				localStorage.setItem("route", "edit");
 				navigate("/demand/view/" + demandCode);

@@ -23,7 +23,7 @@ export default function Situation(props: any) {
 
 
     const situation = () => {
-        if (props.situation === "Backlog") {
+        if (props.situation === "Backlog" || props.situation === "BacklogEdit") {
             return (<div className="situation-backlog">10%</div>);
         } else if (props.situation === "BacklogRanked") {
             return (<div className="situation-backlog-ranked">15%</div>);

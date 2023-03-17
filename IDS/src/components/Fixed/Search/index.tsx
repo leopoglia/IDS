@@ -14,32 +14,28 @@ export default function Search(props: any) {
 
     const { t } = useTranslation();
 
+    const [data, setData] = useState(false); // Estado da tabela (demanda, proposta, agenda, minuta)
+    const [filter, setFilter] = useState(false); // Estado do filtro
 
-    const [data, setData] = useState(false);
-    const [filter, setFilter] = useState(false);
 
-
+    // Se a tabela estiver aberta, fecha, se estiver fechada, abre
     const sendData = () => {
-        if (data === true) {
-            setData(false)
-        } else {
-            setData(true)
-        }
-        props.setTable(data);
+        const newData = !data;
+        setData(newData);
+        props.setTable(newData);
     }
 
+    // Se o filtro estiver aberto, fecha, se estiver fechado, abre
     const sendFilter = () => {
-        if (filter === true) {
-            setFilter(false)
-        } else {
-            setFilter(true)
-        }
+        const newFilter = !filter;
+        setFilter(newFilter);
 
         if (props.setFilter) {
-            props.setFilter(filter);
+            props.setFilter(newFilter);
         }
     }
 
+    // Verifica qual o título da página e retorna o placeholder do input de pesquisa
     const search = () => {
         if (props.title === "demands") {
             return t("searchSoliciation");
@@ -55,11 +51,13 @@ export default function Search(props: any) {
     const [name, setName] = useState<string | undefined>("")
     const [type, setType] = useState<string>("")
 
+    // Função que recebe os dados do filtro
     const callback = (name: string | undefined, type: string) => {
         setName(name)
         setType(type)
     }
 
+    // Função que envia os dados do filtro para o componente pai
     const onButtonPress = () => {
         props.onClick(name, type)
     }
@@ -112,8 +110,6 @@ export default function Search(props: any) {
                         {filter && <Filter onClick={callback} />}
                     </div>
                 </div>
-
-
             </div>
 
         </div>

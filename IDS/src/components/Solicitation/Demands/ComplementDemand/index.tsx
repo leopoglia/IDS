@@ -1,9 +1,8 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import { t } from "i18next"
 import Header from "../../../Fixed/Header"
 import Nav from "../../../Fixed/Nav"
 import Title from "../../../Fixed/Search/Title"
-import SelectSizeDemand from "../RankDemand/SelectSizeDemand"
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import './style.css'
@@ -25,7 +24,7 @@ export default function ComplementDemand() {
             notifyError();
         } else {
             ServicesDemand.findById(codeDemand).then((response) => {
-                let demand:any = response;
+                let demand: any = response;
 
                 Services.updateComplement(demand.classification.classificationCode, ppmCode, linkEpicJira).then((response) => {
                     ServicesDemand.updateStatus(codeDemand, "BacklogComplement").then((response) => {

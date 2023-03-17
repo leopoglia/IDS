@@ -3,8 +3,6 @@ import Header from "../../../../Fixed/Header"
 import Nav from "../../../../Fixed/Nav"
 import Title from "../../../../Fixed/Search/Title";
 import ProgressBar from "../ProgressBar";
-import Input from "../Input";
-import TextArea from "../TextArea";
 import ButtonAction from "../ButtonAction";
 import { useTranslation } from "react-i18next";
 import { useState, useEffect } from 'react';
@@ -18,10 +16,10 @@ export default function CreateDemands1() {
 
     const { t } = useTranslation();
     const navigate = useNavigate();
-    const [titleDemand, setTitleDemand]: any = useState("")
-    const [currentSituation, setCurrentSituation]: any = useState("")
-    const [objective, setObjective]: any = useState("")
 
+    const [titleDemand, setTitleDemand]: any = useState(""); // Titulo da demanda
+    const [currentSituation, setCurrentSituation]: any = useState(""); // Situação atual
+    const [objective, setObjective]: any = useState(""); // Objetivo
 
     useEffect(() => {
         let demand = JSON.parse(localStorage.getItem('demand') || '{}')

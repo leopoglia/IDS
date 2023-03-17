@@ -7,9 +7,9 @@ import UserContext from "../../../../context/userContext";
 
 
 export default function Demand(props: any) {
-    const worker: any = useContext(UserContext).worker;
-    const office = worker.office;
+
     const { t } = useTranslation();
+    const worker: any = useContext(UserContext).worker;
 
     const information = () => {
         if (props.type === "demand") {
@@ -54,7 +54,7 @@ export default function Demand(props: any) {
 
     const btnGenerateProposal = () => {
         if (props.situation === "BacklogComplement") {
-            if (office === "analyst" || office === "ti") {
+            if (worker.office === "analyst" || worker.office === "ti") {
                 return (
                     <Link to={"/proposal/demand/" + props.demandCode}>
                         <button className="btn-primary">{t("generateProposal")}</button>

@@ -5,8 +5,6 @@ import { useTranslation } from "react-i18next";
 export default function ButtonAction(props: any) {
 
     const { t } = useTranslation();
-    const url = window.location.href.split("/")[5];
-
 
     if (props.click === "voltar") {
         if (props.page === "0") {

@@ -7,7 +7,6 @@ import Footer from '../../Fixed/Footer';
 export default function Form() {
     const { t } = useTranslation();
 
-
     return (
 
         <div className="login">
@@ -38,7 +37,8 @@ export default function Form() {
                             <button type="submit">{t("send")}</button>
                         </Link>
                     </footer>
-                </form>        </div>
+                </form>
+            </div>
 
             <Footer />
 

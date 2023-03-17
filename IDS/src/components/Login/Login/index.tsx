@@ -11,7 +11,6 @@ export default function Login() {
         localStorage.setItem('i18nextLng', 'pt');
     }, []);
 
-
     return (
         <div className="login">
             <header className="header-login">
@@ -19,7 +18,7 @@ export default function Login() {
             </header>
 
             <div className="form">
-                <Form></Form>
+                <Form />
             </div>
 
             <Footer />

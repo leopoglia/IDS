@@ -10,47 +10,35 @@ export default function Nav() {
 
     const { t } = useTranslation();
 
-    const [nav, setNav] = useState(localStorage.getItem("nav") || "nav");
-    const [current, setCurrent] = useState("current");
-    const url = window.location.pathname.split("/")[1];
-    const worker: any = useContext(UserContext).worker;
-    const workerCode = worker.id;
-    const office = worker.office;
-    const [numNotification, setNumNotification]: any = useState(0);
+    const url = window.location.pathname.split("/")[1]; // Pega a url atual e separa por "/" e pega o primeiro item do array (que é a página atual)
+    const worker: any = useContext(UserContext).worker; // Pega o usuário logado
+    const [numNotification, setNumNotification]: any = useState(0); // Quantidade de notificações não lidas
+    const [nav, setNav] = useState(localStorage.getItem("nav") || "nav");  // Estado do menu
 
-
+    // Verifica qual página está sendo acessada e retorna a classe "current" para o item do menu
     function hover(li: string): string {
         if (url === li || url === li.substring(0, li.length - 1)) {
             return "current";
         } else {
             return "";
         }
-
     }
 
-    function toggleNav(): any {
-        if (nav === "nav") {
-            setNav("nav-open");
-            localStorage.setItem("nav", "nav-open");
-        } else {
-            setNav("nav");
-            localStorage.setItem("nav", "nav");
-        }
+    function toggleNav() {
+        const newNav = nav === "nav" ? "nav-open" : "nav"; // Verifica se o menu está aberto ou fechado
+        setNav(newNav); // Atualiza o estado do menu
+        localStorage.setItem("nav", newNav);
     }
 
     useEffect(() => {
-        if (localStorage.getItem("nav") === "nav-open") {
-            setNav("nav-open");
-        } else {
-            setNav("nav");
-        }
+        const navState = localStorage.getItem("nav") === "nav-open" ? "nav-open" : "nav"; // Verifica se o menu está aberto ou fechado
+        setNav(navState); // Atualiza o estado do menu
 
-
+        // Busca as notificações do usuário
         ServicesNotification.findAll().then((response: any) => {
             let num = 0;
-
             for (let i = 0; i < response.length; i++) {
-                if (response[i].worker.workerCode === workerCode) {
+                if (response[i].worker.workerCode === worker.id) {
                     if (response[i].visualized === false) {
                         num++;
                     }
@@ -58,13 +46,9 @@ export default function Nav() {
                 }
             }
             setNumNotification(num);
-
-
         }).catch((error: any) => {
             console.log(error);
         });
-
-
     }, []);
 
     return (
@@ -91,7 +75,7 @@ export default function Nav() {
                     </li>
                 </Link>
 
-                {(office === "analyst" || office === "ti") &&
+                {(worker.office === "analyst" || worker.office === "ti") &&
                     (<><Link to="/proposals/1">
                         <li id={hover("proposals")}>
                             <div>

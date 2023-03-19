@@ -312,7 +312,6 @@ tr td {
   overflow: hidden;
   text-overflow: ellipsis !important;
   position: relative;
-
   direction: ltr;
   font-size: var(--p);
 }

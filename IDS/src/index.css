@@ -319,7 +319,7 @@ hr {
   margin: 20px 0;
 }
 
-.w130{
+.w130 {
   width: 135px !important;
 }
 
@@ -417,14 +417,25 @@ hr {
   .container {
     padding: 20px 110px;
   }
+
+  .view-demand .Title,
+  .create-demands-1 .Title,
+  .create-demands-2 .Title,
+  .create-demands-3 .Title {
+    margin-bottom: 20px !important;
+  }
+
 }
+
+
+
 
 @media(max-width: 768px) {
   .container {
     padding: 20px 25px;
   }
 
-  .w130{
+  .w130 {
     width: auto !important;
     margin-left: -15px;
   }

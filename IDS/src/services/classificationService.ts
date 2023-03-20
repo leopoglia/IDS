@@ -2,7 +2,7 @@
 const url = "https://localhost:8443/api/classification"
 
 const Services = {
-    save: function (classificationSize: Number, itSection: String, ppmcode: Number, linkEpicJira: String, requesterBu: any, beneficiaryBu: any, analistRegistry: any, classificationAttachment: any) {
+    save: function (classificationSize: Number, itSection: String, ppmcode: Number, epicJiraLink: String, requesterBu: any, beneficiaryBu: any, analistRegistry: any, classificationAttachment: any) {
         var formData = new FormData();
 
         let beneficiaryBuList: any = [];
@@ -10,15 +10,14 @@ const Services = {
             beneficiaryBuList.push({ buCode: beneficiaryBu[i] })
         }
 
-        const classification = {
+        let classification = {
             "classificationSize": classificationSize,
             "itSection": itSection,
             "ppmCode": ppmcode,
-            "linkEpicJira": linkEpicJira,
+            "epicJiraLink": epicJiraLink,
             "analistRegistry": { workerCode: analistRegistry },
             "requesterBu": { buCode: requesterBu },
-            "beneficiaryBu": beneficiaryBuList,
-            "deadline": ""
+            "beneficiaryBu": beneficiaryBuList
         }
 
         console.log(classificationAttachment)
@@ -32,7 +31,7 @@ const Services = {
                 body: formData
             }).then(function (result) { return result.json(); })
                 .then(resolve)
-                .catch(resolve)
+                .catch(reject)
         })
     },
 

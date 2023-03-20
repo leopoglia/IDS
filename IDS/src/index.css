@@ -248,23 +248,6 @@ textarea:focus {
   border: 2px solid var(--blue19) !important;
 }
 
-.input-error {
-  border: 1px solid #d33649 !important;
-}
-
-.input-error::after {
-  content: "E-mail ou senha inválido";
-  margin-top: -15px;
-  position: absolute;
-  color: #d33649;
-  border: none;
-  font-size: var(--p);
-}
-
-.input-error:focus {
-  border: 2px solid var(--blue) !important;
-}
-
 .box input {
   width: 100%;
   height: var(--h);

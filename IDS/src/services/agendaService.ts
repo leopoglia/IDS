@@ -13,9 +13,9 @@ const Services = {
 
         console.log("PROPOSAL LIST ---> ", proposalList);
 
-        let comissionList: any = [];
+        let commissionList: any = [];
         for (let i = 0; i < commission.length; i++) {
-            comissionList.push({ comissionCode: commission[i] })
+            commissionList.push({ commissionCode: commission[i] })
         }
 
 
@@ -24,7 +24,7 @@ const Services = {
                 method: 'POST', body: JSON.stringify({
                     sequentialNumber: sequentialNumber,
                     yearAgenda: yearAgenda,
-                    commission: comissionList,
+                    commission: commissionList,
                     agendaDate: agendaDate,
                     proposals: proposalList
                 }), headers: { 'Content-Type': 'application/json' }

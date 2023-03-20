@@ -78,6 +78,7 @@
 
 .view-demand .btn-download {
     width: 45px !important;
+    min-width: 45px;
 }
 
 .view-demand .btn-mini {

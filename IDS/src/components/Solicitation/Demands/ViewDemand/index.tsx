@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext, JSXElementConstructor, ReactElement, ReactFragment, ReactPortal } from "react";
+import { useEffect, useState, useContext } from "react";
 import "./style.css"
 import Header from "../../../Fixed/Header"
 import Nav from "../../../Fixed/Nav"
@@ -10,7 +10,7 @@ import ServicesNotification from "../../../../services/notificationService";
 import ServicesAgenda from "../../../../services/agendaService";
 import ServicesExpense from "../../../../services/expenseService";
 import Footer from "../../../Fixed/Footer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
@@ -23,6 +23,7 @@ import Tooltip from '@mui/material/Tooltip';
 export default function ViewDemand() {
 
     const { t } = useTranslation();
+    const navigate = useNavigate();
 
     const worker: any = useContext(UserContext).worker; // Buscar dados do usuário
     const office = worker.office; // Buscar tipo de usuário
@@ -385,13 +386,11 @@ export default function ViewDemand() {
                                     </button>
 
                                     {demand.demandStatus === "BacklogEdit" &&
-                                        <Link to={"/demand/edit/" + demandCode}>
-                                            <button className="btn-primary btn-download btn-mini">
+                                            <button onClick={()=> {navigate("/demand/edit/" + demandCode)}} className="btn-primary btn-download btn-mini">
                                                 <span className="material-symbols-outlined">
                                                     edit
                                                 </span>
                                             </button>
-                                        </Link>
                                     }
                                 </div>
                             ) :/* Botões superiores 2 - Reprovar e Classificar */  (actionsDemand === 2) ? (

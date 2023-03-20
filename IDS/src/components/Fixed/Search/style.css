@@ -121,12 +121,15 @@
         margin-right: 0px;
         width: 100%;
     }
+
+    .background-title{
+        display: block !important;
+    }
 }
 
 @media(max-width: 768px) {
 
-    .search,
-    .background-title {
+    .search {
         display: block !important;
     }
 

@@ -293,3 +293,9 @@
         font-size: var(--pp);
     }
 } */
+
+@media(max-width: 1280px){
+    .view-demand .Title {
+        margin-bottom: 20px !important;
+    }
+}

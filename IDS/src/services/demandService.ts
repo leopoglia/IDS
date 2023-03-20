@@ -9,6 +9,8 @@ const Services = {
             costCenters.push({ "costCenterCode": costCenter[i] });
         }
 
+        console.log(demandAttachment)
+
         let demand = {
             "demandTitle": demandTitle,
             "currentProblem": currentProblem,

@@ -22,5 +22,11 @@
 @media(max-width: 768px) {
     .attachments label {
         width: 100%;
+        margin-right: 0px;
+        margin-bottom: 15px;
+    }
+
+    .attachments{
+        display: grid !important;
     }
 }

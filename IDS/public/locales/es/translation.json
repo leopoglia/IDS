@@ -187,5 +187,7 @@
     "dashboard": "Dashboard",
     "giveback": "Devolver",
     "editDemand": "Editar demanda",
-    "wrongEmailOrPassword": "Correo o contraseña incorrectos"
+    "wrongEmailOrPassword": "Correo o contraseña incorrectos",
+    "welcomeNotification": "Bienvenido a IDS, haga clic aquí para iniciar su visita."
+
 }

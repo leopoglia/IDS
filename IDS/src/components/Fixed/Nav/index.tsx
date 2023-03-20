@@ -50,7 +50,7 @@ export default function Nav() {
 
             if (numberNotification === 0) {
                 if (numNotification === 0) {
-                    ServicesNotification.save("Bem-vindo(a) ao IDS, clique aqui para começar sua visista.", JSON.parse(worker.id), "sentiment_satisfied", "presentation").then((response: any) => { })
+                    ServicesNotification.save("welcomeNotification", JSON.parse(worker.id), "sentiment_satisfied", "presentation").then((response: any) => { })
                     numberNotification++;
                     numNotificationVisualized++;
                 }

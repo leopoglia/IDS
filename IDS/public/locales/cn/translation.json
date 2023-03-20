@@ -189,5 +189,6 @@
     "dashboard": "儀表板",
     "giveback": "退回",
     "editDemand": "編輯需求",
-    "wrongEmailOrPassword": "電子郵件或密碼錯誤"
+    "wrongEmailOrPassword": "電子郵件或密碼錯誤",
+    "welcomeNotification": "歡迎來到 IDS，點擊這裡開始您的訪問"
 }

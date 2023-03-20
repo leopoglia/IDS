@@ -1,6 +1,7 @@
 import "./style.css"
 import Services from "../../../../services/notificationService"
 import { useNavigate } from "react-router"
+import { t } from "i18next"
 
 
 export default function Notification(props: any) {
@@ -66,7 +67,7 @@ export default function Notification(props: any) {
                 <span className="material-symbols-outlined">
                     {props.icon}
                 </span>
-                <span>{props.description}</span>
+                <span>{t(props.description)}</span>
             </div>
 
             <div className="date-horary">

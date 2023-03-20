@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import ServicesProposals from "../../../../services/proposalService";
 import Services from "../../../../services/agendaService";
 import SelectWorker from "../SelectWorker";
-import ServicesComission from "../../../../services/commissionService";
+import Servicescommission from "../../../../services/commissionService";
 
 export default function CreateAgenda() {
 
@@ -19,7 +19,7 @@ export default function CreateAgenda() {
 
     const [proposals, setProposals] = useState([]);
     const [agendaNumber, setAgendaNumber] = useState("");
-    const [comissionList, setComissionList]: any = useState([]);
+    const [commissionList, setcommissionList]: any = useState([]);
     const [commission, setCommission] = useState("");
     let actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear();
 
@@ -57,19 +57,19 @@ export default function CreateAgenda() {
 
     const saveAgenda = () => {
 
-        ServicesComission.findAll().then((response: any) => {
-            let comissionArray: any = [];
+        Servicescommission.findAll().then((response: any) => {
+            let commissionArray: any = [];
 
-            response.map((comission: any) => {
-                comissionList.map((comissionSelected: any) => {
-                    if (comission.comissionName === comissionSelected) {
-                        comissionArray.push(comission.comissionCode);
+            response.map((commission: any) => {
+                commissionList.map((commissionSelected: any) => {
+                    if (commission.commissionName === commissionSelected) {
+                        commissionArray.push(commission.commissionCode);
                     }
                 })
             })
 
 
-            Services.save(1, 1, comissionArray, actualDate, proposals).then((response: any) => {
+            Services.save(1, 1, commissionArray, actualDate, proposals).then((response: any) => {
                 console.log(response);
                 navigate("/agenda/view/" + response.agendaCode);
             })
@@ -85,19 +85,19 @@ export default function CreateAgenda() {
         if (worker === "") {
             alert("Digite um Worker");
         } else {
-            comissionList.push(worker);
-            setComissionList(comissionList);
+            commissionList.push(worker);
+            setcommissionList(commissionList);
             setCommission("");
         }
     }
 
     function deleteWorker(woker: any) {
         return () => {
-            const index = comissionList.indexOf(woker);
+            const index = commissionList.indexOf(woker);
             if (index > -1) {
-                comissionList.splice(index, 1);
+                commissionList.splice(index, 1);
             }
-            setComissionList(comissionList);
+            setcommissionList(commissionList);
 
             if (commission === " ") {
                 setCommission("");
@@ -186,7 +186,7 @@ export default function CreateAgenda() {
 
                     <div className="input">
 
-                        <div className="display-flex comission-flex">
+                        <div className="display-flex commission-flex">
                             <div className="w100">
                                 <span>Comissão</span>
                                 <SelectWorker setCommission={setCommission} worker={commission} />
@@ -198,7 +198,7 @@ export default function CreateAgenda() {
                         </div>
                     </div>
 
-                    {comissionList.map((worker: any) => {
+                    {commissionList.map((worker: any) => {
                         return <div className="costCenter">{worker}
                             <span className="material-symbols-outlined delete-cost-center" onClick={deleteWorker(worker)} >
                                 delete

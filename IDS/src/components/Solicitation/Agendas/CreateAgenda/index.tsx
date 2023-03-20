@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import ServicesProposals from "../../../../services/proposalService";
 import Services from "../../../../services/agendaService";
 import SelectWorker from "../SelectWorker";
-import ServicesWorker from "../../../../services/commissionService";
+import ServicesComission from "../../../../services/commissionService";
 
 export default function CreateAgenda() {
 
@@ -57,19 +57,19 @@ export default function CreateAgenda() {
 
     const saveAgenda = () => {
 
-        ServicesWorker.findAll().then((response: any) => {
-            let workers: any = [];
+        ServicesComission.findAll().then((response: any) => {
+            let comissionArray: any = [];
 
-            response.map((worker: any) => {
-                comissionList.map((workerSelected: any) => {
-                    if (worker.commissionName === workerSelected) {
-                        workers.push(worker.commissionCode);
+            response.map((comission: any) => {
+                comissionList.map((comissionSelected: any) => {
+                    if (comission.comissionName === comissionSelected) {
+                        comissionArray.push(comission.comissionCode);
                     }
                 })
             })
 
 
-            Services.save(1, 1, workers, actualDate, proposals).then((response: any) => {
+            Services.save(1, 1, comissionArray, actualDate, proposals).then((response: any) => {
                 console.log(response);
                 navigate("/agenda/view/" + response.agendaCode);
             })

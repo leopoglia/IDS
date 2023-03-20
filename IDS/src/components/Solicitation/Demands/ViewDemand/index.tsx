@@ -243,6 +243,7 @@ export default function ViewDemand() {
 
         ServicesAgenda.findById(demandCode).then((response: any) => {
             let proposals: any = [];
+            console.log(response)
             setComission(response[0].commission)
 
             for (let i = 0; i < response[0].proposals.length; i++) {

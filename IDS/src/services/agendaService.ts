@@ -3,6 +3,9 @@ const url = "https://localhost:8443/api/agenda";
 const Services = {
     save: function (sequentialNumber: Number, yearAgenda: Number, commission: any, agendaDate: String, proposals: any) {
 
+
+        console.log("commission ---> ", commission)
+
         let proposalList: any = [];
         for (let i = 0; i < proposals.length; i++) {
             proposalList.push({ proposalCode: proposals[i].proposalCode })
@@ -14,8 +17,6 @@ const Services = {
         for (let i = 0; i < commission.length; i++) {
             comissionList.push({ comissionCode: commission[i] })
         }
-
-        console.log("COMISSION LIST ---> ", comissionList);
 
 
         return new Promise((resolve, reject) => {

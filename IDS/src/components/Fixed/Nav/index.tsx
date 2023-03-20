@@ -36,20 +36,31 @@ export default function Nav() {
 
         // Busca as notificações do usuário
         ServicesNotification.findAll().then((response: any) => {
-            let num = 0;
+            let numNotificationVisualized = 0;
+            let numberNotification = 0;
             for (let i = 0; i < response.length; i++) {
                 if (response[i].worker.workerCode === worker.id) {
+                    numberNotification++;
                     if (response[i].visualized === false) {
-                        num++;
+                        numNotificationVisualized++;
                     }
 
                 }
             }
-            setNumNotification(num);
+
+            if (numberNotification === 0) {
+                if (numNotification === 0) {
+                    ServicesNotification.save("Bem-vindo(a) ao IDS, clique aqui para começar sua visista.", JSON.parse(worker.id), "sentiment_satisfied", "presentation").then((response: any) => { })
+                    numberNotification++;
+                    numNotificationVisualized++;
+                }
+            }
+
+            setNumNotification(numNotificationVisualized);
         }).catch((error: any) => {
             console.log(error);
         });
-    }, []);
+    }, [numNotification]);
 
     return (
         <nav className={nav}>

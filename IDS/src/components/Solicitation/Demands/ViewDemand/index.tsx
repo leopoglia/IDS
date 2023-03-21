@@ -110,6 +110,8 @@ export default function ViewDemand() {
         }
     }]);
 
+    const [agenda, setAgenda]: any = useState();
+
 
     // Chama função ao entrar na página
     useEffect(() => {
@@ -244,6 +246,9 @@ export default function ViewDemand() {
         ServicesAgenda.findById(demandCode).then((response: any) => {
             let proposals: any = [];
             setComission(response[0].commission)
+            setAgenda(response[0]);
+
+            console.log(response[0])
 
             for (let i = 0; i < response[0].proposals.length; i++) {
                 proposals.push(response[0].proposals[i])
@@ -892,7 +897,17 @@ export default function ViewDemand() {
 
                         <div className="box">
 
-                            <p>{t("proposal")}</p>
+                            <div className="agendaDate">
+                                <p>{t("dateAgenda")}</p>
+                                {agenda ? (
+                                    <span>{agenda.agendaDate}</span>
+                                ) : (
+                                    <p></p>
+                                )}
+                            </div>
+
+
+                            <p>{t("proposals")}</p>
 
 
 
@@ -902,8 +917,16 @@ export default function ViewDemand() {
                                     <Link key={val.proposalCode} to={"/proposal/view/" + val.proposalCode}>
                                         <div className="proposal-view">
 
-                                            <p>{val.proposalName}</p>
-                                            <span>
+                                            <div className="display-flex-space-between">
+                                                <p>{val.proposalName}</p>
+
+                                                <div className="code">
+                                                    {val.demand.demandCode}
+                                                </div>
+                                            </div>
+
+
+                                            <span className="proposalDescription">
                                                 {val.demand.demandObjective}
                                             </span>
 

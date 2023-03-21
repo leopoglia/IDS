@@ -287,10 +287,17 @@
     padding-left: 20px !important;
 }
 
+.view-demand .agendaDate {
+    margin-bottom: 20px;
+}
+
+.view-demand .proposalDescription {
+    color: black;
+}
+
 /* 
 @media(max-width: 768px) {
     .view-demand .box div span {
         font-size: var(--pp);
     }
 } */
-

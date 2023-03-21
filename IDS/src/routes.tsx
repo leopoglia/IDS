@@ -26,6 +26,7 @@ import CreateMinute from "./components/Solicitation/Minutes/CreateMinute";
 import Message from "./components/Others/Messages/Message";
 import Dashboard from "./components/Others/Dashboard";
 import EditDemand from "./components/Solicitation/Demands/EditDemand";
+import Error from "./components/Others/Error";
 import UserContext from "./context/userContext";
 import { useState, useEffect } from "react";
 import ServicesWorker from "./services/workerService";
@@ -111,6 +112,7 @@ export default function Router() {
                     <Route path="/minutes" element={<Demands />} />
                     <Route path="/minutes/create" element={<CreateMinute />} />
 
+                    <Route path="*" element={<Error />} />
                 </Routes>
             </BrowserRouter >
         </UserContext.Provider>

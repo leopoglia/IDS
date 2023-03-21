@@ -1,0 +1,31 @@
+.page404 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 150px;
+}
+
+.page404 {
+    font-size: calc(var(--g) + 5px);
+    color: var(--grey59);
+}
+
+.page404 .display-grid {
+    display: grid;
+    text-align: center;
+}
+
+.page404 p {
+    margin: 0px
+}
+
+.page404 .p404 {
+    font-size: calc(var(--gg) + 30px);
+    letter-spacing: 10px;
+    font-weight: 600;
+}
+
+.page404 .btn-primary{
+    width: 100%;
+    margin-top: 20px;
+}

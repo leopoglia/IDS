@@ -12,8 +12,7 @@ const Services = {
 
             fetch(url, {
                 method: 'POST',
-                body: formData,
-                headers: { 'Content-Type': 'application/json' }
+                body: formData
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(resolve)

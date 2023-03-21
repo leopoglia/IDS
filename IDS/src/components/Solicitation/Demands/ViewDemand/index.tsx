@@ -243,7 +243,6 @@ export default function ViewDemand() {
 
         ServicesAgenda.findById(demandCode).then((response: any) => {
             let proposals: any = [];
-            console.log(response)
             setComission(response[0].commission)
 
             for (let i = 0; i < response[0].proposals.length; i++) {
@@ -300,20 +299,37 @@ export default function ViewDemand() {
         setPdf(true);
     }
 
-    const attatchmentType = () => {
-        if (demand.demandAttachment.type === "image/png" || demand.demandAttachment.type === "image/jpeg") {
-            return "png";
-        } else if (demand.demandAttachment.type === "application/pdf") {
-            return "pdf";
-        } else if (demand.demandAttachment.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
-            return "word";
-        } else if (demand.demandAttachment.type === "application/msword" || demand.demandAttachment.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||
-            demand.demandAttachment.type === "application/vnd.ms-excel") {
-            return "excel";
-        } else if (demand.demandAttachment.type === "application/zip") {
-            return "zip";
-        } else if (demand.demandAttachment.type === "application/x-rar-compressed") {
-            return "rar";
+    const attatchmentType = (type: string) => {
+        if (type === "demand") {
+            if (demand.demandAttachment.type === "image/png" || demand.demandAttachment.type === "image/jpeg") {
+                return "png";
+            } else if (demand.demandAttachment.type === "application/pdf") {
+                return "pdf";
+            } else if (demand.demandAttachment.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
+                return "word";
+            } else if (demand.demandAttachment.type === "application/msword" || demand.demandAttachment.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||
+                demand.demandAttachment.type === "application/vnd.ms-excel") {
+                return "excel";
+            } else if (demand.demandAttachment.type === "application/zip") {
+                return "zip";
+            } else if (demand.demandAttachment.type === "application/x-rar-compressed") {
+                return "rar";
+            }
+        } else if (type === "classification") {
+            if (classification.classificationAttachment.type === "image/png" || classification.classificationAttachment.type === "image/jpeg") {
+                return "png";
+            } else if (classification.classificationAttachment.type === "application/pdf") {
+                return "pdf";
+            } else if (classification.classificationAttachment.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
+                return "word";
+            } else if (classification.classificationAttachment.type === "application/msword" || classification.classificationAttachment.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||
+                classification.classificationAttachment.type === "application/vnd.ms-excel") {
+                return "excel";
+            } else if (classification.classificationAttachment.type === "application/zip") {
+                return "zip";
+            } else if (classification.classificationAttachment.type === "application/x-rar-compressed") {
+                return "rar";
+            }
         }
     }
 
@@ -387,11 +403,11 @@ export default function ViewDemand() {
                                     </button>
 
                                     {demand.demandStatus === "BacklogEdit" &&
-                                            <button onClick={()=> {navigate("/demand/edit/" + demandCode)}} className="btn-primary btn-download btn-mini">
-                                                <span className="material-symbols-outlined">
-                                                    edit
-                                                </span>
-                                            </button>
+                                        <button onClick={() => { navigate("/demand/edit/" + demandCode) }} className="btn-primary btn-download btn-mini">
+                                            <span className="material-symbols-outlined">
+                                                edit
+                                            </span>
+                                        </button>
                                     }
                                 </div>
                             ) :/* Botões superiores 2 - Reprovar e Classificar */  (actionsDemand === 2) ? (
@@ -820,16 +836,31 @@ export default function ViewDemand() {
 
                                     <p className="title">{t("attachments")}</p>
 
-                                    <a onClick={() => donwloadAttachment(demand.demandAttachment.dice, demand.demandAttachment.type, demand.demandAttachment.name)} download={"teste.jpg"} target="_blank">
-                                        <div className="attachment">
-                                            <div className="attachment-image">
-                                                <img src={"/attachment/" + attatchmentType() + ".png"} alt="" />
+                                    <div className="display-flex">
+                                        <a onClick={() => donwloadAttachment(demand.demandAttachment.dice, demand.demandAttachment.type, demand.demandAttachment.name)} download={"teste.jpg"} target="_blank">
+                                            <div className="attachment">
+                                                <div className="attachment-image">
+                                                    <img src={"/attachment/" + attatchmentType("demand") + ".png"} alt="" />
+                                                </div>
+                                                <span>{demand.demandAttachment.name}</span>
                                             </div>
-                                            <span>{demand.demandAttachment.name}</span>
-                                        </div>
-                                    </a>
+                                        </a>
+                                        {
+                                            classification?.classificationAttachment ? (
+                                                <a onClick={() => donwloadAttachment(classification.classificationAttachment.dice, classification.classificationAttachment.type, classification.classificationAttachment.name)} download={"teste.jpg"} target="_blank">
+                                                    <div className="attachment">
+                                                        <div className="attachment-image">
+                                                            <img src={"/attachment/" + attatchmentType("classification") + ".png"} alt="" />
+                                                        </div>
+                                                        <span>{classification.classificationAttachment.name}</span>
+                                                    </div>
+                                                </a>
+                                            ) : (
+                                                <div></div>
+                                            )
+                                        }
 
-
+                                    </div>
 
                                 </div>
                             ) : (

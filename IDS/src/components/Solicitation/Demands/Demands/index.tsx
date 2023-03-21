@@ -192,8 +192,8 @@ export default function Demands() {
                     {presentation && (
                         <div>
                             <Presentation />
-                            <button className="btn-secondary btn-presentation">
-                                <div onClick={() => { closePresentation() }} className="material-symbols-outlined">
+                            <button onClick={() => { closePresentation() }} className="btn-secondary btn-presentation">
+                                <div className="material-symbols-outlined">
                                     close
                                 </div>
                             </button>

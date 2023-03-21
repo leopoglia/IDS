@@ -14,10 +14,6 @@
     z-index: 12 !important;
 }
 
-.presentation-2 .bubble {
-    border: 1px solid var(--greyC4);
-}
-
 .bia {
     margin-right: 50px;
     margin-left: 150px;

@@ -837,24 +837,28 @@ export default function ViewDemand() {
                                     <p className="title">{t("attachments")}</p>
 
                                     <div className="display-flex">
-                                        <a onClick={() => donwloadAttachment(demand.demandAttachment.dice, demand.demandAttachment.type, demand.demandAttachment.name)} download={"teste.jpg"} target="_blank">
-                                            <div className="attachment">
-                                                <div className="attachment-image">
-                                                    <img src={"/attachment/" + attatchmentType("demand") + ".png"} alt="" />
+                                        <Tooltip title={demand.demandAttachment.name} arrow>
+                                            <a onClick={() => donwloadAttachment(demand.demandAttachment.dice, demand.demandAttachment.type, demand.demandAttachment.name)} download={"teste.jpg"} target="_blank">
+                                                <div className="attachment">
+                                                    <div className="attachment-image">
+                                                        <img src={"/attachment/" + attatchmentType("demand") + ".png"} alt="" />
+                                                    </div>
+                                                    <span>{demand.demandAttachment.name}</span>
                                                 </div>
-                                                <span>{demand.demandAttachment.name}</span>
-                                            </div>
-                                        </a>
+                                            </a>
+                                        </Tooltip>
                                         {
                                             classification?.classificationAttachment ? (
-                                                <a onClick={() => donwloadAttachment(classification.classificationAttachment.dice, classification.classificationAttachment.type, classification.classificationAttachment.name)} download={"teste.jpg"} target="_blank">
-                                                    <div className="attachment">
-                                                        <div className="attachment-image">
-                                                            <img src={"/attachment/" + attatchmentType("classification") + ".png"} alt="" />
+                                                <Tooltip title={classification.classificationAttachment.name} arrow>
+                                                    <a onClick={() => donwloadAttachment(classification.classificationAttachment.dice, classification.classificationAttachment.type, classification.classificationAttachment.name)} download={"teste.jpg"} target="_blank">
+                                                        <div className="attachment">
+                                                            <div className="attachment-image">
+                                                                <img src={"/attachment/" + attatchmentType("classification") + ".png"} alt="" />
+                                                            </div>
+                                                            <span>{classification.classificationAttachment.name}</span>
                                                         </div>
-                                                        <span>{classification.classificationAttachment.name}</span>
-                                                    </div>
-                                                </a>
+                                                    </a>
+                                                </Tooltip>
                                             ) : (
                                                 <div></div>
                                             )

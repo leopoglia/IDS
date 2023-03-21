@@ -11,7 +11,7 @@ export default function Presentation() {
     const linesPresentation = [
         { title: "widsPresentation", description: "introduceSystem" },
         { title: "demandPage", description: "thisIsDemandPage" },
-        { title: "createDemand", description: "Tente criar uma demanda clicando em Criar Demanda" }
+        { title: "createDemand", description: "Tente criar uma demanda clicando em Criar Demanda." }
     ]
     
     console.log(stepPresentation)

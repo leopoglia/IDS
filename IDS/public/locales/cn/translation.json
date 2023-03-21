@@ -194,5 +194,7 @@
     "welcomeNotification": "歡迎來到 IDS，點擊這裡開始您的訪問",
     "widsPresentation": "嗨，我是維茲！",
     "introduceSystem": "我將向您介紹系統",
-    "demandPage": "這是需求頁面"
+    "demandPage": "這是需求頁面",
+    "thisIsDemandPage": "在這裡，您可以查看您創建的需求以及您所在行業的其他人創建的需求。",
+    "createDemandHere": "嘗試通過單擊創建需求來創建需求。"
 }

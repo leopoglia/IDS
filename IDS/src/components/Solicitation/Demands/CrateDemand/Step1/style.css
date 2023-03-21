@@ -26,9 +26,8 @@
     margin-bottom: 10px;
     padding: 10px;
     padding-right: 5px;
-    height: 40px;
-    background-color: var(--greyF7);
-    border: 1px solid var(--greyE5);
+    height: 42px;
+    border: 1px solid var(--greyC4);
     border-radius: var(--r);
 }
 
@@ -39,14 +38,14 @@
     align-items: center;
     justify-content: center;
     border-radius: var(--r);
-    background-color: var(--greyE5);
+    background-color: var(--greyF7);
     font-size: 20px;
     color: var(--grey59);
     cursor: pointer;
 }
 
 .costCenter .delete-cost-center:hover {
-    background-color: var(--greyC4);
+    background-color: var(--greyE5);
 }
 
 .text-area {

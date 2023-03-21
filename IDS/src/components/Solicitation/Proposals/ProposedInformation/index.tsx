@@ -17,13 +17,13 @@ export default function ProposedInformation() {
 
     const demandCode = parseInt(window.location.href.split("/")[5]);
 
-    const [respnosibleAnalyst, setResponsibleAnalyst] = useState("");
-    const [responsibleArea, setResponsibleArea] = useState("");
+    const [responsibleBussiness, setResponsibleBussiness]: any = useState("");
+    const [responsiblesBussiness, setResponsiblesBussiness]: any = useState([]);
     const [start, setStart] = useState("");
     const [end, setEnd] = useState("");
     const [fileAttachment, setFileAttachment]: any = useState();
 
-    let proposal = {respnosibleAnalyst, responsibleArea, start, end, fileAttachment}
+    let proposal = { responsiblesBussiness, start, end, fileAttachment }
     localStorage.setItem('proposal', JSON.stringify(proposal));
 
     const handleFileSelected = (e: any): void => {
@@ -31,9 +31,33 @@ export default function ProposedInformation() {
         setFileAttachment(files[0])
     }
 
+    const addResponsible = () => {
+
+        if (responsibleBussiness !== "") {
+            responsiblesBussiness.push(responsibleBussiness);
+        } else{
+            notifyResponsible();
+        }
+
+
+        setResponsibleBussiness("");
+    }
+
+    const deleteResponsible = (responsible: any): any => {
+        let index = responsiblesBussiness.indexOf(responsible);
+        responsiblesBussiness.splice(index, 1);
+        setResponsiblesBussiness(responsiblesBussiness);
+
+        if (responsibleBussiness === "") {
+            setResponsibleBussiness(" ");
+        } else {
+            setResponsibleBussiness("");
+        }
+    }
+
 
     const nextStep = () => {
-        if (respnosibleAnalyst === "" || responsibleArea === "" || end === "" || start === "") {
+        if (responsiblesBussiness === "" || responsiblesBussiness === "" || end === "" || start === "") {
             notify();
         } else {
             navigate('/proposal/execution-costs/' + demandCode);
@@ -57,39 +81,47 @@ export default function ProposedInformation() {
                 <div className="box">
 
 
-                    <div className="display-flex">
-                        <p>{t("responsiblesForTheProject")}</p>
-                    </div>
-
-
                     <div className="display-flex-grid">
-                        <div className="one">
-                            <label>{t("responsibleBussiness")} *</label>
-                            <input type="text" onChange={(e) => {setResponsibleAnalyst(e.target.value)}} />
-                        </div>
-
                         <div className="display-flex">
-                            <div>
-                                <label>{t("responsibleArea")}</label>
-                                <input type="text" onChange={(e) => {setResponsibleArea(e.target.value)}} />
-                            </div>
 
-                            {/* addCostCenter(costCenter); handleChange(costCenter, 'costCenter'); */}
-                            <div className="btn-primary w45" onClick={() => { }}>
+                            <div>
+                                <label>{t("responsibleBussiness")} *</label>
+                                <input type="text" onChange={(e) => { setResponsibleBussiness(e.target.value) }} />
+                            </div>
+                            <div className="btn-primary w45" onClick={addResponsible}>
                                 <span className="material-symbols-outlined">add</span>
                             </div>
                         </div>
+
+                    </div>
+
+                    <div>
+
+                        {
+                            responsiblesBussiness.map((responsible: any, index: number) => {
+                                return (
+                                    <div className="costCenter" key={index}>
+                                        {responsible}
+
+                                        <span className="material-symbols-outlined delete-cost-center" onClick={deleteResponsible}>
+                                            delete
+                                        </span>
+                                    </div>
+                                )
+                            })
+                        }
+
                     </div>
 
                     <div className="display-flex-grid">
                         <div className="one">
                             <label>{t("start")} *</label>
-                            <input type="date" onChange={(e) => {setStart(e.target.value)}} />
+                            <input type="date" onChange={(e) => { setStart(e.target.value) }} />
                         </div>
 
                         <div>
                             <label>{t("end")} *</label>
-                            <input type="date" onChange={(e) => {setEnd(e.target.value)}} />
+                            <input type="date" onChange={(e) => { setEnd(e.target.value) }} />
                         </div>
                     </div>
 
@@ -119,13 +151,26 @@ export default function ProposedInformation() {
             </div>
             <ToastContainer position="bottom-right" newestOnTop />
 
-        </div>
+        </div >
     );
 }
 
 // Notificação de erro ao preencher os campos obrigatórios
 const notify = () => {
     toast.error('Preencha todos os campos!', {
+        position: "bottom-right",
+        autoClose: 4000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+};
+
+const notifyResponsible = () => {
+    toast.error('Adicione um responsavel', {
         position: "bottom-right",
         autoClose: 4000,
         hideProgressBar: true,

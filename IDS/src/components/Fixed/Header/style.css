@@ -59,10 +59,11 @@
     margin-right: 10px;
 }
 
+
 @media(max-width: 768px) {
     .header .title {
         display: none;
     }
 
-    
+
 }

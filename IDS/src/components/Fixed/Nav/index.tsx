@@ -165,7 +165,7 @@ export default function Nav() {
                     </li>
                 </ Link>
 
-                <Link to="/configuration">
+                {/* <Link to="/configuration">
                     <li id={hover("configuration")}>
                         <div>
                             <span className="material-symbols-outlined">
@@ -174,7 +174,7 @@ export default function Nav() {
                             <span className="title-li">{t("configurations")}</span>
                         </div>
                     </li>
-                </Link>
+                </Link> */}
 
                 <Link to="/">
                     <li className="logout">

@@ -32,50 +32,48 @@ export default function Configuration() {
                     <Title nav="configurations" title="configurations" />
                 </div>
 
-                <div className="container-background">
-                    <div className="box">
-                        <div className="profile">
-                            <div className="picture-profile">{image}</div>
-                            <div className="email-name">
-                                <div className="flex">
-                                    <span className="name">{name}</span>
-                                    <span className="material-symbols-outlined">
-                                        edit
-                                    </span>
-                                </div>
-                                <span className="email">{email}</span>
-                            </div>
-                        </div>
-
-                        <div className="change-configuration">
+                <div className="box">
+                    <div className="profile">
+                        <div className="picture-profile">{image}</div>
+                        <div className="email-name">
                             <div className="flex">
-                                <span className="title-confuration">{t("password")}</span>
+                                <span className="name">{name}</span>
                                 <span className="material-symbols-outlined">
                                     edit
                                 </span>
                             </div>
+                            <span className="email">{email}</span>
+                        </div>
+                    </div>
 
-                            <div className="display-flex">
-                                <span className="subtitle-confuration">{t("changePassword")}</span>
-
-                                <input type="password" className="input-password" value={"123456789124354235423516534424354235234532345678"} disabled />
-                            </div>
+                    <div className="change-configuration">
+                        <div className="flex">
+                            <span className="title-confuration">{t("password")}</span>
+                            <span className="material-symbols-outlined">
+                                edit
+                            </span>
                         </div>
 
-                        <div className="change-configuration">
-                            <span className="title-confuration">{t("notifications")}</span>
+                        <div className="display-flex">
+                            <span className="subtitle-confuration">{t("changePassword")}</span>
 
-                            <div className="display-flex">
-                                <span className="subtitle-confuration">{t("messagesNotify")}</span>
+                            <input type="password" className="input-password" value={"123456789124354235423516534424354235234532345678"} disabled />
+                        </div>
+                    </div>
 
-                                <div className="switch">
-                                    <input type="checkbox" id="switch" name="switch" />
-                                    <label htmlFor="switch" />
-                                </div>
+                    <div className="change-configuration">
+                        <span className="title-confuration">{t("notifications")}</span>
 
+                        <div className="display-flex">
+                            <span className="subtitle-confuration">{t("messagesNotify")}</span>
+
+                            <div className="switch">
+                                <input type="checkbox" id="switch" name="switch" />
+                                <label htmlFor="switch" />
                             </div>
 
                         </div>
+
                     </div>
 
 

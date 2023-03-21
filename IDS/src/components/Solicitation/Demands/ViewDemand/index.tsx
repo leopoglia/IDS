@@ -964,7 +964,7 @@ export default function ViewDemand() {
                         </div>
 
                         <div className="display-flex-end">
-                            <Link to="/minutes/create">
+                            <Link to={"/minutes/create/" + demandCode}>
                                 <button className="btn-primary">{t("finish")}</button>
                             </Link>
                         </div>

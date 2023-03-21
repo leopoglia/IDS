@@ -924,7 +924,7 @@ export default function ViewDemand() {
                                         {comission.map((val: any, index: any) => (
                                             <tr key={index}>
                                                 <td className="display-flex-start pl20">
-                                                    {val.workerName}
+                                                    {val.commissionName}
                                                 </td>
                                             </tr>
 

@@ -3,21 +3,15 @@ const url = "https://localhost:8443/api/agenda";
 const Services = {
     save: function (sequentialNumber: Number, yearAgenda: Number, commission: any, agendaDate: String, proposals: any) {
 
-
-        console.log("commission ---> ", commission)
-
         let proposalList: any = [];
         for (let i = 0; i < proposals.length; i++) {
             proposalList.push({ proposalCode: proposals[i].proposalCode })
         }
 
-        console.log("PROPOSAL LIST ---> ", proposalList);
-
         let commissionList: any = [];
         for (let i = 0; i < commission.length; i++) {
             commissionList.push({ commissionCode: commission[i] })
         }
-
 
         return new Promise((resolve, reject) => {
             fetch(url, {

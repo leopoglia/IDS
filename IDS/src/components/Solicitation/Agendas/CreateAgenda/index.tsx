@@ -186,7 +186,7 @@ export default function CreateAgenda() {
 
                     <div className="input">
 
-                        <div className="display-flex commission-flex">
+                        <div className="commission-flex">
                             <div className="w100">
                                 <span>Comissão</span>
                                 <SelectWorker setCommission={setCommission} worker={commission} />

@@ -5,7 +5,7 @@ import { Autocomplete, Stack, TextField } from '@mui/material';
 
 export default function FreeSolo(props: any) {
 
-    const [commission, setCommission] = useState([{ comissionName: "" }]);
+    const [commission, setCommission] = useState([{ commissionName: "" }]);
 
     useEffect(() => {
         getWorker();
@@ -34,7 +34,7 @@ export default function FreeSolo(props: any) {
                     freeSolo
                     id="free-solo-2-demo"
                     disableClearable
-                    options={commission.map((commission) => commission.comissionName)}
+                    options={commission.map((commission) => commission.commissionName)}
                     value={props.commission}
                     onChange={(e: any) => handleChange(e, 'auto')}
                     renderInput={(params: any) => (

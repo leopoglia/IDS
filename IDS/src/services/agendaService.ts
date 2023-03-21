@@ -10,7 +10,7 @@ const Services = {
 
         let commissionList: any = [];
         for (let i = 0; i < commission.length; i++) {
-            commissionList.push({ commissionCode: commission[i] })
+            commissionList.push({ commissionCode: commission[i].commissionCode })
         }
 
         return new Promise((resolve, reject) => {

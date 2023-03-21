@@ -92,7 +92,7 @@ export default function Search(props: any) {
 
                 <div className="display-flex">
                     <Link to={props.link}>
-                        <button className="btn-primary">
+                        <button className="btn-primary btn-create-demand">
                             <span className="material-symbols-outlined">
                                 add
                             </span>

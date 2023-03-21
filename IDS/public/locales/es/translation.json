@@ -188,6 +188,8 @@
     "giveback": "Devolver",
     "editDemand": "Editar demanda",
     "wrongEmailOrPassword": "Correo o contraseña incorrectos",
-    "welcomeNotification": "Bienvenido a IDS, haga clic aquí para iniciar su visita."
-
+    "welcomeNotification": "Bienvenido a IDS, haga clic aquí para iniciar su visita.",
+    "widsPresentation": "¡Hola, soy Wids!",
+    "introduceSystem": "Te voy a presentar el sistema",
+    "demandPage": "Esta é a pagina de demandas"
 }

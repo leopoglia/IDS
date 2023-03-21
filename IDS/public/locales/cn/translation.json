@@ -190,5 +190,8 @@
     "giveback": "退回",
     "editDemand": "編輯需求",
     "wrongEmailOrPassword": "電子郵件或密碼錯誤",
-    "welcomeNotification": "歡迎來到 IDS，點擊這裡開始您的訪問"
+    "welcomeNotification": "歡迎來到 IDS，點擊這裡開始您的訪問",
+    "widsPresentation": "嗨，我是維茲！",
+    "introduceSystem": "我將向您介紹系統",
+    "demandPage": "這是需求頁面"
 }

@@ -3,6 +3,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
 }
 
 .search {
@@ -84,6 +85,11 @@
 
 .size-20 {
     font-size: 15px;
+}
+
+.btn-create-demand{
+    position: relative;
+    z-index: 13;
 }
 
 @media(max-width: 1280px) {

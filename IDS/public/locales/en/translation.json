@@ -189,5 +189,8 @@
     "giveback": "Giveback",
     "editDemand": "Edit demand",
     "wrongEmailOrPassword": "Wrong email or password",
-    "welcomeNotification": "Welcome to IDS, click here to start your visit."
+    "welcomeNotification": "Welcome to IDS, click here to start your visit.",
+    "widsPresentation": "Hi, I'm Wids!",
+    "introduceSystem": "I will introduce the system to you",
+    "demandPage": "This is the demand page"
 }

@@ -14,12 +14,15 @@ import { toast, ToastContainer } from 'react-toastify';
 import { useTranslation } from "react-i18next";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import Presentation from "./Presentation";
 
 export default function Demands() {
     const url = window.location.href.split("/");
     let findDemands: any;
     let navigate = useNavigate();
     const { t } = useTranslation();
+
+    const [presentation, setPresentation] = useState(localStorage.getItem("presentation") === "true" ? true : false);
 
     const [table, setTableList] = useState(false); // Estado para mostrar a tabela de demandas
     const [search, setSearch]: any = useState(""); // Retorno do campo de busca de demandas
@@ -165,8 +168,14 @@ export default function Demands() {
         setType(type)
     }
 
+    const closePresentation = () => {
+        setPresentation(false);
+        localStorage.removeItem("presentation");
+    }
+
     return (
         <div className="solicitation">
+
             {minute && (
                 <div className="background-minute" onClick={() => setMinute(false)}>
                     <div className="minute">
@@ -179,6 +188,17 @@ export default function Demands() {
 
             {(url[3] === "demands") ? (
                 <div className="demands">
+
+                    {presentation && (
+                        <div>
+                            <Presentation />
+                            <button className="btn-secondary btn-presentation">
+                                <div onClick={() => { closePresentation() }} className="material-symbols-outlined">
+                                    close
+                                </div>
+                            </button>
+                        </div>)}
+
                     <Header />
                     <Nav />
                     <div className="container">

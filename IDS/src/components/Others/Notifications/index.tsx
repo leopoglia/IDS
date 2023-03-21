@@ -27,12 +27,6 @@ export default function Notifications() {
     return (
         <div className="notifications">
 
-            {/* <div className="barrier"></div>
-            <img className="bia" src="https://i.imgur.com/r004kLD.png"></img>
-            <div className="bubble modal">
-                {speaks[0]}
-            </div> */}
-
             <Header />
             <Nav />
 

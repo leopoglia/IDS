@@ -54,7 +54,12 @@ export default function Notification(props: any) {
 
     function viewNotification() {
         Services.updateNotificationVisualized(props.id).then((response: any) => {
+            if(props.type !== "presentation"){
             navigate('/' + props.type + '/view/' + props.description[props.description.length - 1], { replace: true });
+            } else {
+                navigate('/demands/1')
+                localStorage.setItem("presentation", "true")
+            }
         }).catch((error: any) => {
             console.log(error)
         })

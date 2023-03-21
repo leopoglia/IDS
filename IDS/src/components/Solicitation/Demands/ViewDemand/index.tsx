@@ -145,6 +145,9 @@ export default function ViewDemand() {
 
     }, [url, demand.demandStatus]);
 
+
+    console.log(proposal)
+
     function getDemand() {
         ServicesDemand.findById(demandCode).then((response: any) => {
             setDemand(response)

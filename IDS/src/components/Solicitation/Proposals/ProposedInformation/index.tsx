@@ -23,8 +23,7 @@ export default function ProposedInformation() {
     const [end, setEnd] = useState("");
     const [fileAttachment, setFileAttachment]: any = useState();
 
-    let proposal = { responsiblesBussiness, start, end, fileAttachment }
-    localStorage.setItem('proposal', JSON.stringify(proposal));
+
 
     const handleFileSelected = (e: any): void => {
         const files = Array.from(e.target.files)
@@ -35,7 +34,7 @@ export default function ProposedInformation() {
 
         if (responsibleBussiness !== "") {
             responsiblesBussiness.push(responsibleBussiness);
-        } else{
+        } else {
             notifyResponsible();
         }
 
@@ -57,6 +56,9 @@ export default function ProposedInformation() {
 
 
     const nextStep = () => {
+        let proposal = { responsiblesBussiness, start, end, fileAttachment }
+        localStorage.setItem('proposal', JSON.stringify(proposal));
+        
         if (responsiblesBussiness === "" || responsiblesBussiness === "" || end === "" || start === "") {
             notify();
         } else {

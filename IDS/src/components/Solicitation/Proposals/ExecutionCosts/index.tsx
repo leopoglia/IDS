@@ -8,18 +8,18 @@ import "./style.css"
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
-import ButtonAction from "../../Demands/CrateDemand/ButtonAction";
-import { useEffect, useState } from "react";
+import { useState, useContext } from "react";
 import Services from "../../../../services/costCenterService";
-import ServicesDemand from "../../../../services/demandService";
 import ProposalServices from "../../../../services/proposalService";
 import DemandService from "../../../../services/demandService";
 import ExpenseService from "../../../../services/expenseService";
+import UserContext from "../../../../context/userContext";
 
 export default function ExecutionCosts() {
     const { t } = useTranslation();
     const navigate = useNavigate();
 
+    const worker = useContext(UserContext).worker;
     const [costCenter, setCostCenter] = useState("");
     const [costsCenters, setCostsCenters]: any = useState([]);
     const [demandCode, setDemandCode] = useState(parseInt(window.location.href.split("/")[5]));
@@ -97,7 +97,7 @@ export default function ExecutionCosts() {
         if (costsCenters.length === 0) {
             notify()
         } else {
-            ProposalServices.save(demandData.demandTitle, "Pending", 1, proposal.start, proposal.end, scope, proposal.respnosibleAnalyst, 0, "", totalsCosts, externalCosts, internalCosts, demandCode, actualDate).then((proposal: any) => {
+            ProposalServices.save(demandData.demandTitle, "Pending", 1, proposal.start, proposal.end, scope, worker.id, 0, proposal.responsiblesBussiness, totalsCosts, externalCosts, internalCosts, demandCode, actualDate).then((proposal: any) => {
                 DemandService.updateStatus(demandCode, "Assesment");
                 localStorage.removeItem('proposal');
 

@@ -1,21 +1,20 @@
-const url = "https://localhost:8443/api/minute";
+const url = "https://localhost:8443/api/minutes";
 
 const Services = {
 
-    save: function (minuteName: String, minuteProblem: String, attachment: any, agenda: Number) {
+    save: function (minuteName: String, agenda: Number, minuteStartDate:any) {
+
         return new Promise((resolve, reject) => {
-
-            var formData = new FormData();
-            let minute = { "minuteName": minuteName, "minuteProblem": minuteProblem, "agenda": { agendaCode: agenda } }
-            formData.append('minute', JSON.stringify(minute));
-            formData.append('attachment', attachment);
-
             fetch(url, {
-                method: 'POST',
-                body: formData
+                method: 'POST', body: JSON.stringify({
+                    minuteName: minuteName,
+                    agenda: agenda,
+                    minuteStartDate: minuteStartDate,
+                    minuteEndDate: minuteStartDate
+                }), headers: { 'Content-Type': 'application/json' }
             }).then(function (result) { return result.json(); })
                 .then(resolve)
-                .catch(resolve)
+                .catch(reject)
         })
     },
     findAll: async function () {

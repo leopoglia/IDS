@@ -65,6 +65,14 @@ export default function Demands() {
                     setAgendas(res);
                 });
             }
+        }else if (url[3] === "minutes") {
+            if (search === "") {
+                getAgendas(); // Busca as demandas cadastradas
+            } else {
+                ServicesAgenda.findAll().then((res: any) => {
+                    setAgendas(res);
+                });
+            }
         }
 
 

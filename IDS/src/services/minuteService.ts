@@ -2,15 +2,15 @@ const url = "https://localhost:8443/api/minutes";
 
 const Services = {
 
-    save: function (minuteName: String, agenda: Number, minuteStartDate:any) {
+    save: function (minuteName: String, agenda: any, minuteStartDate:any) {
 
         return new Promise((resolve, reject) => {
             fetch(url, {
                 method: 'POST', body: JSON.stringify({
                     minuteName: minuteName,
-                    agenda: agenda,
+                    agenda: {agendaCode: agenda},
                     minuteStartDate: minuteStartDate,
-                    minuteEndDate: minuteStartDate
+                    minuteEndDate: null
                 }), headers: { 'Content-Type': 'application/json' }
             }).then(function (result) { return result.json(); })
                 .then(resolve)

@@ -16,7 +16,6 @@ export default function CreateMinute() {
     console.log(code);
 
     function saveMinute() {
-        console.log("oi" + actualDate);
         MinuteService.save("minute 01", code, actualDate);
     }
  

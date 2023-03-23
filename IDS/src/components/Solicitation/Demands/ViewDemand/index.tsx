@@ -735,12 +735,18 @@ export default function ViewDemand() {
                                                         <td>{classification.requesterBu.bu}</td>
                                                     </Tooltip>
 
-                                                    <Tooltip title={classification.beneficiaryBu.map((bu: any) => bu.bu)} arrow>
+                                                    <Tooltip title={classification.beneficiaryBu.map((bu: any, index: any) => bu.bu)} arrow>
                                                         <td>
-                                                            {classification.beneficiaryBu.map((bu: any) => {
-                                                                return (
-                                                                    <div>{bu.bu}</div>
-                                                                )
+                                                            {classification.beneficiaryBu.map((bu: any, index: any) => {
+                                                                if (index !== classification.beneficiaryBu.length - 1) {
+                                                                    return (
+                                                                        <>{bu.bu}, </>
+                                                                    )
+                                                                } else {
+                                                                    return (
+                                                                        <>{bu.bu}</>
+                                                                    )
+                                                                }
                                                             })
 
                                                             }

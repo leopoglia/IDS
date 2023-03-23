@@ -3,6 +3,10 @@
     margin-left: 0px;
 }
 
+.rank-demand .attachments label{
+    margin-right: 20px
+}
+
 .select-bu{
     width: 100%;
 }

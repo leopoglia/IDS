@@ -203,14 +203,18 @@ export default function RankDemand() {
 
                     <div>
 
-                        <label htmlFor="">{t("attachments")} </label>
+                        <div className="attachments display-flex">
 
-                        <div className="attachments">
-                            <input type="file" id="file" onChange={handleFileSelected} />
-                            <label htmlFor="file">
-                                <span className="material-symbols-outlined">
-                                    upload_file
-                                </span>{t("sendAttachment")}</label>
+
+                            <div className='display-block'>
+                                <span>{t("attachments")}</span>
+
+                                <input type="file" id="file" onChange={handleFileSelected} />
+                                <label htmlFor="file">
+                                    <span className="material-symbols-outlined">
+                                        upload_file
+                                    </span>{t("sendAttachment")}</label>
+                            </div>
 
                             {
                                 fileAttachment.map((file: any, index: any) => {

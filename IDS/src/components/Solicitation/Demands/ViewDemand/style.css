@@ -295,6 +295,12 @@
     color: black;
 }
 
+.view-demand .buBenifitedTd{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 /* 
 @media(max-width: 768px) {
     .view-demand .box div span {

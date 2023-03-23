@@ -735,17 +735,18 @@ export default function ViewDemand() {
                                                         <td>{classification.requesterBu.bu}</td>
                                                     </Tooltip>
 
-                                                    <Tooltip title={classification.beneficiaryBu.map((bu: any) => bu.bu)} arrow>
-                                                        <td>
-                                                            {classification.beneficiaryBu.map((bu: any) => {
-                                                                return (
-                                                                    <div>{bu.bu}</div>
-                                                                )
-                                                            })
+                                                    <td>
+                                                        {classification.beneficiaryBu.map((bu: any, index: any) => {
+                                                            return (
+                                                                <Tooltip title={bu.bu} arrow>
+                                                                    <td className="buBenifitedTd" key={index}>{bu.bu.split("–", 1)}</td>
+                                                                </Tooltip>
+                                                            )
 
-                                                            }
-                                                        </td>
-                                                    </Tooltip>
+                                                        })
+
+                                                        }
+                                                    </td>
 
                                                     <Tooltip title={classification.itSection} arrow>
                                                         <td>{classification.itSection}</td>

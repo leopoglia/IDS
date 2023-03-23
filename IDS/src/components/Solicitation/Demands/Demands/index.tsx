@@ -113,6 +113,7 @@ export default function Demands() {
     //Buscar as atas cadastradas
     async function getMinutes() {
         findDemands = await ServicesMinute.findByPage(page, 5).then((res: any) => {
+            console.log(res);
             setMinutes(res.content); // Atualiza o estado das demandas
             setPages(res.totalPages); // Atualiza o estado das páginas
         });
@@ -131,6 +132,8 @@ export default function Demands() {
             nav = proposals.length;
         } else if (url[3] === "agendas") {
             nav = agendas.length;
+        } else if (url[3] === "minutes") {
+            nav = minutes.length;
         }
 
         return (
@@ -364,11 +367,23 @@ export default function Demands() {
                         <div className="container-background">
                             {
                                 minutes.map((val: any, index) => {
-                                    return (
-                                        <div onClick={() => setMinute(true)}>
-                                            <Demand key={val.minuteCode} listDirection={table} demandCode={val.minuteCode} name={"Ata " + val.minuteCode} date={val.minuteStartDate} director={"123"} type="minute" />
-                                        </div>
-                                    );
+                                    if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
+                                        return (
+                                            <Demand key={val.minuteCode} listDirection={table} name={"Ata " + val.minuteCode} demandCode={val.minuteCode} director={"123"} number={val.minuteCode} year={val.yearMinute} type="minute" />
+                                        );
+                                    } else if (search !== "") {
+                                        if (val.minuteCode.toString().includes(search)) {
+                                            return (
+                                                <Demand key={val.minuteCode} listDirection={table} name={"Ata " + val.minuteCode} demandCode={val.minuteCode} director={"123"} number={val.minuteCode} year={val.yearMinute} type="minute" />
+                                            );
+                                        } else {
+                                            return (
+                                                <div className="no-results">
+                                                    <h1>{t("noResults")}</h1>
+                                                </div>
+                                            );
+                                        }
+                                    }
                                 })
                             }
 

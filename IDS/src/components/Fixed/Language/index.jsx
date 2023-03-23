@@ -1,13 +1,17 @@
 import './style.css'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import UserContext from '../../../context/userContext';
 import onClickOutside from "react-onclickoutside";
 import DropdownList from "./Modal";
+import ServicesWorker from '../../../services/workerService';
 
 
 
 function Language() {
     const [language, setLanguage] = useState();
     const [showDropdown, setShowDropdown] = useState(false);
+    let worker = useContext(UserContext).worker;
+
 
     // Drop down
     Language.handleClickOutside = () => {
@@ -16,10 +20,21 @@ function Language() {
 
     const handleClick = (event) => {
         setLanguage(event);
+        worker.language = event;
+        ServicesWorker.updateLanguage(worker.id, worker);
+
     };
 
     useEffect(() => {
-        setLanguage(localStorage.getItem('i18nextLng'))
+
+        console.log(worker);
+
+        if(worker.language){
+            setLanguage(worker.language);
+            localStorage.setItem('i18nextLng', worker.language);
+        }else{
+            setLanguage(localStorage.getItem('i18nextLng'));
+        }
     }, [])
 
     return (

@@ -43,18 +43,13 @@ export default function Router() {
     });
 
     useEffect(() => {
+        console.log("AAAAAAAAAAAAA")
+
         if (worker.id === "") {
             const id = localStorage.getItem("id");
             if (id !== null) {
                 ServicesWorker.findById(JSON.parse(id)).then((response: any) => {
-                    const worker = {
-                        id: response.workerCode,
-                        office: response.workerOffice,
-                        name: response.workerName,
-                        email: response.corporateEmail,
-                        language: response.language
-                    }
-                    setWorker(worker);
+                    setWorker(response);
                 });
             } else {
                 if (window.location.pathname !== "/") {
@@ -62,8 +57,6 @@ export default function Router() {
                 }
             }
         }
-
-        // console.log(worker);
     }, [worker.id]);
 
     return (

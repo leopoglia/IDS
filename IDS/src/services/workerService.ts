@@ -62,6 +62,19 @@ const Services = {
                 .then(resolve)
                 .catch(resolve)
         })
+    },
+    updateLanguage: function (id: number, worker: any) {
+        console.log(worker)
+
+        return new Promise((resolve, reject) => {
+            fetch(url + '/language/' + id, {
+                method: 'PUT', body: JSON.stringify({
+                    language: worker.language
+                }), headers: { 'Content-Type': 'application/json' }
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(resolve)
+        })
     }
 }
 

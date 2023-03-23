@@ -145,9 +145,6 @@ export default function ViewDemand() {
 
     }, [url, demand.demandStatus]);
 
-
-    console.log(proposal)
-
     function getDemand() {
         ServicesDemand.findById(demandCode).then((response: any) => {
             setDemand(response)
@@ -261,7 +258,6 @@ export default function ViewDemand() {
 
 
     }
-
 
     // Função para criar tabela (tr)
     const tr = (dataOne: any, dataTwo: any, index: any) => {

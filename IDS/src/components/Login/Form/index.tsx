@@ -35,6 +35,7 @@ export default function LoginForm() {
             office: response.workerOffice,
             name: response.workerName,
             email: response.corporateEmail,
+            language: response.language,
           };
           setWorker(worker);
           localStorage.setItem("id", JSON.stringify(worker.id));

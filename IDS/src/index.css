@@ -391,13 +391,16 @@ hr {
 
 /* ATTACHMENTS */
 
+.attachments a{
+  margin-right: 20px;
+}
+
 .attachment {
   cursor: pointer;
   margin-left: 0px !important;
   width: 100px;
   height: 80px;
   padding: 5px;
-  margin-right: 20px;
   border-radius: 4px;
   display: grid;
   align-items: center;

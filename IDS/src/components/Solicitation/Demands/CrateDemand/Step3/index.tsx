@@ -130,14 +130,21 @@ export default function CreateDemands3() {
                         <input type="text" onChange={(e) => { setExecutionPeriod(e.target.value) }} />
                     </div>
 
-                    <label>{t("attachments")}</label>
 
                     <div className="attachments display-flex">
-                        <input type="file" id="file" onChange={handleFileSelected} multiple />
-                        <label htmlFor="file">
-                            <span className="material-symbols-outlined">
-                                upload_file
-                            </span>{t("sendAttachment")}</label>
+
+                        <div className=''></div>
+
+                        <div className='display-block'>
+                            <span>{t("attachments")}</span>
+
+                            <input type="file" id="file" onChange={handleFileSelected} multiple />
+                            <label htmlFor="file">
+                                <span className="material-symbols-outlined">
+                                    upload_file
+                                </span>{t("sendAttachment")}</label>
+                        </div>
+
 
 
                         {

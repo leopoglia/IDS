@@ -735,23 +735,18 @@ export default function ViewDemand() {
                                                         <td>{classification.requesterBu.bu}</td>
                                                     </Tooltip>
 
-                                                    <Tooltip title={classification.beneficiaryBu.map((bu: any, index: any) => bu.bu)} arrow>
-                                                        <td>
-                                                            {classification.beneficiaryBu.map((bu: any, index: any) => {
-                                                                if (index !== classification.beneficiaryBu.length - 1) {
-                                                                    return (
-                                                                        <>{bu.bu}, </>
-                                                                    )
-                                                                } else {
-                                                                    return (
-                                                                        <>{bu.bu}</>
-                                                                    )
-                                                                }
-                                                            })
+                                                    <td>
+                                                        {classification.beneficiaryBu.map((bu: any, index: any) => {
+                                                            return (
+                                                                <Tooltip title={bu.bu} arrow>
+                                                                    <td className="buBenifitedTd" key={index}>{bu.bu.split("–", 1)}</td>
+                                                                </Tooltip>
+                                                            )
 
-                                                            }
-                                                        </td>
-                                                    </Tooltip>
+                                                        })
+
+                                                        }
+                                                    </td>
 
                                                     <Tooltip title={classification.itSection} arrow>
                                                         <td>{classification.itSection}</td>

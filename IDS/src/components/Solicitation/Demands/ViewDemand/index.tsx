@@ -901,49 +901,63 @@ export default function ViewDemand() {
 
                         <div className="box">
 
-                            <div className="agendaDate">
-                                <p>{t("dateAgenda")}</p>
-                                {agenda ? (
-                                    <span>{agenda.agendaDate}</span>
-                                ) : (
-                                    <p></p>
-                                )}
-                            </div>
+                            {agenda ? (
+                                <>
+                                    <div className="display-solicitation-demand">
+                                        <p className="title">Pauta da Reunião {agenda.agendaCode}</p>
+                                    </div>
+
+                                    <div className="box">
+
+                                        <div className="agendaDate">
+                                            <p>{t("dateMeeting")}</p>
+                                            <span>{agenda.agendaDate}</span>
+                                        </div>
+                                    </div>
+                                </>
+                            ) : (
+                                <p></p>
+                            )}
 
 
-                            <p>{t("proposals")}</p>
+                            <div className="proposalsAgenda">
+                                <p>{t("proposals")}</p>
+                                {
+                                    proposalSpecific.map((val: any) => (
+                                        localStorage.setItem("agendaCode", window.location.pathname.split("/")[3]),
+                                        <Link key={val.proposalCode} to={"/proposal/view/" + val.proposalCode}>
+                                            <div className="proposal-view">
+
+                                                <div className="display-flex-space-between">
+                                                    <p>{val.proposalName}</p>
+
+                                                    <div className="code">
+                                                        {val.demand.demandCode}
+                                                    </div>
+                                                </div>
 
 
+                                                <span className="proposalDescription">
+                                                    {val.demand.demandObjective}
+                                                </span>
 
-                            {
-                                proposalSpecific.map((val: any) => (
-                                    localStorage.setItem("agendaCode", window.location.pathname.split("/")[3]),
-                                    <Link key={val.proposalCode} to={"/proposal/view/" + val.proposalCode}>
-                                        <div className="proposal-view">
-
-                                            <div className="display-flex-space-between">
-                                                <p>{val.proposalName}</p>
-
-                                                <div className="code">
-                                                    {val.demand.demandCode}
+                                                <div className="proposal-view-buttons">
+                                                    {val.proposalStatus === "Pending" ? (
+                                                        <Link to={"/proposal/comission-opinion/" + val.proposalCode}>
+                                                            <button className="btn-primary">{t("insertCommissionOpinion")}</button>
+                                                        </Link>
+                                                    ) : (
+                                                        <div>
+                                                            Status: {val.proposalStatus}
+                                                        </div>
+                                                    )}
                                                 </div>
                                             </div>
+                                        </Link>
 
-
-                                            <span className="proposalDescription">
-                                                {val.demand.demandObjective}
-                                            </span>
-
-                                            <div className="proposal-view-buttons">
-                                                <Link to={"/proposal/comission-opinion/" + val.proposalCode}>
-                                                    <button className="btn-primary">{t("insertCommissionOpinion")}</button>
-                                                </Link>
-                                            </div>
-                                        </div>
-                                    </Link>
-
-                                ))
-                            }
+                                    ))
+                                }
+                            </div>
 
 
                             <div className="complement">

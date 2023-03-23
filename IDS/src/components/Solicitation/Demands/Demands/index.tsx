@@ -10,6 +10,7 @@ import Load from "../../../Fixed/Load";
 import ServicesDemand from "../../../../services/demandService";
 import ServicesProposal from "../../../../services/proposalService";
 import ServicesAgenda from "../../../../services/agendaService";
+import ServicesMinute from "../../../../services/minuteService";
 import { toast, ToastContainer } from 'react-toastify';
 import { useTranslation } from "react-i18next";
 import "react-toastify/dist/ReactToastify.css";
@@ -32,9 +33,7 @@ export default function Demands() {
     const [demands, setDemands] = useState([]);
     const [proposals, setProposals] = useState([]);
     const [agendas, setAgendas] = useState([]);
-    const [minutes] = useState([
-        // { minuteCode: "1", name: "Ata 001", date: "27/04/2022", situation: "unallocated", number: "10/2021", director: "Vytor Augusto Rosa", coordinator: "Leonardo Heitor Poglia" },
-    ]);
+    const [minutes, setMinutes] = useState([]);
 
 
 
@@ -67,10 +66,10 @@ export default function Demands() {
             }
         }else if (url[3] === "minutes") {
             if (search === "") {
-                getAgendas(); // Busca as demandas cadastradas
+                getMinutes(); // Busca as demandas cadastradas
             } else {
-                ServicesAgenda.findAll().then((res: any) => {
-                    setAgendas(res);
+                ServicesMinute.findAll().then((res: any) => {
+                    setMinutes(res);
                 });
             }
         }
@@ -106,6 +105,15 @@ export default function Demands() {
     async function getAgendas() {
         findDemands = await ServicesAgenda.findByPage(page, 5).then((res: any) => {
             setAgendas(res.content); // Atualiza o estado das demandas
+            setPages(res.totalPages); // Atualiza o estado das páginas
+        });
+        return findDemands;
+    }
+
+    //Buscar as atas cadastradas
+    async function getMinutes() {
+        findDemands = await ServicesMinute.findByPage(page, 5).then((res: any) => {
+            setMinutes(res.content); // Atualiza o estado das demandas
             setPages(res.totalPages); // Atualiza o estado das páginas
         });
         return findDemands;
@@ -358,7 +366,7 @@ export default function Demands() {
                                 minutes.map((val: any, index) => {
                                     return (
                                         <div onClick={() => setMinute(true)}>
-                                            <Demand key={val.minuteCode} listDirection={table} demandCode={val.minuteCode} name={val.name} director={val.director} coordinator={val.coordinator} number={val.number} date={val.date} situation={val.situation} type="minute" />
+                                            <Demand key={val.minuteCode} listDirection={table} demandCode={val.minuteCode} name={"Ata " + val.minuteCode} date={val.minuteStartDate} director={"123"} type="minute" />
                                         </div>
                                     );
                                 })

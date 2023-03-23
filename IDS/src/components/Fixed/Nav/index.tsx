@@ -109,7 +109,7 @@ export default function Nav() {
                             </li>
                         </Link>
 
-                        <Link to="/minutes">
+                        <Link to="/minutes/1">
                             <li id={hover("minutes")}>
                                 <div>
                                     <span className="material-symbols-outlined">

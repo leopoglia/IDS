@@ -17,6 +17,15 @@ const Services = {
                 .catch(reject)
         })
     },
+    findByPage: function (page: Number, size: Number) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/page?page=" + page + "&size=" + size, {
+                method: 'GET', headers: { 'Content-Type': 'application/json' }
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(resolve)
+        })
+    },
     findAll: async function () {
         return new Promise((resolve, reject) => {
             fetch(url, {

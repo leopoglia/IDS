@@ -11,7 +11,7 @@ const Services = {
                     agenda: {agendaCode: agenda},
                     minuteStartDate: minuteStartDate,
                     minuteEndDate: null,
-                    // director: {workerCode: director}
+                    director: {workerCode: director}
                 }), headers: { 'Content-Type': 'application/json' }
             }).then(function (result) { return result.json(); })
                 .then(resolve)

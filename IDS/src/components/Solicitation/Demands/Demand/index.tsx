@@ -46,7 +46,7 @@ export default function Demand(props: any) {
                     <div className="code">{props.demandCode}</div>
                     <div className="requester"><p>{t("sequentialNumber")}: {props.number}</p></div>
                     <div><p>{t("date")}: {props.date}</p></div>
-                    <div className="analyst"><p>{t("director")}: {props.director}</p></div>
+                    <div className="analyst"><p>{t("Director")}: {props.director}</p></div>
                 </div>)
             )
         }

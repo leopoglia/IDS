@@ -368,12 +368,12 @@ export default function Demands() {
                                 minutes.map((val: any, index) => {
                                     if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
                                         return (
-                                            <Demand key={val.minuteCode} listDirection={table} name={"Ata " + val.minuteCode} demandCode={val.minuteCode} director={"123"} number={val.minuteCode} date={val.minuteStartDate} type="minute" />
+                                            <Demand key={val.minuteCode} listDirection={table} name={"Ata " + val.minuteCode} demandCode={val.minuteCode} director={val.director?.workerName} number={val.minuteCode} date={val.minuteStartDate} type="minute" />
                                         );
                                     } else if (search !== "") {
                                         if (val.minuteCode.toString().includes(search)) {
                                             return (
-                                                <Demand key={val.minuteCode} listDirection={table} name={"Ata " + val.minuteCode} demandCode={val.minuteCode} director={"123"} number={val.minuteCode} date={val.minuteStartDate} type="minute" />
+                                                <Demand key={val.minuteCode} listDirection={table} name={"Ata " + val.minuteCode} demandCode={val.minuteCode} director={val.director?.workerName} number={val.minuteCode} date={val.minuteStartDate} type="minute" />
                                             );
                                         } else {
                                             return (

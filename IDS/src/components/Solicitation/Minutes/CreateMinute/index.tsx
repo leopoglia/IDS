@@ -19,7 +19,7 @@ export default function CreateMinute() {
     console.log(code);
 
     function saveMinute() {
-        MinuteService.save("minute 01", code, actualDate, worker);
+        MinuteService.save("minute 01", code, actualDate, worker.id);
     }
  
     return (

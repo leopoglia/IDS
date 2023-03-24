@@ -71,7 +71,6 @@ export default function Router() {
                 setWorker
             }}>
             <BrowserRouter>
-
                 <Routes>
                     <Route path="/" element={<Form />} />
                     <Route path="/forget-password" element={<ForgetPassword />} />

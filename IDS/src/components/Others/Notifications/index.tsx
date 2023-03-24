@@ -17,7 +17,7 @@ export default function Notifications() {
 
 
     useEffect(() => {
-        Services.findAll().then((response: any) => {            
+        Services.findAll().then((response: any) => {
             setNotifications(response.reverse())
         })
     }, [])
@@ -36,29 +36,31 @@ export default function Notifications() {
                 </div>
 
                 <div className="container-background">
-                    {notifications.map((notification: any) => {
-                        if (notification.worker.workerCode == worker.id) {
-                            return (
-                                <Notification
-                                    key={notification.notificationCode}
-                                    id={notification.notificationCode}
-                                    description={notification.description}
-                                    date={notification.date}
-                                    icon={notification.icon}
-                                    view={notification.visualized}
-                                    type={notification.type}
-                                />
-                            )
+                    <div className="boxNoPadding">
+                        {notifications.map((notification: any) => {
+                            if (notification.worker.workerCode == worker.id) {
+                                
+                                return (
+                                    <Notification
+                                        key={notification.notificationCode}
+                                        id={notification.notificationCode}
+                                        description={notification.description}
+                                        date={notification.date}
+                                        icon={notification.icon}
+                                        view={notification.visualized}
+                                        type={notification.type}
+                                    />
+                                )
+                            }
+
+                            if (notification.worker.workerCode == worker.id) {
+                                setHaveNotification(haveNotification + 1)
+                            }
+
+
+                        }, [])
                         }
-
-
-                        if (notification.worker.workerCode == worker.id) {
-                            setHaveNotification(haveNotification + 1)
-                        }
-
-
-                    }, [])
-                    }
+                    </div>
                 </div>
 
                 <div className="h45"></div >

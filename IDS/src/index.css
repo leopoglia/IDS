@@ -194,6 +194,13 @@ input[type=checkbox]:checked {
   margin-bottom: 15px;
 }
 
+
+.boxNoPadding {
+  border: 1px solid var(--greyC4);
+  border-bottom: 0px;
+  border-radius: var(--r);
+}
+
 .btn-primary,
 .btn-secondary,
 .btn-primary-unique {
@@ -391,7 +398,7 @@ hr {
 
 /* ATTACHMENTS */
 
-.attachments a{
+.attachments a {
   margin-right: 20px;
 }
 

@@ -2,15 +2,15 @@ import "./style.css"
 import Services from "../../../../services/notificationService"
 import { useNavigate } from "react-router"
 import { t } from "i18next"
+import { useEffect, useState } from "react";
 
 
 export default function Notification(props: any) {
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const [borderBottom, setBorderBottom] = useState("");
 
     function arrumarData() {
-
-
 
         let data = props.date.split("T")
         let dataArrumada = data[0].split("-")
@@ -54,8 +54,8 @@ export default function Notification(props: any) {
 
     function viewNotification() {
         Services.updateNotificationVisualized(props.id).then((response: any) => {
-            if(props.type !== "presentation"){
-            navigate('/' + props.type + '/view/' + props.description[props.description.length - 1], { replace: true });
+            if (props.type !== "presentation") {
+                navigate('/' + props.type + '/view/' + props.description[props.description.length - 1], { replace: true });
             } else {
                 navigate('/demands/1')
                 localStorage.setItem("presentation", "true")
@@ -66,7 +66,7 @@ export default function Notification(props: any) {
     }
 
     return (
-        <div  onClick={() => viewNotification()} className={"notification-" + props.view}>
+        <div onClick={() => viewNotification()} className={"notification-" + props.view}>
 
             <div className="informations">
                 <span className="material-symbols-outlined">

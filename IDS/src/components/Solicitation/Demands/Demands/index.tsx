@@ -113,7 +113,6 @@ export default function Demands() {
     //Buscar as atas cadastradas
     async function getMinutes() {
         findDemands = await ServicesMinute.findByPage(page, 5).then((res: any) => {
-            console.log(res);
             setMinutes(res.content); // Atualiza o estado das demandas
             setPages(res.totalPages); // Atualiza o estado das páginas
         });
@@ -324,12 +323,12 @@ export default function Demands() {
                                 agendas.map((val: any, index) => {
                                     if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
                                         return (
-                                            <Demand key={val.agendaCode} val={val.agendaCode} listDirection={table} name={"Pauta da reunião  " + val.agendaCode} demandCode={val.agendaCode} number={val.sequentialNumber} year={val.yearAgenda} type="agenda" />
+                                            <Demand key={val.agendaCode} val={val.agendaCode} listDirection={table} name={"Pauta da reunião  " + val.agendaCode} demandCode={val.agendaCode} date={val.agendaDate} number={val.sequentialNumber} year={val.yearAgenda} type="agenda" />
                                         );
                                     } else if (search !== "") {
                                         if (val.agendaCode.toString().includes(search)) {
                                             return (
-                                                <Demand key={val.agendaCode} val={val.agendaCode} listDirection={table} name={"Pauta da reunião  " + val.agendaCode} demandCode={val.agendaCode} number={val.sequentialNumber} year={val.yearAgenda} type="agenda" />
+                                                <Demand key={val.agendaCode} val={val.agendaCode} listDirection={table} name={"Pauta da reunião  " + val.agendaCode} demandCode={val.agendaCode} date={val.agendaDate} number={val.sequentialNumber} year={val.yearAgenda} type="agenda" />
                                             );
                                         } else {
                                             return (
@@ -369,12 +368,12 @@ export default function Demands() {
                                 minutes.map((val: any, index) => {
                                     if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
                                         return (
-                                            <Demand key={val.minuteCode} listDirection={table} name={"Ata " + val.minuteCode} demandCode={val.minuteCode} director={"123"} number={val.minuteCode} year={val.yearMinute} type="minute" />
+                                            <Demand key={val.minuteCode} listDirection={table} name={"Ata " + val.minuteCode} demandCode={val.minuteCode} director={"123"} number={val.minuteCode} date={val.minuteStartDate} type="minute" />
                                         );
                                     } else if (search !== "") {
                                         if (val.minuteCode.toString().includes(search)) {
                                             return (
-                                                <Demand key={val.minuteCode} listDirection={table} name={"Ata " + val.minuteCode} demandCode={val.minuteCode} director={"123"} number={val.minuteCode} year={val.yearMinute} type="minute" />
+                                                <Demand key={val.minuteCode} listDirection={table} name={"Ata " + val.minuteCode} demandCode={val.minuteCode} director={"123"} number={val.minuteCode} date={val.minuteStartDate} type="minute" />
                                             );
                                         } else {
                                             return (

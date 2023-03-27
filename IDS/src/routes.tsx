@@ -1,4 +1,4 @@
-import { Route, Routes, BrowserRouter, useNavigate } from "react-router-dom";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 
 import Form from './components/Login/Login';
 import ForgetPassword from './components/Login/ForgotPassword';
@@ -21,7 +21,6 @@ import CreateAgenda from "./components/Solicitation/Agendas/CreateAgenda";
 import CommissionOpinion from "./components/Solicitation/Proposals/CommissionOpinion";
 import AddExpense from "./components/Solicitation/Proposals/AddExpense/index";
 import ProposedInformation from "./components/Solicitation/Proposals/ProposedInformation";
-import EscopeDemand from "./components/Solicitation/Proposals/EscopeDemand";
 import CreateMinute from "./components/Solicitation/Minutes/CreateMinute";
 import Message from "./components/Others/Messages/Message";
 import Dashboard from "./components/Others/Dashboard";

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import Services from '../../../../../services/costCenterService';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
@@ -12,9 +11,6 @@ export default function SelectLabels(props: any) {
     const [centerCost, setCenterCost] = React.useState([{ costCenter: "" }]);
     const url = parseInt(window.location.href.split('/')[5]);
     // const [select, setSelect] = React.useState('');
-
-    const [bu, setBu] = useState([{ costCenter: "" }]);
-
 
     useEffect(() => {
         getBu();

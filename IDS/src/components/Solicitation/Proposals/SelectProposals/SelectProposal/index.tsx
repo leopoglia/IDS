@@ -5,7 +5,7 @@ import { t } from "i18next";
 
 export default function SelectProposal(props: any) {
 
-    const [information, setInformation] = useState(<div className="infos">
+    const [information] = useState(<div className="infos">
         <div><p>{t("requester")}: {props.requester}</p></div>
         <div><p>{t("date")}: {props.date}</p></div>
         <div><p>{t("situation")}: {props.status}</p></div>

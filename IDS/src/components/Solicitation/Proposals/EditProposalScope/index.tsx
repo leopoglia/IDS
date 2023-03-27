@@ -18,6 +18,7 @@ export default function EditProposalScope() {
 
   const [content, setContent] = useState('');
 
+
   const nextStep = () => {
     if (content === "" || content === undefined) {
       notify()

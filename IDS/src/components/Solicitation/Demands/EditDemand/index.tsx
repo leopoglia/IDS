@@ -57,9 +57,6 @@ export default function EscopeDemand() {
 	const [demandRequester, setDemandRequester]: any = useState(""); // Solicitante da demanda
 	const [demandDate, setDemandDate]: any = useState(""); // Data da demanda
 
-
-
-
 	function getDemand() {
 		ServicesDemand.findById(demandCode).then((response: any) => {
 			const demand: any = response
@@ -86,6 +83,7 @@ export default function EscopeDemand() {
 			setDemandScore(demand.demandScore);
 			setDemandRequester(demand.requesterRegistration.workerCode);
 			setDemandDate(demand.demandDate);
+
 			if (window.location.href.split("/")[4] !== "edit") {
 				setDemandClassification(demand.classification.classificationCode);
 			}
@@ -229,19 +227,25 @@ export default function EscopeDemand() {
 
 		ServicesQualitativeBenefit.update(qualitativeBenefitCode, qualitativeBenefitDescription, true, frequencyOfUse).then((response: any) => { });
 
-		console.log("FILE ====> ", fileAttachment[0])
+		let file;
+		if (fileAttachment[0] !== null) {
+			file = new File([fileAttachment[0]], fileAttachment[0].name, { type: fileAttachment[0].type });
+		}else{
+			file = null
+		}
 
-		let file = new File([fileAttachment[0]], fileAttachment[0].name, { type: fileAttachment[0].type });
-
-		ServicesDemand.update(demandCode, demandTitle, demandProblem, demandObjective, costsCentersId, frequencyOfUse, realBenefitCode, potentialBenefitCode, qualitativeBenefitCode, file, demandDate, demandStatus, demandScore, demandRequester, demandClassification).then((response: any) => { 
+		ServicesDemand.update(demandCode, demandTitle, demandProblem, demandObjective, costsCentersId, frequencyOfUse, realBenefitCode, potentialBenefitCode, qualitativeBenefitCode, file, demandDate, demandStatus, demandScore, demandRequester, demandClassification).then((response: any) => {
 			console.log(response);
 
 			ServicesDemand.updateStatus(demandCode, "Backlog").then((response: any) => { });
 
+			console.log("URL ===> ", url)
 
-			if(url === "edit"){
+			if (url === "edit") {
 				localStorage.setItem("route", "edit");
 				navigate("/demand/view/" + demandCode);
+			} else if (url === "demand") {
+				navigate("/proposal/edit-scope/" + demandCode);
 			}
 
 		});
@@ -432,7 +436,15 @@ export default function EscopeDemand() {
 					</div>
 
 					<div className="display-flex-end">
-						<button onClick={() => editDemand()} className="btn-primary">{t("editDemand")}</button>
+						{url === "edit" ?
+							(
+								<button onClick={() => editDemand()} className="btn-primary">{t("editDemand")}</button>
+							) : (
+								<button onClick={() => editDemand()} className="btn-primary">{t("advance")}</button>
+							)
+						}
+
+
 					</div>
 
 				</div>

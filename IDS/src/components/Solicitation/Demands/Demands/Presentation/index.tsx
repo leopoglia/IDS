@@ -14,8 +14,6 @@ export default function Presentation() {
         { title: "createDemand", description: "createDemandHere" }
     ]
     
-    console.log(stepPresentation)
-
     return (
         <div className={"presentation presentation-" +  stepPresentation} >
 

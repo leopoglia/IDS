@@ -78,7 +78,7 @@ const Services = {
 
         let demand = {}
         if (classificationCode === null ||
-            classificationCode === undefined || 
+            classificationCode === undefined ||
             classificationCode === "") {
 
             demand = {
@@ -112,7 +112,9 @@ const Services = {
         }
 
         formData.append('demand', JSON.stringify(demand));
-        formData.append('demandAttachment', demandAttachment);
+        if (demandAttachment !== null) {
+            formData.append('demandAttachment', demandAttachment);
+        }
 
 
         return new Promise((resolve, reject) => {

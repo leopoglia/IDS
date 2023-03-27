@@ -26,9 +26,6 @@ function Language() {
     };
 
     useEffect(() => {
-
-        console.log(worker);
-
         if(worker.language){
             setLanguage(worker.language);
             localStorage.setItem('i18nextLng', worker.language);

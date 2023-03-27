@@ -96,7 +96,7 @@ export default function Router() {
                     <Route path="/proposal/view/:id" element={<ViewDemand />} />
                     <Route path="/proposal/execution-costs/:id" element={<ExecutionCosts />} />
                     <Route path="proposal/execution-costs/add-expense/:id" element={<AddExpense />} />
-                    <Route path="/proposal/demand/:id" element={<EscopeDemand />} />
+                    <Route path="/proposal/demand/:id" element={<EditDemand />} />
                     <Route path="/proposal/edit-scope/:id" element={<EditProposalScope />} />
                     <Route path="/proposal/comission-opinion/:id" element={<CommissionOpinion />} />
                     <Route path="/proposal/informations/:id" element={<ProposedInformation />} />

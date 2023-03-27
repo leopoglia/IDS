@@ -23,9 +23,6 @@ export default function LoginForm() {
 
   async function login(email: string | undefined,  password: string | undefined) {
 
-    console.log(email)
-    console.log(password)
-
     if (email?.includes("@")) {
       try {
         const response: any = await Services.login(email, password);

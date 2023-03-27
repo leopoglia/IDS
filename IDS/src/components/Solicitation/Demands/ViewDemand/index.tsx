@@ -266,6 +266,16 @@ export default function ViewDemand() {
         })
     }
 
+    ServicesMinute.findAll().then((response: any) => {
+        let minutes: any = [];
+        for(let i = 0; i < response.length; i++) {
+            if(response[i].agenda.agendaCode === demandCode) {
+                minutes.push(response[i]);
+            }
+        }
+        setMinute(minutes)
+    })
+
     // Buscar proposta específica
     function getProposalSpecific() {
 
@@ -1003,7 +1013,7 @@ export default function ViewDemand() {
                         </div>
 
                         {
-                            approvedMinute === proposalSpecific.length ? (
+                            approvedMinute === proposalSpecific.length && minute.length === 0 ?(
                                 <div className="display-flex-end">
                                     <Link to={"/minutes/create/" + demandCode}>
                                         <button className="btn-primary">{t("finish")}</button>

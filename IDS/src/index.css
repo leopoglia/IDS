@@ -194,12 +194,6 @@ input[type=checkbox]:checked {
 }
 
 
-.boxNoPadding {
-  border: 1px solid var(--greyC4);
-  border-bottom: 0px;
-  border-radius: var(--r);
-}
-
 .btn-primary,
 .btn-secondary,
 .btn-primary-unique {
@@ -366,6 +360,7 @@ hr {
 .container-background::-webkit-scrollbar {
   width: 10px;
   height: 4px;
+  
 }
 
 .container-background::-webkit-scrollbar {

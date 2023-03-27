@@ -18,8 +18,17 @@ export default function Messages() {
                 </div>
 
                 <div className="container-background">
-                    <Message />
+                    <div className="boxNoPadding">
+                        <Message />
+                        <Message />
+                        <Message />
+                        <Message />
+                        <Message />
+                        <Message />
+                        <Message />
+                        <Message />
 
+                    </div>
                 </div>
 
 

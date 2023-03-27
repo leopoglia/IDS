@@ -87,6 +87,9 @@
     max-height: calc(100vh - 350px) !important;
     overflow: auto;
     position: relative;
+    border: 1px solid var(--greyC4);
+    border-radius: var(--r);
+    overflow: overlay;
 }
 
 .h45{

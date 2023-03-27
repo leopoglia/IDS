@@ -39,7 +39,7 @@ export default function Notifications() {
                     <div className="boxNoPadding">
                         {notifications.map((notification: any) => {
                             if (notification.worker.workerCode == worker.id) {
-                                
+
                                 return (
                                     <Notification
                                         key={notification.notificationCode}
@@ -60,6 +60,8 @@ export default function Notifications() {
 
                         }, [])
                         }
+
+
                     </div>
                 </div>
 

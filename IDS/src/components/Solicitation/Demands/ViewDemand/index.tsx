@@ -9,6 +9,7 @@ import ServicesProposal from "../../../../services/proposalService";
 import ServicesNotification from "../../../../services/notificationService";
 import ServicesAgenda from "../../../../services/agendaService";
 import ServicesExpense from "../../../../services/expenseService";
+import ServicesMinute from "../../../../services/minuteService";
 import Footer from "../../../Fixed/Footer";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -31,6 +32,7 @@ export default function ViewDemand() {
     const workerId = worker.id; // Buscar código do usuário
     const url = window.location.href.split("/")[3]; // Buscar tipo da demanda
     const demandCode = parseInt(window.location.href.split("/")[5]); // Buscar código da demanda
+    let approvedMinute: any = 0;
 
 
     // Botões superiores
@@ -111,7 +113,7 @@ export default function ViewDemand() {
     }]);
 
     const [agenda, setAgenda]: any = useState();
-
+    let [minute, setMinute]: any = useState();
 
     // Chama função ao entrar na página
     useEffect(() => {
@@ -211,6 +213,13 @@ export default function ViewDemand() {
 
     const [proposalExpense, setProposalExpense]: any = useState([]);
 
+    proposalSpecific.map((val: any) => (
+        val.proposalStatus === "Approved" ? (
+            approvedMinute += 1
+        ) : (
+            null
+        )
+    ))
 
     // Buscar proposta
     function getProposal() {
@@ -359,6 +368,15 @@ export default function ViewDemand() {
         }
         return bytes.buffer;
     }
+
+    ServicesMinute.findAll().then((response: any) => {
+        for(let i = 0; i < response.length; i++) {
+            if(response[i].agendaCode === demandCode) {
+                setMinute(false);
+            }
+            console.log(minute);
+        }
+    })
 
     const [situationCorrentOpen, setSituationCorrentOpen] = useState(false);
     const [benefitRealOpen, setBenefitRealOpen] = useState(false);
@@ -974,18 +992,25 @@ export default function ViewDemand() {
                                 </table>
                             </div>
 
-
                         </div>
 
-                        <div className="display-flex-end">
-                            <Link to={"/minutes/create/" + demandCode}>
-                                <button className="btn-primary">{t("finish")}</button>
-                            </Link>
-                        </div>
+                        {
+                            approvedMinute === proposalSpecific.length && minute === false ? (
+                                <div className="display-flex-end">
+                                    <Link to={"/minutes/create/" + demandCode}>
+                                        <button className="btn-primary">{t("finish")}</button>
+                                    </Link>
+                                </div>
+                            ) : (
+                                <div></div>
+                            )
+                        }
 
-                        <Footer />
 
 
+
+
+                            < Footer />
                     </div>
                 </div>
             ) : (

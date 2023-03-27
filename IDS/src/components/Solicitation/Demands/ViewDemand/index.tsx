@@ -112,7 +112,24 @@ export default function ViewDemand() {
         }
     }]);
 
-    const [agenda, setAgenda]: any = useState();
+    const [agenda, setAgenda]: any = useState([{
+        agendaCode: "",
+        agendaDate: "",
+        agendaDescription: "",
+        agendaStatus: "",
+        proposal: {
+            proposalCode: "",
+            proposalName: "",
+            proposalDescription: "",
+            proposalStatus: "",
+            proposalDate: "",
+            demand: {
+                demandCode: "",
+                demandDescription: "",
+                demandObjective: ""
+            }
+        }
+    }]);
     let [minute, setMinute]: any = useState();
 
     // Chama função ao entrar na página
@@ -145,7 +162,7 @@ export default function ViewDemand() {
             localStorage.removeItem("route");
         }
 
-    }, [url, demand.demandStatus]);
+    }, [url, demand.demandStatus, proposal.proposalStatus, proposalSpecific[0].proposalStatus]);
 
     function getDemand() {
         ServicesDemand.findById(demandCode).then((response: any) => {

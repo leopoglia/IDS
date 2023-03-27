@@ -130,7 +130,7 @@ export default function ViewDemand() {
             }
         }
     }]);
-    let [minute, setMinute]: any = useState();
+    let [minute, setMinute]: any = useState([]);
 
     // Chama função ao entrar na página
     useEffect(() => {

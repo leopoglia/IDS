@@ -986,7 +986,7 @@ export default function ViewDemand() {
                         </div>
 
                         {
-                            approvedMinute === proposalSpecific.length && minute === false ? (
+                            approvedMinute === proposalSpecific.length ? (
                                 <div className="display-flex-end">
                                     <Link to={"/minutes/create/" + demandCode}>
                                         <button className="btn-primary">{t("finish")}</button>

@@ -369,15 +369,6 @@ export default function ViewDemand() {
         return bytes.buffer;
     }
 
-    ServicesMinute.findAll().then((response: any) => {
-        for(let i = 0; i < response.length; i++) {
-            if(response[i].agendaCode === demandCode) {
-                setMinute(false);
-            }
-            console.log(minute);
-        }
-    })
-
     const [situationCorrentOpen, setSituationCorrentOpen] = useState(false);
     const [benefitRealOpen, setBenefitRealOpen] = useState(false);
     const [benefitPotentialOpen, setBenefitPotentialOpen] = useState(false);
@@ -995,7 +986,7 @@ export default function ViewDemand() {
                         </div>
 
                         {
-                            approvedMinute === proposalSpecific.length ? (
+                            approvedMinute === proposalSpecific.length && minute === false ? (
                                 <div className="display-flex-end">
                                     <Link to={"/minutes/create/" + demandCode}>
                                         <button className="btn-primary">{t("finish")}</button>

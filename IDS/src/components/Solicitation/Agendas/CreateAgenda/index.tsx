@@ -150,7 +150,6 @@ export default function CreateAgenda() {
                                         <div className="check-box">
                                             <input onChange={(e) => {
                                                 proposal.publishedMinute = e.target.checked;
-                                                console.log(proposal.publishedMinute);
                                             }} type="checkbox" />
 
                                             <label>{t("publiquedMinute")}</label>

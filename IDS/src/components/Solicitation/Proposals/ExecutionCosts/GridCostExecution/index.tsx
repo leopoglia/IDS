@@ -11,70 +11,27 @@ import "./style.css"
 export default function ConditionalValidationGrid(props: any) {
 
     const [expenseList, setExpenseList] = useState<any>(JSON.parse(localStorage.getItem('expenseList') || '[""]'));
+    const [deleteNumber, setDeleteNumber] = useState<any>(0);
 
     useEffect(() => {
-        setExpenseList(JSON.parse(localStorage.getItem('expenseList') || '[""]'))
-    }, []);
-
+        setExpenseList(JSON.parse(localStorage.getItem('expenseList') || '[""]'));
+        console.log(expenseList);
+    }, [deleteNumber]);
 
     const { t } = useTranslation();
 
-    const columns: GridColumns = [
-        {
-            field: 'tipoDespesa',
-            headerName: 'Tipo de despesa',
-            type: 'singleSelect',
-            width: 170,
-            editable: true,
-            valueOptions: ['Credit card', 'Wire transfer', 'Cash'],
-
-        },
-        {
-            field: 'perilDespesa',
-            headerName: 'Perfil da despesa ',
-            type: 'singleSelect',
-            width: 200,
-            editable: true,
-            valueOptions: ['Credit card', 'Wire transfer', 'Cash'],
-        },
-        {
-            field: 'periodoExecucao',
-            headerName: 'Período de execução',
-            type: 'date',
-            width: 170,
-            editable: true,
-        },
-
-        {
-            field: 'quantidadeHoras',
-            headerName: 'Quantidade de horas',
-            type: 'number',
-            width: 200,
-            editable: true,
-        },
-        {
-            field: 'valorHora',
-            headerName: 'Valor da hora',
-            type: 'number',
-            width: 160,
-            editable: true,
-        },
-        {
-            field: 'valorTotal',
-            headerName: 'Valor total',
-            type: 'number',
-            width: 200,
-            editable: true,
-        },
-    ];
+    function deleteRow(index: any) {
+        expenseList.splice(index, 1);
+        localStorage.setItem('expenseList', JSON.stringify(expenseList));
+        setDeleteNumber(deleteNumber + 1);
+    }
 
     return (
         <div className='view-demand grid-cost-execution'>
 
-
             <div className='classification'>
-                <div className="display-block">
 
+                <div className="display-block">
                     <p className="title">{t(props.title)}</p>
                     <table>
                         <tr>
@@ -83,16 +40,15 @@ export default function ConditionalValidationGrid(props: any) {
                             <td>{t("necessityHours")}</td>
                             <td>{t("hoursValue")}</td>
                             <td>{t("totalValue")}</td>
+                            <td>{t("costCenter")}</td>
                             <td className='w40'>
-                                <span className="material-symbols-outlined">
-                                    delete
-                                </span>
+
                             </td>
 
                         </tr>
 
                         {
-                            expenseList.map((val: any) => {
+                            expenseList.map((val: any, index: any) => {
                                 if (val.typeOfExpense === props.title) {
 
                                     return (
@@ -102,7 +58,8 @@ export default function ConditionalValidationGrid(props: any) {
                                             <td>{val.necessityHoursQuantity}</td>
                                             <td>R$ {val.hourValue}</td>
                                             <td>R$ {val.expenseTotalValue}</td>
-                                            <td className='w40'>
+                                            <td>{val.costCenter}</td>
+                                            <td className='w40' onClick={() => deleteRow(index)}>
                                                 <span className="material-symbols-outlined">
                                                     delete
                                                 </span>

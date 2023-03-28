@@ -8,7 +8,7 @@ import "./style.css"
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import ProposalServices from "../../../../services/proposalService";
 import DemandService from "../../../../services/demandService";
 import ExpenseService from "../../../../services/expenseService";
@@ -24,31 +24,36 @@ export default function ExecutionCosts() {
     const proposal = JSON.parse(localStorage.getItem('proposal') || '{}');
     const scope: any = localStorage.getItem('proposalScope');
     let actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear(); // Data atual
-    let expenseListStorage: any = JSON.parse(localStorage.getItem('expenseList') || '[]');
+    const [expenseListStorage, setExpenseListStorage] = useState<any>(JSON.parse(localStorage.getItem('expenseList') || '[]'));
     const demandData: any = JSON.parse(localStorage.getItem('demand') || '{}');
 
-    let totalsCosts = 0;
-    let externalCosts = 0;
-    let internalCosts = 0;
-    let recurrentCosts = 0;
+    let [internalCosts, setInternalCosts]: any = useState(0);
+    let [recurrentCosts, setRecurrentCosts]: any = useState(0);
+    let [externalCosts, setExternalCosts]: any = useState(0);
+    let [totalsCosts, setTotalsCosts]: any = useState(0);
     DemandService.findById(demandCode).then((demand: any) => {
         localStorage.setItem('demand', JSON.stringify(demand));
     });
 
 
 
-    for (let i = 0; i < expenseListStorage.length; i++) {
-        if (expenseListStorage[i].typeOfExpense === "internal") {
-            internalCosts += expenseListStorage[i].expenseTotalValue;
-        } else if (expenseListStorage[i].typeOfExpense === "expenses") {
-            externalCosts += expenseListStorage[i].expenseTotalValue;
-        } else if (expenseListStorage[i].typeOfExpense === "recurrent") {
-            recurrentCosts += expenseListStorage[i].expenseTotalValue;
+    useEffect(() => {
+        for (let i = 0; i < expenseListStorage.length; i++) {
+            if (expenseListStorage[i].typeOfExpense === "internal") {
+                internalCosts += expenseListStorage[i].expenseTotalValue;
+                setInternalCosts(internalCosts);
+            } else if (expenseListStorage[i].typeOfExpense === "expenses") {
+                externalCosts += expenseListStorage[i].expenseTotalValue;
+                setExternalCosts(externalCosts);
+            } else if (expenseListStorage[i].typeOfExpense === "recurrent") {
+                recurrentCosts += expenseListStorage[i].expenseTotalValue;
+                setRecurrentCosts(recurrentCosts);
+            }
+
+            totalsCosts += expenseListStorage[i].expenseTotalValue;
+            setTotalsCosts(totalsCosts);
         }
-
-        totalsCosts += expenseListStorage[i].expenseTotalValue;
-    }
-
+    }, [expenseListStorage]);
 
 
     const nextStep = () => {
@@ -115,6 +120,7 @@ export default function ExecutionCosts() {
 
                             <span>{t("expenses")}: R$ {externalCosts}</span>
 
+
                             <span>{t("recurrent")}: R$ {recurrentCosts}</span>
 
                             <span>{t("internal")}: R$ {internalCosts}</span>
@@ -125,11 +131,28 @@ export default function ExecutionCosts() {
                     <div className="hr"></div>
 
                     <div className="block">
-                        <GridCostExecution title="expenses" />
+                        {externalCosts !== 0 ?
+                            <GridCostExecution title="expenses" />
+                            : null
+                        }
 
-                        <GridCostExecution title="recurrent" />
 
-                        <GridCostExecution title="internal" />
+                        {recurrentCosts !== 0 ?
+                            <GridCostExecution title="recurrent" />
+                            : null
+                        }
+
+                        {internalCosts !== 0 ?
+                            <GridCostExecution title="internal" />
+                            : null
+                        }
+
+                        {totalsCosts === 0 ?
+                            <div className="display-flex-center">
+                                <p className="noExpenses">{t("noExpenses")}</p>
+                            </div>
+                            : null
+                        }
 
                     </div>
 

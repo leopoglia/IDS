@@ -265,6 +265,13 @@ export default function ViewDemand() {
                     setProposalExpense(expense)
                 }
 
+                console.log(expense)
+
+                setInitialRunPeriod(dateFormat(expense[0].proposal.initialRunPeriod));
+                setFinalExecutionPeriod(dateFormat(expense[0].proposal.finalExecutionPeriod));
+                setPayBack(payback(expense[0].proposal.initialRunPeriod, expense[0].proposal.finalExecutionPeriod));
+
+
             })
         })
     }
@@ -293,6 +300,7 @@ export default function ViewDemand() {
                 proposals.push(response[0].proposals[i])
             }
             setProposalSpecific(proposals)
+
         })
 
 
@@ -398,6 +406,35 @@ export default function ViewDemand() {
         }
         return bytes.buffer;
     }
+
+    const [initialRunPeriod, setInitialRunPeriod]: any = useState(0);
+    const [finalExecutionPeriod, setFinalExecutionPeriod]: any = useState(0);
+    const [payBack, setPayBack]: any = useState(0);
+
+
+    const dateFormat = (date: any) => {
+        const year = date.slice(0, 4);
+        const month = date.slice(5, 7) - 1;
+        const day = date.slice(8, 10);
+
+        return day + "/" + month + "/" + year;
+    }
+
+    const payback = (dateInit: any, dateEnd: any) => {
+        const date1: any = new Date(dateInit);
+        const date2: any = new Date(dateEnd);
+
+        const diffInMs = Math.abs(date2 - date1); // obtém a diferença em milissegundos
+        const diffInMonths = diffInMs / (1000 * 60 * 60 * 24 * 30); // converte para meses
+        console.log("diffInMonths ---> ", diffInMonths); // 3
+
+        if (diffInMonths.toFixed(0) === "1") {
+            return diffInMonths.toFixed(0) + " mês";
+        } else {
+            return diffInMonths.toFixed(0) + " meses";
+        }
+    }
+
 
     const [situationCorrentOpen, setSituationCorrentOpen] = useState(false);
     const [benefitRealOpen, setBenefitRealOpen] = useState(false);
@@ -818,7 +855,6 @@ export default function ViewDemand() {
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td>{t("deadline")}</td>
                                                 <td>{t("ppmCode")}</td>
                                                 <td>{t("linkEpicJira")}</td>
 
@@ -827,7 +863,6 @@ export default function ViewDemand() {
 
 
                                             <tr>
-                                                <td>{classification.deadline}</td>
                                                 <td>{classification.ppmCode}</td>
                                                 <td><a target="_blank" href={"http://" + classification.epicJiraLink}>{classification.epicJiraLink}</a></td>
 
@@ -844,38 +879,66 @@ export default function ViewDemand() {
 
                             {proposalExpense.map((proposalExpense: any, index: any) => {
                                 return (
-                                    <div key={index} className={"complement " + expenseOpen} >
-                                        <div className="display-flex-space-between">
+                                    <div key={index}>
+                                        <div className={"complement " + expenseOpen} >
+                                            <div className="display-flex-space-between">
 
-                                            <p className="title">{t("expenseInformation")}</p>
-                                            <span onClick={() => setExpenseOpen(!expenseOpen)} className="material-symbols-outlined arrow-expend">
-                                                expand_more
-                                            </span>
+                                                <p className="title">{t("expenseInformation")}</p>
+                                                <span onClick={() => setExpenseOpen(!expenseOpen)} className="material-symbols-outlined arrow-expend">
+                                                    expand_more
+                                                </span>
+                                            </div>
+
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>{t("expenseProfile")}</td>
+                                                        <td>{t("expenseType")}</td>
+                                                        <td>{t("hourValue")}</td>
+                                                        <td>{t("expenseTotalValue")}</td>
+                                                    </tr>
+
+
+
+                                                    <tr>
+                                                        <td>{proposalExpense.expenseProfile}</td>
+                                                        <td>{proposalExpense.expenseType}</td>
+                                                        <td>{proposalExpense.hourValue}</td>
+                                                        <td>{proposalExpense.totalValue}</td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
 
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td>{t("expenseProfile")}</td>
-                                                    <td>{t("expenseType")}</td>
-                                                    <td>{t("hourValue")}</td>
-                                                    <td>{t("expenseTotalValue")}</td>
-                                                </tr>
+                                        <div key={index} className={"complement " + expenseOpen} >
+                                            {proposalExpense?.proposal?.initialRunPeriod ? (
 
+                                                <div className="display-block">
+                                                    <div className="display-flex-align-center">
+                                                        <p className="title">{t("deadline")}:</p>
+                                                        <div>
+                                                            <span>{initialRunPeriod}</span>
+                                                            <span>&nbsp; à &nbsp;</span>
+                                                            <span>{finalExecutionPeriod}</span>
+                                                        </div>
 
+                                                    </div>
+                                                    <div className="display-flex-align-center">
+                                                        <p className="title">{t("Payback")}:</p>
+                                                        <span> {payBack}</span>
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                null
+                                            )}
+                                        </div>
 
-                                                <tr>
-                                                    <td>{proposalExpense.expenseProfile}</td>
-                                                    <td>{proposalExpense.expenseType}</td>
-                                                    <td>{proposalExpense.hourValue}</td>
-                                                    <td>{proposalExpense.totalValue}</td>
-
-                                                </tr>
-                                            </tbody>
-                                        </table>
                                     </div>
                                 )
                             })}
+
+
 
 
                             {demand.demandAttachment ? (
@@ -910,6 +973,8 @@ export default function ViewDemand() {
                                                 <div></div>
                                             )
                                         }
+
+
 
                                     </div>
 

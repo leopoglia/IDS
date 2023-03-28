@@ -16,11 +16,9 @@ export default function CreateMinute() {
 
     let agenda = AgendaService.findById(code);  
 
-    console.log(code);
-
     function saveMinute() {
-        MinuteService.save("minute 01", code, actualDate, worker.id, "Not Published");
-        MinuteService.save("minute 01", code, actualDate, worker.id, "Published");
+        MinuteService.save("minute" + code, code, actualDate, worker.id, "Not Published");
+        MinuteService.save("minute" + code, code, actualDate, worker.id, "Published");
     }
  
     return (

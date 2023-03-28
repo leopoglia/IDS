@@ -151,6 +151,8 @@
     "minuteCreateMinute": "Acta > Crear Acta",
     "internal": "Interno",
     "external": "Externo",
+    "expenses": "Gastos",
+    "recurrent": "Recurrente",
     "development": "Desarrollo",
     "infraestructure": "Infraestructura",
     "expenseInformation": "Información de gasto",

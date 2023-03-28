@@ -15,7 +15,7 @@ export default function SelectLabels(props: any) {
         if (props.type === "typeOfExpense") {
             props.setTypeOfExpense(event.target.value);
             setSelect(event.target.value)
-        }else{
+        } else {
             props.setExpenseProfile(event.target.value)
             setSelect(event.target.value)
         }
@@ -37,7 +37,10 @@ export default function SelectLabels(props: any) {
                     {props.type === "typeOfExpense" ? <MenuItem value={"internal"}>{t("internal")}</MenuItem>
                         : null}
 
-                    {props.type === "typeOfExpense" ? <MenuItem value={"external"}>{t("external")}</MenuItem>
+                    {props.type === "typeOfExpense" ? <MenuItem value={"recurrent"}>{t("recurrent")}</MenuItem>
+                        : null}
+
+                    {props.type === "typeOfExpense" ? <MenuItem value={"expenses"}>{t("expenses")}</MenuItem>
                         : null}
 
                     {props.type === "expenseProfile" ? <MenuItem value={"development"}>{t("development")}</MenuItem>

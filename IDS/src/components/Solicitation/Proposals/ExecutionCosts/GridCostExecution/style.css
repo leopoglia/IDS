@@ -1,14 +1,17 @@
-.gridCostExcution {
-    margin-top: 15px;
-    padding: 0px;
-    border: 1px solid var(--greyC4);
-    border-radius: var(--r);
+.grid-cost-execution .title {
+    margin-top: 10px;
 }
 
-.gridCostExcution tr{
-    border-bottom: 1px solid var(--greyC4);
+.w40 {
+    width: 30%
 }
 
-.gridCostExcution tr:last-child{
-    border-bottom: none !important;
+.w40:hover {
+    cursor: pointer;
+}
+
+
+.grid-cost-execution .material-symbols-outlined {
+    font-size: 20px;
+    color: var(--blue);
 }

@@ -32,6 +32,7 @@ export default function ExecutionCosts() {
     let totalsCosts = 0;
     let externalCosts = 0;
     let internalCosts = 0;
+    let recurrentCosts = 0;
     DemandService.findById(demandCode).then((demand: any) => {
         localStorage.setItem('demand', JSON.stringify(demand));
     });
@@ -47,9 +48,12 @@ export default function ExecutionCosts() {
     for (let i = 0; i < expenseListStorage.length; i++) {
         if (expenseListStorage[i].typeOfExpense === "internal") {
             internalCosts += expenseListStorage[i].expenseTotalValue;
-        } else {
+        } else if (expenseListStorage[i].typeOfExpense === "expenses") {
             externalCosts += expenseListStorage[i].expenseTotalValue;
+        } else if (expenseListStorage[i].typeOfExpense === "recurrent") {
+            recurrentCosts += expenseListStorage[i].expenseTotalValue;
         }
+
         totalsCosts += expenseListStorage[i].expenseTotalValue;
     }
 
@@ -195,9 +199,22 @@ export default function ExecutionCosts() {
                                 <Link to={"/proposal/execution-costs/add-expense/" + demandCode}>
                                     <button className="btn-secondary">{t("addExpense")}</button>
                                 </Link>
+
+                                <div className="costs-execution">
+                                    <span>{t("totalsCosts")}: R$ {totalsCosts}</span>
+
+                                    <span>{t("externalCosts")}: R$ {externalCosts}</span>
+
+                                    <span>{t("reccurent")}: R$ {recurrentCosts}</span>
+
+                                    <span>{t("internalsCosts")}: R$ {internalCosts}</span>
+
+                                </div>
                             </div>
                         </div>
                     </div>
+
+
                 </div>
 
 
@@ -207,17 +224,8 @@ export default function ExecutionCosts() {
                     </Link>
 
                     <div className="display-flex-center">
-                        <div className="costs-execution">
-                            <span>{t("totalsCosts")}: R$ {totalsCosts}</span>
 
-                            <span>{t("externalCosts")}: R$ {externalCosts}</span>
 
-                            <span>{t("internalsCosts")}: R$ {internalCosts}</span>
-
-                        </div>
-
-                        {/* <Link to="/proposals">
-                        </Link> */}
 
                         <div onClick={() => { nextStep() }}>
                             <button className="btn-primary">{t("generateProposal")}</button>

@@ -89,5 +89,5 @@ input[type=number] {
     border-radius: var(--r);
     border: 1px solid var(--greyC4);
     color: var(--grey59);
-    margin-right: 20px;
+    margin-left: 20px;
 }

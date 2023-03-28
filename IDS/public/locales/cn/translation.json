@@ -152,6 +152,8 @@
     "minuteCreateMinute": "會議記錄 > 創建會議記錄",
     "internal": "內部",
     "external": "外部",
+    "expenses": "費用",
+    "recurrent": "重複",
     "development": "開發",
     "infraestructure": "基礎設施",
     "expenseInformation": "費用信息",

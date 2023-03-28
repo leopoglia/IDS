@@ -4,29 +4,11 @@ import Box from '@mui/material/Box';
 import { DataGrid, GridColumns, GridRowsProp } from '@mui/x-data-grid';
 import { randomPrice } from '@mui/x-data-grid-generator';
 import { useTranslation } from "react-i18next";
-import SelectCostCenter from '../SelectCostExecution';
 import "./style.css"
 
 
 
 export default function ConditionalValidationGrid() {
-
-    const StyledBox = styled(Box)(({ theme }) => ({
-        height: 300,
-        width: '100%',
-        '& .MuiDataGrid-cell--editing': {
-            backgroundColor: 'rgb(255,215,115, 0.19)',
-            color: '#1a3e72',
-            '& .MuiInputBase-root': {
-                height: '100%',
-            },
-        },
-        '& .Mui-error': {
-            backgroundColor: `rgb(126,10,15, ${theme.palette.mode === 'dark' ? 0 : 0.1})`,
-            color: theme.palette.error.main,
-        },
-    }));
-
 
     const [expenseList, setExpenseList] = useState<any>(JSON.parse(localStorage.getItem('expenseList') || '[""]'));
 
@@ -34,36 +16,6 @@ export default function ConditionalValidationGrid() {
         setExpenseList(JSON.parse(localStorage.getItem('expenseList') || '[""]'))
     }, []);
 
-    const rows: GridRowsProp = [
-        {
-            id: 1,
-            tipoDespesa: 'Light bill',
-            perilDespesa: randomPrice(0, 1000),
-            periodoExecucao: new Date(2021, 6, 8),
-            quantidadeHoras: false,
-            valorHora: '',
-            valorTotal: '',
-        },
-        {
-            id: 2,
-            tipoDespesa: 'Rent',
-            perilDespesa: randomPrice(0, 1000),
-            periodoExecucao: new Date(2021, 7, 1),
-            quantidadeHoras: false,
-            valorHora: '',
-            valorTotal: '',
-        },
-        {
-            id: 3,
-            tipoDespesa: 'Car insurance',
-            perilDespesa: randomPrice(0, 1000),
-            periodoExecucao: new Date(2021, 7, 4),
-            quantidadeHoras: true,
-            valorHora: '',
-            valorTotal: '',
-        },
-
-    ];
 
     const { t } = useTranslation();
 
@@ -117,33 +69,49 @@ export default function ConditionalValidationGrid() {
     ];
 
     return (
-        <table className='gridCostExcution'>
-            <tr>
-                <td>{t("expenseType")}</td>
-                <td>{t("expenseProfile")}</td>
-                <td>{t("periodOfExecution")}</td>
-                <td>{t("necessityHours")}</td>
-                <td>{t("hoursValue")}</td>
-                <td>{t("totalValue")}</td>
+        <div className='view-demand grid-cost-execution'>
+            <div className='classification'>
+                <div className="display-block">
 
-            </tr>
-
-            {
-                expenseList.map((val: any) => {
-                    return (
+                    <p className="title">{t("expenses")}</p>
+                    <table>
                         <tr>
-                            <td>{val.typeOfExpense}</td>
-                            <td>{val.expenseProfile}</td>
-                            <td>{val.periodOfExecutionMonth}</td>
-                            <td>{val.necessityHoursQuantity}h</td>
-                            <td>R$ {val.hourValue}</td>
-                            <td>R$ {val.expenseTotalValue}</td>
+                            <td>{t("expenseType")}</td>
+                            <td>{t("expenseProfile")}</td>
+                            <td>{t("periodOfExecution")}</td>
+                            <td>{t("necessityHours")}</td>
+                            <td>{t("hoursValue")}</td>
+                            <td>{t("totalValue")}</td>
+                            <td className='w40'>
+                                <span className="material-symbols-outlined">
+                                    delete
+                                </span>
+                            </td>
+
                         </tr>
-                    )
-                })
-            }
-        </table>
 
-
+                        {
+                            expenseList.map((val: any) => {
+                                return (
+                                    <tr>
+                                        <td>{val.typeOfExpense}</td>
+                                        <td>{val.expenseProfile}</td>
+                                        <td>{val.periodOfExecutionMonth}</td>
+                                        <td>{val.necessityHoursQuantity}</td>
+                                        <td>R$ {val.hourValue}</td>
+                                        <td>R$ {val.expenseTotalValue}</td>
+                                        <td className='w40'>
+                                            <span className="material-symbols-outlined">
+                                                delete
+                                            </span>
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
     );
 }

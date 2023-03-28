@@ -69,7 +69,7 @@ export default function CreateAgenda() {
             })
 
             for(let i = 0; i < proposals.length; i++){
-                ServicesProposals.updatePublish(proposals[i].proposalCode, publishedMinute);
+                ServicesProposals.updatePublish(proposals[i].proposalCode, proposals[i].publishedMinute);
             }
 
             Services.save(1, 1, commissionArray, actualDate, proposals).then((response: any) => {
@@ -149,8 +149,8 @@ export default function CreateAgenda() {
 
                                         <div className="check-box">
                                             <input onChange={(e) => {
-                                                setPublishedMinute(e.target.checked ? true : false)
-                                                console.log(publishedMinute)
+                                                proposal.publishedMinute = e.target.checked;
+                                                console.log(proposal.publishedMinute);
                                             }} type="checkbox" />
 
                                             <label>{t("publiquedMinute")}</label>

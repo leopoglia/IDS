@@ -19,12 +19,13 @@ export default function AddExpense() {
 
     const [typeOfExpense, setTypeOfExpense] = useState('');
     const [expenseProfile, setExpenseProfile] = useState('');
+    const [costCenter, setCostCenter] = useState('');
     const [periodOfExecutionMonth, setPeriodOfExecutionMonth]: any = useState('');
     const [necessityHoursQuantity, setNecessityHoursQuantity]: any = useState('');
     const [hourValue, setHourValue]: any = useState('');
     const expenseTotalValue = necessityHoursQuantity * hourValue;
 
-    const expense = { typeOfExpense: typeOfExpense, expenseProfile: expenseProfile, periodOfExecutionMonth: periodOfExecutionMonth, necessityHoursQuantity: necessityHoursQuantity, hourValue: hourValue, expenseTotalValue: expenseTotalValue };
+    const expense = { typeOfExpense: typeOfExpense, expenseProfile: expenseProfile, periodOfExecutionMonth: periodOfExecutionMonth, necessityHoursQuantity: necessityHoursQuantity, hourValue: hourValue, expenseTotalValue: expenseTotalValue, costCenter: costCenter };
     const [expenseList, setExpenseList]: any = useState([]);
 
     useEffect(() => {
@@ -36,7 +37,7 @@ export default function AddExpense() {
     }
 
     const nextStep = () => {
-        if (typeOfExpense === '' || expenseProfile === '' || periodOfExecutionMonth === '' || necessityHoursQuantity === '' || hourValue === '') {
+        if (typeOfExpense === '' || expenseProfile === '' || periodOfExecutionMonth === '' || necessityHoursQuantity === '' || hourValue === '' || costCenter === '') {
             notify()
         } else {
             expenseList.push(expense);
@@ -62,17 +63,15 @@ export default function AddExpense() {
 
                     <p>{t("expenseInformation")}</p>
 
-
-                    <div className="display-flex-grid">
-                        <label>{t("expenseProfile")} *</label>
-                        <input onChange={(e) => { setExpenseProfile(e.target.value) }} type="expenseProfile" />
-                    </div>
-
                     <div className="display-flex-grid">
                         <label>{t("expenseType")} *</label>
                         <SelectAddExpense setTypeOfExpense={setTypeOfExpense} type="typeOfExpense" />
                     </div>
 
+                    <div className="display-flex-grid">
+                        <label>{t("expenseProfile")} *</label>
+                        <input onChange={(e) => { setExpenseProfile(e.target.value) }} type="expenseProfile" />
+                    </div>
 
                     <div className="display-flex-grid">
                         <label>{t("periodOfExecutionMonth")} *</label>
@@ -95,9 +94,10 @@ export default function AddExpense() {
                     </div>
 
                     <div className="display-flex-grid">
-                        <label>{t("costCenter")}</label>
-                        <input type="costCenter" />
+                        <label>{t("costCenter")} *</label>
+                        <SelectAddExpense setCostCenter={setCostCenter} type="costCenter" />
                     </div>
+
 
                 </div>
 

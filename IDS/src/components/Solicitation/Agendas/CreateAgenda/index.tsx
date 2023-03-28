@@ -17,8 +17,9 @@ export default function CreateAgenda() {
     const { t } = useTranslation();
     const navigate = useNavigate();
 
-    const [proposals, setProposals]:any = useState([]);
+    const [proposals, setProposals]: any = useState([]);
     const [agendaNumber, setAgendaNumber] = useState("");
+    const [agendaYear, setAgendaYear] = useState("");
     const [commissionList, setcommissionList]: any = useState([]);
     const [commission, setCommission] = useState("");
     const [publishedMinute, setPublishedMinute] = useState(false);
@@ -68,11 +69,11 @@ export default function CreateAgenda() {
                 })
             })
 
-            for(let i = 0; i < proposals.length; i++){
+            for (let i = 0; i < proposals.length; i++) {
                 ServicesProposals.updatePublish(proposals[i].proposalCode, proposals[i].publishedMinute);
             }
 
-            Services.save(1, 1, commissionArray, actualDate, proposals).then((response: any) => {
+            Services.save(agendaNumber, agendaYear, commissionArray, actualDate, proposals).then((response: any) => {
                 console.log(response);
                 navigate("/agenda/view/" + response.agendaCode);
             })
@@ -182,8 +183,14 @@ export default function CreateAgenda() {
 
 
                     <div className="display-flex">
-                        <Input label={t("number")} required="*" />
-                        <Input label={t("year")} required="*" />
+                        <div className="input">
+                            <label>{t("number")} *</label>
+                            <input type="text" onChange={(e) => { setAgendaNumber(e.target.value) }} />
+                        </div>
+                        <div className="input">
+                            <label>{t("year")} *</label>
+                            <input type="Number" onChange={(e) => { setAgendaYear(e.target.value) }} />
+                        </div>
                     </div>
 
                     <div className="input">

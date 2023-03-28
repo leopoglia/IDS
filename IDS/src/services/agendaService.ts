@@ -1,7 +1,7 @@
 const url = "https://localhost:8443/api/agenda";
 
 const Services = {
-    save: function (sequentialNumber: Number, yearAgenda: Number, commission: any, agendaDate: String, proposals: any) {
+    save: function (sequentialNumber: String, yearAgenda: String, commission: any, agendaDate: String, proposals: any) {
 
         let proposalList: any = [];
         for (let i = 0; i < proposals.length; i++) {

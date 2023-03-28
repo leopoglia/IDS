@@ -40,7 +40,7 @@
     height: 50px;
     border: 1px solid var(--greyC4);
     border-radius: var(--r);
-    margin-top: 35px;
+    margin-top: 15px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -72,7 +72,7 @@ input[type=number] {
 }
 
 .execution-costs .display-flex-space-between {
-    margin-top: 25px;
+    margin-top: 20px;
 }
 
 .execution-costs .costs-execution {
@@ -84,7 +84,6 @@ input[type=number] {
 }
 
 .execution-costs .costs-execution span {
-    background-color: var(--greyF7);
     padding: 12px;
     border-radius: var(--r);
     border: 1px solid var(--greyC4);

@@ -8,7 +8,7 @@ import "./style.css"
 
 
 
-export default function ConditionalValidationGrid() {
+export default function ConditionalValidationGrid(props: any) {
 
     const [expenseList, setExpenseList] = useState<any>(JSON.parse(localStorage.getItem('expenseList') || '[""]'));
 
@@ -70,13 +70,14 @@ export default function ConditionalValidationGrid() {
 
     return (
         <div className='view-demand grid-cost-execution'>
+
+
             <div className='classification'>
                 <div className="display-block">
 
-                    <p className="title">{t("expenses")}</p>
+                    <p className="title">{t(props.title)}</p>
                     <table>
                         <tr>
-                            <td>{t("expenseType")}</td>
                             <td>{t("expenseProfile")}</td>
                             <td>{t("periodOfExecution")}</td>
                             <td>{t("necessityHours")}</td>
@@ -92,26 +93,30 @@ export default function ConditionalValidationGrid() {
 
                         {
                             expenseList.map((val: any) => {
-                                return (
-                                    <tr>
-                                        <td>{val.typeOfExpense}</td>
-                                        <td>{val.expenseProfile}</td>
-                                        <td>{val.periodOfExecutionMonth}</td>
-                                        <td>{val.necessityHoursQuantity}</td>
-                                        <td>R$ {val.hourValue}</td>
-                                        <td>R$ {val.expenseTotalValue}</td>
-                                        <td className='w40'>
-                                            <span className="material-symbols-outlined">
-                                                delete
-                                            </span>
-                                        </td>
-                                    </tr>
-                                )
+                                if (val.typeOfExpense === props.title) {
+
+                                    return (
+                                        <tr>
+                                            <td>{val.expenseProfile}</td>
+                                            <td>{val.periodOfExecutionMonth}</td>
+                                            <td>{val.necessityHoursQuantity}</td>
+                                            <td>R$ {val.hourValue}</td>
+                                            <td>R$ {val.expenseTotalValue}</td>
+                                            <td className='w40'>
+                                                <span className="material-symbols-outlined">
+                                                    delete
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    )
+                                }
                             })
                         }
                     </table>
                 </div>
             </div>
+
+
         </div>
     );
 }

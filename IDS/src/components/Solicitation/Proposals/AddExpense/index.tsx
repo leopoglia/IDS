@@ -93,6 +93,12 @@ export default function AddExpense() {
                         <label>{t("expenseTotalValue")} *</label>
                         <input type="number" value={expenseTotalValue} />
                     </div>
+
+                    <div className="display-flex-grid">
+                        <label>{t("costCenter")}</label>
+                        <input type="costCenter" />
+                    </div>
+
                 </div>
 
                 <div className="display-flex-end">

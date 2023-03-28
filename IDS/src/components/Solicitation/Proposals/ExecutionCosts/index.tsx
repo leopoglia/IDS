@@ -9,7 +9,6 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import { useState, useContext } from "react";
-import Services from "../../../../services/costCenterService";
 import ProposalServices from "../../../../services/proposalService";
 import DemandService from "../../../../services/demandService";
 import ExpenseService from "../../../../services/expenseService";
@@ -20,14 +19,13 @@ export default function ExecutionCosts() {
     const navigate = useNavigate();
 
     const worker = useContext(UserContext).worker;
-    const [costCenter, setCostCenter] = useState("");
-    const [costsCenters, setCostsCenters]: any = useState([]);
+
     const [demandCode, setDemandCode] = useState(parseInt(window.location.href.split("/")[5]));
-    const [idCostCenter, setIdCostCenter]: any = useState([]);
     const proposal = JSON.parse(localStorage.getItem('proposal') || '{}');
     const scope: any = localStorage.getItem('proposalScope');
     let actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear(); // Data atual
     let expenseListStorage: any = JSON.parse(localStorage.getItem('expenseList') || '[]');
+    const demandData: any = JSON.parse(localStorage.getItem('demand') || '{}');
 
     let totalsCosts = 0;
     let externalCosts = 0;
@@ -37,13 +35,7 @@ export default function ExecutionCosts() {
         localStorage.setItem('demand', JSON.stringify(demand));
     });
 
-    const demandData: any = JSON.parse(localStorage.getItem('demand') || '{}');
 
-
-    // const expenseList:any = [];
-    // expenseList.push(JSON.parse(expenseListStorage));
-
-    const [payingCostCenter, setPayingCostCenter] = useState('');
 
     for (let i = 0; i < expenseListStorage.length; i++) {
         if (expenseListStorage[i].typeOfExpense === "internal") {
@@ -57,48 +49,11 @@ export default function ExecutionCosts() {
         totalsCosts += expenseListStorage[i].expenseTotalValue;
     }
 
-    function addCostCenter(costCenterAdd: any) {
-        if (costCenterAdd === "" || costCenterAdd === " ") {
-            alert("Digite um centro de custo");
-        } else {
-            createCostCenter();
-            costsCenters.push(costCenterAdd);
-            setCostsCenters(costsCenters);
 
-            setCostCenter("");
-        }
-    }
-
-    async function createCostCenter() {
-
-        let costsCenterBd: any = await Services.findAll();
-
-        let igual = 0;
-        let id = 0;
-        for (let i = 0; i < costsCenterBd.length; i++) {
-            if (costsCenterBd[i].costCenter === costCenter) {
-                igual++;
-            }
-        }
-
-        if (igual === 0) {
-            let service: any = await Services.save(costCenter);
-
-            idCostCenter.push(service.costCenterCode);
-        } else {
-            for (let i = 0; i < costsCenterBd.length; i++) {
-                if (costsCenterBd[i].costCenter === costCenter) {
-                    id = costsCenterBd[i].costCenterCode;
-                }
-            }
-            idCostCenter.push(id);
-        }
-
-    }
 
     const nextStep = () => {
 
-        if (costsCenters.length === 0) {
+        if (totalsCosts === 0) {
             notify()
         } else {
             ProposalServices.save(demandData.demandTitle, "Pending", 1, proposal.start, proposal.end, scope, worker.id, 0, proposal.responsiblesBussiness, totalsCosts, externalCosts, internalCosts, demandCode, actualDate).then((proposal: any) => {
@@ -149,71 +104,34 @@ export default function ExecutionCosts() {
                         <p>{t("executionCostsProject")}</p>
                     </div>
 
-                    <div className="block">
-                        <GridCostExecution />
+                    <div className="display-flex-space-between">
 
+                        <Link to={"/proposal/execution-costs/add-expense/" + demandCode}>
+                            <button className="btn-secondary">{t("addExpense")}</button>
+                        </Link>
 
-                        <div className="input">
-                            <div className="display-flex-grid">
-                                {expenseListStorage.length !== 0 &&
+                        <div className="costs-execution">
+                            <span>{t("totalsCosts")}: R$ {totalsCosts}</span>
 
-                                    <div>
+                            <span>{t("expenses")}: R$ {externalCosts}</span>
 
-                                        <label>{t("payingCostCenter")} *</label>
+                            <span>{t("recurrent")}: R$ {recurrentCosts}</span>
 
+                            <span>{t("internal")}: R$ {internalCosts}</span>
 
-                                        <div className="display-flex">
-                                            <SelectCostExecution setCostCenter={setCostCenter} costCenter={costCenter} addCostCenter={addCostCenter} type="payingCostCenter" />
-
-                                            <button className="btn-primary btn-center-cost" onClick={() => { addCostCenter(costCenter) }}>
-                                                <span className="material-symbols-outlined">
-                                                    add
-                                                </span>
-                                            </button>
-                                        </div>
-
-
-
-                                        {costsCenters.map((costCenter: any) => {
-                                            return <div className="cost-center">
-                                                <span>{costCenter}</span>
-
-                                                <div>
-                                                    <input type="number" />
-                                                    <label htmlFor="">%</label>
-                                                </div>
-                                            </div>
-                                        })
-                                        }
-                                    </div>
-
-
-
-                                }
-                            </div>
-
-                            <div className="hr"></div>
-
-                            <div className="display-flex-space-between">
-
-                                <Link to={"/proposal/execution-costs/add-expense/" + demandCode}>
-                                    <button className="btn-secondary">{t("addExpense")}</button>
-                                </Link>
-
-                                <div className="costs-execution">
-                                    <span>{t("totalsCosts")}: R$ {totalsCosts}</span>
-
-                                    <span>{t("externalCosts")}: R$ {externalCosts}</span>
-
-                                    <span>{t("reccurent")}: R$ {recurrentCosts}</span>
-
-                                    <span>{t("internalsCosts")}: R$ {internalCosts}</span>
-
-                                </div>
-                            </div>
                         </div>
                     </div>
 
+                    <div className="hr"></div>
+
+                    <div className="block">
+                        <GridCostExecution title="expenses" />
+
+                        <GridCostExecution title="recurrent" />
+
+                        <GridCostExecution title="internal" />
+
+                    </div>
 
                 </div>
 

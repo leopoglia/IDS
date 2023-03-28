@@ -176,6 +176,17 @@ export default function Nav() {
                     </li>
                 </Link> */}
 
+                <Link to="https://manualdeusuarioids.vercel.app/" target="_blank">
+                    <li className="help">
+                        <div>
+                            <span className="material-symbols-outlined">
+                                help
+                            </span>
+                            <span className="title-li">{t("help")}</span>
+                        </div>
+                    </li>
+                </Link>
+                
                 <Link to="/">
                     <li className="logout">
                         <div>

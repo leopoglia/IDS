@@ -136,16 +136,20 @@ nav li {
 }
 
 
-.nav-open .logout {
+.nav-open .logout, .nav-open .help  {
     width: 175px;
 }
 
-.logout {
+.logout, .help {
     width: 53px;
     background-color: var(--greyF7);
     position: fixed;
     bottom: 0;
     transition: 0.1s !important;
+}
+
+.help {
+    margin: 0 0 65px 0;
 }
 
 @media(min-width: 1280px) {

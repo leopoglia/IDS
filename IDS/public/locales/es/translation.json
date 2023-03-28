@@ -197,5 +197,6 @@
     "demandPage": "Esta é a pagina de demandas",
     "thisIsDemandPage": "Aquí puede ver las demandas que ha creado y las demandas que otros en su industria han creado.",
     "createDemandHere": "Intente crear una demanda haciendo clic en Crear demanda.",
-    "noExpenses": "No hay gastos"
+    "noExpenses": "No hay gastos",
+    "help": "Ayuda"
 }

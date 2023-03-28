@@ -2,7 +2,7 @@ const url = "https://localhost:8443/api/minutes";
 
 const Services = {
 
-    save: function (minuteName: String, agenda: any, minuteStartDate: any, director: any) {
+    save: function (minuteName: String, agenda: any, minuteStartDate: any, director: any, minuteType: String) {
 
         return new Promise((resolve, reject) => {
             fetch(url, {
@@ -11,7 +11,8 @@ const Services = {
                     agenda: {agendaCode: agenda},
                     minuteStartDate: minuteStartDate,
                     minuteEndDate: null,
-                    director: {workerCode: director}
+                    director: {workerCode: director},
+                    minuteType: minuteType
                 }), headers: { 'Content-Type': 'application/json' }
             }).then(function (result) { return result.json(); })
                 .then(resolve)

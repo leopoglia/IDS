@@ -17,10 +17,11 @@ export default function CreateAgenda() {
     const { t } = useTranslation();
     const navigate = useNavigate();
 
-    const [proposals, setProposals] = useState([]);
+    const [proposals, setProposals]:any = useState([]);
     const [agendaNumber, setAgendaNumber] = useState("");
     const [commissionList, setcommissionList]: any = useState([]);
     const [commission, setCommission] = useState("");
+    const [publishedMinute, setPublishedMinute] = useState(false);
     let actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear();
 
 
@@ -46,7 +47,6 @@ export default function CreateAgenda() {
 
     }
 
-
     const deleteProposal = (id: any) => {
         let proposals = JSON.parse(localStorage.getItem("proposals") || "[]");
         let index = proposals.indexOf(id);
@@ -68,6 +68,9 @@ export default function CreateAgenda() {
                 })
             })
 
+            for(let i = 0; i < proposals.length; i++){
+                ServicesProposals.updatePublish(proposals[i].proposalCode, publishedMinute);
+            }
 
             Services.save(1, 1, commissionArray, actualDate, proposals).then((response: any) => {
                 console.log(response);
@@ -140,15 +143,15 @@ export default function CreateAgenda() {
                                                 <span className="material-symbols-outlined">
                                                     delete
                                                 </span>
-
-
                                             </div>
                                         </div>
 
 
                                         <div className="check-box">
-
-                                            <input type="checkbox" />
+                                            <input onChange={(e) => {
+                                                setPublishedMinute(e.target.checked ? true : false)
+                                                console.log(publishedMinute)
+                                            }} type="checkbox" />
 
                                             <label>{t("publiquedMinute")}</label>
 

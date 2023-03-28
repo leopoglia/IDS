@@ -33,7 +33,7 @@ export default function ViewDemand() {
     const workerId = worker.id; // Buscar código do usuário
     const url = window.location.href.split("/")[3]; // Buscar tipo da demanda
     const demandCode = parseInt(window.location.href.split("/")[5]); // Buscar código da demanda
-    let approvedMinute: any = 0;
+    let pendingMinute: any = 0;
 
 
     // Botões superiores
@@ -235,8 +235,8 @@ export default function ViewDemand() {
     const [proposalExpense, setProposalExpense]: any = useState([]);
 
     proposalSpecific.map((val: any) => (
-        val.proposalStatus === "Approved" ? (
-            approvedMinute += 1
+        val.proposalStatus === "Pending" ? (
+            pendingMinute += 1
         ) : (
             null
         )
@@ -1055,7 +1055,7 @@ export default function ViewDemand() {
                         </div>
 
                         {
-                            approvedMinute === proposalSpecific.length && minute.length === 0 ? (
+                            pendingMinute < proposalSpecific.length && minute.length === 0 ? (
                                 <div className="display-flex-end">
                                     <Link to={"/minutes/create/" + demandCode}>
                                         <button className="btn-primary">{t("finish")}</button>

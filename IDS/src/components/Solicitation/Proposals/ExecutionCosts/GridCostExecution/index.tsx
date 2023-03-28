@@ -15,8 +15,7 @@ export default function ConditionalValidationGrid(props: any) {
 
     useEffect(() => {
         setExpenseList(JSON.parse(localStorage.getItem('expenseList') || '[""]'));
-        console.log(expenseList);
-    }, [deleteNumber]);
+    }, [deleteNumber, localStorage.getItem('expenseList')]);
 
     const { t } = useTranslation();
 
@@ -50,7 +49,6 @@ export default function ConditionalValidationGrid(props: any) {
                         {
                             expenseList.map((val: any, index: any) => {
                                 if (val.typeOfExpense === props.title) {
-
                                     return (
                                         <tr>
                                             <td>{val.expenseProfile}</td>

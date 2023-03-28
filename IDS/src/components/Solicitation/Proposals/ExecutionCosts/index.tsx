@@ -72,6 +72,7 @@ export default function ExecutionCosts() {
                         expenseListStorage[i].necessityHoursQuantity,
                         expenseListStorage[i].hourValue,
                         expenseListStorage[i].expenseTotalValue,
+                        expenseListStorage[i].costCenter,
                         proposal.proposalCode
                     ).then((expense: any) => {
                         localStorage.removeItem('expenseList');

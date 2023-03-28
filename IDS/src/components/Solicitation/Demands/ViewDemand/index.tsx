@@ -19,6 +19,7 @@ import PDF from "./PDF";
 import HtmlReactParser from 'html-react-parser';
 import UserContext from "../../../../context/userContext";
 import Tooltip from '@mui/material/Tooltip';
+import Expenses from "./Expenses";
 
 
 export default function ViewDemand() {
@@ -263,6 +264,8 @@ export default function ViewDemand() {
 
                 if (expense.length !== 0) {
                     setProposalExpense(expense)
+
+                    console.log(expense);
                 }
 
                 console.log(expense)
@@ -875,71 +878,33 @@ export default function ViewDemand() {
                             )}
 
 
+                            <Expenses type="expenses" proposalExpense={proposalExpense} />
+                            <Expenses type="recurrent" proposalExpense={proposalExpense} />
+                            <Expenses type="internal" proposalExpense={proposalExpense} />
 
 
-                            {proposalExpense.map((proposalExpense: any, index: any) => {
-                                return (
-                                    <div key={index}>
-                                        <div className={"complement " + expenseOpen} >
-                                            <div className="display-flex-space-between">
 
-                                                <p className="title">{t("expenseInformation")}</p>
-                                                <span onClick={() => setExpenseOpen(!expenseOpen)} className="material-symbols-outlined arrow-expend">
-                                                    expand_more
-                                                </span>
+                            {proposalExpense.length !== 0 ? (
+                                <div className={"complement "} >
+                                    <div className="display-block">
+                                        <div className="display-flex-align-center">
+                                            <p className="title">{t("deadline")}:</p>
+                                            <div>
+                                                <span>{initialRunPeriod}</span>
+                                                <span>&nbsp; à &nbsp;</span>
+                                                <span>{finalExecutionPeriod}</span>
                                             </div>
 
-                                            <table>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>{t("expenseProfile")}</td>
-                                                        <td>{t("expenseType")}</td>
-                                                        <td>{t("hourValue")}</td>
-                                                        <td>{t("expenseTotalValue")}</td>
-                                                    </tr>
-
-
-
-                                                    <tr>
-                                                        <td>{proposalExpense.expenseProfile}</td>
-                                                        <td>{proposalExpense.expenseType}</td>
-                                                        <td>{proposalExpense.hourValue}</td>
-                                                        <td>{proposalExpense.totalValue}</td>
-
-                                                    </tr>
-                                                </tbody>
-                                            </table>
                                         </div>
-
-                                        <div key={index} className={"complement " + expenseOpen} >
-                                            {proposalExpense?.proposal?.initialRunPeriod ? (
-
-                                                <div className="display-block">
-                                                    <div className="display-flex-align-center">
-                                                        <p className="title">{t("deadline")}:</p>
-                                                        <div>
-                                                            <span>{initialRunPeriod}</span>
-                                                            <span>&nbsp; à &nbsp;</span>
-                                                            <span>{finalExecutionPeriod}</span>
-                                                        </div>
-
-                                                    </div>
-                                                    <div className="display-flex-align-center">
-                                                        <p className="title">{t("Payback")}:</p>
-                                                        <span> {payBack}</span>
-                                                    </div>
-                                                </div>
-                                            ) : (
-                                                null
-                                            )}
+                                        <div className="display-flex-align-center">
+                                            <p className="title">{t("Payback")}:</p>
+                                            <span> {payBack}</span>
                                         </div>
-
                                     </div>
-                                )
-                            })}
-
-
-
+                                </div>
+                            ) : (
+                                null
+                            )}
 
                             {demand.demandAttachment ? (
                                 <div className="attachments">

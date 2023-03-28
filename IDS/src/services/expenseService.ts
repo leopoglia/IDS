@@ -1,7 +1,7 @@
 const url = "https://localhost:8443/api/expense";
 
 const Services = {
-    save: function (expenseType: String, expenseProfile: String, runTime: Number, amountOfHours: Number, hourValue: Number, totalValue: Number, proposal:Number) {
+    save: function (expenseType: String, expenseProfile: String, runTime: Number, amountOfHours: Number, hourValue: Number, totalValue: Number, costCenter: Number, proposal:Number) {
 
         return new Promise((resolve, reject) => {
             fetch(url, {
@@ -12,7 +12,8 @@ const Services = {
                     amountOfHours: amountOfHours,
                     hourValue: hourValue,
                     totalValue: totalValue,
-                    proposal: {proposalCode: proposal}
+                    proposal: {proposalCode: proposal},
+                    costCenter: {costCenterCode: costCenter}
                 }), headers: { 'Content-Type': 'application/json' }
             }).then(function (result) { return result.json(); })
                 .then(resolve)

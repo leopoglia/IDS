@@ -19,7 +19,7 @@ export default function AddExpense() {
 
     const [typeOfExpense, setTypeOfExpense] = useState('');
     const [expenseProfile, setExpenseProfile] = useState('');
-    const [costCenter, setCostCenter] = useState('');
+    const [costCenter, setCostCenter] = useState(0);
     const [periodOfExecutionMonth, setPeriodOfExecutionMonth]: any = useState('');
     const [necessityHoursQuantity, setNecessityHoursQuantity]: any = useState('');
     const [hourValue, setHourValue]: any = useState('');
@@ -32,12 +32,8 @@ export default function AddExpense() {
         setExpenseList(JSON.parse(localStorage.getItem('expenseList') || '[]'));
     }, []);
 
-    async function createExpense() {
-        await Services.save(typeOfExpense, expenseProfile, periodOfExecutionMonth, necessityHoursQuantity, hourValue, expenseTotalValue, 1);
-    }
-
     const nextStep = () => {
-        if (typeOfExpense === '' || expenseProfile === '' || periodOfExecutionMonth === '' || necessityHoursQuantity === '' || hourValue === '' || costCenter === '') {
+        if (typeOfExpense === '' || expenseProfile === '' || periodOfExecutionMonth === '' || necessityHoursQuantity === '' || hourValue === '' || costCenter === 0) {
             notify()
         } else {
             expenseList.push(expense);

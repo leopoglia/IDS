@@ -27,7 +27,6 @@ export default function SelectLabels(props: any) {
             props.setExpenseProfile(event.target.value)
             setSelect(event.target.value)
         } else if (props.type === "costCenter") {
-            console.log(event.target.value)
             props.setCostCenter(event.target.value)
             setSelect(event.target.value)
         }

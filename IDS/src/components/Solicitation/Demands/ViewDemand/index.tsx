@@ -779,8 +779,6 @@ export default function ViewDemand() {
                             </div>
 
 
-
-
                             {(stepDemand === 1 || stepDemand === 2) ? (
 
                                 (classification) ? (

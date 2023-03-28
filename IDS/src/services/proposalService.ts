@@ -28,7 +28,8 @@ const Services = {
                     externalCosts: externalCosts,
                     internalCosts: internalCosts,
                     demand: { demandCode: demandCode },
-                    proposalDate: proposalDate
+                    proposalDate: proposalDate,
+                    published: null
                 }), headers: { 'Content-Type': 'application/json' }
             }).then(function (result) { return result.json(); })
                 .then(resolve)
@@ -95,6 +96,15 @@ const Services = {
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(reject)
+        })
+    },
+    updatePublish: function(id: Number, publish: Boolean) {
+        return new Promise((resolve, reject) => {
+            console.log(publish);
+            fetch(url + "/published/" + id, {
+                method: 'PUT',
+                body: JSON.stringify({ "published": publish }),
+                headers: { 'Content-Type': 'application/json' }}).then(function (result) { return result.json(); }).then(resolve).catch(reject) 
         })
     }
 }

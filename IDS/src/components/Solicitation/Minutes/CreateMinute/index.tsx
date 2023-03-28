@@ -19,7 +19,8 @@ export default function CreateMinute() {
     console.log(code);
 
     function saveMinute() {
-        MinuteService.save("minute 01", code, actualDate, worker.id);
+        MinuteService.save("minute 01", code, actualDate, worker.id, "Not Published");
+        MinuteService.save("minute 01", code, actualDate, worker.id, "Published");
     }
  
     return (

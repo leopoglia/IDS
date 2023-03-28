@@ -278,7 +278,8 @@
     color: var(--blue) !important;
 }
 
-.view-demand .descriptiveProposal p {
+.view-demand .descriptiveProposal p,
+.view-demand .descriptiveProposal li {
     font-size: var(--p) !important;
     color: var(--grey4D) !important;
 }
@@ -303,6 +304,10 @@
 
 .mb10{
     margin-bottom: 15px;
+}
+
+.w40{
+    width: 33.5% !important;
 }
 
 /* 

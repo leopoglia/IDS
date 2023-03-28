@@ -18,7 +18,6 @@ export default function Expenses(props: any) {
                     <tbody>
                         <tr>
                             <td>{t("expenseProfile")}</td>
-                            <td>{t("expenseType")}</td>
                             <td>{t("hourValue")}</td>
                             <td>{t("expenseTotalValue")}</td>
                             <td>{t("costCenter")}</td>
@@ -31,7 +30,7 @@ export default function Expenses(props: any) {
                                         <td>{proposalExpense.expenseProfile}</td>
                                         <td>{proposalExpense.hourValue}</td>
                                         <td>{proposalExpense.totalValue}</td>
-                                        <td>{proposalExpense.totalValue}</td>
+                                        <td>{proposalExpense.costCenter.costCenter}</td>
 
                                     </tr>
                                 )

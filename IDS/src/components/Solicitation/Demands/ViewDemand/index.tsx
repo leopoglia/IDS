@@ -313,7 +313,7 @@ export default function ViewDemand() {
     const tr = (dataOne: any, dataTwo: any, index: any) => {
         return (
             <tr key="index">
-                <td>{t(dataOne)}</td>
+                <td className="w40">{t(dataOne)}</td>
                 <td>{t(dataTwo)}</td>
             </tr>
         )

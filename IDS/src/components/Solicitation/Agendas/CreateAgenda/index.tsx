@@ -185,7 +185,7 @@ export default function CreateAgenda() {
                     <div className="display-flex">
                         <div className="input">
                             <label>{t("number")} *</label>
-                            <input type="text" onChange={(e) => { setAgendaNumber(e.target.value) }} />
+                            <input type="Number" onChange={(e) => { setAgendaNumber(e.target.value) }} />
                         </div>
                         <div className="input">
                             <label>{t("year")} *</label>

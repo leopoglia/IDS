@@ -110,27 +110,25 @@ export default function Demand(props: any) {
         } else {
             return (
                 <div className="demand-list">
-                    <section>
-                        <div className="name-code">
-                            <h1>{props.name}</h1>
+                        <section>
+                            <div className="name-code">
+                                <h1>{props.name}</h1>
+                            </div>
+
+
+                            <div className="display-grid">
+
+                                {situation()}
+                            </div>
+
+                        </section>
+
+
+                        <div className="display-flex">
+
+                            {information()}
+
                         </div>
-
-
-                        <div className="display-grid">
-
-                            {situation()}
-                        </div>
-
-                    </section>
-
-
-                    <div className="display-flex">
-
-                        {information()}
-
-                    </div>
-
-
                 </div>
             )
         }

@@ -64,7 +64,7 @@ export default function Demands() {
                     setAgendas(res);
                 });
             }
-        }else if (url[3] === "minutes") {
+        } else if (url[3] === "minutes") {
             if (search === "") {
                 getMinutes(); // Busca as demandas cadastradas
             } else {
@@ -346,9 +346,8 @@ export default function Demands() {
                                     <h1>{t("noResults")}</h1>
                                 </div>
                             )}
+
                         </div>
-
-
 
                         {footer()}
 

@@ -85,31 +85,36 @@
 .container-background {
     min-height: calc(100vh - 350px) !important;
     max-height: calc(100vh - 350px) !important;
-    overflow: auto;
     position: relative;
+    overflow: auto;
+}
+
+.boxNoPadding {
     border: 1px solid var(--greyC4);
     border-radius: var(--r);
     overflow: overlay;
+    min-height: calc(100vh - 350px) !important;
+    max-height: calc(100vh - 350px) !important;
 }
 
-.h45{
+.h45 {
     height: 45px;
     margin-top: 25px;
 }
 
-.h45 .arrow-disabled{
+.h45 .arrow-disabled {
     background-color: var(--greyF7);
     color: var(--grey59);
     cursor: not-allowed;
 }
 
-.h45 .arrow-disabled:hover{
+.h45 .arrow-disabled:hover {
     background-color: var(--greyF7);
     color: var(--grey59);
     cursor: not-allowed;
 }
 
-.btn-presentation{
+.btn-presentation {
     position: absolute;
     z-index: 15;
     bottom: 0;

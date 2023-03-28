@@ -357,13 +357,14 @@ hr {
 .message::-webkit-scrollbar,
 .notification-true::-webkit-scrollbar,
 .notification-false::-webkit-scrollbar,
-.container-background::-webkit-scrollbar {
+.container-background::-webkit-scrollbar{
   width: 10px;
   height: 4px;
   
 }
 
-.container-background::-webkit-scrollbar {
+.container-background::-webkit-scrollbar,
+.boxNoPadding::-webkit-scrollbar  {
   width: 6px;
 }
 
@@ -376,7 +377,8 @@ hr {
 .message::-webkit-scrollbar-thumb,
 .notification-true::-webkit-scrollbar-thumb,
 .notification-false::-webkit-scrollbar-thumb,
-.container-background::-webkit-scrollbar-thumb {
+.container-background::-webkit-scrollbar-thumb,
+.boxNoPadding::-webkit-scrollbar-thumb {
   background-color: var(--greyD9);
 }
 
@@ -385,7 +387,8 @@ hr {
 .message::-webkit-scrollbar-thumb:hover,
 .notification-true::-webkit-scrollbar-thumb:hover,
 .notification-false::-webkit-scrollbar-thumb:hover,
-.container-background::-webkit-scrollbar-thumb:hover {
+.container-background::-webkit-scrollbar-thumb:hover,
+.boxNoPadding::-webkit-scrollbar-thumb:hover {
   background-color: var(--greyD9);
 }
 

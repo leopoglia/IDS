@@ -877,10 +877,16 @@ export default function ViewDemand() {
                                 <div className="null"></div>
                             )}
 
+                            {proposalExpense.length !== 0 ? (
+                                <div>
+                                    <Expenses type="expenses" proposalExpense={proposalExpense} />
+                                    <Expenses type="recurrent" proposalExpense={proposalExpense} />
+                                    <Expenses type="internal" proposalExpense={proposalExpense} />
+                                </div>
+                            ) : (
+                                null
+                            )}
 
-                            <Expenses type="expenses" proposalExpense={proposalExpense} />
-                            <Expenses type="recurrent" proposalExpense={proposalExpense} />
-                            <Expenses type="internal" proposalExpense={proposalExpense} />
 
 
 

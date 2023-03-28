@@ -25,7 +25,7 @@ export default function InsetList(props: any) {
                     </div>
                 </Link>
 
-                <Link to="/demand/historical">
+                <Link to={"/demand/historical/" + props.codeDemand}>
                     <div className="li">
                         <span className="material-symbols-outlined">
                             history

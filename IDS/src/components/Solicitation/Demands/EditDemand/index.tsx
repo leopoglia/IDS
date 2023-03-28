@@ -230,18 +230,17 @@ export default function EscopeDemand() {
 		let file;
 		if (fileAttachment[0] !== null) {
 			file = new File([fileAttachment[0]], fileAttachment[0].name, { type: fileAttachment[0].type });
-		}else{
+		} else {
 			file = null
 		}
 
 		ServicesDemand.update(demandCode, demandTitle, demandProblem, demandObjective, costsCentersId, frequencyOfUse, realBenefitCode, potentialBenefitCode, qualitativeBenefitCode, file, demandDate, demandStatus, demandScore, demandRequester, demandClassification).then((response: any) => {
 			console.log(response);
 
-			ServicesDemand.updateStatus(demandCode, "Backlog").then((response: any) => { });
-
-			console.log("URL ===> ", url)
 
 			if (url === "edit") {
+				ServicesDemand.updateStatus(demandCode, "Backlog").then((response: any) => { });
+
 				localStorage.setItem("route", "edit");
 				navigate("/demand/view/" + demandCode);
 			} else if (url === "demand") {

@@ -4,7 +4,7 @@ import ModalActionAnalyst from "../ModalActionAnalyst";
 
 
 
-export default function ButtonActionAnalyst() {
+export default function ButtonActionAnalyst(props:any) {
 
     const [modal, setModal]: any = useState(false);
 
@@ -19,7 +19,7 @@ export default function ButtonActionAnalyst() {
 
             {modal && (
                 <div className="modal-action-analyst">
-                    <ModalActionAnalyst />
+                    <ModalActionAnalyst codeDemand={props.codeDemand} />
                 </div>
             )}
         </div>

@@ -88,7 +88,7 @@ nav .title-li {
 .nav-open li div {
     display: flex;
     align-items: center;
-    width: 90% !important;
+    width: 90%;
     max-width: none !important;
     height: 50px;
     padding-left: 10px;
@@ -148,9 +148,14 @@ nav li {
     transition: 0.1s !important;
 }
 
+.logout div, .help div{
+    width: 100% !important;
+}
+
 .help {
     margin: 0 0 65px 0;
 }
+
 
 @media(min-width: 1280px) {
 

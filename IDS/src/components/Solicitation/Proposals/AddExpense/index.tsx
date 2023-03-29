@@ -20,12 +20,11 @@ export default function AddExpense() {
     const [typeOfExpense, setTypeOfExpense] = useState('');
     const [expenseProfile, setExpenseProfile] = useState('');
     const [costCenter, setCostCenter] = useState(0);
-    const [periodOfExecutionMonth, setPeriodOfExecutionMonth]: any = useState('');
     const [necessityHoursQuantity, setNecessityHoursQuantity]: any = useState('');
     const [hourValue, setHourValue]: any = useState('');
     const expenseTotalValue = necessityHoursQuantity * hourValue;
 
-    const expense = { typeOfExpense: typeOfExpense, expenseProfile: expenseProfile, periodOfExecutionMonth: periodOfExecutionMonth, necessityHoursQuantity: necessityHoursQuantity, hourValue: hourValue, expenseTotalValue: expenseTotalValue, costCenter: costCenter };
+    const expense = { typeOfExpense: typeOfExpense, expenseProfile: expenseProfile, necessityHoursQuantity: necessityHoursQuantity, hourValue: hourValue, expenseTotalValue: expenseTotalValue, costCenter: costCenter };
     const [expenseList, setExpenseList]: any = useState([]);
 
     useEffect(() => {
@@ -33,7 +32,7 @@ export default function AddExpense() {
     }, []);
 
     const nextStep = () => {
-        if (typeOfExpense === '' || expenseProfile === '' || periodOfExecutionMonth === '' || necessityHoursQuantity === '' || hourValue === '' || costCenter === 0) {
+        if (typeOfExpense === '' || expenseProfile === '' || necessityHoursQuantity === '' || hourValue === '' || costCenter === 0) {
             notify()
         } else {
             expenseList.push(expense);
@@ -67,11 +66,6 @@ export default function AddExpense() {
                     <div className="display-flex-grid">
                         <label>{t("expenseProfile")} *</label>
                         <input onChange={(e) => { setExpenseProfile(e.target.value) }} type="expenseProfile" />
-                    </div>
-
-                    <div className="display-flex-grid">
-                        <label>{t("periodOfExecutionMonth")} *</label>
-                        <input type="number" onChange={(e) => { setPeriodOfExecutionMonth(e.target.value) }} />
                     </div>
 
                     <div className="display-flex-grid">

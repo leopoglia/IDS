@@ -68,7 +68,6 @@ export default function ExecutionCosts() {
                 for (let i = 0; i < expenseListStorage.length; i++) {
                     ExpenseService.save(expenseListStorage[i].typeOfExpense,
                         expenseListStorage[i].expenseProfile,
-                        expenseListStorage[i].periodOfExecutionMonth,
                         expenseListStorage[i].necessityHoursQuantity,
                         expenseListStorage[i].hourValue,
                         expenseListStorage[i].expenseTotalValue,

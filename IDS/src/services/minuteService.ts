@@ -48,6 +48,15 @@ const Services = {
                 .catch(resolve)
         })
     },
+    findByMinuteType: function (minuteType: String) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/type/" + minuteType, {
+                method: 'GET', headers: { 'Content-Type': 'application/json' }
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(resolve)
+        })
+    },
     delete: function (id: number) {
         return new Promise((resolve, reject) => {
             fetch(url + "/" + id, {

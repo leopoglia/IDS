@@ -92,7 +92,7 @@ nav .title-li {
     max-width: none !important;
     height: 50px;
     padding-left: 10px;
-    margin-left: 8.8px;
+    margin-left: 8.5px;
     border-radius: var(--r);
 }
 
@@ -136,11 +136,13 @@ nav li {
 }
 
 
-.nav-open .logout, .nav-open .help  {
+.nav-open .logout,
+.nav-open .help {
     width: 175px;
 }
 
-.logout, .help {
+.logout,
+.help {
     width: 53px;
     background-color: var(--greyF7);
     position: fixed;
@@ -148,7 +150,8 @@ nav li {
     transition: 0.1s !important;
 }
 
-.logout div, .help div{
+.logout div,
+.help div {
     width: 100% !important;
 }
 
@@ -157,15 +160,11 @@ nav li {
 }
 
 
-@media(min-width: 1280px) {
-
-    .nav-open,
-    #nav-open {
-        width: 185px;
-    }
+.nav-open .booble{
+    margin-left: 33px;
 }
 
-.booble{
+.booble {
     position: absolute;
     z-index: 1;
     width: 15px;
@@ -174,12 +173,19 @@ nav li {
     background-color: var(--blue);
     font-size: 10px;
     color: white;
-    transition: 0.1s;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-left: 28px;
     margin-top: -15px;
+}
+
+@media(min-width: 1280px) {
+
+    .nav-open,
+    #nav-open {
+        width: 185px;
+    }
 }
 
 @media(max-width: 768px) {

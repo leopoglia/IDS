@@ -35,7 +35,6 @@ export default function ConditionalValidationGrid(props: any) {
                     <table>
                         <tr>
                             <td>{t("expenseProfile")}</td>
-                            <td>{t("periodOfExecution")}</td>
                             <td>{t("necessityHours")}</td>
                             <td>{t("hoursValue")}</td>
                             <td>{t("totalValue")}</td>
@@ -52,7 +51,6 @@ export default function ConditionalValidationGrid(props: any) {
                                     return (
                                         <tr>
                                             <td>{val.expenseProfile}</td>
-                                            <td>{val.periodOfExecutionMonth}</td>
                                             <td>{val.necessityHoursQuantity}</td>
                                             <td>R$ {val.hourValue}</td>
                                             <td>R$ {val.expenseTotalValue}</td>

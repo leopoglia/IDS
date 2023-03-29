@@ -1,5 +1,7 @@
 import { useEffect, useState, useContext } from "react";
-import "./style.css"
+import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { toast, ToastContainer } from 'react-toastify';
 import Header from "../../../Fixed/Header"
 import Nav from "../../../Fixed/Nav"
 import Title from "../../../Fixed/Search/Title";
@@ -11,15 +13,13 @@ import ServicesAgenda from "../../../../services/agendaService";
 import ServicesExpense from "../../../../services/expenseService";
 import ServicesMinute from "../../../../services/minuteService";
 import Footer from "../../../Fixed/Footer";
-import { Link, useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import PDF from "./PDF";
 import HtmlReactParser from 'html-react-parser';
 import UserContext from "../../../../context/userContext";
 import Tooltip from '@mui/material/Tooltip';
 import Expenses from "./Expenses";
+import "./style.css";
 
 
 export default function ViewDemand() {
@@ -51,7 +51,6 @@ export default function ViewDemand() {
     // 1 - Demanda Classificada
     // 2 - Demanda Complementada
     const [stepDemand, setStepDemand] = useState(0);
-    const [editDemand, setEditDemand] = useState(true); // Habilitar ou desabilitar edição da demanda
     const [centerCost, setCenterCost] = useState([]); // Dados do centro de custo
     const [classification, setClassification]: any = useState({}); // Dados da classificação
     const [comission, setComission] = useState([]); // Dados da comissão
@@ -233,6 +232,9 @@ export default function ViewDemand() {
     }
 
     const [proposalExpense, setProposalExpense]: any = useState([]);
+    const [proposalExpenseValue, setProposalExpenseValue]: any = useState(0);
+    const [proposalExpenseRecurrent, setProposalExpenseRecurrent]: any = useState(0);
+    const [proposalExpenseInternal, setProposalExpenseInternal]: any = useState(0);
 
     proposalSpecific.map((val: any) => (
         val.proposalStatus === "Pending" ? (
@@ -258,6 +260,14 @@ export default function ViewDemand() {
                 for (let i = 0; i < response.length; i++) {
                     if (response[i].proposal.proposalCode === demandCode) {
                         expense.push(response[i])
+
+                        if (response[i].expenseType === "recurrent") {
+                            setProposalExpenseRecurrent(proposalExpenseRecurrent + 1);
+                        } else if (response[i].expenseType === "internal") {
+                            setProposalExpenseInternal(proposalExpenseInternal + 1);
+                        } else if (response[i].expenseType === "expenses") {
+                            setProposalExpenseValue(proposalExpenseValue + 1);
+                        }
 
                     }
                 }
@@ -875,15 +885,11 @@ export default function ViewDemand() {
                                 <div className="null"></div>
                             )}
 
-                            {proposalExpense.length !== 0 ? (
-                                <div>
-                                    <Expenses type="expenses" proposalExpense={proposalExpense} />
-                                    <Expenses type="recurrent" proposalExpense={proposalExpense} />
-                                    <Expenses type="internal" proposalExpense={proposalExpense} />
-                                </div>
-                            ) : (
-                                null
-                            )}
+                            {proposalExpenseValue !== 0 ? (<Expenses type="expenses" proposalExpense={proposalExpense} />) : (null)}
+
+                            {proposalExpenseRecurrent !== 0 ? (<Expenses type="recurrent" proposalExpense={proposalExpense} />) : (null)}
+
+                            {proposalExpenseInternal !== 0 ? (<Expenses type="internal" proposalExpense={proposalExpense} />) : (null)}
 
 
 

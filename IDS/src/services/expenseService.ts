@@ -1,18 +1,19 @@
 const url = "https://localhost:8443/api/expense";
 
 const Services = {
-    save: function (expenseType: String, expenseProfile: String,  amountOfHours: Number, hourValue: Number, totalValue: Number, costCenter: Number, proposal:Number) {
+    save: function (expenseType: String, expenseProfile: String, amountOfHours: Number, hourValue: Number, totalValue: Number, costCenter: Number, proposal: Number) {
 
         return new Promise((resolve, reject) => {
             fetch(url, {
                 method: 'POST', body: JSON.stringify({
                     expenseType: expenseType,
                     expenseProfile: expenseProfile,
+                    runTime: 0,
                     amountOfHours: amountOfHours,
                     hourValue: hourValue,
                     totalValue: totalValue,
-                    proposal: {proposalCode: proposal},
-                    costCenter: {costCenterCode: costCenter}
+                    proposal: { proposalCode: proposal },
+                    costCenter: { costCenterCode: costCenter }
                 }), headers: { 'Content-Type': 'application/json' }
             }).then(function (result) { return result.json(); })
                 .then(resolve)

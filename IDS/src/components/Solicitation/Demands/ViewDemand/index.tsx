@@ -1007,28 +1007,27 @@ export default function ViewDemand() {
                                             <div className="proposal-view">
 
                                                 <div className="display-flex-space-between">
-                                                    <p>{val.proposalName}</p>
 
-                                                    <div className="code">
-                                                        {val.demand.demandCode}
-                                                    </div>
-                                                </div>
+                                                    <div className="display-flex-align-center">
+                                                        <p>{val.proposalName}</p>
 
-
-                                                <span className="proposalDescription">
-                                                    {val.demand.demandObjective}
-                                                </span>
-
-                                                <div className="proposal-view-buttons">
-                                                    {val.proposalStatus === "Pending" ? (
-                                                        <Link to={"/proposal/comission-opinion/" + val.proposalCode}>
-                                                            <button className="btn-primary">{t("insertCommissionOpinion")}</button>
-                                                        </Link>
-                                                    ) : (
-                                                        <div>
-                                                            Status: {val.proposalStatus}
+                                                        <div className="code">
+                                                            {val.demand.demandCode}
                                                         </div>
-                                                    )}
+                                                    </div>
+
+
+                                                    <div className="proposal-view-buttons">
+                                                        {val.proposalStatus === "Pending" ? (
+                                                            <Link to={"/proposal/comission-opinion/" + val.proposalCode}>
+                                                                <button className="btn-primary">{t("insertCommissionOpinion")}</button>
+                                                            </Link>
+                                                        ) : (
+                                                            <div>
+                                                                Status: {val.proposalStatus}
+                                                            </div>
+                                                        )}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </Link>

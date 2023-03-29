@@ -125,7 +125,10 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    margin-top: 20px;
+}
+
+.proposal-view p{
+    margin: 0px !important
 }
 
 .view-demand .proposal-view-buttons button {
@@ -231,6 +234,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    color: var(--grey3d);
 }
 
 .view-demand .cost-center {
@@ -303,7 +307,7 @@
 }
 
 .mb10{
-    margin-bottom: 15px;
+    margin-bottom: 15px !important;
 }
 
 .w40{

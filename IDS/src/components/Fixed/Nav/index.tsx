@@ -4,6 +4,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import { useTranslation } from "react-i18next";
 import ServicesNotification from "../../../services/notificationService";
 import UserContext from "../../../context/userContext";
+import { Tooltip } from "@mui/material";
 
 
 export default function Nav() {
@@ -73,97 +74,112 @@ export default function Nav() {
                 </li>
 
 
-
-                <Link to="/demands/1">
-                    <li id={hover("demands")}>
-                        <div>
-                            <span className="material-symbols-outlined">
-                                draft
-                            </span>
-                            <span className="title-li">{t("demands")}</span>
-                        </div>
-
-                    </li>
-                </Link>
-
-                {(worker.office === "analyst" || worker.office === "ti") &&
-                    (<><Link to="/proposals/1">
-                        <li id={hover("proposals")}>
+                <Tooltip title={t("demands")} placement="right">
+                    <Link to="/demands/1">
+                        <li id={hover("demands")}>
                             <div>
                                 <span className="material-symbols-outlined">
-                                    request_quote
+                                    draft
                                 </span>
-                                <span className="title-li">{t("proposals")}</span>
+                                <span className="title-li">{t("demands")}</span>
                             </div>
+
                         </li>
                     </Link>
+                </Tooltip>
 
-                        <Link to="/agendas/1">
-                            <li id={hover("agendas")}>
-                                <div>
-                                    <span className="material-symbols-outlined">
-                                        folder
-                                    </span>
-                                    <span className="title-li">{t("agendas")}</span>
-                                </div>
-                            </li>
-                        </Link>
+                {(worker.office === "analyst" || worker.office === "ti") &&
+                    (
+                        <>
+                            <Tooltip title={t("proposals")} placement="right">
+                                <Link to="/proposals/1">
+                                    <li id={hover("proposals")}>
+                                        <div>
+                                            <span className="material-symbols-outlined">
+                                                request_quote
+                                            </span>
+                                            <span className="title-li">{t("proposals")}</span>
+                                        </div>
+                                    </li>
+                                </Link>
+                            </Tooltip>
 
-                        <Link to="/minutes/1">
-                            <li id={hover("minutes")}>
-                                <div>
-                                    <span className="material-symbols-outlined">
-                                        file_present
-                                    </span>
-                                    <span className="title-li">{t("minutes")}</span>
-                                </div>
-                            </li>
-                        </Link>
+                            <Tooltip title={t("agendas")} placement="right">
+                                <Link to="/agendas/1">
+                                    <li id={hover("agendas")}>
+                                        <div>
+                                            <span className="material-symbols-outlined">
+                                                folder
+                                            </span>
+                                            <span className="title-li">{t("agendas")}</span>
+                                        </div>
+                                    </li>
+                                </Link>
+                            </Tooltip>
 
-                        <Link to="/dashboard">
-                            <li id={hover("dashboard")}>
-                                <div>
-                                    <span className="material-symbols-outlined">
-                                        insert_chart
-                                    </span>
-                                    <span className="title-li">{t("dashboard")}</span>
-                                </div>
-                            </li>
-                        </Link>
+                            <Tooltip title={t("minutes")} placement="right">
+                                <Link to="/minutes/1">
+                                    <li id={hover("minutes")}>
+                                        <div>
+                                            <span className="material-symbols-outlined">
+                                                file_present
+                                            </span>
+                                            <span className="title-li">{t("minutes")}</span>
+                                        </div>
+                                    </li>
+                                </Link>
+                            </Tooltip>
 
-                        <Link to="/messages">
-                            <li id={hover("messages")}>
-                                <div>
-                                    <span className="material-symbols-outlined">
-                                        chat_bubble
-                                    </span>
-                                    <span className="title-li">{t("messages")}</span>
-                                </div>
-                            </li>
-                        </Link>
+                            <Tooltip title={t("dashboard")} placement="right">
+                                <Link to="/dashboard">
+                                    <li id={hover("dashboard")}>
+                                        <div>
+                                            <span className="material-symbols-outlined">
+                                                insert_chart
+                                            </span>
+                                            <span className="title-li">{t("dashboard")}</span>
+                                        </div>
+                                    </li>
+                                </Link>
+                            </Tooltip>
 
+                            <Tooltip title={t("messages")} placement="right">
+                                <Link to="/messages">
+                                    <li id={hover("messages")}>
+                                        <div>
+                                            <span className="material-symbols-outlined">
+                                                chat_bubble
+                                            </span>
+                                            <span className="title-li">{t("messages")}</span>
+                                        </div>
+                                    </li>
+                                </Link>
+                            </Tooltip>
 
-                    </>
+                        </>
 
                     )
                 }
 
-                <Link to="/notifications">
-                    <li id={hover("notifications")}>
-                        {numNotification > 0 &&
-                            <li className="booble">
-                                <span>{numNotification}</span>
-                            </li>
-                        }
+                <Tooltip title={t("notifications")} placement="right">
 
-                        <div>
-                            <span className="material-symbols-outlined">
-                                notifications
-                            </span>
-                            <span className="title-li">{t("notifications")}</span>
-                        </div>
-                    </li>
-                </ Link>
+                    <Link to="/notifications">
+                        <li id={hover("notifications")}>
+                            {numNotification > 0 &&
+                                <li className="booble">
+                                    <span>{numNotification}</span>
+                                </li>
+                            }
+
+                            <div>
+                                <span className="material-symbols-outlined">
+                                    notifications
+                                </span>
+                                <span className="title-li">{t("notifications")}</span>
+                            </div>
+                        </li>
+                    </ Link>
+                </Tooltip>
 
                 {/* <Link to="/configuration">
                     <li id={hover("configuration")}>
@@ -176,26 +192,32 @@ export default function Nav() {
                     </li>
                 </Link> */}
 
+
                 <Link to="https://manualdeusuarioids.vercel.app/" target="_blank">
-                    <li className="help">
-                        <div>
-                            <span className="material-symbols-outlined">
-                                help
-                            </span>
-                            <span className="title-li">{t("help")}</span>
-                        </div>
-                    </li>
+                    <Tooltip title={t("help")} placement="right">
+
+                        <li className="help">
+                            <div>
+                                <span className="material-symbols-outlined">
+                                    help
+                                </span>
+                                <span className="title-li">{t("help")}</span>
+                            </div>
+                        </li>
+                    </Tooltip>
                 </Link>
-                
+
                 <Link to="/">
-                    <li className="logout">
-                        <div>
-                            <span className="material-symbols-outlined">
-                                logout
-                            </span>
-                            <span className="title-li">{t("logout")}</span>
-                        </div>
-                    </li>
+                    <Tooltip title={t("logout")} placement="right">
+                        <li className="logout">
+                            <div>
+                                <span className="material-symbols-outlined">
+                                    logout
+                                </span>
+                                <span className="title-li">{t("logout")}</span>
+                            </div>
+                        </li>
+                    </Tooltip>
                 </Link>
 
             </ul>

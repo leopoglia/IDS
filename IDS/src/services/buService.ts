@@ -1,4 +1,4 @@
-const url = "https://localhost:8443/api/bu"
+const url = "http://localhost:8443/api/bu"
 
 const Services = {
     save: function (bu: String) {
@@ -6,7 +6,7 @@ const Services = {
             fetch(url, {
                 method: 'POST', body: JSON.stringify({
                     bu: bu
-                }), headers: { 'Content-Type': 'application/json' }
+                }), headers: { 'Content-Type': 'application/json' }, credentials: 'include',
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(resolve)
@@ -15,7 +15,7 @@ const Services = {
     findAll: async function () {
         return new Promise((resolve, reject) => {
             fetch(url, {
-                method: 'GET', headers: { 'Content-Type': 'application/json' }
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include',
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(resolve)
@@ -24,7 +24,7 @@ const Services = {
     findById: function (id: number) {
         return new Promise((resolve, reject) => {
             fetch(url + "/" + id, {
-                method: 'GET', headers: { 'Content-Type': 'application/json' }
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include',
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(resolve)
@@ -33,7 +33,7 @@ const Services = {
     delete: function (id: number) {
         return new Promise((resolve, reject) => {
             fetch(url + "/" + id, {
-                method: 'DELETE', headers: { 'Content-Type': 'application/json' }
+                method: 'DELETE', headers: { 'Content-Type': 'application/json' }, credentials: 'include',
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(resolve)

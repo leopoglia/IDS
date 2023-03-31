@@ -1,4 +1,4 @@
-const url = "https://localhost:8443/api/minutes";
+const url = "http://localhost:8443/api/minutes";
 
 const Services = {
 
@@ -13,7 +13,7 @@ const Services = {
                     minuteEndDate: null,
                     director: {workerCode: director},
                     minuteType: minuteType
-                }), headers: { 'Content-Type': 'application/json' }
+                }), headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(reject)
@@ -22,7 +22,7 @@ const Services = {
     findByPage: function (page: Number, size: Number) {
         return new Promise((resolve, reject) => {
             fetch(url + "/page?page=" + page + "&size=" + size, {
-                method: 'GET', headers: { 'Content-Type': 'application/json' }
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { 
                 return result.json(); 
             })
@@ -33,7 +33,7 @@ const Services = {
     findAll: async function () {
         return new Promise((resolve, reject) => {
             fetch(url, {
-                method: 'GET', headers: { 'Content-Type': 'application/json' }
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(resolve)
@@ -42,7 +42,7 @@ const Services = {
     findById: function (id: number) {
         return new Promise((resolve, reject) => {
             fetch(url + "/" + id, {
-                method: 'GET', headers: { 'Content-Type': 'application/json' }
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(resolve)
@@ -51,7 +51,7 @@ const Services = {
     findByMinuteType: function (minuteType: String) {
         return new Promise((resolve, reject) => {
             fetch(url + "/type/" + minuteType, {
-                method: 'GET', headers: { 'Content-Type': 'application/json' }
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(resolve)
@@ -60,7 +60,7 @@ const Services = {
     delete: function (id: number) {
         return new Promise((resolve, reject) => {
             fetch(url + "/" + id, {
-                method: 'DELETE', headers: { 'Content-Type': 'application/json' }
+                method: 'DELETE', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(resolve)

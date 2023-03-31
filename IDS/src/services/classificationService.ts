@@ -1,5 +1,5 @@
 
-const url = "https://localhost:8443/api/classification"
+const url = "http://localhost:8443/api/classification"
 
 const Services = {
     save: function (classificationSize: Number, itSection: String, ppmcode: Number, epicJiraLink: String, requesterBu: any, beneficiaryBu: any, analistRegistry: any, classificationAttachment: any) {
@@ -28,7 +28,8 @@ const Services = {
         return new Promise((resolve, reject) => {
             fetch(url, {
                 method: 'POST',
-                body: formData
+                body: formData,
+                credentials: 'include'
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(reject)
@@ -38,7 +39,7 @@ const Services = {
     findAll: async function () {
         return new Promise((resolve, reject) => {
             fetch(url, {
-                method: 'GET', headers: { 'Content-Type': 'application/json' }
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(resolve)
@@ -47,7 +48,7 @@ const Services = {
     findById: function (id: number) {
         return new Promise((resolve, reject) => {
             fetch(url + "/" + id, {
-                method: 'GET', headers: { 'Content-Type': 'application/json' }
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(resolve)
@@ -56,7 +57,7 @@ const Services = {
     delete: function (id: number) {
         return new Promise((resolve, reject) => {
             fetch(url + "/" + id, {
-                method: 'DELETE', headers: { 'Content-Type': 'application/json' }
+                method: 'DELETE', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(resolve)
@@ -80,7 +81,7 @@ const Services = {
                     requesterBu: { buCode: requesterBu },
                     beneficiaryBu: beneficiaryBuList,
                     deadline: deadline
-                }), headers: { 'Content-Type': 'application/json' }
+                }), headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(resolve)
@@ -94,7 +95,7 @@ const Services = {
                 method: 'PUT', body: JSON.stringify({
                     ppmCode: ppmcode,
                     epicJiraLink: linkEpicJira
-                }), headers: { 'Content-Type': 'application/json' }
+                }), headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(resolve)

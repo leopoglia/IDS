@@ -1,11 +1,11 @@
-const url = "https://localhost:8443/api/worker";
+const url = "http://localhost:8443/api/worker";
 
 
 const Services = {
 
     // cadastrarCliente: function (nome: String, cnpj: String) {
     //     return new Promise((resolve, reject) => {
-    //         fetch(url + '/cliente', { method: 'POST', body: JSON.stringify({ nome: nome, cnpj: cnpj }), headers: { 'Content-Type': 'application/json' } }).then(function (result) { return result.json(); }).then(resolve).catch(resolve)
+    //         fetch(url + '/cliente', { method: 'POST', body: JSON.stringify({ nome: nome, cnpj: cnpj }), headers: { 'Content-Type': 'application/json' }, credentials: 'include' }).then(function (result) { return result.json(); }).then(resolve).catch(resolve)
     //     })
     // },
 
@@ -18,7 +18,7 @@ const Services = {
                     corporateEmail: corporateEmail,
                     workerPassword: workerPassword,
                     workerOffice: workerOffice
-                }), headers: { 'Content-Type': 'application/json' }
+                }), headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(resolve)
@@ -27,7 +27,7 @@ const Services = {
     findAll: async function () {
         return new Promise((resolve, reject) => {
             fetch(url, {
-                method: 'GET', headers: { 'Content-Type': 'application/json' }
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(resolve)
@@ -36,7 +36,7 @@ const Services = {
     findById: function (id: number) {
         return new Promise((resolve, reject) => {
             fetch(url + "/" + id, {
-                method: 'GET', headers: { 'Content-Type': 'application/json' }
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(resolve)
@@ -45,7 +45,7 @@ const Services = {
     delete: function (id: number) {
         return new Promise((resolve, reject) => {
             fetch(url + "/" + id, {
-                method: 'DELETE', headers: { 'Content-Type': 'application/json' }
+                method: 'DELETE', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(resolve)
@@ -53,11 +53,12 @@ const Services = {
     },
     login: function (corporateEmail: string | undefined, workerPassword: string | undefined) {
         return new Promise((resolve, reject) => {
-            fetch(url + '/login', {
+            fetch('http://localhost:8443/login/auth', {
                 method: 'POST', body: JSON.stringify({
                     corporateEmail: corporateEmail,
                     workerPassword: workerPassword
-                }), headers: { 'Content-Type': 'application/json' }
+                }),
+                headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(resolve)
@@ -70,7 +71,7 @@ const Services = {
             fetch(url + '/language/' + id, {
                 method: 'PUT', body: JSON.stringify({
                     language: worker.language
-                }), headers: { 'Content-Type': 'application/json' }
+                }), headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(resolve)

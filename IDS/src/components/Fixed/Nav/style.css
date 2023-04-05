@@ -160,7 +160,7 @@ nav li {
 }
 
 
-.nav-open .booble{
+.nav-open .booble {
     margin-left: 33px;
 }
 
@@ -171,7 +171,7 @@ nav li {
     height: 15px;
     border-radius: 50%;
     background-color: var(--blue);
-    font-size: 10px;
+    font-size: 9px;
     color: white;
     display: flex;
     align-items: center;

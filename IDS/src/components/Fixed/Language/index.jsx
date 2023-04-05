@@ -26,7 +26,6 @@ function Language() {
     };
 
     useEffect(() => {
-        console.log("oi")
 
         if (worker.language) {
             setLanguage(worker.language);

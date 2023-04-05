@@ -135,7 +135,6 @@ export default function ViewDemand() {
 
     // Chama função ao entrar na página
     useEffect(() => {
-        console.log("oi")
         // Buscar dados da demanda
 
         if (url === "demand") {

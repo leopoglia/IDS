@@ -2,8 +2,29 @@ import "./style.css";
 import SelectNewStatus from "./SelectNewStatus";
 import { t } from "i18next";
 import { useEffect, useState } from 'react';
+import ServicesDemand from "../../../../../services/demandService";
+import { toast, ToastContainer } from 'react-toastify';
 
 export default function ModalChangeStatus(props: any) {
+
+
+    const [status, setStatus] = useState("");
+    const [statusChange, setStatusChange] = useState("");
+    const demandCode: number = JSON.parse(window.location.pathname.split("/")[3]);
+
+
+    useEffect(() => {
+        ServicesDemand.findById(demandCode).then((response: any) => {
+            setStatus(response.demandStatus);
+        })
+    }, [props.codeDemand])
+
+    const changeStatus = () => {
+        ServicesDemand.updateStatus(demandCode, statusChange).then((response: any) => {
+            notifySucess();
+            props.setModalChangeStatus(false);
+        })
+    }
 
     return (
         <div className="modalChangeStatus">
@@ -24,7 +45,7 @@ export default function ModalChangeStatus(props: any) {
 
                 <div className="change">
                     <div className="current">
-                        <p>Backlog</p>
+                        <p>{status}</p>
 
                     </div>
 
@@ -36,13 +57,28 @@ export default function ModalChangeStatus(props: any) {
 
 
                     <div className="new">
-                        <SelectNewStatus class="select-new-status" />
+                        <SelectNewStatus setStatusChange={setStatusChange} class="select-new-status" />
                     </div>
 
-                    <button className="btn-primary">{t("confirm")}</button>
+                    <button className="btn-primary" onClick={changeStatus}>{t("confirm")}</button>
 
                 </div>
             </div>
+            <ToastContainer position="bottom-right" newestOnTop />
+
         </div>
     )
 }
+
+const notifySucess = () => {
+    toast.success('Status aleterado!', {
+        position: "bottom-right",
+        autoClose: 4000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+};

@@ -10,10 +10,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.modalChangeStatus body{
-    overflow: hidden;
+    overflow: hidden !important;
 }
 
 .modalChangeStatus .modal {

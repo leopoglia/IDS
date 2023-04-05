@@ -1,15 +1,18 @@
 import { t } from "i18next"
+import { useState } from "react"
 
 
 export default function Expenses(props: any) {
 
+    const [open, setOpen] = useState(false);
+
     return (
-        <div >
-            <div className={"complement "} >
+        <div>
+            <div className={"complement " + open} >
                 <div className="display-flex-space-between">
 
                     <p className="title">{t(props.type)}</p>
-                    <span className="material-symbols-outlined arrow-expend">
+                    <span onClick={() => setOpen(!open)} className="material-symbols-outlined arrow-expend">
                         expand_more
                     </span>
                 </div>

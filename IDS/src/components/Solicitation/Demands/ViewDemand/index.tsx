@@ -762,29 +762,9 @@ export default function ViewDemand() {
                                     </div>
                                 </div>
 
-                                <div className={"cost-center " + costCenterOpen}>
-                                    <div className="display-flex-space-between">
-                                        <p className="title">{t("costCenter")}</p>
 
-                                        <span onClick={() => setCostCenterOpen(!costCenterOpen)} className="material-symbols-outlined arrow-expend">
-                                            expand_more
-                                        </span>
-                                    </div>
+                                <Table title="costCenter" headers={["costCenterCode", "costCenter"]} items={centerCost} />
 
-                                    <table>
-                                        <tbody>
-                                            {tr("costCenter", "nameCostCenter", "index")}
-                                            {
-                                                centerCost.map((item: any, index: any) => {
-                                                    return (
-                                                        tr(item.costCenterCode, item.costCenter, index)
-                                                    )
-                                                }
-                                                )
-                                            }
-                                        </tbody>
-                                    </table>
-                                </div>
                             </div>
 
 
@@ -797,182 +777,182 @@ export default function ViewDemand() {
                             }
 
                             {(stepDemand === 2) ? (
-                                <Table title="complements" headers={["ppmCode", "linkEpicJira"]} items={[classification.ppmCode, classification.epicJiraLink ]} />
-                        ) : (null)
+                                <Table title="complements" headers={["ppmCode", "linkEpicJira"]} items={[classification.ppmCode, classification.epicJiraLink]} />
+                            ) : (null)
                             }
 
-                        {proposalExpenseValue !== 0 ? (<Expenses type="expenses" proposalExpense={proposalExpense} />) : (null)}
+                            {proposalExpenseValue !== 0 ? (<Expenses type="expenses" proposalExpense={proposalExpense} />) : (null)}
 
-                        {proposalExpenseRecurrent !== 0 ? (<Expenses type="recurrent" proposalExpense={proposalExpense} />) : (null)}
+                            {proposalExpenseRecurrent !== 0 ? (<Expenses type="recurrent" proposalExpense={proposalExpense} />) : (null)}
 
-                        {proposalExpenseInternal !== 0 ? (<Expenses type="internal" proposalExpense={proposalExpense} />) : (null)}
+                            {proposalExpenseInternal !== 0 ? (<Expenses type="internal" proposalExpense={proposalExpense} />) : (null)}
 
 
-                        {proposalExpense.length !== 0 ? (
-                            <div className={"complement "} >
-                                <div className="display-block">
-                                    <div className="display-flex-align-center">
-                                        <p className="title">{t("deadline")}:</p>
-                                        <div>
-                                            <span>{initialRunPeriod}</span>
-                                            <span>&nbsp; à &nbsp;</span>
-                                            <span>{finalExecutionPeriod}</span>
+                            {proposalExpense.length !== 0 ? (
+                                <div className={"complement "} >
+                                    <div className="display-block">
+                                        <div className="display-flex-align-center">
+                                            <p className="title">{t("deadline")}:</p>
+                                            <div>
+                                                <span>{initialRunPeriod}</span>
+                                                <span>&nbsp; à &nbsp;</span>
+                                                <span>{finalExecutionPeriod}</span>
+                                            </div>
+
                                         </div>
-
-                                    </div>
-                                    <div className="display-flex-align-center">
-                                        <p className="title">{t("Payback")}:</p>
-                                        <span> {payBack}</span>
+                                        <div className="display-flex-align-center">
+                                            <p className="title">{t("Payback")}:</p>
+                                            <span> {payBack}</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ) : (null)
-                        }
+                            ) : (null)
+                            }
 
-                        {demand.demandAttachment ? (
-                            <div className="attachments">
+                            {demand.demandAttachment ? (
+                                <div className="attachments">
 
-                                <p className="title">{t("attachments")}</p>
+                                    <p className="title">{t("attachments")}</p>
 
-                                <div className="display-flex">
-                                    <Tooltip title={demand.demandAttachment.name} arrow>
-                                        <a onClick={() => donwloadAttachment(demand.demandAttachment.dice, demand.demandAttachment.type, demand.demandAttachment.name)} download={"teste.jpg"} target="_blank">
-                                            <div className="attachment">
-                                                <div className="attachment-image">
-                                                    <img src={"/attachment/" + attatchmentType("demand") + ".png"} alt="" />
-                                                </div>
-                                                <span>{demand.demandAttachment.name}</span>
-                                            </div>
-                                        </a>
-                                    </Tooltip>
-                                    {classification?.classificationAttachment ? (
-                                        <Tooltip title={classification.classificationAttachment.name} arrow>
-                                            <a onClick={() => donwloadAttachment(classification.classificationAttachment.dice, classification.classificationAttachment.type, classification.classificationAttachment.name)} download={"teste.jpg"} target="_blank">
+                                    <div className="display-flex">
+                                        <Tooltip title={demand.demandAttachment.name} arrow>
+                                            <a onClick={() => donwloadAttachment(demand.demandAttachment.dice, demand.demandAttachment.type, demand.demandAttachment.name)} download={"teste.jpg"} target="_blank">
                                                 <div className="attachment">
                                                     <div className="attachment-image">
-                                                        <img src={"/attachment/" + attatchmentType("classification") + ".png"} alt="" />
+                                                        <img src={"/attachment/" + attatchmentType("demand") + ".png"} alt="" />
                                                     </div>
-                                                    <span>{classification.classificationAttachment.name}</span>
+                                                    <span>{demand.demandAttachment.name}</span>
                                                 </div>
                                             </a>
                                         </Tooltip>
-                                    ) : (null)
-                                    }
+                                        {classification?.classificationAttachment ? (
+                                            <Tooltip title={classification.classificationAttachment.name} arrow>
+                                                <a onClick={() => donwloadAttachment(classification.classificationAttachment.dice, classification.classificationAttachment.type, classification.classificationAttachment.name)} download={"teste.jpg"} target="_blank">
+                                                    <div className="attachment">
+                                                        <div className="attachment-image">
+                                                            <img src={"/attachment/" + attatchmentType("classification") + ".png"} alt="" />
+                                                        </div>
+                                                        <span>{classification.classificationAttachment.name}</span>
+                                                    </div>
+                                                </a>
+                                            </Tooltip>
+                                        ) : (null)
+                                        }
+
+                                    </div>
 
                                 </div>
+                            ) : (null)
+                            }
 
+                        </div>
+                    </div>
+                </div>
+            ) : url === "agenda" ? (
+                <div>
+                    <Header />
+
+                    <Nav />
+
+                    <div className="container">
+
+
+                        <div className="background-title">
+
+                            <Title nav={t("agendaAgendaName")} title="viewAgenda" />
+                        </div>
+
+                        <div className="box">
+
+                            {agenda ? (
+                                <>
+                                    <div className="display-solicitation-demand">
+                                        <p className="title">Pauta da Reunião {agenda.agendaCode}</p>
+                                    </div>
+
+                                    <div className="box">
+
+                                        <div className="agendaDate">
+                                            <p>{t("dateMeeting")}</p>
+                                            <span>{agenda.agendaDate}</span>
+                                        </div>
+                                    </div>
+                                </>
+                            ) : (null)}
+
+                            <div className="proposalsAgenda">
+                                <p>{t("proposals")}</p>
+                                {
+                                    proposalSpecific.map((val: any) => (
+                                        localStorage.setItem("agendaCode", window.location.pathname.split("/")[3]),
+                                        <Link key={val.proposalCode} to={"/proposal/view/" + val.proposalCode}>
+                                            <div className="proposal-view">
+
+                                                <div className="display-flex-space-between">
+
+                                                    <div className="display-flex-align-center">
+                                                        <p>{val.proposalName}</p>
+
+                                                        <div className="code">
+                                                            {val.demand.demandCode}
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="proposal-view-buttons">
+                                                        {val.proposalStatus === "Pending" ? (
+                                                            <Link to={"/proposal/comission-opinion/" + val.proposalCode}>
+                                                                <button className="btn-primary">{t("insertCommissionOpinion")}</button>
+                                                            </Link>
+                                                        ) : (
+                                                            <div>
+                                                                Status: {val.proposalStatus}
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    ))
+                                }
+                            </div>
+
+                            <div className="complement">
+
+                                <p className="title">{t("comission")}</p>
+
+                                <table>
+                                    <tbody>
+                                        {comission.map((val: any, index: any) => (
+                                            <tr key={index}>
+                                                <td className="display-flex-start pl20">
+                                                    {val.commissionName}
+                                                </td>
+                                            </tr>
+
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        {pendingMinute < proposalSpecific.length && minute.length === 0 ? (
+                            <div className="display-flex-end">
+                                <Link to={"/minutes/create/" + demandCode}>
+                                    <button className="btn-primary">{t("finish")}</button>
+                                </Link>
                             </div>
                         ) : (null)
                         }
 
+                        < Footer />
                     </div>
                 </div>
-                </div>
-    ) : url === "agenda" ? (
-        <div>
-            <Header />
+            ) : (null)
+            }
 
-            <Nav />
+            {url !== "agenda" ? (<Footer />) : null}
 
-            <div className="container">
-
-
-                <div className="background-title">
-
-                    <Title nav={t("agendaAgendaName")} title="viewAgenda" />
-                </div>
-
-                <div className="box">
-
-                    {agenda ? (
-                        <>
-                            <div className="display-solicitation-demand">
-                                <p className="title">Pauta da Reunião {agenda.agendaCode}</p>
-                            </div>
-
-                            <div className="box">
-
-                                <div className="agendaDate">
-                                    <p>{t("dateMeeting")}</p>
-                                    <span>{agenda.agendaDate}</span>
-                                </div>
-                            </div>
-                        </>
-                    ) : (null)}
-
-                    <div className="proposalsAgenda">
-                        <p>{t("proposals")}</p>
-                        {
-                            proposalSpecific.map((val: any) => (
-                                localStorage.setItem("agendaCode", window.location.pathname.split("/")[3]),
-                                <Link key={val.proposalCode} to={"/proposal/view/" + val.proposalCode}>
-                                    <div className="proposal-view">
-
-                                        <div className="display-flex-space-between">
-
-                                            <div className="display-flex-align-center">
-                                                <p>{val.proposalName}</p>
-
-                                                <div className="code">
-                                                    {val.demand.demandCode}
-                                                </div>
-                                            </div>
-
-                                            <div className="proposal-view-buttons">
-                                                {val.proposalStatus === "Pending" ? (
-                                                    <Link to={"/proposal/comission-opinion/" + val.proposalCode}>
-                                                        <button className="btn-primary">{t("insertCommissionOpinion")}</button>
-                                                    </Link>
-                                                ) : (
-                                                    <div>
-                                                        Status: {val.proposalStatus}
-                                                    </div>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Link>
-                            ))
-                        }
-                    </div>
-
-                    <div className="complement">
-
-                        <p className="title">{t("comission")}</p>
-
-                        <table>
-                            <tbody>
-                                {comission.map((val: any, index: any) => (
-                                    <tr key={index}>
-                                        <td className="display-flex-start pl20">
-                                            {val.commissionName}
-                                        </td>
-                                    </tr>
-
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                {pendingMinute < proposalSpecific.length && minute.length === 0 ? (
-                    <div className="display-flex-end">
-                        <Link to={"/minutes/create/" + demandCode}>
-                            <button className="btn-primary">{t("finish")}</button>
-                        </Link>
-                    </div>
-                ) : (null)
-                }
-
-                < Footer />
-            </div>
-        </div>
-    ) : (null)
-}
-
-{ url !== "agenda" ? (<Footer />) : null }
-
-<ToastContainer position="bottom-right" newestOnTop />
+            <ToastContainer position="bottom-right" newestOnTop />
 
         </div >
     );

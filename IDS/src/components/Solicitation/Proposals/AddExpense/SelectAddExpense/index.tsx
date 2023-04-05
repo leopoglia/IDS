@@ -11,7 +11,7 @@ export default function SelectLabels(props: any) {
 
     const { t } = useTranslation();
 
-    useEffect(() => {
+    useEffect(() => { 
         Services.findAll().then((response: any) => {
             setCostCenter(response);
 

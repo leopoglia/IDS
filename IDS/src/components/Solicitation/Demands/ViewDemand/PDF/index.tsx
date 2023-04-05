@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 export default function PDF(props: any) {
 
-    useEffect(() => {
+    useEffect(() => { 
         generatePDF();
     }, [props]);
 

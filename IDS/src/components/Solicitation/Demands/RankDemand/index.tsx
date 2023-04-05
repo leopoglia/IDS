@@ -27,7 +27,7 @@ export default function RankDemand() {
     const [fileAttachment, setFileAttachment]: any = useState([]);
     const url = parseInt(window.location.href.split("/")[5]); // Pegando o id da demanda
 
-    useEffect(() => {
+    useEffect(() => { 
         // Pegando a demanda inicial
         getDemand();
 
@@ -190,8 +190,8 @@ export default function RankDemand() {
                             <SelectSizeDemand setBuBenefiteds={setBuBenefiteds} buBenefiteds={buBenefiteds} type="buBen" />
                         </div>
 
-                        {buBenefitedsList.map((bu: any) => {
-                            return <div className="costCenter">{bu.bu}
+                        {buBenefitedsList.map((bu: any, index:any) => {
+                            return <div className="costCenter" key={index}>{bu.bu}
                                 <span className="material-symbols-outlined delete-cost-center" onClick={deleteBuBenefited(bu)}>
                                     delete
                                 </span>

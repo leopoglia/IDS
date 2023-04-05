@@ -37,7 +37,7 @@ export default function ExecutionCosts() {
 
 
 
-    useEffect(() => {
+    useEffect(() => { 
         for (let i = 0; i < expenseListStorage.length; i++) {
             if (expenseListStorage[i].typeOfExpense === "internal") {
                 internalCosts += expenseListStorage[i].expenseTotalValue;

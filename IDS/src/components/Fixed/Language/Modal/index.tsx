@@ -15,6 +15,7 @@ export default function DropdownList({ handleClick }: any): any {
     }
 
     useEffect(() => {
+
         setLanguage(JSON.stringify(localStorage.getItem('i18nextLng')))
     }, [])
 
@@ -34,7 +35,7 @@ export default function DropdownList({ handleClick }: any): any {
                     <div className='flag' onClick={() => changeLanguages('cn')}>
                         <img src="/flags/cn.png" alt="" />
                     </div>
-                    
+
 
                 </div>
 

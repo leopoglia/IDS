@@ -16,7 +16,6 @@ export default function CreateMinute() {
 
     let agenda = AgendaService.findById(code);  
 
-    console.log(agenda);
 
     function saveMinute() {
         // if(agenda.proposals[0].published === false)

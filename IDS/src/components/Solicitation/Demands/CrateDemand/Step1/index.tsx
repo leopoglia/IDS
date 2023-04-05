@@ -21,7 +21,7 @@ export default function CreateDemands1() {
     const [currentSituation, setCurrentSituation]: any = useState(""); // Situação atual
     const [objective, setObjective]: any = useState(""); // Objetivo
 
-    useEffect(() => {
+    useEffect(() => { 
         let demand = JSON.parse(localStorage.getItem('demand') || '{}')
 
         setTitleDemand(demand.titleInput)

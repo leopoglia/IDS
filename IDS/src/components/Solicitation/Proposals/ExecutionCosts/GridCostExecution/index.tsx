@@ -13,7 +13,7 @@ export default function ConditionalValidationGrid(props: any) {
     const [expenseList, setExpenseList] = useState<any>(JSON.parse(localStorage.getItem('expenseList') || '[""]'));
     const [deleteNumber, setDeleteNumber] = useState<any>(0);
 
-    useEffect(() => {
+    useEffect(() => { 
         setExpenseList(JSON.parse(localStorage.getItem('expenseList') || '[""]'));
     }, [deleteNumber, localStorage.getItem('expenseList')]);
 

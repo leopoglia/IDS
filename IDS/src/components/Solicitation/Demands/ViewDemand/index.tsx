@@ -135,7 +135,9 @@ export default function ViewDemand() {
 
     // Chama função ao entrar na página
     useEffect(() => {
+        console.log("oi")
         // Buscar dados da demanda
+
         if (url === "demand") {
             getDemand();
         } else if (url === "proposal") {
@@ -213,7 +215,6 @@ export default function ViewDemand() {
                 setClassification(response.classification)
             }
 
-            console.log(response?.demandStatus)
             if (response?.demandStatus === "Backlog") {
                 setStepDemand(0)
             } else if (response?.demandStatus === "BacklogRanked") {
@@ -274,11 +275,8 @@ export default function ViewDemand() {
 
                 if (expense.length !== 0) {
                     setProposalExpense(expense)
-
-                    console.log(expense);
                 }
 
-                console.log(expense)
 
                 setInitialRunPeriod(dateFormat(expense[0].proposal.initialRunPeriod));
                 setFinalExecutionPeriod(dateFormat(expense[0].proposal.finalExecutionPeriod));
@@ -307,7 +305,6 @@ export default function ViewDemand() {
             setComission(response[0].commission)
             setAgenda(response[0]);
 
-            console.log(response[0])
 
             for (let i = 0; i < response[0].proposals.length; i++) {
                 proposals.push(response[0].proposals[i])
@@ -322,7 +319,7 @@ export default function ViewDemand() {
     // Função para criar tabela (tr)
     const tr = (dataOne: any, dataTwo: any, index: any) => {
         return (
-            <tr key="index">
+            <tr key={index}>
                 <td className="w40">{t(dataOne)}</td>
                 <td>{t(dataTwo)}</td>
             </tr>
@@ -439,7 +436,6 @@ export default function ViewDemand() {
 
         const diffInMs = Math.abs(date2 - date1); // obtém a diferença em milissegundos
         const diffInMonths = diffInMs / (1000 * 60 * 60 * 24 * 30); // converte para meses
-        console.log("diffInMonths ---> ", diffInMonths); // 3
 
         if (diffInMonths.toFixed(0) === "1") {
             return diffInMonths.toFixed(0) + " mês";
@@ -824,8 +820,8 @@ export default function ViewDemand() {
                                                     <td>
                                                         {classification.beneficiaryBu.map((bu: any, index: any) => {
                                                             return (
-                                                                <Tooltip title={bu.bu} arrow>
-                                                                    <td className="buBenifitedTd" key={index}>{bu.bu.split("–", 1)}</td>
+                                                                <Tooltip title={bu.bu} key={index} arrow>
+                                                                    <td className="buBenifitedTd">{bu.bu.split("–", 1)}</td>
                                                                 </Tooltip>
                                                             )
 

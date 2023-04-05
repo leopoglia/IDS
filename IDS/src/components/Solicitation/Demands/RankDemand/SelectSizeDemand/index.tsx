@@ -12,7 +12,7 @@ export default function SelectLabels(props: any) {
     const size = ["Muito Pequeno", "Pequeno", "Médio", "Grande", "Muito Grande"]
 
 
-    useEffect(() => {
+    useEffect(() => { 
         Services.findAll().then((response: any) => {
             setBu(response)
         }

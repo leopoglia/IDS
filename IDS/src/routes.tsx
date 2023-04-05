@@ -42,6 +42,8 @@ export default function Router() {
     });
 
     useEffect(() => {
+        console.log("oi")
+
         if (worker.id === "") {
             const id = localStorage.getItem("id");
             if (id !== null) {

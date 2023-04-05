@@ -10,8 +10,6 @@ const Services = {
         }
         
 
-        console.log("WORKER LIST ---> ", workersList)
-
         return new Promise((resolve, reject) => {
             fetch(url, {
                 method: 'POST', body: JSON.stringify({
@@ -100,7 +98,6 @@ const Services = {
     },
     updatePublish: function(id: Number, publish: Boolean) {
         return new Promise((resolve, reject) => {
-            console.log(publish);
             fetch(url + "/published/" + id, {
                 method: 'PUT',
                 body: JSON.stringify({ "published": publish }),

@@ -22,7 +22,7 @@ export default function CreateDemands3() {
     const [demandInitial, setDemand]: any = useState({}); // Demanda inicial
     const [fileAttachment, setFileAttachment]: any = useState([]); // Anexo
 
-    useEffect(() => {
+    useEffect(() => { 
         // Pegando a demanda inicial
         setDemand(JSON.parse(localStorage.getItem("demand") || "{}"));
     }, []);

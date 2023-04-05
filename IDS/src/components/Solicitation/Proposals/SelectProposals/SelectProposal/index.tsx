@@ -15,7 +15,7 @@ export default function SelectProposal(props: any) {
     const [cheacked, setCheacked] = useState(false);
     const [proposal, setProposal]: any = useState([]);
 
-    useEffect(() => {
+    useEffect(() => { 
         let proposals = JSON.parse(localStorage.getItem("proposals") || "[]");
         setProposal(proposals);
 

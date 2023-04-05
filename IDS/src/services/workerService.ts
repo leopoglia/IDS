@@ -65,7 +65,6 @@ const Services = {
         })
     },
     updateLanguage: function (id: number, worker: any) {
-        console.log(worker)
 
         return new Promise((resolve, reject) => {
             fetch(url + '/language/' + id, {

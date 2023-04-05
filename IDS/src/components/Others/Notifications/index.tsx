@@ -16,7 +16,7 @@ export default function Notifications() {
     const worker = useContext(UserContext).worker
 
 
-    useEffect(() => {
+    useEffect(() => { 
         Services.findAll().then((response: any) => {
             setNotifications(response.reverse())
         })

@@ -9,7 +9,7 @@ export default function Situation(props: any) {
 
     const [situationSeparate, setSituationSeparate] = useState("");
 
-    useEffect(() => {
+    useEffect(() => { 
 
         if (props.situation) {
             // dar espaço quando a letra for maiuscula no props.situation

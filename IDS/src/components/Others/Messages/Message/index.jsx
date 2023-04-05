@@ -22,7 +22,7 @@ const ChatRoom = () => {
     //     connected: false,
     //     message: ''
     // });
-    // useEffect(() => {
+    // useEffect(() => { 
     //     // console.log(userData);
     // }, [userData]);
 
@@ -108,7 +108,7 @@ const ChatRoom = () => {
     //     connect();
     // }
 
-    // useEffect(() => {
+    // useEffect(() => { 
     //     registerUser();
     // }, []);
 

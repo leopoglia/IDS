@@ -9,7 +9,7 @@ export default function FreeSolo(props: any) {
 
     const [centerCost, setCenterCost] = useState([{ costCenter: "" }]);
 
-    useEffect(() => {
+    useEffect(() => { 
         getBu();
     }, []);
 

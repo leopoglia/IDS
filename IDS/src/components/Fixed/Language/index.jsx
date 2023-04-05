@@ -26,10 +26,12 @@ function Language() {
     };
 
     useEffect(() => {
-        if(worker.language){
+        console.log("oi")
+
+        if (worker.language) {
             setLanguage(worker.language);
             localStorage.setItem('i18nextLng', worker.language);
-        }else{
+        } else {
             setLanguage(localStorage.getItem('i18nextLng'));
         }
     }, [])

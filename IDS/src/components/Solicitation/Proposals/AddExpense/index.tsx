@@ -27,7 +27,7 @@ export default function AddExpense() {
     const expense = { typeOfExpense: typeOfExpense, expenseProfile: expenseProfile, necessityHoursQuantity: necessityHoursQuantity, hourValue: hourValue, expenseTotalValue: expenseTotalValue, costCenter: costCenter };
     const [expenseList, setExpenseList]: any = useState([]);
 
-    useEffect(() => {
+    useEffect(() => { 
         setExpenseList(JSON.parse(localStorage.getItem('expenseList') || '[]'));
     }, []);
 

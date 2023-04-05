@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 export default function Login() {
 
-    useEffect(() => {
+    useEffect(() => { 
         localStorage.clear();
         localStorage.setItem('i18nextLng', 'pt');
     }, []);

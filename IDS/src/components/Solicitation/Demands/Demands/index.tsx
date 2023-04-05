@@ -38,7 +38,7 @@ export default function Demands() {
 
 
     // Entra na página e busca as demandas cadastradas
-    useEffect(() => { 
+    useEffect(() => {
 
         if (url[3] === "demands") {
             if (search === "") {
@@ -249,6 +249,8 @@ export default function Demands() {
 
 
                                         if (typeFilter === "requester" && val.requesterRegistration.workerName.toUpperCase().includes(nameFilter.toUpperCase())) {
+                                            return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />);
+                                        } else if (typeFilter === "status" && val.demandStatus.toUpperCase().includes(nameFilter.toUpperCase())) {
                                             return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />);
                                         }
                                     }

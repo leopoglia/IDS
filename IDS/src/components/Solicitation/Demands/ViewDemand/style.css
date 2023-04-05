@@ -319,3 +319,12 @@
         font-size: var(--pp);
     }
 } */
+
+
+@media(max-width: 768px){
+    .btn-primary, .btn-secondary{
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+    }
+}

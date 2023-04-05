@@ -15,6 +15,7 @@
 .Title h1 {
     margin: 2px 0px 2px 49px;
     font-size: 22px;
+    white-space: nowrap;
 }
 
 .Title h1::before {

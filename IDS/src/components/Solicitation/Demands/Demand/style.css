@@ -108,12 +108,19 @@
 
 .demand .btn-primary,
 .demand .btn-secondary {
+    min-width: 150px;
     height: 40px;
     font-size: var(--p) !important;
 }
 
+
 .demand .btn-primary span {
     margin: 0;
+}
+
+.demand .btn-unique{
+    min-width: 40px !important;
+    width: 40px;
 }
 
 .demand .infos,
@@ -175,7 +182,6 @@
 .demand .display-flex button,
 .demand-list .display-flex button {
     margin-right: 15px;
-    width: 150px;
 }
 
 
@@ -224,6 +230,13 @@
     font-size: var(--m);
     color: var(--grey00);
     margin: 10px;
+}
+
+.openProposal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
 }
 
 

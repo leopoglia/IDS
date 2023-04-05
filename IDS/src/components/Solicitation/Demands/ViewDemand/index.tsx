@@ -21,6 +21,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Expenses from "./Expenses";
 import "./style.css";
 import Table from "./Table";
+import ButtonsActions from "./ButtonsActions";
 
 
 export default function ViewDemand() {
@@ -495,91 +496,7 @@ export default function ViewDemand() {
 
                             )}
 
-
-                            {  /* Botões superiores 1 - Download e Edit */  demand.requesterRegistration.workerCode === workerId ? (
-                                <div className="display-flex">
-                                    <button className="btn-primary" onClick={generatePDF}>
-                                        <span className="material-symbols-outlined">
-                                            download
-                                        </span>
-                                        <span>{t("generatePDF")}</span>
-                                    </button>
-
-                                    {demand.demandStatus === "BacklogEdit" &&
-                                        <button onClick={() => { navigate("/demand/edit/" + demandCode) }} className="btn-primary btn-download btn-mini">
-                                            <span className="material-symbols-outlined">
-                                                edit
-                                            </span>
-                                        </button>
-                                    }
-                                </div>
-                            ) :/* Botões superiores 2 - Reprovar e Classificar */  (actionsDemand === 2) ? (
-                                <div className="display-flex">
-
-                                    <Link to={"/demand/disapprove/" + demandCode}>
-                                        <button className="btn-secondary">
-                                            <span>{t("fail")}</span>
-                                        </button>
-                                    </Link>
-
-                                    <button onClick={() => giveBack()} className="btn-secondary">
-                                        <span>{t("giveback")}</span>
-                                    </button>
-
-
-                                    <Link to={"/demand/rank/" + demandCode}>
-                                        <button className="btn-primary">
-                                            <span>{t("toRank")}</span>
-                                        </button>
-                                    </Link>
-
-
-                                    <ButtonActionAnalyst codeDemand={demandCode} />
-                                </div>
-
-                            ) : /* Botões superiores 3 - Reprovar e Aprovar */ (actionsDemand === 3) ? (
-                                <div className="display-flex">
-
-                                    <Link to={"/demand/disapprove/" + demandCode}>
-                                        <button className="btn-secondary">
-                                            <span>{t("fail")}</span>
-                                        </button>
-                                    </Link>
-
-                                    <button onClick={() => { approveDemand() }} className="btn-primary">
-                                        <span>{t("approve")}</span>
-                                    </button>
-
-
-                                    <ButtonActionAnalyst />
-                                </div>
-
-                            ) : /* Botões superiores 4 - Complementar*/ (actionsDemand === 4) ? (
-                                <div className="display-flex">
-                                    <Link to={"/demand/complement/" + demandCode} >
-                                        <button className="btn-primary">
-                                            <span>{t("complementary")}</span>
-                                        </button>
-                                    </Link>
-
-                                    <ButtonActionAnalyst />
-                                </div>
-                            ) : /* Botões superiores 5 - Gerar Proposta */ (actionsDemand === 5) ? (
-                                <div className="display-flex">
-                                    <Link to={"/proposal/demand/" + demandCode} >
-                                        <button className="btn-primary">
-                                            <span>{t("generateProposal")}</span>
-                                        </button>
-                                    </Link>
-
-                                    <ButtonActionAnalyst />
-                                </div>
-                            ) : /* Botões superiores 6 - Histórico, Editar... */(actionsDemand === 6) ? (
-                                <ButtonActionAnalyst codeDemand={demandCode} />
-                            ) : (
-                                <div></div>
-                            )
-                            }
+                            <ButtonsActions demand={demand} workerId={workerId} actionsDemand={actionsDemand} approveDemand={approveDemand} giveBack={giveBack} generatePDF={generatePDF} />
 
                         </div>
 

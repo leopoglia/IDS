@@ -4,7 +4,7 @@ import Situation from "./Situation/index";
 import { useTranslation } from "react-i18next";
 import { useState, useEffect, useContext } from "react";
 import UserContext from "../../../../context/userContext";
-
+import { Tooltip } from "@mui/material";
 
 export default function Demand(props: any) {
 
@@ -61,6 +61,22 @@ export default function Demand(props: any) {
                     </Link>
                 );
             }
+        } else if (props.situation === "Assesment") {
+            return (
+                <div className="openProposal">
+                    <Link to={"/proposal/view/" + props.demandCode}>
+                        <Tooltip title={t("openProposal")} placement="left">
+                            <button className="btn-secondary btn-unique">
+                                <span className="material-symbols-outlined">
+                                    open_in_new
+                                </span>
+                            </button>
+                        </Tooltip>
+                    </Link>
+                </div>
+
+            );
+
         }
     }
 
@@ -110,25 +126,25 @@ export default function Demand(props: any) {
         } else {
             return (
                 <div className="demand-list">
-                        <section>
-                            <div className="name-code">
-                                <h1>{props.name}</h1>
-                            </div>
-
-
-                            <div className="display-grid">
-
-                                {situation()}
-                            </div>
-
-                        </section>
-
-
-                        <div className="display-flex">
-
-                            {information()}
-
+                    <section>
+                        <div className="name-code">
+                            <h1>{props.name}</h1>
                         </div>
+
+
+                        <div className="display-grid">
+
+                            {situation()}
+                        </div>
+
+                    </section>
+
+
+                    <div className="display-flex">
+
+                        {information()}
+
+                    </div>
                 </div>
             )
         }

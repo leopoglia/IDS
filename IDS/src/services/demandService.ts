@@ -156,6 +156,17 @@ const Services = {
                 .then(resolve)
                 .catch(reject)
         })
+    },
+    saveExcel: function (type: String, value: any) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/filter/" + type + "/" + value, {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(reject)
+        })
     }
 }
 

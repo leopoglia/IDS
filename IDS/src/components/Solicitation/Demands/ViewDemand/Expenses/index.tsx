@@ -1,3 +1,4 @@
+import { Tooltip } from "@mui/material";
 import { t } from "i18next"
 import { useState } from "react"
 
@@ -30,10 +31,21 @@ export default function Expenses(props: any) {
                             if (proposalExpense.expenseType === props.type)
                                 return (
                                     <tr>
+                                        <Tooltip title={proposalExpense.expenseProfile} arrow>
                                         <td>{proposalExpense.expenseProfile}</td>
+                                        </Tooltip>
+
+                                        <Tooltip title={proposalExpense.hourValue} arrow>
                                         <td>{proposalExpense.hourValue}</td>
+                                        </Tooltip>
+
+                                        <Tooltip title={proposalExpense.totalValue} arrow>
                                         <td>{proposalExpense.totalValue}</td>
+                                        </Tooltip>
+
+                                        <Tooltip title={proposalExpense.costCenter.costCenter} arrow>
                                         <td>{proposalExpense.costCenter.costCenter}</td>
+                                        </Tooltip>
 
                                     </tr>
                                 )

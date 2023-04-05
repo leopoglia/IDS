@@ -10,6 +10,10 @@
     transition: 0.5s;
 }
 
+.false{
+    overflow: hidden;
+}
+
 .view-demand .box div span {
     font-size: var(--p);
 }

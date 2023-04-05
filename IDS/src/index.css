@@ -204,7 +204,6 @@ input[type=checkbox]:checked {
 .btn-primary-unique {
   background-color: var(--blue);
   width: 200px;
-  min-width: 200px;
   height: var(--h);
   border-radius: var(--r);
   font-size: var(--p) !important;

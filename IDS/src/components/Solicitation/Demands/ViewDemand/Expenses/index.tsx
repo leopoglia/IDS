@@ -46,7 +46,6 @@ export default function Expenses(props: any) {
                                         <Tooltip title={proposalExpense.costCenter.costCenter} arrow>
                                         <td>{proposalExpense.costCenter.costCenter}</td>
                                         </Tooltip>
-
                                     </tr>
                                 )
                         })

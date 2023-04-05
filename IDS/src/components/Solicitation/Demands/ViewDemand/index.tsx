@@ -20,6 +20,7 @@ import UserContext from "../../../../context/userContext";
 import Tooltip from '@mui/material/Tooltip';
 import Expenses from "./Expenses";
 import "./style.css";
+import Table from "./Table";
 
 
 export default function ViewDemand() {
@@ -53,6 +54,7 @@ export default function ViewDemand() {
     const [stepDemand, setStepDemand] = useState(0);
     const [centerCost, setCenterCost] = useState([]); // Dados do centro de custo
     const [classification, setClassification]: any = useState({}); // Dados da classificação
+    const [beneficiariesBu, setBeneficiariesBu]: any = useState([]); // Dados dos beneficiários da BU
     const [comission, setComission] = useState([]); // Dados da comissão
 
     // Dados da demanda
@@ -168,7 +170,7 @@ export default function ViewDemand() {
 
     function getDemand() {
         ServicesDemand.findById(demandCode).then((response: any) => {
-            setDemand(response)
+            setDemand(response);
 
             // Verificar se o usuário é o solicitante
             if (office === "requester") {
@@ -210,8 +212,9 @@ export default function ViewDemand() {
 
 
             // Verificar se a demanda foi classificada
-            if (response.classification !== "") {
-                setClassification(response.classification)
+            if (response?.classification !== "" || response?.classification !== null) {
+                beneficiaryBus(response?.classification?.beneficiaryBu)
+                setClassification(response?.classification)
             }
 
             if (response?.demandStatus === "Backlog") {
@@ -251,8 +254,9 @@ export default function ViewDemand() {
             setDemand(response.demand); // Seta a demanda da proposta
             setStepDemand(2) // Seta o passo da demanda
             setClassification(response.demand.classification) // Seta a classificação da demanda
+            beneficiaryBus(response.classification.beneficiaryBu) // Seta os beneficiários da demanda
+            beneficiaryBus(response.classification.beneficiariesBus) // Seta os beneficiários da demanda
             setCenterCost(response.demand.costCenter) // Seta o centro de custo da demanda
-
 
             ServicesExpense.findAll().then((response: any) => {
                 let expense: any = [];
@@ -443,6 +447,21 @@ export default function ViewDemand() {
         }
     }
 
+    function beneficiaryBus(beneficiaryBu: any) {
+        let bus:any = [];
+        if (beneficiaryBu !== null || beneficiaryBu !== undefined) {
+            for (let i = 0; i < beneficiaryBu.length; i++) {
+
+                bus.push(beneficiaryBu[i].bu.split(" –")[0]);
+
+                if(i === beneficiaryBu.length - 1){
+                    bus = bus.join(", ");
+                }
+            }
+        }
+        setBeneficiariesBu(bus);
+    }
+
 
     const [situationCorrentOpen, setSituationCorrentOpen] = useState(false);
     const [benefitRealOpen, setBenefitRealOpen] = useState(false);
@@ -459,8 +478,6 @@ export default function ViewDemand() {
         <div className="view-demand">
 
             {pdf ? <PDF requester={workerName} demandTitle={demand.demandTitle} demandCode={demand.demandCode} /> : null}
-
-
 
             { /* Verifica se é uma demanda ou uma proposta */  url === "demand" || url === "proposal" ? (
                 <div>
@@ -640,7 +657,6 @@ export default function ViewDemand() {
                                     )
                                 }
 
-
                                 <div className={"real-benefit " + benefitRealOpen}>
 
                                     <div className="display-flex-space-between ">
@@ -654,7 +670,6 @@ export default function ViewDemand() {
 
                                     <div className="infos">
 
-
                                         <div className="display-flex-center">
                                             <span className="bold-text">{t("monthlyValue")}:  </span>
                                             {demand.realBenefit.realCurrency === "real" ? (
@@ -667,9 +682,7 @@ export default function ViewDemand() {
 
                                             <div className="text-information">{demand.realBenefit.realMonthlyValue.toLocaleString()}</div>
                                         </div>
-
                                     </div>
-
 
                                     <div className="description">
                                         <div className="display-flex-start">
@@ -707,12 +720,10 @@ export default function ViewDemand() {
                                         </div>
                                     </div>
 
-
                                     <div className="infos">
                                         <span>{t("legalObligation")}: {
                                             (demand.potentialBenefit.legalObrigation === true) ? (<span>Sim</span>) : (<span>Não</span>)}</span>
                                     </div>
-
 
                                     <div className="description">
                                         <div className="display-flex-start">
@@ -720,9 +731,7 @@ export default function ViewDemand() {
                                             <span className="desc">Descrição:</span>
 
                                             <div className="text-information">{demand.potentialBenefit.potentialBenefitDescription}</div>
-
                                         </div>
-
                                     </div>
                                 </div>
 
@@ -738,14 +747,11 @@ export default function ViewDemand() {
 
                                     <div className="infos">
 
-
-
                                         <div>
                                             <span>{t("legalObligation")}: {demand.qualitativeBenefit.frequencyOfUse}</span>
                                         </div>
 
                                     </div>
-
 
                                     <div className="description">
                                         <div className="display-flex-start">
@@ -787,65 +793,10 @@ export default function ViewDemand() {
                             {(stepDemand === 1 || stepDemand === 2) ? (
 
                                 (classification) ? (
-                                    < div className={"classification " + classificationOpen} >
-                                        <div className="display-flex-space-between">
-
-                                            <p className="title">{t("classification")}</p>
-
-                                            <span onClick={() => setClassificationOpen(!classificationOpen)} className="material-symbols-outlined arrow-expend">
-                                                expand_more
-                                            </span>
-                                        </div>
-
-
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td>{t("size")}</td>
-                                                    <td>{t("requesterBU")}</td>
-                                                    <td>{t("buBenefited")}</td>
-                                                    <td>{t("responsibleItSession")}</td>
-                                                </tr>
-
-                                                <tr>
-                                                    <Tooltip title={classification.classificationSize} arrow>
-                                                        <td>{classification.classificationSize}</td>
-                                                    </Tooltip>
-
-                                                    <Tooltip title={classification.requesterBu.bu} arrow>
-                                                        <td>{classification.requesterBu.bu}</td>
-                                                    </Tooltip>
-
-                                                    <td>
-                                                        {classification.beneficiaryBu.map((bu: any, index: any) => {
-                                                            return (
-                                                                <Tooltip title={bu.bu} key={index} arrow>
-                                                                    <td className="buBenifitedTd">{bu.bu.split("–", 1)}</td>
-                                                                </Tooltip>
-                                                            )
-
-                                                        })
-
-                                                        }
-                                                    </td>
-
-                                                    <Tooltip title={classification.itSection} arrow>
-                                                        <td>{classification.itSection}</td>
-                                                    </Tooltip>
-
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                ) : (
-                                    <div></div>
-                                )
-                            ) : (
-                                <div></div>
-                            )
+                                    <Table headers={["size", "requesterBU", "buBenefited", "responsibleItSession"]} items={[classification.classificationSize, classification.requesterBu.bu, beneficiariesBu, classification.itSection]} />
+                                ) : (null)
+                            ) : (null)
                             }
-
-
 
                             {(stepDemand === 2) ? (
 
@@ -866,8 +817,6 @@ export default function ViewDemand() {
 
                                             </tr>
 
-
-
                                             <tr>
                                                 <td>{classification.ppmCode}</td>
                                                 <td><a target="_blank" href={"http://" + classification.epicJiraLink}>{classification.epicJiraLink}</a></td>
@@ -876,17 +825,14 @@ export default function ViewDemand() {
                                         </tbody>
                                     </table>
                                 </div>
-                            ) : (
-                                <div className="null"></div>
-                            )}
+                            ) : (null)
+                            }
 
                             {proposalExpenseValue !== 0 ? (<Expenses type="expenses" proposalExpense={proposalExpense} />) : (null)}
 
                             {proposalExpenseRecurrent !== 0 ? (<Expenses type="recurrent" proposalExpense={proposalExpense} />) : (null)}
 
                             {proposalExpenseInternal !== 0 ? (<Expenses type="internal" proposalExpense={proposalExpense} />) : (null)}
-
-
 
 
                             {proposalExpense.length !== 0 ? (
@@ -907,9 +853,8 @@ export default function ViewDemand() {
                                         </div>
                                     </div>
                                 </div>
-                            ) : (
-                                null
-                            )}
+                            ) : (null)
+                            }
 
                             {demand.demandAttachment ? (
                                 <div className="attachments">
@@ -927,35 +872,27 @@ export default function ViewDemand() {
                                                 </div>
                                             </a>
                                         </Tooltip>
-                                        {
-                                            classification?.classificationAttachment ? (
-                                                <Tooltip title={classification.classificationAttachment.name} arrow>
-                                                    <a onClick={() => donwloadAttachment(classification.classificationAttachment.dice, classification.classificationAttachment.type, classification.classificationAttachment.name)} download={"teste.jpg"} target="_blank">
-                                                        <div className="attachment">
-                                                            <div className="attachment-image">
-                                                                <img src={"/attachment/" + attatchmentType("classification") + ".png"} alt="" />
-                                                            </div>
-                                                            <span>{classification.classificationAttachment.name}</span>
+                                        {classification?.classificationAttachment ? (
+                                            <Tooltip title={classification.classificationAttachment.name} arrow>
+                                                <a onClick={() => donwloadAttachment(classification.classificationAttachment.dice, classification.classificationAttachment.type, classification.classificationAttachment.name)} download={"teste.jpg"} target="_blank">
+                                                    <div className="attachment">
+                                                        <div className="attachment-image">
+                                                            <img src={"/attachment/" + attatchmentType("classification") + ".png"} alt="" />
                                                         </div>
-                                                    </a>
-                                                </Tooltip>
-                                            ) : (
-                                                <div></div>
-                                            )
+                                                        <span>{classification.classificationAttachment.name}</span>
+                                                    </div>
+                                                </a>
+                                            </Tooltip>
+                                        ) : (null)
                                         }
-
-
 
                                     </div>
 
                                 </div>
-                            ) : (
-                                <div className="null"></div>
-                            )}
-
+                            ) : (null)
+                            }
 
                         </div>
-
                     </div>
                 </div>
             ) : url === "agenda" ? (
@@ -988,10 +925,7 @@ export default function ViewDemand() {
                                         </div>
                                     </div>
                                 </>
-                            ) : (
-                                <p></p>
-                            )}
-
+                            ) : (null)}
 
                             <div className="proposalsAgenda">
                                 <p>{t("proposals")}</p>
@@ -1011,7 +945,6 @@ export default function ViewDemand() {
                                                         </div>
                                                     </div>
 
-
                                                     <div className="proposal-view-buttons">
                                                         {val.proposalStatus === "Pending" ? (
                                                             <Link to={"/proposal/comission-opinion/" + val.proposalCode}>
@@ -1026,11 +959,9 @@ export default function ViewDemand() {
                                                 </div>
                                             </div>
                                         </Link>
-
                                     ))
                                 }
                             </div>
-
 
                             <div className="complement">
 
@@ -1049,39 +980,24 @@ export default function ViewDemand() {
                                     </tbody>
                                 </table>
                             </div>
-
                         </div>
 
-                        {
-                            pendingMinute < proposalSpecific.length && minute.length === 0 ? (
-                                <div className="display-flex-end">
-                                    <Link to={"/minutes/create/" + demandCode}>
-                                        <button className="btn-primary">{t("finish")}</button>
-                                    </Link>
-                                </div>
-                            ) : (
-                                <div></div>
-                            )
+                        {pendingMinute < proposalSpecific.length && minute.length === 0 ? (
+                            <div className="display-flex-end">
+                                <Link to={"/minutes/create/" + demandCode}>
+                                    <button className="btn-primary">{t("finish")}</button>
+                                </Link>
+                            </div>
+                        ) : (null)
                         }
-
-
-
-
 
                         < Footer />
                     </div>
                 </div>
-            ) : (
-                null
-            )
+            ) : (null)
             }
 
-            {
-                url !== "agenda" ? (
-                    <Footer />)
-                    : null
-            }
-
+            {url !== "agenda" ? (<Footer />) : null}
 
             <ToastContainer position="bottom-right" newestOnTop />
 

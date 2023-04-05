@@ -177,7 +177,7 @@ export default function Demands() {
         setTableList(!table);
     }
 
-    const [minute, setMinute] = useState(false);
+    const [minute, setMinute] = useState(false); // Verifica se a página é de ata
     const [nameFilter, setName] = useState<string>(""); // Busca o que foi digitado no input do filtro
     const [typeFilter, setType] = useState<string>(""); // Busca qual filtro foi selecionado
 
@@ -194,19 +194,9 @@ export default function Demands() {
     return (
         <div className="solicitation">
 
-            {minute && (
-                <div className="background-minute" onClick={() => setMinute(false)}>
-                    <div className="minute">
-
-                        <iframe src="https://drive.google.com/file/d/1-Mb9GlWMegsrv8po3Ra-PL3x8WqpancP/preview" width="640" height="480" allow="autoplay"></iframe>
-
-                    </div>
-                </div>
-            )}
-
             {(url[3] === "demands") ? (
-                <div className="demands">
 
+                <div className="demands">
                     {presentation && (
                         <div>
                             <Presentation />
@@ -245,14 +235,14 @@ export default function Demands() {
                                                 );
 
                                             }
-                                        } 
+                                        }
 
 
                                         if (typeFilter === "requester" && val.requesterRegistration.workerName.toUpperCase().includes(nameFilter.toUpperCase())) {
                                             return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />);
                                         } else if (typeFilter === "status" && val.demandStatus.toUpperCase().includes(nameFilter.toUpperCase())) {
                                             return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />);
-                                        } else if(index === demands.length - 1) {
+                                        } else if (index === demands.length - 1) {
                                             return (
                                                 <div className="no-results">
                                                     <h1>{t("noResults")}</h1>
@@ -270,38 +260,30 @@ export default function Demands() {
                             )}
                         </div>
 
-                        {
-                            footer()
-                        }
+                        { footer() }
 
                         <Footer />
 
                     </div>
                 </div>
+
             ) : (url[3] === "proposals") ? (
-                <div className="proposals">
-                    <Header />
-                    <Nav />
-                    <div className="container">
-                        <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} nav={t("proposalViewProposal")} title="proposals" button="createProposal" link="/demands/1" />
-                        <div className="container-background">
-                            {
-                                proposals.map((val: any, index) => {
-                                    if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
-                                        return (
-                                            <Demand key={val.proposalCode} listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />
-                                        );
-                                    } else if (search !== "") {
-                                        
-                                        if (val.demand?.demandTitle.toUpperCase().includes(search.toUpperCase())) {
-                                            return (<Demand key={val.proposalCode} listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />);
-                                        } else {
-                                            return (
-                                                <div className="no-results">
-                                                    <h1>{t("noResults")}</h1>
-                                                </div>
-                                            );
-                                        }
+            <div className="proposals">
+                <Header />
+                <Nav />
+                <div className="container">
+                    <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} nav={t("proposalViewProposal")} title="proposals" button="createProposal" link="/demands/1" />
+                    <div className="container-background">
+                        {
+                            proposals.map((val: any, index) => {
+                                if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
+                                    return (
+                                        <Demand key={val.proposalCode} listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />
+                                    );
+                                } else if (search !== "") {
+
+                                    if (val.demand?.demandTitle.toUpperCase().includes(search.toUpperCase())) {
+                                        return (<Demand key={val.proposalCode} listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />);
                                     } else {
                                         return (
                                             <div className="no-results">
@@ -309,109 +291,126 @@ export default function Demands() {
                                             </div>
                                         );
                                     }
+                                } else {
+                                    return (
+                                        <div className="no-results">
+                                            <h1>{t("noResults")}</h1>
+                                        </div>
+                                    );
+                                }
 
-                                })
-                            }
+                            })
+                        }
 
-                            {proposals.length === 0 && (
-                                <div className="no-results">
-                                    <h1>{t("noResults")}</h1>
-                                </div>
-                            )}
-                        </div>
-                        {footer()}
-
-                        <Footer />
-
+                        {proposals.length === 0 && (
+                            <div className="no-results">
+                                <h1>{t("noResults")}</h1>
+                            </div>
+                        )}
                     </div>
+                    {footer()}
+
+                    <Footer />
+
                 </div>
+            </div>
             ) : (url[3] === "agendas") ? (
-                <div className="agendas">
-                    <Header />
-                    <Nav />
-                    <div className="container">
-                        <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} setTipe={setType} setTable={setTable} nav={t("agendaViewAgenda")} title="agendas" button="createAgenda" link="/agenda/create" />
-                        <div className="container-background">
-                            {
-                                agendas.map((val: any, index) => {
-                                    if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
+            <div className="agendas">
+                <Header />
+                <Nav />
+                <div className="container">
+                    <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} setTipe={setType} setTable={setTable} nav={t("agendaViewAgenda")} title="agendas" button="createAgenda" link="/agenda/create" />
+                    <div className="container-background">
+                        {
+                            agendas.map((val: any, index) => {
+                                if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
+                                    return (
+                                        <Demand key={val.agendaCode} val={val.agendaCode} listDirection={table} name={"Pauta da reunião  " + val.agendaCode} demandCode={val.agendaCode} date={val.agendaDate} number={val.sequentialNumber} year={val.yearAgenda} type="agenda" />
+                                    );
+                                } else if (search !== "") {
+                                    if (val.agendaCode.toString().includes(search)) {
                                         return (
                                             <Demand key={val.agendaCode} val={val.agendaCode} listDirection={table} name={"Pauta da reunião  " + val.agendaCode} demandCode={val.agendaCode} date={val.agendaDate} number={val.sequentialNumber} year={val.yearAgenda} type="agenda" />
                                         );
-                                    } else if (search !== "") {
-                                        if (val.agendaCode.toString().includes(search)) {
-                                            return (
-                                                <Demand key={val.agendaCode} val={val.agendaCode} listDirection={table} name={"Pauta da reunião  " + val.agendaCode} demandCode={val.agendaCode} date={val.agendaDate} number={val.sequentialNumber} year={val.yearAgenda} type="agenda" />
-                                            );
-                                        } else {
-                                            return (
-                                                <div className="no-results">
-                                                    <h1>{t("noResults")}</h1>
-                                                </div>
-                                            );
-                                        }
+                                    } else {
+                                        return (
+                                            <div className="no-results">
+                                                <h1>{t("noResults")}</h1>
+                                            </div>
+                                        );
                                     }
-                                })
-                            }
+                                }
+                            })
+                        }
 
-                            {agendas.length === 0 && (
-                                <div className="no-results">
-                                    <h1>{t("noResults")}</h1>
-                                </div>
-                            )}
-
-                        </div>
-
-                        {footer()}
-
-                        <Footer />
+                        {agendas.length === 0 && (
+                            <div className="no-results">
+                                <h1>{t("noResults")}</h1>
+                            </div>
+                        )}
 
                     </div>
 
+                    {footer()}
+
+                    <Footer />
+
                 </div>
+
+            </div>
             ) : (url[3] === "minutes") ? (
-                <div className="minutes">
-                    <Header />
-                    <Nav />
-                    <div className="container">
-                        <Search onClick={callback} name={nameFilter} type={typeFilter} setType={setType} nav={t("minuteViewMinute")} title="minutes" button="createMinute" link="/agendas/1" setTable={setTable} />
-                        <div className="container-background">
-                            {
-                                minutes.map((val: any, index) => {
-                                    if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
+            <div className="minutes">
+                <Header />
+                <Nav />
+                <div className="container">
+                    <Search onClick={callback} name={nameFilter} type={typeFilter} setType={setType} nav={t("minuteViewMinute")} title="minutes" button="createMinute" link="/agendas/1" setTable={setTable} />
+                    <div className="container-background">
+                        {
+                            minutes.map((val: any, index) => {
+                                if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
+                                    return (
+                                        <Demand key={val.minuteCode} listDirection={table} name={val.minuteName} demandCode={val.minuteCode} director={val.director?.workerName} number={val.minuteCode} date={val.minuteStartDate} type="minute" />
+                                    );
+                                } else if (search !== "") {
+                                    if (val.minuteCode.toString().includes(search)) {
                                         return (
                                             <Demand key={val.minuteCode} listDirection={table} name={val.minuteName} demandCode={val.minuteCode} director={val.director?.workerName} number={val.minuteCode} date={val.minuteStartDate} type="minute" />
                                         );
-                                    } else if (search !== "") {
-                                        if (val.minuteCode.toString().includes(search)) {
-                                            return (
-                                                <Demand key={val.minuteCode} listDirection={table} name={val.minuteName} demandCode={val.minuteCode} director={val.director?.workerName} number={val.minuteCode} date={val.minuteStartDate} type="minute" />
-                                            );
-                                        } else {
-                                            return (
-                                                <div className="no-results">
-                                                    <h1>{t("noResults")}</h1>
-                                                </div>
-                                            );
-                                        }
+                                    } else {
+                                        return (
+                                            <div className="no-results">
+                                                <h1>{t("noResults")}</h1>
+                                            </div>
+                                        );
                                     }
-                                })
-                            }
+                                }
+                            })
+                        }
 
-                            {minutes.length === 0 && (
-                                <div className="no-results">
-                                    <h1>{t("noResults")}</h1>
-                                </div>
-                            )}
-                        </div>
-                        {footer()}
+                        {minutes.length === 0 && (
+                            <div className="no-results">
+                                <h1>{t("noResults")}</h1>
+                            </div>
+                        )}
+                    </div>
+                    {footer()}
 
-                        <Footer />
+                    <Footer />
+
+                </div>
+            </div>
+            ) : (<div className="null" />)
+            }
+
+            {minute && (
+                <div className="background-minute" onClick={() => setMinute(false)}>
+                    <div className="minute">
+
+                        <iframe src="https://drive.google.com/file/d/1-Mb9GlWMegsrv8po3Ra-PL3x8WqpancP/preview" width="640" height="480" allow="autoplay"></iframe>
 
                     </div>
                 </div>
-            ) : (<div className="null" />)
-            }
+            )}
 
             <ToastContainer position="bottom-right" newestOnTop />
 

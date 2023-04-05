@@ -157,8 +157,8 @@ const Services = {
     },
     saveExcel: function (type: any, value: any) {
         return new Promise((resolve, reject) => {
-            console.log("value: " + value + "type: " + type)
-            fetch(url + "/filter/" + type + "/" + value, {
+            console.log("value: " + value + " type: " + type)
+            fetch(url + "/filter/" + value + "/" + type, {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include'

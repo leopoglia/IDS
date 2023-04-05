@@ -31,8 +31,6 @@ export default function Filter(props: FilterProps) {
 
     const inputName = useRef<HTMLInputElement>(null)
     const onButtonPress = () => {
-        console.log(inputName?.current?.value)
-        console.log(type)
         props.onClick(inputName?.current?.value, type)
     }
 

@@ -19,12 +19,10 @@ export default function Search(props: any) {
     const [filter, setFilter] = useState(false); // Estado do filtro
 
     useEffect(() => {
-        console.log("name: " + props.name + " type: " + props.type)
     }, [props.name, props.type])
 
 
     function excel(){
-        console.log("name: " + props.name + "type: " + props.type)
         DemandService.saveExcel(props.name, props.type)
     }
 

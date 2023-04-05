@@ -64,7 +64,7 @@ export default function Demand(props: any) {
         } else if (props.situation === "Assesment") {
             return (
                 <div className="openProposal">
-                    <Link to={"/proposal/view/" + props.demandCode}>
+                    <Link to={"/proposal/view/" + props.proposalCode}>
                         <Tooltip title={t("openProposal")} placement="left">
                             <button className="btn-secondary btn-unique">
                                 <span className="material-symbols-outlined">

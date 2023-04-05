@@ -85,9 +85,29 @@ export default function Demands() {
 
     // Buscar as demandas cadastradas
     async function getDemands() {
-        findDemands = await ServicesDemand.findByPage(page, 5).then((res: any) => {
-            setDemands(res.content); // Atualiza o estado das demandas
+        findDemands = await ServicesDemand.findByPage(page, 5).then(async (res: any) => {
+            let demandsContent = res.content; // Atualiza o estado das demandas
             setPages(res.totalPages); // Atualiza o estado das páginas
+            
+            let proposalsContent:any = await ServicesProposal.findAll();
+
+
+            demandsContent.map((demand: any) => {
+                if (demand.demandStatus === "Assesment") {
+                    proposalsContent.map((proposal: any) => {
+
+                        if (proposal.demand.demandCode === demand.demandCode) {
+                            demand.proposalCode = proposal.proposalCode;
+                        }
+                    })
+                }
+
+                return demand;
+
+
+            })
+
+            setDemands(demandsContent);
         });
         return findDemands;
     }
@@ -217,7 +237,7 @@ export default function Demands() {
                                 demands.map((val: any, index) => {
                                     if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
                                         return (
-                                            <Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />
+                                            <Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} proposalCode={val.proposalCode} type="demand" />
                                         );
 
                                     } else {
@@ -225,7 +245,7 @@ export default function Demands() {
                                         if (search !== "") {
 
                                             if (val.demandTitle.toUpperCase().includes(search.toUpperCase())) {
-                                                return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />);
+                                                return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} proposalCode={val.proposalCode}  type="demand" />);
 
                                             } else if (index === demands.length - 1) {
                                                 return (
@@ -239,9 +259,9 @@ export default function Demands() {
 
 
                                         if (typeFilter === "requester" && val.requesterRegistration.workerName.toUpperCase().includes(nameFilter.toUpperCase())) {
-                                            return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />);
+                                            return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} proposalCode={val.proposalCode}  type="demand" />);
                                         } else if (typeFilter === "status" && val.demandStatus.toUpperCase().includes(nameFilter.toUpperCase())) {
-                                            return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />);
+                                            return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} proposalCode={val.proposalCode}  type="demand" />);
                                         } else if (index === demands.length - 1) {
                                             return (
                                                 <div className="no-results">
@@ -260,7 +280,7 @@ export default function Demands() {
                             )}
                         </div>
 
-                        { footer() }
+                        {footer()}
 
                         <Footer />
 
@@ -268,22 +288,29 @@ export default function Demands() {
                 </div>
 
             ) : (url[3] === "proposals") ? (
-            <div className="proposals">
-                <Header />
-                <Nav />
-                <div className="container">
-                    <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} nav={t("proposalViewProposal")} title="proposals" button="createProposal" link="/demands/1" />
-                    <div className="container-background">
-                        {
-                            proposals.map((val: any, index) => {
-                                if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
-                                    return (
-                                        <Demand key={val.proposalCode} listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />
-                                    );
-                                } else if (search !== "") {
+                <div className="proposals">
+                    <Header />
+                    <Nav />
+                    <div className="container">
+                        <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} nav={t("proposalViewProposal")} title="proposals" button="createProposal" link="/demands/1" />
+                        <div className="container-background">
+                            {
+                                proposals.map((val: any, index) => {
+                                    if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
+                                        return (
+                                            <Demand key={val.proposalCode} listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />
+                                        );
+                                    } else if (search !== "") {
 
-                                    if (val.demand?.demandTitle.toUpperCase().includes(search.toUpperCase())) {
-                                        return (<Demand key={val.proposalCode} listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />);
+                                        if (val.demand?.demandTitle.toUpperCase().includes(search.toUpperCase())) {
+                                            return (<Demand key={val.proposalCode} listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />);
+                                        } else {
+                                            return (
+                                                <div className="no-results">
+                                                    <h1>{t("noResults")}</h1>
+                                                </div>
+                                            );
+                                        }
                                     } else {
                                         return (
                                             <div className="no-results">
@@ -291,114 +318,107 @@ export default function Demands() {
                                             </div>
                                         );
                                     }
-                                } else {
-                                    return (
-                                        <div className="no-results">
-                                            <h1>{t("noResults")}</h1>
-                                        </div>
-                                    );
-                                }
 
-                            })
-                        }
+                                })
+                            }
 
-                        {proposals.length === 0 && (
-                            <div className="no-results">
-                                <h1>{t("noResults")}</h1>
-                            </div>
-                        )}
+                            {proposals.length === 0 && (
+                                <div className="no-results">
+                                    <h1>{t("noResults")}</h1>
+                                </div>
+                            )}
+                        </div>
+                        {footer()}
+
+                        <Footer />
+
                     </div>
-                    {footer()}
-
-                    <Footer />
-
                 </div>
-            </div>
             ) : (url[3] === "agendas") ? (
-            <div className="agendas">
-                <Header />
-                <Nav />
-                <div className="container">
-                    <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} setTipe={setType} setTable={setTable} nav={t("agendaViewAgenda")} title="agendas" button="createAgenda" link="/agenda/create" />
-                    <div className="container-background">
-                        {
-                            agendas.map((val: any, index) => {
-                                if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
-                                    return (
-                                        <Demand key={val.agendaCode} val={val.agendaCode} listDirection={table} name={"Pauta da reunião  " + val.agendaCode} demandCode={val.agendaCode} date={val.agendaDate} number={val.sequentialNumber} year={val.yearAgenda} type="agenda" />
-                                    );
-                                } else if (search !== "") {
-                                    if (val.agendaCode.toString().includes(search)) {
+                <div className="agendas">
+                    <Header />
+                    <Nav />
+                    <div className="container">
+                        <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} setTipe={setType} setTable={setTable} nav={t("agendaViewAgenda")} title="agendas" button="createAgenda" link="/agenda/create" />
+                        <div className="container-background">
+                            {
+                                agendas.map((val: any, index) => {
+                                    if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
                                         return (
                                             <Demand key={val.agendaCode} val={val.agendaCode} listDirection={table} name={"Pauta da reunião  " + val.agendaCode} demandCode={val.agendaCode} date={val.agendaDate} number={val.sequentialNumber} year={val.yearAgenda} type="agenda" />
                                         );
-                                    } else {
-                                        return (
-                                            <div className="no-results">
-                                                <h1>{t("noResults")}</h1>
-                                            </div>
-                                        );
+                                    } else if (search !== "") {
+                                        if (val.agendaCode.toString().includes(search)) {
+                                            return (
+                                                <Demand key={val.agendaCode} val={val.agendaCode} listDirection={table} name={"Pauta da reunião  " + val.agendaCode} demandCode={val.agendaCode} date={val.agendaDate} number={val.sequentialNumber} year={val.yearAgenda} type="agenda" />
+                                            );
+                                        } else {
+                                            return (
+                                                <div className="no-results">
+                                                    <h1>{t("noResults")}</h1>
+                                                </div>
+                                            );
+                                        }
                                     }
-                                }
-                            })
-                        }
+                                })
+                            }
 
-                        {agendas.length === 0 && (
-                            <div className="no-results">
-                                <h1>{t("noResults")}</h1>
-                            </div>
-                        )}
+                            {agendas.length === 0 && (
+                                <div className="no-results">
+                                    <h1>{t("noResults")}</h1>
+                                </div>
+                            )}
+
+                        </div>
+
+                        {footer()}
+
+                        <Footer />
 
                     </div>
 
-                    {footer()}
-
-                    <Footer />
-
                 </div>
-
-            </div>
             ) : (url[3] === "minutes") ? (
-            <div className="minutes">
-                <Header />
-                <Nav />
-                <div className="container">
-                    <Search onClick={callback} name={nameFilter} type={typeFilter} setType={setType} nav={t("minuteViewMinute")} title="minutes" button="createMinute" link="/agendas/1" setTable={setTable} />
-                    <div className="container-background">
-                        {
-                            minutes.map((val: any, index) => {
-                                if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
-                                    return (
-                                        <Demand key={val.minuteCode} listDirection={table} name={val.minuteName} demandCode={val.minuteCode} director={val.director?.workerName} number={val.minuteCode} date={val.minuteStartDate} type="minute" />
-                                    );
-                                } else if (search !== "") {
-                                    if (val.minuteCode.toString().includes(search)) {
+                <div className="minutes">
+                    <Header />
+                    <Nav />
+                    <div className="container">
+                        <Search onClick={callback} name={nameFilter} type={typeFilter} setType={setType} nav={t("minuteViewMinute")} title="minutes" button="createMinute" link="/agendas/1" setTable={setTable} />
+                        <div className="container-background">
+                            {
+                                minutes.map((val: any, index) => {
+                                    if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
                                         return (
                                             <Demand key={val.minuteCode} listDirection={table} name={val.minuteName} demandCode={val.minuteCode} director={val.director?.workerName} number={val.minuteCode} date={val.minuteStartDate} type="minute" />
                                         );
-                                    } else {
-                                        return (
-                                            <div className="no-results">
-                                                <h1>{t("noResults")}</h1>
-                                            </div>
-                                        );
+                                    } else if (search !== "") {
+                                        if (val.minuteCode.toString().includes(search)) {
+                                            return (
+                                                <Demand key={val.minuteCode} listDirection={table} name={val.minuteName} demandCode={val.minuteCode} director={val.director?.workerName} number={val.minuteCode} date={val.minuteStartDate} type="minute" />
+                                            );
+                                        } else {
+                                            return (
+                                                <div className="no-results">
+                                                    <h1>{t("noResults")}</h1>
+                                                </div>
+                                            );
+                                        }
                                     }
-                                }
-                            })
-                        }
+                                })
+                            }
 
-                        {minutes.length === 0 && (
-                            <div className="no-results">
-                                <h1>{t("noResults")}</h1>
-                            </div>
-                        )}
+                            {minutes.length === 0 && (
+                                <div className="no-results">
+                                    <h1>{t("noResults")}</h1>
+                                </div>
+                            )}
+                        </div>
+                        {footer()}
+
+                        <Footer />
+
                     </div>
-                    {footer()}
-
-                    <Footer />
-
                 </div>
-            </div>
             ) : (<div className="null" />)
             }
 

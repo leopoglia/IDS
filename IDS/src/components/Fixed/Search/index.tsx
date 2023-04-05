@@ -3,8 +3,9 @@ import ButtonTableList from "./ButtonSearch";
 import Title from "./Title";
 import Filter from "./Filter";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import DemandService from "../../../services/demandService";
 
 export interface FilterProps {
     onClick: (name: string | undefined, type: string) => void
@@ -17,6 +18,15 @@ export default function Search(props: any) {
     const [data, setData] = useState(false); // Estado da tabela (demanda, proposta, agenda, minuta)
     const [filter, setFilter] = useState(false); // Estado do filtro
 
+    useEffect(() => {
+        console.log("name: " + props.name + "type: " + props.type)
+    }, [props.name, props.type])
+
+
+    function excel(){
+        console.log("name: " + props.name + "type: " + props.type)
+        DemandService.saveExcel(props.name, props.type)
+    }
 
     // Se a tabela estiver aberta, fecha, se estiver fechada, abre
     const sendData = () => {
@@ -77,7 +87,7 @@ export default function Search(props: any) {
                             <div className="display-flex"><span>{props.name} - {props.type}</span><span className="material-symbols-outlined size-20">close</span></div>
                         </div>
 
-                        <button className="btn-secondary export-spreadsheet">
+                        <button onClick={excel} className="btn-secondary export-spreadsheet">
                             <img src="/attachment/excel.png" alt="" />
                         </button>
                     </div>

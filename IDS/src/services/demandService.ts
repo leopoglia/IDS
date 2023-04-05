@@ -155,8 +155,9 @@ const Services = {
                 .catch(reject)
         })
     },
-    saveExcel: function (type: String, value: any) {
+    saveExcel: function (type: any, value: any) {
         return new Promise((resolve, reject) => {
+            console.log("value: " + value + "type: " + type)
             fetch(url + "/filter/" + type + "/" + value, {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' },

@@ -10,7 +10,7 @@ export default function ButtonActionAnalyst(props:any) {
 
 
     return (
-        <div>
+        <div className="modal-action">
             <button className="btn-primary-unique" onClick={() => setModal(!modal)}>
                 <span className="material-symbols-outlined">
                     more_vert

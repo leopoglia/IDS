@@ -43,7 +43,7 @@ export default function Graphic(props: any) {
     let [labels, setLabels]: any = useState([]);
     let url = window.location.href;
 
-    useEffect(() => {
+    useEffect(() => { 
         getMonthName();
 
     }, [props]);

@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 export default function SelectLabels(props: any) {
     const [coin, setCoin] = React.useState('');
 
-    useEffect(() => {
+    useEffect(() => { 
         addChange();
         if (coin === "" || coin === undefined) {
             setCoin('real')

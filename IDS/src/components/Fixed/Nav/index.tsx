@@ -31,7 +31,7 @@ export default function Nav() {
         localStorage.setItem("nav", newNav);
     }
 
-    useEffect(() => {
+    useEffect(() => { 
         const navState = localStorage.getItem("nav") === "nav-open" ? "nav-open" : "nav"; // Verifica se o menu está aberto ou fechado
         setNav(navState); // Atualiza o estado do menu
 

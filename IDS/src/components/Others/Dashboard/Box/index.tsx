@@ -8,7 +8,7 @@ export default function Box(props: any) {
     let valorFinal = props.number;
 
 
-    useEffect(() => {
+    useEffect(() => { 
         const intervalId = setInterval(() => {
             setValor(valor => {
                 if (valor >= valorFinal) {

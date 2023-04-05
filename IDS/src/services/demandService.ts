@@ -9,7 +9,6 @@ const Services = {
             costCenters.push({ "costCenterCode": costCenter[i] });
         }
 
-        console.log(demandAttachment)
 
         let demand = {
             "demandTitle": demandTitle,
@@ -72,7 +71,6 @@ const Services = {
         demandScore: any, demandRequester: any, classificationCode: any) {
         var formData = new FormData();
 
-        console.log(demandStatus)
 
         let costCenters = [];
         for (let i = 0; i < costCenter.length; i++) {

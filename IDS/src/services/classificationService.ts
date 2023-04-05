@@ -20,8 +20,6 @@ const Services = {
             "beneficiaryBu": beneficiaryBuList
         }
 
-        console.log(classificationAttachment)
-
         formData.append('classification', JSON.stringify(classification));
         formData.append('classificationAttachment', classificationAttachment);
 

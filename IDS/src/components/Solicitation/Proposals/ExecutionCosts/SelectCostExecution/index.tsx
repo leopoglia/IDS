@@ -12,7 +12,7 @@ export default function SelectLabels(props: any) {
     const url = parseInt(window.location.href.split('/')[5]);
     // const [select, setSelect] = React.useState('');
 
-    useEffect(() => {
+    useEffect(() => { 
         getBu();
     }, []);
 

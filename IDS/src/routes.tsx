@@ -42,6 +42,7 @@ export default function Router() {
     });
 
     useEffect(() => {
+
         if (worker.id === "") {
             const id = localStorage.getItem("id");
             if (id !== null) {
@@ -69,9 +70,11 @@ export default function Router() {
                 worker: worker,
                 setWorker
             }}>
+
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Form />} />
+
                     <Route path="/forget-password" element={<ForgetPassword />} />
 
                     <Route path="/messages" element={<Messages />} />

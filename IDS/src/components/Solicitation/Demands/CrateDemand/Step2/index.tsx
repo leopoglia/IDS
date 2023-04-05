@@ -38,7 +38,7 @@ export default function CreateDemands2() {
     const [frequencyOfUse, setFrequencyOfUse] = useState("");
     const [interalControlsRequirements, setInteralControlsRequirements] = useState("");
 
-    useEffect(() => {
+    useEffect(() => { 
 
 
         let realBenefits = JSON.parse(localStorage.getItem("realBenefits") || "{}");

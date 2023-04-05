@@ -26,7 +26,7 @@ export default function CreateAgenda() {
     let actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear();
 
 
-    useEffect(() => {
+    useEffect(() => { 
         getProposal();
     }, [])
 
@@ -74,7 +74,6 @@ export default function CreateAgenda() {
             }
 
             Services.save(agendaNumber, agendaYear, commissionArray, actualDate, proposals).then((response: any) => {
-                console.log(response);
                 navigate("/agenda/view/" + response.agendaCode);
             })
         })

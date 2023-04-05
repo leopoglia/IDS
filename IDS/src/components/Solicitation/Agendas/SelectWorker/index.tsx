@@ -7,7 +7,7 @@ export default function FreeSolo(props: any) {
 
     const [commission, setCommission] = useState([{ commissionName: "" }]);
 
-    useEffect(() => {
+    useEffect(() => { 
         getWorker();
     }, []);
 

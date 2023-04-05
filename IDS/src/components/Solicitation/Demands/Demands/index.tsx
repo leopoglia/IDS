@@ -38,7 +38,7 @@ export default function Demands() {
 
 
     // Entra na página e busca as demandas cadastradas
-    useEffect(() => {
+    useEffect(() => { 
 
         if (url[3] === "demands") {
             if (search === "") {

@@ -112,7 +112,7 @@ export default function EscopeDemand() {
 	}
 
 
-	useEffect(() => {
+	useEffect(() => { 
 		if (demands === undefined) {
 			getDemand();
 		}
@@ -235,8 +235,6 @@ export default function EscopeDemand() {
 		}
 
 		ServicesDemand.update(demandCode, demandTitle, demandProblem, demandObjective, costsCentersId, frequencyOfUse, realBenefitCode, potentialBenefitCode, qualitativeBenefitCode, file, demandDate, demandStatus, demandScore, demandRequester, demandClassification).then((response: any) => {
-			console.log(response);
-
 
 			if (url === "edit") {
 				ServicesDemand.updateStatus(demandCode, "Backlog").then((response: any) => { });

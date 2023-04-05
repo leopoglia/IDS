@@ -16,7 +16,7 @@ export default function Proposals() {
     const [proposals, setProposals] = useState([]);
     const navigate = useNavigate();
 
-    useEffect(() => {
+    useEffect(() => { 
         ServicesProposal.findAll().then((response: any) => {
             setProposals(response);
         })

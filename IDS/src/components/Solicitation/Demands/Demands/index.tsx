@@ -221,7 +221,7 @@ export default function Demands() {
                     <Nav />
                     <div className="container">
 
-                        <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1"  />
+                        <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1" />
                         <div className="container-background">
                             {
                                 demands.map((val: any, index) => {
@@ -245,13 +245,19 @@ export default function Demands() {
                                                 );
 
                                             }
-                                        }
+                                        } 
 
 
                                         if (typeFilter === "requester" && val.requesterRegistration.workerName.toUpperCase().includes(nameFilter.toUpperCase())) {
                                             return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />);
                                         } else if (typeFilter === "status" && val.demandStatus.toUpperCase().includes(nameFilter.toUpperCase())) {
                                             return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} type="demand" />);
+                                        } else if(index === demands.length - 1) {
+                                            return (
+                                                <div className="no-results">
+                                                    <h1>{t("noResults")}</h1>
+                                                </div>
+                                            );
                                         }
                                     }
                                 })
@@ -277,17 +283,16 @@ export default function Demands() {
                     <Header />
                     <Nav />
                     <div className="container">
-                        <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} nav={t("proposalViewProposal")} title="proposals" button="createProposal" link="/demands/1"  />
+                        <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} nav={t("proposalViewProposal")} title="proposals" button="createProposal" link="/demands/1" />
                         <div className="container-background">
                             {
                                 proposals.map((val: any, index) => {
                                     if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
-
                                         return (
                                             <Demand key={val.proposalCode} listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />
                                         );
                                     } else if (search !== "") {
-
+                                        
                                         if (val.demand?.demandTitle.toUpperCase().includes(search.toUpperCase())) {
                                             return (<Demand key={val.proposalCode} listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />);
                                         } else {
@@ -297,6 +302,12 @@ export default function Demands() {
                                                 </div>
                                             );
                                         }
+                                    } else {
+                                        return (
+                                            <div className="no-results">
+                                                <h1>{t("noResults")}</h1>
+                                            </div>
+                                        );
                                     }
 
                                 })
@@ -319,7 +330,7 @@ export default function Demands() {
                     <Header />
                     <Nav />
                     <div className="container">
-                        <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} setTipe={setType} setTable={setTable} nav={t("agendaViewAgenda")} title="agendas" button="createAgenda" link="/agenda/create"  />
+                        <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} setTipe={setType} setTable={setTable} nav={t("agendaViewAgenda")} title="agendas" button="createAgenda" link="/agenda/create" />
                         <div className="container-background">
                             {
                                 agendas.map((val: any, index) => {

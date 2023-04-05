@@ -221,7 +221,7 @@ export default function Demands() {
                     <Nav />
                     <div className="container">
 
-                        <Search setSearch={setSearch} onClick={callback} name={nameFilter} setType={setType} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1" setTable={setTable} />
+                        <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1"  />
                         <div className="container-background">
                             {
                                 demands.map((val: any, index) => {
@@ -277,7 +277,7 @@ export default function Demands() {
                     <Header />
                     <Nav />
                     <div className="container">
-                        <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} nav={t("proposalViewProposal")} title="proposals" button="createProposal" link="/demands/1" setTable={setTable} />
+                        <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} nav={t("proposalViewProposal")} title="proposals" button="createProposal" link="/demands/1"  />
                         <div className="container-background">
                             {
                                 proposals.map((val: any, index) => {
@@ -319,7 +319,7 @@ export default function Demands() {
                     <Header />
                     <Nav />
                     <div className="container">
-                        <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} nav={t("agendaViewAgenda")} title="agendas" button="createAgenda" link="/agenda/create" setTable={setTable} />
+                        <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} setTipe={setType} setTable={setTable} nav={t("agendaViewAgenda")} title="agendas" button="createAgenda" link="/agenda/create"  />
                         <div className="container-background">
                             {
                                 agendas.map((val: any, index) => {
@@ -363,7 +363,7 @@ export default function Demands() {
                     <Header />
                     <Nav />
                     <div className="container">
-                        <Search onClick={callback} name={nameFilter} type={typeFilter} nav={t("minuteViewMinute")} title="minutes" button="createMinute" link="/agendas/1" setTable={setTable} />
+                        <Search onClick={callback} name={nameFilter} type={typeFilter} setType={setType} nav={t("minuteViewMinute")} title="minutes" button="createMinute" link="/agendas/1" setTable={setTable} />
                         <div className="container-background">
                             {
                                 minutes.map((val: any, index) => {

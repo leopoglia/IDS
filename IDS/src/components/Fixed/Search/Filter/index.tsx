@@ -1,5 +1,5 @@
 import "./style.css";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export interface FilterProps {
@@ -31,15 +31,17 @@ export default function Filter(props: FilterProps) {
 
     const inputName = useRef<HTMLInputElement>(null)
     const onButtonPress = () => {
+        console.log(inputName?.current?.value)
+        console.log(type)
         props.onClick(inputName?.current?.value, type)
     }
 
     if (url === 'demands') {
         return (
-            <div className="filter-modal modal" onClick={onButtonPress}>
+            <div className="filter-modal modal">
 
                 <div className="li">
-                    <span className="material-symbols-outlined" onClick={() => { setType("home") }}>home</span>
+                    <span className="material-symbols-outlined" onClick={() => {  setFilter(true); setType("home") }}>home</span>
                     <span className="font-p">{t("myDemands")}</span>
                 </div>
 
@@ -89,7 +91,7 @@ export default function Filter(props: FilterProps) {
         )
     } else if (url === 'proposals') {
         return (
-            <div className="filter-modal modal" onClick={onButtonPress}>
+            <div className="filter-modal modal">
 
                 <div className="li" onClick={() => { setFilter(true); setType("requester") }}>
                     <span className="material-symbols-outlined">person</span>
@@ -132,7 +134,7 @@ export default function Filter(props: FilterProps) {
         )
     } else if (url === 'agendas') {
         return (
-            <div className="filter-modal modal" onClick={onButtonPress}>
+            <div className="filter-modal modal">
 
                 <div className="li" onClick={() => { setFilter(true); setType("forum") }}>
                     <span className="material-symbols-outlined">workspaces</span>
@@ -150,7 +152,7 @@ export default function Filter(props: FilterProps) {
         )
     } else {
         return (
-            <div className="filter-modal modal" onClick={onButtonPress}>
+            <div className="filter-modal modal">
 
                 <div className="li" onClick={() => { setFilter(true); setType("number-minutes") }}>
                     <span className="material-symbols-outlined">workspaces</span>

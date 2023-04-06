@@ -257,6 +257,7 @@ export default function ViewDemand() {
             setStepDemand(2) // Seta o passo da demanda
             setClassification(response.demand.classification) // Seta a classificação da demanda
             beneficiaryBus(response?.demand?.classification?.beneficiaryBu)
+            setResponsibleBussiness(response?.responsibleAnalyst.workerName) // Seta o responsável de negócios da proposta
 
             setCenterCost(response.demand.costCenter) // Seta o centro de custo da demanda
 
@@ -280,13 +281,14 @@ export default function ViewDemand() {
 
                 if (expense.length !== 0) {
                     setProposalExpense(expense)
+
+                    
                 }
 
 
                 setInitialRunPeriod(dateFormat(expense[0].proposal.initialRunPeriod));
                 setFinalExecutionPeriod(dateFormat(expense[0].proposal.finalExecutionPeriod));
                 setPayBack(payback(expense[0].proposal.initialRunPeriod, expense[0].proposal.finalExecutionPeriod));
-
 
             })
         })
@@ -425,6 +427,7 @@ export default function ViewDemand() {
     const [initialRunPeriod, setInitialRunPeriod]: any = useState(0);
     const [finalExecutionPeriod, setFinalExecutionPeriod]: any = useState(0);
     const [payBack, setPayBack]: any = useState(0);
+    const [responsibleBussiness, setResponsibleBussiness]: any = useState("");  
 
 
     const dateFormat = (date: any) => {
@@ -718,10 +721,15 @@ export default function ViewDemand() {
                                             <p className="title">{t("Payback")}:</p>
                                             <span> {payBack}</span>
                                         </div>
+
+                                        <div className="display-flex-align-center">
+                                            <p className="title">{t("responsibleBussiness")}:</p>
+                                            <span> {responsibleBussiness}</span>
+                                        </div>
                                     </div>
                                 </div>
-                            ) : (null)
-                            }
+                            ) : (null)}
+
 
                             {demand.demandAttachment ? (
                                 <div className="attachments">

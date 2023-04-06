@@ -53,7 +53,7 @@ export default function ViewDemand() {
     // 1 - Demanda Classificada
     // 2 - Demanda Complementada
     const [stepDemand, setStepDemand] = useState(0);
-    const [centerCost, setCenterCost] = useState([]); // Dados do centro de custo
+    const [centerCost, setCenterCost]:any = useState([]); // Dados do centro de custo
     const [classification, setClassification]: any = useState({}); // Dados da classificação
     const [beneficiariesBu, setBeneficiariesBu]: any = useState([]); // Dados dos beneficiários da BU
     const [comission, setComission] = useState([]); // Dados da comissão
@@ -142,6 +142,8 @@ export default function ViewDemand() {
 
         if (url === "demand") {
             getDemand();
+            setCenterCost(demand.costCenter)
+
         } else if (url === "proposal") {
             getProposal();
             localStorage.removeItem('proposalScope');
@@ -231,7 +233,6 @@ export default function ViewDemand() {
             }
 
 
-            setCenterCost(response.costCenter)
         })
     }
 
@@ -678,9 +679,11 @@ export default function ViewDemand() {
                                         </div>
                                     </div>
                                 </div>
-
-
-                                <Table title="costCenter" headers={["costCenterCode", "costCenter"]} items={centerCost} />
+ 
+                                {centerCost && (
+                                    <Table title="costCenter" headers={["costCenterCode", "costCenter"]} items={centerCost} />
+                                )
+                                }
 
                             </div>
 

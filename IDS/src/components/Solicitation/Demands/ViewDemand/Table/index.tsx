@@ -1,10 +1,14 @@
 import Tooltip from "@mui/material/Tooltip";
 import { t } from "i18next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Table(props: any) {
 
     const [open, setOpen] = useState(false);
+
+    useEffect(() => {
+        console.log(props.items);
+    }, [props.items]);
 
     // Função para criar tabela (tr)
     const tr = (dataOne: any, dataTwo: any, index: any) => {

@@ -14,11 +14,11 @@ export default function SelectLabels(props: any) {
         }
 
         if(props.value === 'real'){
-            setCoin('real')
+            setCoin('R$')
         }else if(props.value === 'dolar'){
-            setCoin('dolar')
+            setCoin('$')
         }else if(props.value === 'euro'){
-            setCoin('euro')
+            setCoin('€')
         }
             
 

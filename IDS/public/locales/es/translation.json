@@ -199,5 +199,7 @@
     "createDemandHere": "Intente crear una demanda haciendo clic en Crear demanda.",
     "noExpenses": "No hay gastos",
     "help": "Ayuda",
-    "openProposal": "Abrir propuesta"
+    "openProposal": "Abrir propuesta",
+    "licenses": "Licencias",
+    "unitValue": "Valor unitario"
 }

@@ -25,9 +25,13 @@
 
 
 .view-demand .description {
-    display: flex;
     padding: 10px;
     padding-right: 0px;
+    color: var(--black)
+}
+
+.view-demand .desc{
+    margin-bottom: 10px;
 }
 
 .view-demand .complement {
@@ -203,6 +207,7 @@
 .view-demand .classification tr:last-child,
 .view-demand .complement tr:last-child {
     border-bottom: none;
+    border-radius: 0px 0px var(--r) var(--r);
 }
 
 

@@ -200,5 +200,7 @@
     "thisIsDemandPage": "在這裡，您可以查看您創建的需求以及您所在行業的其他人創建的需求。",
     "createDemandHere": "嘗試通過單擊創建需求來創建需求。",
     "noExpenses": "沒有費用",
-    "openProposal": "開放提案"
+    "openProposal": "開放提案",
+    "licenses": "許可證",
+    "unitValue": "單位價值"
 }

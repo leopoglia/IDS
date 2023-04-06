@@ -53,7 +53,7 @@ export default function ViewDemand() {
     // 1 - Demanda Classificada
     // 2 - Demanda Complementada
     const [stepDemand, setStepDemand] = useState(0);
-    const [centerCost, setCenterCost]:any = useState([]); // Dados do centro de custo
+    const [centerCost, setCenterCost]: any = useState([]); // Dados do centro de custo
     const [classification, setClassification]: any = useState({}); // Dados da classificação
     const [beneficiariesBu, setBeneficiariesBu]: any = useState([]); // Dados dos beneficiários da BU
     const [comission, setComission] = useState([]); // Dados da comissão
@@ -600,12 +600,10 @@ export default function ViewDemand() {
                                         </div>
                                     </div>
 
-                                    <div className="description">
-                                        <div className="display-flex-start">
-                                            <span className="desc">Descrição:</span>
-                                            <div className="text-information">{demand.realBenefit.realBenefitDescription}</div>
+                                    <div className="display-grid description">
+                                        <span className="desc">Descrição:</span>
+                                        <div className="text-information">{demand.realBenefit.realBenefitDescription}</div>
 
-                                        </div>
                                     </div>
                                 </div>
 
@@ -641,13 +639,11 @@ export default function ViewDemand() {
                                             (demand.potentialBenefit.legalObrigation === true) ? (<span>Sim</span>) : (<span>Não</span>)}</span>
                                     </div>
 
-                                    <div className="description">
-                                        <div className="display-flex-start">
+                                    <div className="display-grid description">
 
-                                            <span className="desc">Descrição:</span>
+                                        <span className="desc">Descrição:</span>
 
-                                            <div className="text-information">{demand.potentialBenefit.potentialBenefitDescription}</div>
-                                        </div>
+                                        <div className="text-information">{demand.potentialBenefit.potentialBenefitDescription}</div>
                                     </div>
                                 </div>
 
@@ -669,17 +665,15 @@ export default function ViewDemand() {
 
                                     </div>
 
-                                    <div className="description">
-                                        <div className="display-flex-start">
+                                    <div className="description display-grid">
 
-                                            <span className="desc">Descrição:</span>
-                                            <div className="text-information">{demand.qualitativeBenefit.qualitativeBenefitDescription}</div>
+                                        <span className="desc">Descrição:</span>
+                                        <div className="text-information">{demand.qualitativeBenefit.qualitativeBenefitDescription}</div>
 
 
-                                        </div>
                                     </div>
                                 </div>
- 
+
                                 {centerCost && (
                                     <Table title="costCenter" headers={["costCenterCode", "costCenter"]} items={centerCost} />
                                 )

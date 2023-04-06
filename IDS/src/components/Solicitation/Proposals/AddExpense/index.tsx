@@ -27,9 +27,12 @@ export default function AddExpense() {
     const expense = { typeOfExpense: typeOfExpense, expenseProfile: expenseProfile, necessityHoursQuantity: necessityHoursQuantity, hourValue: hourValue, expenseTotalValue: expenseTotalValue, costCenter: costCenter };
     const [expenseList, setExpenseList]: any = useState([]);
 
-    useEffect(() => { 
+    useEffect(() => {
         setExpenseList(JSON.parse(localStorage.getItem('expenseList') || '[]'));
-    }, []);
+
+
+        console.log(typeOfExpense)
+    }, [typeOfExpense]);
 
     const nextStep = () => {
         if (typeOfExpense === '' || expenseProfile === '' || necessityHoursQuantity === '' || hourValue === '' || costCenter === 0) {
@@ -69,12 +72,20 @@ export default function AddExpense() {
                     </div>
 
                     <div className="display-flex-grid">
-                        <label>{t("necessityHoursQuantity")} *</label>
+                        {typeOfExpense !== "recurrent" ? (
+                            <label>{t("necessityHoursQuantity")} *</label>
+                        ) : (
+                            <label>{t("licenses")} *</label>
+                        )}
                         <input type="number" onChange={(e) => { setNecessityHoursQuantity(e.target.value) }} />
                     </div>
 
                     <div className="display-flex-grid">
+                        {typeOfExpense !== "recurrent" ? (
                         <label>{t("hourValue")} *</label>
+                        ) : (
+                            <label>{t("unitValue")} *</label>
+                        )}
                         <input type="number" onChange={(e) => { setHourValue(e.target.value) }} />
                     </div>
 

@@ -200,5 +200,7 @@
     "createDemandHere": "Try to create a demand by clicking Create Demand.",
     "noExpenses": "No expenses",
     "help": "Help",
-    "openProposal": "Open proposal"
+    "openProposal": "Open proposal",
+    "licenses": "Licenses",
+    "unitValue": "Unit value"
 }

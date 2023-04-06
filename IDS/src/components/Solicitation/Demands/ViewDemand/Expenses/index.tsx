@@ -22,8 +22,21 @@ export default function Expenses(props: any) {
                     <tbody>
                         <tr>
                             <td>{t("expenseProfile")}</td>
-                            <td>{t("hourValue")}</td>
+
+                            {props.type !== "recurrent" ? (
+                                <td>{t("effort")}</td>
+                            ) : (
+                                <td>{t("licenses")}</td>
+                            )}
+
+                            {props.type !== "recurrent" ? (
+                                <td>{t("hourValue")}</td>
+                            ) : (
+                                <td>{t("unitValue")}</td>
+                            )}
+
                             <td>{t("expenseTotalValue")}</td>
+
                             <td>{t("costCenter")}</td>
                         </tr>
 
@@ -32,19 +45,23 @@ export default function Expenses(props: any) {
                                 return (
                                     <tr>
                                         <Tooltip title={proposalExpense.expenseProfile} arrow>
-                                        <td>{proposalExpense.expenseProfile}</td>
+                                            <td>{proposalExpense.expenseProfile}</td>
+                                        </Tooltip>
+
+                                        <Tooltip title={proposalExpense.amountOfHours} arrow>
+                                            <td>{proposalExpense.amountOfHours}</td>
                                         </Tooltip>
 
                                         <Tooltip title={proposalExpense.hourValue} arrow>
-                                        <td>{proposalExpense.hourValue}</td>
+                                            <td>{proposalExpense.hourValue}</td>
                                         </Tooltip>
 
                                         <Tooltip title={proposalExpense.totalValue} arrow>
-                                        <td>{proposalExpense.totalValue}</td>
+                                            <td>{proposalExpense.totalValue}</td>
                                         </Tooltip>
 
                                         <Tooltip title={proposalExpense.costCenter.costCenter} arrow>
-                                        <td>{proposalExpense.costCenter.costCenter}</td>
+                                            <td>{proposalExpense.costCenter.costCenter}</td>
                                         </Tooltip>
                                     </tr>
                                 )

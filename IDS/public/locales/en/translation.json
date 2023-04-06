@@ -202,5 +202,6 @@
     "help": "Help",
     "openProposal": "Open proposal",
     "licenses": "Licenses",
-    "unitValue": "Unit value"
+    "unitValue": "Unit value",
+    "effort": "Effort"
 }

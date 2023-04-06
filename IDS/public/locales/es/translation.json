@@ -201,5 +201,6 @@
     "help": "Ayuda",
     "openProposal": "Abrir propuesta",
     "licenses": "Licencias",
-    "unitValue": "Valor unitario"
+    "unitValue": "Valor unitario",
+    "effort": "Esforço"
 }

@@ -6,9 +6,6 @@ export default function Table(props: any) {
 
     const [open, setOpen] = useState(false);
 
-    useEffect(() => {
-        console.log(props.items);
-    }, [props.items]);
 
     // Função para criar tabela (tr)
     const tr = (dataOne: any, dataTwo: any, index: any) => {

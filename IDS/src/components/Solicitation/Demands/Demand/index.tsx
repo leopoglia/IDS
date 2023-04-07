@@ -65,7 +65,7 @@ export default function Demand(props: any) {
             return (
                 <div className="openProposal">
                     <Link to={"/proposal/view/" + props.proposalCode}>
-                        <Tooltip title={t("openProposal")} placement="left">
+                        <Tooltip title={t("openProposal")} placement="left" arrow>
                             <button className="btn-secondary btn-unique">
                                 <span className="material-symbols-outlined">
                                     open_in_new

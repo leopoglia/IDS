@@ -38,12 +38,13 @@ export default function CreateDemands2() {
     const [frequencyOfUse, setFrequencyOfUse] = useState("");
     const [interalControlsRequirements, setInteralControlsRequirements] = useState("");
 
+
     useEffect(() => { 
 
 
         let realBenefits = JSON.parse(localStorage.getItem("realBenefits") || "{}");
         setRealMonthlyValue(realBenefits.realMonthlyValue);
-        setPotentialCurrency("real");
+        setPotentialCurrency("R$");
 
         setrealBenefitDescription(realBenefits.realBenefitDescription);
         setrealCurrency(realBenefits.realCurrency);
@@ -56,7 +57,7 @@ export default function CreateDemands2() {
         if (potentialBenefits.potentialCurrency !== undefined) {
             setPotentialCurrency(potentialBenefits.potentialCurrency);
         } else {
-            setPotentialCurrency("real");
+            setPotentialCurrency("R$");
         }
 
         let qualitativeBenefits = JSON.parse(localStorage.getItem("qualitativeBenefits") || "{}");
@@ -72,11 +73,11 @@ export default function CreateDemands2() {
         let potentialCurrencyFinal = potentialCurrency;
 
         if (realCurrency === undefined || realCurrency === "") {
-            realCurrencyFinal = "real";
+            realCurrencyFinal = "R$";
         }
 
         if (potentialCurrency === undefined || potentialCurrency === "") {
-            potentialCurrencyFinal = "real";
+            potentialCurrencyFinal = "R$";
         }
 
 

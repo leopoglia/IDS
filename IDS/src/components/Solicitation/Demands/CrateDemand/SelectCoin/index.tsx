@@ -10,14 +10,14 @@ export default function SelectLabels(props: any) {
     useEffect(() => { 
         addChange();
         if (coin === "" || coin === undefined) {
-            setCoin('real')
+            setCoin('R$')
         }
 
-        if(props.value === 'real'){
+        if(props.value === 'R$'){
             setCoin('R$')
-        }else if(props.value === 'dolar'){
+        }else if(props.value === '$'){
             setCoin('$')
-        }else if(props.value === 'euro'){
+        }else if(props.value === 'E'){
             setCoin('€')
         }
             
@@ -26,7 +26,7 @@ export default function SelectLabels(props: any) {
 
     const addChange = () => {
         if (props.value === undefined) {
-            setCoin('real')
+            setCoin('R$')
         } else {
             setCoin(props.value);
         }
@@ -54,11 +54,11 @@ export default function SelectLabels(props: any) {
 
                     sx={{ m: 1, minWidth: 120, height: '45px' }}
                 >
-                    <MenuItem value={'real'}>
+                    <MenuItem value={'R$'}>
                         <em>R$</em>
                     </MenuItem>
-                    <MenuItem value={'dolar'}>$</MenuItem>
-                    <MenuItem value={'euro'}>€</MenuItem>
+                    <MenuItem value={'$'}>$</MenuItem>
+                    <MenuItem value={'€'}>€</MenuItem>
                 </Select>
             </FormControl>
         </div>

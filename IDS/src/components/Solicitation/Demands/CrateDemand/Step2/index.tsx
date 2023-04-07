@@ -38,7 +38,6 @@ export default function CreateDemands2() {
     const [frequencyOfUse, setFrequencyOfUse] = useState("");
     const [interalControlsRequirements, setInteralControlsRequirements] = useState("");
 
-
     useEffect(() => { 
 
 

@@ -23,7 +23,6 @@ const ChatRoom = () => {
         setMessage((previousMessage) => previousMessage + emojiData.emoji);
     }
 
-    const time = new Date().toLocaleTimeString();
 
     const { t } = useTranslation();
 
@@ -61,7 +60,7 @@ const ChatRoom = () => {
                                 <li className={`message-user`}>
                                         <div className="message-data"><span></span></div>
 
-                                        <div className='message-time'>{time}</div>
+                                        {/* <div className='message-time'>{time}</div> */}
                                 </li>
                                 
                             </ul>

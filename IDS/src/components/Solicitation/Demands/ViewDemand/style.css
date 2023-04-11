@@ -154,6 +154,12 @@
     font-size: var(--p);
 }
 
+
+.view-demand .text-information p,
+.view-demand .text-information strong{
+    font-size: var(--p);
+}
+
 .view-demand .situation-current .text-information {
     padding: 10px;
 }

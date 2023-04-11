@@ -540,13 +540,20 @@ export default function ViewDemand() {
 
                                     <div className="display-grid">
                                         <p className="title">{t("currentSituation")}:</p>
-                                        <div className="text-information" >{demand.currentProblem}</div>
-
+                                        {demand.currentProblem ? (
+                                        <div className="text-information" >{HtmlReactParser(demand.currentProblem)}</div>
+                                        ) : (
+                                            null
+                                        )}
                                     </div>
 
                                     <div className="display-grid">
                                         <p className="title objective">{t("objective")}:</p>
-                                        <div className="text-information">{demand.demandObjective}</div>
+                                        {demand.demandObjective ? ( 
+                                        <div className="text-information">{HtmlReactParser(demand.demandObjective)}</div>
+                                        ) : (
+                                            null
+                                        )}
                                     </div>
                                 </div>
 
@@ -563,7 +570,7 @@ export default function ViewDemand() {
 
 
                                             {proposal.descriptiveProposal ? (
-                                                <div className="descriptiveProposal">
+                                                <div className="descriptiveProposal text-information">
                                                     {HtmlReactParser(proposal.descriptiveProposal)}
                                                 </div>
                                             ) : (

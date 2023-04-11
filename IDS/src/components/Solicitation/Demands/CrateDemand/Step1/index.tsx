@@ -11,6 +11,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from 'react-router-dom';
 import SelectCenterCost from "./SelectCenterCost";
+import Editor from "../../../Proposals/EditProposalScope/Editor";
 
 export default function CreateDemands1() {
 
@@ -21,7 +22,7 @@ export default function CreateDemands1() {
     const [currentSituation, setCurrentSituation]: any = useState(""); // Situação atual
     const [objective, setObjective]: any = useState(""); // Objetivo
 
-    useEffect(() => { 
+    useEffect(() => {
         let demand = JSON.parse(localStorage.getItem('demand') || '{}')
 
         setTitleDemand(demand.titleInput)
@@ -176,12 +177,13 @@ export default function CreateDemands1() {
 
                     <div className="text-area">
                         <label>{t("objective")} *</label>
-                        <textarea onChange={(e) => { handleChange(e, 'objective'); }} value={objective} />
+                        <Editor handleChange={handleChange} type={"objective"} />
                     </div>
 
                     <div className="text-area">
                         <label>{t("currentSituation")} *</label>
-                        <textarea onChange={(e) => { handleChange(e, 'currentSituation'); }} value={currentSituation} />
+                        <Editor handleChange={handleChange} type={"currentSituation"} />
+
                     </div>
                     {/* 
                     <TextArea label="currentSituation" required="*" onChange={(e) => { setDemandProblem(e.target.value) }}></TextArea> */}

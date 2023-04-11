@@ -7,14 +7,25 @@ const RichTextEditor = (props: any) => {
 
   const handleChange = (value: React.SetStateAction<string>) => {
     setContent(value);
-    props.setContent(value);
+
+    console.log("OBJECTIVE --> ", props?.type)
+
+    if(props?.type === undefined){
+      props.setContent(value);
+    }else{
+
+      let valueTarget:any = {target:{ value: ""}};
+
+      valueTarget.target.value = value;
+
+      props.handleChange(valueTarget, props.type)
+    }
   };
 
   const quillModules = {
     toolbar: [
       [{ header: [1, false] }],
-      ['bold', 'italic', 'underline', 'blockquote',
-      'code-block', 'link',
+      ['bold', 'underline',
         { 'list': 'bullet' },
         { 'list': 'ordered' }],
     ]

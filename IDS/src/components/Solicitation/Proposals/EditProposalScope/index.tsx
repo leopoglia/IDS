@@ -43,10 +43,7 @@ export default function EditProposalScope() {
 
         </div>
 
-
-
         <Editor setContent={setContent} />
-
 
         <div className="demands-footer">
           <Link to={"/proposal/demand/" + demandCode}>
@@ -55,7 +52,6 @@ export default function EditProposalScope() {
 
           <button onClick={() => nextStep()} className="btn-primary">{t("advance")}</button>
         </div>
-
 
       </div>
       <ToastContainer position="bottom-right" newestOnTop />

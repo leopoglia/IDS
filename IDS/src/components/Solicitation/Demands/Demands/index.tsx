@@ -35,7 +35,7 @@ export default function Demands() {
     const [agendas, setAgendas] = useState([]);
     const [minutes, setMinutes] = useState([]);
 
-
+    console.log("table"+ table);
 
     // Entra na página e busca as demandas cadastradas
     useEffect(() => {
@@ -81,10 +81,11 @@ export default function Demands() {
             notify();
         }
 
-    }, [url[3], page])
+    }, [url[3], page, getDemands])
 
     // Buscar as demandas cadastradas
     async function getDemands() {
+        if(table === false){
         findDemands = await ServicesDemand.findByPage(page, 5).then(async (res: any) => {
             let demandsContent = res.content; // Atualiza o estado das demandas
             setPages(res.totalPages); // Atualiza o estado das páginas
@@ -109,6 +110,31 @@ export default function Demands() {
 
             setDemands(demandsContent);
         });
+    }else{
+        findDemands = await ServicesDemand.findByPage(page, 9).then(async (res: any) => {
+            let demandsContent = res.content; // Atualiza o estado das demandas
+            setPages(res.totalPages); // Atualiza o estado das páginas
+
+            let proposalsContent: any = await ServicesProposal.findAll();
+
+
+            demandsContent.map((demand: any) => {
+                if (demand.demandStatus === "Assesment") {
+                    proposalsContent.map((proposal: any) => {
+
+                        if (proposal.demand.demandCode === demand.demandCode) {
+                            demand.proposalCode = proposal.proposalCode;
+                        }
+                    })
+                }
+
+                return demand;
+
+
+            })
+            setDemands(demandsContent);
+        });
+    }
         return findDemands;
     }
 

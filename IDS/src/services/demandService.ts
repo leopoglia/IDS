@@ -11,7 +11,7 @@ const Services = {
 
 
         let demand = {
-            "demandTitle": demandTitle,
+            "demandTitle": demandTitle.toUpperCase(),
             "currentProblem": currentProblem,
             "demandObjective": demandObjective,
             "costCenter": costCenters,
@@ -83,7 +83,7 @@ const Services = {
             classificationCode === "") {
 
             demand = {
-                "demandTitle": demandTitle,
+                "demandTitle": demandTitle.toUpperCase(),
                 "currentProblem": currentProblem,
                 "demandObjective": demandObjective,
                 "costCenter": costCenters,
@@ -97,7 +97,7 @@ const Services = {
             }
         } else {
             demand = {
-                "demandTitle": demandTitle,
+                "demandTitle": demandTitle.toUpperCase(),
                 "currentProblem": currentProblem,
                 "demandObjective": demandObjective,
                 "costCenter": costCenters,

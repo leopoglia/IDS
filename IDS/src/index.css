@@ -434,6 +434,10 @@ hr {
   background-color: var(--greyF7);
 }
 
+.grey3d{
+  color: var(--grey3d);
+}
+
 @media(max-width: 1280px) {
 
   .container {

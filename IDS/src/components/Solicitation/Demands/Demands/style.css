@@ -7,7 +7,6 @@
 .navigator {
     height: var(--h);
     justify-content: flex-end;
-    margin-top: 25px;
     color: var(--grey59);
 }
 
@@ -83,8 +82,7 @@
 }
 
 .container-background {
-    min-height: calc(100vh - 350px) !important;
-    max-height: calc(100vh - 350px) !important;
+    min-height: calc(100vh - 400px) !important;
     position: relative;
     overflow: auto;
 }
@@ -99,7 +97,6 @@
 
 .h45 {
     height: 45px;
-    margin-top: 25px;
 }
 
 .h45 .arrow-disabled {
@@ -132,7 +129,7 @@
     }
 
     .solicitation .container-background {
-        max-height: calc(100vh - 385px) !important;
+        max-height: calc(100vh - 400px) !important;
     }
 
     .container-background {

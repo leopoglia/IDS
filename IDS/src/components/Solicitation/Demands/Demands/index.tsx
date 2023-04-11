@@ -88,8 +88,8 @@ export default function Demands() {
         findDemands = await ServicesDemand.findByPage(page, 5).then(async (res: any) => {
             let demandsContent = res.content; // Atualiza o estado das demandas
             setPages(res.totalPages); // Atualiza o estado das páginas
-            
-            let proposalsContent:any = await ServicesProposal.findAll();
+
+            let proposalsContent: any = await ServicesProposal.findAll();
 
 
             demandsContent.map((demand: any) => {
@@ -168,7 +168,9 @@ export default function Demands() {
                         )}
                         {[...Array(pages)].map((_, index) => {
                             const pageNumber = index + 1;
-                            return (
+                            const distance = Math.abs(pageNumber - page);
+                            const showPage = distance <= 1 || pageNumber === 1 || pageNumber === pages;
+                            return showPage ? (
                                 <div
                                     key={pageNumber}
                                     className={pageNumber === parseInt(page) ? "current" : ""}
@@ -176,6 +178,8 @@ export default function Demands() {
                                 >
                                     {pageNumber}
                                 </div>
+                            ) : (
+                                null
                             );
                         })}
                         {page < pages ? (
@@ -245,7 +249,7 @@ export default function Demands() {
                                         if (search !== "") {
 
                                             if (val.demandTitle.toUpperCase().includes(search.toUpperCase())) {
-                                                return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} proposalCode={val.proposalCode}  type="demand" />);
+                                                return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} proposalCode={val.proposalCode} type="demand" />);
 
                                             } else if (index === demands.length - 1) {
                                                 return (
@@ -259,9 +263,9 @@ export default function Demands() {
 
 
                                         if (typeFilter === "requester" && val.requesterRegistration.workerName.toUpperCase().includes(nameFilter.toUpperCase())) {
-                                            return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} proposalCode={val.proposalCode}  type="demand" />);
+                                            return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} proposalCode={val.proposalCode} type="demand" />);
                                         } else if (typeFilter === "status" && val.demandStatus.toUpperCase().includes(nameFilter.toUpperCase())) {
-                                            return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} proposalCode={val.proposalCode}  type="demand" />);
+                                            return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} proposalCode={val.proposalCode} type="demand" />);
                                         } else if (index === demands.length - 1) {
                                             return (
                                                 <div className="no-results">

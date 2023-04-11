@@ -7,7 +7,6 @@
 .demands .navigator{
     height: var(--h);
     justify-content: flex-end;
-    margin-top: 25px;
     color: var(--grey59);
 }
 

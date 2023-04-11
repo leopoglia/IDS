@@ -36,13 +36,13 @@ export default function Box(props: any) {
                     <p>{props.title}</p>
 
 
-                    <div className='display-block'>
+                    <div className='display-grid'>
                         <span className="gg">{valor}</span>
 
                         <div className="display-grid">
 
                             <div className="display-flex-center">
-                                <span>1S</span>
+                                <span className='grey3d'>1S</span>
 
                                 <span className="material-symbols-outlined">
                                     trending_up
@@ -51,7 +51,7 @@ export default function Box(props: any) {
                             </div>
 
                             <div className="display-flex-center">
-                                <span>1M</span>
+                                <span className='grey3d'>1M</span>
                                 <span className="material-symbols-outlined">
                                     trending_up
                                 </span>
@@ -59,7 +59,7 @@ export default function Box(props: any) {
                             </div>
 
                             <div className="display-flex-center">
-                                <span>1A</span>
+                                <span className='grey3d'>1A</span>
                                 <span className="material-symbols-outlined">
                                     trending_up
                                 </span>

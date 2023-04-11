@@ -69,16 +69,16 @@ export default function CreateDemands3() {
             // Salvando a rota para redirecionar para a página de demandas
             localStorage.setItem("route", "create-demand")
             // Redirecionando para a página de demandas
-            // navigate("/demands/1");
+            navigate("/demands/1");
         }).catch((error) => {
             console.log(error)
         })
 
         // Limpando o localStorage 
-        // localStorage.removeItem("demand");
-        // localStorage.removeItem("realBenefits");
-        // localStorage.removeItem("potentialBenefits");
-        // localStorage.removeItem("qualitativeBenefits");
+        localStorage.removeItem("demand");
+        localStorage.removeItem("realBenefits");
+        localStorage.removeItem("potentialBenefits");
+        localStorage.removeItem("qualitativeBenefits");
     }
 
     // Função para pegar o arquivo selecionado

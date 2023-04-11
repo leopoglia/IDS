@@ -18,7 +18,7 @@ export default function Box(props: any) {
                     return valor + 1;
                 }
             });
-        }, 20);
+        }, 5);
 
     }, [valorFinal]);
 

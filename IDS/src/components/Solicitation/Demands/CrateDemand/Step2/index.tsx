@@ -4,7 +4,6 @@ import Header from "../../../../Fixed/Header"
 import Nav from "../../../../Fixed/Nav"
 import Title from "../../../../Fixed/Search/Title";
 import ProgressBar from "../ProgressBar";
-import Input from "../Input";
 import ButtonAction from "../ButtonAction";
 import SelectCoin from "../SelectCoin";
 import CheckBox from "../CheckBox";
@@ -16,6 +15,7 @@ import PotentialServices from "../../../../../services/potentialBenefitService";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from 'react-router-dom';
+import Editor from "../../../Proposals/EditProposalScope/Editor";
 
 export default function CreateDemands2() {
 
@@ -186,7 +186,7 @@ export default function CreateDemands2() {
                             <input onChange={(e) => { setQualitativeBenefitDescription(e.target.value) }} type="text" value={qualitativeBenefitDescription} />
 
 
-                            
+
                         </div>
 
                         <div className="input-checkbox">

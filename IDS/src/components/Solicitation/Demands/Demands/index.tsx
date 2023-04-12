@@ -35,7 +35,6 @@ export default function Demands() {
     const [agendas, setAgendas] = useState([]);
     const [minutes, setMinutes] = useState([]);
 
-    console.log("table"+ table);
 
     // Entra na página e busca as demandas cadastradas
     useEffect(() => {

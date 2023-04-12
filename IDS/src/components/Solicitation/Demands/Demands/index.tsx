@@ -80,7 +80,8 @@ export default function Demands() {
             notify();
         }
 
-    }, [url[3], page, getDemands])
+
+    }, [url[3]])
 
     // Buscar as demandas cadastradas
     async function getDemands() {
@@ -90,7 +91,6 @@ export default function Demands() {
             setPages(res.totalPages); // Atualiza o estado das páginas
 
             let proposalsContent: any = await ServicesProposal.findAll();
-
 
             demandsContent.map((demand: any) => {
                 if (demand.demandStatus === "Assesment") {
@@ -103,10 +103,7 @@ export default function Demands() {
                 }
 
                 return demand;
-
-
             })
-
             setDemands(demandsContent);
         });
     }else{
@@ -114,9 +111,11 @@ export default function Demands() {
             let demandsContent = res.content; // Atualiza o estado das demandas
             setPages(res.totalPages); // Atualiza o estado das páginas
 
-            if(demandsContent.length === 0){
-                navigate("/demands/" + (page - 1));
-            }
+            // if(demandsContent.length === 0){
+            //     navigate("/demands/" + (page - 1));
+            // }
+
+            console.log("PAGE 1")
 
             let proposalsContent: any = await ServicesProposal.findAll();
 

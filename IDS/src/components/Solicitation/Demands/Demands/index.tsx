@@ -80,7 +80,8 @@ export default function Demands() {
             notify();
         }
 
-    }, [url[3], page, getDemands])
+
+    }, [url[3], page])
 
     // Buscar as demandas cadastradas
     async function getDemands() {
@@ -90,7 +91,6 @@ export default function Demands() {
             setPages(res.totalPages); // Atualiza o estado das páginas
 
             let proposalsContent: any = await ServicesProposal.findAll();
-
 
             demandsContent.map((demand: any) => {
                 if (demand.demandStatus === "Assesment") {

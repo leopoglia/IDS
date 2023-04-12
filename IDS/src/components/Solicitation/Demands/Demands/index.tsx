@@ -27,7 +27,7 @@ export default function Demands() {
 
     const [table, setTableList] = useState(false); // Estado para mostrar a tabela de demandas
     const [search, setSearch]: any = useState(""); // Retorno do campo de busca de demandas
-    const page: any = url[4]
+    let page: any = url[4]
     const [pages, setPages] = useState(0); // Quantidade de páginas
 
     const [demands, setDemands] = useState([]);
@@ -113,6 +113,10 @@ export default function Demands() {
         findDemands = await ServicesDemand.findByPage(page, 9).then(async (res: any) => {
             let demandsContent = res.content; // Atualiza o estado das demandas
             setPages(res.totalPages); // Atualiza o estado das páginas
+
+            if(demandsContent.length === 0){
+                navigate("/demands/" + (page - 1));
+            }
 
             let proposalsContent: any = await ServicesProposal.findAll();
 

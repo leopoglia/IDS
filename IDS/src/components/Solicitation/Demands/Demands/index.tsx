@@ -81,7 +81,7 @@ export default function Demands() {
         }
 
 
-    }, [url[3], page])
+    }, [url[3], page, getDemands])
 
     // Buscar as demandas cadastradas
     async function getDemands() {
@@ -114,8 +114,14 @@ export default function Demands() {
             let demandsContent = res.content; // Atualiza o estado das demandas
             setPages(res.totalPages); // Atualiza o estado das páginas
 
+            let totalDemands: any = 0; 
+
+            await ServicesProposal.findAll().then((res: any) => {
+                totalDemands = res.length;
+            })
+
             if(demandsContent.length === 0){
-                navigate("/demands/" + (page - 1));
+                navigate("/demands/" + (Math.ceil((totalDemands/9)+1)));
             }
 
             let proposalsContent: any = await ServicesProposal.findAll();

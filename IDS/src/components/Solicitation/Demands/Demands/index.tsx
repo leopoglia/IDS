@@ -5,7 +5,6 @@ import Search from "../../../Fixed/Search";
 import Demand from "../Demand";
 import Footer from "../../../Fixed/Footer";
 import { useEffect, useState } from "react";
-import { t } from "i18next"
 import Load from "../../../Fixed/Load";
 import ServicesDemand from "../../../../services/demandService";
 import ServicesProposal from "../../../../services/proposalService";
@@ -34,10 +33,12 @@ export default function Demands() {
     const [proposals, setProposals] = useState([]);
     const [agendas, setAgendas] = useState([]);
     const [minutes, setMinutes] = useState([]);
-
+    const [loading, setLoading] = useState(true);
 
     // Entra na página e busca as demandas cadastradas
     useEffect(() => {
+
+        setLoading(true);
 
         if (url[3] === "demands") {
             if (search === "") {
@@ -73,71 +74,72 @@ export default function Demands() {
             }
         }
 
-
         // Verifica se a rota da página anterior é a de cadastro de demanda
         if (localStorage.getItem("route") === "create-demand") {
             localStorage.removeItem("route");
             notify();
         }
 
+        setLoading(false);
+
 
     }, [url[3], page])
 
     // Buscar as demandas cadastradas
     async function getDemands() {
-        if(table === false){
-        findDemands = await ServicesDemand.findByPage(page, 5).then(async (res: any) => {
-            let demandsContent = res.content; // Atualiza o estado das demandas
-            setPages(res.totalPages); // Atualiza o estado das páginas
+        if (table === false) {
+            findDemands = await ServicesDemand.findByPage(page, 5).then(async (res: any) => {
+                let demandsContent = res.content; // Atualiza o estado das demandas
+                setPages(res.totalPages); // Atualiza o estado das páginas
 
-            let proposalsContent: any = await ServicesProposal.findAll();
+                let proposalsContent: any = await ServicesProposal.findAll();
 
-            demandsContent.map((demand: any) => {
-                if (demand.demandStatus === "Assesment") {
-                    proposalsContent.map((proposal: any) => {
+                demandsContent.map((demand: any) => {
+                    if (demand.demandStatus === "Assesment") {
+                        proposalsContent.map((proposal: any) => {
 
-                        if (proposal.demand.demandCode === demand.demandCode) {
-                            demand.proposalCode = proposal.proposalCode;
-                        }
-                    })
+                            if (proposal.demand.demandCode === demand.demandCode) {
+                                demand.proposalCode = proposal.proposalCode;
+                            }
+                        })
+                    }
+
+                    return demand;
+
+
+                })
+
+                setDemands(demandsContent);
+            });
+        } else {
+            findDemands = await ServicesDemand.findByPage(page, 9).then(async (res: any) => {
+                let demandsContent = res.content; // Atualiza o estado das demandas
+                setPages(res.totalPages); // Atualiza o estado das páginas
+
+                if (demandsContent.length === 0) {
+                    navigate("/demands/" + (page - 1));
                 }
 
-                return demand;
+                let proposalsContent: any = await ServicesProposal.findAll();
 
 
-            })
+                demandsContent.map((demand: any) => {
+                    if (demand.demandStatus === "Assesment") {
+                        proposalsContent.map((proposal: any) => {
 
-            setDemands(demandsContent);
-        });
-    }else{
-        findDemands = await ServicesDemand.findByPage(page, 9).then(async (res: any) => {
-            let demandsContent = res.content; // Atualiza o estado das demandas
-            setPages(res.totalPages); // Atualiza o estado das páginas
+                            if (proposal.demand.demandCode === demand.demandCode) {
+                                demand.proposalCode = proposal.proposalCode;
+                            }
+                        })
+                    }
 
-            if(demandsContent.length === 0){
-                navigate("/demands/" + (page - 1));
-            }
-
-            let proposalsContent: any = await ServicesProposal.findAll();
+                    return demand;
 
 
-            demandsContent.map((demand: any) => {
-                if (demand.demandStatus === "Assesment") {
-                    proposalsContent.map((proposal: any) => {
-
-                        if (proposal.demand.demandCode === demand.demandCode) {
-                            demand.proposalCode = proposal.proposalCode;
-                        }
-                    })
-                }
-
-                return demand;
-
-
-            })
-            setDemands(demandsContent);
-        });
-    }
+                })
+                setDemands(demandsContent);
+            });
+        }
         return findDemands;
     }
 
@@ -464,6 +466,11 @@ export default function Demands() {
                     </div>
                 </div>
             )}
+
+            {loading && (
+                <Load />
+            )}
+
 
             <ToastContainer position="bottom-right" newestOnTop />
 

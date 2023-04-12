@@ -32,10 +32,12 @@ export default function Search(props: any) {
     // Se a tabela estiver aberta, fecha, se estiver fechada, abre
     const sendData = () => {
 
-        console.log("URL --> ", url[4])
+        console.log("URL --> " ,url[4])
 
         if (url[4] !== "1") {
             navigate("/" + url[3] + "/1");
+        } else {
+            navigate("/" + url[3] + "/2");
         }
 
         const newData = !data;

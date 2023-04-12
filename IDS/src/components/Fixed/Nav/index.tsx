@@ -61,6 +61,7 @@ export default function Nav() {
         }).catch((error: any) => {
             console.log(error);
         });
+
     }, [numNotification]);
 
     return (

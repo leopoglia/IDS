@@ -7,6 +7,9 @@ import Message from "./MessageBox";
 
 
 export default function Messages() {
+
+    let messages = [1, 2, 3, 4, 5, 6, 7];
+
     return (
         <div className="messages">
             <Header />
@@ -19,14 +22,24 @@ export default function Messages() {
 
                 <div className="container-background">
                     <div className="boxNoPadding">
-                        <Message />
-                        <Message />
-                        <Message />
-                        <Message />
-                        <Message />
-                        <Message />
-                        <Message />
-                        <Message />
+                        {
+                            messages.map((val: any, index) => {
+                                if (index > 5 && messages.length - 1 === index) {
+                                    return (
+                                        <div>
+                                            <Message bottom={false} />
+                                        </div>
+                                    );
+                                } else {
+                                    return (
+                                        <div>
+                                            <Message bottom={true} />
+                                        </div>
+                                    );
+                                }
+
+                            })
+                        }
 
                     </div>
                 </div>

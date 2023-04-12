@@ -128,9 +128,9 @@
         height: 90%;
     }
 
-    .solicitation .container-background {
+    /* .solicitation .container-background {
         max-height: calc(100vh - 400px) !important;
-    }
+    } */
 
     .container-background {
         min-height: 400px !important;

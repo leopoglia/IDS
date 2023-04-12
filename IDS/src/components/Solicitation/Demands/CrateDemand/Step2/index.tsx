@@ -184,6 +184,9 @@ export default function CreateDemands2() {
                         <div className="input">
                             <label>{t("description")}</label>
                             <input onChange={(e) => { setQualitativeBenefitDescription(e.target.value) }} type="text" value={qualitativeBenefitDescription} />
+
+
+                            
                         </div>
 
                         <div className="input-checkbox">

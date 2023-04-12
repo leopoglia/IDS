@@ -11,10 +11,10 @@ import SelectCenterCost from "../CrateDemand/Step1/SelectCenterCost";
 import ServicesRealBenefit from "../../../../services/realBenefitService";
 import ServicesPotentialBenefit from "../../../../services/potentialBenefitService";
 import ServicesQualitativeBenefit from "../../../../services/qualitativeBenefitService";
-import ServicesCostCenter from "../../../../services/costCenterService";
 import Services from "../../../../services/costCenterService";
 import SelectCoin from "../CrateDemand/SelectCoin";
 import CheckBox from "../CrateDemand/CheckBox";
+import Editor from "../../Proposals/EditProposalScope/Editor";
 
 export default function EscopeDemand() {
 
@@ -273,13 +273,18 @@ export default function EscopeDemand() {
 
 							<div className="text-area">
 								<label>{t("objective")} *</label>
-								<textarea value={demandObjective} onChange={(e) => { setDemandObjective(e.target.value) }} />
+								{/* <textarea value={demandObjective} onChange={(e) => { setDemandObjective(e.target.value) }} /> */}
+
+								<Editor setContent={setDemandObjective} content={demandObjective} />
 							</div>
 
 
 							<div className="text-area">
 								<label>{t("problemToBeSolved")} *</label>
-								<textarea value={demandProblem} onChange={(e) => { setDemandProblem(e.target.value) }} />
+								{/* <textarea value={demandProblem} onChange={(e) => { setDemandProblem(e.target.value) }} /> */}
+
+								<Editor setContent={setDemandProblem} content={demandProblem} />
+
 							</div>
 
 
@@ -373,10 +378,12 @@ export default function EscopeDemand() {
 					<div className="box">
 						<p>{t("benefitQualitative")}</p>
 
-						<div className="flex">
+						<div className="display-grid">
 							<div className="input">
 								<label>{t("description")} *</label>
-								<input type="text" value={qualitativeBenefitDescription} onChange={(e) => { setQualitativeBenefitDescription(e.target.value) }} />
+								{/* <input type="text" value={qualitativeBenefitDescription} onChange={(e) => { setQualitativeBenefitDescription(e.target.value) }} /> */}
+
+								<Editor setContent={setQualitativeBenefitDescription} content={qualitativeBenefitDescription} />
 							</div>
 
 							<div className="input-checkbox requirements">

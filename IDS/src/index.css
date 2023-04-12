@@ -438,6 +438,17 @@ hr {
   color: var(--grey3d);
 }
 
+.checkbox span{
+  font-size: var(--p) !important;
+}
+
+.create-demands-1 label,
+.create-demands-2 label,
+.create-demands-3 label {
+  display: block;
+  margin-bottom: 2px;
+}
+
 @media(max-width: 1280px) {
 
   .container {

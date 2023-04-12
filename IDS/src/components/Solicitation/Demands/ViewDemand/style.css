@@ -158,6 +158,12 @@
 .view-demand .text-information p,
 .view-demand .text-information strong{
     font-size: var(--p);
+    color: var(--black);
+}
+
+.view-demand .text-information h1 {
+    color: var(--blue);
+    font-size: calc(var(--p) + 2px);
 }
 
 .view-demand .situation-current .text-information {

@@ -179,13 +179,13 @@ export default function CreateDemands2() {
                         </div> */}
                     </div>
 
-                    <div className="flex">
+                    <div className="display-grid">
                         {/* <Input label="description" required=""></Input> */}
                         <div className="input">
                             <label>{t("description")}</label>
-                            <input onChange={(e) => { setQualitativeBenefitDescription(e.target.value) }} type="text" value={qualitativeBenefitDescription} />
+                            {/* <input onChange={(e) => { setQualitativeBenefitDescription(e.target.value) }} type="text" value={qualitativeBenefitDescription} /> */}
 
-
+                            <Editor setContent={setQualitativeBenefitDescription} content={qualitativeBenefitDescription} />
 
                         </div>
 

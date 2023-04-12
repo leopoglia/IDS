@@ -65,6 +65,7 @@
 
 .ql-picker-label{
     border-radius: var(--r);
+    font-size: var(--p) !important;
 }
 
 .ql-snow .ql-picker.ql-expanded .ql-picker-label {

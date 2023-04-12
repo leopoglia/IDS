@@ -282,7 +282,7 @@ export default function ViewDemand() {
                 if (expense.length !== 0) {
                     setProposalExpense(expense)
 
-                    
+
                 }
 
 
@@ -427,7 +427,7 @@ export default function ViewDemand() {
     const [initialRunPeriod, setInitialRunPeriod]: any = useState(0);
     const [finalExecutionPeriod, setFinalExecutionPeriod]: any = useState(0);
     const [payBack, setPayBack]: any = useState(0);
-    const [responsibleBussiness, setResponsibleBussiness]: any = useState("");  
+    const [responsibleBussiness, setResponsibleBussiness]: any = useState("");
 
 
     const dateFormat = (date: any) => {
@@ -541,7 +541,7 @@ export default function ViewDemand() {
                                     <div className="display-grid">
                                         <p className="title">{t("currentSituation")}:</p>
                                         {demand.currentProblem ? (
-                                        <div className="text-information" >{HtmlReactParser(demand.currentProblem)}</div>
+                                            <div className="text-information" >{HtmlReactParser(demand.currentProblem)}</div>
                                         ) : (
                                             null
                                         )}
@@ -549,8 +549,8 @@ export default function ViewDemand() {
 
                                     <div className="display-grid">
                                         <p className="title objective">{t("objective")}:</p>
-                                        {demand.demandObjective ? ( 
-                                        <div className="text-information">{HtmlReactParser(demand.demandObjective)}</div>
+                                        {demand.demandObjective ? (
+                                            <div className="text-information">{HtmlReactParser(demand.demandObjective)}</div>
                                         ) : (
                                             null
                                         )}
@@ -678,7 +678,11 @@ export default function ViewDemand() {
                                     <div className="description display-grid">
 
                                         <span className="desc">Descrição:</span>
-                                        <div className="text-information">{demand.qualitativeBenefit.qualitativeBenefitDescription}</div>
+                                        {demand.qualitativeBenefit.qualitativeBenefitDescription ? (
+                                            <div className="text-information">{HtmlReactParser(demand.qualitativeBenefit.qualitativeBenefitDescription)}</div>
+                                        ) : (
+                                            null
+                                        )}
 
 
                                     </div>

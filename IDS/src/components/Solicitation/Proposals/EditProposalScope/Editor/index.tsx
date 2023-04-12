@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
 const RichTextEditor = (props: any) => {
   const [content, setContent] = useState('');
+
+  useEffect(() => {
+    setContent(props.content);
+  }, [props.content]);
+  
 
   const handleChange = (value: React.SetStateAction<string>) => {
     setContent(value);
@@ -25,7 +30,7 @@ const RichTextEditor = (props: any) => {
   const quillModules = {
     toolbar: [
       [{ header: [1, false] }],
-      ['bold', 'underline',
+      ['underline',
         { 'list': 'bullet' },
         { 'list': 'ordered' }],
     ]

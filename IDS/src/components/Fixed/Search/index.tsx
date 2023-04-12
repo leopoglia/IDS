@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import DemandService from "../../../services/demandService";
+import { useNavigate } from "react-router-dom";
 
 export interface FilterProps {
     onClick: (name: string | undefined, type: string) => void
@@ -14,6 +15,8 @@ export interface FilterProps {
 export default function Search(props: any) {
 
     const { t } = useTranslation();
+    const navigate = useNavigate();
+    const url = window.location.href.split("/");
 
     const [data, setData] = useState(false); // Estado da tabela (demanda, proposta, agenda, minuta)
     const [filter, setFilter] = useState(false); // Estado do filtro
@@ -22,12 +25,21 @@ export default function Search(props: any) {
     }, [props.name, props.type])
 
 
-    function excel(){
+    function excel() {
         DemandService.saveExcel(props.name, props.type)
     }
 
     // Se a tabela estiver aberta, fecha, se estiver fechada, abre
     const sendData = () => {
+
+        console.log("URL --> " ,url[4])
+
+        if (url[4] !== "1") {
+            navigate("/" + url[3] + "/1");
+        } else {
+            navigate("/" + url[3] + "/2");
+        }
+
         const newData = !data;
         setData(newData);
         props.setTable(newData);

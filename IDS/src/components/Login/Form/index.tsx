@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useRef, useContext } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import notifyUtil from "../../../utils/notification";
 import UserContext from "../../../context/userContext";
 import Services from "../../../services/workerService";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,12 +17,12 @@ export default function LoginForm() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const email:string | undefined = emailRef.current?.value;
-    const password:string | undefined = passwordRef.current?.value;
+    const email: string | undefined = emailRef.current?.value;
+    const password: string | undefined = passwordRef.current?.value;
     login(email, password);
   };
 
-  async function login(email: string | undefined,  password: string | undefined) {
+  async function login(email: string | undefined, password: string | undefined) {
 
     if (email?.includes("@")) {
       try {
@@ -38,28 +39,15 @@ export default function LoginForm() {
           localStorage.setItem("id", JSON.stringify(worker.id));
           navigate("/demands/1");
         } else {
-          notifyError();
+          notifyUtil.error(t("wrongEmailOrPassword"));
         }
       } catch (error) {
-        notifyError();
+        notifyUtil.error(t("wrongEmailOrPassword"));
       }
     } else {
-      notifyError();
+      notifyUtil.error(t("wrongEmailOrPassword"));
     }
   }
-
-  const notifyError = () => {
-    toast.error(t("wrongEmailOrPassword"), {
-      position: "bottom-right",
-      autoClose: 4000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
 
   return (
     <form onSubmit={handleSubmit} className="login-form">

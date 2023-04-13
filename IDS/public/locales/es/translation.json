@@ -202,5 +202,8 @@
     "openProposal": "Abrir propuesta",
     "licenses": "Licencias",
     "unitValue": "Valor unitario",
-    "effort": "Esforço"
+    "effort": "Esforço",
+
+    "demandCreateSuccess": "Demanda creada con éxito"
+
 }

@@ -203,5 +203,7 @@
     "openProposal": "開放提案",
     "licenses": "許可證",
     "unitValue": "單位價值",
-    "effort": "努力"
+    "effort": "努力",
+
+    "demandCreateSuccess": "需求創建成功"
 }

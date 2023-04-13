@@ -203,5 +203,7 @@
     "openProposal": "Open proposal",
     "licenses": "Licenses",
     "unitValue": "Unit value",
-    "effort": "Effort"
+    "effort": "Effort",
+
+    "demandCreateSuccess": "Demand created successfully!"
 }

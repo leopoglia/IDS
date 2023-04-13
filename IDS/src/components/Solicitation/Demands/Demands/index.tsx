@@ -5,17 +5,17 @@ import Search from "../../../Fixed/Search";
 import Demand from "../Demand";
 import Footer from "../../../Fixed/Footer";
 import { useEffect, useState } from "react";
-import { t } from "i18next"
 import Load from "../../../Fixed/Load";
 import ServicesDemand from "../../../../services/demandService";
 import ServicesProposal from "../../../../services/proposalService";
 import ServicesAgenda from "../../../../services/agendaService";
 import ServicesMinute from "../../../../services/minuteService";
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { useTranslation } from "react-i18next";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import Presentation from "./Presentation";
+import Notification from "../../../../utils/notification";
 
 export default function Demands() {
     const url = window.location.href.split("/");
@@ -77,7 +77,7 @@ export default function Demands() {
         // Verifica se a rota da página anterior é a de cadastro de demanda
         if (localStorage.getItem("route") === "create-demand") {
             localStorage.removeItem("route");
-            notify();
+            Notification.success(t("demandCreateSuccess"));
         }
 
     }, [url[3],  page])
@@ -471,22 +471,6 @@ export default function Demands() {
             )}
 
             <ToastContainer position="bottom-right" newestOnTop />
-
-
         </div>
     )
 }
-
-// Função para notificar o usuário que a demanda foi cadastrada
-const notify = () => {
-    toast.success('Demanda cadastrada!', {
-        position: "bottom-right",
-        autoClose: 4000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-    });
-};

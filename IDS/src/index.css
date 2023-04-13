@@ -120,7 +120,8 @@ svg {
 }
 
 input,
-textarea {
+textarea,
+select {
   outline: none !important;
   background-color: var(--white);
   font-size: var(--p) !important;
@@ -261,7 +262,8 @@ textarea:focus {
   border: 2px solid var(--blue19) !important;
 }
 
-.box input {
+.box input,
+select {
   width: 100%;
   height: var(--h);
   padding: 10px;

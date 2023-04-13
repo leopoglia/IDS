@@ -80,8 +80,6 @@ export default function Demands() {
             notify();
         }
 
-        console.log(url[4])
-
     }, [url[3],  page])
 
     // Buscar as demandas cadastradas

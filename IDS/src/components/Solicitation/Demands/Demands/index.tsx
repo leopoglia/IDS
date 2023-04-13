@@ -15,7 +15,7 @@ import { useTranslation } from "react-i18next";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import Presentation from "./Presentation";
-import Notification from "../../../../utils/notification";
+import Notification from "../../../../utils/notifyUtil";
 
 export default function Demands() {
     const url = window.location.href.split("/");

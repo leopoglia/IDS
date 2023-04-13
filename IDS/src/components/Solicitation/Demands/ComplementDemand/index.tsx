@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 import Services from "../../../../services/classificationService"
 import ServicesDemand from "../../../../services/demandService"
 import ServicesNotification from "../../../../services/notificationService";
+import notifyUtil from "../../../../utils/notifyUtil";
+
 
 export default function ComplementDemand() {
 
@@ -21,7 +23,8 @@ export default function ComplementDemand() {
     function complementary() {
 
         if (ppmCode === "" || linkEpicJira === "") {
-            notifyError();
+            notifyUtil.error(t("fillAllFields"))
+
         } else {
             ServicesDemand.findById(codeDemand).then((response) => {
                 let demand: any = response;
@@ -84,17 +87,3 @@ export default function ComplementDemand() {
         </div>
     )
 }
-
-// Função para notificar o usuário que a classificação foi cadastrada
-const notifyError = () => {
-    toast.error('Preencha todos os campos!', {
-        position: "bottom-right",
-        autoClose: 4000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-    });
-};

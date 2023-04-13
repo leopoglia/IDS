@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from 'react-router-dom';
 import SelectCenterCost from "./SelectCenterCost";
 import Editor from "../../../Proposals/EditProposalScope/Editor";
+import notifyUtil from "../../../../../utils/notifyUtil";
 
 export default function CreateDemands1() {
 
@@ -145,7 +146,7 @@ export default function CreateDemands1() {
 
 
         if (demand.titleInput === "" || demand.currentSituation === "" || demand.objective === "" || (demand.costCenter === undefined || demand.costCenter.length === 0)) {
-            notify();
+            notifyUtil.error(t("fillAllFields"))
         } else {
             navigate('/demand/create/2');
             addIDCostCenter();
@@ -232,16 +233,3 @@ export default function CreateDemands1() {
     );
 }
 
-// Notificação de erro ao preencher os campos obrigatórios
-const notify = () => {
-    toast.error('Preencha todos os campos!', {
-        position: "bottom-right",
-        autoClose: 4000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-    });
-};

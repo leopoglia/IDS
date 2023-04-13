@@ -205,5 +205,6 @@
     "unitValue": "單位價值",
     "effort": "努力",
 
-    "demandCreateSuccess": "需求創建成功"
+    "demandCreateSuccess": "需求創建成功",
+    "fillAllFields": "請填寫所有字段"
 }

@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useRef, useContext } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import notifyUtil from "../../../utils/notification";
+import notifyUtil from "../../../utils/notifyUtil";
 import UserContext from "../../../context/userContext";
 import Services from "../../../services/workerService";
 import "react-toastify/dist/ReactToastify.css";

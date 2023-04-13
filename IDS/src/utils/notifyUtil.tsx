@@ -1,11 +1,11 @@
 import { toast, ToastContainer } from 'react-toastify';
 
-const Notifications = {
+const notifyUtil = {
 
     success: (message: string) => {
         toast.success(message, {
             position: "bottom-right",
-            autoClose: 4000,
+            autoClose: 3000,
             hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: true,
@@ -18,7 +18,7 @@ const Notifications = {
     error: (message: string) => {
         toast.error(message, {
             position: "bottom-right",
-            autoClose: 4000,
+            autoClose: 3000,
             hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: true,
@@ -31,7 +31,7 @@ const Notifications = {
     info: (message: string) => {
         toast.info(message, {
             position: "bottom-right",
-            autoClose: 4000,
+            autoClose: 3000,
             hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: true,
@@ -44,7 +44,7 @@ const Notifications = {
     warning: (message: string) => {
         toast.warn(message, {
             position: "bottom-right",
-            autoClose: 4000,
+            autoClose: 3000,
             hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: true,
@@ -55,4 +55,4 @@ const Notifications = {
     }
 }
 
-export default Notifications;
+export default notifyUtil;

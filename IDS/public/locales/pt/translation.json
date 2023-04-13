@@ -205,6 +205,7 @@
     "unitValue": "Valor da unidade",
     "effort": "Esforço",
 
-    "demandCreateSuccess": "Demanda criada com sucesso!"
+    "demandCreateSuccess": "Demanda criada com sucesso!",
+    "fillAllFields": "Preencha todos os campos"
 
 }

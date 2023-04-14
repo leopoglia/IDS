@@ -347,10 +347,9 @@ hr {
   border: 1px solid var(--greyC4);
   border-radius: var(--r);
   text-align: center;
-  display: block;
   margin-top: 10px;
   cursor: pointer;
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
 }

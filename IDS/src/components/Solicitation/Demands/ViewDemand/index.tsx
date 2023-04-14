@@ -5,7 +5,6 @@ import { toast, ToastContainer } from 'react-toastify';
 import Header from "../../../Fixed/Header"
 import Nav from "../../../Fixed/Nav"
 import Title from "../../../Fixed/Search/Title";
-import ButtonActionAnalyst from "./ButtonActionAnalyst";
 import ServicesDemand from "../../../../services/demandService";
 import ServicesProposal from "../../../../services/proposalService";
 import ServicesNotification from "../../../../services/notificationService";
@@ -37,7 +36,6 @@ export default function ViewDemand() {
     const demandCode = parseInt(window.location.href.split("/")[5]); // Buscar código da demanda
     let pendingMinute: any = 0;
 
-
     // Botões superiores
     // 0 - Sem botões  
     // 1 - Gerar PDF e Editar (Solicitante) 
@@ -60,78 +58,33 @@ export default function ViewDemand() {
 
     // Dados da demanda
     const [demand, setDemand]: any = useState({
-        requesterRegistration: {
-            workerCode: "",
-            workerName: "",
-        },
-        demandStatus: "",
-        demandType: "",
-        demandDescription: "",
-        demandDate: "",
-        classification: {
-            classificationCode: "",
-            classificationName: "",
-        },
-        realBenefit: {
-            realBenefitCode: "",
-            realCurrency: 0,
-            realMonthlyValue: 0
-        },
-        potentialBenefit: {
-            potencialBenefitCode: "",
-            potentialCurrency: 0,
-            potentialMonthlyValue: 0
-        },
-        qualitativeBenefit: {
-            qualitativeBenefitCode: "",
-            qualitativeBenefitDescription: ""
-        },
-        demandAttachment: {
-            demandAttachmentCode: "",
-            dice: "",
-            type: "",
-            name: ""
-        }
+        requesterRegistration: { workerCode: "", workerName: "" },
+        demandStatus: "", demandType: "", demandDescription: "", demandDate: "",
+        classification: { classificationCode: "", classificationName: "" },
+        realBenefit: { realBenefitCode: "", realCurrency: 0, realMonthlyValue: 0 },
+        potentialBenefit: { potencialBenefitCode: "", potentialCurrency: 0, potentialMonthlyValue: 0 },
+        qualitativeBenefit: { qualitativeBenefitCode: "", qualitativeBenefitDescription: "" },
+        demandAttachment: { demandAttachmentCode: "", dice: "", type: "", name: "" }
     });
 
     // Dados da proposta
     const [proposal, setProposal]: any = useState({
-        responsibleAnalyst: {
-            workerCode: "",
-            workerName: "",
-        }
+        responsibleAnalyst: { workerCode: "", workerName: "", }
     });
 
     // Dados da proposta específica
-    const [proposalSpecific, setProposalSpecific]: any = useState([{
-        proposalName: "",
-        proposalCode: "",
-        proposalStatus: "",
-        proposalDate: "",
-        proposalDescription: "",
-        demand: {
-            demandCode: "",
-            demandDescription: "",
-            demandObjective: ""
-        }
+    const [proposalSpecific, setProposalSpecific]: any = useState([{ 
+        proposalName: "", proposalCode: "", proposalStatus: "",
+        proposalDate: "", proposalDescription: "",
+        demand: { demandCode: "", demandDescription: "", demandObjective: "" }
     }]);
 
     const [agenda, setAgenda]: any = useState([{
-        agendaCode: "",
-        agendaDate: "",
-        agendaDescription: "",
-        agendaStatus: "",
+        agendaCode: "", agendaDate: "", agendaDescription: "", agendaStatus: "",
         proposal: {
-            proposalCode: "",
-            proposalName: "",
-            proposalDescription: "",
-            proposalStatus: "",
-            proposalDate: "",
-            demand: {
-                demandCode: "",
-                demandDescription: "",
-                demandObjective: ""
-            }
+            proposalCode: "", proposalName: "", proposalDescription: "",
+            proposalStatus: "", proposalDate: "",
+            demand: { demandCode: "", demandDescription: "", demandObjective: "" }
         }
     }]);
     let [minute, setMinute]: any = useState([]);
@@ -285,7 +238,6 @@ export default function ViewDemand() {
 
                 }
 
-
                 setInitialRunPeriod(dateFormat(expense[0].proposal.initialRunPeriod));
                 setFinalExecutionPeriod(dateFormat(expense[0].proposal.finalExecutionPeriod));
                 setPayBack(payback(expense[0].proposal.initialRunPeriod, expense[0].proposal.finalExecutionPeriod));
@@ -319,8 +271,6 @@ export default function ViewDemand() {
             setProposalSpecific(proposals)
 
         })
-
-
     }
 
     // Função para criar tabela (tr)

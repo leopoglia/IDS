@@ -206,6 +206,10 @@
     "effort": "Esforço",
 
     "demandCreateSuccess": "Demanda criada com sucesso!",
+    "demandClassified": "Demanda classificada com sucesso!",
+    "demandComplemented": "Demanda complementada com sucesso!",
+    "demandReproved": "Demanda reprovada com sucesso!",
+    "demandEdited": "Demanda editada com sucesso!",
     "fillAllFields": "Preencha todos os campos"
 
 }

@@ -21,6 +21,7 @@ import Expenses from "./Expenses";
 import "./style.css";
 import Table from "./Table";
 import ButtonsActions from "./ButtonsActions";
+import notifyUtil from "../../../../utils/notifyUtil";
 
 
 export default function ViewDemand() {
@@ -73,7 +74,7 @@ export default function ViewDemand() {
     });
 
     // Dados da proposta específica
-    const [proposalSpecific, setProposalSpecific]: any = useState([{ 
+    const [proposalSpecific, setProposalSpecific]: any = useState([{
         proposalName: "", proposalCode: "", proposalStatus: "",
         proposalDate: "", proposalDescription: "",
         demand: { demandCode: "", demandDescription: "", demandObjective: "" }
@@ -109,16 +110,16 @@ export default function ViewDemand() {
 
         // Verificações para notificações
         if (localStorage.getItem("route") === "classification") {
-            notify();
+            notifyUtil.success(t("demandClassified"));
             localStorage.removeItem("route");
         } else if (localStorage.getItem("route") === "complement") {
-            notifyComplement();
+            notifyUtil.success(t("demandComplemented"));
             localStorage.removeItem("route");
         } else if (localStorage.getItem("route") === "reprove") {
-            notifyReproved();
+            notifyUtil.success(t("demandReproved"));
             localStorage.removeItem("route");
         } else if (localStorage.getItem("route") === "edit") {
-            notifyEdit();
+            notifyUtil.success(t("demandEdited"));
             localStorage.removeItem("route");
         }
 
@@ -166,7 +167,6 @@ export default function ViewDemand() {
                 }
             }
 
-
             // Verificar se a demanda foi classificada
             if (response?.classification !== "" || response?.classification !== null) {
                 beneficiaryBus(response?.classification?.beneficiaryBu)
@@ -174,18 +174,12 @@ export default function ViewDemand() {
             }
 
             if (response?.demandStatus === "Backlog") {
-                setStepDemand(0)
-            } else if (response?.demandStatus === "BacklogRanked") {
-                setStepDemand(1)
-            } else if (response?.demandStatus === "BacklogRankApproved") {
-                setStepDemand(1)
+                setStepDemand(0);
+            } else if (response?.demandStatus === "BacklogRanked" || response?.demandStatus === "BacklogRankApproved" || response?.demandStatus === "Assesment") {
+                setStepDemand(1);
             } else if (response?.demandStatus === "BacklogComplement") {
-                setStepDemand(2)
-            } else if (response?.demandStatus === "Assesment") {
-                setStepDemand(2)
+                setStepDemand(2);
             }
-
-
         })
     }
 
@@ -233,15 +227,12 @@ export default function ViewDemand() {
                 }
 
                 if (expense.length !== 0) {
-                    setProposalExpense(expense)
-
-
+                    setProposalExpense(expense);
                 }
 
                 setInitialRunPeriod(dateFormat(expense[0].proposal.initialRunPeriod));
                 setFinalExecutionPeriod(dateFormat(expense[0].proposal.finalExecutionPeriod));
                 setPayBack(payback(expense[0].proposal.initialRunPeriod, expense[0].proposal.finalExecutionPeriod));
-
             })
         })
     }
@@ -422,8 +413,6 @@ export default function ViewDemand() {
     const [benefitRealOpen, setBenefitRealOpen] = useState(false);
     const [benefitPotentialOpen, setBenefitPotentialOpen] = useState(false);
     const [benefitQualitativeOpen, setBenefitQualitativeOpen] = useState(false);
-    const [costCenterOpen, setCostCenterOpen] = useState(false);
-    const [complementOpen, setComplementOpen] = useState(false);
     const [proposalScopeOpen, setProposalScopeOpen] = useState(false);
 
     return (
@@ -844,46 +833,6 @@ export default function ViewDemand() {
 // Função para notificar o usuário que a demanda foi editada
 const notifyEdit = () => {
     toast.success('Demand editada!', {
-        position: "bottom-right",
-        autoClose: 4000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-    });
-};
-
-// Função para notificar o usuário que a classificação foi cadastrada
-const notify = () => {
-    toast.success('Classificação cadastrada!', {
-        position: "bottom-right",
-        autoClose: 4000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-    });
-};
-
-const notifyComplement = () => {
-    toast.success('Classificação complementada!', {
-        position: "bottom-right",
-        autoClose: 4000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-    });
-};
-
-const notifyReproved = () => {
-    toast.error('Demanda reprovada!', {
         position: "bottom-right",
         autoClose: 4000,
         hideProgressBar: true,

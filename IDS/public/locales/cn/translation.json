@@ -206,5 +206,12 @@
     "effort": "努力",
 
     "demandCreateSuccess": "需求創建成功",
+    "demandClassified": "需求分類成功",
+    "demandComplemented": "需求補充成功",
+    "demandApproved": "需求批准成功",
+    "demandReproved": "需求拒絕成功",
+    "demandEdited": "需求編輯成功",
+    "demandReturned": "需求退回成功",
+    "somethingWrong": "出了點問題",
     "fillAllFields": "請填寫所有字段"
 }

@@ -22,6 +22,7 @@ import "./style.css";
 import Table from "./Table";
 import ButtonsActions from "./ButtonsActions";
 import notifyUtil from "../../../../utils/notifyUtil";
+import othersUtil from "../../../../utils/othersUtil";
 
 
 export default function ViewDemand() {
@@ -281,11 +282,11 @@ export default function ViewDemand() {
             // Notificação para o solicitante
             ServicesNotification.save("Um gerente de Negócio aprovou a sua demanda de código  " + demand.demandCode, demand.requesterRegistration.workerCode, "done", "demand");
 
-            notifyApprove(); // Notificação para o gerente de negócios
+            notifyUtil.success(t("demandApproved"));
             getDemand();
             setActionsDemand(0);
         }).catch((error: any) => {
-            notifyError();
+            notifyUtil.error(t("somethingWrong"));
         })
     }
 
@@ -295,10 +296,11 @@ export default function ViewDemand() {
         ServicesDemand.updateStatus(demandCode, "BacklogEdit").then((response: any) => {
             // Notificação para o solicitante
             ServicesNotification.save("Um analista devolveu a sua demanda de código  " + demand.demandCode, demand.requesterRegistration.workerCode, "info", "demand");
-            notifyGiveBack(); // Notificação para o analista
+            notifyUtil.success(t("demandReturn"));
+
             getDemand();
         }).catch((error: any) => {
-            notifyError();
+            notifyUtil.error(t("somethingWrong"));
         })
     }
 
@@ -829,57 +831,3 @@ export default function ViewDemand() {
         </div >
     );
 }
-
-// Função para notificar o usuário que a demanda foi editada
-const notifyEdit = () => {
-    toast.success('Demand editada!', {
-        position: "bottom-right",
-        autoClose: 4000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-    });
-};
-
-// Função para notificar o Gerente de Negócio que a demanda foi aprovada
-const notifyApprove = () => {
-    toast.success('Demanda aprovada!', {
-        position: "bottom-right",
-        autoClose: 4000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-    });
-};
-
-function notifyGiveBack() {
-    toast.success('Demanda devolvida!', {
-        position: "bottom-right",
-        autoClose: 4000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-    });
-}
-
-const notifyError = () => {
-    toast.error('Algo deu errado!', {
-        position: "bottom-right",
-        autoClose: 4000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-    });
-};

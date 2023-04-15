@@ -205,6 +205,13 @@
     "effort": "Esforço",
 
     "demandCreateSuccess": "Demanda creada con éxito",
+    "demandClassified": "Demanda clasificada con éxito",
+    "demandComplemented": "Demanda complementada con éxito",
+    "demandApproved": "Demanda aprobada con éxito",
+    "demandReproved": "Demanda reprobada con éxito",
+    "demandEdited": "Demanda editada con éxito",
+    "demandReturned": "Demanda devuelta con éxito",
+    "somethingWrong": "Algo salió mal",
     "fillAllFields": "llene todos los campos"
 
 }

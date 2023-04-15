@@ -208,8 +208,11 @@
     "demandCreateSuccess": "Demanda criada com sucesso!",
     "demandClassified": "Demanda classificada com sucesso!",
     "demandComplemented": "Demanda complementada com sucesso!",
+    "demandApproved": "Demanda aprovada com sucesso!",
     "demandReproved": "Demanda reprovada com sucesso!",
     "demandEdited": "Demanda editada com sucesso!",
+    "demandReturned": "Demanda devolvida com sucesso!",
+    "somethingWrong": "Algo deu errado!",
     "fillAllFields": "Preencha todos os campos"
 
 }

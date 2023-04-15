@@ -206,5 +206,12 @@
     "effort": "Effort",
 
     "demandCreateSuccess": "Demand created successfully!",
+    "demandClassified": "Demand classified successfully!",
+    "demandComplemented": "Demand complemented successfully!",
+    "demandApproved": "Demand approved successfully!",
+    "demandReproved": "Demand reproved successfully!",
+    "demandEdited": "Demand edited successfully!",
+    "demandReturned": "Demand returned successfully!",
+    "somethingWrong": "Something went wrong!",
     "fillAllFields": "Please fill all fields"
 }

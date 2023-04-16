@@ -7,8 +7,6 @@ export default function Header() {
 
     return (
         <header className="header">
-
-
             <div className="left">
                 <Link to="/demands/1">
                     <img src="/images/weg-white.png" alt="logo" />
@@ -17,7 +15,6 @@ export default function Header() {
 
             <div className="right">
                 <Language />
-
                 <User />
             </div>
         </header>

@@ -31,7 +31,6 @@ export default function Search(props: any) {
 
     // Se a tabela estiver aberta, fecha, se estiver fechada, abre
     const sendData = () => {
-
         if (url[4] !== "1") {
             navigate("/" + url[3] + "/1");
         }

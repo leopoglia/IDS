@@ -182,17 +182,6 @@ export default function Nav() {
                     </ Link>
                 </Tooltip>
 
-                {/* <Link to="/configuration">
-                    <li id={hover("configuration")}>
-                        <div>
-                            <span className="material-symbols-outlined">
-                                settings
-                            </span>
-                            <span className="title-li">{t("configurations")}</span>
-                        </div>
-                    </li>
-                </Link> */}
-
 
                 <Link to="https://manualdeusuarioids.vercel.app/" target="_blank">
                     <Tooltip title={t("help")} placement="right">

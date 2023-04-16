@@ -141,7 +141,6 @@ nav li {
     align-items: center;
 }
 
-
 .nav-open .logout,
 .nav-open .help {
     width: 175px;
@@ -187,7 +186,6 @@ nav li {
 }
 
 @media(min-width: 1280px) {
-
     .nav-open,
     #nav-open {
         width: 185px;

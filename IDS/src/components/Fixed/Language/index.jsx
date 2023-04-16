@@ -25,13 +25,15 @@ function Language() {
 
     useEffect(() => {
 
+        console.log("worker --> " , worker);
+
         if (worker.language) {
             setLanguage(worker.language);
             localStorage.setItem('i18nextLng', worker.language);
-        } else {
-            setLanguage(localStorage.getItem('i18nextLng'));
         }
-    }, [])
+
+        console.log("language --> " , language)
+    }, [worker])
 
     const languageMap = {
         pt: "/flags/br.png",

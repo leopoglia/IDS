@@ -5,8 +5,6 @@ import onClickOutside from "react-onclickoutside";
 import DropdownList from "./Modal";
 import ServicesWorker from '../../../services/workerService';
 
-
-
 function Language() {
     const [language, setLanguage] = useState();
     const [showDropdown, setShowDropdown] = useState(false);
@@ -35,23 +33,20 @@ function Language() {
         }
     }, [])
 
+    const languageMap = {
+        pt: "/flags/br.png",
+        es: "/flags/es.png",
+        en: "/flags/us.png",
+        cn: "/flags/cn.png"
+    };
+
+    const flagSrc = languageMap[language] || "null";
+
     return (
         <div className='language' onClick={() => setShowDropdown(!showDropdown)}>
-            {language === 'pt' || language === '"pt"' ? (
-                <img src="/flags/br.png" alt="" />
-            ) : language === 'es' || language === '"es"' ? (
-                <img src="/flags/es.png" alt="" />
-            ) : language === 'en' || language === '"en"' ? (
-                <img src="/flags/us.png" alt="" />
-            ) : language === 'cn' || language === '"cn"' ? (
-                <img src="/flags/cn.png" alt="" />
-            ) : (
-                <img src="null" />
-            )}
+            <img src={flagSrc} alt="" />
 
             {showDropdown ? <DropdownList handleClick={handleClick} children="language" /> : null}
-
-
         </div>
     )
 }

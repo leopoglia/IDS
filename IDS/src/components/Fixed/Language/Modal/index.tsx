@@ -16,6 +16,7 @@ const DropdownList = ({ handleClick }: Props) => {
 
   useEffect(() => {
     const lang = localStorage.getItem('i18nextLng') as Language;
+
     if (lang) {
       setLanguage(lang);
       i18n.changeLanguage(lang);
@@ -23,6 +24,8 @@ const DropdownList = ({ handleClick }: Props) => {
       setLanguage(worker.language as Language);
       i18n.changeLanguage(worker.language as Language);
     }
+
+
   }, [worker]);
 
   const changeLanguage = (lang: any) => {

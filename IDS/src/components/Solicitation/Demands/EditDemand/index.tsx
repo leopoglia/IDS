@@ -11,6 +11,7 @@ import SelectCenterCost from "../CrateDemand/Step1/SelectCenterCost";
 import ServicesRealBenefit from "../../../../services/realBenefitService";
 import ServicesPotentialBenefit from "../../../../services/potentialBenefitService";
 import ServicesQualitativeBenefit from "../../../../services/qualitativeBenefitService";
+import ServicesProposal from "../../../../services/proposalService";
 import Services from "../../../../services/costCenterService";
 import SelectCoin from "../CrateDemand/SelectCoin";
 import CheckBox from "../CrateDemand/CheckBox";
@@ -22,8 +23,9 @@ export default function EscopeDemand() {
 	const navigate = useNavigate();
 
 	const [url, setUrl] = useState(window.location.href.split("/")[4]); // Url da página
+	const [type, setType] = useState(window.location.href.split("/")[3]); // Tipo da página
 
-	const demandCode = parseInt(window.location.href.split("/")[5]); // Código da demanda
+	const [demandCode, setDemandCode] = useState(parseInt(window.location.href.split("/")[5])); // Código da demanda
 	const [demands, setDemands]: any = useState(); // Demanda
 
 	const [demandTitle, setDemandTitle] = useState(""); // Titulo da demanda
@@ -94,8 +96,6 @@ export default function EscopeDemand() {
 			}
 
 			setCostsCentersId(costCenterArray);
-
-
 			setFrequencyOfUse(demand.qualitativeBenefit.frequencyOfUse);
 
 			let fileAttachmentArray = fileAttachment;
@@ -111,11 +111,29 @@ export default function EscopeDemand() {
 		})
 	}
 
+	function getProposal() {
+
+		ServicesProposal.findById(demandCode).then((response: any) => {
+			console.log(response)
+			// setDemandCode(response.demand.demandCode);
+			// getDemand();
+		})
+
+	}
+
+
 	console.log("demandScore " + demandScore);
 
-	useEffect(() => { 
+	useEffect(() => {
+
+		console.log(url)
+
 		if (demands === undefined) {
-			getDemand();
+			if (type === "demand") {
+				getDemand();
+			} else if (type === "proposal") {
+				getProposal();
+			}
 		}
 	}, [])
 
@@ -303,7 +321,8 @@ export default function EscopeDemand() {
 
 
 							{costsCenters.map((costCenter: any) => {
-								return <div className="costCenter">{costCenter}
+								return <div className="costCenter">
+									<span>{costCenter}</span>
 									<span className="material-symbols-outlined delete-cost-center" onClick={deleteCostCenter(costCenter)}>
 										delete
 									</span>

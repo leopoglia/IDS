@@ -32,6 +32,11 @@
     margin-left: 6px
 }
 
+.content-demand section .display-grid{
+    position: absolute;
+    right: 15px;
+}
+
 .demand .code,
 .demand-list .code {
     background-color: var(--greyE5);

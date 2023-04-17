@@ -288,6 +288,7 @@ export default function ViewDemand() {
         ServicesDemand.updateStatus(demandCode, "BacklogRankApproved").then((response: any) => {
             // Notificação para o solicitante
             ServicesNotification.save("Um gerente de Negócio aprovou a sua demanda de código  " + demand.demandCode, demand.requesterRegistration.workerCode, "done", "demand");
+            ServicesDemand.approve(demandCode);
 
             notifyUtil.success(t("demandApproved"));
             getDemand();
@@ -425,7 +426,6 @@ export default function ViewDemand() {
     const [proposalScopeOpen, setProposalScopeOpen] = useState(false);
 
     return (
-
         <div className="view-demand">
 
             {pdf ? <PDF requester={workerName} demandTitle={demand.demandTitle} demandCode={demand.demandCode} /> : null}
@@ -448,7 +448,8 @@ export default function ViewDemand() {
 
                             )}
 
-                            <ButtonsActions demand={demand} workerId={workerId} actionsDemand={actionsDemand} approveDemand={approveDemand} giveBack={giveBack} generatePDF={generatePDF} />
+                            
+                            <ButtonsActions demand={demand} proposal={proposal} workerId={workerId} actionsDemand={actionsDemand} approveDemand={approveDemand} giveBack={giveBack} generatePDF={generatePDF} />
 
                         </div>
 
@@ -456,7 +457,11 @@ export default function ViewDemand() {
                             <div>
                                 <div className="display-flex-space-between display-solicitation-demand">
                                     <p className="title">{demand.demandTitle}</p>
-                                    <div className="code">{demand.demandCode}</div>
+                                    { /* Verifica se é uma demanda ou uma proposta */  url === "demand" ? (
+                                        <div className="code">{demand.demandCode}</div>
+                                    ) : (
+                                        <div className="code">{proposal.proposalCode}</div>
+                                    )}
                                 </div>
 
                                 <div className={"situation-current " + situationCorrentOpen}>

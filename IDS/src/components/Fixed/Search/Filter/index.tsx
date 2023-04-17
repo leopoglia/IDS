@@ -1,6 +1,7 @@
 import "./style.css";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import SelectStatus from "./SelectStatus";
 
 export interface FilterProps {
     onClick: (name: string | undefined, type: string) => void
@@ -12,10 +13,16 @@ export default function Filter(props: FilterProps) {
 
     const url = window.location.pathname.split("/")[1];
     const [filter, setFilter] = useState(false);
-    const [type, setType] = useState<string>("")
+    const [type, setType] = useState<string>("");
+
+    const [status, setStatus] = useState<string>("");
+
+    useEffect(() => {
+        onButtonPressSelect();
+    }, [status])
 
     const sendFilter = () => {
-        if (filter === true) {
+        if (filter === true && type !== "status") {
             return (
                 <div className="send-filter">
                     <div className="hr" />
@@ -23,6 +30,17 @@ export default function Filter(props: FilterProps) {
                     <input onChange={onButtonPress} type="text" ref={inputName} placeholder="Insira o parametro aqui" />
 
                     <button onClick={onButtonPress} className="btn-primary">Filtrar</button>
+
+                </div>
+            )
+        } else if (filter === true && type === "status") {
+            return (
+                <div className="send-filter">
+                    <div className="hr" />
+
+                    <SelectStatus status={status} setStatus={setStatus} />
+
+                    <button onClick={onButtonPressSelect} className="btn-primary">Filtrar</button>
 
                 </div>
             )
@@ -34,12 +52,17 @@ export default function Filter(props: FilterProps) {
         props.onClick(inputName?.current?.value, type)
     }
 
+    const onButtonPressSelect = () => {
+        props.onClick(status, type);
+        
+    }
+
     if (url === 'demands') {
         return (
             <div className="filter-modal modal">
 
                 <div className="li">
-                    <span className="material-symbols-outlined" onClick={() => {  setFilter(true); setType("home") }}>home</span>
+                    <span className="material-symbols-outlined" onClick={() => { setFilter(true); setType("home") }}>home</span>
                     <span className="font-p">{t("myDemands")}</span>
                 </div>
 

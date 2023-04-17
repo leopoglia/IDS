@@ -18,6 +18,11 @@
     margin-bottom: 20px;
 }
 
+.quill:hover .ql-toolbar.ql-snow,
+.quill:hover .ql-container{
+    border: 1px solid black;
+}
+
 .quill p{
     margin-bottom: 5px !important;
 }

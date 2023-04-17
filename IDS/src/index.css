@@ -64,6 +64,7 @@
 
 
 body {
+  overflow: auto;
   overflow: overlay;
 }
 
@@ -197,6 +198,7 @@ input[type=checkbox]:checked {
   border-radius: var(--r);
   padding: 20px;
   margin-bottom: 15px;
+  color: var(--grey3d);
 }
 
 
@@ -435,11 +437,11 @@ hr {
   background-color: var(--greyF7);
 }
 
-.grey3d{
+.grey3d {
   color: var(--grey3d);
 }
 
-.checkbox span{
+.checkbox span {
   font-size: var(--p) !important;
 }
 

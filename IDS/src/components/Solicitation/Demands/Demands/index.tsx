@@ -35,10 +35,11 @@ export default function Demands() {
     const [agendas, setAgendas] = useState([]);
     const [minutes, setMinutes] = useState([]);
 
+    const [loading, setLoading] = useState(true);
 
     // Entra na página e busca as demandas cadastradas
     useEffect(() => {
-
+        setLoading(true);
         if (url[3] === "demands") {
             if (search === "") {
                 getDemands(); // Busca as demandas cadastradas
@@ -79,70 +80,71 @@ export default function Demands() {
             localStorage.removeItem("route");
             Notification.success(t("demandCreateSuccess"));
         }
-
-    }, [url[3],  page])
+    }, [url[3], page])
 
     // Buscar as demandas cadastradas
     async function getDemands() {
-        if(table === false){
-        findDemands = await ServicesDemand.findByPage(page, 5).then(async (res: any) => {
-            let demandsContent = res.content; // Atualiza o estado das demandas
-            setPages(res.totalPages); // Atualiza o estado das páginas
+        if (table === false) {
+            findDemands = await ServicesDemand.findByPage(page, 5).then(async (res: any) => {
+                let demandsContent = res.content; // Atualiza o estado das demandas
+                setPages(res.totalPages); // Atualiza o estado das páginas
 
-            let proposalsContent: any = await ServicesProposal.findAll();
+                let proposalsContent: any = await ServicesProposal.findAll();
 
-            demandsContent.map((demand: any) => {
-                if (demand.demandStatus === "Assesment") {
-                    proposalsContent.map((proposal: any) => {
+                demandsContent.map((demand: any) => {
+                    if (demand.demandStatus === "Assesment") {
+                        proposalsContent.map((proposal: any) => {
 
-                        if (proposal.demand.demandCode === demand.demandCode) {
-                            demand.proposalCode = proposal.proposalCode;
-                        }
-                    })
+                            if (proposal.demand.demandCode === demand.demandCode) {
+                                demand.proposalCode = proposal.proposalCode;
+                            }
+                        })
+                    }
+
+                    return demand;
+
+
+                })
+
+                setDemands(demandsContent);
+            });
+        } else {
+            findDemands = await ServicesDemand.findByPage(page, 9).then(async (res: any) => {
+                let demandsContent = res.content; // Atualiza o estado das demandas
+                setPages(res.totalPages); // Atualiza o estado das páginas
+
+                let totalDemands: any = 0;
+
+                await ServicesProposal.findAll().then((res: any) => {
+                    totalDemands = res.length;
+                })
+
+                if (demandsContent.length === 0) {
+                    navigate("/demands/" + (Math.ceil((totalDemands / 9) + 1)));
                 }
 
-                return demand;
+                let proposalsContent: any = await ServicesProposal.findAll();
 
 
-            })
+                demandsContent.map((demand: any) => {
+                    if (demand.demandStatus === "Assesment") {
+                        proposalsContent.map((proposal: any) => {
 
-            setDemands(demandsContent);
-        });
-    }else{
-        findDemands = await ServicesDemand.findByPage(page, 9).then(async (res: any) => {
-            let demandsContent = res.content; // Atualiza o estado das demandas
-            setPages(res.totalPages); // Atualiza o estado das páginas
+                            if (proposal.demand.demandCode === demand.demandCode) {
+                                demand.proposalCode = proposal.proposalCode;
+                            }
+                        })
+                    }
 
-            let totalDemands: any = 0; 
-
-            await ServicesProposal.findAll().then((res: any) => {
-                totalDemands = res.length;
-            })
-
-            if(demandsContent.length === 0){
-                navigate("/demands/" + (Math.ceil((totalDemands/9)+1)));
-            }
-
-            let proposalsContent: any = await ServicesProposal.findAll();
+                    return demand;
 
 
-            demandsContent.map((demand: any) => {
-                if (demand.demandStatus === "Assesment") {
-                    proposalsContent.map((proposal: any) => {
+                })
+                setDemands(demandsContent);
+            });
+        }
+        setLoading(false);
 
-                        if (proposal.demand.demandCode === demand.demandCode) {
-                            demand.proposalCode = proposal.proposalCode;
-                        }
-                    })
-                }
-
-                return demand;
-
-
-            })
-            setDemands(demandsContent);
-        });
-    }
         return findDemands;
     }
 
@@ -152,6 +154,7 @@ export default function Demands() {
             setProposals(res.content); // Atualiza o estado das demandas
             setPages(res.totalPages); // Atualiza o estado das páginas
         });
+        setLoading(false);
         return findDemands;
     }
 
@@ -161,6 +164,7 @@ export default function Demands() {
             setAgendas(res.content); // Atualiza o estado das demandas
             setPages(res.totalPages); // Atualiza o estado das páginas
         });
+        setLoading(false);
         return findDemands;
     }
 
@@ -170,6 +174,7 @@ export default function Demands() {
             setMinutes(res.content); // Atualiza o estado das demandas
             setPages(res.totalPages); // Atualiza o estado das páginas
         });
+        setLoading(false);
         return findDemands;
     }
 
@@ -249,6 +254,14 @@ export default function Demands() {
         localStorage.removeItem("presentation");
     }
 
+    const noResult = () => {
+        return (
+            <div className="no-results">
+                <h1>{t("noResults")}</h1>
+            </div>
+        )
+    }
+
     return (
         <div className="solicitation">
 
@@ -286,12 +299,7 @@ export default function Demands() {
                                                 return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} proposalCode={val.proposalCode} type="demand" />);
 
                                             } else if (index === demands.length - 1) {
-                                                return (
-                                                    <div className="no-results">
-                                                        <h1>{t("noResults")}</h1>
-                                                    </div>
-                                                );
-
+                                                return noResult();
                                             }
                                         }
 
@@ -301,21 +309,17 @@ export default function Demands() {
                                         } else if (typeFilter === "status" && val.demandStatus.toUpperCase().includes(nameFilter.toUpperCase())) {
                                             return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val.requesterRegistration.workerName} date={val.demandDate} situation={val.demandStatus} proposalCode={val.proposalCode} type="demand" />);
                                         } else if (index === demands.length - 1) {
-                                            return (
-                                                <div className="no-results">
-                                                    <h1>{t("noResults")}</h1>
-                                                </div>
-                                            );
+                                            return noResult();
                                         }
                                     }
                                 })
                             }
 
-                            {demands.length === 0 && (
-                                <div className="no-results">
-                                    <h1>{t("noResults")}</h1>
-                                </div>
-                            )}
+
+                            {loading && demands.length === 0 && <Load />}
+
+                            {demands.length === 0 && loading === false && noResult()}
+
                         </div>
 
                         {footer()}

@@ -88,10 +88,20 @@ export default function ButtonsActions(props: any) {
                 </>
             ) : /* Botões superiores 6 - Histórico, Editar... */(props.actionsDemand === 6) ? (
                 <ButtonActionAnalyst codeDemand={props.demand.demandCode} />
+            ) : /* Botões superiores 7 - Editar... */(props.actionsDemand === 7) ? (
+                <>
+                    <button onClick={() => { navigate("/proposal/edit/" + props.demand.demandCode) }} className="btn-primary btn-download btn-mini">
+                        <span className="material-symbols-outlined">
+                            edit
+                        </span>
+                    </button>
+
+                    <ButtonActionAnalyst codeDemand={props.demand.demandCode} />
+                </>
             ) : (
-                <div></div>
+                <></>
             )
             }
-        </div>
+        </div >
     )
 }

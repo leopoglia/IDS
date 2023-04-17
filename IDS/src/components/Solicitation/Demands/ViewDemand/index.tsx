@@ -46,6 +46,7 @@ export default function ViewDemand() {
     // 4 - Complementar (Analista)
     // 5 - Gerar Proposta (Analista)
     // 6 - Histórico, Gerar PDF e Editar (Analista)
+    // 7 - Editar Proposta (Analista)
     const [actionsDemand, setActionsDemand] = useState(0);
 
     // Situação da Demanda
@@ -229,6 +230,12 @@ export default function ViewDemand() {
 
                 if (expense.length !== 0) {
                     setProposalExpense(expense);
+                }
+
+                console.log(response[0].proposal.proposalStatus)
+
+                if (response[0].proposal.proposalStatus === "Pending") {
+                    setActionsDemand(7);
                 }
 
                 setInitialRunPeriod(dateFormat(expense[0].proposal.initialRunPeriod));

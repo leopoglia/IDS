@@ -103,8 +103,7 @@ export default function ProposedInformation() {
                             responsiblesBussiness.map((responsible: any, index: number) => {
                                 return (
                                     <div className="costCenter" key={index}>
-                                        {responsible}
-
+                                        <span>{responsible}</span>
                                         <span className="material-symbols-outlined delete-cost-center" onClick={deleteResponsible}>
                                             delete
                                         </span>

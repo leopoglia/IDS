@@ -206,7 +206,9 @@ export default function CreateDemands1() {
                     </div>
 
                     {costsCenters.map((costCenter: any, index: any) => {
-                        return <div className="costCenter" key={index}>{costCenter}
+                        return <div className="costCenter" key={index}>
+                            <span>{costCenter}</span>
+
                             <span className="material-symbols-outlined delete-cost-center" onClick={deleteCostCenter(costCenter)} >
                                 delete
                             </span>

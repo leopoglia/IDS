@@ -191,7 +191,8 @@ export default function RankDemand() {
                         </div>
 
                         {buBenefitedsList.map((bu: any, index:any) => {
-                            return <div className="costCenter" key={index}>{bu.bu}
+                            return <div className="costCenter" key={index}>
+                                <span>{bu.bu}</span>
                                 <span className="material-symbols-outlined delete-cost-center" onClick={deleteBuBenefited(bu)}>
                                     delete
                                 </span>

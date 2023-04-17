@@ -102,8 +102,6 @@ export default function Demands() {
                     }
 
                     return demand;
-
-
                 })
 
                 setDemands(demandsContent);
@@ -316,7 +314,7 @@ export default function Demands() {
                             }
 
 
-                            {loading && demands.length === 0 && <Load />}
+                            {demands.length === 0 && loading === true && <Load />}
 
                             {demands.length === 0 && loading === false && noResult()}
 
@@ -347,28 +345,18 @@ export default function Demands() {
                                         if (val.demand?.demandTitle.toUpperCase().includes(search.toUpperCase())) {
                                             return (<Demand key={val.proposalCode} listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />);
                                         } else {
-                                            return (
-                                                <div className="no-results">
-                                                    <h1>{t("noResults")}</h1>
-                                                </div>
-                                            );
+                                            return noResult();
                                         }
                                     } else {
-                                        return (
-                                            <div className="no-results">
-                                                <h1>{t("noResults")}</h1>
-                                            </div>
-                                        );
+                                        return noResult();
                                     }
 
                                 })
                             }
 
-                            {proposals.length === 0 && (
-                                <div className="no-results">
-                                    <h1>{t("noResults")}</h1>
-                                </div>
-                            )}
+                            {proposals.length === 0 && loading === true && <Load />}
+
+                            {proposals.length === 0 && loading === false && noResult()}
                         </div>
                         {footer()}
 
@@ -395,22 +383,16 @@ export default function Demands() {
                                                 <Demand key={val.agendaCode} val={val.agendaCode} listDirection={table} name={"Pauta da reunião  " + val.agendaCode} demandCode={val.agendaCode} date={val.agendaDate} number={val.sequentialNumber} year={val.yearAgenda} type="agenda" />
                                             );
                                         } else {
-                                            return (
-                                                <div className="no-results">
-                                                    <h1>{t("noResults")}</h1>
-                                                </div>
-                                            );
+                                            return noResult();
                                         }
                                     }
                                 })
                             }
 
-                            {agendas.length === 0 && (
-                                <div className="no-results">
-                                    <h1>{t("noResults")}</h1>
-                                </div>
-                            )}
+                            {agendas.length === 0 && loading === true && <Load />}
 
+                            {agendas.length === 0 && loading === false && noResult()}
+                            
                         </div>
 
                         {footer()}
@@ -439,21 +421,16 @@ export default function Demands() {
                                                 <Demand key={val.minuteCode} listDirection={table} name={val.minuteName} demandCode={val.minuteCode} director={val.director?.workerName} number={val.minuteCode} date={val.minuteStartDate} type="minute" />
                                             );
                                         } else {
-                                            return (
-                                                <div className="no-results">
-                                                    <h1>{t("noResults")}</h1>
-                                                </div>
-                                            );
+                                            return noResult();
                                         }
                                     }
                                 })
                             }
 
-                            {minutes.length === 0 && (
-                                <div className="no-results">
-                                    <h1>{t("noResults")}</h1>
-                                </div>
-                            )}
+                            {minutes.length === 0 && loading === true && <Load />}
+
+                            {minutes.length === 0 && loading === false && noResult()}
+
                         </div>
                         {footer()}
 

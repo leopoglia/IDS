@@ -207,7 +207,8 @@ export default function CreateAgenda() {
                     </div>
 
                     {commissionList.map((worker: any) => {
-                        return <div className="costCenter">{worker}
+                        return <div className="costCenter">
+                            <span>{worker}</span>
                             <span className="material-symbols-outlined delete-cost-center" onClick={deleteWorker(worker)} >
                                 delete
                             </span>

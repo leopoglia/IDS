@@ -31,9 +31,17 @@
     border-radius: var(--r);
 }
 
+.costCenter span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
 .costCenter .delete-cost-center {
     width: 30px;
     height: 30px;
+    min-width: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -63,7 +71,7 @@
     padding: 0px !important;
 }
 
-.select-cost-center fieldset{
+.select-cost-center fieldset {
     border: none !important;
     outline: none !important;
 }
@@ -84,7 +92,8 @@
     color: black;
 }
 
-.create-demands-1 .ql-editor , .create-demands-2 .ql-editor {
+.create-demands-1 .ql-editor,
+.create-demands-2 .ql-editor {
     min-height: 150px !important;
     max-height: 150px !important;
 }

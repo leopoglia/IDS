@@ -70,8 +70,7 @@
     align-items: center;
     justify-content: center;
     color: var(--grey59);
-    margin-top: 50px;
-    height: 200px;
+    height: calc(100vh - 400px);
 }
 
 .minute iframe {

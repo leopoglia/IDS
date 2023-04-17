@@ -80,7 +80,7 @@ export default function EscopeDemand() {
 			setQualitativeBenefitDescription(demand.qualitativeBenefit.qualitativeBenefitDescription);
 
 			setDemandStatus(demand.demandStatus);
-			setDemandScore(demand.demandScore);
+			setDemandScore(demand.score);
 			setDemandRequester(demand.requesterRegistration.workerCode);
 			setDemandDate(demand.demandDate);
 
@@ -111,6 +111,7 @@ export default function EscopeDemand() {
 		})
 	}
 
+	console.log("demandScore " + demandScore);
 
 	useEffect(() => { 
 		if (demands === undefined) {
@@ -235,7 +236,7 @@ export default function EscopeDemand() {
 		}
 
 		ServicesDemand.update(demandCode, demandTitle, demandProblem, demandObjective, costsCentersId, frequencyOfUse, realBenefitCode, potentialBenefitCode, qualitativeBenefitCode, file, demandDate, demandStatus, demandScore, demandRequester, demandClassification).then((response: any) => {
-
+			console.log(demandScore);
 			if (url === "edit") {
 				ServicesDemand.updateStatus(demandCode, "Backlog").then((response: any) => { });
 

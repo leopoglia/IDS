@@ -57,7 +57,7 @@ export default function CreateDemands3() {
             demandObjective,
             costCenter,
             "Backlog",
-            20,
+            null,
             executionPeriod,
             workerCode,
             realBenefitCode,

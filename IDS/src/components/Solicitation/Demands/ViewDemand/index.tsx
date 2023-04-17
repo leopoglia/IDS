@@ -284,8 +284,8 @@ export default function ViewDemand() {
 
     // Aprovar demanda (Gerente de Negócios)
     function approveDemand() {
+        ServicesDemand.approve(demandCode);
         ServicesDemand.updateStatus(demandCode, "BacklogRankApproved").then((response: any) => {
-
             // Notificação para o solicitante
             ServicesNotification.save("Um gerente de Negócio aprovou a sua demanda de código  " + demand.demandCode, demand.requesterRegistration.workerCode, "done", "demand");
 

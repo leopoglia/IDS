@@ -1,7 +1,7 @@
 const url = "http://localhost:8443/api/demand";
 
 const Services = {
-    save: function (demandTitle: String, currentProblem: String, demandObjective: String, costCenter: any, demandStatus: String, score: Number, executionPeriod: Number, requesterRegistration: Number, realBenefit: Number, potentialBenefit: Number, qualitativeBenefit: Number, demandAttachment: any, demandDate: String) {
+    save: function (demandTitle: String, currentProblem: String, demandObjective: String, costCenter: any, demandStatus: String, score: any, executionPeriod: Number, requesterRegistration: Number, realBenefit: Number, potentialBenefit: Number, qualitativeBenefit: Number, demandAttachment: any, demandDate: String) {
         var formData = new FormData();
 
         let costCenters = [];
@@ -71,6 +71,7 @@ const Services = {
         demandScore: any, demandRequester: any, classificationCode: any) {
         var formData = new FormData();
 
+        console.log("do service: " + demandScore);
 
         let costCenters = [];
         for (let i = 0; i < costCenter.length; i++) {
@@ -81,7 +82,6 @@ const Services = {
         if (classificationCode === null ||
             classificationCode === undefined ||
             classificationCode === "") {
-
             demand = {
                 "demandTitle": demandTitle.toUpperCase(),
                 "currentProblem": currentProblem,
@@ -93,7 +93,8 @@ const Services = {
                 "qualitativeBenefit": { "qualitativeBenefitCode": qualitativeBenefit },
                 "potentialBenefit": { "potentialBenefitCode": potentialBenefit },
                 "demandDate": demandDate,
-                "demandStatus": demandStatus
+                "demandStatus": demandStatus,
+                "score": demandScore
             }
         } else {
             demand = {
@@ -108,7 +109,8 @@ const Services = {
                 "potentialBenefit": { "potentialBenefitCode": potentialBenefit },
                 "demandDate": demandDate,
                 "demandStatus": demandStatus,
-                "classification": { "classificationCode": classificationCode }
+                "classification": { "classificationCode": classificationCode },
+                "score": demandScore
             }
         }
 
@@ -165,6 +167,14 @@ const Services = {
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(reject)
+        })
+    },
+    approve: function (id: Number) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/approve/" + id, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); }).then(resolve).catch(reject)
         })
     }
 }

@@ -552,7 +552,7 @@ export default function ViewDemand() {
                                     </div>
 
                                     <div className="display-grid description">
-                                        <span className="desc">Descrição:</span>
+                                        <span className="desc">{t("description")}:</span>
                                         <div className="text-information">{demand.realBenefit.realBenefitDescription}</div>
 
                                     </div>
@@ -592,7 +592,7 @@ export default function ViewDemand() {
 
                                     <div className="display-grid description">
 
-                                        <span className="desc">Descrição:</span>
+                                        <span className="desc">{t("description")}:</span>
 
                                         <div className="text-information">{demand.potentialBenefit.potentialBenefitDescription}</div>
                                     </div>
@@ -618,7 +618,7 @@ export default function ViewDemand() {
 
                                     <div className="description display-grid">
 
-                                        <span className="desc">Descrição:</span>
+                                        <span className="desc">{t("description")}:</span>
                                         {demand.qualitativeBenefit.qualitativeBenefitDescription ? (
                                             <div className="text-information">{HtmlReactParser(demand.qualitativeBenefit.qualitativeBenefitDescription)}</div>
                                         ) : (

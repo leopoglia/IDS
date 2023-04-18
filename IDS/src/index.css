@@ -485,3 +485,19 @@ hr {
     -ms-zoom: 0.9 !important;
   }
 }
+
+@media(max-width: 350px){
+  body{
+    zoom: 0.8 !important;
+    -webkit-zoom: 0.8 !important;
+    -ms-zoom: 0.8 !important;
+  }
+}
+
+@media(max-width: 260px){
+  body{
+    zoom: 0.5 !important;
+    -webkit-zoom: 0.5 !important;
+    -ms-zoom: 0.5 !important;
+  }
+}

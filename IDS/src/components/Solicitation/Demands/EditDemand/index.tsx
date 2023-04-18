@@ -113,28 +113,28 @@ export default function EscopeDemand() {
 
 	function getProposal() {
 
+
 		ServicesProposal.findById(demandCode).then((response: any) => {
 			console.log(response)
-			// setDemandCode(response.demand.demandCode);
-			// getDemand();
+			setDemandCode(response.demand.demandCode);
+			getDemand();
 		})
 
 	}
 
 
-	console.log("demandScore " + demandScore);
-
 	useEffect(() => {
 
-		console.log(url)
 
-		if (demands === undefined) {
-			if (type === "demand") {
-				getDemand();
-			} else if (type === "proposal") {
-				getProposal();
-			}
+		if (url === "demand" || type === "demand") {
+			getDemand();
+		} else {
+
+			console.log(url)
+
+			getProposal();
 		}
+
 	}, [])
 
 

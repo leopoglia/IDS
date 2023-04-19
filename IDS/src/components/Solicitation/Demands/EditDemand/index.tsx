@@ -59,8 +59,8 @@ export default function EscopeDemand() {
 	const [demandRequester, setDemandRequester]: any = useState(""); // Solicitante da demanda
 	const [demandDate, setDemandDate]: any = useState(""); // Data da demanda
 
-	function getDemand() {
-		ServicesDemand.findById(demandCode).then((response: any) => {
+	function getDemand(demandCodeParam: number) {
+		ServicesDemand.findById(demandCodeParam).then((response: any) => {
 			const demand: any = response
 			setDemands(demand)
 
@@ -113,11 +113,10 @@ export default function EscopeDemand() {
 
 	function getProposal() {
 
-
 		ServicesProposal.findById(demandCode).then((response: any) => {
-			console.log(response)
+
 			setDemandCode(response.demand.demandCode);
-			getDemand();
+			getDemand(response.demand.demandCode);
 		})
 
 	}
@@ -127,10 +126,10 @@ export default function EscopeDemand() {
 
 
 		if (url === "demand" || type === "demand") {
-			getDemand();
+			getDemand(demandCode);
 		} else {
 
-			console.log(url)
+			console.log("GET PROPOSAL")
 
 			getProposal();
 		}

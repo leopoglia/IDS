@@ -8,7 +8,7 @@ import ServicesDemand from '../../../../../services/demandService';
 export default function SelectLabels(props: any) {
     // const [age, setAge] = React.useState('');
 
-    const [status, SetStatus] = React.useState(["Backlog", "BacklogEdit", "BacklogApprove"]);
+    const [status, SetStatus] = React.useState(["Backlog", "BacklogRanked", "BacklogEdit", "BacklogRankApproved", "BacklogComplement", "Assesment"]);
     const url = parseInt(window.location.href.split('/')[5]);
 
 

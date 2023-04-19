@@ -765,6 +765,36 @@ export default function ViewDemand() {
                                 </>
                             ) : (null)}
 
+
+
+                            <div className={"complement " + complementOpen} >
+
+
+
+                                <div className="display-flex-space-between">
+                                    <p className="title">{t("comission")}</p>
+
+                                    <span onClick={() => setComplementOpen(!complementOpen)} className="material-symbols-outlined arrow-expend">
+                                        expand_more
+                                    </span>
+                                </div>
+
+                                <table>
+                                    <tbody>
+                                        {comission.map((val: any, index: any) => (
+                                            <tr key={index}>
+                                                <td className="display-flex-start pl20">
+                                                    {val.commissionName}
+                                                </td>
+                                            </tr>
+
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                            
                             <div className="proposalsAgenda">
                                 <p>{t("proposals")}</p>
                                 {
@@ -800,33 +830,9 @@ export default function ViewDemand() {
                                     ))
                                 }
                             </div>
-
-                            <div className={"complement " + complementOpen} >
-
-
-
-                                <div className="display-flex-space-between">
-                                    <p className="title">{t("comission")}</p>
-
-                                    <span onClick={() => setComplementOpen(!complementOpen)} className="material-symbols-outlined arrow-expend">
-                                        expand_more
-                                    </span>
-                                </div>
-
-                                <table>
-                                    <tbody>
-                                        {comission.map((val: any, index: any) => (
-                                            <tr key={index}>
-                                                <td className="display-flex-start pl20">
-                                                    {val.commissionName}
-                                                </td>
-                                            </tr>
-
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
                         </div>
+
+
 
                         {pendingMinute < proposalSpecific.length && minute.length === 0 ? (
                             <div className="display-flex-end">

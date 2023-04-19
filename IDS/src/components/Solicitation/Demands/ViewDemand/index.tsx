@@ -422,6 +422,7 @@ export default function ViewDemand() {
     const [benefitPotentialOpen, setBenefitPotentialOpen] = useState(false);
     const [benefitQualitativeOpen, setBenefitQualitativeOpen] = useState(false);
     const [proposalScopeOpen, setProposalScopeOpen] = useState(false);
+    const [complementOpen, setComplementOpen] = useState(false);
 
     return (
         <div className="view-demand">
@@ -446,7 +447,7 @@ export default function ViewDemand() {
 
                             )}
 
-                            
+
                             <ButtonsActions demand={demand} proposal={proposal} workerId={workerId} actionsDemand={actionsDemand} approveDemand={approveDemand} giveBack={giveBack} generatePDF={generatePDF} />
 
                         </div>
@@ -536,7 +537,7 @@ export default function ViewDemand() {
 
                                 <div className={"real-benefit " + benefitRealOpen}>
 
-                                    <div className="display-flex-space-between ">
+                                    <div className="display-flex-space-between">
                                         <p className="title">{t("benefitReal")}</p>
 
                                         <span onClick={() => setBenefitRealOpen(!benefitRealOpen)} className="material-symbols-outlined arrow-expend">
@@ -800,9 +801,17 @@ export default function ViewDemand() {
                                 }
                             </div>
 
-                            <div className="complement">
+                            <div className={"complement " + complementOpen} >
 
-                                <p className="title">{t("comission")}</p>
+
+
+                                <div className="display-flex-space-between">
+                                    <p className="title">{t("comission")}</p>
+
+                                    <span onClick={() => setComplementOpen(!complementOpen)} className="material-symbols-outlined arrow-expend">
+                                        expand_more
+                                    </span>
+                                </div>
 
                                 <table>
                                     <tbody>

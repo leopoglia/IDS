@@ -268,6 +268,13 @@ export default function EscopeDemand() {
 	}
 
 
+	const [situationInfo, setInfoOpen] = useState(true);
+	const [situationBenefitReal, setBenefitRealOpen] = useState(true);
+	const [situationBenefitPotential, setBenefitPotentialOpen] = useState(true);
+	const [situationBenefitQualitative, setBenefitQualitativeOpen] = useState(true);
+	const [situationAdicional, setAdicionalOpen] = useState(true);
+
+
 	return (
 		<div className="create-demands-1">
 			<Header />
@@ -279,8 +286,15 @@ export default function EscopeDemand() {
 
 					</div>
 
-					<div className="box">
-						<p>{t("generalInformations")}</p>
+					<div className={"box box-" + situationInfo}>
+
+						<div className="display-flex-space-between">
+							<p>{t("generalInformations")}</p>
+
+							<span onClick={() => { setInfoOpen(!situationInfo) }} className="material-symbols-outlined arrow-expend">
+								expand_more
+							</span>
+						</div>
 
 
 						<div>
@@ -335,9 +349,16 @@ export default function EscopeDemand() {
 
 					</div>
 
-					<div className="box">
+					<div className={"box box-" + situationBenefitReal}>
 
-						<p>{t("benefitReal")}</p>
+						<div className="display-flex-space-between">
+
+							<p>{t("benefitReal")}</p>
+
+							<span onClick={() => { setBenefitRealOpen(!situationBenefitReal) }} className="material-symbols-outlined arrow-expend">
+								expand_more
+							</span>
+						</div>
 
 						<div className="flex">
 
@@ -360,8 +381,18 @@ export default function EscopeDemand() {
 
 					</div>
 
-					<div className="box">
-						<p>{t("benefitPotential")}</p>
+					<div className={"box box-" + situationBenefitPotential}>
+
+						<div className="display-flex-space-between">
+
+							<p>{t("benefitPotential")}</p>
+
+
+							<span onClick={() => { setBenefitPotentialOpen(!situationBenefitPotential) }} className="material-symbols-outlined arrow-expend">
+								expand_more
+							</span>
+						</div>
+
 
 
 						<div>
@@ -394,8 +425,17 @@ export default function EscopeDemand() {
 
 					</div>
 
-					<div className="box">
-						<p>{t("benefitQualitative")}</p>
+					<div className={"box box-" + situationBenefitQualitative}>
+
+
+						<div className="display-flex-space-between">
+
+							<p>{t("benefitQualitative")}</p>
+
+							<span onClick={() => { setBenefitQualitativeOpen(!situationBenefitQualitative) }} className="material-symbols-outlined arrow-expend">
+								expand_more
+							</span>
+						</div>
 
 						<div className="display-grid">
 							<div className="input">
@@ -415,9 +455,17 @@ export default function EscopeDemand() {
 
 					</div>
 
-					<div className="box">
+					<div className={"box box-" + situationAdicional}>
 
-						<p>{t("additionals")}</p>
+						<div className="display-flex-space-between">
+
+							<p>{t("additionals")}</p>
+
+							<span onClick={() => { setAdicionalOpen(!situationAdicional) }} className="material-symbols-outlined arrow-expend">
+								expand_more
+							</span>
+						</div>
+
 
 						<div className="frequency">
 							<label>{t("frequencyUse")} * </label>

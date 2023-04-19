@@ -1,3 +1,12 @@
 .attachments label .material-symbols-outlined {
     margin-right: 5px;
 }
+
+.box-false{
+    height: 75px !important;
+    overflow: hidden !important;
+}
+
+.create-demands-1 .box .display-flex-space-between{
+    margin-bottom: 10px !important;
+}

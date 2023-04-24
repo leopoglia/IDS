@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./style.css"
 import React, { useState, useEffect, useContext } from 'react'
 import { useTranslation } from "react-i18next";
 import ServicesNotification from "../../../services/notificationService";
+import ServicesWorker from "../../../services/workerService";
 import UserContext from "../../../context/userContext";
 import { Tooltip } from "@mui/material";
 
@@ -10,6 +11,7 @@ import { Tooltip } from "@mui/material";
 export default function Nav() {
 
     const { t } = useTranslation();
+    const navigate = useNavigate();
 
     const url = window.location.pathname.split("/")[1]; // Pega a url atual e separa por "/" e pega o primeiro item do array (que é a página atual)
     const worker: any = useContext(UserContext).worker; // Pega o usuário logado
@@ -31,7 +33,7 @@ export default function Nav() {
         localStorage.setItem("nav", newNav);
     }
 
-    useEffect(() => { 
+    useEffect(() => {
         const navState = localStorage.getItem("nav") === "nav-open" ? "nav-open" : "nav"; // Verifica se o menu está aberto ou fechado
         setNav(navState); // Atualiza o estado do menu
 
@@ -63,6 +65,20 @@ export default function Nav() {
         });
 
     }, [numNotification]);
+
+    function logout() {
+
+        localStorage.clear();
+        navigate("/");
+
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i];
+            const nomeCookie = cookie.split('=')[0];
+            document.cookie = nomeCookie + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; // Define a data de expiração do cookie para uma data passada
+        }
+
+    }
 
     return (
         <nav className={nav}>
@@ -197,18 +213,18 @@ export default function Nav() {
                     </Tooltip>
                 </Link>
 
-                <Link to="/">
-                    <Tooltip title={t("logout")} placement="right">
-                        <li className="logout">
-                            <div>
-                                <span className="material-symbols-outlined">
-                                    logout
-                                </span>
-                                <span className="title-li">{t("logout")}</span>
-                            </div>
-                        </li>
-                    </Tooltip>
-                </Link>
+                {/* <Link to="/"> */}
+                <Tooltip onClick={() => { logout() }} title={t("logout")} placement="right">
+                    <li className="logout">
+                        <div>
+                            <span className="material-symbols-outlined">
+                                logout
+                            </span>
+                            <span className="title-li">{t("logout")}</span>
+                        </div>
+                    </li>
+                </Tooltip>
+                {/* </Link> */}
 
             </ul>
 

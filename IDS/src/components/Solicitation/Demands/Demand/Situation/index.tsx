@@ -11,10 +11,10 @@ export default function Situation(props: any) {
 
     useEffect(() => { 
 
-        if (props.situation) {
-            // dar espaço quando a letra for maiuscula no props.situation
-            setSituationSeparate(props.situation.replace(/([A-Z])/g, ' $1'));
-        }
+        // if (props.situation) {
+        //     // dar espaço quando a letra for maiuscula no props.situation
+        //     setSituationSeparate(props.situation.replace(/([A-Z])/g, ' $1'));
+        // }
 
 
 
@@ -58,7 +58,7 @@ export default function Situation(props: any) {
 
     if (props.type === "demand") {
         return (
-            <Tooltip title={situationSeparate} arrow>
+            <Tooltip title={t("situation-" + props.situation)} arrow>
                 <div className="graphic">
                     {situation()}
                 </div>
@@ -66,7 +66,7 @@ export default function Situation(props: any) {
         );
     } else if (props.type === "proposal") {
         return (
-            <Tooltip title={situationSeparate} arrow>
+            <Tooltip title={t(props.situation)} arrow>
                 <div className="graphic-proposal">
                     {situation()}
                 </div>

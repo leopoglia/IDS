@@ -213,6 +213,13 @@
     "demandEdited": "Demanda editada com sucesso!",
     "demandReturned": "Demanda devolvida com sucesso!",
     "somethingWrong": "Algo deu errado!",
-    "fillAllFields": "Preencha todos os campos"
+    "fillAllFields": "Preencha todos os campos",
 
+
+    "situation-Backlog": "Criada",
+    "situation-BacklogRanked": "Classificada",
+    "situation-BacklogRankApproved": "Classificação aprovada",
+    "situation-BacklogComplement": "Complementada",
+    "situation-BacklogEdit": "Esperando edição",
+    "situation-Assesment": "Proposta criada"
 }

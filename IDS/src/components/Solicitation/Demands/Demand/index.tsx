@@ -61,7 +61,7 @@ export default function Demand(props: any) {
                     </Link>
                 );
             }
-        } else if (props.situation === "Assesment") {
+        } else if (props.situation === "Assesment" && worker.office !== "requester") {
             return (
                 <div className="openProposal">
                     <Link to={"/proposal/view/" + props.proposalCode}>

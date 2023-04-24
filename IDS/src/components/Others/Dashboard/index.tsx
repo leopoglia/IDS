@@ -174,7 +174,7 @@ export default function Dashboard() {
 
         <div className="container">
 
-            <Title title="Dashboard" nav="Dashboard" />
+            <Title title="dashboard" nav="dashboard" />
 
 
             <div className="content">

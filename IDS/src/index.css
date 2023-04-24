@@ -263,7 +263,7 @@ textarea {
 }
 
 .material-symbols-outlined {
-  font-size: 24px;
+  font-size: 22px !important;
   font-variation-settings:
     'FILL' 0,
     'wght' 400,

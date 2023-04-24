@@ -767,9 +767,6 @@ export default function ViewDemand() {
 
 
                             <div className={"complement " + complementOpen} >
-
-
-
                                 <div className="display-flex-space-between">
                                     <p className="title">{t("comission")}</p>
 
@@ -793,24 +790,28 @@ export default function ViewDemand() {
                             </div>
 
 
+                            <div className={"proposals-view " + complementOpen} >
+                                <div className="display-flex-space-between">
+                                    <p className="title">{t("proposals")}</p>
 
-                            <div className="proposalsAgenda">
-                                <p>{t("proposals")}</p>
-                                {
-                                    proposalSpecific.map((val: any) => (
-                                        localStorage.setItem("agendaCode", window.location.pathname.split("/")[3]),
-                                        <Link key={val.proposalCode} to={"/proposal/view/" + val.proposalCode}>
-                                            <div className="proposal-view">
+                                    <span onClick={() => setComplementOpen(!complementOpen)} className="material-symbols-outlined arrow-expend">
+                                        expand_more
+                                    </span>
+                                </div>
 
-                                                <div className="display-flex-space-between">
+                                <table>
+                                    <tbody>
+                                        {proposalSpecific.map((val: any, index: any) => (
+                                            <tr key={index} className="h50px">
+                                                <td className="display-flex-start pl20">
+                                                    {val.proposalName}
 
-                                                    <div className="display-flex-align-center">
-                                                        <p>{val.proposalName}</p>
-
-                                                        <div className="code">
-                                                            {val.demand.demandCode}
-                                                        </div>
+                                                    <div className="code">
+                                                        {val.proposalCode}
                                                     </div>
+                                                </td>
+
+                                                <td className="w20">
 
                                                     <div className="proposal-view-buttons">
                                                         {val.proposalStatus === "Pending" ? (
@@ -823,12 +824,25 @@ export default function ViewDemand() {
                                                             </div>
                                                         )}
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </Link>
-                                    ))
-                                }
+
+                                                </td>
+
+                                                <td className="w20px">
+                                                    <Link to={"/proposal/view/" + val.proposalCode}>
+                                                        <button className="btn-secondary btn-unique">
+                                                            <span className="material-symbols-outlined">
+                                                                open_in_new
+                                                            </span>
+                                                        </button>
+                                                    </Link>
+                                                </td>
+                                            </tr>
+
+                                        ))}
+                                    </tbody>
+                                </table>
                             </div>
+
                         </div>
 
 

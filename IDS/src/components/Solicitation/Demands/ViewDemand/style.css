@@ -154,6 +154,22 @@
     font-size: var(--p);
 }
 
+.view-demand .w20{
+    width: 30%;
+}
+
+.view-demand .proposals-view .btn-unique{
+    width: 45px !important;
+}
+
+.view-demand .proposals-view .h50px{
+    height: 60px !important; 
+}
+
+.view-demand .w20px{
+    width: 80px !important;
+}
+
 
 .view-demand .text-information p,
 .view-demand .text-information strong{
@@ -195,6 +211,7 @@
 .view-demand .cost-center,
 .view-demand .classification,
 .view-demand .complement,
+.view-demand .proposals-view,
 .view-demand .proposalScope,
 .view-demand .attachments {
     margin-top: 15px;
@@ -205,21 +222,28 @@
 
 .view-demand .cost-center,
 .view-demand .classification,
+.view-demand .proposals-view,
 .view-demand .complement {
     padding: 0px;
 }
 
 .view-demand .cost-center .title,
 .view-demand .classification .title,
+.view-demand .proposals-view .title,
 .view-demand .complement .title {
     padding: 9px 10px !important;
 }
 
 .view-demand .cost-center tr:last-child,
 .view-demand .classification tr:last-child,
+.view-demand .proposals-view tr:last-child,
 .view-demand .complement tr:last-child {
     border-bottom: none;
     border-radius: 0px 0px var(--r) var(--r);
+}
+
+.view-demand .proposals-view td{
+    border: 0px;
 }
 
 
@@ -289,7 +313,8 @@
 
 .cost-center .display-flex-space-between,
 .classification .display-flex-space-between,
-.complement .display-flex-space-between {
+.complement .display-flex-space-between,
+.proposals-view .display-flex-space-between {
     padding-right: 10px;
 }
 

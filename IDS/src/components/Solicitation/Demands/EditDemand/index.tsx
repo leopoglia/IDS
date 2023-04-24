@@ -11,6 +11,7 @@ import SelectCenterCost from "../CrateDemand/Step1/SelectCenterCost";
 import ServicesRealBenefit from "../../../../services/realBenefitService";
 import ServicesPotentialBenefit from "../../../../services/potentialBenefitService";
 import ServicesQualitativeBenefit from "../../../../services/qualitativeBenefitService";
+import ServicesHistorical from "../../../../services/historicalService";
 import ServicesProposal from "../../../../services/proposalService";
 import Services from "../../../../services/costCenterService";
 import SelectCoin from "../CrateDemand/SelectCoin";
@@ -251,6 +252,8 @@ export default function EscopeDemand() {
 		} else {
 			file = null
 		}
+
+		ServicesHistorical.save(demandCode, null, demandRequester);
 
 		ServicesDemand.update(demandCode, demandTitle, demandProblem, demandObjective, costsCentersId, frequencyOfUse, realBenefitCode, potentialBenefitCode, qualitativeBenefitCode, file, demandDate, demandStatus, demandScore, demandRequester, demandClassification).then((response: any) => {
 			console.log(demandScore);

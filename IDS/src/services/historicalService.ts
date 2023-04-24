@@ -1,19 +1,17 @@
 const url = "http://localhost:8443/api/historical";
 
 const Services = {
-    save: function (demand: Number, historicalAttachment: any) {
+    save: function (demand: Number, historicalAttachment: any, demandRequester: any) {
         return new Promise((resolve, reject) => {
 
-            var formData = new FormData();
-            let historical = {"demand": {demandCode: demand}}
-            formData.append("historical", JSON.stringify(historical));
-            formData.append("historicalAttachment", historicalAttachment);
-
             fetch(url, {
-                method: 'POST', 
-                body: formData,
-                credentials: 'include',
-                headers: { 'Content-Type': 'application/json' },
+                method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'include',
+                body: JSON.stringify({
+                    "demand": { demandCode: demand },
+                    "historicalDate": new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear(),
+                    "historicalHour": new Date().getHours() + ":" + new Date().getMinutes(),
+                    "editor": null
+                })
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(resolve)

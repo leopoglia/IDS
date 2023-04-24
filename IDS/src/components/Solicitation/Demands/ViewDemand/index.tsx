@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { toast, ToastContainer } from 'react-toastify';
 import Header from "../../../Fixed/Header"
@@ -28,7 +28,6 @@ import othersUtil from "../../../../utils/othersUtil";
 export default function ViewDemand() {
 
     const { t } = useTranslation();
-    const navigate = useNavigate();
 
     const worker: any = useContext(UserContext).worker; // Buscar dados do usuário
     const office = worker.office; // Buscar tipo de usuário
@@ -200,8 +199,11 @@ export default function ViewDemand() {
 
     // Buscar proposta
     function getProposal() {
+
         ServicesProposal.findById(demandCode).then((response: any) => {
             setProposal(response)
+
+
             setDemand(response.demand); // Seta a demanda da proposta
             setStepDemand(2) // Seta o passo da demanda
             setClassification(response.demand.classification) // Seta a classificação da demanda
@@ -209,6 +211,10 @@ export default function ViewDemand() {
             setResponsibleBussiness(response?.responsibleAnalyst.workerName) // Seta o responsável de negócios da proposta
 
             setCenterCost(response.demand.costCenter) // Seta o centro de custo da demanda
+
+            if (response.proposalStatus === "Pending") {
+                setActionsDemand(7);
+            }
 
             ServicesExpense.findAll().then((response: any) => {
                 let expense: any = [];
@@ -224,18 +230,11 @@ export default function ViewDemand() {
                         } else if (response[i].expenseType === "expenses") {
                             setProposalExpenseValue(proposalExpenseValue + 1);
                         }
-
                     }
                 }
 
                 if (expense.length !== 0) {
                     setProposalExpense(expense);
-                }
-
-                console.log(response[0].proposal.proposalStatus)
-
-                if (response[0].proposal.proposalStatus === "Pending") {
-                    setActionsDemand(7);
                 }
 
                 setInitialRunPeriod(dateFormat(expense[0].proposal.initialRunPeriod));
@@ -794,7 +793,7 @@ export default function ViewDemand() {
                             </div>
 
 
-                            
+
                             <div className="proposalsAgenda">
                                 <p>{t("proposals")}</p>
                                 {

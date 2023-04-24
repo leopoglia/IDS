@@ -63,7 +63,7 @@ export default function ButtonsActions(props: any) {
                     </button>
 
 
-                    <ButtonActionAnalyst />
+                    <ButtonActionAnalyst codeDemand={props.demand.demandCode} />
                 </>
 
             ) : /* Botões superiores 4 - Complementar*/ (props.actionsDemand === 4) ? (
@@ -74,7 +74,7 @@ export default function ButtonsActions(props: any) {
                         </button>
                     </Link>
 
-                    <ButtonActionAnalyst />
+                    <ButtonActionAnalyst codeDemand={props.demand.demandCode} />
                 </>
             ) : /* Botões superiores 5 - Gerar Proposta */ (props.actionsDemand === 5) ? (
                 <>

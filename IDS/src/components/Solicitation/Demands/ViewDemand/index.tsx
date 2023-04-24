@@ -262,6 +262,8 @@ export default function ViewDemand() {
             setComission(response[0].commission)
             setAgenda(response[0]);
 
+            console.log(response[0])
+
 
             for (let i = 0; i < response[0].proposals.length; i++) {
                 proposals.push(response[0].proposals[i])
@@ -790,11 +792,11 @@ export default function ViewDemand() {
                             </div>
 
 
-                            <div className={"proposals-view " + complementOpen} >
+                            <div className={"proposals-view " + benefitQualitativeOpen} >
                                 <div className="display-flex-space-between">
                                     <p className="title">{t("proposals")}</p>
 
-                                    <span onClick={() => setComplementOpen(!complementOpen)} className="material-symbols-outlined arrow-expend">
+                                    <span onClick={() => setBenefitQualitativeOpen(!benefitQualitativeOpen)} className="material-symbols-outlined arrow-expend">
                                         expand_more
                                     </span>
                                 </div>
@@ -839,6 +841,41 @@ export default function ViewDemand() {
                                             </tr>
 
                                         ))}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div className={"complement " + complementOpen} >
+                                <div className="display-flex-space-between">
+                                    <p className="title">{t("minutes")}</p>
+
+                                    <span onClick={() => setComplementOpen(!complementOpen)} className="material-symbols-outlined arrow-expend">
+                                        expand_more
+                                    </span>
+                                </div>
+
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td className="display-flex-start pl20">
+                                                Ata publicada
+                                            </td>
+
+                                            <td className="display-flex-start pl20">
+                                                Ata publicada
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td className="display-flex-start pl20">
+                                                Ata não publicada
+                                            </td>
+
+                                            <td className="display-flex-start pl20">
+                                                Ata não publicada
+                                            </td>
+                                        </tr>
+
                                     </tbody>
                                 </table>
                             </div>

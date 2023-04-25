@@ -83,6 +83,8 @@ export default function ViewDemand() {
 
     const [agenda, setAgenda]: any = useState([{
         agendaCode: "", agendaDate: "", agendaDescription: "", agendaStatus: "",
+        minutePublished: { minuteCode: "", minuteDate: "", minuteDescription: "", minuteStatus: "" },
+        minuteNotPublished: { minuteCode: "", minuteDate: "", minuteDescription: "", minuteStatus: "" },
         proposal: {
             proposalCode: "", proposalName: "", proposalDescription: "",
             proposalStatus: "", proposalDate: "",
@@ -262,9 +264,6 @@ export default function ViewDemand() {
         ServicesAgenda.findById(demandCode).then((response: any) => {
             let proposals: any = [];
             setComission(response[0].commission)
-            setAgenda(response[0]);
-
-            console.log(response[0])
 
 
             for (let i = 0; i < response[0].proposals.length; i++) {
@@ -274,10 +273,15 @@ export default function ViewDemand() {
 
             console.log("PROPOSTAS ESPECIFICAS ===> ", response)
 
-            ServicesMinute.findByAgenda(response[0].agendaCode).then((response: any) => {
-                console.log("AGENDA MINUTE---> ", response)
+            ServicesMinute.findByAgenda(response[0].agendaCode).then((minute: any) => {
+                response[0].minutePublished = minute[1];
+                response[0].minuteNotPublished = minute[0];
+
+                setAgenda(response[0])
+
             })
-                
+
+            console.log("AGENDA ===> ", response[0])
 
         })
     }
@@ -858,36 +862,46 @@ export default function ViewDemand() {
                                 </table>
                             </div>
 
-                            {pendingMinute <proposalSpecific.length ? (
+                            {agenda?.minutePublished ? (
 
-                                <div className={"complement " + complementOpen} >
+                                <div className={"complement " + situationCorrentOpen} >
                                     <div className="display-flex-space-between">
                                         <p className="title">{t("minutes")}</p>
 
-                                        <span onClick={() => setComplementOpen(!complementOpen)} className="material-symbols-outlined arrow-expend">
+                                        <span onClick={() => setSituationCorrentOpen(!situationCorrentOpen)} className="material-symbols-outlined arrow-expend">
                                             expand_more
                                         </span>
                                     </div>
 
                                     <table>
                                         <tbody>
-                                            <tr>
-                                                <td className="display-flex-start pl20">
-                                                    Ata publicada
+                                            <tr className="h50px">
+                                                <td className="display-flex-space-between pl20">
+                                                    {agenda.minutePublished.minuteName}
+
+                                                    <Link to={"/minute/view/" + agenda.minutePublished.minuteCode}>
+                                                        <div className="btn-secondary btn-unique">
+                                                            <span className="material-symbols-outlined">
+                                                                open_in_new
+                                                            </span>
+                                                        </div>
+                                                    </Link>
                                                 </td>
 
-                                                <td className="display-flex-start pl20">
-                                                    Ata publicada
-                                                </td>
+
                                             </tr>
 
-                                            <tr>
-                                                <td className="display-flex-start pl20">
-                                                    Ata não publicada
-                                                </td>
+                                            <tr className="h50px">
+                                                <td className="display-flex-space-between pl20">
+                                                    {agenda.minuteNotPublished.minuteName}
 
-                                                <td className="display-flex-start pl20">
-                                                    Ata não publicada
+                                                    <Link to={"/minute/view/" + agenda.minuteNotPublished.minuteCode}>
+                                                        <div className="btn-secondary btn-unique">
+                                                            <span className="material-symbols-outlined">
+                                                                open_in_new
+                                                            </span>
+                                                        </div>
+                                                    </Link>
                                                 </td>
                                             </tr>
 
@@ -895,7 +909,7 @@ export default function ViewDemand() {
                                     </table>
                                 </div>
 
-                            ) : (null) 
+                            ) : (null)
                             }
 
                         </div>

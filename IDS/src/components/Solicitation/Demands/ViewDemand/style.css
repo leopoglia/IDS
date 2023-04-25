@@ -158,13 +158,18 @@
     width: 300px;
 }
 
-.view-demand .proposals-view .btn-unique{
+.view-demand .btn-unique{
     width: 45px !important;
 }
 
-.view-demand .proposals-view .h50px{
+.view-demand .complement .btn-unique{
+    margin-right: 7px !important;
+}
+
+.view-demand .h50px{
     height: 60px !important; 
 }
+
 
 .view-demand .w20px{
     width: 90px !important;

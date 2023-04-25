@@ -57,7 +57,7 @@ const Services = {
                 .catch(resolve)
         })
     },
-    findByAgenda: function (agenda: Number) {
+    findByAgenda: function (agenda: any) {
         return new Promise((resolve, reject) => {
             fetch(url + "/agenda/" + agenda, {
                 method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'

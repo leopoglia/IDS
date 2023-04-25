@@ -32,7 +32,7 @@
     margin-left: 6px
 }
 
-.content-demand section .display-grid{
+.content-demand section .display-grid {
     position: absolute;
     right: 15px;
 }
@@ -124,9 +124,25 @@
     margin: 0;
 }
 
-.btn-unique{
+.btn-unique {
     min-width: 40px !important;
     width: 40px !important;
+}
+
+.demand .name-code {
+    width: 100%;
+    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.demand .name-code h1 {
+    width: 80%;
+    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .demand .infos,
@@ -238,7 +254,7 @@
     margin: 10px;
 }
 
-.openProposal{
+.openProposal {
     display: flex;
     align-items: center;
     justify-content: center;

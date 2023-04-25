@@ -118,6 +118,7 @@ select {
   outline: none !important;
   background-color: var(--white);
   font-size: var(--p) !important;
+  color: var(--grey3d);
 }
 
 textarea {

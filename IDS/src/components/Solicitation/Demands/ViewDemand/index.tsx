@@ -174,11 +174,13 @@ export default function ViewDemand() {
                 setClassification(response?.classification)
             }
 
+            console.log("teste ===> ", response?.demandStatus)
+
             if (response?.demandStatus === "Backlog") {
                 setStepDemand(0);
-            } else if (response?.demandStatus === "BacklogRanked" || response?.demandStatus === "BacklogRankApproved" || response?.demandStatus === "Assesment") {
+            } else if (response?.demandStatus === "BacklogRanked" || response?.demandStatus === "BacklogRankApproved") {
                 setStepDemand(1);
-            } else if (response?.demandStatus === "BacklogComplement") {
+            } else if (response?.demandStatus === "BacklogComplement" || response?.demandStatus === "Assesment") {
                 setStepDemand(2);
             }
         })
@@ -806,18 +808,22 @@ export default function ViewDemand() {
                                         {proposalSpecific.map((val: any, index: any) => (
                                             <tr key={index} className="h50px">
                                                 <td className="display-flex-start pl20">
-                                                    {val.proposalName}
-
                                                     <div className="code">
                                                         {val.proposalCode}
                                                     </div>
+
+                                                    <span>
+                                                        {val.proposalName}
+                                                    </span>
+
+
                                                 </td>
 
                                                 <td className="w20">
 
                                                     <div className="proposal-view-buttons">
                                                         {val.proposalStatus === "Pending" ? (
-                                                            <Link to={"/proposal/comission-opinion/" + val.proposalCode}>
+                                                            <Link to={"/proposal/comission-opinion/" + val.proposalCode + "?" + agenda.agendaCode}>
                                                                 <button className="btn-primary">{t("insertCommissionOpinion")}</button>
                                                             </Link>
                                                         ) : (
@@ -845,40 +851,45 @@ export default function ViewDemand() {
                                 </table>
                             </div>
 
-                            <div className={"complement " + complementOpen} >
-                                <div className="display-flex-space-between">
-                                    <p className="title">{t("minutes")}</p>
+                            {/* {pendingMinute <proposalSpecific.length ? (
 
-                                    <span onClick={() => setComplementOpen(!complementOpen)} className="material-symbols-outlined arrow-expend">
-                                        expand_more
-                                    </span>
+                                <div className={"complement " + complementOpen} >
+                                    <div className="display-flex-space-between">
+                                        <p className="title">{t("minutes")}</p>
+
+                                        <span onClick={() => setComplementOpen(!complementOpen)} className="material-symbols-outlined arrow-expend">
+                                            expand_more
+                                        </span>
+                                    </div>
+
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td className="display-flex-start pl20">
+                                                    Ata publicada
+                                                </td>
+
+                                                <td className="display-flex-start pl20">
+                                                    Ata publicada
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td className="display-flex-start pl20">
+                                                    Ata não publicada
+                                                </td>
+
+                                                <td className="display-flex-start pl20">
+                                                    Ata não publicada
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
                                 </div>
 
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td className="display-flex-start pl20">
-                                                Ata publicada
-                                            </td>
-
-                                            <td className="display-flex-start pl20">
-                                                Ata publicada
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td className="display-flex-start pl20">
-                                                Ata não publicada
-                                            </td>
-
-                                            <td className="display-flex-start pl20">
-                                                Ata não publicada
-                                            </td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-                            </div>
+                            ) : (null) 
+                            }*/}
 
                         </div>
 

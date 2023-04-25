@@ -155,7 +155,7 @@
 }
 
 .view-demand .w20{
-    width: 30%;
+    width: 300px;
 }
 
 .view-demand .proposals-view .btn-unique{
@@ -168,6 +168,18 @@
 
 .view-demand .w20px{
     width: 90px !important;
+}
+
+.view-demand .proposals-view .h50px td span{ 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.view-demand .proposals-view .h50px .code{
+    margin-left: 0px !important;
+    margin-right: 15px !important;
+    min-width: 100px;
 }
 
 

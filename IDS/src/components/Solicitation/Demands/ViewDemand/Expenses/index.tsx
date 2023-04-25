@@ -1,11 +1,39 @@
 import { Tooltip } from "@mui/material";
 import { t } from "i18next"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 export default function Expenses(props: any) {
 
     const [open, setOpen] = useState(false);
+
+    const [totalAmountOfHours, setTotalAmountOfHours] = useState(0);
+    const [totalHourValue, setTotalHourValue] = useState(0);
+    const [totalValue, setTotalValue] = useState(0);
+
+
+    useEffect(() => {
+
+        setTotalAmountOfHours(0);
+        setTotalHourValue(0);
+        setTotalValue(0);
+
+        console.log("EXPENSE --> ", props.proposalExpense);
+
+        for(let i = 0; i < props.proposalExpense.length; i++){
+
+            console.log(props.proposalExpense[i].expenseType, " === ", props.type, " ?");
+
+            if(props.proposalExpense[i].expenseType === props.type){
+
+                setTotalAmountOfHours(totalAmountOfHours + parseInt(props.proposalExpense[i].amountOfHours));
+                setTotalHourValue(totalHourValue + parseInt(props.proposalExpense[i].hourValue));
+                setTotalValue(totalValue + parseInt(props.proposalExpense[i].totalValue));
+            }
+        }
+
+    }, [props.proposalExpense])
+
 
     return (
         <div>
@@ -41,7 +69,8 @@ export default function Expenses(props: any) {
                         </tr>
 
                         {props.proposalExpense.map((proposalExpense: any, index: any) => {
-                            if (proposalExpense.expenseType === props.type)
+                            if (proposalExpense.expenseType === props.type) {
+
                                 return (
                                     <tr>
                                         <Tooltip title={proposalExpense.expenseProfile} arrow>
@@ -65,8 +94,22 @@ export default function Expenses(props: any) {
                                         </Tooltip>
                                     </tr>
                                 )
+                            }
                         })
                         }
+
+                        {/* <tr>
+                            <td>Total:</td>
+
+                            <td>{totalAmountOfHours}</td>
+
+                            <td>{totalHourValue}</td>
+
+                            <td>{totalValue}</td>
+
+                            <td></td>
+
+                        </tr> */}
                     </tbody>
                 </table>
             </div>

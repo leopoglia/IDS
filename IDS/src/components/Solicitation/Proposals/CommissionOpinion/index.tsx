@@ -10,11 +10,16 @@ import { useEffect, useState } from "react";
 export default function CommissionOpinion() {
 
     const proposalCode = parseInt(window.location.href.split("/")[5]);
+    const agendaCode = parseInt(window.location.href.split("?")[1]);
+
+    
     const [commissionOpinion, setCommissionOpinion] = useState("");
     const [proposalStatus, setProposalStatus] = useState("");
-    const agendaCode = localStorage.getItem("agendaCode");
 
     const { t } = useTranslation();
+
+    console.log(parseInt(window.location.href.split("?")[1]))
+
 
     function addOpinion(){
         ProposalService.addOpinion(proposalCode, proposalStatus, commissionOpinion);

@@ -112,6 +112,7 @@ export default function Router() {
 
                     <Route path="/minutes/:id" element={<Demands />} />
                     <Route path="/minutes/create/:id" element={<CreateMinute />} />
+                    <Route path="/minute/view/:id" element={<ViewDemand />} />
 
                     <Route path="*" element={<Error />} />
                 </Routes>

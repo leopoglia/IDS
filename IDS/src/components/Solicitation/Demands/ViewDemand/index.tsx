@@ -91,7 +91,10 @@ export default function ViewDemand() {
             demand: { demandCode: "", demandDescription: "", demandObjective: "" }
         }
     }]);
-    let [minute, setMinute]: any = useState([]);
+
+    const [minute, setMinute]: any = useState([{
+        minuteCode: "", minuteDate: "", minuteDescription: "", minuteStatus: "", minuteName: ""
+    }]);
 
     // Chama função ao entrar na página
     useEffect(() => {
@@ -109,6 +112,10 @@ export default function ViewDemand() {
             localStorage.removeItem('classification')
         } else if (url === "agenda") {
             getProposalSpecific();
+        } else if (url === "minute") {
+
+            console.log("GET MINUTE")
+            getMinute();
         }
 
         // Verificações para notificações
@@ -281,19 +288,14 @@ export default function ViewDemand() {
 
             })
 
-            console.log("AGENDA ===> ", response[0])
-
         })
     }
 
-    // Função para criar tabela (tr)
-    const tr = (dataOne: any, dataTwo: any, index: any) => {
-        return (
-            <tr key={index}>
-                <td className="w40">{t(dataOne)}</td>
-                <td>{t(dataTwo)}</td>
-            </tr>
-        )
+    // Buscar ata
+    function getMinute() {
+        ServicesMinute.findById(demandCode).then((response: any) => {
+            setMinute(response)
+        })
     }
 
     // Aprovar demanda (Gerente de Negócios)
@@ -942,6 +944,14 @@ export default function ViewDemand() {
                         </div>
 
                         <div className="box">
+
+                            {minute ? (
+
+                                <div className="display-solicitation-demand">
+                                    <p className="title">{minute.minuteName}</p>
+                                </div>
+                            ) : (null)
+                            }
 
                         </div>
 

@@ -272,6 +272,13 @@ export default function ViewDemand() {
             }
             setProposalSpecific(proposals)
 
+            console.log("PROPOSTAS ESPECIFICAS ===> ", response)
+
+            ServicesMinute.findByAgenda(response[0].agendaCode).then((response: any) => {
+                console.log("AGENDA MINUTE---> ", response)
+            })
+                
+
         })
     }
 
@@ -851,7 +858,7 @@ export default function ViewDemand() {
                                 </table>
                             </div>
 
-                            {/* {pendingMinute <proposalSpecific.length ? (
+                            {pendingMinute <proposalSpecific.length ? (
 
                                 <div className={"complement " + complementOpen} >
                                     <div className="display-flex-space-between">
@@ -889,7 +896,7 @@ export default function ViewDemand() {
                                 </div>
 
                             ) : (null) 
-                            }*/}
+                            }
 
                         </div>
 
@@ -907,7 +914,28 @@ export default function ViewDemand() {
                         < Footer />
                     </div>
                 </div>
-            ) : (null)
+            ) : url === "minute" ? (
+                <div>
+                    <Header />
+                    <Nav />
+
+                    <div className="container">
+
+                        <div className="background-title">
+
+                            <Title nav={t("minute")} title="viewMinute" />
+
+                        </div>
+
+                        <div className="box">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            ) : null
             }
 
             {url !== "agenda" ? (<Footer />) : null}

@@ -94,61 +94,61 @@ export default function Demand(props: any) {
     }
 
 
-    if (props.type === "minute") {
-        if (props.listDirection === false) {
-            return (
-                <div className="demand">
-                    <div className="content-demand">
-                        <section>
-                            <div className="name-code">
-                                <h1>{props.name}</h1>
-                            </div>
+    // if (props.type === "minute") {
+    //     if (props.listDirection === false) {
+    //         return (
+    //             <div className="demand">
+    //                 <div className="content-demand">
+    //                     <section>
+    //                         <div className="name-code">
+    //                             <h1>{props.name}</h1>
+    //                         </div>
 
 
-                            <div className="display-grid">
+    //                         <div className="display-grid">
 
-                                {situation()}
-                            </div>
+    //                             {situation()}
+    //                         </div>
 
-                        </section>
-
-
-                        <div className="display-flex">
-
-                            {information()}
-
-                            {btnGenerateProposal()}
-                        </div>
-
-                    </div>
-                </div>
-            )
-        } else {
-            return (
-                <div className="demand-list">
-                    <section>
-                        <div className="name-code">
-                            <h1>{props.name}</h1>
-                        </div>
+    //                     </section>
 
 
-                        <div className="display-grid">
+    //                     <div className="display-flex">
 
-                            {situation()}
-                        </div>
+    //                         {information()}
 
-                    </section>
+    //                         {btnGenerateProposal()}
+    //                     </div>
+
+    //                 </div>
+    //             </div>
+    //         )
+    //     } else {
+    //         return (
+    //             <div className="demand-list">
+    //                 <section>
+    //                     <div className="name-code">
+    //                         <h1>{props.name}</h1>
+    //                     </div>
 
 
-                    <div className="display-flex">
+    //                     <div className="display-grid">
 
-                        {information()}
+    //                         {situation()}
+    //                     </div>
 
-                    </div>
-                </div>
-            )
-        }
-    }
+    //                 </section>
+
+
+    //                 <div className="display-flex">
+
+    //                     {information()}
+
+    //                 </div>
+    //             </div>
+    //         )
+    //     }
+    // }
 
 
     if (props.listDirection === false) {

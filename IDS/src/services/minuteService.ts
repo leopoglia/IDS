@@ -57,6 +57,15 @@ const Services = {
                 .catch(resolve)
         })
     },
+    findByAgenda: function (agenda: Number) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/agenda/" + agenda, {
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(resolve)
+        })
+    },
     delete: function (id: number) {
         return new Promise((resolve, reject) => {
             fetch(url + "/" + id, {

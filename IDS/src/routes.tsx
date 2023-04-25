@@ -29,6 +29,7 @@ import Error from "./components/Others/Error";
 import UserContext from "./context/userContext";
 import { useState, useEffect } from "react";
 import ServicesWorker from "./services/workerService";
+import { WebSocketService } from "./services/webSocketService";
 
 
 export default function Router() {
@@ -65,59 +66,62 @@ export default function Router() {
     }, [worker.id]);
 
     return (
-        <UserContext.Provider
-            value={{
-                worker: worker,
-                setWorker
-            }}>
+        <>
+            <WebSocketService>
+                <UserContext.Provider
+                    value={{
+                        worker: worker,
+                        setWorker
+                    }}>
 
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<Form />} />
+                    <BrowserRouter>
+                        <Routes>
+                            <Route path="/" element={<Form />} />
 
-                    <Route path="/forget-password" element={<ForgetPassword />} />
+                            <Route path="/forget-password" element={<ForgetPassword />} />
 
-                    <Route path="/messages" element={<Messages />} />
-                    <Route path="/messages/message" element={<Message />} />
-                    <Route path="/notifications" element={<Notifications />} />
-                    <Route path="/configuration" element={<Configuration />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
+                            <Route path="/messages" element={<Messages />} />
+                            <Route path="/messages/message" element={<Message />} />
+                            <Route path="/notifications" element={<Notifications />} />
+                            <Route path="/configuration" element={<Configuration />} />
+                            <Route path="/dashboard" element={<Dashboard />} />
 
-                    <Route path="/demands/:page" element={<Demands />} />
-                    <Route path="/demand/create/1" element={<CreateDemands1 />} />
-                    <Route path="/demand/create/2" element={<CreateDemands2 />} />
-                    <Route path="/demand/create/3" element={<CreateDemands3 />} />
-                    <Route path="/demand/view/:id" element={<ViewDemand />} />
-                    <Route path="/demand/rank/:id" element={<RankDemand />} />
-                    <Route path="/demand/disapprove/:id" element={<DisapproveDemand />} />
-                    <Route path="/demand/complement/:id" element={<ComplementDemand />} />
-                    <Route path="/demand/historical/:id" element={<HistoricalDemand />} />
-                    <Route path="/demand/edit/:id" element={<EditDemand />} />
+                            <Route path="/demands/:page" element={<Demands />} />
+                            <Route path="/demand/create/1" element={<CreateDemands1 />} />
+                            <Route path="/demand/create/2" element={<CreateDemands2 />} />
+                            <Route path="/demand/create/3" element={<CreateDemands3 />} />
+                            <Route path="/demand/view/:id" element={<ViewDemand />} />
+                            <Route path="/demand/rank/:id" element={<RankDemand />} />
+                            <Route path="/demand/disapprove/:id" element={<DisapproveDemand />} />
+                            <Route path="/demand/complement/:id" element={<ComplementDemand />} />
+                            <Route path="/demand/historical/:id" element={<HistoricalDemand />} />
+                            <Route path="/demand/edit/:id" element={<EditDemand />} />
 
-                    <Route path="/proposals/:id" element={<Demands />} />
-                    <Route path="/proposal/view/:id" element={<ViewDemand />} />
-                    <Route path="/proposal/execution-costs/:id" element={<ExecutionCosts />} />
-                    <Route path="proposal/execution-costs/add-expense/:id" element={<AddExpense />} />
-                    <Route path="/proposal/demand/:id" element={<EditDemand />} />
-                    <Route path="/proposal/edit-scope/:id" element={<EditProposalScope />} />
-                    <Route path="/proposal/comission-opinion/:id" element={<CommissionOpinion />} />
-                    <Route path="/proposal/informations/:id" element={<ProposedInformation />} />
-                    <Route path="/proposal/edit/:id" element={<EditDemand />} />
+                            <Route path="/proposals/:id" element={<Demands />} />
+                            <Route path="/proposal/view/:id" element={<ViewDemand />} />
+                            <Route path="/proposal/execution-costs/:id" element={<ExecutionCosts />} />
+                            <Route path="proposal/execution-costs/add-expense/:id" element={<AddExpense />} />
+                            <Route path="/proposal/demand/:id" element={<EditDemand />} />
+                            <Route path="/proposal/edit-scope/:id" element={<EditProposalScope />} />
+                            <Route path="/proposal/comission-opinion/:id" element={<CommissionOpinion />} />
+                            <Route path="/proposal/informations/:id" element={<ProposedInformation />} />
+                            <Route path="/proposal/edit/:id" element={<EditDemand />} />
 
 
-                    <Route path="/agendas/:id" element={<Demands />} />
-                    <Route path="/agenda/create" element={<CreateAgenda />} />
-                    <Route path="/agenda/view/:id" element={<ViewDemand />} />
-                    <Route path="/agenda/select-proposals" element={<SelectProposal />} />
+                            <Route path="/agendas/:id" element={<Demands />} />
+                            <Route path="/agenda/create" element={<CreateAgenda />} />
+                            <Route path="/agenda/view/:id" element={<ViewDemand />} />
+                            <Route path="/agenda/select-proposals" element={<SelectProposal />} />
 
-                    <Route path="/minutes/:id" element={<Demands />} />
-                    <Route path="/minutes/create/:id" element={<CreateMinute />} />
-                    <Route path="/minute/view/:id" element={<ViewDemand />} />
+                            <Route path="/minutes/:id" element={<Demands />} />
+                            <Route path="/minutes/create/:id" element={<CreateMinute />} />
+                            <Route path="/minute/view/:id" element={<ViewDemand />} />
 
-                    <Route path="*" element={<Error />} />
-                </Routes>
-            </BrowserRouter >
-        </UserContext.Provider>
-
+                            <Route path="*" element={<Error />} />
+                        </Routes>
+                    </BrowserRouter >
+                </UserContext.Provider>
+            </WebSocketService>
+        </>
     )
 }

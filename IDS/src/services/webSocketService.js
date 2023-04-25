@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, createContext } from "react"
 import SockJS from 'sockjs-client';
 import * as Stomp from "stompjs"
 
-export const WebSocketService = () => {
+export const WebSocketContext = createContext(null);
+
+export const WebSocketService = ({ children }) => {
     const [stompClient, setStompClient] = useState(null);
 
     useEffect(() => {
@@ -41,4 +43,11 @@ export const WebSocketService = () => {
         }
     }
 
+    return (
+        <WebSocketContext.Provider value={
+            { stompClient, disconnect, send }
+        }>
+            {children}
+        </WebSocketContext.Provider>
+    )
 }

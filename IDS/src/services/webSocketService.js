@@ -9,7 +9,7 @@ export const WebSocketService = ({ children }) => {
 
     useEffect(() => {
         const connect = () => {
-            const socket = new SockJS('http://localhost:8443/websocket');
+            const socket = new SockJS('http://localhost:8443/api/ws');
             const stomp = Stomp.over(socket);
 
             stomp.connect({}, () => {
@@ -38,6 +38,14 @@ export const WebSocketService = ({ children }) => {
     const send = (destiny, message) => {
         if (stompClient) {
             stompClient.send(destiny, {}, JSON.stringify(message));
+        } else {
+            console.log("Connection not established");
+        }
+    }
+
+    const subscribe = (destiny, callback) => {
+        if (stompClient) {
+            stompClient.subscribe(destiny, callback);
         } else {
             console.log("Connection not established");
         }

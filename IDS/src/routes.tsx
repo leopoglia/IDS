@@ -81,7 +81,7 @@ export default function Router() {
                             <Route path="/forget-password" element={<ForgetPassword />} />
 
                             <Route path="/messages" element={<Messages />} />
-                            <Route path="/messages/message" element={<Message />} />
+                            <Route path="/messages/message/:id" element={<Message />} />
                             <Route path="/notifications" element={<Notifications />} />
                             <Route path="/configuration" element={<Configuration />} />
                             <Route path="/dashboard" element={<Dashboard />} />

@@ -240,8 +240,9 @@
 
 
 @media(max-width: 768px) {
-    .messages .box-message .message-user {
-        max-width: 100%;
+    .messages .box-message .message-user,
+    .messages .box-message .message-two {
+        max-width: 100% !important;
     }
 
     .Emoji {

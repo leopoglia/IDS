@@ -19,6 +19,8 @@ const ChatRoom = () => {
     const demandCode = useParams().id;
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
+    const [newMessages, setNewMessages] = useState([]);
+
     const { send, subscribe, stompClient } = useContext(WebSocketContext);
     const { worker } = useContext(UserContext);
     const divRef = useRef(null);
@@ -28,39 +30,40 @@ const ChatRoom = () => {
 
         const newMessage = (response) => {
             const messageReceived = JSON.parse(response.body);
-            console.log(messageReceived);
-            setMessages([...messages, messageReceived]);
+            setNewMessages([...newMessages, messageReceived]);
         }
+
 
         if (stompClient) {
             subscribe("/" + demandCode + "/chat", newMessage);
         }
-    }, [messages]);
+
+
+    }, [newMessages, stompClient]);
 
     useEffect(() => {
 
         async function loading() {
             await ServicesMessage.findById(demandCode)
                 .then((response) => {
-                    console.log(response);
                     setMessages(response);
+
                 }).catch((error) => {
                     console.log(error);
                 })
             setDefaultMessage();
         }
         loading();
-    }, []);
+    }, [demandCode]);
 
     const setDefaultMessage = () => {
 
         setMessage({
             demand: { demandCode: demandCode },
             sender: { workerCode: worker.id || parseInt(localStorage.getItem("id")) },
-            message: null,
+            message: "",
             dateMessage: null,
         })
-        console.log("MENSAGEM --> ", message)
     }
 
     const reloadMessage = (event) => {
@@ -73,14 +76,12 @@ const ChatRoom = () => {
         event.preventDefault();
         send("/api/demand/" + demandCode, message);
         setDefaultMessage();
-        setMessage({ ...message, message: "" });
     }
 
 
 
-    function onClick(emojiData, event) {
+    function onClick(emojiData) {
         setSelectedEmoji(emojiData.unified);
-        console.log(emojiData);
 
         setMessage({ ...message, message: message.message + emojiData.emoji });
     }
@@ -120,10 +121,12 @@ const ChatRoom = () => {
                         <div className="chat-content">
                             <ul className="chat-messages" ref={divRef}>
 
+
                                 {
-                                    Object.values(messages).map((message) => (
+                                    messages.concat(newMessages).map((message) => (
+
                                         <li key={message.id} className={
-                                            message.sender.workerCode === worker.id || message.sender.workerCode === parseInt(localStorage.getItem("id")) ? "message-two" : null}>
+                                            message?.sender?.workerCode === worker.id || message?.sender?.workerCode === parseInt(localStorage.getItem("id")) ? "message-two" : null}>
 
                                             <div className='message-user'>
 
@@ -136,6 +139,7 @@ const ChatRoom = () => {
                                             </div>
 
                                         </li>
+
                                     ))
                                 }
 
@@ -153,7 +157,7 @@ const ChatRoom = () => {
                                                 type="text"
                                                 placeholder={t("sendYourMessage")}
                                                 onChange={reloadMessage}
-                                                value={message.message}
+                                                value={message?.message}
                                             />
 
 

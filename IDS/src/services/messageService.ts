@@ -1,4 +1,4 @@
-const url = "http://localhost:8443/message"
+const url = "http://localhost:8443/api/message"
 
 const Services = {
     save: function (message: String, dateMessage: any, messageTime: String, chat: Number, worker: Number) {

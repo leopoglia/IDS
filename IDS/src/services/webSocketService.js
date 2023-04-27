@@ -14,14 +14,14 @@ export const WebSocketService = ({ children }) => {
 
             stomp.connect({}, () => {
                 setStompClient(stomp);
-            }), (error) => {
+            }, (error) => {
                 console.log("Connection error: ", error)
 
                 setTimeout(() => {
                     console.log("Trying to reconnect...")
                     connect();
                 }, 5000);
-            }
+            })
         }
 
         connect();
@@ -44,16 +44,12 @@ export const WebSocketService = ({ children }) => {
     }
 
     const subscribe = (destiny, callback) => {
-        if (stompClient) {
-            stompClient.subscribe(destiny, callback);
-        } else {
-            console.log("Connection not established");
-        }
+        stompClient.subscribe(destiny, callback);
     }
 
     return (
         <WebSocketContext.Provider value={
-            { stompClient, disconnect, send }
+            { stompClient, subscribe, disconnect, send }
         }>
             {children}
         </WebSocketContext.Provider>

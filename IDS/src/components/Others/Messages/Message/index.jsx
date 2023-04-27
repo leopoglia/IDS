@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState, useRef } from 'react'
 import EmojiPicker from "emoji-picker-react";
 import { useTranslation } from "react-i18next";
 import "./style.css"
@@ -12,34 +12,33 @@ import UserContext from '../../../../context/userContext';
 
 const ChatRoom = () => {
 
-    const handleMessage = (event) => {
-        const { value } = event.target;
-    }
-
     const { t } = useTranslation();
     const [emoji, setEmoji] = useState(false);
     const [selectedEmoji, setSelectedEmoji] = useState("");
 
-    const demandCode =  useParams().id;
+    const demandCode = useParams().id;
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
-    const { send } = useContext(WebSocketContext);
-    const { subscribe } = useContext(WebSocketContext);
+    const { send, subscribe, stompClient } = useContext(WebSocketContext);
     const { worker } = useContext(UserContext);
+    const divRef = useRef(null);
 
     useEffect(() => {
+        divRef.current.scrollTop = divRef.current.scrollHeight;
+
         const newMessage = (response) => {
             const messageReceived = JSON.parse(response.body);
             console.log(messageReceived);
             setMessages([...messages, messageReceived]);
         }
 
-        if(demandCode){
-            subscribe(demandCode + "/chat", newMessage);
+        if (stompClient) {
+            subscribe("/" + demandCode + "/chat", newMessage);
         }
     }, [messages]);
 
     useEffect(() => {
+
         async function loading() {
             await ServicesMessage.findById(demandCode)
                 .then((response) => {
@@ -54,32 +53,36 @@ const ChatRoom = () => {
     }, []);
 
     const setDefaultMessage = () => {
-        
-        setMensagem({
+
+        setMessage({
             demand: { demandCode: demandCode },
-            remetente: { workerCode: worker.id },
-            mensagem: null
+            sender: { workerCode: worker.id || parseInt(localStorage.getItem("id")) },
+            message: null,
+            dateMessage: null,
         })
-        console.log(message)
+        console.log("MENSAGEM --> ", message)
     }
 
-    const realoadMessage = (event) => {
+    const reloadMessage = (event) => {
         event.preventDefault();
         const { value } = event.target;
-        setMensagem({...message, mensagem: value});
+        setMessage({ ...message, message: value, dateMessage: new Date().toLocaleString() });
     }
 
     const submit = (event) => {
         event.preventDefault();
-        send("api/" + demandCode, message);
+        send("/api/demand/" + demandCode, message);
+        setDefaultMessage();
+        setMessage({ ...message, message: "" });
     }
 
-   
+
 
     function onClick(emojiData, event) {
         setSelectedEmoji(emojiData.unified);
         console.log(emojiData);
-        setMessage((previousMessage) => previousMessage + emojiData.emoji);
+
+        setMessage({ ...message, message: message.message + emojiData.emoji });
     }
 
 
@@ -112,61 +115,79 @@ const ChatRoom = () => {
 
                     <div className="chat-box">
 
+
+
                         <div className="chat-content">
-                            <ul className="chat-messages">
+                            <ul className="chat-messages" ref={divRef}>
 
-                                <li className={`message-user`}>
-                                        <div className="message-data"><span></span></div>
+                                {
+                                    Object.values(messages).map((message) => (
+                                        <li key={message.id} className={
+                                            message.sender.workerCode === worker.id || message.sender.workerCode === parseInt(localStorage.getItem("id")) ? "message-two" : null}>
 
-                                        {/* <div className='message-time'>{time}</div> */}
-                                </li>
-                                
+                                            <div className='message-user'>
+
+                                                <span>{message?.message}</span>
+
+                                                <div className="message-data">
+                                                    <span>{message?.dateMessage.split(",")[1]}</span>
+                                                </div>
+
+                                            </div>
+
+                                        </li>
+                                    ))
+                                }
+
                             </ul>
 
                             <div className="send-message">
 
 
+                                <form onSubmit={submit}>
 
-                                <div className="display-flex">
-                                    <div className="input-message">
-                                        <input type="text" placeholder={t("sendYourMessage")}
-                                            onInput={(e) =>
-                                                setMessage(e.target.value)}
-                                            value={message} onChange={handleMessage}
-                                        />
+                                    <div className="display-flex">
+
+                                        <div className="input-message">
+                                            <input
+                                                type="text"
+                                                placeholder={t("sendYourMessage")}
+                                                onChange={reloadMessage}
+                                                value={message.message}
+                                            />
 
 
-                                        <div className="actions-message">
+                                            <div className="actions-message">
+
+                                                <div className="attach_file">
+                                                    <span className="material-symbols-outlined">
+                                                        attach_file
+                                                    </span>
+                                                </div>
 
 
-                                            <div className="add-reaction" onClick={() => setEmoji(!emoji)}>
-                                                <span className="material-symbols-outlined">
-                                                    add_reaction
-                                                </span>
+                                                <div className="add-reaction" onClick={() => setEmoji(!emoji)}>
+                                                    <span className="material-symbols-outlined">
+                                                        add_reaction
+                                                    </span>
+                                                </div>
+
                                             </div>
-
-                                            <div className="attach_file">
-                                                <span className="material-symbols-outlined">
-                                                    attach_file
-                                                </span>
-                                            </div>
-
                                         </div>
+
+
+
+                                        <button type="submit" className="send send-ubtton">
+                                            <span className="material-symbols-outlined">
+                                                send
+                                            </span>
+                                        </button>
                                     </div>
-
-
-
-                                    <button type="button" className="send send-ubtton">
-                                        <span className="material-symbols-outlined">
-                                            send
-                                        </span>
-                                    </button>
-                                </div>
-
+                                </form>
                             </div>
                         </div>
 
-                    </div>  
+                    </div>
                     <div className="text-field">
 
                         {emoji ? (
@@ -177,13 +198,13 @@ const ChatRoom = () => {
                                     autoFocusSearch={false} />
                             </div>
                         ) : null
-                    }
+                        }
 
                     </div>
                 </div>
             </div>
         </div>
-        )
+    )
 }
 
 export default ChatRoom;

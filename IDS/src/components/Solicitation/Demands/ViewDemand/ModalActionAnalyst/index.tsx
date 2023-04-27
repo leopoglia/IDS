@@ -14,7 +14,7 @@ export default function InsetList(props: any) {
         <div className="inset-list">
             <div className="modal">
 
-                <Link to="/messages/message">
+                <Link to={"/messages/message/" + props.codeDemand} >
                     <div className="li li-settings">
                         <span className="material-symbols-outlined">
                             chat

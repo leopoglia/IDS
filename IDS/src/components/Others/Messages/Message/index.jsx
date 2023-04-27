@@ -8,6 +8,7 @@ import Title from "../../../Fixed/Search/Title";
 import { useParams } from 'react-router';
 import { WebSocketContext } from '../../../../services/webSocketService';
 import ServicesMessage from '../../../../services/messageService'
+import ServicesDemand from '../../../../services/demandService';
 import UserContext from '../../../../context/userContext';
 
 const ChatRoom = () => {
@@ -15,6 +16,7 @@ const ChatRoom = () => {
     const { t } = useTranslation();
     const [emoji, setEmoji] = useState(false);
     const [selectedEmoji, setSelectedEmoji] = useState("");
+    const [workerDemand, setWorkerDemand] = useState({});
 
     const demandCode = useParams().id;
     const [messages, setMessages] = useState([]);
@@ -25,26 +27,16 @@ const ChatRoom = () => {
     const { send, subscribe, stompClient } = useContext(WebSocketContext);
     const { worker } = useContext(UserContext);
     const divRef = useRef(null);
-    // const testeRef = useRef([]);
 
     useEffect(() => {
         divRef.current.scrollTop = divRef.current.scrollHeight;
 
-
-
-
-
         const newMessage = (response) => {
             const messageReceived = JSON.parse(response.body);
-
-            // testeRef.current.push(messageReceived);
             setMessages((previousMessages) => [...previousMessages, messageReceived]);
 
 
         }
-
-        // console.log("teste Ref ---> ", testeRef.current)
-
 
         if (stompClient && !subscribeId) {
             setSubscribeId(subscribe("/" + demandCode + "/chat", newMessage));
@@ -56,16 +48,26 @@ const ChatRoom = () => {
 
     useEffect(() => {
 
+        async function getDemand() {
+            await ServicesDemand.findById(demandCode)
+                .then((response) => {
+
+                    if (response.requesterRegistration.workerCode !== parseInt(localStorage.getItem("id"))) {
+                        setWorkerDemand(response.requesterRegistration);
+                    } else {
+                        setWorkerDemand({ workerName: "Analista" });
+                    }
+                }).catch((error) => {
+                    console.log(error);
+                })
+        }
+
+        getDemand();
+
         async function loading() {
             await ServicesMessage.findById(demandCode)
                 .then((response) => {
-
-
                     setMessages(response);
-
-                    // testeRef.current.push(response);
-
-
                 }).catch((error) => {
                     console.log(error);
                 })
@@ -73,6 +75,7 @@ const ChatRoom = () => {
         }
         loading();
     }, [demandCode]);
+
 
     const setDefaultMessage = () => {
 
@@ -121,9 +124,15 @@ const ChatRoom = () => {
 
                 <div className="box-message">
                     <div className="profile">
-                        <img className="user-picture" src="https://media-exp1.licdn.com/dms/image/C5603AQGoPhhWyeL2-Q/profile-displayphoto-shrink_200_200/0/1516833080377?e=2147483647&v=beta&t=O_q0eYPuycqoRh8ACadEX5gQhrVbPnomvJKRFQTIycI" alt="" />
+
+                        <div className='person'>
+                            <span>
+                                {workerDemand.workerName?.slice(0, 1)}
+                            </span>
+                        </div>
+
                         <div className="message-name">
-                            <span className="username">Jair - Analista da demanda 01</span>
+                            <span className="username">{workerDemand.workerName}</span>
 
                             <div className="online">
                                 <span>online</span>

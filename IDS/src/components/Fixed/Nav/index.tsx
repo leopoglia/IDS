@@ -77,7 +77,6 @@ export default function Nav() {
             const nomeCookie = cookie.split('=')[0];
             document.cookie = nomeCookie + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; // Define a data de expiração do cookie para uma data passada
         }
-
     }
 
     return (
@@ -159,24 +158,29 @@ export default function Nav() {
                                     </li>
                                 </Link>
                             </Tooltip>
-
-                            <Tooltip title={t("messages")} placement="right">
-                                <Link to="/messages">
-                                    <li id={hover("messages")}>
-                                        <div>
-                                            <span className="material-symbols-outlined">
-                                                chat_bubble
-                                            </span>
-                                            <span className="title-li">{t("messages")}</span>
-                                        </div>
-                                    </li>
-                                </Link>
-                            </Tooltip>
-
                         </>
-
                     )
                 }
+
+                {(worker.office === "analyst" || worker.office === "ti") &&
+                    (
+                        <Tooltip title={t("messages")} placement="right">
+                            <Link to="/messages">
+                                <li id={hover("messages")}>
+                                    <div>
+                                        <span className="material-symbols-outlined">
+                                            chat_bubble
+                                        </span>
+                                        <span className="title-li">{t("messages")}</span>
+                                    </div>
+                                </li>
+                            </Link>
+                        </Tooltip>
+                    )
+                }
+
+
+
 
                 <Tooltip title={t("notifications")} placement="right">
 

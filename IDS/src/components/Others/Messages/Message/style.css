@@ -25,6 +25,16 @@
 
 .messages .box-message .message-name {
     margin-left: 20px;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.messages .box-message .message-name .username {
+    
+    width: 100%;
 }
 
 .messages .box-message span {
@@ -233,15 +243,30 @@
 }
 
 
+.box-message .profile .person {
+    background-color: var(--blue);
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box-message .profile .person span {
+    color: var(--white);
+    font-size: var(--g);
+}
+
 @media(max-width: 1140px) {
     .messages .box-message .message-user {
         max-width: 40%;
     }
 }
 
-
-
 @media(max-width: 768px) {
+
     .messages .box-message .message-user,
     .messages .box-message .message-two {
         max-width: 100% !important;

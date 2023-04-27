@@ -44,7 +44,9 @@ export const WebSocketService = ({ children }) => {
     }
 
     const subscribe = (destiny, callback) => {
-        stompClient.subscribe(destiny, callback);
+        console.log(stompClient.subscriptions)
+
+        return stompClient.subscribe(destiny, callback);
     }
 
     return (

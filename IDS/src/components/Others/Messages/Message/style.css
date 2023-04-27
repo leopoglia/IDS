@@ -1,4 +1,5 @@
 .messages .box-message {
+    width: 100%;
     margin-top: 50px;
     color: var(--grey59);
 }
@@ -230,6 +231,7 @@
     background-color: var(--greyC4);
     border: 2px solid white;
 }
+
 
 @media(max-width: 1140px) {
     .messages .box-message .message-user {

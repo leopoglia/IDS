@@ -20,33 +20,51 @@ const ChatRoom = () => {
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
     const [newMessages, setNewMessages] = useState([]);
+    const [subscribeId, setSubscribeId] = useState(null);
 
     const { send, subscribe, stompClient } = useContext(WebSocketContext);
     const { worker } = useContext(UserContext);
     const divRef = useRef(null);
+    // const testeRef = useRef([]);
 
     useEffect(() => {
         divRef.current.scrollTop = divRef.current.scrollHeight;
 
+
+
+
+
         const newMessage = (response) => {
             const messageReceived = JSON.parse(response.body);
-            setNewMessages([...newMessages, messageReceived]);
+
+            // testeRef.current.push(messageReceived);
+            setMessages((previousMessages) => [...previousMessages, messageReceived]);
+
+
+        }
+
+        // console.log("teste Ref ---> ", testeRef.current)
+
+
+        if (stompClient && !subscribeId) {
+            setSubscribeId(subscribe("/" + demandCode + "/chat", newMessage));
+            console.log("subscribeId", subscribeId);
         }
 
 
-        if (stompClient) {
-            subscribe("/" + demandCode + "/chat", newMessage);
-        }
-
-
-    }, [newMessages, stompClient]);
+    }, [messages, stompClient]);
 
     useEffect(() => {
 
         async function loading() {
             await ServicesMessage.findById(demandCode)
                 .then((response) => {
+
+
                     setMessages(response);
+
+                    // testeRef.current.push(response);
+
 
                 }).catch((error) => {
                     console.log(error);
@@ -100,6 +118,7 @@ const ChatRoom = () => {
                     <Title nav="chatMessages" title="message" />
                 </div>
 
+
                 <div className="box-message">
                     <div className="profile">
                         <img className="user-picture" src="https://media-exp1.licdn.com/dms/image/C5603AQGoPhhWyeL2-Q/profile-displayphoto-shrink_200_200/0/1516833080377?e=2147483647&v=beta&t=O_q0eYPuycqoRh8ACadEX5gQhrVbPnomvJKRFQTIycI" alt="" />
@@ -123,7 +142,7 @@ const ChatRoom = () => {
 
 
                                 {
-                                    messages.concat(newMessages).map((message) => (
+                                    messages.map((message) => (
 
                                         <li key={message.id} className={
                                             message?.sender?.workerCode === worker.id || message?.sender?.workerCode === parseInt(localStorage.getItem("id")) ? "message-two" : null}>

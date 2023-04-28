@@ -4,11 +4,19 @@ import Nav from "../../Fixed/Nav"
 import Title from "../../Fixed/Search/Title";
 import Footer from "../../Fixed/Footer";
 import Message from "./MessageBox";
+import { useEffect } from "react";
+import ServicesMessages from "../../../services/messageService";
 
 
 export default function Messages() {
 
     let messages = [1, 2, 3, 4, 5, 6, 7];
+
+    useEffect(() => {
+
+        
+    
+    }, []);
 
     return (
         <div className="messages">

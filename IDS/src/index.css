@@ -359,7 +359,8 @@ hr {
 }
 
 .container-background::-webkit-scrollbar,
-.boxNoPadding::-webkit-scrollbar {
+.boxNoPadding::-webkit-scrollbar,
+.chat-box .chats::-webkit-scrollbar {
   width: 6px;
 }
 
@@ -373,7 +374,8 @@ hr {
 .notification-true::-webkit-scrollbar-thumb,
 .notification-false::-webkit-scrollbar-thumb,
 .container-background::-webkit-scrollbar-thumb,
-.boxNoPadding::-webkit-scrollbar-thumb {
+.boxNoPadding::-webkit-scrollbar-thumb,
+.chat-box .chats::-webkit-scrollbar-thumb {
   background-color: var(--greyD9);
 }
 
@@ -383,7 +385,8 @@ hr {
 .notification-true::-webkit-scrollbar-thumb:hover,
 .notification-false::-webkit-scrollbar-thumb:hover,
 .container-background::-webkit-scrollbar-thumb:hover,
-.boxNoPadding::-webkit-scrollbar-thumb:hover {
+.boxNoPadding::-webkit-scrollbar-thumb:hover,
+.chat-box .chats::-webkit-scrollbar-thumb:hover {
   background-color: var(--greyD9);
 }
 

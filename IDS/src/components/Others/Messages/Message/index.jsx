@@ -142,11 +142,49 @@ const ChatRoom = () => {
                     </div>
 
 
-                    <div className="chat-box">
+                    <div className="chat-box display-flex">
+
+                        <div className='chats'>
+
+                            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
+                                <div className="chats-profile">
+
+                                    <div className="person">
+                                        <span>
+                                            {workerDemand.workerName?.slice(0, 1)}
+                                        </span>
+                                    </div>
+
+                                    <div className='text-person-chats w100'>
+
+                                        <div className='display-flex-space-between w100 chat-time-chats'>
+                                            <div className="message-name-chats">
+                                                <span className="username">{workerDemand.workerName}</span>
+                                            </div>
+
+                                            <span className='time-chat'>
+                                                12:00
+                                            </span>
+
+                                        </div>
+
+                                        <div className='display-flex span-message-chat'>
+                                            <span className='message-chat'>
+                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            ))
+                            }
+
+                        </div>
 
 
+                        <div className="chat-content ">
 
-                        <div className="chat-content">
+
                             <ul className="chat-messages" ref={divRef}>
 
 

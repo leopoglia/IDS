@@ -33,8 +33,11 @@
 }
 
 .messages .box-message .message-name .username {
-    
     width: 100%;
+}
+
+.messages .box-message .chat-time-chats {
+    margin-bottom: 4px;
 }
 
 .messages .box-message span {
@@ -132,12 +135,89 @@
 }
 
 .messages .box-message .message-user {
-    max-width: 35%;
+    max-width: fit-content;
     padding: 10px;
     margin-bottom: 20px;
     border-radius: 5px;
     background-color: var(--greyE5);
     margin-right: 30px;
+}
+
+.messages .chat-box .chats {
+    margin-right: 15px;
+    height: 100%;
+    max-height: calc(50vh + 55px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    border: 1px solid var(--greyC4);
+    border-radius: var(--r);
+    border: 1px solid var(--greyC4);
+    border-radius: var(--r);
+    overflow: overlay;
+}
+
+
+.messages .chat-box .chats .chats-profile {
+    width: 100%;
+    height: 80px;
+    border-bottom: 1px solid var(--greyC4);
+    margin-bottom: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.messages .chat-box .chats .text-person-chats {
+    margin-left: 10px;
+}
+
+.messages .chat-box .chats .chats-profile .person {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    background-color: var(--blue);
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+}
+
+.messages .chat-box .chats .chats-profile .message-name-chats,
+.messages .chat-box .chats .chats-profile .time-chat {
+    font-size: var(--p);
+}
+
+.messages .chat-box .chats .chats-profile .span-message-chat {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 80%;
+    display: block;
+}
+
+.messages .chat-box .chats .chats-profile .message-chat {
+    font-size: var(--pp);
+    color: var(--grey);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.messages .chat-box .chats .chats-profile .w100 {
+    width: 92%;
+}
+
+
+.messages .chat-box .chats .chats-profile:hover {
+    background-color: var(--blueF4);
+}
+
+.messages .chat-box .chat-content {
+    width: 100%;
+    height: 100%;
 }
 
 .messages .chat-box ul {
@@ -227,7 +307,7 @@
     width: 12px;
 }
 
-.chat-messages::-webkit-scrollbar-track {
+.chat-messages::-webkit-scrollbar-track{
     background: white;
 }
 

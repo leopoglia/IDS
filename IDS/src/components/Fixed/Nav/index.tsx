@@ -4,6 +4,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import { useTranslation } from "react-i18next";
 import ServicesNotification from "../../../services/notificationService";
 import ServicesWorker from "../../../services/workerService";
+import ServicesMessages from "../../../services/messageService";
 import UserContext from "../../../context/userContext";
 import { Tooltip } from "@mui/material";
 
@@ -17,6 +18,7 @@ export default function Nav() {
     const worker: any = useContext(UserContext).worker; // Pega o usuário logado
     const [numNotification, setNumNotification]: any = useState(0); // Quantidade de notificações não lidas
     const [nav, setNav] = useState(localStorage.getItem("nav") || "nav");  // Estado do menu
+    const [messagesOn, setMessagesOn] = useState(false); // Se tiver true, mostra as mensagens para o solicitante
 
     // Verifica qual página está sendo acessada e retorna a classe "current" para o item do menu
     function hover(li: string): string {
@@ -64,7 +66,23 @@ export default function Nav() {
             console.log(error);
         });
 
+
+
     }, [numNotification]);
+
+    useEffect(() => {
+        if (worker.office === "requester") {
+            ServicesMessages.findAllByDemandRequester(worker.id).then((response: any) => {
+                if (response === true) {
+                    setMessagesOn(response)
+                }
+            }).catch((error: any) => {
+                console.log(error);
+            });
+        }
+    }, []);
+
+
 
     function logout() {
 
@@ -162,7 +180,7 @@ export default function Nav() {
                     )
                 }
 
-                {(worker.office === "analyst" || worker.office === "ti") &&
+                {(worker.office === "analyst" || worker.office === "ti" || messagesOn) &&
                     (
                         <Tooltip title={t("messages")} placement="right">
                             <Link to="/messages">

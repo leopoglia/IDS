@@ -161,11 +161,25 @@
     width: 100%;
     height: 80px;
     border-bottom: 1px solid var(--greyC4);
-    margin-bottom: 10px;
     padding: 10px;
     display: flex;
     align-items: center;
     overflow: hidden;
+}
+
+.messages .chat-box .arrow-chat{
+    position: absolute;
+    transform: rotate(90deg);
+}
+
+.messages .chat-box .chats-true{
+    width: 0px;
+    border: 0px;
+    margin-right: 0px;
+}
+
+.messages .chat-box .arrow-chat-true{
+    transform: rotate(-90deg);
 }
 
 .messages .chat-box .chats .text-person-chats {

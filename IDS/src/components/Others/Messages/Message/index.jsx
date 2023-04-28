@@ -28,6 +28,8 @@ const ChatRoom = () => {
     const { worker } = useContext(UserContext);
     const divRef = useRef(null);
 
+    const [chatsOpen, setChatsOpen] = useState(false);
+
     useEffect(() => {
         divRef.current.scrollTop = divRef.current.scrollHeight;
 
@@ -74,6 +76,8 @@ const ChatRoom = () => {
             setDefaultMessage();
         }
         loading();
+
+
     }, [demandCode]);
 
 
@@ -144,7 +148,7 @@ const ChatRoom = () => {
 
                     <div className="chat-box display-flex">
 
-                        <div className='chats'>
+                        <div className={'chats chats-' + chatsOpen }>
 
                             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
                                 <div className="chats-profile">
@@ -183,6 +187,12 @@ const ChatRoom = () => {
 
 
                         <div className="chat-content ">
+
+                            <div className={'arrow-chat arrow-chat-' + chatsOpen} onClick={() => setChatsOpen(!chatsOpen)}>
+                                <span className='material-symbols-outlined arrow-expend'>
+                                    expand_more
+                                </span>
+                            </div>
 
 
                             <ul className="chat-messages" ref={divRef}>

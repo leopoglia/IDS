@@ -42,6 +42,18 @@ const Services = {
                 .then(resolve)
                 .catch(resolve)
         })
+    },
+
+    findAllByDemandRequester: function (id: number) {
+        console.log(id)
+
+        return new Promise((resolve, reject) => {
+            fetch(url + "/worker/" + id, {
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(resolve)
+        })
     }
 }
 

@@ -23,6 +23,8 @@ export default function Edit() {
 	const [url, setUrl] = useState(window.location.href.split("/")[4]); // Url da página
 	const [type, setType] = useState(window.location.href.split("/")[3]); // Tipo da página
 
+	const [editType, setEditType]: any = useState(""); // Tipo de edição (Tabelas, classificação, complementos, despesas)
+
 	const [demandCode, setDemandCode] = useState(parseInt(window.location.href.split("/")[5])); // Código da demanda
 	const [demands, setDemands]: any = useState(); // Demanda
 
@@ -122,14 +124,21 @@ export default function Edit() {
 
 	useEffect(() => {
 
+		console.log(window.location.href.split("?")[1])
 
-		if (url === "demand" || type === "demand") {
-			getDemand(demandCode);
+		if (window.location.href.split("?")[1] === undefined) {
+			if (url === "demand" || type === "demand") {
+				getDemand(demandCode);
+			} else {
+				getProposal();
+			}
 		} else {
 			getProposal();
+
+			setEditType(localStorage.getItem("edit"));
 		}
 
-	}, [])
+	}, [editType])
 
 
 
@@ -272,6 +281,8 @@ export default function Edit() {
 	const [situationAdicional, setAdicionalOpen] = useState(true);
 
 
+	console.log("edit type ------------------------> ", editType)
+
 	return (
 		<div className="create-demands-1">
 
@@ -288,204 +299,207 @@ export default function Edit() {
 
 					</div>
 
-					<div className={"box box-" + situationInfo}>
+					{editType === "" ? (
+						<>
 
-						<div className="display-flex-space-between">
-							<p>{t("generalInformations")}</p>
+							<div className={"box box-" + situationInfo}>
 
-							<span onClick={() => { setInfoOpen(!situationInfo) }} className="material-symbols-outlined arrow-expend">
-								expand_more
-							</span>
-						</div>
+								<div className="display-flex-space-between">
+									<p>{t("generalInformations")}</p>
 
-
-						<div>
-							<div className="input">
-								<label>{t("titleProposal")} *</label>
-								<input type="text" value={demandTitle} onChange={(e) => { setDemandTitle(e.target.value) }} />
-							</div>
-
-							<div className="text-area">
-								<label>{t("objective")} *</label>
-								{/* <textarea value={demandObjective} onChange={(e) => { setDemandObjective(e.target.value) }} /> */}
-
-								<Editor setContent={setDemandObjective} content={demandObjective} />
-							</div>
-
-
-							<div className="text-area">
-								<label>{t("problemToBeSolved")} *</label>
-								{/* <textarea value={demandProblem} onChange={(e) => { setDemandProblem(e.target.value) }} /> */}
-
-								<Editor setContent={setDemandProblem} content={demandProblem} />
-
-							</div>
-
-
-							<div className="input">
-								<label>{t("costCenter")} *</label>
-
-								<div className="display-flex">
-									<SelectCenterCost setCostCenter={setCostCenter} costCenter={costCenter} addCostCenter={addCostCenter} />
-
-									<div className="btn-primary w45" onClick={() => { addCostCenter(costCenter); handleChange(costCenter); }}>
-										<span className="material-symbols-outlined">add</span>
-									</div>
-								</div>
-							</div>
-
-
-							{costsCenters.map((costCenter: any) => {
-								return <div className="costCenter">
-									<span>{costCenter}</span>
-									<span className="material-symbols-outlined delete-cost-center" onClick={deleteCostCenter(costCenter)}>
-										delete
+									<span onClick={() => { setInfoOpen(!situationInfo) }} className="material-symbols-outlined arrow-expend">
+										expand_more
 									</span>
 								</div>
-							})
-							}
 
 
-						</div>
+								<div>
+									<div className="input">
+										<label>{t("titleProposal")} *</label>
+										<input type="text" value={demandTitle} onChange={(e) => { setDemandTitle(e.target.value) }} />
+									</div>
+
+									<div className="text-area">
+										<label>{t("objective")} *</label>
+										{/* <textarea value={demandObjective} onChange={(e) => { setDemandObjective(e.target.value) }} /> */}
+
+										<Editor setContent={setDemandObjective} content={demandObjective} />
+									</div>
 
 
-					</div>
+									<div className="text-area">
+										<label>{t("problemToBeSolved")} *</label>
+										{/* <textarea value={demandProblem} onChange={(e) => { setDemandProblem(e.target.value) }} /> */}
 
-					<div className={"box box-" + situationBenefitReal}>
+										<Editor setContent={setDemandProblem} content={demandProblem} />
 
-						<div className="display-flex-space-between">
-
-							<p>{t("benefitReal")}</p>
-
-							<span onClick={() => { setBenefitRealOpen(!situationBenefitReal) }} className="material-symbols-outlined arrow-expend">
-								expand_more
-							</span>
-						</div>
-
-						<div className="flex">
-
-							<div className="input">
-								<label>{t("monthlyValue")} *</label>
-								<input type="text" value={realBenefitValue} onChange={(e) => { setRealBenefitValue(e.target.value) }} />
-
-							</div>
-
-							<SelectCoin setrealCurrency={setrealCurrency} type="real" value={realCurrency} />
-						</div>
+									</div>
 
 
-						<div className="input">
-							<label>{t("description")} *</label>
-							<input type="text" value={realBenefitDescription} onChange={(e) => { setRealBenefitDescription(e.target.value) }} />
-						</div>
+									<div className="input">
+										<label>{t("costCenter")} *</label>
+
+										<div className="display-flex">
+											<SelectCenterCost setCostCenter={setCostCenter} costCenter={costCenter} addCostCenter={addCostCenter} />
+
+											<div className="btn-primary w45" onClick={() => { addCostCenter(costCenter); handleChange(costCenter); }}>
+												<span className="material-symbols-outlined">add</span>
+											</div>
+										</div>
+									</div>
 
 
-
-					</div>
-
-					<div className={"box box-" + situationBenefitPotential}>
-
-						<div className="display-flex-space-between">
-
-							<p>{t("benefitPotential")}</p>
-
-
-							<span onClick={() => { setBenefitPotentialOpen(!situationBenefitPotential) }} className="material-symbols-outlined arrow-expend">
-								expand_more
-							</span>
-						</div>
+									{costsCenters.map((costCenter: any) => {
+										return <div className="costCenter">
+											<span>{costCenter}</span>
+											<span className="material-symbols-outlined delete-cost-center" onClick={deleteCostCenter(costCenter)}>
+												delete
+											</span>
+										</div>
+									})
+									}
 
 
-
-						<div>
-							<div className="flex">
-								<div className="input">
-									<label>{t("monthlyValue")} *</label>
-									<input type="text" value={potentialBenefitValue} onChange={(e) => { setPotentialBenefitValue(e.target.value) }} />
 								</div>
 
-								<SelectCoin setPotentialCurrency={setPotentialCurrency} type="potencial" value={potentialCurrency} />
+
 							</div>
 
-							<div className="flex">
+							<div className={"box box-" + situationBenefitReal}>
+
+								<div className="display-flex-space-between">
+
+									<p>{t("benefitReal")}</p>
+
+									<span onClick={() => { setBenefitRealOpen(!situationBenefitReal) }} className="material-symbols-outlined arrow-expend">
+										expand_more
+									</span>
+								</div>
+
+								<div className="flex">
+
+									<div className="input">
+										<label>{t("monthlyValue")} *</label>
+										<input type="text" value={realBenefitValue} onChange={(e) => { setRealBenefitValue(e.target.value) }} />
+
+									</div>
+
+									<SelectCoin setrealCurrency={setrealCurrency} type="real" value={realCurrency} />
+								</div>
 
 
 								<div className="input">
 									<label>{t("description")} *</label>
-									<input type="text" value={potentialBenefitDescription} onChange={(e) => { setPotentialBenefitDescription(e.target.value) }} />
+									<input type="text" value={realBenefitDescription} onChange={(e) => { setRealBenefitDescription(e.target.value) }} />
 								</div>
 
-								<div className="input-checkbox">
-									<label>{t("legalObligation")}</label>
-									<div className="checkbox">
-										<CheckBox />
+
+
+							</div>
+
+							<div className={"box box-" + situationBenefitPotential}>
+
+								<div className="display-flex-space-between">
+
+									<p>{t("benefitPotential")}</p>
+
+
+									<span onClick={() => { setBenefitPotentialOpen(!situationBenefitPotential) }} className="material-symbols-outlined arrow-expend">
+										expand_more
+									</span>
+								</div>
+
+
+
+								<div>
+									<div className="flex">
+										<div className="input">
+											<label>{t("monthlyValue")} *</label>
+											<input type="text" value={potentialBenefitValue} onChange={(e) => { setPotentialBenefitValue(e.target.value) }} />
+										</div>
+
+										<SelectCoin setPotentialCurrency={setPotentialCurrency} type="potencial" value={potentialCurrency} />
+									</div>
+
+									<div className="flex">
+
+
+										<div className="input">
+											<label>{t("description")} *</label>
+											<input type="text" value={potentialBenefitDescription} onChange={(e) => { setPotentialBenefitDescription(e.target.value) }} />
+										</div>
+
+										<div className="input-checkbox">
+											<label>{t("legalObligation")}</label>
+											<div className="checkbox">
+												<CheckBox />
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+							</div>
+
+							<div className={"box box-" + situationBenefitQualitative}>
+
+
+								<div className="display-flex-space-between">
+
+									<p>{t("benefitQualitative")}</p>
+
+									<span onClick={() => { setBenefitQualitativeOpen(!situationBenefitQualitative) }} className="material-symbols-outlined arrow-expend">
+										expand_more
+									</span>
+								</div>
+
+								<div className="display-grid">
+									<div className="input">
+										<label>{t("description")} *</label>
+										{/* <input type="text" value={qualitativeBenefitDescription} onChange={(e) => { setQualitativeBenefitDescription(e.target.value) }} /> */}
+
+										<Editor setContent={setQualitativeBenefitDescription} content={qualitativeBenefitDescription} />
+									</div>
+
+									<div className="input-checkbox requirements">
+										<label>{t("internalControlRequirements")}</label>
+										<div className="checkbox">
+											<CheckBox />
+										</div>
 									</div>
 								</div>
+
 							</div>
 
-						</div>
+							<div className={"box box-" + situationAdicional}>
 
-					</div>
+								<div className="display-flex-space-between">
 
-					<div className={"box box-" + situationBenefitQualitative}>
+									<p>{t("additionals")}</p>
 
-
-						<div className="display-flex-space-between">
-
-							<p>{t("benefitQualitative")}</p>
-
-							<span onClick={() => { setBenefitQualitativeOpen(!situationBenefitQualitative) }} className="material-symbols-outlined arrow-expend">
-								expand_more
-							</span>
-						</div>
-
-						<div className="display-grid">
-							<div className="input">
-								<label>{t("description")} *</label>
-								{/* <input type="text" value={qualitativeBenefitDescription} onChange={(e) => { setQualitativeBenefitDescription(e.target.value) }} /> */}
-
-								<Editor setContent={setQualitativeBenefitDescription} content={qualitativeBenefitDescription} />
-							</div>
-
-							<div className="input-checkbox requirements">
-								<label>{t("internalControlRequirements")}</label>
-								<div className="checkbox">
-									<CheckBox />
+									<span onClick={() => { setAdicionalOpen(!situationAdicional) }} className="material-symbols-outlined arrow-expend">
+										expand_more
+									</span>
 								</div>
-							</div>
-						</div>
-
-					</div>
-
-					<div className={"box box-" + situationAdicional}>
-
-						<div className="display-flex-space-between">
-
-							<p>{t("additionals")}</p>
-
-							<span onClick={() => { setAdicionalOpen(!situationAdicional) }} className="material-symbols-outlined arrow-expend">
-								expand_more
-							</span>
-						</div>
 
 
-						<div className="frequency">
-							<label>{t("frequencyUse")} * </label>
-							<input type="text" value={frequencyOfUse} onChange={(e) => { setFrequencyOfUse(e.target.value) }} />
-						</div>
+								<div className="frequency">
+									<label>{t("frequencyUse")} * </label>
+									<input type="text" value={frequencyOfUse} onChange={(e) => { setFrequencyOfUse(e.target.value) }} />
+								</div>
 
-						<label>{t("attachments")}</label>
+								<label>{t("attachments")}</label>
 
-						<div className="attachments display-flex">
-							<input type="file" id="file" onChange={handleFileSelected} multiple />
-							<label htmlFor="file">
-								<span className="material-symbols-outlined">
-									upload_file
-								</span>{t("sendAttachment")}</label>
+								<div className="attachments display-flex">
+									<input type="file" id="file" onChange={handleFileSelected} multiple />
+									<label htmlFor="file">
+										<span className="material-symbols-outlined">
+											upload_file
+										</span>{t("sendAttachment")}</label>
 
 
 
-							{/* {
+									{/* {
 								(
 									fileAttachment.map((file: any) => {
 										return (
@@ -504,29 +518,39 @@ export default function Edit() {
 									})
 								)
 							} */}
-						</div>
+								</div>
 
-					</div>
+							</div>
 
-					<div className="display-flex-end">
-						{url === "edit" && type === "demand" ?
-							(
-								<button onClick={() => editDemand()} className="btn-primary">{t("editDemand")}</button>
-							) : (
-								<>
-									{type === "proposal" && url !== "demand" ?
-										(
-											<button onClick={() => editDemand()} className="btn-primary">{t("editProposal")}</button>
-										) : (
-											<button onClick={() => editDemand()} className="btn-primary">{t("advance")}</button>
-										)
-									}
-								</>
-							)
-						}
+							<div className="display-flex-end">
+								{url === "edit" && type === "demand" ?
+									(
+										<button onClick={() => editDemand()} className="btn-primary">{t("editDemand")}</button>
+									) : (
+										<>
+											{type === "proposal" && url !== "demand" ?
+												(
+													<button onClick={() => editDemand()} className="btn-primary">{t("editProposal")}</button>
+												) : (
+													<button onClick={() => editDemand()} className="btn-primary">{t("advance")}</button>
+												)
+											}
+										</>
+									)
+								}
 
 
-					</div>
+							</div>
+
+						</>
+					) :
+						(
+							<div className="box">
+								fdsgfsdgsfgsfd
+							</div>
+						)
+
+					}
 
 				</div>
 			}

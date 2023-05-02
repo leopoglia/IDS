@@ -11,7 +11,6 @@ import {
 } from 'chart.js';
 import { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
-import ServicesDemand from '../../../../services/demandService';
 
 ChartJS.register(
     CategoryScale,
@@ -41,7 +40,6 @@ export const options = {
 export default function Graphic(props: any) {
 
     let [labels, setLabels]: any = useState([]);
-    let url = window.location.href;
 
     useEffect(() => { 
         getMonthName();

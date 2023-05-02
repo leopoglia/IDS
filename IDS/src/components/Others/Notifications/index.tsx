@@ -1,13 +1,10 @@
 import "./style.css"
-import Header from "../../Fixed/Header"
-import Nav from "../../Fixed/Nav"
 import Title from "../../Fixed/Search/Title";
 import Notification from "./Notification";
 import Footer from "../../Fixed/Footer";
 import { useState, useEffect, useContext } from "react";
 import Services from "../../../services/notificationService";
 import UserContext from "../../../context/userContext";
-import { t } from "i18next";
 
 export default function Notifications() {
 
@@ -36,7 +33,7 @@ export default function Notifications() {
                 <div className="container-background">
                     <div className="boxNoPadding">
                         {notifications.map((notification: any) => {
-                            if (notification.worker.workerCode == worker.id) {
+                            if (notification.worker.workerCode === worker.id) {
 
                                 return (
                                     <Notification
@@ -51,7 +48,7 @@ export default function Notifications() {
                                 )
                             }
 
-                            if (notification.worker.workerCode == worker.id) {
+                            if (notification.worker.workerCode === worker.id) {
                                 setHaveNotification(haveNotification + 1)
                             }
 

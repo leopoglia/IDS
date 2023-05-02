@@ -1,10 +1,7 @@
 import { t } from "i18next";
 import { Link } from "react-router-dom";
 
-
 export default function Modal() {
-
-
 
     return (
         <div className="modal">

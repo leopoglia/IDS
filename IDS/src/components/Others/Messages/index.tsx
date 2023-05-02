@@ -1,12 +1,8 @@
 import "./style.css"
-import Header from "../../Fixed/Header"
-import Nav from "../../Fixed/Nav"
 import Title from "../../Fixed/Search/Title";
 import Footer from "../../Fixed/Footer";
 import Message from "./MessageBox";
 import { useEffect } from "react";
-import ServicesMessages from "../../../services/messageService";
-
 
 export default function Messages() {
 

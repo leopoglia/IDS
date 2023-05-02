@@ -1,11 +1,9 @@
-import Header from "../../../Fixed/Header";
-import Nav from "../../../Fixed/Nav";
 import Title from "../../../Fixed/Search/Title";
 import { Link } from "react-router-dom";
 import "./style.css";
 import { useTranslation } from "react-i18next";
 import ProposalService from "../../../../services/proposalService";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function CommissionOpinion() {
 

@@ -1,9 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./style.css"
-import React, { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useTranslation } from "react-i18next";
 import ServicesNotification from "../../../services/notificationService";
-import ServicesWorker from "../../../services/workerService";
 import ServicesMessages from "../../../services/messageService";
 import UserContext from "../../../context/userContext";
 import { Tooltip } from "@mui/material";

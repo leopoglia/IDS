@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState, useRef } from 'react'
+import { useContext, useEffect, useState, useRef } from 'react'
 import EmojiPicker from "emoji-picker-react";
 import { useTranslation } from "react-i18next";
 import "./style.css"
-import Header from "../../../Fixed/Header"
-import Nav from "../../../Fixed/Nav"
+
+
 import Title from "../../../Fixed/Search/Title";
 import { useParams } from 'react-router';
 import { WebSocketContext } from '../../../../services/webSocketService';
@@ -16,13 +16,12 @@ const ChatRoom = () => {
 
     const { t } = useTranslation();
     const [emoji, setEmoji] = useState(false);
-    const [selectedEmoji, setSelectedEmoji] = useState("");
+    const [setSelectedEmoji] = useState("");
     const [workerDemand, setWorkerDemand] = useState({});
 
     const demandCode = useParams().id;
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
-    const [newMessages, setNewMessages] = useState([]);
     const [subscribeId, setSubscribeId] = useState(null);
 
     const { send, subscribe, stompClient } = useContext(WebSocketContext);

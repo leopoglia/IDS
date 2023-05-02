@@ -1,13 +1,11 @@
 import "./style.css"
-import Header from "../../../../Fixed/Header"
-import Nav from "../../../../Fixed/Nav"
 import Title from "../../../../Fixed/Search/Title";
 import ProgressBar from "../ProgressBar";
 import ButtonAction from "../ButtonAction";
 import { useTranslation } from "react-i18next";
 import { useState, useEffect } from 'react';
 import Services from '../../../../../services/costCenterService';
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from 'react-router-dom';
 import SelectCenterCost from "./SelectCenterCost";

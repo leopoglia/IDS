@@ -1,9 +1,6 @@
-import Header from "../../../Fixed/Header";
-import Nav from "../../../Fixed/Nav";
 import Title from "../../../Fixed/Search/Title";
 import "./style.css";
 import { Link } from "react-router-dom";
-import Input from "../../Demands/CrateDemand/Input";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -18,11 +15,8 @@ export default function CreateAgenda() {
     const navigate = useNavigate();
 
     const [proposals, setProposals]: any = useState([]);
-    const [agendaNumber, setAgendaNumber] = useState("");
-    const [agendaYear, setAgendaYear] = useState("");
     const [commissionList, setcommissionList]: any = useState([]);
     const [commission, setCommission] = useState("");
-    const [publishedMinute, setPublishedMinute] = useState(false);
     let actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear();
 
 
@@ -69,11 +63,15 @@ export default function CreateAgenda() {
                 })
             })
 
+
+
             for (let i = 0; i < proposals.length; i++) {
                 ServicesProposals.updatePublish(proposals[i].proposalCode, proposals[i].publishedMinute);
             }
 
-            Services.save(agendaNumber, agendaYear, commissionArray, actualDate, proposals).then((response: any) => {
+            const year = new Date().getFullYear().toString();
+
+            Services.save("1", year, commissionArray, actualDate, proposals).then((response: any) => {
                 navigate("/agenda/view/" + response.agendaCode);
             })
         })
@@ -179,17 +177,6 @@ export default function CreateAgenda() {
 
                     </div>
 
-
-                    <div className="display-flex">
-                        <div className="input">
-                            <label>{t("number")} *</label>
-                            <input type="Number" onChange={(e) => { setAgendaNumber(e.target.value) }} />
-                        </div>
-                        <div className="input">
-                            <label>{t("year")} *</label>
-                            <input type="Number" onChange={(e) => { setAgendaYear(e.target.value) }} />
-                        </div>
-                    </div>
 
                     <div className="input">
 

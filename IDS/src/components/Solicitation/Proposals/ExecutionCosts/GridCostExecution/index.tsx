@@ -1,8 +1,4 @@
 import { useEffect, useState } from 'react';
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import { DataGrid, GridColumns, GridRowsProp } from '@mui/x-data-grid';
-import { randomPrice } from '@mui/x-data-grid-generator';
 import { useTranslation } from "react-i18next";
 import "./style.css"
 

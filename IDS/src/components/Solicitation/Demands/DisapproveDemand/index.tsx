@@ -1,7 +1,5 @@
 import { t } from "i18next";
 import Footer from "../../../Fixed/Footer";
-import Header from "../../../Fixed/Header";
-import Nav from "../../../Fixed/Nav";
 import Title from "../../../Fixed/Search/Title";
 import "./style.css"
 import { Link } from "react-router-dom";
@@ -17,7 +15,6 @@ export default function DisapproveDemand() {
 
     const navigate = useNavigate();
     const [disapprovalReason, setDisapprovalReason]: any = useState(""); // Motivo de reprovação
-    const url = window.location.href.split("/")[3];
     const demandCode = parseInt(window.location.href.split("/")[5]);
 
     // Função para reprovar demanda

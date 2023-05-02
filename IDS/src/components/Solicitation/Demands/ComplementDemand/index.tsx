@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { t } from "i18next"
-import Header from "../../../Fixed/Header"
-import Nav from "../../../Fixed/Nav"
+
+
 import Title from "../../../Fixed/Search/Title"
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";

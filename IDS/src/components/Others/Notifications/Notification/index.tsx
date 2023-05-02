@@ -2,14 +2,11 @@ import "./style.css"
 import Services from "../../../../services/notificationService"
 import { useNavigate } from "react-router"
 import { t } from "i18next"
-import { useEffect, useState } from "react";
 
 
 export default function Notification(props: any) {
 
     const navigate = useNavigate();
-    const [borderBottom, setBorderBottom] = useState("");
-
     function arrumarData() {
 
         let data = props.date.split("T")
@@ -17,23 +14,23 @@ export default function Notification(props: any) {
         let dataFinal = dataArrumada[2] + "/" + dataArrumada[1] + "/" + dataArrumada[0]
 
 
-        if (localStorage.getItem("i18nextLng") == "en") {
+        if (localStorage.getItem("i18nextLng") === "en") {
             dataFinal = dataArrumada[1] + "/" + dataArrumada[2] + "/" + dataArrumada[0]
-        } else if (localStorage.getItem("i18nextLng") == "es") {
+        } else if (localStorage.getItem("i18nextLng") === "es") {
             dataFinal = dataArrumada[2] + "/" + dataArrumada[1] + "/" + dataArrumada[0]
-        } else if (localStorage.getItem("i18nextLng") == "pt") {
+        } else if (localStorage.getItem("i18nextLng") === "pt") {
             dataFinal = dataArrumada[2] + "/" + dataArrumada[1] + "/" + dataArrumada[0]
-        } else if (localStorage.getItem("i18nextLng") == "cn") {
+        } else if (localStorage.getItem("i18nextLng") === "cn") {
             dataFinal = dataArrumada[2] + "/" + dataArrumada[1] + "/" + dataArrumada[0]
         }
 
 
-        if (data[1] != undefined) {
+        if (data[1] !== undefined) {
             let horario = data[1].split(":")
             dataFinal = dataFinal + " " + horario[0] + ":" + horario[1]
         }
 
-        if (data[1] == undefined) {
+        if (data[1] === undefined) {
             dataFinal = dataFinal + " " + "00:00"
         }
 

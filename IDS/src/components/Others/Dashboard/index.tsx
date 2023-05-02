@@ -1,5 +1,3 @@
-import Header from "../../Fixed/Header";
-import Nav from "../../Fixed/Nav";
 import Title from "../../Fixed/Search/Title";
 import "./style.css";
 import { useEffect, useState } from "react";
@@ -13,7 +11,7 @@ import Footer from "../../Fixed/Footer";
 
 export default function Dashboard() {
 
-    const [url, setUrl] = useState(window.location.href);
+    const [url] = useState(window.location.href);
     const [demands, setDemands] = useState(0);
 
     const [demandsDates, setDemandsDates]: any = useState([]);

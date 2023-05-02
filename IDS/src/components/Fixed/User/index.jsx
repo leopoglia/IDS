@@ -1,5 +1,5 @@
 import './style.css'
-import React, { useState, useContext } from 'react'
+import { useState, useContext } from 'react'
 import onClickOutside from "react-onclickoutside";
 import Modal from './Modal'
 import UserContext from '../../../context/userContext';

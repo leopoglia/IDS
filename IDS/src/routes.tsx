@@ -2,14 +2,14 @@ import { Route, Routes, BrowserRouter, useLocation } from "react-router-dom";
 
 import Form from './components/Login/Login';
 import ForgetPassword from './components/Login/ForgotPassword';
-import Demands from "./components/Solicitation/Demands/Demands";
+import Demands from "./components/Solicitation/All/Cards";
 import Messages from "./components/Others/Messages";
 import Notifications from "./components/Others/Notifications";
 import Configuration from "./components/Others/Configuration";
 import CreateDemands1 from "./components/Solicitation/Demands/CrateDemand/Step1";
 import CreateDemands2 from "./components/Solicitation/Demands/CrateDemand/Step2";
 import CreateDemands3 from "./components/Solicitation/Demands/CrateDemand/Step3";
-import ViewDemand from "./components/Solicitation/Demands/ViewDemand";
+import ViewDemand from "./components/Solicitation/All/View";
 import RankDemand from "./components/Solicitation/Demands/RankDemand";
 import DisapproveDemand from "./components/Solicitation/Demands/DisapproveDemand";
 import ComplementDemand from "./components/Solicitation/Demands/ComplementDemand";
@@ -24,7 +24,7 @@ import ProposedInformation from "./components/Solicitation/Proposals/ProposedInf
 import CreateMinute from "./components/Solicitation/Minutes/CreateMinute";
 import Message from "./components/Others/Messages/Message";
 import Dashboard from "./components/Others/Dashboard";
-import EditDemand from "./components/Solicitation/Demands/EditDemand";
+import EditDemand from "./components/Solicitation/All/Edit";
 import Error from "./components/Others/Error";
 import UserContext from "./context/userContext";
 import { useState, useEffect } from "react";

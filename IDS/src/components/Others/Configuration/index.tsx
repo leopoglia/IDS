@@ -1,11 +1,8 @@
 import { useContext } from "react";
 import "./style.css"
-import Header from "../../Fixed/Header"
-import Nav from "../../Fixed/Nav"
 import Title from "../../Fixed/Search/Title";
 import Footer from "../../Fixed/Footer";
 import { useTranslation } from "react-i18next";
-import ServicesWorker from "../../../services/workerService";
 import UserContext from "../../../context/userContext";
 
 

@@ -2,8 +2,8 @@ import "./style.css";
 import { Link } from "react-router-dom";
 import Situation from "./Situation/index";
 import { useTranslation } from "react-i18next";
-import { useState, useEffect, useContext } from "react";
-import UserContext from "../../../../context/userContext";
+import { useContext } from "react";
+import UserContext from "../../../../../context/userContext";
 import { Tooltip } from "@mui/material";
 
 export default function Demand(props: any) {

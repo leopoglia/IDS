@@ -2,7 +2,7 @@ import "./style.css";
 import SelectNewStatus from "./SelectNewStatus";
 import { t } from "i18next";
 import { useEffect, useState } from 'react';
-import ServicesDemand from "../../../../../services/demandService";
+import ServicesDemand from "../../../../../../services/demandService";
 import { toast, ToastContainer } from 'react-toastify';
 
 export default function ModalChangeStatus(props: any) {

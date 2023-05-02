@@ -1,30 +1,29 @@
-import { t } from "i18next";
 import { useNavigate } from "react-router-dom";
-import Header from "../../../Fixed/Header";
-import Nav from "../../../Fixed/Nav";
 import Title from "../../../Fixed/Search/Title";
 import ServicesDemand from "../../../../services/demandService";
 import "./style.css"
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import SelectCenterCost from "../CrateDemand/Step1/SelectCenterCost";
+import SelectCenterCost from "../../Demands/CrateDemand/Step1/SelectCenterCost";
 import ServicesRealBenefit from "../../../../services/realBenefitService";
 import ServicesPotentialBenefit from "../../../../services/potentialBenefitService";
 import ServicesQualitativeBenefit from "../../../../services/qualitativeBenefitService";
 import ServicesHistorical from "../../../../services/historicalService";
 import ServicesProposal from "../../../../services/proposalService";
 import Services from "../../../../services/costCenterService";
-import SelectCoin from "../CrateDemand/SelectCoin";
-import CheckBox from "../CrateDemand/CheckBox";
+import SelectCoin from "../../Demands/CrateDemand/SelectCoin";
+import CheckBox from "../../Demands/CrateDemand/CheckBox";
 import Editor from "../../Proposals/EditProposalScope/Editor";
 
-export default function EscopeDemand() {
+export default function Edit() {
 
 	const { t } = useTranslation();
 	const navigate = useNavigate();
 
-	const [url, setUrl] = useState(window.location.href.split("/")[4]); // Url da página
-	const [type, setType] = useState(window.location.href.split("/")[3]); // Tipo da página
+	const [url] = useState(window.location.href.split("/")[4]); // Url da página
+	const [type] = useState(window.location.href.split("/")[3]); // Tipo da página
+
+	console.log(type)
 
 	const [demandCode, setDemandCode] = useState(parseInt(window.location.href.split("/")[5])); // Código da demanda
 	const [demands, setDemands]: any = useState(); // Demanda
@@ -129,9 +128,6 @@ export default function EscopeDemand() {
 		if (url === "demand" || type === "demand") {
 			getDemand(demandCode);
 		} else {
-
-			console.log("GET PROPOSAL")
-
 			getProposal();
 		}
 

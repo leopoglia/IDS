@@ -1,7 +1,5 @@
 import "./style.css"
 import { useNavigate } from "react-router-dom";
-import Header from "../../../Fixed/Header"
-import Nav from "../../../Fixed/Nav"
 import SelectProposal from "./SelectProposal";
 import Footer from "../../../Fixed/Footer";
 import Title from "../../../Fixed/Search/Title";

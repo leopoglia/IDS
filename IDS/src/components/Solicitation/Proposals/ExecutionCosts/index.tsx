@@ -1,8 +1,5 @@
-import Header from "../../../Fixed/Header";
-import Nav from "../../../Fixed/Nav";
 import Title from "../../../Fixed/Search/Title";
 import GridCostExecution from "./GridCostExecution";
-import SelectCostExecution from "./SelectCostExecution";
 import { Link } from "react-router-dom";
 import "./style.css"
 import { useTranslation } from "react-i18next";

@@ -1,5 +1,5 @@
 import "./style.css"
-import Form from "../Form"
+import Form from "./Form"
 import Language from "../../Fixed/Language";
 import Footer from "../../Fixed/Footer";
 import { useEffect } from "react";

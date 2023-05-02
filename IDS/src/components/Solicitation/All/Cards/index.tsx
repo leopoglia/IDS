@@ -1,8 +1,6 @@
 import "./style.css"
-import Header from "../../../Fixed/Header"
-import Nav from "../../../Fixed/Nav"
 import Search from "../../../Fixed/Search";
-import Demand from "../Demand";
+import Demand from "./Card";
 import Footer from "../../../Fixed/Footer";
 import { useEffect, useState } from "react";
 import Load from "../../../Fixed/Load";

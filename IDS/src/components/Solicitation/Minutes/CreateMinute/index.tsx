@@ -1,5 +1,3 @@
-import Header from "../../../Fixed/Header";
-import Nav from "../../../Fixed/Nav";
 import Title from "../../../Fixed/Search/Title";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
@@ -18,7 +16,6 @@ export default function CreateMinute() {
 
 
     function saveMinute() {
-        // if(agenda.proposals[0].published === false)
         MinuteService.save("Ata Não Publicada " + code, code, actualDate, worker.id, "Not Published");
         MinuteService.save("Ata Publicada " + code, code, actualDate, worker.id, "Published");
     }

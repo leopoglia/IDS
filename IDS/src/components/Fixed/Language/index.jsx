@@ -1,5 +1,5 @@
 import './style.css'
-import React, { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import UserContext from '../../../context/userContext';
 import onClickOutside from "react-onclickoutside";
 import DropdownList from "./Modal";

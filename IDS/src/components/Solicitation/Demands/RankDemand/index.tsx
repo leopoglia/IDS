@@ -1,7 +1,5 @@
 import "./style.css"
 import { useState, useEffect, useContext } from "react";
-import Header from "../../../Fixed/Header";
-import Nav from "../../../Fixed/Nav";
 import Title from "../../../Fixed/Search/Title";
 import SelectSizeDemand from "./SelectSizeDemand";
 import { useTranslation } from "react-i18next";

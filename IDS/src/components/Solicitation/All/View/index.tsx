@@ -1,9 +1,9 @@
 import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { toast, ToastContainer } from 'react-toastify';
-import Header from "../../../Fixed/Header"
-import Nav from "../../../Fixed/Nav"
+import { ToastContainer } from 'react-toastify';
+
+
 import Title from "../../../Fixed/Search/Title";
 import ServicesDemand from "../../../../services/demandService";
 import ServicesProposal from "../../../../services/proposalService";
@@ -13,16 +13,15 @@ import ServicesExpense from "../../../../services/expenseService";
 import ServicesMinute from "../../../../services/minuteService";
 import Footer from "../../../Fixed/Footer";
 import "react-toastify/dist/ReactToastify.css";
-import PDF from "./PDF";
+import PDF from "./Others/PDF";
 import HtmlReactParser from 'html-react-parser';
 import UserContext from "../../../../context/userContext";
 import Tooltip from '@mui/material/Tooltip';
-import Expenses from "./Expenses";
+import Expenses from "./Others/Expenses";
 import "./style.css";
-import Table from "./Table";
-import ButtonsActions from "./ButtonsActions";
+import Table from "./Others/Table";
+import ButtonsActions from "./Others/ButtonsActions";
 import notifyUtil from "../../../../utils/notifyUtil";
-import othersUtil from "../../../../utils/othersUtil";
 
 
 export default function ViewDemand() {

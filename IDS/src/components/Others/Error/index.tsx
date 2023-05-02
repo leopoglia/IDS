@@ -1,5 +1,3 @@
-import Header from "../../Fixed/Header"
-import Nav from "../../Fixed/Nav"
 import "./style.css"
 import { Link } from "react-router-dom"
 

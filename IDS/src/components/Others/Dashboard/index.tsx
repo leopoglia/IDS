@@ -168,8 +168,6 @@ export default function Dashboard() {
 
     return (<div className="dashboard">
 
-        <Header />
-        <Nav />
 
 
         <div className="container">

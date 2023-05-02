@@ -20,8 +20,7 @@ export default function Messages() {
 
     return (
         <div className="messages">
-            <Header />
-            <Nav />
+         
 
             <div className="container">
                 <div className="backgroud-title">

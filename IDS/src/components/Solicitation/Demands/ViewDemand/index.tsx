@@ -102,6 +102,7 @@ export default function ViewDemand() {
 
         if (url === "demand") {
             getDemand();
+            console.log(demand)
             setCenterCost(demand.costCenter)
 
         } else if (url === "proposal") {
@@ -419,7 +420,8 @@ export default function ViewDemand() {
 
     function beneficiaryBus(beneficiaryBu: any) {
         let bus: any = [];
-        if (beneficiaryBu !== null || beneficiaryBu !== undefined) {
+
+        if (beneficiaryBu !== undefined) {
             for (let i = 0; i < beneficiaryBu.length; i++) {
 
                 bus.push(beneficiaryBu[i].bu.split(" –")[0]);
@@ -448,9 +450,6 @@ export default function ViewDemand() {
             { /* Verifica se é uma demanda ou uma proposta */  url === "demand" || url === "proposal" ? (
                 <div>
 
-                    <Header />
-
-                    <Nav />
 
                     <div className="container">
 
@@ -751,9 +750,7 @@ export default function ViewDemand() {
                 </div>
             ) : url === "agenda" ? (
                 <div>
-                    <Header />
-
-                    <Nav />
+            
 
                     <div className="container">
 
@@ -932,9 +929,7 @@ export default function ViewDemand() {
                 </div>
             ) : url === "minute" ? (
                 <div>
-                    <Header />
-                    <Nav />
-
+                 
                     <div className="container">
 
                         <div className="background-title">

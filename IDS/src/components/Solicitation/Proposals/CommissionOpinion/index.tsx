@@ -28,9 +28,7 @@ export default function CommissionOpinion() {
     return (
         <div className="commission-opinion">
 
-            <Header />
 
-            <Nav />
 
             <div className="container">
 

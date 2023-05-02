@@ -33,8 +33,7 @@ export default function Proposals() {
 
     return (
         <div className="proposals">
-            <Header/>
-            <Nav />
+
 
             <div className="container">
                 <div className="backgroud-title">

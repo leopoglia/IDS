@@ -47,9 +47,6 @@ export default function DisapproveDemand() {
     return (
         <div className="disapprove-demand">
 
-            <Header/>
-
-            <Nav />
 
             <div className="container">
 

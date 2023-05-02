@@ -10,6 +10,7 @@ import { WebSocketContext } from '../../../../services/webSocketService';
 import ServicesMessage from '../../../../services/messageService'
 import ServicesDemand from '../../../../services/demandService';
 import UserContext from '../../../../context/userContext';
+import ServicesWorker from '../../../../services/workerService';
 
 const ChatRoom = () => {
 
@@ -36,13 +37,24 @@ const ChatRoom = () => {
         const newMessage = (response) => {
             const messageReceived = JSON.parse(response.body);
             setMessages((previousMessages) => [...previousMessages, messageReceived]);
-
-
         }
 
+
+        if(messages[messages.length - 1]?.sender?.workerCode !== worker.id && workerDemand.workerName === "Analista"){
+            ServicesWorker.findById(messages[messages.length - 1]?.sender.workerCode).then((response) => {
+                console.log(response);
+                setWorkerDemand( { workerCode: response.workerCode, workerName: response.workerName });
+            }).catch((error) => {
+                console.log(error);
+            })
+
+
+            setWorkerDemand({ workerCode: messages[messages.length - 1]?.sender.workerCode });
+        }
+
+        
         if (stompClient && !subscribeId) {
             setSubscribeId(subscribe("/" + demandCode + "/chat", newMessage));
-            console.log("subscribeId", subscribeId);
         }
 
 
@@ -56,9 +68,10 @@ const ChatRoom = () => {
 
                     if (response.requesterRegistration.workerCode !== parseInt(localStorage.getItem("id"))) {
                         setWorkerDemand(response.requesterRegistration);
-                    } else {
-                        setWorkerDemand({ workerName: "Analista" });
+                    }else{
+                        setWorkerDemand( { workerName: "Analista"});
                     }
+
                 }).catch((error) => {
                     console.log(error);
                 })
@@ -115,8 +128,7 @@ const ChatRoom = () => {
 
     return (
         <div className="messages">
-            <Header />
-            <Nav />
+         
 
 
             <div className="container">
@@ -145,54 +157,63 @@ const ChatRoom = () => {
                         </div>
                     </div>
 
-
                     <div className="chat-box display-flex">
 
-                        <div className={'chats chats-' + chatsOpen }>
+                        {worker.office !== "requester" ?
+                            (
+                                <div className={'chats chats-' + chatsOpen}>
 
-                            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
-                                <div className="chats-profile">
+                                    {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
+                                        <div className="chats-profile">
 
-                                    <div className="person">
-                                        <span>
-                                            {workerDemand.workerName?.slice(0, 1)}
-                                        </span>
-                                    </div>
-
-                                    <div className='text-person-chats w100'>
-
-                                        <div className='display-flex-space-between w100 chat-time-chats'>
-                                            <div className="message-name-chats">
-                                                <span className="username">{workerDemand.workerName}</span>
+                                            <div className="person">
+                                                <span>
+                                                    {workerDemand.workerName?.slice(0, 1)}
+                                                </span>
                                             </div>
 
-                                            <span className='time-chat'>
-                                                12:00
-                                            </span>
+                                            <div className='text-person-chats w100'>
+
+                                                <div className='display-flex-space-between w100 chat-time-chats'>
+                                                    <div className="message-name-chats">
+                                                        <span className="username">{workerDemand.workerName}</span>
+                                                    </div>
+
+                                                    <span className='time-chat'>
+                                                        12:00
+                                                    </span>
+
+                                                </div>
+
+                                                <div className='display-flex span-message-chat'>
+                                                    <span className='message-chat'>
+                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.
+                                                    </span>
+                                                </div>
+                                            </div>
 
                                         </div>
-
-                                        <div className='display-flex span-message-chat'>
-                                            <span className='message-chat'>
-                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.
-                                            </span>
-                                        </div>
-                                    </div>
+                                    ))
+                                    }
 
                                 </div>
-                            ))
-                            }
-
-                        </div>
+                            ) : null
+                        }
 
 
                         <div className="chat-content ">
 
-                            <div className={'arrow-chat arrow-chat-' + chatsOpen} onClick={() => setChatsOpen(!chatsOpen)}>
-                                <span className='material-symbols-outlined arrow-expend'>
-                                    expand_more
-                                </span>
-                            </div>
+                            {worker.office !== "requester" ?
+                                (
+
+                                    <div className={'arrow-chat arrow-chat-' + chatsOpen} onClick={() => setChatsOpen(!chatsOpen)}>
+                                        <span className='material-symbols-outlined arrow-expend'>
+                                            expand_more
+                                        </span>
+                                    </div>
+
+                                ) : null
+                            }
 
 
                             <ul className="chat-messages" ref={divRef}>

@@ -25,8 +25,7 @@ export default function CreateMinute() {
  
     return (
         <div className="create-minute">
-            <Header/>
-            <Nav />
+       
             <div className="container">
                 <div className="background-title">
                     <Title title={t("createMinute")} nav={t("minuteCreateMinute")} />

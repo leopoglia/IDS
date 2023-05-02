@@ -46,10 +46,7 @@ export default function AddExpense() {
 
     return (
         <div className="add-expense">
-            <Header />
-
-            <Nav />
-
+        
             <div className="container">
 
 

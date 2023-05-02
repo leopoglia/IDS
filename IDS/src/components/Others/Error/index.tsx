@@ -7,9 +7,7 @@ export default function Erro() {
 
     return (
         <div className="error404">
-            <Header />
-            <Nav />
-
+           
             <div className="container">
                 <div className="page404">
                     <div className="display-grid">

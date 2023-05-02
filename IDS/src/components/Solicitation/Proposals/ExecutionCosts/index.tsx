@@ -91,9 +91,6 @@ export default function ExecutionCosts() {
     return (
         <div className="execution-costs">
 
-            <Header />
-
-            <Nav />
 
             <div className="container">
 

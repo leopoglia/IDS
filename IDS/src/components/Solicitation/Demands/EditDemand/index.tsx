@@ -280,8 +280,7 @@ export default function EscopeDemand() {
 
 	return (
 		<div className="create-demands-1">
-			<Header />
-			<Nav />
+		
 			{demands &&
 				<div className="container">
 					<div className="background-title">

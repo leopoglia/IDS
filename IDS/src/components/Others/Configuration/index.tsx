@@ -24,8 +24,7 @@ export default function Configuration() {
 
     return (
         <div className="configuration">
-            <Header />
-            <Nav />
+     
 
             <div className="container">
                 <div className="background-title">

@@ -113,8 +113,7 @@ export default function CreateAgenda() {
 
     return (
         <div className="create-agenda">
-            <Header />
-            <Nav />
+          
             <div className="container">
                 <div className="background-title">
                     <Title title={t("createAgenda")} nav={t("agendaCreateAgenda")} />

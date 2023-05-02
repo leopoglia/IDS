@@ -8,10 +8,6 @@ export default function HistoricalDemand() {
     return (
         <div className="view-demand historical-demand">
 
-            <Header />
-
-            <Nav />
-
             <div className="container">
 
                 <div className="backgroud-title">

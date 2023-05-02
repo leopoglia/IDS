@@ -32,8 +32,7 @@ export default function EditProposalScope() {
 
   return (
     <div className="edit-proposal-scope">
-      <Header/>
-      <Nav />
+    
 
       <div className="container">
 

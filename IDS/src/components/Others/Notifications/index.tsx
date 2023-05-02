@@ -27,8 +27,6 @@ export default function Notifications() {
     return (
         <div className="notifications">
 
-            <Header />
-            <Nav />
 
             <div className="container">
                 <div className="backgroud-title">

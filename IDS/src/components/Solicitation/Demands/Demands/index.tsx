@@ -276,8 +276,7 @@ export default function Demands() {
                             </button>
                         </div>)}
 
-                    <Header />
-                    <Nav />
+                    
                     <div className="container">
 
                         <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1" />
@@ -329,8 +328,7 @@ export default function Demands() {
 
             ) : (url[3] === "proposals") ? (
                 <div className="proposals">
-                    <Header />
-                    <Nav />
+
                     <div className="container">
                         <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} nav={t("proposalViewProposal")} title="proposals" button="createProposal" link="/demands/1" />
                         <div className="container-background">
@@ -366,8 +364,7 @@ export default function Demands() {
                 </div>
             ) : (url[3] === "agendas") ? (
                 <div className="agendas">
-                    <Header />
-                    <Nav />
+                    
                     <div className="container">
                         <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} setTipe={setType} setTable={setTable} nav={t("agendaViewAgenda")} title="agendas" button="createAgenda" link="/agenda/create" />
                         <div className="container-background">
@@ -404,8 +401,7 @@ export default function Demands() {
                 </div>
             ) : (url[3] === "minutes") ? (
                 <div className="minutes">
-                    <Header />
-                    <Nav />
+                  
                     <div className="container">
                         <Search onClick={callback} name={nameFilter} type={typeFilter} setType={setType} nav={t("minuteViewMinute")} title="minutes" button="createMinute" link="/agendas/1" setTable={setTable} />
                         <div className="container-background">

@@ -69,10 +69,6 @@ export default function ProposedInformation() {
     return (
         <div className="execution-costs">
 
-            <Header />
-
-            <Nav />
-
             <div className="container">
 
 

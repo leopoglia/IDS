@@ -47,9 +47,7 @@ export default function ComplementDemand() {
     return (
         <div className="complement-demand">
 
-            <Header />
-
-            <Nav />
+         
 
 
             <div className="container">

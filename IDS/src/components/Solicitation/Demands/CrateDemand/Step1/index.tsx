@@ -156,9 +156,7 @@ export default function CreateDemands1() {
 
     return (
         <div className="create-demands-1">
-            <Header />
-            <Nav />
-
+        
             <div className="container">
                 <div className="background-title">
                     <Title nav="demandsCreateDemand" title="createDemand" />

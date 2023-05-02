@@ -111,8 +111,7 @@ export default function CreateDemands3() {
 
     return (
         <div className="create-demands-3">
-            <Header />
-            <Nav />
+    
 
             <div className="container">
                 <div className="background-title">

@@ -142,10 +142,7 @@ export default function RankDemand() {
 
     return (
         <div className="rank-demand">
-            <Header />
-
-            <Nav />
-
+          
 
             <div className="container">
 

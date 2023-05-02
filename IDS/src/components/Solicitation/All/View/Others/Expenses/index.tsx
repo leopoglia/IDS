@@ -18,11 +18,11 @@ export default function Expenses(props: any) {
         setTotalHourValue(0);
         setTotalValue(0);
 
-        for(let i = 0; i < props.proposalExpense.length; i++){
+        for (let i = 0; i < props.proposalExpense.length; i++) {
 
             console.log(props.proposalExpense[i].expenseType, " === ", props.type, " ?");
 
-            if(props.proposalExpense[i].expenseType === props.type){
+            if (props.proposalExpense[i].expenseType === props.type) {
 
                 setTotalAmountOfHours(totalAmountOfHours + parseInt(props.proposalExpense[i].amountOfHours));
                 setTotalHourValue(totalHourValue + parseInt(props.proposalExpense[i].hourValue));
@@ -39,9 +39,16 @@ export default function Expenses(props: any) {
                 <div className="display-flex-space-between">
 
                     <p className="title">{t(props.type)}</p>
-                    <span onClick={() => setOpen(!open)} className="material-symbols-outlined arrow-expend">
-                        expand_more
-                    </span>
+
+                    <div className="flex">
+                        <span onClick={() => { }} className="material-symbols-outlined arrow-expend">
+                            edit
+                        </span>
+
+                        <span onClick={() => setOpen(!open)} className="material-symbols-outlined arrow-expend">
+                            expand_more
+                        </span>
+                    </div>
                 </div>
 
                 <table>

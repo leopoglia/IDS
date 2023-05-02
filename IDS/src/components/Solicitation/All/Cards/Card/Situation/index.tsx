@@ -7,8 +7,6 @@ export default function Situation(props: any) {
 
     const { t } = useTranslation();
 
-    const [situationSeparate, setSituationSeparate] = useState("");
-
     useEffect(() => { 
 
         // if (props.situation) {

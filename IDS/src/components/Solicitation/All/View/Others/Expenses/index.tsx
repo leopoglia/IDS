@@ -18,8 +18,6 @@ export default function Expenses(props: any) {
         setTotalHourValue(0);
         setTotalValue(0);
 
-        console.log("EXPENSE --> ", props.proposalExpense);
-
         for(let i = 0; i < props.proposalExpense.length; i++){
 
             console.log(props.proposalExpense[i].expenseType, " === ", props.type, " ?");

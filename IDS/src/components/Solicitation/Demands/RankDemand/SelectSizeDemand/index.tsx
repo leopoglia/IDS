@@ -6,7 +6,7 @@ import Services from '../../../../../services/buService';
 
 export default function SelectLabels(props: any) {
     const [select, setSelect] = useState('');
-    const [type] = useState(props.type);
+    const [type, setType] = useState(props.type);
     const [bu, setBu]: any = useState([]);
 
     const size = ["Muito Pequeno", "Pequeno", "Médio", "Grande", "Muito Grande"]

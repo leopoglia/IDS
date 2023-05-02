@@ -16,7 +16,7 @@ const ChatRoom = () => {
 
     const { t } = useTranslation();
     const [emoji, setEmoji] = useState(false);
-    const [setSelectedEmoji] = useState("");
+    const [selectedEmoji, setSelectedEmoji] = useState("");
     const [workerDemand, setWorkerDemand] = useState({});
 
     const demandCode = useParams().id;

@@ -18,23 +18,22 @@ export default function ExecutionCosts() {
     const worker = useContext(UserContext).worker;
 
     const [demandCode, setDemandCode] = useState(parseInt(window.location.href.split("/")[5]));
+    const [expenseListStorage, setExpenseListStorage] = useState<any>(JSON.parse(localStorage.getItem('expenseList') || '[]'));
+    const demandData: any = JSON.parse(localStorage.getItem('demand') || '{}');
     const proposal = JSON.parse(localStorage.getItem('proposal') || '{}');
     const scope: any = localStorage.getItem('proposalScope');
     let actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear(); // Data atual
-    const [expenseListStorage, setExpenseListStorage] = useState<any>(JSON.parse(localStorage.getItem('expenseList') || '[]'));
-    const demandData: any = JSON.parse(localStorage.getItem('demand') || '{}');
 
     let [internalCosts, setInternalCosts]: any = useState(0);
     let [recurrentCosts, setRecurrentCosts]: any = useState(0);
     let [externalCosts, setExternalCosts]: any = useState(0);
     let [totalsCosts, setTotalsCosts]: any = useState(0);
+
     DemandService.findById(demandCode).then((demand: any) => {
         localStorage.setItem('demand', JSON.stringify(demand));
     });
 
-
-
-    useEffect(() => { 
+    useEffect(() => {
         for (let i = 0; i < expenseListStorage.length; i++) {
             if (expenseListStorage[i].typeOfExpense === "internal") {
                 internalCosts += expenseListStorage[i].expenseTotalValue;

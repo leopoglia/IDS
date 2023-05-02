@@ -20,8 +20,8 @@ export default function Edit() {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
 
-	const [url] = useState(window.location.href.split("/")[4]); // Url da página
-	const [type] = useState(window.location.href.split("/")[3]); // Tipo da página
+	const [url, setUrl] = useState(window.location.href.split("/")[4]); // Url da página
+	const [type, setType] = useState(window.location.href.split("/")[3]); // Tipo da página
 
 	const [demandCode, setDemandCode] = useState(parseInt(window.location.href.split("/")[5])); // Código da demanda
 	const [demands, setDemands]: any = useState(); // Demanda
@@ -514,7 +514,7 @@ export default function Edit() {
 								<button onClick={() => editDemand()} className="btn-primary">{t("editDemand")}</button>
 							) : (
 								<>
-									{type === "proposal" ?
+									{type === "proposal" && url !== "demand" ?
 										(
 											<button onClick={() => editDemand()} className="btn-primary">{t("editProposal")}</button>
 										) : (

@@ -19,9 +19,6 @@ export default function CreateDemands2() {
 
     const { t } = useTranslation();
     const navigate = useNavigate();
-    const realBenefitsLocalStorage = JSON.parse(localStorage.getItem('realBenefits') || '{}')
-    const potentialBenefitsLocalStorage = JSON.parse(localStorage.getItem('potentialBenefits') || '{}')
-    const qualitativeBenefitsLocalStorage = JSON.parse(localStorage.getItem('qualitativeBenefits') || '{}')
 
     const [realMonthlyValue, setRealMonthlyValue] = useState("");
     const [realBenefitDescription, setrealBenefitDescription] = useState("");

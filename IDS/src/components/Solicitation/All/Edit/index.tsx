@@ -23,8 +23,6 @@ export default function Edit() {
 	const [url] = useState(window.location.href.split("/")[4]); // Url da página
 	const [type] = useState(window.location.href.split("/")[3]); // Tipo da página
 
-	console.log(type)
-
 	const [demandCode, setDemandCode] = useState(parseInt(window.location.href.split("/")[5])); // Código da demanda
 	const [demands, setDemands]: any = useState(); // Demanda
 
@@ -276,11 +274,17 @@ export default function Edit() {
 
 	return (
 		<div className="create-demands-1">
-		
+
 			{demands &&
 				<div className="container">
 					<div className="background-title">
-						<Title nav="demandEditDemand" title="editDemand" />
+						{url === "demand" ?
+							(
+								<Title nav="demandEditDemand" title="editDemand" />
+							) : (
+								<Title nav="proposalEditProposal" title="editProposal" />
+							)
+						}
 
 					</div>
 
@@ -505,11 +509,19 @@ export default function Edit() {
 					</div>
 
 					<div className="display-flex-end">
-						{url === "edit" ?
+						{url === "edit" && type === "demand" ?
 							(
 								<button onClick={() => editDemand()} className="btn-primary">{t("editDemand")}</button>
 							) : (
-								<button onClick={() => editDemand()} className="btn-primary">{t("advance")}</button>
+								<>
+									{type === "proposal" ?
+										(
+											<button onClick={() => editDemand()} className="btn-primary">{t("editProposal")}</button>
+										) : (
+											<button onClick={() => editDemand()} className="btn-primary">{t("advance")}</button>
+										)
+									}
+								</>
 							)
 						}
 

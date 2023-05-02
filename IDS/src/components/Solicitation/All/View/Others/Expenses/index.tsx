@@ -22,7 +22,6 @@ export default function Expenses(props: any) {
 
         for (let i = 0; i < props.proposalExpense.length; i++) {
 
-            console.log(props.proposalExpense[i].expenseType, " === ", props.type, " ?");
 
             if (props.proposalExpense[i].expenseType === props.type) {
 

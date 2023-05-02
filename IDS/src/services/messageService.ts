@@ -45,7 +45,6 @@ const Services = {
     },
 
     findAllByDemandRequester: function (id: number) {
-        console.log(id)
 
         return new Promise((resolve, reject) => {
             fetch(url + "/worker/" + id, {

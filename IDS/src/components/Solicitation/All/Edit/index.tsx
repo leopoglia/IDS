@@ -124,8 +124,6 @@ export default function Edit() {
 
 	useEffect(() => {
 
-		console.log(window.location.href.split("?")[1])
-
 		if (window.location.href.split("?")[1] === undefined) {
 			if (url === "demand" || type === "demand") {
 				getDemand(demandCode);
@@ -280,8 +278,6 @@ export default function Edit() {
 	const [situationBenefitQualitative, setBenefitQualitativeOpen] = useState(true);
 	const [situationAdicional, setAdicionalOpen] = useState(true);
 
-
-	console.log("edit type ------------------------> ", editType)
 
 	return (
 		<div className="create-demands-1">

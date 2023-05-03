@@ -36,7 +36,6 @@ export default function LoginForm() {
             language: response.language,
           };
           setWorker(worker);
-          localStorage.setItem("id", JSON.stringify(worker.id));
           navigate("/demands/1");
         } else {
           notifyUtil.error(t("wrongEmailOrPassword"));

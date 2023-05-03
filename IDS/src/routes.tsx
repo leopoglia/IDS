@@ -32,6 +32,7 @@ import ServicesWorker from "./services/workerService";
 import { WebSocketService } from "./services/webSocketService";
 import Header from "./components/Fixed/Header";
 import Nav from "./components/Fixed/Nav";
+import Cookies from 'js-cookie';
 
 
 export default function Router() {
@@ -47,22 +48,31 @@ export default function Router() {
 
     useEffect(() => {
 
-        if (worker.id === "") {
-            const id = localStorage.getItem("id");
-            if (id !== null) {
-                ServicesWorker.findById(JSON.parse(id)).then((response: any) => {
-                    const worker = {
-                        id: response.workerCode,
-                        office: response.workerOffice,
-                        name: response.workerName,
-                        email: response.corporateEmail,
-                        language: response.language
+        if (window.location.pathname !== "/") {
+            let workerCode;
+
+            let cookieUser: any = Cookies?.get('user');
+            workerCode = JSON.parse(cookieUser).worker.workerCode;
+
+
+            if (worker.id === "") {
+                const id = workerCode;
+
+                if (id !== null) {
+                    ServicesWorker.findById(JSON.parse(id)).then((response: any) => {
+                        const worker = {
+                            id: response.workerCode,
+                            office: response.workerOffice,
+                            name: response.workerName,
+                            email: response.corporateEmail,
+                            language: response.language
+                        }
+                        setWorker(worker);
+                    });
+                } else {
+                    if (window.location.pathname !== "/") {
+                        window.location.href = "/";
                     }
-                    setWorker(worker);
-                });
-            } else {
-                if (window.location.pathname !== "/") {
-                    window.location.href = "/";
                 }
             }
         }

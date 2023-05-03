@@ -290,11 +290,19 @@ export default function RankDemand() {
 
                 <div className="demands-footer">
 
-                    <Link to={"/demand/view/" + url}>
-                        <button className="btn-secondary">
-                            <span>{t("return")}</span>
-                        </button>
-                    </Link>
+                    {edit ?
+                        <Link to={"/proposal/view/" + edit}>
+                            <button className="btn-secondary">
+                                <span>{t("return")}</span>
+                            </button>
+                        </Link>
+                        :
+                        <Link to={"/demand/view/" + url}>
+                            <button className="btn-secondary">
+                                <span>{t("return")}</span>
+                            </button>
+                        </Link>
+                    }
 
 
                     <button onClick={() => saveToRank()} className="btn-primary">

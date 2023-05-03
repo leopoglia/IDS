@@ -242,48 +242,44 @@ export default function Edit() {
 		}
 	}
 
-	function editDemand() {
+	async function editDemand() {
 
-		ServicesRealBenefit.save(realBenefitValue, realBenefitDescription, realCurrency).then((response: any) => { 
-			setRealBenefitCode(response.realBenefitCode);
-		});
 
-		ServicesPotentialBenefit.save(potentialBenefitValue, potentialBenefitDescription, true, potentialCurrency).then((response: any) => { 
-			setPotentialBenefitCode(response.potentialBenefitCode);
-		});
-
-		ServicesQualitativeBenefit.save(frequencyOfUse, qualitativeBenefitDescription, true).then((response: any) => { 
-			setQualitativeBenefitCode(response.qualitativeBenefitCode);
-		});
-
-		let file;
+		let file: File | null;
 		if (fileAttachment[0] !== null) {
 			file = new File([fileAttachment[0]], fileAttachment[0].name, { type: fileAttachment[0].type });
 		} else {
 			file = null
 		}
 
-		ServicesHistorical.save(demandCode, null, demandRequester);
-
-		console.log("classification --> ", demandClassification)
 
 
-		console.log("RealBenefitCode --> ", realBenefitCode)
-		console.log("PotentialBenefitCode --> ", potentialBenefitCode)
-		console.log("QualitativeBenefitCode --> ", qualitativeBenefitCode)
+		ServicesRealBenefit.save(realBenefitValue, realBenefitDescription, realCurrency).then((realBenefit: any) => {
 
-		ServicesDemand.update(demandCode, demandTitle, demandProblem, demandObjective, costsCentersId, frequencyOfUse, realBenefitCode, potentialBenefitCode, qualitativeBenefitCode, file, demandDate, demandStatus, demandScore, demandRequester, demandClassification).then((response: any) => {
+			ServicesPotentialBenefit.save(potentialBenefitValue, potentialBenefitDescription, true, potentialCurrency).then((potentialBenefit: any) => {
 
-			if (url === "edit" && type === "demand") {
-				ServicesDemand.updateStatus(demandCode, "Backlog").then((response: any) => { });
+				ServicesQualitativeBenefit.save(frequencyOfUse, qualitativeBenefitDescription, true).then((qualitativeBenefit: any) => {
 
-				localStorage.setItem("route", "edit");
-				navigate("/demand/view/" + demandCode);
-			} else if (url === "demand") {
-				navigate("/proposal/edit-scope/" + demandCode);
-			}
+					ServicesDemand.update(demandCode, demandTitle, demandProblem, demandObjective, costsCentersId, frequencyOfUse, realBenefit.realBenefitCode, potentialBenefit.potentialBenefitCode, qualitativeBenefit.qualitativeBenefitCode, file, demandDate, demandStatus, demandScore, demandRequester, demandClassification).then((response: any) => {
 
+						if (url === "edit" && type === "demand") {
+							ServicesDemand.updateStatus(demandCode, "Backlog").then((response: any) => { });
+
+							localStorage.setItem("route", "edit");
+							navigate("/demand/view/" + demandCode);
+						} else if (url === "demand") {
+							navigate("/proposal/edit-scope/" + demandCode);
+						} else if(url === "edit"){
+							navigate("/proposal/view/" + demandCode);
+						}
+
+					});
+
+				});
+
+			});
 		});
+
 
 
 	}

@@ -57,8 +57,6 @@ const ChatRoom = () => {
         }
 
 
-        console.log(messages)
-
     }, [messages, stompClient]);
 
     useEffect(() => {
@@ -66,6 +64,7 @@ const ChatRoom = () => {
         async function getDemand() {
             await ServicesDemand.findById(demandCode)
                 .then((response) => {
+
 
                     if (response.requesterRegistration.workerCode !== parseInt(localStorage.getItem("id"))) {
                         setWorkerDemand(response.requesterRegistration);
@@ -83,6 +82,9 @@ const ChatRoom = () => {
         async function loading() {
             await ServicesMessage.findById(demandCode)
                 .then((response) => {
+
+                    console.log(response);
+
                     setMessages(response);
                 }).catch((error) => {
                     console.log(error);

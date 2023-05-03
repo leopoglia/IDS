@@ -210,14 +210,23 @@ export default function ViewDemand() {
         ServicesProposal.findById(demandCode).then((response: any) => {
             setProposal(response)
 
-
-            setDemand(response.demand); // Seta a demanda da proposta
-            setStepDemand(2) // Seta o passo da demanda
-            setClassification(response.demand.classification) // Seta a classificação da demanda
-            beneficiaryBus(response?.demand?.classification?.beneficiaryBu)
             setResponsibleBussiness(response?.responsibleAnalyst.workerName) // Seta o responsável de negócios da proposta
 
-            setCenterCost(response.demand.costCenter) // Seta o centro de custo da demanda
+
+            ServicesDemand.findById(response.demand.demandCode).then((demand: any) => {
+                console.log("DEMAND ----> ", demand)
+                setDemand(demand); // Seta a demanda da proposta
+
+
+
+
+                setStepDemand(2) // Seta o passo da demanda
+                setClassification(demand.classification) // Seta a classificação da demanda
+                beneficiaryBus(demand?.classification?.beneficiaryBu)
+
+                setCenterCost(demand.demand.costCenter) // Seta o centro de custo da demanda
+
+            })
 
             if (response.proposalStatus === "Pending") {
                 setActionsDemand(7);
@@ -922,7 +931,7 @@ export default function ViewDemand() {
                 </div>
             ) : url === "minute" ? (
                 <div>
-                 
+
                     <div className="container">
 
                         <div className="background-title">

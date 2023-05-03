@@ -242,6 +242,12 @@ export default function Edit() {
 		}
 	}
 
+	async function editUnit(){
+
+		
+
+	}
+
 	async function editDemand() {
 
 
@@ -269,7 +275,7 @@ export default function Edit() {
 							navigate("/demand/view/" + demandCode);
 						} else if (url === "demand") {
 							navigate("/proposal/edit-scope/" + demandCode);
-						} else if(url === "edit"){
+						} else if (url === "edit") {
 							navigate("/proposal/view/" + demandCode);
 						}
 
@@ -555,30 +561,37 @@ export default function Edit() {
 
 						</>
 					) : editType === "costcenter" ? (
-						<div className="box">
-							<div className="input">
-								<label>{t("costCenter")} *</label>
+						<>
+							<div className="box">
+								<div className="input">
+									<label>{t("costCenter")} *</label>
 
-								<div className="display-flex">
-									<SelectCenterCost setCostCenter={setCostCenter} costCenter={costCenter} addCostCenter={addCostCenter} />
+									<div className="display-flex">
+										<SelectCenterCost setCostCenter={setCostCenter} costCenter={costCenter} addCostCenter={addCostCenter} />
 
-									<div className="btn-primary w45" onClick={() => { addCostCenter(costCenter); handleChange(costCenter); }}>
-										<span className="material-symbols-outlined">add</span>
+										<div className="btn-primary w45" onClick={() => { addCostCenter(costCenter); handleChange(costCenter); }}>
+											<span className="material-symbols-outlined">add</span>
+										</div>
 									</div>
 								</div>
+
+
+								{costsCenters.map((costCenter: any) => {
+									return <div className="costCenter">
+										<span>{costCenter}</span>
+										<span className="material-symbols-outlined delete-cost-center" onClick={deleteCostCenter(costCenter)}>
+											delete
+										</span>
+									</div>
+								})
+								}
 							</div>
 
+							<div className="display-flex-end">
+								<button onClick={() => editUnit()} className="btn-primary">{t("edit")}</button>
+							</div>
+						</>
 
-							{costsCenters.map((costCenter: any) => {
-								return <div className="costCenter">
-									<span>{costCenter}</span>
-									<span className="material-symbols-outlined delete-cost-center" onClick={deleteCostCenter(costCenter)}>
-										delete
-									</span>
-								</div>
-							})
-							}
-						</div>
 					) : (<></>)
 					}
 

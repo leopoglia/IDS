@@ -224,7 +224,7 @@ export default function ViewDemand() {
                 setClassification(demand.classification) // Seta a classificação da demanda
                 beneficiaryBus(demand?.classification?.beneficiaryBu)
 
-                setCenterCost(demand.demand.costCenter) // Seta o centro de custo da demanda
+                setCenterCost(demand.costCenter) // Seta o centro de custo da demanda
 
             })
 
@@ -659,7 +659,7 @@ export default function ViewDemand() {
                                 </div>
 
                                 {centerCost && (
-                                    <Table title="costCenter" headers={["costCenterCode", "costCenter"]} items={centerCost} />
+                                    <Table title="costCenter" demandCode={demand?.demandCode} proposalCode={proposal?.proposalCode} headers={["costCenterCode", "costCenter"]} items={centerCost} />
                                 )
                                 }
 
@@ -669,15 +669,20 @@ export default function ViewDemand() {
                             {(stepDemand === 1 || stepDemand === 2) ? (
 
                                 (classification) ? (
-                                    <Table title="classification" headers={["size", "requesterBU", "buBenefited", "responsibleItSession"]} items={[classification.classificationSize, classification.requesterBu.bu, beneficiariesBu, classification.itSection]} />
+
+
+                                    (classification.epicJiraLink) ?
+                                    <Table title="classification" demandCode={demand?.demandCode}  proposalCode={proposal?.proposalCode} headers={["size", "requesterBU", "buBenefited", "responsibleItSession", "ppmCode", "linkEpicJira"]} items={[classification.classificationSize, classification.requesterBu.bu, beneficiariesBu, classification.itSection, classification.ppmCode, classification.epicJiraLink]} />
+                                    : 
+                                    <Table title="classification" demandCode={demand?.demandCode}  proposalCode={proposal?.proposalCode} headers={["size", "requesterBU", "buBenefited", "responsibleItSession"]} items={[classification.classificationSize, classification.requesterBu.bu, beneficiariesBu, classification.itSection]} />
                                 ) : (null)
                             ) : (null)
                             }
-
+{/* 
                             {(stepDemand === 2) ? (
-                                <Table title="complements" headers={["ppmCode", "linkEpicJira"]} items={[classification.ppmCode, classification.epicJiraLink]} />
+                                <Table title="complements" demandCode={demand?.demandCode}  proposalCode={proposal?.proposalCode} headers={["ppmCode", "linkEpicJira"]} items={[classification.ppmCode, classification.epicJiraLink]} />
                             ) : (null)
-                            }
+                            } */}
 
                             {proposalExpenseValue !== 0 ? (<Expenses type="expenses" proposalExpense={proposalExpense} />) : (null)}
 

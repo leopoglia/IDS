@@ -1,13 +1,16 @@
 import Tooltip from "@mui/material/Tooltip";
 import { t } from "i18next";
 import { useNavigate, useParams } from "react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Table(props: any) {
 
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
-    const demandCode = useParams().id;
+
+    useEffect(() => {
+        console.log(props.id)
+    }, [])
 
 
     // Função para criar tabela (tr)
@@ -21,7 +24,15 @@ export default function Table(props: any) {
     }
 
     const click = () => {
-        navigate("/proposal/edit/" + demandCode + "?" + (props.title).toLowerCase());
+
+        if (props.title === "classification") {
+            navigate("/demand/rank/" + props.demandCode + "?" + props.proposalCode);
+
+        } else {
+            navigate("/proposal/edit/" + props.demandCode + "?" + props.proposalCode);
+
+        }
+
     }
 
 

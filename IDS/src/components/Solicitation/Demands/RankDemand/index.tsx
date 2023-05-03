@@ -21,11 +21,16 @@ export default function RankDemand() {
     const [buBenefited, setBuBenefited] = useState(""); // Unidade de negócio beneficiada
     const [buBenefiteds, setBuBenefiteds]: any = useState([]); // Unidades de negócio beneficiadas
     const [buBenefitedsList, setBuBenefitedsList]: any = useState([]); // Lista de unidades de negócio beneficiadas
+    const [ppmCode, setPpmCode] = useState(""); // Código do ppm
+    const [linkEpicJira, setLinkEpicJira] = useState(""); // Link do epic jira
+
+
     const [demand, setDemand]: any = useState({}); // Demanda
     const [fileAttachment, setFileAttachment]: any = useState([]);
     const url = parseInt(window.location.href.split("/")[5]); // Pegando o id da demanda
+    const edit = window.location.href.split("?")[1]
 
-    useEffect(() => { 
+    useEffect(() => {
         // Pegando a demanda inicial
         getDemand();
 
@@ -51,25 +56,37 @@ export default function RankDemand() {
     function saveToRank() {
         let classification = JSON.parse(localStorage.getItem("classification") || "{}"); // Pegando os dados da classificação
 
+        classification.ppmCode = ppmCode;
+        classification.epicJiraLink = linkEpicJira;
+
 
         if (classification.size === "" || classification.ti === "" || classification.buReq === "" || classification.buBenList === undefined) {
             notify();
             return;
         } else {
             // Salvando a classificação
-            ServicesClassification.save(classification.size, classification.ti, -1, "", classification.buReq, classification.buBenList, analysis.id, fileAttachment[0]).then((response: any) => {
-                let classificationCode = response.classificationCode; // Pegando o código da classificação
 
-                // Atualizando a classificação da demanda
-                ServicesDemand.updateClassification(demand.demandCode, classificationCode).then((response: any) => {
+            if (edit === undefined) {
 
-                    ServicesDemand.updateStatus(url, "BacklogRanked").then((response: any) => {
-                        localStorage.setItem("route", "classification");
-                        localStorage.removeItem("classification");
+                ServicesClassification.save(classification.size, classification.ti, 0, "", classification.buReq, classification.buBenList, analysis.id, fileAttachment[0]).then((response: any) => {
+                    let classificationCode = response.classificationCode; // Pegando o código da classificação
 
-                        ServicesNotification.save("Um analista classificou a sua demanda de código  " + demand.demandCode, demand.requesterRegistration.workerCode, "done", "demand");
+                    // Atualizando a classificação da demanda
+                    ServicesDemand.updateClassification(demand.demandCode, classificationCode).then((response: any) => {
 
-                        navigate("/demand/view/" + url)
+                        ServicesDemand.updateStatus(url, "BacklogRanked").then((response: any) => {
+                            localStorage.setItem("route", "classification");
+                            localStorage.removeItem("classification");
+
+                            ServicesNotification.save("Um analista classificou a sua demanda de código  " + demand.demandCode, demand.requesterRegistration.workerCode, "done", "demand");
+
+                            navigate("/demand/view/" + url)
+
+                        }).catch((error: any) => {
+                            console.log(error)
+                        })
+
+
                     }).catch((error: any) => {
                         console.log(error)
                     })
@@ -77,10 +94,28 @@ export default function RankDemand() {
                 }).catch((error: any) => {
                     console.log(error)
                 })
+            } else {
+                if (classification.ppmCode === undefined || classification.epicJiraLink === "") {
+                    notify();
+                } else {
+                    ServicesClassification.save(classification.size, classification.ti, classification.ppmCode, classification.epicJiraLink, classification.buReq, classification.buBenList, analysis.id, fileAttachment[0]).then((response: any) => {
+                        let classificationCode = response.classificationCode; // Pegando o código da classificação
 
-            }).catch((error: any) => {
-                console.log(error)
-            })
+                        ServicesDemand.updateClassification(demand.demandCode, classificationCode).then((response: any) => {
+
+
+                            navigate("/proposal/view/" + edit)
+
+                        }).catch((error: any) => {
+                            console.log(error)
+                        })
+
+                    }).catch((error: any) => {
+                        console.log(error)
+                    })
+                }
+
+            }
         }
 
 
@@ -140,7 +175,7 @@ export default function RankDemand() {
 
     return (
         <div className="rank-demand">
-          
+
 
             <div className="container">
 
@@ -185,7 +220,7 @@ export default function RankDemand() {
                             <SelectSizeDemand setBuBenefiteds={setBuBenefiteds} buBenefiteds={buBenefiteds} type="buBen" />
                         </div>
 
-                        {buBenefitedsList.map((bu: any, index:any) => {
+                        {buBenefitedsList.map((bu: any, index: any) => {
                             return <div className="costCenter" key={index}>
                                 <span>{bu.bu}</span>
                                 <span className="material-symbols-outlined delete-cost-center" onClick={deleteBuBenefited(bu)}>
@@ -195,6 +230,26 @@ export default function RankDemand() {
                         })
                         }
                     </div>
+
+                    {edit ?
+
+                        <>
+                            <div className="hr" />
+
+
+                            <div className="display-grid">
+                                <label htmlFor="">{t("ppmCode")} *</label>
+                                <input onChange={(e) => setPpmCode(e.target.value)} type="text" />
+                            </div>
+                            <div className="display-grid mt10 mb10">
+                                <label htmlFor="">{t("linkEpicJira")} *</label>
+                                <input onChange={(e) => setLinkEpicJira(e.target.value)} type="text" />
+                            </div>
+                        </>
+                        : null
+                    }
+
+
 
 
                     <div>
@@ -231,6 +286,7 @@ export default function RankDemand() {
 
                     </div>
                 </div>
+
 
                 <div className="demands-footer">
 

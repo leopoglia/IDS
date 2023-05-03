@@ -58,7 +58,7 @@ export default function HistoricalDemand() {
                                         {val.demandDate}
                                     </td>
                                     <td className="activeVersion">
-                                        {val.demandDate}
+                                        {val.demandHour}
                                     </td>
                                     <td className="activeVersion">
                                         {val.demandVersion}.0
@@ -77,7 +77,7 @@ export default function HistoricalDemand() {
                                         {val.demandDate}
                                     </td>
                                     <td>
-                                        {val.demandDate}
+                                        {val.demandHour}
                                     </td>
                                     <td>
                                         {val.demandVersion}.0

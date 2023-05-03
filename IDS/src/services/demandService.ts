@@ -39,6 +39,15 @@ const Services = {
                 .catch(reject)
         })
     },
+    historical: function(demandCode: Number){
+        return new Promise((resolve, reject) => {
+            fetch(url + "/historical/" + demandCode, {
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(reject)
+        })
+    },
     findAll: async function () {
         return new Promise((resolve, reject) => {
             fetch(url, {

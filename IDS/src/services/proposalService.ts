@@ -25,7 +25,7 @@ const Services = {
                     totalCosts: totalsCosts,
                     externalCosts: externalCosts,
                     internalCosts: internalCosts,
-                    demand: { demandCode: demandCode },
+                    demand: { demandCode: demandCode, demandVersion: 1 },
                     proposalDate: proposalDate,
                     published: null
                 }), headers: { 'Content-Type': 'application/json' }, credentials: 'include'

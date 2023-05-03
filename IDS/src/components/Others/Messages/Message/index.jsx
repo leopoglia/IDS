@@ -28,7 +28,7 @@ const ChatRoom = () => {
     const { worker } = useContext(UserContext);
     const divRef = useRef(null);
 
-    const [chatsOpen, setChatsOpen] = useState(false);
+    const [chatsOpen, setChatsOpen] = useState(true);
 
     useEffect(() => {
         divRef.current.scrollTop = divRef.current.scrollHeight;
@@ -39,10 +39,10 @@ const ChatRoom = () => {
         }
 
 
-        if(messages[messages.length - 1]?.sender?.workerCode !== worker.id && workerDemand.workerName === "Analista"){
+        if (messages[messages.length - 1]?.sender?.workerCode !== worker.id && workerDemand.workerName === "Analista") {
             ServicesWorker.findById(messages[messages.length - 1]?.sender.workerCode).then((response) => {
                 console.log(response);
-                setWorkerDemand( { workerCode: response.workerCode, workerName: response.workerName });
+                setWorkerDemand({ workerCode: response.workerCode, workerName: response.workerName });
             }).catch((error) => {
                 console.log(error);
             })
@@ -51,7 +51,7 @@ const ChatRoom = () => {
             setWorkerDemand({ workerCode: messages[messages.length - 1]?.sender.workerCode });
         }
 
-        
+
         if (stompClient && !subscribeId) {
             setSubscribeId(subscribe("/" + demandCode + "/chat", newMessage));
         }
@@ -68,8 +68,8 @@ const ChatRoom = () => {
 
                     if (response.requesterRegistration.workerCode !== parseInt(localStorage.getItem("id"))) {
                         setWorkerDemand(response.requesterRegistration);
-                    }else{
-                        setWorkerDemand( { workerName: "Analista"});
+                    } else {
+                        setWorkerDemand({ workerName: "Analista" });
                     }
 
                 }).catch((error) => {
@@ -124,14 +124,15 @@ const ChatRoom = () => {
     function onClick(emojiData) {
         setSelectedEmoji(emojiData.unified);
 
-        setMessage({ ...message, message: message.message + emojiData.emoji });
+        setMessage({ ...message, message: message.message + emojiData.emoji, dateMessage: new Date().toLocaleString() });
+        console.log(message);
     }
 
 
 
     return (
         <div className="messages">
-         
+
 
 
             <div className="container">
@@ -222,7 +223,7 @@ const ChatRoom = () => {
                             <ul className="chat-messages" ref={divRef}>
 
 
-                                { messages.length > 0 &&
+                                {messages.length > 0 &&
                                     messages.map((message) => (
 
                                         <li key={message.id} className={

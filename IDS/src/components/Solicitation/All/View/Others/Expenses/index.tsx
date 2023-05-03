@@ -1,16 +1,18 @@
 import { Tooltip } from "@mui/material";
 import { t } from "i18next"
 import { useEffect, useState } from "react"
+import { useNavigate, useParams } from "react-router";
 
 
 export default function Expenses(props: any) {
 
     const [open, setOpen] = useState(false);
+    const navigate = useNavigate();
 
     const [totalAmountOfHours, setTotalAmountOfHours] = useState(0);
     const [totalHourValue, setTotalHourValue] = useState(0);
     const [totalValue, setTotalValue] = useState(0);
-
+    const demandCode = useParams().id;
 
     useEffect(() => {
 
@@ -20,7 +22,6 @@ export default function Expenses(props: any) {
 
         for (let i = 0; i < props.proposalExpense.length; i++) {
 
-            console.log(props.proposalExpense[i].expenseType, " === ", props.type, " ?");
 
             if (props.proposalExpense[i].expenseType === props.type) {
 
@@ -32,6 +33,11 @@ export default function Expenses(props: any) {
 
     }, [props.proposalExpense])
 
+    const click = () => {
+        navigate("/proposal/edit/" + demandCode + "?" + props.type);
+    }
+
+
 
     return (
         <div>
@@ -41,7 +47,7 @@ export default function Expenses(props: any) {
                     <p className="title">{t(props.type)}</p>
 
                     <div className="flex">
-                        <span onClick={() => { }} className="material-symbols-outlined arrow-expend">
+                        <span onClick={() => { click() }} className="material-symbols-outlined arrow-expend mr5">
                             edit
                         </span>
 

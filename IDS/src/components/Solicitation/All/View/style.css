@@ -372,6 +372,10 @@
     width: 33.5% !important;
 }
 
+.mr5{
+    margin-right: 10px !important;
+}
+
 /* 
 @media(max-width: 768px) {
     .view-demand .box div span {

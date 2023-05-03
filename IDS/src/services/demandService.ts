@@ -80,8 +80,6 @@ const Services = {
         demandScore: any, demandRequester: any, classificationCode: any) {
         var formData = new FormData();
 
-        console.log("do service: " + demandScore);
-
         let costCenters = [];
         for (let i = 0; i < costCenter.length; i++) {
             costCenters.push({ "costCenterCode": costCenter[i] });
@@ -168,7 +166,7 @@ const Services = {
     },
     saveExcel: function (type: any, value: any) {
         return new Promise((resolve, reject) => {
-            console.log("value: " + value + " type: " + type)
+
             fetch(url + "/filter/" + value + "/" + type, {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' },

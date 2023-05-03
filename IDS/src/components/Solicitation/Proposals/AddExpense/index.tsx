@@ -26,8 +26,6 @@ export default function AddExpense() {
     useEffect(() => {
         setExpenseList(JSON.parse(localStorage.getItem('expenseList') || '[]'));
 
-
-        console.log(typeOfExpense)
     }, [typeOfExpense]);
 
     const nextStep = () => {

@@ -101,7 +101,6 @@ export default function ViewDemand() {
 
         if (url === "demand") {
             getDemand();
-            console.log(demand)
             setCenterCost(demand.costCenter)
 
         } else if (url === "proposal") {
@@ -113,8 +112,6 @@ export default function ViewDemand() {
         } else if (url === "agenda") {
             getProposalSpecific();
         } else if (url === "minute") {
-
-            console.log("GET MINUTE")
             getMinute();
         }
 
@@ -183,7 +180,6 @@ export default function ViewDemand() {
                 setClassification(response?.classification)
             }
 
-            console.log("teste ===> ", response?.demandStatus)
 
             if (response?.demandStatus === "Backlog") {
                 setStepDemand(0);
@@ -278,7 +274,6 @@ export default function ViewDemand() {
             }
             setProposalSpecific(proposals)
 
-            console.log("PROPOSTAS ESPECIFICAS ===> ", response)
 
             ServicesMinute.findByAgenda(response[0].agendaCode).then((minute: any) => {
                 response[0].minutePublished = minute[1];
@@ -749,7 +744,6 @@ export default function ViewDemand() {
                 </div>
             ) : url === "agenda" ? (
                 <div>
-            
 
                     <div className="container">
 

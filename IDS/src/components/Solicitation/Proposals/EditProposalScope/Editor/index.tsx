@@ -13,8 +13,6 @@ const RichTextEditor = (props: any) => {
   const handleChange = (value: React.SetStateAction<string>) => {
     setContent(value);
 
-    console.log("OBJECTIVE --> ", props?.type)
-
     if(props?.type === undefined){
       props.setContent(value);
     }else{

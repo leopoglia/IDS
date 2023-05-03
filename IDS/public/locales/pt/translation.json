@@ -206,7 +206,7 @@
     "licenses": "Licenças",
     "unitValue": "Valor da unidade",
     "effort": "Esforço",
-
+    "version": "Versão",
     "demandCreateSuccess": "Demanda criada com sucesso!",
     "demandClassified": "Demanda classificada com sucesso!",
     "demandComplemented": "Demanda complementada com sucesso!",
@@ -216,8 +216,6 @@
     "demandReturned": "Demanda devolvida com sucesso!",
     "somethingWrong": "Algo deu errado!",
     "fillAllFields": "Preencha todos os campos",
-
-
     "situation-Backlog": "Criada",
     "situation-BacklogRanked": "Classificada",
     "situation-BacklogRankApproved": "Classificação aprovada",

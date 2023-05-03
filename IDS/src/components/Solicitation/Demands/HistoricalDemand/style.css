@@ -5,6 +5,10 @@
     cursor: pointer;
 }
 
+.activeVersion{
+    background-color: var(--blueF4);
+}
+
 .historical-demand tr:first-child{
     border-top: 0px;
 }

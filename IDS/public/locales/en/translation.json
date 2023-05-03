@@ -204,7 +204,7 @@
     "licenses": "Licenses",
     "unitValue": "Unit value",
     "effort": "Effort",
-
+    "version": "Version",
     "demandCreateSuccess": "Demand created successfully!",
     "demandClassified": "Demand classified successfully!",
     "demandComplemented": "Demand complemented successfully!",

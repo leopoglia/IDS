@@ -40,11 +40,32 @@ export default function HistoricalDemand() {
                                 <td className="table-find-in-page">{t("view")}</td>
                                 <td>{t("alterationDate")}</td>
                                 <td>{t("alterationHour")}</td>
+                                <td>{t("version")}</td>
                             </tr>
 
                              
                             {demand?.map((val: any, index: any) => (
+                                val.activeVersion === true ?(
                                 <tr key={index}>
+                                    <td className="activeVersion">{val.requesterRegistration.workerName}</td>
+                                    <td className="table-restore-page, activeVersion">
+                                        <span className="material-symbols-outlined">restore_page</span>
+                                    </td>
+                                    <td className="table-find-in-page, activeVersion">
+                                        <span className="material-symbols-outlined">find_in_page</span>
+                                    </td>
+                                    <td className="activeVersion">
+                                        {val.demandDate}
+                                    </td>
+                                    <td className="activeVersion">
+                                        {val.demandDate}
+                                    </td>
+                                    <td className="activeVersion">
+                                        {val.demandVersion}.0
+                                    </td>
+                                </tr>
+                                ):(
+                                    <tr key={index}>
                                     <td>{val.requesterRegistration.workerName}</td>
                                     <td className="table-restore-page">
                                         <span className="material-symbols-outlined">restore_page</span>
@@ -58,7 +79,11 @@ export default function HistoricalDemand() {
                                     <td>
                                         {val.demandDate}
                                     </td>
+                                    <td>
+                                        {val.demandVersion}.0
+                                    </td>
                                 </tr>
+                                )
                             ))}
                         </tbody>
                     </table>

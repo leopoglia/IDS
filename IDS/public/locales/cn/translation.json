@@ -204,7 +204,7 @@
     "licenses": "許可證",
     "unitValue": "單位價值",
     "effort": "努力",
-
+    "version": "版本",
     "demandCreateSuccess": "需求創建成功",
     "demandClassified": "需求分類成功",
     "demandComplemented": "需求補充成功",

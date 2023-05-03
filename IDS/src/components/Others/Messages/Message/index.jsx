@@ -98,7 +98,7 @@ const ChatRoom = () => {
     const setDefaultMessage = () => {
 
         setMessage({
-            demand: { demandCode: demandCode },
+            demandCode: demandCode,
             sender: { workerCode: worker.id || parseInt(localStorage.getItem("id")) },
             message: "",
             dateMessage: null,

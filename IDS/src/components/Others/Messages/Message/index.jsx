@@ -57,6 +57,8 @@ const ChatRoom = () => {
         }
 
 
+        console.log(messages)
+
     }, [messages, stompClient]);
 
     useEffect(() => {
@@ -218,7 +220,7 @@ const ChatRoom = () => {
                             <ul className="chat-messages" ref={divRef}>
 
 
-                                {
+                                { messages.length > 0 &&
                                     messages.map((message) => (
 
                                         <li key={message.id} className={

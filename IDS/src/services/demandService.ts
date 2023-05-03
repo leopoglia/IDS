@@ -85,6 +85,7 @@ const Services = {
             costCenters.push({ "costCenterCode": costCenter[i] });
         }
 
+
         let demand = {}
         if (classificationCode === null ||
             classificationCode === undefined ||

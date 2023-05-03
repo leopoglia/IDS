@@ -1,14 +1,14 @@
 const url = "http://localhost:8443/api/proposal"
 
 const Services = {
-    save: function (proposalName: String, proposalStatus: String, payback: Number, initialRunPeriod: any, finalExecutionPeriod: any, descriptiveProposal: String, responsibleAnalyst: any, agendaCode: any, workers: any, totalsCosts: Number, externalCosts: Number, internalCosts: Number, demandCode: any, proposalDate: String) {
+    save: function (proposalName: String, proposalStatus: String, payback: Number, initialRunPeriod: any, finalExecutionPeriod: any, descriptiveProposal: String, responsibleAnalyst: any, agendaCode: any, workers: any, totalsCosts: Number, externalCosts: Number, internalCosts: Number, demandCode: any, demandVersion: any, proposalDate: String) {
 
         let workersList: any = [];
 
         for (let i = 0; i < workers.length; i++) {
             workersList.push({ workerCode: workers[i] })
         }
-        
+
 
         return new Promise((resolve, reject) => {
             fetch(url, {
@@ -70,24 +70,28 @@ const Services = {
                 .catch(resolve)
         })
     },
-    updateAgenda: function(id: Number, agenda: Number) {
+    updateAgenda: function (id: Number, agenda: Number) {
         return new Promise((resolve, reject) => {
             fetch(url + "/agenda/" + id, {
                 method: 'PUT',
                 body: JSON.stringify({ "agenda": { "agendaCode": id } }),
-                headers: { 'Content-Type': 'application/json' }, credentials: 'include'}).then(function (result) { return result.json(); }).then(resolve).catch(reject) 
+                headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); }).then(resolve).catch(reject)
         })
     },
-    addOpinion: function(id: Number, status: String, comissionOpinion: String) {
+    addOpinion: function (id: Number, status: String, comissionOpinion: String) {
         return new Promise((resolve, reject) => {
             fetch(url + "/status/" + id, {
                 method: 'PUT',
-                body: JSON.stringify({ "proposalStatus": status,
-                                       "commissionOpinion": comissionOpinion }),
-                headers: { 'Content-Type': 'application/json' }, credentials: 'include'}).then(function (result) { return result.json(); }).then(resolve).catch(reject) 
+                body: JSON.stringify({
+                    "proposalStatus": status,
+                    "commissionOpinion": comissionOpinion
+                }),
+                headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); }).then(resolve).catch(reject)
         })
     },
-    findByPage: function(page: Number, size: Number) {
+    findByPage: function (page: Number, size: Number) {
         return new Promise((resolve, reject) => {
             fetch(url + "/page?page=" + page + "&size=" + size, {
                 method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
@@ -96,12 +100,13 @@ const Services = {
                 .catch(reject)
         })
     },
-    updatePublish: function(id: Number, publish: Boolean) {
+    updatePublish: function (id: Number, publish: Boolean) {
         return new Promise((resolve, reject) => {
             fetch(url + "/published/" + id, {
                 method: 'PUT',
                 body: JSON.stringify({ "published": publish }),
-                headers: { 'Content-Type': 'application/json' }, credentials: 'include'}).then(function (result) { return result.json(); }).then(resolve).catch(reject) 
+                headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); }).then(resolve).catch(reject)
         })
     }
 }

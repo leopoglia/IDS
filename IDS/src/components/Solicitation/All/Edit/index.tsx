@@ -23,7 +23,7 @@ export default function Edit() {
 	const [url, setUrl] = useState(window.location.href.split("/")[4]); // Url da página
 	const [type, setType] = useState(window.location.href.split("/")[3]); // Tipo da página
 
-	const [editType, setEditType]: any = useState(""); // Tipo de edição (Tabelas, classificação, complementos, despesas)
+	const [editType, setEditType]: any = useState(window.location.href.split("?")[1]); // Tipo de edição (Tabelas, classificação, complementos, despesas)
 
 	const [demandCode, setDemandCode] = useState(parseInt(window.location.href.split("/")[5])); // Código da demanda
 	const [demands, setDemands]: any = useState(); // Demanda
@@ -86,9 +86,10 @@ export default function Edit() {
 			setDemandRequester(demand.requesterRegistration.workerCode);
 			setDemandDate(demand.demandDate);
 
-			if (window.location.href.split("/")[4] !== "edit") {
-				setDemandClassification(demand.classification.classificationCode);
-			}
+			console.log(demand?.classification?.classificationCode)
+
+			setDemandClassification(demand?.classification?.classificationCode);
+
 
 			let costCenterArray = [];
 			for (let i = 0; i < demand.costCenter.length; i++) {
@@ -114,7 +115,6 @@ export default function Edit() {
 	function getProposal() {
 
 		ServicesProposal.findById(demandCode).then((response: any) => {
-
 			setDemandCode(response.demand.demandCode);
 			getDemand(response.demand.demandCode);
 		})
@@ -127,13 +127,16 @@ export default function Edit() {
 		if (window.location.href.split("?")[1] === undefined) {
 			if (url === "demand" || type === "demand") {
 				getDemand(demandCode);
+
+				console.log("1")
 			} else {
 				getProposal();
+				console.log("2")
 			}
 		} else {
 			getProposal();
+			console.log("3")
 
-			setEditType(localStorage.getItem("edit"));
 		}
 
 	}, [editType])
@@ -241,11 +244,17 @@ export default function Edit() {
 
 	function editDemand() {
 
-		ServicesRealBenefit.update(realBenefitCode, realBenefitValue, realBenefitDescription, realCurrency).then((response: any) => { });
+		ServicesRealBenefit.save(realBenefitValue, realBenefitDescription, realCurrency).then((response: any) => { 
+			setRealBenefitCode(response.realBenefitCode);
+		});
 
-		ServicesPotentialBenefit.update(potentialBenefitCode, potentialBenefitValue, potentialBenefitDescription, true, potentialCurrency).then((response: any) => { });
+		ServicesPotentialBenefit.save(potentialBenefitValue, potentialBenefitDescription, true, potentialCurrency).then((response: any) => { 
+			setPotentialBenefitCode(response.potentialBenefitCode);
+		});
 
-		ServicesQualitativeBenefit.update(qualitativeBenefitCode, qualitativeBenefitDescription, true, frequencyOfUse).then((response: any) => { });
+		ServicesQualitativeBenefit.save(frequencyOfUse, qualitativeBenefitDescription, true).then((response: any) => { 
+			setQualitativeBenefitCode(response.qualitativeBenefitCode);
+		});
 
 		let file;
 		if (fileAttachment[0] !== null) {
@@ -256,9 +265,16 @@ export default function Edit() {
 
 		ServicesHistorical.save(demandCode, null, demandRequester);
 
+		console.log("classification --> ", demandClassification)
+
+
+		console.log("RealBenefitCode --> ", realBenefitCode)
+		console.log("PotentialBenefitCode --> ", potentialBenefitCode)
+		console.log("QualitativeBenefitCode --> ", qualitativeBenefitCode)
+
 		ServicesDemand.update(demandCode, demandTitle, demandProblem, demandObjective, costsCentersId, frequencyOfUse, realBenefitCode, potentialBenefitCode, qualitativeBenefitCode, file, demandDate, demandStatus, demandScore, demandRequester, demandClassification).then((response: any) => {
-			console.log(demandScore);
-			if (url === "edit") {
+
+			if (url === "edit" && type === "demand") {
 				ServicesDemand.updateStatus(demandCode, "Backlog").then((response: any) => { });
 
 				localStorage.setItem("route", "edit");
@@ -269,6 +285,7 @@ export default function Edit() {
 
 		});
 
+
 	}
 
 
@@ -277,7 +294,6 @@ export default function Edit() {
 	const [situationBenefitPotential, setBenefitPotentialOpen] = useState(true);
 	const [situationBenefitQualitative, setBenefitQualitativeOpen] = useState(true);
 	const [situationAdicional, setAdicionalOpen] = useState(true);
-
 
 	return (
 		<div className="create-demands-1">
@@ -295,7 +311,10 @@ export default function Edit() {
 
 					</div>
 
-					{editType === "" ? (
+
+					{editType}
+
+					{editType === undefined ? (
 						<>
 
 							<div className={"box box-" + situationInfo}>
@@ -539,14 +558,35 @@ export default function Edit() {
 							</div>
 
 						</>
-					) :
-						(
-							<div className="box">
-								fdsgfsdgsfgsfd
-							</div>
-						)
+					) : editType === "costcenter" ? (
+						<div className="box">
+							<div className="input">
+								<label>{t("costCenter")} *</label>
 
+								<div className="display-flex">
+									<SelectCenterCost setCostCenter={setCostCenter} costCenter={costCenter} addCostCenter={addCostCenter} />
+
+									<div className="btn-primary w45" onClick={() => { addCostCenter(costCenter); handleChange(costCenter); }}>
+										<span className="material-symbols-outlined">add</span>
+									</div>
+								</div>
+							</div>
+
+
+							{costsCenters.map((costCenter: any) => {
+								return <div className="costCenter">
+									<span>{costCenter}</span>
+									<span className="material-symbols-outlined delete-cost-center" onClick={deleteCostCenter(costCenter)}>
+										delete
+									</span>
+								</div>
+							})
+							}
+						</div>
+					) : (<></>)
 					}
+
+
 
 				</div>
 			}

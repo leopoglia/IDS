@@ -57,28 +57,34 @@ export default function ExecutionCosts() {
         if (totalsCosts === 0) {
             notify()
         } else {
-            ProposalServices.save(demandData.demandTitle, "Pending", 1, proposal.start, proposal.end, scope, worker.id, 0, proposal.responsiblesBussiness, totalsCosts, externalCosts, internalCosts, demandCode, actualDate).then((proposal: any) => {
-                DemandService.updateStatus(demandCode, "Assesment");
-                localStorage.removeItem('proposal');
 
-                for (let i = 0; i < expenseListStorage.length; i++) {
-                    ExpenseService.save(expenseListStorage[i].typeOfExpense,
-                        expenseListStorage[i].expenseProfile,
-                        expenseListStorage[i].necessityHoursQuantity,
-                        expenseListStorage[i].hourValue,
-                        expenseListStorage[i].expenseTotalValue,
-                        expenseListStorage[i].costCenter,
-                        proposal.proposalCode
-                    ).then((expense: any) => {
-                        localStorage.removeItem('expenseList');
-                    }).catch((error: any) => {
-                        console.log(error);
-                    });
-                }
-                navigate('/proposals/1');
+            DemandService.findById(demandCode).then((demand: any) => {
+                console.log(demand);
 
-            }).catch((error: any) => {
-                console.log(error);
+                ProposalServices.save(demandData.demandTitle, "Pending", 1, proposal.start, proposal.end, scope, worker.id, 0, proposal.responsiblesBussiness, totalsCosts, externalCosts, internalCosts, demandCode, demand.demandVersion, actualDate).then((proposal: any) => {
+                    DemandService.updateStatus(demandCode, "Assesment");
+                    localStorage.removeItem('proposal');
+
+                    for (let i = 0; i < expenseListStorage.length; i++) {
+                        ExpenseService.save(expenseListStorage[i].typeOfExpense,
+                            expenseListStorage[i].expenseProfile,
+                            expenseListStorage[i].necessityHoursQuantity,
+                            expenseListStorage[i].hourValue,
+                            expenseListStorage[i].expenseTotalValue,
+                            expenseListStorage[i].costCenter,
+                            proposal.proposalCode
+                        ).then((expense: any) => {
+                            localStorage.removeItem('expenseList');
+                        }).catch((error: any) => {
+                            console.log(error);
+                        });
+                    }
+                    navigate('/proposals/1');
+
+                }).catch((error: any) => {
+                    console.log(error);
+                });
+
             });
 
         }

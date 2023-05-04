@@ -1,14 +1,19 @@
 import Tooltip from "@mui/material/Tooltip";
 import { t } from "i18next";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export default function Table(props: any) {
 
     const [open, setOpen] = useState(false);
+    const url = window.location.href.split("/")[3];
     const navigate = useNavigate();
 
     useEffect(() => {
+
+        console.log(url)
+
         console.log(props.id)
     }, [])
 
@@ -43,9 +48,11 @@ export default function Table(props: any) {
                 <p className="title">{t(props.title)}</p>
 
                 <div className="flex">
-                    <span onClick={() => { click() }} className="material-symbols-outlined arrow-expend mr5">
-                        edit
-                    </span>
+                    {url !== "demand" ?
+                        <span onClick={() => { click() }} className="material-symbols-outlined arrow-expend mr5">
+                            edit
+                        </span>
+                        : null}
 
                     <span onClick={() => setOpen(!open)} className="material-symbols-outlined arrow-expend">
                         expand_more
@@ -69,11 +76,32 @@ export default function Table(props: any) {
 
                             <tr>
                                 {props.items.map((item: any, index: any) => {
-                                    return (
-                                        <Tooltip title={item} arrow>
+                                    if (item.length > 30) {
+                                        if (item.includes("http://") || item.includes("https://")) {
+                                            return (
+                                                <Tooltip title={item} arrow>
+                                                    <td className="td-left" key={index}>
+                                                        <Link to={item}>
+                                                            <span>{item}</span>
+                                                        </Link>
+                                                    </td>
+                                                </Tooltip>
+                                            )
+                                        } else {
+                                            return (
+                                                <Tooltip title={item} arrow>
+                                                    <td className="td-left" key={index}>
+                                                        <span>{item}</span>
+                                                    </td>
+                                                </Tooltip>
+                                            )
+                                        }
+                                    } else {
+                                        return (
                                             <td key={index}>{item}</td>
-                                        </Tooltip>
-                                    )
+                                        )
+                                    }
+
                                 })}
                             </tr>
                         </tbody>

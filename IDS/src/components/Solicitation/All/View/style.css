@@ -10,7 +10,7 @@
     transition: 0.5s;
 }
 
-.false{
+.false {
     overflow: hidden;
 }
 
@@ -30,7 +30,7 @@
     color: var(--black)
 }
 
-.view-demand .desc{
+.view-demand .desc {
     margin-bottom: 10px;
 }
 
@@ -135,7 +135,7 @@
     justify-content: flex-end;
 }
 
-.proposal-view p{
+.proposal-view p {
     margin: 0px !important
 }
 
@@ -154,34 +154,34 @@
     font-size: var(--p);
 }
 
-.view-demand .w20{
+.view-demand .w20 {
     width: 300px;
 }
 
-.view-demand .btn-unique{
+.view-demand .btn-unique {
     width: 45px !important;
 }
 
-.view-demand .complement .btn-unique{
+.view-demand .complement .btn-unique {
     margin-right: 7px !important;
 }
 
-.view-demand .h50px{
-    height: 60px !important; 
+.view-demand .h50px {
+    height: 60px !important;
 }
 
 
-.view-demand .w20px{
+.view-demand .w20px {
     width: 90px !important;
 }
 
-.view-demand .proposals-view .h50px td span{ 
+.view-demand .proposals-view .h50px td span {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.view-demand .proposals-view .h50px .code{
+.view-demand .proposals-view .h50px .code {
     margin-left: 0px !important;
     margin-right: 15px !important;
     min-width: 100px;
@@ -189,7 +189,7 @@
 
 
 .view-demand .text-information p,
-.view-demand .text-information strong{
+.view-demand .text-information strong {
     font-size: var(--p);
     color: var(--black);
 }
@@ -259,10 +259,34 @@
     border-radius: 0px 0px var(--r) var(--r);
 }
 
-.view-demand .proposals-view td{
+.view-demand .proposals-view td {
     border: 0px;
+
 }
 
+
+.view-demand .td-left {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    justify-content: left;
+}
+
+.view-demand .td-left a {
+    width: 100%;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    justify-content: left !important;
+}
+
+.view-demand .td-left span {
+    padding-left: 10px;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    justify-content: left !important;
+}
 
 .view-demand .descriptiveProposal {
     margin-top: 15px;
@@ -354,25 +378,25 @@
     color: black;
 }
 
-.view-demand .buBenifitedTd{
+.view-demand .buBenifitedTd {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.view-demand .proposalsAgenda{
+.view-demand .proposalsAgenda {
     margin-top: 25px;
 }
 
-.mb10{
+.mb10 {
     margin-bottom: 15px !important;
 }
 
-.w40{
+.w40 {
     width: 33.5% !important;
 }
 
-.mr5{
+.mr5 {
     margin-right: 10px !important;
 }
 
@@ -384,8 +408,10 @@
 } */
 
 
-@media(max-width: 768px){
-    .btn-primary, .btn-secondary{
+@media(max-width: 768px) {
+
+    .btn-primary,
+    .btn-secondary {
         width: 100% !important;
         max-width: 100% !important;
         min-width: 100% !important;

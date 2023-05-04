@@ -4,19 +4,25 @@ import 'react-quill/dist/quill.snow.css';
 
 const RichTextEditor = (props: any) => {
   const [content, setContent] = useState('');
+  const url = window.location.href.split("/")[3];
 
   useEffect(() => {
+
+    console.log(url)
+
     setContent(props.content);
 
     if (props.content === undefined) {
-      setContent(
-        "<h1>" + "Escopo do Projeto:" + "</h1></br>" +
-        "<h1>" + "Não faz parte do Escopo:" + "</h1></br>" +
-        "<h1>" + "Alternativas Avaliadas:" + "</h1></br>" +
-        "<h1>" + "Abrangência do Projeto:" + "</h1></br>" +
-        "<h1>" + "Principais Riscos/ Plano de Mitigação:" + "</h1></br>"
+      if (url !== "demand") {
+        setContent(
+          "<h1>" + "Escopo do Projeto:" + "</h1></br>" +
+          "<h1>" + "Não faz parte do Escopo:" + "</h1></br>" +
+          "<h1>" + "Alternativas Avaliadas:" + "</h1></br>" +
+          "<h1>" + "Abrangência do Projeto:" + "</h1></br>" +
+          "<h1>" + "Principais Riscos/ Plano de Mitigação:" + "</h1></br>"
 
-      )
+        )
+      }
     }
   }, [props.content]);
 

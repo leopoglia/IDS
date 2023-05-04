@@ -35,7 +35,7 @@ export default function ViewDemand() {
     const url = window.location.href.split("/")[3]; // Buscar tipo da demanda
     const demandCode = parseInt(window.location.href.split("/")[5]); // Buscar código da demanda
     let pendingMinute: any = 0;
-    const demandVersion = parseInt(window.location.href.split("/")[6]); // Buscar versão da demanda
+    const demandVersion = parseInt(window.location.href.split("?")[1]); // Buscar versão da demanda
 
     // Botões superiores
     // 0 - Sem botões  

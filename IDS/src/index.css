@@ -185,6 +185,7 @@ input[type=checkbox]:checked {
   padding: 20px;
   margin-bottom: 15px;
   color: var(--grey3d);
+  overflow: hidden;
 }
 
 

@@ -9,29 +9,34 @@ export default function Expenses(props: any) {
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
 
-    const [totalAmountOfHours, setTotalAmountOfHours] = useState(0);
-    const [totalHourValue, setTotalHourValue] = useState(0);
-    const [totalValue, setTotalValue] = useState(0);
+    const [totalAmountOfHours, setTotalAmountOfHours] = useState("");
+    const [totalHourValue, setTotalHourValue] = useState("");
+    const [totalValue, setTotalValue] = useState("");
     const demandCode = useParams().id;
 
     useEffect(() => {
+        let totalAmountOfHoursLet = 0;
+        let totalHourValueLet = 0;
+        let totalValueLet = 0;
 
-        setTotalAmountOfHours(0);
-        setTotalHourValue(0);
-        setTotalValue(0);
 
         for (let i = 0; i < props.proposalExpense.length; i++) {
-
-
-            if (props.proposalExpense[i].expenseType === props.type) {
-
-                setTotalAmountOfHours(totalAmountOfHours + parseInt(props.proposalExpense[i].amountOfHours));
-                setTotalHourValue(totalHourValue + parseInt(props.proposalExpense[i].hourValue));
-                setTotalValue(totalValue + parseInt(props.proposalExpense[i].totalValue));
+            if (element.expenseType === props.type) {
+                totalAmountOfHoursLet += parseInt(element.amountOfHours);
+                totalHourValueLet += parseInt(element.hourValue);
+                totalValueLet += parseInt(element.totalValue);
             }
-        }
+        });
 
-    }, [props.proposalExpense])
+        if (props.type !== "recurrent") {
+            setTotalAmountOfHours(totalAmountOfHoursLet + "h");
+        } else {
+            setTotalAmountOfHours(totalAmountOfHoursLet.toString());
+        }
+        setTotalHourValue(totalHourValueLet.toString());
+        setTotalValue(totalValueLet.toString());
+
+    }, [])
 
     const click = () => {
         navigate("/proposal/edit/" + demandCode + "?" + props.type);
@@ -46,7 +51,7 @@ export default function Expenses(props: any) {
 
                     <p className="title">{t(props.type)}</p>
 
-                    <div className="flex">
+                    <div className="display-flex">
                         <span onClick={() => { click() }} className="material-symbols-outlined arrow-expend mr5">
                             edit
                         </span>
@@ -88,17 +93,16 @@ export default function Expenses(props: any) {
                                             <td>{proposalExpense.expenseProfile}</td>
                                         </Tooltip>
 
-                                        <Tooltip title={proposalExpense.amountOfHours} arrow>
+
+                                        {props.type !== "recurrent" ? (
+                                            <td>{proposalExpense.amountOfHours}h</td>
+                                        ) : (
                                             <td>{proposalExpense.amountOfHours}</td>
-                                        </Tooltip>
+                                        )}
 
-                                        <Tooltip title={proposalExpense.hourValue} arrow>
-                                            <td>{proposalExpense.hourValue}</td>
-                                        </Tooltip>
+                                        <td>{proposalExpense.hourValue}</td>
 
-                                        <Tooltip title={proposalExpense.totalValue} arrow>
-                                            <td>{proposalExpense.totalValue}</td>
-                                        </Tooltip>
+                                        <td>{proposalExpense.totalValue}</td>
 
                                         <Tooltip title={proposalExpense.costCenter.costCenter} arrow>
                                             <td>{proposalExpense.costCenter.costCenter}</td>
@@ -109,7 +113,7 @@ export default function Expenses(props: any) {
                         })
                         }
 
-                        {/* <tr>
+                        <tr>
                             <td>Total:</td>
 
                             <td>{totalAmountOfHours}</td>
@@ -120,7 +124,7 @@ export default function Expenses(props: any) {
 
                             <td></td>
 
-                        </tr> */}
+                        </tr>
                     </tbody>
                 </table>
             </div>

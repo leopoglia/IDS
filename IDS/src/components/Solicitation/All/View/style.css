@@ -6,7 +6,7 @@
 
 .true {
     height: 60px !important;
-    overflow: hidden;
+    overflow-y: hidden;
     transition: 0.5s;
 }
 
@@ -86,7 +86,7 @@
 
 .view-demand .btn-download {
     width: 45px !important;
-    min-width: 45px;
+    min-width: 45px !important;
 }
 
 .view-demand .btn-mini {
@@ -164,6 +164,12 @@
 
 .view-demand .complement .btn-unique {
     margin-right: 7px !important;
+}
+
+.view-demand .complement{
+    min-width: 500px;
+    width: 100%;
+    overflow: auto !important;
 }
 
 .view-demand .h50px {
@@ -273,11 +279,8 @@
 }
 
 .view-demand .td-left a {
-    width: 100%;
-    white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
-    justify-content: left !important;
 }
 
 .view-demand .td-left span {

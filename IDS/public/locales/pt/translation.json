@@ -224,5 +224,15 @@
     "situation-BacklogEdit": "Esperando edição",
     "situation-Assesment": "Proposta criada",
     "change-history": "Histórico de Alterações",
-    "demandsViewDemandChangeHistory": "Demandas > Visualizar Demanda > Histórico de alterações"
+    "demandsViewDemandChangeHistory": "Demandas > Visualizar Demanda > Histórico de alterações",
+    "createdDemands":"",
+    "classifiedDemands":"",
+    "demandsApprovedByManager": "",
+    "complementedDemands":"",
+    "canceledDemands": "",
+    "proposalsCreated":"",
+    "agendasCreated": "",
+    "newDemands": "",
+    "newProposals": "",
+    "newAgendas": ""
 }

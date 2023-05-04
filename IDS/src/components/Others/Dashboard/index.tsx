@@ -8,8 +8,11 @@ import ServicesProposal from '../../../services/proposalService';
 import ServicesAgenda from '../../../services/agendaService';
 import ServicesMinutes from "../../../services/minuteService";
 import Footer from "../../Fixed/Footer";
+import { useTranslation } from "react-i18next";
 
 export default function Dashboard() {
+
+    const { t } = useTranslation();
 
     const [url, setUrl] = useState(window.location.href);
     const [demands, setDemands] = useState(0);
@@ -119,7 +122,7 @@ export default function Dashboard() {
             icon: "check",
         },
         {
-            title: "Demandas complementada",
+            title: "Demandas complementadas",
             number: demandsCompleted,
             icon: "check",
         },

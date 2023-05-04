@@ -1,4 +1,8 @@
 
+.historical-demand{
+    color: var(--grey3d);
+}
+
 .historical-demand tr .table-restore-page span,
 .historical-demand tr .table-find-in-page span{
     color: var(--blue);

@@ -6,12 +6,12 @@
 
 .true {
     height: 60px !important;
-    overflow-y: hidden;
+    overflow: hidden;
     transition: 0.5s;
 }
 
 .false {
-    overflow: hidden;
+    overflow: auto;
 }
 
 .view-demand .box div span {

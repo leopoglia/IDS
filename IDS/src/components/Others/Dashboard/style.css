@@ -46,6 +46,12 @@
     margin-bottom: 0px !important;
 }
 
+.box .display-grid,
+.box .display-flex,
+.box .text-information {
+    min-width: max-content;
+}
+
 .box .display-grid span {
     font-size: var(--pp);
 }
@@ -103,7 +109,7 @@
         width: 100%;
     }
 
-    .dashboard .box .display-flex{
+    .dashboard .box .display-flex {
         align-items: center;
     }
 

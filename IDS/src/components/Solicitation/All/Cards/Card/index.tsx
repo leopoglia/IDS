@@ -76,7 +76,6 @@ export default function Demand(props: any) {
                 </div>
 
             );
-
         }
     }
 

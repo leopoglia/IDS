@@ -66,7 +66,7 @@ export default function HistoricalDemand() {
                                 </tr>
                                 ):(
                                     <tr key={index}>
-                                    <td>{val.requesterRegistration.workerName}</td>
+                                    <td>{val?.requesterRegistration.workerName}</td>
                                     <td className="table-restore-page">
                                         <span className="material-symbols-outlined">restore_page</span>
                                     </td>

@@ -12,6 +12,7 @@ export default function HistoricalDemand() {
     const url: any = window.location.href.split("/")[5];
     const [demand, setDemand]: any = useState();
 
+
     useEffect(() => {
         ServiceDemand.historical(url).then((response: any) => {
             setDemand(response);
@@ -19,6 +20,9 @@ export default function HistoricalDemand() {
         })
     }, [])
 
+    function viewDemand(demandCode: any, demandVersion: any) {
+        window.location.href = `/demand/view/${demandCode}/${demandVersion}`;
+    }
 
     console.log(demand);
 
@@ -72,7 +76,7 @@ export default function HistoricalDemand() {
                                         <td className="table-restore-page">
                                             <span className="material-symbols-outlined">restore_page</span>
                                         </td>
-                                        <td className="table-find-in-page">
+                                        <td className="table-find-in-page" onClick={() => viewDemand(val.demandCode, val.demandVersion)}>
                                             <span className="material-symbols-outlined">find_in_page</span>
                                         </td>
                                         <td>

@@ -20,7 +20,7 @@ export default function HistoricalDemand() {
         })}, [activeVersionUpdate])
 
     function viewDemand(demandCode: any, demandVersion: any) {
-        window.location.href = `/demand/view/${demandCode}/${demandVersion}`;
+        window.location.href = `/demand/view/${demandCode}?${demandVersion}`;
     }
 
     console.log(demand);

@@ -27,6 +27,7 @@ export default function Edit() {
 	const [editType, setEditType]: any = useState(window.location.href.split("?")[2]); // Tipo de edição (Tabelas, classificação, complementos, despesas)
 
 	const [demandCode, setDemandCode] = useState(parseInt(window.location.href.split("/")[5])); // Código da demanda
+	const [demandVersion, setDemandVersion] = useState(); // Versão da demanda
 	const [demands, setDemands]: any = useState(); // Demanda
 
 	const [demandTitle, setDemandTitle] = useState(""); // Titulo da demanda
@@ -64,7 +65,7 @@ export default function Edit() {
 		ServicesDemand.findById(demandCodeParam).then((response: any) => {
 			const demand: any = response
 			setDemands(demand)
-
+			setDemandVersion(demand.demandVersion);
 			setDemandTitle(demand.demandTitle);
 			setDemandObjective(demand.demandObjective);
 			setDemandProblem(demand.currentProblem);
@@ -114,7 +115,6 @@ export default function Edit() {
 	}
 
 	function getProposal() {
-
 		ServicesProposal.findById(demandCode).then((response: any) => {
 			setDemandCode(response.demand.demandCode);
 			getDemand(response.demand.demandCode);
@@ -278,7 +278,7 @@ export default function Edit() {
 							ServicesDemand.updateStatus(demandCode, "Backlog").then((response: any) => { });
 
 							localStorage.setItem("route", "edit");
-							navigate("/demand/view/" + demandCode);
+							navigate("/demand/view/" + demandCode + "?" + demandVersion);
 						} else if (url === "demand") {
 							navigate("/proposal/edit-scope/" + demandCode);
 						} else if (url === "edit") {

@@ -29,7 +29,7 @@ export default function Table(props: any) {
             navigate("/demand/rank/" + props.demandCode + "?" + props.proposalCode);
 
         } else {
-            navigate("/proposal/edit/" + props.demandCode + "?" + props.proposalCode);
+            navigate("/proposal/edit/" + props.demandCode + "?" + props.proposalCode + "?" + props.title.toLowerCase());
 
         }
 

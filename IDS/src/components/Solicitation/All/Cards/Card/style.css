@@ -260,23 +260,3 @@
     justify-content: center;
     margin-bottom: 6px;
 }
-
-
-/* @media(max-width: 1380px) {
-    .demand {
-        height: 110px;
-    }
-
-    .demand::before{
-        height: 110px;
-    }
-}
-
-
-@media (max-width: 768px) {
-
-    .demand .infos,
-    .demand-list .infos {
-        height: auto;
-    }
-} */

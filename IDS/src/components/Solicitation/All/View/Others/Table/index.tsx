@@ -47,7 +47,7 @@ export default function Table(props: any) {
 
                 <p className="title">{t(props.title)}</p>
 
-                <div className="flex">
+                <div className="display-flex edit-expand">
                     {url !== "demand" ?
                         <span onClick={() => { click() }} className="material-symbols-outlined arrow-expend mr5">
                             edit

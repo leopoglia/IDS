@@ -145,7 +145,7 @@ export default function Dashboard() {
 
     const boxDashBoard = [
         {
-            title: "Novas demandas",
+            title: "Novas Demandas",
             type: "demands",
             number: demands,
             icon: "check",

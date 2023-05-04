@@ -1,7 +1,7 @@
 const url = "http://localhost:8443/api/demand";
 
 const Services = {
-    save: function (demandTitle: String, currentProblem: String, demandObjective: String, costCenter: any, demandStatus: String, score: any, executionPeriod: Number, requesterRegistration: Number, realBenefit: Number, potentialBenefit: Number, qualitativeBenefit: Number, demandAttachment: any, demandDate: String) {
+    save: function (demandTitle: String, currentProblem: String, demandObjective: String, costCenter: any, demandStatus: String, score: any, executionPeriod: Number, requesterRegistration: Number, realBenefit: Number, potentialBenefit: Number, qualitativeBenefit: Number, demandAttachment: any) {
         var formData = new FormData();
 
         let costCenters = [];
@@ -21,8 +21,7 @@ const Services = {
             "requesterRegistration": { "workerCode": requesterRegistration },
             "realBenefit": { "realBenefitCode": realBenefit },
             "qualitativeBenefit": { "qualitativeBenefitCode": qualitativeBenefit },
-            "potentialBenefit": { "potentialBenefitCode": potentialBenefit },
-            "demandDate": demandDate
+            "potentialBenefit": { "potentialBenefitCode": potentialBenefit }
         }
 
         formData.append('demand', JSON.stringify(demand));
@@ -85,7 +84,6 @@ const Services = {
             costCenters.push({ "costCenterCode": costCenter[i] });
         }
 
-
         let demand = {}
         if (classificationCode === null ||
             classificationCode === undefined ||
@@ -100,7 +98,6 @@ const Services = {
                 "realBenefit": { "realBenefitCode": realBenefit },
                 "qualitativeBenefit": { "qualitativeBenefitCode": qualitativeBenefit },
                 "potentialBenefit": { "potentialBenefitCode": potentialBenefit },
-                "demandDate": demandDate,
                 "demandStatus": demandStatus,
                 "score": demandScore
             }
@@ -115,7 +112,6 @@ const Services = {
                 "realBenefit": { "realBenefitCode": realBenefit },
                 "qualitativeBenefit": { "qualitativeBenefitCode": qualitativeBenefit },
                 "potentialBenefit": { "potentialBenefitCode": potentialBenefit },
-                "demandDate": demandDate,
                 "demandStatus": demandStatus,
                 "classification": { "classificationCode": classificationCode },
                 "score": demandScore

@@ -47,8 +47,6 @@ export default function CreateDemands3() {
         let qualitativeBenefits: any = localStorage.getItem("qualitativeBenefits"); // Pegando o benefício qualitativo
         let qualitativeBenefitCode = JSON.parse(qualitativeBenefits).qualitativeBenefitCode; // Código do benefício qualitativo
 
-        let actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear(); // Data atual
-
         // Salvando a demanda
         await Services.save(demandTitle,
             currentProblem,
@@ -61,9 +59,8 @@ export default function CreateDemands3() {
             realBenefitCode,
             potentialBenefitCode,
             qualitativeBenefitCode,
-            fileAttachment[0],
-            actualDate
-        ).then((response) => {
+            fileAttachment[0]
+            ).then((response) => {
             // Salvando a rota para redirecionar para a página de demandas
             localStorage.setItem("route", "create-demand")
             // Redirecionando para a página de demandas

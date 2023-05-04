@@ -206,6 +206,14 @@ const Services = {
                 .then(resolve)
                 .catch(reject)
         })
+    },
+    setActiveVersion: function (id: Number, nextDemandVersion: Number) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/setactive/" + id + "/" + nextDemandVersion, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); }).then(resolve).catch(reject)
+        })
     }
 }
 

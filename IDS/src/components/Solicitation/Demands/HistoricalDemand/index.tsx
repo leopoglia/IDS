@@ -11,20 +11,25 @@ export default function HistoricalDemand() {
     const { t } = useTranslation();
     const url: any = window.location.href.split("/")[5];
     const [demand, setDemand]: any = useState();
+    const [activeVersionUpdate, setActiveVersionUpdate]: any = useState(true);
 
 
     useEffect(() => {
         ServiceDemand.historical(url).then((response: any) => {
             setDemand(response);
-            console.log(response)
-        })
-    }, [])
+        })}, [activeVersionUpdate])
 
     function viewDemand(demandCode: any, demandVersion: any) {
         window.location.href = `/demand/view/${demandCode}/${demandVersion}`;
     }
 
     console.log(demand);
+
+    function setActiveVersion(demandCode: any, nextDemandVersion: any) {
+        ServiceDemand.setActiveVersion(demandCode, nextDemandVersion).then((response: any) => {
+            setActiveVersionUpdate(response);
+        })
+    }
 
     return (
         <div className="view-demand historical-demand">
@@ -51,44 +56,44 @@ export default function HistoricalDemand() {
 
 
                             {demand?.map((val: any, index: any) => (
-                                val.activeVersion === true ? (
-                                    <tr key={index}>
-                                        <td className="activeVersion">{val.requesterRegistration.workerName}</td>
-                                        <td className="table-restore-page, activeVersion">
-                                            <span className="material-symbols-outlined">restore_page</span>
-                                        </td>
-                                        <td className="table-find-in-page, activeVersion">
-                                            <span className="material-symbols-outlined">find_in_page</span>
-                                        </td>
-                                        <td className="activeVersion">
-                                            {val.demandDate}
-                                        </td>
-                                        <td className="activeVersion">
-                                            {val.demandHour}
-                                        </td>
-                                        <td className="activeVersion">
-                                            {val.demandVersion}.0
-                                        </td>
-                                    </tr>
-                                ) : (
-                                    <tr key={index}>
-                                        <td>{val?.requesterRegistration.workerName}</td>
-                                        <td className="table-restore-page">
-                                            <span className="material-symbols-outlined">restore_page</span>
-                                        </td>
-                                        <td className="table-find-in-page" onClick={() => viewDemand(val.demandCode, val.demandVersion)}>
-                                            <span className="material-symbols-outlined">find_in_page</span>
-                                        </td>
-                                        <td>
-                                            {val.demandDate}
-                                        </td>
-                                        <td>
-                                            {val.demandHour}
-                                        </td>
-                                        <td>
-                                            {val.demandVersion}.0
-                                        </td>
-                                    </tr>
+                               val.activeVersion === true ? (
+                                <tr key={index}>
+                                    <td className="activeVersion">{val.requesterRegistration.workerName}</td>
+                                    <td className="table-restore-page, activeVersion">
+                                        <span className="material-symbols-outlined">restore_page</span>
+                                    </td>
+                                    <td className="table-find-in-page, activeVersion">
+                                        <span className="material-symbols-outlined">find_in_page</span>
+                                    </td>
+                                    <td className="activeVersion">
+                                        {val.demandDate}
+                                    </td>
+                                    <td className="activeVersion">
+                                        {val.demandHour}
+                                    </td>
+                                    <td className="activeVersion">
+                                        {val.demandVersion}.0
+                                    </td>
+                                </tr>
+                            ) : (
+                                <tr key={index}>
+                                <td>{val?.requesterRegistration.workerName}</td>
+                                <td className="table-restore-page">
+                                    <span className="material-symbols-outlined" onClick={() => { setActiveVersion(val.demandCode, val.demandVersion); }}>restore_page</span>
+                                </td>
+                                <td className="table-find-in-page" onClick={() => viewDemand(val.demandCode, val.demandVersion)}>
+                                    <span className="material-symbols-outlined">find_in_page</span>
+                                </td>
+                                <td>
+                                    {val.demandDate}
+                                </td>
+                                <td>
+                                    {val.demandHour}
+                                </td>
+                                <td>
+                                    {val.demandVersion}.0
+                                </td>
+                            </tr>
                                 )
                             ))}
                         </tbody>

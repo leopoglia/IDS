@@ -35,6 +35,7 @@ export default function ViewDemand() {
     const url = window.location.href.split("/")[3]; // Buscar tipo da demanda
     const demandCode = parseInt(window.location.href.split("/")[5]); // Buscar código da demanda
     let pendingMinute: any = 0;
+    const demandVersion = parseInt(window.location.href.split("/")[6]); // Buscar versão da demanda
 
     // Botões superiores
     // 0 - Sem botões  
@@ -133,9 +134,13 @@ export default function ViewDemand() {
     }, [url, demand.demandStatus, proposal.proposalStatus, proposalSpecific[0].proposalStatus]);
 
     function getDemand() {
-        ServicesDemand.findById(demandCode).then((response: any) => {
-            setDemand(response);
+        ServicesDemand.findByDemandCodeAndDemandVersion(demandCode, demandVersion).then((response: any) => {
+            console.log("version: " + demandVersion);
+            console.log(response);
+            
 
+            setDemand(response);
+            
             // Verificar se o usuário é o solicitante
             if (office === "requester") {
                 // Verificar se o usuário é o solicitante

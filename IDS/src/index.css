@@ -280,6 +280,7 @@ tbody {
   width: 100%;
   display: block;
   overflow: auto;
+  min-width: max-content;
 }
 
 tr {
@@ -348,6 +349,11 @@ hr {
 }
 
 
+.false::-webkit-scrollbar{
+  width: 12px;
+  height: 6px;
+}
+
 .demand::-webkit-scrollbar,
 .demand-list::-webkit-scrollbar,
 .message::-webkit-scrollbar,
@@ -361,7 +367,8 @@ hr {
 
 .container-background::-webkit-scrollbar,
 .boxNoPadding::-webkit-scrollbar,
-.chat-box .chats::-webkit-scrollbar {
+.chat-box .chats::-webkit-scrollbar,
+.false::-webkit-scrollbar {
   width: 6px;
 }
 
@@ -376,7 +383,8 @@ hr {
 .notification-false::-webkit-scrollbar-thumb,
 .container-background::-webkit-scrollbar-thumb,
 .boxNoPadding::-webkit-scrollbar-thumb,
-.chat-box .chats::-webkit-scrollbar-thumb {
+.chat-box .chats::-webkit-scrollbar-thumb,
+.false::-webkit-scrollbar-thumb {
   background-color: var(--greyD9);
 }
 
@@ -387,7 +395,8 @@ hr {
 .notification-false::-webkit-scrollbar-thumb:hover,
 .container-background::-webkit-scrollbar-thumb:hover,
 .boxNoPadding::-webkit-scrollbar-thumb:hover,
-.chat-box .chats::-webkit-scrollbar-thumb:hover {
+.chat-box .chats::-webkit-scrollbar-thumb:hover,
+.false::-webkit-scrollbar-thumb:hover {
   background-color: var(--greyD9);
 }
 

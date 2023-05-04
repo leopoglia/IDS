@@ -23,6 +23,11 @@
     margin-right: 5px;
 }
 
+.edit-expand{
+    position: sticky !important;
+    right: 0 !important;
+}
+
 
 .view-demand .description {
     padding: 10px;
@@ -167,9 +172,7 @@
 }
 
 .view-demand .complement{
-    min-width: 500px;
     width: 100%;
-    overflow: auto !important;
 }
 
 .view-demand .h50px {

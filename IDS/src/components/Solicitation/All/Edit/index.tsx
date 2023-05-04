@@ -23,6 +23,7 @@ export default function Edit() {
 	const [url, setUrl] = useState(window.location.href.split("/")[4]); // Url da página
 	const [type, setType] = useState(window.location.href.split("/")[3]); // Tipo da página
 
+	const [proposalCode, setProposalCode] = useState(window.location.href.split("?")[1]); // Código da proposta
 	const [editType, setEditType]: any = useState(window.location.href.split("?")[2]); // Tipo de edição (Tabelas, classificação, complementos, despesas)
 
 	const [demandCode, setDemandCode] = useState(parseInt(window.location.href.split("/")[5])); // Código da demanda
@@ -245,10 +246,11 @@ export default function Edit() {
 	async function editUnit(){
 
 		if(editType === "costcenter"){
-			
-		}
+			ServicesDemand.updateCostCenter(demandCode, costsCentersId).then((response: any) => {
 
-		
+				navigate("/proposal/view/" + proposalCode);
+			})
+		}
 
 	}
 

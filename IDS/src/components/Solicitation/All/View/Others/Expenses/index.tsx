@@ -19,8 +19,8 @@ export default function Expenses(props: any) {
         let totalHourValueLet = 0;
         let totalValueLet = 0;
 
+        props.proposalExpense.forEach((element: any) => {
 
-        for (let i = 0; i < props.proposalExpense.length; i++) {
             if (element.expenseType === props.type) {
                 totalAmountOfHoursLet += parseInt(element.amountOfHours);
                 totalHourValueLet += parseInt(element.hourValue);

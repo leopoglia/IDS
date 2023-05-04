@@ -213,5 +213,8 @@
     "demandEdited": "需求編輯成功",
     "demandReturned": "需求退回成功",
     "somethingWrong": "出了點問題",
-    "fillAllFields": "請填寫所有字段"
+    "fillAllFields": "請填寫所有字段",
+    "change-history": "變更歷史",
+    "view": "看法",
+    "demandsViewDemandChangeHistory": "需求 > 查看需求 > 變更歷史"
 }

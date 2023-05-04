@@ -213,5 +213,8 @@
     "demandEdited": "Demand edited successfully!",
     "demandReturned": "Demand returned successfully!",
     "somethingWrong": "Something went wrong!",
-    "fillAllFields": "Please fill all fields"
+    "fillAllFields": "Please fill all fields",
+    "change-history": "Change History",
+    "view": "View",
+    "demandsViewDemandChangeHistory":"Demands > View Demand > Change History"
 }

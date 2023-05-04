@@ -212,6 +212,8 @@
     "demandEdited": "Demanda editada con éxito",
     "demandReturned": "Demanda devuelta con éxito",
     "somethingWrong": "Algo salió mal",
-    "fillAllFields": "llene todos los campos"
-
+    "fillAllFields": "llene todos los campos",
+    "change-history": "Cambia la historia",
+    "view": "vista",
+    "demandsViewDemandChangeHistory":"Demandas > Ver demanda > Historial de cambios"
 }

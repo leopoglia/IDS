@@ -222,5 +222,7 @@
     "situation-BacklogRankApproved": "Classificação aprovada",
     "situation-BacklogComplement": "Complementada",
     "situation-BacklogEdit": "Esperando edição",
-    "situation-Assesment": "Proposta criada"
+    "situation-Assesment": "Proposta criada",
+    "change-history": "Histórico de Alterações",
+    "demandsViewDemandChangeHistory": "Demandas > Visualizar Demanda > Histórico de alterações"
 }

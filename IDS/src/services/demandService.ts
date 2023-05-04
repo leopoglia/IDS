@@ -180,6 +180,23 @@ const Services = {
                 headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); }).then(resolve).catch(reject)
         })
+    },
+    updateCostCenter: function (id: Number, costCenter: any) {
+        let costCenters:any = [];
+        for (let i = 0; i < costCenter.length; i++) {
+            costCenters.push({ "costCenterCode": costCenter[i] });
+        }
+
+
+        return new Promise((resolve, reject) => {
+            fetch(url + "/costcenter/" + id, {
+                method: 'PUT',
+                body: JSON.stringify({ 
+                    "costCenter": costCenters
+                 }),
+                headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); }).then(resolve).catch(reject)
+        })
     }
 }
 

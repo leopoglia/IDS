@@ -73,11 +73,10 @@ export default function CreateAgenda() {
 
             Services.save("1", year, commissionArray, actualDate, proposals).then((response: any) => {
                 navigate("/agenda/view/" + response.agendaCode);
+
+                localStorage.removeItem("proposals");
             })
         })
-
-
-
 
 
     }

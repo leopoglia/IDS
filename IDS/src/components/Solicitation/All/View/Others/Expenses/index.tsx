@@ -47,7 +47,7 @@ export default function Expenses(props: any) {
     return (
         <div>
             <div className={"complement " + open} >
-                <div className="display-flex-space-between">
+                <div className="display-flex-space-between header-table">
 
                     <p className="title">{t(props.type)}</p>
 

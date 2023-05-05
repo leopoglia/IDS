@@ -489,7 +489,7 @@ export default function ViewDemand() {
                                 <div className={"situation-current " + situationCorrentOpen}>
 
 
-                                    <div className="display-flex">
+                                    <div className="display-flex header-table">
                                         <p className="title" >{t("requester")}:</p>
                                         <div className="text-information workerName">{demand.requesterRegistration.workerName}</div>
 
@@ -535,7 +535,7 @@ export default function ViewDemand() {
                                 {
                                     (url === "proposal") ? (
                                         <div className={"proposalScope " + proposalScopeOpen} >
-                                            <div className="display-flex-space-between">
+                                            <div className="display-flex-space-between header-table">
 
                                                 <p className="title">{t("proposalScope")}</p>
                                                 <span onClick={() => setProposalScopeOpen(!proposalScopeOpen)} className="material-symbols-outlined arrow-expend">
@@ -560,7 +560,7 @@ export default function ViewDemand() {
 
                                 <div className={"real-benefit " + benefitRealOpen}>
 
-                                    <div className="display-flex-space-between">
+                                    <div className="display-flex-space-between header-table">
                                         <p className="title">{t("benefitReal")}</p>
 
                                         <span onClick={() => setBenefitRealOpen(!benefitRealOpen)} className="material-symbols-outlined arrow-expend">
@@ -594,7 +594,7 @@ export default function ViewDemand() {
 
 
                                 <div className={"potential-benefit " + benefitPotentialOpen}>
-                                    <div className="display-flex-space-between">
+                                    <div className="display-flex-space-between header-table">
                                         <p className="title">{t("benefitPotential")}</p>
 
                                         <span onClick={() => setBenefitPotentialOpen(!benefitPotentialOpen)} className="material-symbols-outlined arrow-expend">
@@ -634,7 +634,7 @@ export default function ViewDemand() {
 
                                 <div className={"qualitative-benefit " + benefitQualitativeOpen}>
 
-                                    <div className="display-flex-space-between">
+                                    <div className="display-flex-space-between header-table">
                                         <p className="title">{t("benefitQualitative")}</p>
 
                                         <span onClick={() => setBenefitQualitativeOpen(!benefitQualitativeOpen)} className="material-symbols-outlined arrow-expend">

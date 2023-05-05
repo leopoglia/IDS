@@ -16,6 +16,7 @@ export default function DisapproveDemand() {
     const navigate = useNavigate();
     const [disapprovalReason, setDisapprovalReason]: any = useState(""); // Motivo de reprovação
     const demandCode = parseInt(window.location.href.split("/")[5]);
+    const demandVersion = parseInt(window.location.href.split("?")[1]);
 
     // Função para reprovar demanda
     function disapproveDemand() {
@@ -37,7 +38,7 @@ export default function DisapproveDemand() {
         } else {
             disapproveDemand();
             localStorage.setItem('route', 'reprove')
-            navigate('/demand/view/' + demandCode);
+            navigate('/demand/view/' + demandCode + "?" + demandVersion);
         }
     }
 
@@ -68,7 +69,7 @@ export default function DisapproveDemand() {
 
                 <div className="demands-footer">
 
-                    <Link to={"/demand/view/" + demandCode}>
+                    <Link to={"/demand/view/" + demandCode + "?" + demandVersion}>
                         <button className="btn-secondary">{t("return")}</button>
                     </Link>
 

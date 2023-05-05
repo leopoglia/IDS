@@ -19,9 +19,20 @@ export default function Configuration() {
     }
 
 
+    const handleChange = (event: any) => {
+
+        console.log("event ->", event.target.checked)
+
+        if(event.target.checked === false){
+            document.documentElement.style.setProperty('--r', ".375rem");
+        } else{
+            document.documentElement.style.setProperty('--r', ".10rem");
+        }
+    }
+
     return (
         <div className="configuration">
-     
+
 
             <div className="container">
                 <div className="background-title">
@@ -64,10 +75,24 @@ export default function Configuration() {
                             <span className="subtitle-confuration">{t("messagesNotify")}</span>
 
                             <div className="switch">
-                                <input type="checkbox" id="switch" name="switch" />
-                                <label htmlFor="switch" />
+                                <input type="checkbox" id="slider" name="slider" />
+                                <label htmlFor="slider" />
                             </div>
 
+                        </div>
+
+                    </div>
+
+                    <div className="change-configuration">
+                        <span className="title-confuration">{t("rounded")}</span>
+
+                        <div className="display-flex">
+                            <span className="subtitle-confuration">{t("messagesNotify")}</span>
+
+                            <div className="switch">
+                                <input onChange={(e) => handleChange(e)} type="checkbox" id="switch" name="switch" />
+                                <label htmlFor="switch" />
+                            </div>
                         </div>
 
                     </div>

@@ -17,7 +17,7 @@
     width: 400px;
     height: 350px;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: calc(var(--r) * 2);
 }
 
 .modal-header {

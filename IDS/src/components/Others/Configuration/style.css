@@ -164,3 +164,28 @@
 .configuration .display-flex {
     align-items: center;
 }
+
+.configuration .slider {
+    -webkit-appearance: none;
+    width: 100px;
+    height: 25px;
+    border-radius: 80px;
+    background: var(--greyC4);
+    outline: none;
+}
+
+.configuration .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--white);
+    cursor: pointer;
+}
+
+.configuration .slider::-moz-range-thumb {
+    border-radius: 50%;
+    background: var(--white);
+    cursor: pointer;
+}

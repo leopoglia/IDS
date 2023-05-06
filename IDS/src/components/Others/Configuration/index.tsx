@@ -25,8 +25,10 @@ export default function Configuration() {
 
         if(event.target.checked === false){
             document.documentElement.style.setProperty('--r', ".375rem");
+            document.documentElement.style.setProperty('--rr', "50px");
         } else{
             document.documentElement.style.setProperty('--r', ".10rem");
+            document.documentElement.style.setProperty('--rr', "0px");
         }
     }
 

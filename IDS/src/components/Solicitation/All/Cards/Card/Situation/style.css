@@ -2,7 +2,7 @@
 .demand-list .graphic {
     width: 150px;
     height: 15px;
-    border-radius: 50px;
+    border-radius: var(--rr);
     background-color: var(--greyE5);
 }
 
@@ -21,7 +21,7 @@
 .demand-list .situation-pending {
     width: 15px;
     height: 15px;
-    border-radius: 50px;
+    border-radius: var(--rr);
     margin-left: 10px;
 }
 
@@ -64,7 +64,7 @@
 .graphic .situation-business-case {
     height: 100%;
     background-color: var(--blue);
-    border-radius: 20px;
+    border-radius: var(--rr);
 }
 
 

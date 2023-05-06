@@ -61,7 +61,7 @@
 .select-proposal .graphic {
     width: 150px;
     height: 15px;
-    border-radius: 50px;
+    border-radius: var(--rr);
     background-color: var(--greyD9);
 }
 

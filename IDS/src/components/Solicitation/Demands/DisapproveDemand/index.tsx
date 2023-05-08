@@ -5,7 +5,7 @@ import "./style.css"
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ButtonAction from "../CrateDemand/ButtonAction";
 import DemandService from "../../../../services/demandService";
 import Services from "../../../../services/reproachService";
@@ -16,7 +16,7 @@ export default function DisapproveDemand() {
     const navigate = useNavigate();
     const [disapprovalReason, setDisapprovalReason]: any = useState(""); // Motivo de reprovação
     const demandCode = parseInt(window.location.href.split("/")[5]);
-    const demandVersion = parseInt(window.location.href.split("?")[1]);
+    let demandVersion:any;
 
     // Função para reprovar demanda
     function disapproveDemand() {
@@ -30,6 +30,10 @@ export default function DisapproveDemand() {
             console.log(error);
         });
     }
+
+    DemandService.findById(demandCode).then((response: any) => {
+        demandVersion = response.demandVersion;
+    });
 
     const nextStep = () => {
         // Função para verificar se o motivo de reprovação foi preenchido

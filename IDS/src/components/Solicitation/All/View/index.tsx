@@ -470,8 +470,13 @@ export default function ViewDemand() {
 
                             )}
 
-
-                            <ButtonsActions demand={demand} proposal={proposal} workerId={workerId} actionsDemand={actionsDemand} approveDemand={approveDemand} giveBack={giveBack} generatePDF={generatePDF} />
+                            {
+                                (demand.activeVersion === true) ? (
+                                    <ButtonsActions demand={demand} proposal={proposal} workerId={workerId} actionsDemand={actionsDemand} approveDemand={approveDemand} giveBack={giveBack} generatePDF={generatePDF} />
+                                ) : (
+                                    <ButtonsActions demand={demand} />
+                                )
+                            }
 
                         </div>
 

@@ -4,23 +4,24 @@ const Services = {
     save: function (expenseName: String, proposal: any, costCenter: any, expense: any) {
         return new Promise((resolve, reject) => {
 
-        let costCenters = [];
-        let expenses = [];
+            let costCenters = [];
+            let expenses = [];
 
-        for (let i = 0; i < costCenter.length; i++) {
-            costCenters.push({ "costCenterCode": costCenter[i] });
-        }
+            for (let i = 0; i < costCenter.length; i++) {
+                costCenters.push({ "costCenterCode": costCenter[i]});
+            }
 
-        for (let i = 0; i < expense.length; i++) {
-            expenses.push({ "expenseCode": expense[i] });
-        }
+
+            for (let i = 0; i < expense.length; i++) {
+                expenses.push({ "expenseCode": expense[i] });
+            }
 
             fetch(url, {
                 method: 'POST', body: JSON.stringify({
-                    expenseType: expenseName,
+                    expensesType: expenseName,
                     proposal: { proposalCode: proposal },
                     costCenter: costCenters,
-                    expense: { expenseCode: expense }
+                    expense: expenses
                 }), headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); })
                 .then(resolve)

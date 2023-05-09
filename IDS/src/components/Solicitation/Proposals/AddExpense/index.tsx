@@ -15,12 +15,11 @@ export default function AddExpense() {
 
     const [typeOfExpense, setTypeOfExpense] = useState('');
     const [expenseProfile, setExpenseProfile] = useState('');
-    const [costCenter, setCostCenter] = useState(0);
     const [necessityHoursQuantity, setNecessityHoursQuantity]: any = useState('');
     const [hourValue, setHourValue]: any = useState('');
     const expenseTotalValue = necessityHoursQuantity * hourValue;
 
-    const expense = { typeOfExpense: typeOfExpense, expenseProfile: expenseProfile, necessityHoursQuantity: necessityHoursQuantity, hourValue: hourValue, expenseTotalValue: expenseTotalValue, costCenter: costCenter };
+    const expense = { typeOfExpense: typeOfExpense, expenseProfile: expenseProfile, necessityHoursQuantity: necessityHoursQuantity, hourValue: hourValue, expenseTotalValue: expenseTotalValue };
     const [expenseList, setExpenseList]: any = useState([]);
 
     useEffect(() => {
@@ -29,7 +28,7 @@ export default function AddExpense() {
     }, [typeOfExpense]);
 
     const nextStep = () => {
-        if (typeOfExpense === '' || expenseProfile === '' || necessityHoursQuantity === '' || hourValue === '' || costCenter === 0) {
+        if (typeOfExpense === '' || expenseProfile === '' || necessityHoursQuantity === '' || hourValue === '') {
             notify()
         } else {
             expenseList.push(expense);
@@ -40,7 +39,7 @@ export default function AddExpense() {
 
     return (
         <div className="add-expense">
-        
+
             <div className="container">
 
 
@@ -73,7 +72,7 @@ export default function AddExpense() {
 
                     <div className="display-flex-grid">
                         {typeOfExpense !== "recurrent" ? (
-                        <label>{t("hourValue")} *</label>
+                            <label>{t("hourValue")} *</label>
                         ) : (
                             <label>{t("unitValue")} *</label>
                         )}
@@ -84,12 +83,6 @@ export default function AddExpense() {
                         <label>{t("expenseTotalValue")} *</label>
                         <input type="number" value={expenseTotalValue} />
                     </div>
-
-                    <div className="display-flex-grid">
-                        <label>{t("costCenter")} *</label>
-                        <SelectAddExpense setCostCenter={setCostCenter} type="costCenter" />
-                    </div>
-
 
                 </div>
 

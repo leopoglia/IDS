@@ -38,13 +38,6 @@ export default function SelectLabels(props: any) {
         }
     };
 
-    // const handleChange = (event: SelectChangeEvent) => {
-    //     if (props.type === "payingCostCenter") {
-    //         props.setPayingCostCenter(event.target.value);
-    //         setSelect(event.target.value)
-    //     }
-    // };
-
     return (
         <div className='select-cost-center'>
             <Stack spacing={2} sx={{ width: 300 }}>

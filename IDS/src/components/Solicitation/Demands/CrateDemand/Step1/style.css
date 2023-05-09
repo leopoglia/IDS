@@ -38,7 +38,7 @@
 }
 
 
-.costCenter .delete-cost-center {
+.delete-cost-center {
     width: 30px;
     height: 30px;
     min-width: 30px;
@@ -52,7 +52,7 @@
     cursor: pointer;
 }
 
-.costCenter .delete-cost-center:hover {
+.delete-cost-center:hover {
     background-color: var(--greyE5);
 }
 

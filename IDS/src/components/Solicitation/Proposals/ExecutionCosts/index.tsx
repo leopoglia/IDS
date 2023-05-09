@@ -60,6 +60,7 @@ export default function ExecutionCosts() {
 
             DemandService.findById(demandCode).then((demand: any) => {
                 console.log(demand);
+                let idsExpenses: any = [];
 
                 ProposalServices.save(demandData.demandTitle, "Pending", 1, proposal.start, proposal.end, scope, worker.id, 0, proposal.responsiblesBussiness, totalsCosts, externalCosts, internalCosts, demandCode, demand.demandVersion, actualDate).then((proposal: any) => {
                     DemandService.updateStatus(demandCode, "Assesment");
@@ -71,14 +72,19 @@ export default function ExecutionCosts() {
                             expenseListStorage[i].necessityHoursQuantity,
                             expenseListStorage[i].hourValue,
                             expenseListStorage[i].expenseTotalValue,
-                            expenseListStorage[i].costCenter,
                             proposal.proposalCode
                         ).then((expense: any) => {
+                            idsExpenses.push(expense.expenseCode);
+
                             localStorage.removeItem('expenseList');
                         }).catch((error: any) => {
                             console.log(error);
                         });
                     }
+
+
+                    
+                    
                     navigate('/proposals/1');
 
                 }).catch((error: any) => {

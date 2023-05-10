@@ -10,6 +10,8 @@ import ProposalServices from "../../../../services/proposalService";
 import DemandService from "../../../../services/demandService";
 import ExpenseService from "../../../../services/expenseService";
 import UserContext from "../../../../context/userContext";
+import ExpensesService from "../../../../services/expensesService";
+import SelectCostCenter from "./SelectCostCenter";
 
 export default function ExecutionCosts() {
     const { t } = useTranslation();
@@ -60,25 +62,46 @@ export default function ExecutionCosts() {
 
             DemandService.findById(demandCode).then((demand: any) => {
                 console.log(demand);
+                let idsExpensesInternal: any = [];
+                let idsExpensesRecurrent: any = [];
+                let idsExpensesExpense: any = [];
 
-                ProposalServices.save(demandData.demandTitle, "Pending", 1, proposal.start, proposal.end, scope, worker.id, 0, proposal.responsiblesBussiness, totalsCosts, externalCosts, internalCosts, demandCode, demand.demandVersion, actualDate).then((proposal: any) => {
+
+                ProposalServices.save(demandData.demandTitle, "Pending", 1, proposal.start, proposal.end, scope, worker.id, 0, proposal.responsiblesBussiness, totalsCosts, externalCosts, internalCosts, demandCode, demand.demandVersion, actualDate).then(async (proposal: any) => {
                     DemandService.updateStatus(demandCode, "Assesment");
                     localStorage.removeItem('proposal');
 
                     for (let i = 0; i < expenseListStorage.length; i++) {
-                        ExpenseService.save(expenseListStorage[i].typeOfExpense,
+                        ExpenseService.save(
+                            expenseListStorage[i].typeOfExpense,
                             expenseListStorage[i].expenseProfile,
                             expenseListStorage[i].necessityHoursQuantity,
                             expenseListStorage[i].hourValue,
                             expenseListStorage[i].expenseTotalValue,
-                            expenseListStorage[i].costCenter,
                             proposal.proposalCode
                         ).then((expense: any) => {
+
+                            console.log(expense);
+
+                            if (expense.typeOfExpense === "internal") {
+                                idsExpensesInternal.push(expense.expenseCode);
+                            } else if (expense.typeOfExpense === "recurrent") {
+                                idsExpensesRecurrent.push(expense.expenseCode);
+                            } else if (expense.typeOfExpense === "expenses") {
+                                idsExpensesExpense.push(expense.expenseCode);
+                            }
+
                             localStorage.removeItem('expenseList');
                         }).catch((error: any) => {
                             console.log(error);
                         });
                     }
+                    
+
+                    await saveExpenses(demand);
+
+                    saveExpenseFinal();
+
                     navigate('/proposals/1');
 
                 }).catch((error: any) => {
@@ -88,6 +111,63 @@ export default function ExecutionCosts() {
             });
 
         }
+    }
+
+    const [idsExpensesExpense, setIdsExpensesExpense] = useState<any>([]);
+    const [idsExpensesInternal, setIdsExpensesInternal] = useState<any>([]);
+    const [idsExpensesRecurrent, setIdsExpensesRecurrent] = useState<any>([]);
+
+    async function saveExpenses(demand: any) {
+        await ProposalServices.save(demandData.demandTitle, "Pending", 1, proposal.start, proposal.end, scope, worker.id, 0, proposal.responsiblesBussiness, totalsCosts, externalCosts, internalCosts, demandCode, demand.demandVersion, actualDate).then(async (proposal: any) => {
+            DemandService.updateStatus(demandCode, "Assesment");
+            localStorage.removeItem('proposal');
+
+            for (let i = 0; i < expenseListStorage.length; i++) {
+                await ExpenseService.save(
+                    expenseListStorage[i].typeOfExpense,
+                    expenseListStorage[i].expenseProfile,
+                    expenseListStorage[i].necessityHoursQuantity,
+                    expenseListStorage[i].hourValue,
+                    expenseListStorage[i].expenseTotalValue,
+                    proposal.proposalCode
+                ).then((expense: any) => {
+
+                    console.log(expense);
+
+                    if (expense.expenseType === "internal") {
+                        idsExpensesInternal.push(expense.expenseCode);
+                    } else if (expense.expenseType === "recurrent") {
+                        idsExpensesRecurrent.push(expense.expenseCode);
+                    } else if (expense.expenseType === "expenses") {
+                        idsExpensesExpense.push(expense.expenseCode);
+                    }
+
+                    localStorage.removeItem('expenseList');
+                }).catch((error: any) => {
+                    console.log(error);
+                });
+            }
+        })
+    }
+
+    async function saveExpenseFinal() {
+        let centerOfCustProposalInternal: any = [localStorage.getItem('centerOfCustProposalinternal')]
+        let centerOfCustProposalExpenses: any = [localStorage.getItem('centerOfCustProposalexpenses')]
+        let centerOfCustProposalRecurrent: any = [localStorage.getItem('centerOfCustProposalrecurrent')]
+        let typeExpenses: any = ["internal", "recurrent", "expenses"];
+
+
+        for (let i = 0; i < 3; i++) {
+            let costCentersCode = i === 0 ? centerOfCustProposalInternal : i === 1 ? centerOfCustProposalRecurrent : centerOfCustProposalExpenses;
+            let expensesCode = i === 0 ? idsExpensesInternal : i === 1 ? idsExpensesRecurrent : idsExpensesExpense;
+
+
+            ExpensesService.save(typeExpenses[i], demandCode, JSON.parse(costCentersCode), JSON.parse(expensesCode)).then((expenses: any) => {
+                console.log(expenses);
+
+            })
+        }
+
     }
 
     return (
@@ -134,6 +214,7 @@ export default function ExecutionCosts() {
                             <GridCostExecution title="expenses" />
                             : null
                         }
+
 
 
                         {recurrentCosts !== 0 ?

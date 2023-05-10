@@ -20,7 +20,7 @@
     background-color: var(--blue19);
     width: 35px;
     height: 35px;
-    border-radius: 80px;
+    border-radius: var(--rr);
     display: flex;
     align-items: center;
     justify-content: center;

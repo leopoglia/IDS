@@ -13,7 +13,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../../../../context/userContext";
 
-
 export default function RankDemand() {
     const { t } = useTranslation();
     const navigate = useNavigate();
@@ -23,8 +22,6 @@ export default function RankDemand() {
     const [buBenefitedsList, setBuBenefitedsList]: any = useState([]); // Lista de unidades de negócio beneficiadas
     const [ppmCode, setPpmCode] = useState(""); // Código do ppm
     const [linkEpicJira, setLinkEpicJira] = useState(""); // Link do epic jira
-
-
     const [demand, setDemand]: any = useState({}); // Demanda
     const [fileAttachment, setFileAttachment]: any = useState([]);
     const url = parseInt(window.location.href.split("/")[5]); // Pegando o id da demanda
@@ -80,7 +77,7 @@ export default function RankDemand() {
 
                             ServicesNotification.save("Um analista classificou a sua demanda de código  " + demand.demandCode, demand.requesterRegistration.workerCode, "done", "demand");
 
-                            navigate("/demand/view/" + url)
+                            window.history.back();
 
                         }).catch((error: any) => {
                             console.log(error)

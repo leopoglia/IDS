@@ -1,15 +1,20 @@
 import { t } from "i18next"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SelectCostExecution from "../SelectCostExecution"
 import Services from "../../../../../services/costCenterService";
 
 
-export default function SelectCostCenter() {
+export default function SelectCostCenter(props: any) {
 
     const [costCenter, setCostCenter] = useState("");
     const [costsCenters, setCostsCenters]: any = useState([]);
     const [idCostCenter, setIdCostCenter]: any = useState([]);
-    let expenseListStorage: any = JSON.parse(localStorage.getItem('expenseList') || '[]');
+    let centerOfCustProposal: any = JSON.parse(localStorage.getItem('centerOfCustProposal' + props.type) || '[]');
+
+
+    useEffect(() => {
+        setCostsCenters(JSON.parse(localStorage.getItem('centerOfCustProposal' + props.type) || '[]'));
+    }, [localStorage.getItem('costsCenters' + props.type)]);
 
 
     function addCostCenter(costCenterAdd: any) {
@@ -19,7 +24,6 @@ export default function SelectCostCenter() {
             createCostCenter();
             costsCenters.push(costCenterAdd);
             setCostsCenters(costsCenters);
-
             setCostCenter("");
         }
     }
@@ -47,44 +51,71 @@ export default function SelectCostCenter() {
                 }
             }
             idCostCenter.push(id);
+
+
+
+            centerOfCustProposal.push(idCostCenter);
+
+            localStorage.setItem('centerOfCustProposal' + props.type, JSON.stringify(idCostCenter));
         }
 
     }
 
-    
+    function deleteCostCenter(costCentere: any) {
+        return () => {
+            const index = costsCenters.indexOf(costCentere);
+            if (index > -1) {
+                costsCenters.splice(index, 1);
+                idCostCenter.splice(index, 1);
+            }
+            setCostsCenters(costsCenters);
+
+            if (costCenter === " ") {
+                setCostCenter("");
+            } else {
+                setCostCenter(" ");
+            }
+
+            localStorage.setItem('centerOfCustProposal' + props.type, JSON.stringify(idCostCenter));
+
+        }
+    }
+
+
     return (
+
         <div className="input">
             <div className="display-flex-grid">
-                {expenseListStorage.length !== 0 &&
 
-                    <div>
+                <div>
 
-                        <label>{t("payingCostCenter")} *</label>
-
-
-                        <div className="display-flex">
-                            <SelectCostExecution setCostCenter={setCostCenter} costCenter={costCenter} addCostCenter={addCostCenter} type="payingCostCenter" />
-
-                            <button className="btn-primary btn-center-cost" onClick={() => { addCostCenter(costCenter) }}>
-                                <span className="material-symbols-outlined">
-                                    add
-                                </span>
-                            </button>
-                        </div>
+                    <label>{t("payingCostCenter")} *</label>
 
 
+                    <div className="display-flex">
+                        <SelectCostExecution setCostCenter={setCostCenter} costCenter={costCenter} addCostCenter={addCostCenter} type="payingCostCenter" />
 
-                        {costsCenters.map((costCenter: any) => {
-                            return <div className="cost-center">
-                                <span>{costCenter}</span>
-                            </div>
-                        })
-                        }
+                        <button className="btn-primary btn-center-cost" onClick={() => { addCostCenter(costCenter) }}>
+                            <span className="material-symbols-outlined">
+                                add
+                            </span>
+                        </button>
                     </div>
 
 
 
-                }
+                    {costsCenters.map((costCenter: any) => {
+                        return <div className="cost-center">
+                            <span>{costCenter}</span>
+                            <span className="material-symbols-outlined delete-cost-center" onClick={deleteCostCenter(costCenter)}>
+                                delete
+                            </span>
+
+                        </div>
+                    })
+                    }
+                </div>
+
             </div>
 
         </div>

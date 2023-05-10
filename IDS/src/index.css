@@ -20,6 +20,7 @@
   --pp: 11px;
   --h: 45px;
   --r: .375rem;
+  --rr: 50px;
 }
 
 
@@ -299,6 +300,7 @@ tr td {
   justify-content: center;
   overflow: hidden;
   text-overflow: ellipsis !important;
+  white-space: nowrap;
   position: relative;
   direction: ltr;
   font-size: var(--p);
@@ -349,7 +351,7 @@ hr {
 }
 
 
-.false::-webkit-scrollbar{
+.false::-webkit-scrollbar {
   width: 12px;
   height: 6px;
 }
@@ -413,7 +415,7 @@ hr {
   width: 100px;
   height: 80px;
   padding: 5px;
-  border-radius: 4px;
+  border-radius: var(--r);
   display: grid;
   align-items: center;
   justify-content: center;
@@ -451,6 +453,15 @@ hr {
   margin-bottom: 2px;
 }
 
+
+/* MUI SELECTS */
+.css-17o42pk-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root,
+.css-1846947-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root,
+.css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper,
+.css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
+  border-radius: var(--r) !important;
+}
+
 @media(max-width: 1280px) {
 
   .container {
@@ -468,7 +479,7 @@ hr {
 
 @media(max-width: 768px) {
   .container {
-    padding: 20px 25px;
+    padding: 20px 45px 20px 25px;
   }
 
   .w130 {
@@ -485,16 +496,16 @@ hr {
   }
 }
 
-@media(max-width: 350px){
-  body{
+@media(max-width: 350px) {
+  body {
     zoom: 0.8 !important;
     -webkit-zoom: 0.8 !important;
     -ms-zoom: 0.8 !important;
   }
 }
 
-@media(max-width: 260px){
-  body{
+@media(max-width: 260px) {
+  body {
     zoom: 0.5 !important;
     -webkit-zoom: 0.5 !important;
     -ms-zoom: 0.5 !important;

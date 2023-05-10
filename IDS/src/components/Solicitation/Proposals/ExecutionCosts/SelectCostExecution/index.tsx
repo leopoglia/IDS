@@ -38,13 +38,6 @@ export default function SelectLabels(props: any) {
         }
     };
 
-    // const handleChange = (event: SelectChangeEvent) => {
-    //     if (props.type === "payingCostCenter") {
-    //         props.setPayingCostCenter(event.target.value);
-    //         setSelect(event.target.value)
-    //     }
-    // };
-
     return (
         <div className='select-cost-center'>
             <Stack spacing={2} sx={{ width: 300 }}>
@@ -69,23 +62,5 @@ export default function SelectLabels(props: any) {
                 />
             </Stack>
         </div>);
-
-    // {/* <FormControl sx={{ width: "100%" }}>
-    //     <Select
-    //         value={select}
-    //         onChange={handleChange}
-    //         displayEmpty
-    //         inputProps={{ 'aria-label': 'Without label' }}
-
-    //         sx={{ minWidth: '100%', height: '45px' }}
-    //     >
-    //         {props.type === "payingCostCenter" ? <MenuItem value={"Centro Custo 1"}>Centro Custo 1</MenuItem>
-    //             : null}
-    //         {props.type === "payingCostCenter" ? <MenuItem value={"Centro Custo 2"}>Centro Custo 2</MenuItem>
-    //             : null}
-    //         {props.type === "payingCostCenter" ? <MenuItem value={"Centro Custo 3"}>Centro Custo 3</MenuItem>
-    //             : null}
-    //     </Select>
-    // </FormControl> */}
 
 }

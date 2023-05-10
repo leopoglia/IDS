@@ -15,3 +15,7 @@
     font-size: 20px;
     color: var(--blue);
 }
+
+.btn-center-cost .material-symbols-outlined{
+    color: var(--white) !important;
+}

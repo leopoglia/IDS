@@ -44,7 +44,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px;
+    padding: 0 10px;
+}
+
+.mtwo30{
+    margin-top: 40px !important;
+    margin-bottom: 40px !important;
 }
 
 .execution-costs .cost-center div {

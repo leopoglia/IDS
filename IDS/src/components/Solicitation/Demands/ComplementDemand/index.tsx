@@ -34,7 +34,7 @@ export default function ComplementDemand() {
                         ServicesNotification.save("Um analista complementou a sua demanda de código  " + demand.demandCode, demand.requesterRegistration.workerCode, "done", "demand");
 
                         localStorage.setItem("route", "complement");
-                        navigate("/demand/view/" + codeDemand)
+                        window.history.back();
                     })
                 })
             })

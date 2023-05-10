@@ -233,14 +233,14 @@
     height: 20px;
     margin: 10px;
     position: relative;
-    border-radius: 50px;
+    border-radius: var(--rr);
 }
 
 .background-modal .modal .progress .progress-bar {
     background-color: var(--blue);
     width: 0%;
     height: 100%;
-    border-radius: 50px;
+    border-radius: var(--rr);
 }
 
 .situation-demand {

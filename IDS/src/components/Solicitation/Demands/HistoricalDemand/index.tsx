@@ -5,6 +5,7 @@ import Demand from "../../All/Cards/Card";
 import { useEffect, useState } from "react";
 import ServiceDemand from "../../../../services/demandService";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
 
 export default function HistoricalDemand() {
 
@@ -12,7 +13,13 @@ export default function HistoricalDemand() {
     const url: any = window.location.href.split("/")[5];
     const [demand, setDemand]: any = useState();
     const [activeVersionUpdate, setActiveVersionUpdate]: any = useState(true);
+    const navigate = useNavigate();
 
+    let version:any = null;
+
+    ServiceDemand.findById(url).then((response: any) => {
+        version = response.demandVersion;
+    })
 
     useEffect(() => {
         ServiceDemand.historical(url).then((response: any) => {
@@ -20,7 +27,7 @@ export default function HistoricalDemand() {
         })}, [activeVersionUpdate])
 
     function viewDemand(demandCode: any, demandVersion: any) {
-        window.location.href = `/demand/view/${demandCode}/${demandVersion}`;
+        window.location.href = `/demand/view/${demandCode}?${demandVersion}`;
     }
 
     console.log(demand);
@@ -28,6 +35,7 @@ export default function HistoricalDemand() {
     function setActiveVersion(demandCode: any, nextDemandVersion: any) {
         ServiceDemand.setActiveVersion(demandCode, nextDemandVersion).then((response: any) => {
             setActiveVersionUpdate(response);
+            navigate(`/demand/view/${demandCode}?${nextDemandVersion}`);
         })
     }
 

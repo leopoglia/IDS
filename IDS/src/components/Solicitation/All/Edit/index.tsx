@@ -27,6 +27,7 @@ export default function Edit() {
 	const [editType, setEditType]: any = useState(window.location.href.split("?")[2]); // Tipo de edição (Tabelas, classificação, complementos, despesas)
 
 	const [demandCode, setDemandCode] = useState(parseInt(window.location.href.split("/")[5])); // Código da demanda
+	let [demandVersion, setDemandVersion] = useState(); // Versão da demanda
 	const [demands, setDemands]: any = useState(); // Demanda
 
 	const [demandTitle, setDemandTitle] = useState(""); // Titulo da demanda
@@ -64,7 +65,7 @@ export default function Edit() {
 		ServicesDemand.findById(demandCodeParam).then((response: any) => {
 			const demand: any = response
 			setDemands(demand)
-
+			setDemandVersion(demand.demandVersion);
 			setDemandTitle(demand.demandTitle);
 			setDemandObjective(demand.demandObjective);
 			setDemandProblem(demand.currentProblem);
@@ -114,7 +115,6 @@ export default function Edit() {
 	}
 
 	function getProposal() {
-
 		ServicesProposal.findById(demandCode).then((response: any) => {
 			setDemandCode(response.demand.demandCode);
 			getDemand(response.demand.demandCode);
@@ -243,9 +243,9 @@ export default function Edit() {
 		}
 	}
 
-	async function editUnit(){
+	async function editUnit() {
 
-		if(editType === "costcenter"){
+		if (editType === "costcenter") {
 			ServicesDemand.updateCostCenter(demandCode, costsCentersId).then((response: any) => {
 
 				navigate("/proposal/view/" + proposalCode);
@@ -275,10 +275,13 @@ export default function Edit() {
 					ServicesDemand.update(demandCode, demandTitle, demandProblem, demandObjective, costsCentersId, frequencyOfUse, realBenefit.realBenefitCode, potentialBenefit.potentialBenefitCode, qualitativeBenefit.qualitativeBenefitCode, file, demandDate, demandStatus, demandScore, demandRequester, demandClassification).then((response: any) => {
 
 						if (url === "edit" && type === "demand") {
-							ServicesDemand.updateStatus(demandCode, "Backlog").then((response: any) => { });
-
-							localStorage.setItem("route", "edit");
-							navigate("/demand/view/" + demandCode);
+							ServicesDemand.updateStatus(demandCode, "Backlog").then((response: any) => {
+							});
+							ServicesDemand.findById(demandCode).then((response: any) => {
+								demandVersion = response.demandVersion;
+								localStorage.setItem("route", "edit");
+							navigate("/demand/view/" + demandCode + "?" + demandVersion);
+							});
 						} else if (url === "demand") {
 							navigate("/proposal/edit-scope/" + demandCode);
 						} else if (url === "edit") {

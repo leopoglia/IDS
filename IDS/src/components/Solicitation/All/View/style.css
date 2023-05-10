@@ -23,9 +23,16 @@
     margin-right: 5px;
 }
 
-.edit-expand{
+.edit-expand {
     position: sticky !important;
     right: 0 !important;
+}
+
+.header-table {
+    position: sticky;
+    height: auto;
+    width: 100%;
+    left: 0;
 }
 
 
@@ -171,7 +178,7 @@
     margin-right: 7px !important;
 }
 
-.view-demand .complement{
+.view-demand .complement {
     width: 100%;
 }
 
@@ -399,7 +406,8 @@
 }
 
 .w40 {
-    width: 33.5% !important;
+    width: 30% !important;
+    min-width: 150px;
 }
 
 .mr5 {

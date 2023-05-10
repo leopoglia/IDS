@@ -5,7 +5,7 @@ import "./style.css"
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ButtonAction from "../CrateDemand/ButtonAction";
 import DemandService from "../../../../services/demandService";
 import Services from "../../../../services/reproachService";
@@ -16,6 +16,7 @@ export default function DisapproveDemand() {
     const navigate = useNavigate();
     const [disapprovalReason, setDisapprovalReason]: any = useState(""); // Motivo de reprovação
     const demandCode = parseInt(window.location.href.split("/")[5]);
+    let demandVersion:any;
 
     // Função para reprovar demanda
     function disapproveDemand() {
@@ -30,6 +31,10 @@ export default function DisapproveDemand() {
         });
     }
 
+    DemandService.findById(demandCode).then((response: any) => {
+        demandVersion = response.demandVersion;
+    });
+
     const nextStep = () => {
         // Função para verificar se o motivo de reprovação foi preenchido
         if (disapprovalReason === undefined || disapprovalReason === "") {
@@ -37,7 +42,7 @@ export default function DisapproveDemand() {
         } else {
             disapproveDemand();
             localStorage.setItem('route', 'reprove')
-            navigate('/demand/view/' + demandCode);
+            navigate('/demand/view/' + demandCode + "?" + demandVersion);
         }
     }
 
@@ -68,7 +73,7 @@ export default function DisapproveDemand() {
 
                 <div className="demands-footer">
 
-                    <Link to={"/demand/view/" + demandCode}>
+                    <Link to={"/demand/view/" + demandCode + "?" + demandVersion}>
                         <button className="btn-secondary">{t("return")}</button>
                     </Link>
 

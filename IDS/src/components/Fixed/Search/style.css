@@ -51,6 +51,7 @@
 
 .background-filter {
     margin-left: 200px !important;
+    margin-top: 47px;
     position: absolute;
 }
 
@@ -69,7 +70,7 @@
     justify-content: space-between;
     padding: 5px;
     background-color: var(--blue);
-    border-radius: 50px;
+    border-radius: var(--rr);
     color: var(--white);
     font-size: var(--pp);
 }

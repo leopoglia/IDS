@@ -19,7 +19,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    border-radius: 4px;
+    border-radius: var(--r);
     margin-bottom: 15px;
     margin-right: 15px;
 }

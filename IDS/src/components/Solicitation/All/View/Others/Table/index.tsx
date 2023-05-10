@@ -43,7 +43,7 @@ export default function Table(props: any) {
 
     return (
         <div className={"classification " + open} >
-            <div className="display-flex-space-between">
+            <div className="display-flex-space-between header-table">
 
                 <p className="title">{t(props.title)}</p>
 
@@ -97,9 +97,19 @@ export default function Table(props: any) {
                                             )
                                         }
                                     } else {
-                                        return (
-                                            <td key={index}>{item}</td>
-                                        )
+                                        if (item.includes("http://") || item.includes("https://")) {
+                                            return (
+                                                <td key={index}>
+                                                    <Link to={item}>
+                                                        <span>{item}</span>
+                                                    </Link>
+                                                </td>
+                                            )
+                                        } else {
+                                            return (
+                                                <td key={index}>{item}</td>
+                                            )
+                                        }
                                     }
 
                                 })}

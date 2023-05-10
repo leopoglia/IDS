@@ -82,7 +82,7 @@
         width: 199px;
         border-top: none !important;
         border: 1px solid var(--greyC4);
-        border-radius: 0 0 4px 4px;
+        border-radius: 0 0 var(--r) var(--r);
         }
 
 

@@ -52,13 +52,16 @@ export default function Router() {
             let workerCode;
 
             let cookieUser: any = Cookies?.get('user');
-            workerCode = JSON.parse(cookieUser).worker.workerCode;
+
+            if (cookieUser !== undefined) {
+                workerCode = JSON.parse(cookieUser).worker.workerCode;
+            }
 
 
             if (worker.id === "") {
                 const id = workerCode;
 
-                if (id !== null) {
+                if (id !== null && id !== undefined) {
                     ServicesWorker.findById(JSON.parse(id)).then((response: any) => {
                         const worker = {
                             id: response.workerCode,

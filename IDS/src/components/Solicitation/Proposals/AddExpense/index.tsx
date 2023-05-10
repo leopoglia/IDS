@@ -13,22 +13,22 @@ export default function AddExpense() {
 
     const demandCode = parseInt(window.location.href.split("/")[6]);
 
-    const [typeOfExpense, setTypeOfExpense] = useState('');
+    const [expenseType, setExpenseType] = useState('');
     const [expenseProfile, setExpenseProfile] = useState('');
-    const [necessityHoursQuantity, setNecessityHoursQuantity]: any = useState('');
+    const [amountOfHours, setAmountOfHours]: any = useState('');
     const [hourValue, setHourValue]: any = useState('');
-    const expenseTotalValue = necessityHoursQuantity * hourValue;
+    const totalValue = amountOfHours * hourValue;
 
-    const expense = { typeOfExpense: typeOfExpense, expenseProfile: expenseProfile, necessityHoursQuantity: necessityHoursQuantity, hourValue: hourValue, expenseTotalValue: expenseTotalValue };
+    const expense = { expenseType: expenseType, expenseProfile: expenseProfile, amountOfHours: amountOfHours, hourValue: hourValue, totalValue: totalValue };
     const [expenseList, setExpenseList]: any = useState([]);
 
     useEffect(() => {
         setExpenseList(JSON.parse(localStorage.getItem('expenseList') || '[]'));
 
-    }, [typeOfExpense]);
+    }, [expenseType]);
 
     const nextStep = () => {
-        if (typeOfExpense === '' || expenseProfile === '' || necessityHoursQuantity === '' || hourValue === '') {
+        if (expenseType === '' || expenseProfile === '' || amountOfHours === '' || hourValue === '') {
             notify()
         } else {
             expenseList.push(expense);
@@ -42,7 +42,6 @@ export default function AddExpense() {
 
             <div className="container">
 
-
                 <div className="background-title">
                     <Title title="Adicionar Despesa" nav="Demands > Custos de Execução > Adicionar Despesa" />
                 </div>
@@ -53,7 +52,7 @@ export default function AddExpense() {
 
                     <div className="display-flex-grid">
                         <label>{t("expenseType")} *</label>
-                        <SelectAddExpense setTypeOfExpense={setTypeOfExpense} type="typeOfExpense" />
+                        <SelectAddExpense setExpenseType={setExpenseType} type="expenseType" />
                     </div>
 
                     <div className="display-flex-grid">
@@ -62,16 +61,16 @@ export default function AddExpense() {
                     </div>
 
                     <div className="display-flex-grid">
-                        {typeOfExpense !== "recurrent" ? (
+                        {expenseType !== "recurrent" ? (
                             <label>{t("necessityHoursQuantity")} *</label>
                         ) : (
                             <label>{t("licenses")} *</label>
                         )}
-                        <input type="number" onChange={(e) => { setNecessityHoursQuantity(e.target.value) }} />
+                        <input type="number" onChange={(e) => { setAmountOfHours(e.target.value) }} />
                     </div>
 
                     <div className="display-flex-grid">
-                        {typeOfExpense !== "recurrent" ? (
+                        {expenseType !== "recurrent" ? (
                             <label>{t("hourValue")} *</label>
                         ) : (
                             <label>{t("unitValue")} *</label>
@@ -81,7 +80,7 @@ export default function AddExpense() {
 
                     <div className="display-flex-grid">
                         <label>{t("expenseTotalValue")} *</label>
-                        <input type="number" value={expenseTotalValue} />
+                        <input type="number" value={totalValue} />
                     </div>
 
                 </div>

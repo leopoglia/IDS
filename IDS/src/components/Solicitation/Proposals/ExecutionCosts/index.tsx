@@ -37,18 +37,18 @@ export default function ExecutionCosts() {
 
     useEffect(() => {
         for (let i = 0; i < expenseListStorage.length; i++) {
-            if (expenseListStorage[i].typeOfExpense === "internal") {
-                internalCosts += expenseListStorage[i].expenseTotalValue;
+            if (expenseListStorage[i].expenseType === "internal") {
+                internalCosts += expenseListStorage[i].totalValue;
                 setInternalCosts(internalCosts);
-            } else if (expenseListStorage[i].typeOfExpense === "expenses") {
-                externalCosts += expenseListStorage[i].expenseTotalValue;
+            } else if (expenseListStorage[i].expenseType === "expenses") {
+                externalCosts += expenseListStorage[i].totalValue;
                 setExternalCosts(externalCosts);
-            } else if (expenseListStorage[i].typeOfExpense === "recurrent") {
-                recurrentCosts += expenseListStorage[i].expenseTotalValue;
+            } else if (expenseListStorage[i].expenseType === "recurrent") {
+                recurrentCosts += expenseListStorage[i].totalValue;
                 setRecurrentCosts(recurrentCosts);
             }
 
-            totalsCosts += expenseListStorage[i].expenseTotalValue;
+            totalsCosts += expenseListStorage[i].totalValue;
             setTotalsCosts(totalsCosts);
         }
     }, [expenseListStorage]);
@@ -61,44 +61,9 @@ export default function ExecutionCosts() {
         } else {
 
             DemandService.findById(demandCode).then((demand: any) => {
-                console.log(demand);
-                let idsExpensesInternal: any = [];
-                let idsExpensesRecurrent: any = [];
-                let idsExpensesExpense: any = [];
-
-
                 ProposalServices.save(demandData.demandTitle, "Pending", 1, proposal.start, proposal.end, scope, worker.id, 0, proposal.responsiblesBussiness, totalsCosts, externalCosts, internalCosts, demandCode, demand.demandVersion, actualDate).then(async (proposal: any) => {
                     DemandService.updateStatus(demandCode, "Assesment");
                     localStorage.removeItem('proposal');
-
-                    for (let i = 0; i < expenseListStorage.length; i++) {
-                        ExpenseService.save(
-                            expenseListStorage[i].typeOfExpense,
-                            expenseListStorage[i].expenseProfile,
-                            expenseListStorage[i].necessityHoursQuantity,
-                            expenseListStorage[i].hourValue,
-                            expenseListStorage[i].expenseTotalValue,
-                            proposal.proposalCode
-                        ).then((expense: any) => {
-
-                            console.log(expense);
-
-                            if (expense.typeOfExpense === "internal") {
-                                idsExpensesInternal.push(expense.expenseCode);
-                            } else if (expense.typeOfExpense === "recurrent") {
-                                idsExpensesRecurrent.push(expense.expenseCode);
-                            } else if (expense.typeOfExpense === "expenses") {
-                                idsExpensesExpense.push(expense.expenseCode);
-                            }
-
-                            localStorage.removeItem('expenseList');
-                        }).catch((error: any) => {
-                            console.log(error);
-                        });
-                    }
-                    
-
-                    await saveExpenses(demand);
 
                     saveExpenseFinal();
 
@@ -113,43 +78,6 @@ export default function ExecutionCosts() {
         }
     }
 
-    const [idsExpensesExpense, setIdsExpensesExpense] = useState<any>([]);
-    const [idsExpensesInternal, setIdsExpensesInternal] = useState<any>([]);
-    const [idsExpensesRecurrent, setIdsExpensesRecurrent] = useState<any>([]);
-
-    async function saveExpenses(demand: any) {
-        await ProposalServices.save(demandData.demandTitle, "Pending", 1, proposal.start, proposal.end, scope, worker.id, 0, proposal.responsiblesBussiness, totalsCosts, externalCosts, internalCosts, demandCode, demand.demandVersion, actualDate).then(async (proposal: any) => {
-            DemandService.updateStatus(demandCode, "Assesment");
-            localStorage.removeItem('proposal');
-
-            for (let i = 0; i < expenseListStorage.length; i++) {
-                await ExpenseService.save(
-                    expenseListStorage[i].typeOfExpense,
-                    expenseListStorage[i].expenseProfile,
-                    expenseListStorage[i].necessityHoursQuantity,
-                    expenseListStorage[i].hourValue,
-                    expenseListStorage[i].expenseTotalValue,
-                    proposal.proposalCode
-                ).then((expense: any) => {
-
-                    console.log(expense);
-
-                    if (expense.expenseType === "internal") {
-                        idsExpensesInternal.push(expense.expenseCode);
-                    } else if (expense.expenseType === "recurrent") {
-                        idsExpensesRecurrent.push(expense.expenseCode);
-                    } else if (expense.expenseType === "expenses") {
-                        idsExpensesExpense.push(expense.expenseCode);
-                    }
-
-                    localStorage.removeItem('expenseList');
-                }).catch((error: any) => {
-                    console.log(error);
-                });
-            }
-        })
-    }
-
     async function saveExpenseFinal() {
         let centerOfCustProposalInternal: any = [localStorage.getItem('centerOfCustProposalinternal')]
         let centerOfCustProposalExpenses: any = [localStorage.getItem('centerOfCustProposalexpenses')]
@@ -159,10 +87,8 @@ export default function ExecutionCosts() {
 
         for (let i = 0; i < 3; i++) {
             let costCentersCode = i === 0 ? centerOfCustProposalInternal : i === 1 ? centerOfCustProposalRecurrent : centerOfCustProposalExpenses;
-            let expensesCode = i === 0 ? idsExpensesInternal : i === 1 ? idsExpensesRecurrent : idsExpensesExpense;
 
-
-            ExpensesService.save(typeExpenses[i], demandCode, JSON.parse(costCentersCode), JSON.parse(expensesCode)).then((expenses: any) => {
+            ExpensesService.save(typeExpenses[i], demandCode, JSON.parse(costCentersCode), expenseListStorage).then((expenses: any) => {
                 console.log(expenses);
 
             })

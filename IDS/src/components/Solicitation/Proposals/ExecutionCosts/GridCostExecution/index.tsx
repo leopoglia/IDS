@@ -47,13 +47,13 @@ export default function ConditionalValidationGrid(props: any) {
 
                         {
                             expenseList.map((val: any, index: any) => {
-                                if (val.typeOfExpense === props.title) {
+                                if (val.expenseType === props.title) {
                                     return (
                                         <tr>
                                             <td>{val.expenseProfile}</td>
-                                            <td>{val.necessityHoursQuantity}</td>
+                                            <td>{val.amountOfHours}</td>
                                             <td>R$ {val.hourValue}</td>
-                                            <td>R$ {val.expenseTotalValue}</td>
+                                            <td>R$ {val.totalValue}</td>
                                             <td className='w40' onClick={() => deleteRow(index)}>
                                                 <span className="material-symbols-outlined">
                                                     delete

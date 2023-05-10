@@ -4,16 +4,23 @@ const Services = {
     save: function (expenseName: String, proposal: any, costCenter: any, expense: any) {
         return new Promise((resolve, reject) => {
 
+
+            console.log("expenseName: " + expenseName);
+            console.log("proposal: " + proposal);
+            console.log("costCenter: " + costCenter);
+            console.log("expense: " + expense);
+
             let costCenters = [];
             let expenses = [];
 
             for (let i = 0; i < costCenter.length; i++) {
-                costCenters.push({ "costCenterCode": costCenter[i]});
+                costCenters.push({ "costCenterCode": costCenter[i] });
             }
 
-
             for (let i = 0; i < expense.length; i++) {
-                expenses.push({ "expenseCode": expense[i] });
+                if (expense[i].expenseType === expenseName) {
+                    expenses.push(expense[i]);
+                }
             }
 
             fetch(url, {

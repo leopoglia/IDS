@@ -108,6 +108,15 @@ const Services = {
                 headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); }).then(resolve).catch(reject)
         })
+    },
+    findByDemandCode: function (demandCode: Number) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/demand/" + demandCode, {
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(reject)
+        })
     }
 }
 

@@ -4,6 +4,7 @@ import { t } from "i18next";
 import Demand from "../../All/Cards/Card";
 import { useEffect, useState } from "react";
 import ServiceDemand from "../../../../services/demandService";
+import ServiceProposal from "../../../../services/proposalService";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 
@@ -14,8 +15,15 @@ export default function HistoricalDemand() {
     const [demand, setDemand]: any = useState();
     const [activeVersionUpdate, setActiveVersionUpdate]: any = useState(true);
     const navigate = useNavigate();
+    let proposalDemand = false;
 
-    let version:any = null;
+    let version: any = null;
+
+    ServiceProposal.findByDemandCode(url).then((response: any) => {
+        if (response.length > 0) {
+            proposalDemand = true;
+        }
+    })
 
     ServiceDemand.findById(url).then((response: any) => {
         version = response.demandVersion;
@@ -24,7 +32,8 @@ export default function HistoricalDemand() {
     useEffect(() => {
         ServiceDemand.historical(url).then((response: any) => {
             setDemand(response);
-        })}, [activeVersionUpdate])
+        })
+    }, [activeVersionUpdate])
 
     function viewDemand(demandCode: any, demandVersion: any) {
         window.location.href = `/demand/view/${demandCode}?${demandVersion}`;
@@ -55,7 +64,11 @@ export default function HistoricalDemand() {
 
                             <tr>
                                 <td>{t("user")}</td>
-                                <td className="table-restore-page">{t("returnVersion")}</td>
+                                {
+                                    proposalDemand ? (
+                                        <td className="table-restore-page">{t("returnVersion")}</td>
+                                    ) : null
+                                }
                                 <td className="table-find-in-page">{t("view")}</td>
                                 <td>{t("alterationDate")}</td>
                                 <td>{t("alterationHour")}</td>
@@ -64,44 +77,54 @@ export default function HistoricalDemand() {
 
 
                             {demand?.map((val: any, index: any) => (
-                               val.activeVersion === true ? (
-                                <tr key={index}>
-                                    <td className="activeVersion">{val.requesterRegistration.workerName}</td>
-                                    <td className="table-restore-page, activeVersion">
-                                        <span className="material-symbols-outlined">restore_page</span>
-                                    </td>
-                                    <td className="table-find-in-page, activeVersion">
-                                        <span className="material-symbols-outlined">find_in_page</span>
-                                    </td>
-                                    <td className="activeVersion">
-                                        {val.demandDate}
-                                    </td>
-                                    <td className="activeVersion">
-                                        {val.demandHour}
-                                    </td>
-                                    <td className="activeVersion">
-                                        {val.demandVersion}.0
-                                    </td>
-                                </tr>
-                            ) : (
-                                <tr key={index}>
-                                <td>{val?.requesterRegistration.workerName}</td>
-                                <td className="table-restore-page">
-                                    <span className="material-symbols-outlined" onClick={() => { setActiveVersion(val.demandCode, val.demandVersion); }}>restore_page</span>
-                                </td>
-                                <td className="table-find-in-page" onClick={() => viewDemand(val.demandCode, val.demandVersion)}>
-                                    <span className="material-symbols-outlined">find_in_page</span>
-                                </td>
-                                <td>
-                                    {val.demandDate}
-                                </td>
-                                <td>
-                                    {val.demandHour}
-                                </td>
-                                <td>
-                                    {val.demandVersion}.0
-                                </td>
-                            </tr>
+                                val.activeVersion === true ? (
+                                    <tr key={index}>
+                                        <td className="activeVersion">{val.requesterRegistration.workerName}</td>
+                                        {
+                                            proposalDemand ? (
+                                                <td className="table-restore-page, activeVersion">
+                                                    <span className="material-symbols-outlined">restore_page</span>
+                                                </td>
+                                            ) : null
+                                        }
+                                        <td className="table-find-in-page, activeVersion">
+                                            <span className="material-symbols-outlined">find_in_page</span>
+                                        </td>
+                                        <td className="activeVersion">
+                                            {val.demandDate}
+                                        </td>
+                                        <td className="activeVersion">
+                                            {val.demandHour}
+                                        </td>
+                                        <td className="activeVersion">
+                                            {val.demandVersion}.0
+                                        </td>
+                                    </tr>
+                                ) : (
+                                    <tr key={index}>
+                                        <td>{val?.requesterRegistration.workerName}</td>
+                                        {
+                                            proposalDemand ? (
+                                                <td className="table-restore-page">
+                                                    <span className="material-symbols-outlined" onClick={() => { setActiveVersion(val.demandCode, val.demandVersion); }}>restore_page</span>
+                                                </td>
+                                            ) : (
+                                                null
+                                            )
+                                        }
+                                        <td className="table-find-in-page" onClick={() => viewDemand(val.demandCode, val.demandVersion)}>
+                                            <span className="material-symbols-outlined">find_in_page</span>
+                                        </td>
+                                        <td>
+                                            {val.demandDate}
+                                        </td>
+                                        <td>
+                                            {val.demandHour}
+                                        </td>
+                                        <td>
+                                            {val.demandVersion}.0
+                                        </td>
+                                    </tr>
                                 )
                             ))}
                         </tbody>

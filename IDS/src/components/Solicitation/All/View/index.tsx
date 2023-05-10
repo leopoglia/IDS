@@ -137,10 +137,10 @@ export default function ViewDemand() {
         ServicesDemand.findByDemandCodeAndDemandVersion(demandCode, demandVersion).then((response: any) => {
             console.log("version: " + demandVersion);
             console.log(response);
-            
+
 
             setDemand(response);
-            
+
             // Verificar se o usuário é o solicitante
             if (office === "requester") {
                 // Verificar se o usuário é o solicitante
@@ -472,9 +472,23 @@ export default function ViewDemand() {
 
                             {
                                 (demand.activeVersion === true) ? (
-                                    <ButtonsActions demand={demand} proposal={proposal} workerId={workerId} actionsDemand={actionsDemand} approveDemand={approveDemand} giveBack={giveBack} generatePDF={generatePDF} />
+                                    (demand.demandStatus != "Cancelled") ? (
+                                        <ButtonsActions demand={demand} proposal={proposal} workerId={workerId} actionsDemand={actionsDemand} approveDemand={approveDemand} giveBack={giveBack} generatePDF={generatePDF} />
+                                    ) : (
+                                        <button className="btn-primary">
+                                            <span className="material-symbols-outlined">
+                                                download
+                                            </span>
+                                            <span>{t("generatePDF")}</span>
+                                        </button>
+                                    )
                                 ) : (
-                                    <ButtonsActions demand={demand} />
+                                    <button className="btn-primary">
+                                        <span className="material-symbols-outlined">
+                                            download
+                                        </span>
+                                        <span>{t("generatePDF")}</span>
+                                    </button>
                                 )
                             }
 
@@ -682,13 +696,13 @@ export default function ViewDemand() {
 
 
                                     (classification.epicJiraLink) ?
-                                    <Table title="classification" demandCode={demand?.demandCode}  proposalCode={proposal?.proposalCode} headers={["size", "requesterBU", "buBenefited", "responsibleItSession", "ppmCode", "linkEpicJira"]} items={[classification.classificationSize, classification.requesterBu.bu, beneficiariesBu, classification.itSection, classification.ppmCode, classification.epicJiraLink]} />
-                                    : 
-                                    <Table title="classification" demandCode={demand?.demandCode}  proposalCode={proposal?.proposalCode} headers={["size", "requesterBU", "buBenefited", "responsibleItSession"]} items={[classification.classificationSize, classification.requesterBu.bu, beneficiariesBu, classification.itSection]} />
+                                        <Table title="classification" demandCode={demand?.demandCode} proposalCode={proposal?.proposalCode} headers={["size", "requesterBU", "buBenefited", "responsibleItSession", "ppmCode", "linkEpicJira"]} items={[classification.classificationSize, classification.requesterBu.bu, beneficiariesBu, classification.itSection, classification.ppmCode, classification.epicJiraLink]} />
+                                        :
+                                        <Table title="classification" demandCode={demand?.demandCode} proposalCode={proposal?.proposalCode} headers={["size", "requesterBU", "buBenefited", "responsibleItSession"]} items={[classification.classificationSize, classification.requesterBu.bu, beneficiariesBu, classification.itSection]} />
                                 ) : (null)
                             ) : (null)
                             }
-{/* 
+                            {/* 
                             {(stepDemand === 2) ? (
                                 <Table title="complements" demandCode={demand?.demandCode}  proposalCode={proposal?.proposalCode} headers={["ppmCode", "linkEpicJira"]} items={[classification.ppmCode, classification.epicJiraLink]} />
                             ) : (null)

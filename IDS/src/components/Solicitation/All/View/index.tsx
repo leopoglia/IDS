@@ -796,7 +796,7 @@ export default function ViewDemand() {
                             {agenda ? (
                                 <>
                                     <div className="display-solicitation-demand">
-                                        <p className="title">Pauta da Reunião {agenda.agendaCode}</p>
+                                        <p className="title">{t("meetingAgenda")} {agenda.agendaCode}</p>
                                     </div>
 
                                     <div className="box">

@@ -225,5 +225,7 @@
     "agendasCreated": "Directrices creadas",
     "newDemands": "Nuevas Demandas",
     "newProposals": "Nuevas propuestas",
-    "newAgendas": "Nuevas Directrices"
+    "newAgendas": "Nuevas Directrices",
+    "dateMeeting": "Fecha de la reunión",
+    "meetingAgenda":"Agenda de la reunión"
 }

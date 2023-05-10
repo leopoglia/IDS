@@ -97,7 +97,6 @@ export default function Dashboard() {
         });
     }
 
-
     useEffect(() => { 
         getDemands();
         getProposal();
@@ -169,8 +168,6 @@ export default function Dashboard() {
 
     return (<div className="dashboard">
 
-
-
         <div className="container">
 
             <Title title="dashboard" nav="dashboard" />
@@ -198,15 +195,11 @@ export default function Dashboard() {
 
                     </div>
 
-
                 </div>
-
 
                 <Footer />
 
             </div>
-
-
 
         </div>
 

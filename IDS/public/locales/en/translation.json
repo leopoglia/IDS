@@ -226,5 +226,7 @@
     "agendasCreated": "Guidelines created",
     "newDemands": "New demands",
     "newProposals": "New proposals",
-    "newAgendas": "New agendas"
+    "newAgendas": "New agendas",
+    "dateMeeting":"Meeting date",
+    "meetingAgenda": "Meeting Agenda"
 }

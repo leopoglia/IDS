@@ -226,5 +226,7 @@
     "agendasCreated": "已創建指南",
     "newDemands": "新需求",
     "newProposals": "新提案",
-    "newAgendas": "新準則"
+    "newAgendas": "新準則",
+    "dateMeeting": "會議日期",
+    "meetingAgenda":"會議議程"
 }

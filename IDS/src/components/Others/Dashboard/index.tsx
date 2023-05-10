@@ -107,37 +107,37 @@ export default function Dashboard() {
 
     const listDashBoard = [
         {
-            title: "Demandas criadas",
+            title: t("createdDemands"),
             number: demands,
             icon: "check",
         },
         {
-            title: "Demandas classificadas",
+            title: t("classifiedDemands"),
             number: demandsRanked,
             icon: "check",
         },
         {
-            title: "Demandas aprovadas pelo gerente",
+            title:t("demandsApprovedByManager"),
             number: demandsApproved,
             icon: "check",
         },
         {
-            title: "Demandas complementadas",
+            title: t("complementedDemands"),
             number: demandsCompleted,
             icon: "check",
         },
         {
-            title: "Demandas canceladas",
+            title: t("canceledDemands"),
             number: demandsCanceled,
             icon: "check",
         },
         {
-            title: "Propostas criadas",
+            title: t("proposalsCreated"),
             number: proposal,
             icon: "check",
         },
         {
-            title: "Pautas criadas",
+            title: t("agendasCreated"),
             number: agendas,
             icon: "check",
         }
@@ -145,21 +145,21 @@ export default function Dashboard() {
 
     const boxDashBoard = [
         {
-            title: "Novas Demandas",
+            title: t("newDemands"),
             type: "demands",
             number: demands,
             icon: "check",
             dates: demandsDates
         },
         {
-            title: "Novas Propostas",
+            title: t("newProposals"),
             type: "proposal",
             number: proposal,
             icon: "check",
             dates: proposalDates
         },
         {
-            title: "Novas Pautas",
+            title: t("newAgendas"),
             type: "agendas",
             number: agendas,
             icon: "check",

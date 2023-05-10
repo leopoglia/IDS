@@ -216,5 +216,15 @@
     "fillAllFields": "Please fill all fields",
     "change-history": "Change History",
     "view": "View",
-    "demandsViewDemandChangeHistory":"Demands > View Demand > Change History"
+    "demandsViewDemandChangeHistory":"Demands > View Demand > Change History",
+    "createdDemands":"Demands created",
+    "classifiedDemands":"Classified demands",
+    "demandsApprovedByManager": "Demands approved by the manager",
+    "complementedDemands":"Complemented demands",
+    "canceledDemands": "Canceled demands",
+    "proposalsCreated":"Proposals created",
+    "agendasCreated": "Guidelines created",
+    "newDemands": "New demands",
+    "newProposals": "New proposals",
+    "newAgendas": "New agendas"
 }

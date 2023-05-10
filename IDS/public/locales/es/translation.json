@@ -215,5 +215,15 @@
     "fillAllFields": "llene todos los campos",
     "change-history": "Cambia la historia",
     "view": "vista",
-    "demandsViewDemandChangeHistory":"Demandas > Ver demanda > Historial de cambios"
+    "demandsViewDemandChangeHistory":"Demandas > Ver demanda > Historial de cambios",
+    "createdDemands":"Demandas creadas",
+    "classifiedDemands":"Demandas Clasificadas",
+    "demandsApprovedByManager": "Demandas aprobadas por el gerente",
+    "complementedDemands":"Demandas Complementadas",
+    "canceledDemands": "Demandas canceladas",
+    "proposalsCreated":"Propuestas creadas",
+    "agendasCreated": "Directrices creadas",
+    "newDemands": "Nuevas Demandas",
+    "newProposals": "Nuevas propuestas",
+    "newAgendas": "Nuevas Directrices"
 }

@@ -216,5 +216,15 @@
     "fillAllFields": "請填寫所有字段",
     "change-history": "變更歷史",
     "view": "看法",
-    "demandsViewDemandChangeHistory": "需求 > 查看需求 > 變更歷史"
+    "demandsViewDemandChangeHistory": "需求 > 查看需求 > 變更歷史",
+    "createdDemands":"創造需求",
+    "classifiedDemands":"分類訴求",
+    "demandsApprovedByManager": "經理批准的要求",
+    "complementedDemands":"補充要求",
+    "canceledDemands": "取消要求",
+    "proposalsCreated":"提案已創建",
+    "agendasCreated": "已創建指南",
+    "newDemands": "新需求",
+    "newProposals": "新提案",
+    "newAgendas": "新準則"
 }

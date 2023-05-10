@@ -2,7 +2,7 @@ import "./style.css";
 import { Link } from "react-router-dom";
 import Situation from "./Situation/index";
 import { useTranslation } from "react-i18next";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import UserContext from "../../../../../context/userContext";
 import { Tooltip } from "@mui/material";
 
@@ -10,6 +10,7 @@ export default function Demand(props: any) {
 
     const { t } = useTranslation();
     const worker: any = useContext(UserContext).worker;
+    const [urlFinal, setUrlFinal] = useState(props.type === "demand" ? "?" + props.demandVersion : "");
 
     const information = () => {
         if (props.type === "demand") {
@@ -153,7 +154,7 @@ export default function Demand(props: any) {
     if (props.listDirection === false) {
         return (
             <div>
-                <Link to={"/" + props.type + "/view/" + props.demandCode + "?" + props.demandVersion}>
+                <Link to={"/" + props.type + "/view/" + props.demandCode +  urlFinal}>
                     <div className="demand">
                         <div className="content-demand">
 
@@ -187,7 +188,7 @@ export default function Demand(props: any) {
         return (
             <div>
 
-                <Link to={"/" + props.type + "/view/" + props.demandCode + "?" + props.demandVersion}>
+                <Link to={"/" + props.type + "/view/" + props.demandCode + urlFinal}>
                     <div className="demand-list">
                         <section>
                             <h1>{props.name}</h1>

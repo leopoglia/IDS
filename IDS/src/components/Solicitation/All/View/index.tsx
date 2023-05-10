@@ -847,8 +847,8 @@ export default function ViewDemand() {
                                 <table>
                                     <tbody>
                                         {proposalSpecific.map((val: any, index: any) => (
-                                            <tr key={index} className="h50px">
-                                                <td className="display-flex-start pl20">
+                                            <div className="h50px display-flex">
+                                                <div className="display-flex-start pl20 display-flex-center">
                                                     <div className="code">
                                                         {val.proposalCode}
                                                     </div>
@@ -858,9 +858,9 @@ export default function ViewDemand() {
                                                     </span>
 
 
-                                                </td>
+                                                </div>
 
-                                                <td className="w20">
+                                                <div className="w20 display-flex-align-center">
 
                                                     <div className="proposal-view-buttons">
                                                         {val.proposalStatus === "Pending" ? (
@@ -874,9 +874,9 @@ export default function ViewDemand() {
                                                         )}
                                                     </div>
 
-                                                </td>
+                                                </div>
 
-                                                <td className="w20px">
+                                                <div className="w20px ml10 display-flex-align-center">
                                                     <Link to={"/proposal/view/" + val.proposalCode}>
                                                         <button className="btn-secondary btn-unique">
                                                             <span className="material-symbols-outlined">
@@ -884,8 +884,8 @@ export default function ViewDemand() {
                                                             </span>
                                                         </button>
                                                     </Link>
-                                                </td>
-                                            </tr>
+                                                </div>
+                                            </div>
 
                                         ))}
                                     </tbody>

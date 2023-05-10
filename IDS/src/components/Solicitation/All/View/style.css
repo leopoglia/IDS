@@ -151,10 +151,6 @@
     margin: 0px !important
 }
 
-.view-demand .proposal-view-buttons button {
-    margin-left: 15px;
-}
-
 .view-demand .infos input {
     margin-left: 2px !important;
 }
@@ -172,6 +168,8 @@
 
 .view-demand .btn-unique {
     width: 45px !important;
+    max-width: 45px !important;
+    min-width: 45px !important;
 }
 
 .view-demand .complement .btn-unique {
@@ -426,7 +424,6 @@
 
     .btn-primary,
     .btn-secondary {
-        width: 100% !important;
         max-width: 100% !important;
         min-width: 100% !important;
     }

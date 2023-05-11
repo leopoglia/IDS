@@ -7,6 +7,10 @@ export default function ButtonsActions(props: any) {
 
     const navigate = useNavigate();
 
+    useEffect(() => {
+        console.log("props.actionsDemanda ==>" , props.actionsDemand)
+    }, [props.demand])
+
     return (
         <div className="display-flex-end">
             {  /* Botões superiores 1 - Download e Edit */  props.demand.requesterRegistration.workerCode === props.workerId ? (

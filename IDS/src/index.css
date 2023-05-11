@@ -486,6 +486,11 @@ hr {
     width: auto !important;
     margin-left: -15px;
   }
+
+  .mw100{
+    max-width: 100% !important;
+    min-width: 100% !important;
+  }
 }
 
 @media(max-height: 768px) {

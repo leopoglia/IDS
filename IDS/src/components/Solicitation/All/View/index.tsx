@@ -67,7 +67,7 @@ export default function ViewDemand() {
         realBenefit: { realBenefitCode: "", realCurrency: 0, realMonthlyValue: 0 },
         potentialBenefit: { potencialBenefitCode: "", potentialCurrency: 0, potentialMonthlyValue: 0 },
         qualitativeBenefit: { qualitativeBenefitCode: "", qualitativeBenefitDescription: "" },
-        demandAttachment: { demandAttachmentCode: "", dice: "", type: "", name: "" }
+        demandAttachment: { demandAttachmentCode: "", dice: "", type: "", name: "" }, demandCode: 0,
     });
 
     // Dados da proposta
@@ -253,7 +253,7 @@ export default function ViewDemand() {
                         } else if (expenses[i].expensesType === "internal") {
                             setProposalExpenseInternal(expenses[i]);
                             setProposalExpense(1)
-                            
+
 
                         } else if (expenses[i].expensesType === "expenses") {
                             setProposalExpense(1)
@@ -478,25 +478,25 @@ export default function ViewDemand() {
                             )}
 
                             {
-                                (demand.activeVersion === true) ? (
+                                (demand?.activeVersion === true) ? (
                                     (demand.demandStatus != "Cancelled") ? (
                                         <ButtonsActions demand={demand} proposal={proposal} workerId={workerId} actionsDemand={actionsDemand} approveDemand={approveDemand} giveBack={giveBack} generatePDF={generatePDF} />
                                     ) : (
-                                        <button className="btn-primary">
+                                        <button className="btn-primary mw100">
                                             <span className="material-symbols-outlined">
                                                 download
                                             </span>
                                             <span>{t("generatePDF")}</span>
                                         </button>
                                     )
-                                ) : (
-                                    <button className="btn-primary">
+                                ) : demand?.demandCode !== 0  ? (
+                                    <button className="btn-primary mw100">
                                         <span className="material-symbols-outlined">
                                             download
                                         </span>
                                         <span>{t("generatePDF")}</span>
                                     </button>
-                                )
+                                ) : null
                             }
 
                         </div>
@@ -709,11 +709,7 @@ export default function ViewDemand() {
                                 ) : (null)
                             ) : (null)
                             }
-                            {/* 
-                            {(stepDemand === 2) ? (
-                                <Table title="complements" demandCode={demand?.demandCode}  proposalCode={proposal?.proposalCode} headers={["ppmCode", "linkEpicJira"]} items={[classification.ppmCode, classification.epicJiraLink]} />
-                            ) : (null)
-                            } */}
+
 
 
                             {proposalExpenseValue?.expensesCode > 0 ? (<Expenses type="expenses" proposalExpense={proposalExpenseValue} />) : (null)}

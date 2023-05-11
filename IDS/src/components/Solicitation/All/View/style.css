@@ -306,11 +306,6 @@
     padding-bottom: 0px;
 }
 
-
-.view-demand .proposalScope {
-    padding-bottom: 0px;
-}
-
 .view-demand .title-name {
     margin-bottom: 20px;
 }
@@ -447,22 +442,4 @@
 
 .costCenter-td .code:hover{
     background-color: var(--greyF7);
-}
-
-
-/* 
-@media(max-width: 768px) {
-    .view-demand .box div span {
-        font-size: var(--pp);
-    }
-} */
-
-
-@media(max-width: 768px) {
-
-    .btn-primary,
-    .btn-secondary {
-        max-width: 100% !important;
-        min-width: 100% !important;
-    }
 }

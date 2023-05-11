@@ -412,6 +412,25 @@
     margin-right: 10px !important;
 }
 
+
+view style.css .costCenter-td {
+    border-left: 1px solid var(--greyC4);
+    width: 250px;
+}
+
+.costCenter-td:hover {
+    background-color: var(--blueF4);
+}
+
+.costCenter-td:hover .title-costCenter {
+    background-color: white;
+}
+
+.costCenter-td .title-costCenter:hover {
+    background-color: var(--blueF4);
+}
+
+
 /* 
 @media(max-width: 768px) {
     .view-demand .box div span {

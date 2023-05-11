@@ -10,6 +10,7 @@ import ServicesProposal from "../../../../services/proposalService";
 import ServicesNotification from "../../../../services/notificationService";
 import ServicesAgenda from "../../../../services/agendaService";
 import ServicesExpense from "../../../../services/expenseService";
+import ServicesExpenses from "../../../../services/expensesService";
 import ServicesMinute from "../../../../services/minuteService";
 import Footer from "../../../Fixed/Footer";
 import "react-toastify/dist/ReactToastify.css";
@@ -237,25 +238,36 @@ export default function ViewDemand() {
                 setActionsDemand(7);
             }
 
-            ServicesExpense.findAll().then((response: any) => {
+
+            ServicesExpenses.findByProposal(response.proposalCode).then((expenses: any) => {
                 let expense: any = [];
 
-                for (let i = 0; i < response.length; i++) {
-                    if (response[i].proposal.proposalCode === demandCode) {
-                        expense.push(response[i])
 
-                        if (response[i].expenseType === "recurrent") {
-                            setProposalExpenseRecurrent(proposalExpenseRecurrent + 1);
-                        } else if (response[i].expenseType === "internal") {
-                            setProposalExpenseInternal(proposalExpenseInternal + 1);
-                        } else if (response[i].expenseType === "expenses") {
-                            setProposalExpenseValue(proposalExpenseValue + 1);
+                for (let i = 0; i < expenses.length; i++) {
+                    if (expenses[i].proposal.proposalCode === demandCode) {
+                        expense.push(expenses[i])
+
+                        if (expenses[i].expensesType === "recurrent") {
+                            console.log("EXPENSES RECURRENT ----> ", expenses[i])
+
+                            setProposalExpenseRecurrent(expenses[i]);
+
+                        } else if (expenses[i].expensesType === "internal") {
+                            console.log("EXPENSES INTERNAL ----> ", expenses[i])
+
+
+                            setProposalExpenseInternal(expenses[i]);
+                        } else if (expenses[i].expensesType === "expenses") {
+                            console.log("EXPENSES DESPESA ----> ", expenses[i])
+
+
+                            setProposalExpenseValue(expenses[i]);
                         }
                     }
                 }
 
-                if (expense.length !== 0) {
-                    setProposalExpense(expense);
+                if (expense.length > 0) {
+                    setProposalExpense(expense[0].expenseValue);
                 }
 
                 setInitialRunPeriod(dateFormat(expense[0].proposal.initialRunPeriod));
@@ -708,14 +720,16 @@ export default function ViewDemand() {
                             ) : (null)
                             } */}
 
-                            {proposalExpenseValue !== 0 ? (<Expenses type="expenses" proposalExpense={proposalExpense} />) : (null)}
 
-                            {proposalExpenseRecurrent !== 0 ? (<Expenses type="recurrent" proposalExpense={proposalExpense} />) : (null)}
+                            {proposalExpenseValue?.expensesCode !== 0 ? (<Expenses type="expenses" proposalExpense={proposalExpenseValue} />) : (null)}
 
-                            {proposalExpenseInternal !== 0 ? (<Expenses type="internal" proposalExpense={proposalExpense} />) : (null)}
+                            {proposalExpenseRecurrent?.expensesCode !== 0 ? (<Expenses type="recurrent" proposalExpense={proposalExpenseRecurrent} />) : (null)}
+
+                            {proposalExpenseInternal?.expensesCode !== 0 ? (<Expenses type="internal" proposalExpense={proposalExpenseInternal} />) : (null)}
 
 
-                            {proposalExpense.length !== 0 ? (
+
+                            {proposalExpense !== 0 ? (
                                 <div className={"complement "} >
                                     <div className="display-block">
                                         <div className="display-flex-align-center">

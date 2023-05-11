@@ -16,8 +16,8 @@ export default function CreateMinute() {
 
 
     function saveMinute() {
-        MinuteService.save("Ata Não Publicada " + code, code, actualDate, worker.id, "Not Published");
-        MinuteService.save("Ata Publicada " + code, code, actualDate, worker.id, "Published");
+        MinuteService.save("unpublishedMinutes" + ""+ code, code, actualDate, worker.id, "Not Published");
+        MinuteService.save("publiquedMinute" + "" + code, code, actualDate, worker.id, "Published");
     }
  
     return (

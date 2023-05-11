@@ -12,6 +12,7 @@ export default function Expenses(props: any) {
     const [totalAmountOfHours, setTotalAmountOfHours] = useState("");
     const [totalHourValue, setTotalHourValue] = useState("");
     const [totalValue, setTotalValue] = useState("");
+    const [expense, setExpense] = useState([] as any);
     const demandCode = useParams().id;
 
     useEffect(() => {
@@ -19,24 +20,35 @@ export default function Expenses(props: any) {
         let totalHourValueLet = 0;
         let totalValueLet = 0;
 
-        props.proposalExpense.forEach((element: any) => {
 
-            if (element.expenseType === props.type) {
-                totalAmountOfHoursLet += parseInt(element.amountOfHours);
-                totalHourValueLet += parseInt(element.hourValue);
-                totalValueLet += parseInt(element.totalValue);
+        if (props?.proposalExpense?.expense !== undefined) {
+            setExpense(props.proposalExpense.expense);
+            let expenseAux = props.proposalExpense.expense;
+
+            console.log(props.proposalExpense.costCenter)
+
+            expenseAux.forEach((element: any) => {
+
+                if (element.expenseType === props.type) {
+                    totalAmountOfHoursLet += parseInt(element.amountOfHours);
+                    totalHourValueLet += parseInt(element.hourValue);
+                    totalValueLet += parseInt(element.totalValue);
+                }
+            });
+
+            if (props.type !== "recurrent") {
+                setTotalAmountOfHours(totalAmountOfHoursLet + "h");
+            } else {
+                setTotalAmountOfHours(totalAmountOfHoursLet.toString());
             }
-        });
+            setTotalHourValue(totalHourValueLet.toString());
+            setTotalValue(totalValueLet.toString());
 
-        if (props.type !== "recurrent") {
-            setTotalAmountOfHours(totalAmountOfHoursLet + "h");
-        } else {
-            setTotalAmountOfHours(totalAmountOfHoursLet.toString());
         }
-        setTotalHourValue(totalHourValueLet.toString());
-        setTotalValue(totalValueLet.toString());
 
-    }, [])
+
+
+    }, [props.proposalExpense])
 
     const click = () => {
         navigate("/proposal/edit/" + demandCode + "?" + props.type);
@@ -62,73 +74,105 @@ export default function Expenses(props: any) {
                     </div>
                 </div>
 
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>{t("expenseProfile")}</td>
+                <div className="display-flex">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>{t("expenseProfile")}</td>
 
-                            {props.type !== "recurrent" ? (
-                                <td>{t("effort")}</td>
-                            ) : (
-                                <td>{t("licenses")}</td>
-                            )}
+                                {props.type !== "recurrent" ? (
+                                    <td>{t("effort")}</td>
+                                ) : (
+                                    <td>{t("licenses")}</td>
+                                )}
 
-                            {props.type !== "recurrent" ? (
-                                <td>{t("hourValue")}</td>
-                            ) : (
-                                <td>{t("unitValue")}</td>
-                            )}
+                                {props.type !== "recurrent" ? (
+                                    <td>{t("hourValue")}</td>
+                                ) : (
+                                    <td>{t("unitValue")}</td>
+                                )}
 
-                            <td>{t("expenseTotalValue")}</td>
+                                <td>{t("expenseTotalValue")}</td>
 
-                            <td>{t("costCenter")}</td>
-                        </tr>
+                                {/* <td>{t("costCenter")}</td> */}
+                            </tr>
 
-                        {props.proposalExpense.map((proposalExpense: any, index: any) => {
-                            if (proposalExpense.expenseType === props.type) {
+                            {expense.length > 0 || expense !== undefined ?
+                                <>
+                                    {
+                                        expense.map((proposalExpense: any, index: any) => {
+                                            if (proposalExpense.expenseType === props.type) {
 
-                                return (
-                                    <tr>
-                                        <Tooltip title={proposalExpense.expenseProfile} arrow>
-                                            <td>{proposalExpense.expenseProfile}</td>
-                                        </Tooltip>
+                                                return (
+                                                    <tr>
+                                                        <Tooltip title={proposalExpense.expenseProfile} arrow>
+                                                            <td>{proposalExpense.expenseProfile}</td>
+                                                        </Tooltip>
 
 
-                                        {props.type !== "recurrent" ? (
-                                            <td>{proposalExpense.amountOfHours}h</td>
-                                        ) : (
-                                            <td>{proposalExpense.amountOfHours}</td>
-                                        )}
+                                                        {props.type !== "recurrent" ? (
+                                                            <td>{proposalExpense.amountOfHours}h</td>
+                                                        ) : (
+                                                            <td>{proposalExpense.amountOfHours}</td>
+                                                        )}
 
-                                        <td>{proposalExpense.hourValue}</td>
+                                                        <td>{proposalExpense.hourValue}</td>
 
-                                        <td>{proposalExpense.totalValue}</td>
+                                                        <td>{proposalExpense.totalValue}</td>
 
-                                        <Tooltip title={proposalExpense.costCenter.costCenter} arrow>
-                                            <td>{proposalExpense.costCenter.costCenter}</td>
-                                        </Tooltip>
-                                    </tr>
-                                )
+                                                        {/* <Tooltip title={proposalExpense.costCenter.costCenter} arrow>
+                                                        <td>{proposalExpense.costCenter.costCenter}</td>
+                                                    </Tooltip> */}
+                                                    </tr>
+                                                )
+                                            }
+                                        })
+                                    }
+                                </>
+                                : null
                             }
-                        })
-                        }
 
-                        <tr>
-                            <td>Total:</td>
+                            <tr>
+                                <td>Total:</td>
 
-                            <td>{totalAmountOfHours}</td>
+                                <td>{totalAmountOfHours}</td>
 
-                            <td>{totalHourValue}</td>
+                                <td>{totalHourValue}</td>
 
-                            <td>{totalValue}</td>
+                                <td>{totalValue}</td>
 
-                            <td></td>
+                                {/* <td></td> */}
 
-                        </tr>
-                    </tbody>
-                </table>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table className="costCenter-td">
+                        <tbody>
+                            <tr className="title-costCenter">
+                                <td>{t("costCenter")}</td>
+                            </tr>
+
+                            <tr>
+                                {props.proposalExpense.costCenter !== undefined ?
+                                    <>
+                                        {props.proposalExpense.costCenter.map((costCenter: any, index: any) => {
+                                            return (
+                                                <Tooltip title={costCenter.costCenter} arrow>
+                                                    <td>{costCenter.costCenter}</td>
+                                                </Tooltip>
+                                            )
+                                        })
+                                        }
+                                    </>
+                                    : null
+                                }
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-        </div>
+        </div >
     )
 }

@@ -20,6 +20,8 @@ export default function Expenses(props: any) {
         let totalHourValueLet = 0;
         let totalValueLet = 0;
 
+        console.log(props.proposalExpense)
+
 
         if (props?.proposalExpense?.expense !== undefined) {
             setExpense(props.proposalExpense.expense);
@@ -153,13 +155,13 @@ export default function Expenses(props: any) {
                                 <td>{t("costCenter")}</td>
                             </tr>
 
-                            <tr>
+                            <div className="p10">
                                 {props.proposalExpense.costCenter !== undefined ?
                                     <>
                                         {props.proposalExpense.costCenter.map((costCenter: any, index: any) => {
                                             return (
                                                 <Tooltip title={costCenter.costCenter} arrow>
-                                                    <td>{costCenter.costCenter}</td>
+                                                    <div className="display-flex-center code">{costCenter.costCenter}</div>
                                                 </Tooltip>
                                             )
                                         })
@@ -167,7 +169,7 @@ export default function Expenses(props: any) {
                                     </>
                                     : null
                                 }
-                            </tr>
+                            </div>
                         </tbody>
                     </table>
                 </div>

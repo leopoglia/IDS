@@ -220,7 +220,6 @@ export default function ViewDemand() {
 
 
             ServicesDemand.findById(response.demand.demandCode).then((demand: any) => {
-                console.log("DEMAND ----> ", demand)
                 setDemand(demand); // Seta a demanda da proposta
 
 
@@ -248,31 +247,27 @@ export default function ViewDemand() {
                         expense.push(expenses[i])
 
                         if (expenses[i].expensesType === "recurrent") {
-                            console.log("EXPENSES RECURRENT ----> ", expenses[i])
-
                             setProposalExpenseRecurrent(expenses[i]);
+                            setProposalExpense(1)
 
                         } else if (expenses[i].expensesType === "internal") {
-                            console.log("EXPENSES INTERNAL ----> ", expenses[i])
-
-
                             setProposalExpenseInternal(expenses[i]);
+                            setProposalExpense(1)
+                            
+
                         } else if (expenses[i].expensesType === "expenses") {
-                            console.log("EXPENSES DESPESA ----> ", expenses[i])
-
-
+                            setProposalExpense(1)
                             setProposalExpenseValue(expenses[i]);
                         }
                     }
                 }
 
                 if (expense.length > 0) {
-                    setProposalExpense(expense[0].expenseValue);
+                    setInitialRunPeriod(dateFormat(expense[0].proposal.initialRunPeriod));
+                    setFinalExecutionPeriod(dateFormat(expense[0].proposal.finalExecutionPeriod));
+                    setPayBack(payback(expense[0].proposal.initialRunPeriod, expense[0].proposal.finalExecutionPeriod));
                 }
 
-                setInitialRunPeriod(dateFormat(expense[0].proposal.initialRunPeriod));
-                setFinalExecutionPeriod(dateFormat(expense[0].proposal.finalExecutionPeriod));
-                setPayBack(payback(expense[0].proposal.initialRunPeriod, expense[0].proposal.finalExecutionPeriod));
             })
         })
     }
@@ -721,15 +716,15 @@ export default function ViewDemand() {
                             } */}
 
 
-                            {proposalExpenseValue?.expensesCode !== 0 ? (<Expenses type="expenses" proposalExpense={proposalExpenseValue} />) : (null)}
+                            {proposalExpenseValue?.expensesCode > 0 ? (<Expenses type="expenses" proposalExpense={proposalExpenseValue} />) : (null)}
 
-                            {proposalExpenseRecurrent?.expensesCode !== 0 ? (<Expenses type="recurrent" proposalExpense={proposalExpenseRecurrent} />) : (null)}
+                            {proposalExpenseRecurrent?.expensesCode > 0 ? (<Expenses type="recurrent" proposalExpense={proposalExpenseRecurrent} />) : (null)}
 
-                            {proposalExpenseInternal?.expensesCode !== 0 ? (<Expenses type="internal" proposalExpense={proposalExpenseInternal} />) : (null)}
+                            {proposalExpenseInternal?.expensesCode > 0 ? (<Expenses type="internal" proposalExpense={proposalExpenseInternal} />) : (null)}
 
 
 
-                            {proposalExpense !== 0 ? (
+                            {proposalExpense > 0 ? (
                                 <div className={"complement "} >
                                     <div className="display-block">
                                         <div className="display-flex-align-center">

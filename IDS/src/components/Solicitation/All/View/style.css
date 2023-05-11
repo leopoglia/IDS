@@ -413,7 +413,7 @@
 }
 
 
-view style.css .costCenter-td {
+ .costCenter-td {
     border-left: 1px solid var(--greyC4);
     width: 250px;
 }
@@ -428,6 +428,19 @@ view style.css .costCenter-td {
 
 .costCenter-td .title-costCenter:hover {
     background-color: var(--blueF4);
+}
+
+.p10{
+    padding: 10px !important;
+}
+
+.costCenter-td .display-flex-center{
+   margin-bottom: 10px;
+}
+
+.costCenter-td .code{
+    margin-left: 0px;
+    width: 100%;
 }
 
 

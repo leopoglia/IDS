@@ -64,7 +64,6 @@ export default function ExecutionCosts() {
                 ProposalServices.save(demandData.demandTitle, "Pending", 1, proposal.start, proposal.end, scope, worker.id, 0, proposal.responsiblesBussiness, totalsCosts, externalCosts, internalCosts, demandCode, demand.demandVersion, actualDate).then(async (proposal: any) => {
                     DemandService.updateStatus(demandCode, "Assesment");
                     localStorage.removeItem('proposal');
-
                     saveExpenseFinal();
 
                     navigate('/proposals/1');
@@ -90,9 +89,14 @@ export default function ExecutionCosts() {
 
             ExpensesService.save(typeExpenses[i], demandCode, JSON.parse(costCentersCode), expenseListStorage).then((expenses: any) => {
                 console.log(expenses);
-
             })
         }
+
+        localStorage.removeItem('centerOfCustProposalexpenses')
+        localStorage.removeItem('centerOfCustProposalinternal')
+        localStorage.removeItem('centerOfCustProposalrecurrent')
+        localStorage.removeItem('demand');
+        localStorage.removeItem('expenseList');
 
     }
 

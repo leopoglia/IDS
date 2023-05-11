@@ -160,7 +160,7 @@ export default function Demand(props: any) {
 
                             <section>
                                 <div className="name-code">
-                                    <h1>{props.name}</h1>
+                                    <h1>{t(props.name)}</h1>
                                 </div>
 
 

@@ -228,5 +228,6 @@
     "newProposals": "New proposals",
     "newAgendas": "New agendas",
     "dateMeeting":"Meeting date",
-    "meetingAgenda": "Meeting Agenda"
+    "meetingAgenda": "Meeting Agenda",
+    "unpublishedMinutes": "Unpublished minute"
 }

@@ -214,7 +214,7 @@
     "somethingWrong": "Algo salió mal",
     "fillAllFields": "llene todos los campos",
     "change-history": "Cambia la historia",
-    "view": "vista",
+    "view": "Vista",
     "demandsViewDemandChangeHistory":"Demandas > Ver demanda > Historial de cambios",
     "createdDemands":"Demandas creadas",
     "classifiedDemands":"Demandas Clasificadas",
@@ -227,5 +227,6 @@
     "newProposals": "Nuevas propuestas",
     "newAgendas": "Nuevas Directrices",
     "dateMeeting": "Fecha de la reunión",
-    "meetingAgenda":"Agenda de la reunión"
+    "meetingAgenda":"Agenda de la reunión",
+    "unpublishedMinutes": "Acta inéditos"
 }

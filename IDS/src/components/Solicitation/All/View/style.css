@@ -273,6 +273,7 @@
     border-radius: 0px 0px var(--r) var(--r);
 }
 
+
 .view-demand .proposals-view td {
     border: 0px;
 
@@ -320,7 +321,7 @@
 
 
 .view-demand .code {
-    background-color: var(--greyE5);
+    background-color: var(--greyF7);
     padding: 4px;
     width: 100px;
     height: 30px;
@@ -441,6 +442,11 @@
 .costCenter-td .code{
     margin-left: 0px;
     width: 100%;
+    background-color: var(--greyF7);
+}
+
+.costCenter-td .code:hover{
+    background-color: var(--greyF7);
 }
 
 

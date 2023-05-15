@@ -199,6 +199,11 @@ export default function ViewDemand() {
     const [proposalExpenseRecurrent, setProposalExpenseRecurrent]: any = useState(0);
     const [proposalExpenseInternal, setProposalExpenseInternal]: any = useState(0);
 
+    const [initialRunPeriod, setInitialRunPeriod]: any = useState(0);
+    const [finalExecutionPeriod, setFinalExecutionPeriod]: any = useState(0);
+    const [payBack, setPayBack]: any = useState(0);
+    const [responsibleBussiness, setResponsibleBussiness]: any = useState("");
+
 
     // Buscar proposta
     function getProposal() {
@@ -409,12 +414,7 @@ export default function ViewDemand() {
         return bytes.buffer;
     }
 
-    const [initialRunPeriod, setInitialRunPeriod]: any = useState(0);
-    const [finalExecutionPeriod, setFinalExecutionPeriod]: any = useState(0);
-    const [payBack, setPayBack]: any = useState(0);
-    const [responsibleBussiness, setResponsibleBussiness]: any = useState("");
-
-
+   
     const dateFormat = (date: any) => {
         const year = date.slice(0, 4);
         const month = date.slice(5, 7) - 1;

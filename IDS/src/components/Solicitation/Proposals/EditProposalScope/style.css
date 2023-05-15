@@ -86,3 +86,15 @@
 .ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-label{
     border-color: transparent;
 }
+
+.create-minute .true{
+    padding: 10px !important;
+}
+
+.create-minute .header-table{
+    margin-bottom: 20px;
+}
+
+.create-minute .complement{
+    padding: 0px !important;
+}

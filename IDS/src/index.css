@@ -134,6 +134,10 @@ input[type=checkbox]:checked {
   outline: none;
 }
 
+.noMargin{
+  margin: 0 !important;
+}
+
 .display-flex,
 .display-flex-end,
 .display-flex-start,
@@ -461,6 +465,7 @@ hr {
 .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
   border-radius: var(--r) !important;
 }
+
 
 @media(max-width: 1280px) {
 

@@ -7,7 +7,6 @@
 .true {
     height: 60px !important;
     overflow: hidden;
-    transition: 0.5s;
 }
 
 .false {

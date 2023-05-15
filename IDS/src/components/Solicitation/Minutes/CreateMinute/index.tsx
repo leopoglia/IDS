@@ -40,7 +40,7 @@ export default function CreateMinute() {
 
 
     return (
-        <div className="create-minute">
+        <div className="create-minute view-demand">
 
             <div className="container">
                 <div className="background-title">
@@ -51,7 +51,7 @@ export default function CreateMinute() {
 
                 <div className="box">
 
-                    <p className="title">{t("editMinutes")}</p>
+                    <p className="mb10">{t("proposals")}</p>
 
                     {proposals?.map((proposal: any, index: any) => {
                         return (

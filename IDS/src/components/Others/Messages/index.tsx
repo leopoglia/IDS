@@ -2,16 +2,19 @@ import "./style.css"
 import Title from "../../Fixed/Search/Title";
 import Footer from "../../Fixed/Footer";
 import Message from "./MessageBox";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import MessageService from "../../../services/messageService";
+import { useContext } from "react";
+import UserContext from "../../../context/userContext";
 
 export default function Messages() {
-
-    let messages = [1, 2, 3, 4, 5, 6, 7];
+    const worker:any = useContext(UserContext).worker;
+    let [messages, setMessages]:any = useState([]);
 
     useEffect(() => {
-
-        
-    
+        MessageService.findChatByDemand(worker.id).then((response: any) => {
+            setMessages(response);
+        })
     }, []);
 
     return (
@@ -26,17 +29,17 @@ export default function Messages() {
                 <div className="container-background">
                     <div className="boxNoPadding">
                         {
-                            messages.map((val: any, index) => {
+                            messages.map((val: any, index: any) => {
                                 if (index > 5 && messages.length - 1 === index) {
                                     return (
                                         <div>
-                                            <Message bottom={false} />
+                                            <Message message={messages[index]} bottom={false} />
                                         </div>
                                     );
                                 } else {
                                     return (
                                         <div>
-                                            <Message bottom={true} />
+                                            <Message message={messages[index]} bottom={true} />
                                         </div>
                                     );
                                 }

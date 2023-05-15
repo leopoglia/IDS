@@ -2,7 +2,7 @@ import "./style.css";
 import { Link } from "react-router-dom";
 import Situation from "./Situation/index";
 import { useTranslation } from "react-i18next";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import UserContext from "../../../../../context/userContext";
 import { Tooltip } from "@mui/material";
 
@@ -11,6 +11,21 @@ export default function Demand(props: any) {
     const { t } = useTranslation();
     const worker: any = useContext(UserContext).worker;
     const [urlFinal, setUrlFinal] = useState(props.type === "demand" ? "?" + props.demandVersion : "");
+    const [formatDate, setFormatDate] = useState("");
+
+    useEffect(() => {
+        const date = new Date(props.year);
+
+        let year = date.getFullYear();
+        let month = String(date.getMonth() + 1).padStart(2, '0');
+        let day = String(date.getDate()).padStart(2, '0');
+        let hour = String(date.getHours()).padStart(2, '0');
+        let minute = String(date.getMinutes()).padStart(2, '0');
+
+        setFormatDate(`${day}/${month}/${year} ${hour}:${minute}`);
+
+    }, [props.year])
+
 
     const information = () => {
         if (props.type === "demand") {
@@ -38,7 +53,7 @@ export default function Demand(props: any) {
                     <div className="code">{props.demandCode}</div>
                     <div className="requester"><p>{t("sequentialNumber")}: {props.number}</p></div>
                     <div><p>{t("date")}: {props.date}</p></div>
-                    <div className="analyst"><p>{t("year")}: {props.year}</p></div>
+                    <div className="analyst"><p>{t("dateAgenda")}: {formatDate}</p></div>
                 </div>)
             )
         } else if (props.type === "minute") {
@@ -154,7 +169,7 @@ export default function Demand(props: any) {
     if (props.listDirection === false) {
         return (
             <div>
-                <Link to={"/" + props.type + "/view/" + props.demandCode +  urlFinal}>
+                <Link to={"/" + props.type + "/view/" + props.demandCode + urlFinal}>
                     <div className="demand">
                         <div className="content-demand">
 

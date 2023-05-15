@@ -136,10 +136,7 @@ export default function ViewDemand() {
 
     function getDemand() {
         ServicesDemand.findByDemandCodeAndDemandVersion(demandCode, demandVersion).then((response: any) => {
-            console.log("version: " + demandVersion);
-            console.log(response);
-
-
+      
             setDemand(response);
 
             // Verificar se o usuário é o solicitante
@@ -202,13 +199,6 @@ export default function ViewDemand() {
     const [proposalExpenseRecurrent, setProposalExpenseRecurrent]: any = useState(0);
     const [proposalExpenseInternal, setProposalExpenseInternal]: any = useState(0);
 
-    proposalSpecific.map((val: any) => (
-        val.proposalStatus === "Pending" ? (
-            pendingMinute += 1
-        ) : (
-            null
-        )
-    ))
 
     // Buscar proposta
     function getProposal() {
@@ -222,9 +212,6 @@ export default function ViewDemand() {
             ServicesDemand.findById(response.demand.demandCode).then((demand: any) => {
                 setDemand(demand); // Seta a demanda da proposta
 
-
-
-
                 setStepDemand(2) // Seta o passo da demanda
                 setClassification(demand.classification) // Seta a classificação da demanda
                 beneficiaryBus(demand?.classification?.beneficiaryBu)
@@ -237,50 +224,44 @@ export default function ViewDemand() {
                 setActionsDemand(7);
             }
 
-
             ServicesExpenses.findByProposal(response.proposalCode).then((expenses: any) => {
                 let expense: any = [];
 
 
-                for (let i = 0; i < expenses.length; i++) {
-                    if (expenses[i].proposal.proposalCode === demandCode) {
-                        expense.push(expenses[i])
-
-                        if (expenses[i].expensesType === "recurrent") {
-                            setProposalExpenseRecurrent(expenses[i]);
-                            setProposalExpense(1)
-
-                        } else if (expenses[i].expensesType === "internal") {
-                            setProposalExpenseInternal(expenses[i]);
-                            setProposalExpense(1)
+                if (expenses.length > 0) {
 
 
-                        } else if (expenses[i].expensesType === "expenses") {
-                            setProposalExpense(1)
-                            setProposalExpenseValue(expenses[i]);
+                    for (let i = 0; i < expenses.length; i++) {
+                        if (expenses[i].proposal.proposalCode === demandCode) {
+                            expense.push(expenses[i])
+
+                            if (expenses[i].expensesType === "recurrent") {
+                                setProposalExpenseRecurrent(expenses[i]);
+                                setProposalExpense(1)
+
+                            } else if (expenses[i].expensesType === "internal") {
+                                setProposalExpenseInternal(expenses[i]);
+                                setProposalExpense(1)
+
+
+                            } else if (expenses[i].expensesType === "expenses") {
+                                setProposalExpense(1)
+                                setProposalExpenseValue(expenses[i]);
+                            }
+
                         }
                     }
-                }
 
-                if (expense.length > 0) {
-                    setInitialRunPeriod(dateFormat(expense[0].proposal.initialRunPeriod));
-                    setFinalExecutionPeriod(dateFormat(expense[0].proposal.finalExecutionPeriod));
-                    setPayBack(payback(expense[0].proposal.initialRunPeriod, expense[0].proposal.finalExecutionPeriod));
+                    if (expense.length > 0) {
+                        setInitialRunPeriod(dateFormat(expense[0].proposal.initialRunPeriod));
+                        setFinalExecutionPeriod(dateFormat(expense[0].proposal.finalExecutionPeriod));
+                        setPayBack(payback(expense[0].proposal.initialRunPeriod, expense[0].proposal.finalExecutionPeriod));
+                    }
                 }
 
             })
         })
     }
-
-    ServicesMinute.findAll().then((response: any) => {
-        let minutes: any = [];
-        for (let i = 0; i < response.length; i++) {
-            if (response[i].agenda.agendaCode === demandCode) {
-                minutes.push(response[i]);
-            }
-        }
-        setMinute(minutes)
-    })
 
     // Buscar proposta específica
     function getProposalSpecific() {
@@ -304,8 +285,31 @@ export default function ViewDemand() {
 
             })
 
+            proposalSpecific.map((val: any) => (
+                val.proposalStatus === "Pending" ? (
+                    pendingMinute += 1
+                ) : (
+                    null
+                )
+            ))
+
+        })
+
+
+        ServicesMinute.findAll().then((response: any) => {
+            let minutes: any = [];
+            for (let i = 0; i < response.length; i++) {
+                if (response[i].agenda.agendaCode === demandCode) {
+                    minutes.push(response[i]);
+                }
+            }
+            setMinute(minutes)
         })
     }
+
+
+
+
 
     // Buscar ata
     function getMinute() {
@@ -489,7 +493,7 @@ export default function ViewDemand() {
                                             <span>{t("generatePDF")}</span>
                                         </button>
                                     )
-                                ) : demand?.demandCode !== 0  ? (
+                                ) : demand?.demandCode !== 0 ? (
                                     <button className="btn-primary mw100">
                                         <span className="material-symbols-outlined">
                                             download
@@ -851,48 +855,95 @@ export default function ViewDemand() {
 
                                 <table>
                                     <tbody>
-                                        {proposalSpecific.map((val: any, index: any) => (
-                                            <div className="h50px display-flex">
-                                                <div className="display-flex-start pl20 display-flex-center">
-                                                    <div className="code">
-                                                        {val.proposalCode}
-                                                    </div>
+                                        {proposalSpecific.map((val: any, index: any) => {
 
-                                                    <span>
-                                                        {val.proposalName}
-                                                    </span>
-
-
-                                                </div>
-
-                                                <div className="w20 display-flex-align-center">
-
-                                                    <div className="proposal-view-buttons">
-                                                        {val.proposalStatus === "Pending" ? (
-                                                            <Link to={"/proposal/comission-opinion/" + val.proposalCode + "?" + agenda.agendaCode}>
-                                                                <button className="btn-primary">{t("insertCommissionOpinion")}</button>
-                                                            </Link>
-                                                        ) : (
-                                                            <div>
-                                                                Status: {val.proposalStatus}
+                                            if (proposalSpecific.length !== index + 1) {
+                                                return (
+                                                    <div className="h50px display-flex" key={index}>
+                                                        <div className="display-flex-start pl20 display-flex-center">
+                                                            <div className="code">
+                                                                {val.proposalCode}
                                                             </div>
-                                                        )}
-                                                    </div>
 
-                                                </div>
-
-                                                <div className="w20px ml10 display-flex-align-center">
-                                                    <Link to={"/proposal/view/" + val.proposalCode}>
-                                                        <button className="btn-secondary btn-unique">
-                                                            <span className="material-symbols-outlined">
-                                                                open_in_new
+                                                            <span>
+                                                                {val.proposalName}
                                                             </span>
-                                                        </button>
-                                                    </Link>
-                                                </div>
-                                            </div>
 
-                                        ))}
+
+                                                        </div>
+
+                                                        <div className="w20 display-flex-align-center">
+
+                                                            <div className="proposal-view-buttons">
+                                                                {val.proposalStatus === "Pending" ? (
+                                                                    <Link to={"/proposal/comission-opinion/" + val.proposalCode + "?" + agenda.agendaCode}>
+                                                                        <button className="btn-primary">{t("insertCommissionOpinion")}</button>
+                                                                    </Link>
+                                                                ) : (
+                                                                    <div>
+                                                                        Status: {val.proposalStatus}
+                                                                    </div>
+                                                                )}
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div className="w20px ml10 display-flex-align-center">
+                                                            <Link to={"/proposal/view/" + val.proposalCode}>
+                                                                <button className="btn-secondary btn-unique">
+                                                                    <span className="material-symbols-outlined">
+                                                                        open_in_new
+                                                                    </span>
+                                                                </button>
+                                                            </Link>
+                                                        </div>
+                                                    </div>
+                                                )
+                                            } else {
+                                                return (
+                                                    <div className="h50px noBorder display-flex" key={index}>
+                                                        <div className="display-flex-start pl20 display-flex-center">
+                                                            <div className="code">
+                                                                {val.proposalCode}
+                                                            </div>
+
+                                                            <span>
+                                                                {val.proposalName}
+                                                            </span>
+
+
+                                                        </div>
+
+                                                        <div className="w20 display-flex-align-center">
+
+                                                            <div className="proposal-view-buttons">
+                                                                {val.proposalStatus === "Pending" ? (
+                                                                    <Link to={"/proposal/comission-opinion/" + val.proposalCode + "?" + agenda.agendaCode}>
+                                                                        <button className="btn-primary">{t("insertCommissionOpinion")}</button>
+                                                                    </Link>
+                                                                ) : (
+                                                                    <div>
+                                                                        Status: {val.proposalStatus}
+                                                                    </div>
+                                                                )}
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div className="w20px ml10 display-flex-align-center">
+                                                            <Link to={"/proposal/view/" + val.proposalCode}>
+                                                                <button className="btn-secondary btn-unique">
+                                                                    <span className="material-symbols-outlined">
+                                                                        open_in_new
+                                                                    </span>
+                                                                </button>
+                                                            </Link>
+                                                        </div>
+                                                    </div>
+                                                )
+                                            }
+
+                                        })}
                                     </tbody>
                                 </table>
                             </div>

@@ -3,6 +3,7 @@ const url = "http://localhost:8443/api/agenda";
 const Services = {
     save: function (sequentialNumber: String, yearAgenda: String, commission: any, agendaDate: String, proposals: any) {
 
+
         let proposalList: any = [];
         for (let i = 0; i < proposals.length; i++) {
             proposalList.push({ proposalCode: proposals[i].proposalCode })

@@ -20,14 +20,9 @@ export default function Expenses(props: any) {
         let totalHourValueLet = 0;
         let totalValueLet = 0;
 
-        console.log(props.proposalExpense)
-
-
         if (props?.proposalExpense?.expense !== undefined) {
             setExpense(props.proposalExpense.expense);
             let expenseAux = props.proposalExpense.expense;
-
-            console.log(props.proposalExpense.costCenter)
 
             expenseAux.forEach((element: any) => {
 

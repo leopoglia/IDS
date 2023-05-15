@@ -13,14 +13,16 @@ export default function CreateAgenda() {
 
     const { t } = useTranslation();
     const navigate = useNavigate();
+    let data = new Date();
 
     const [proposals, setProposals]: any = useState([]);
     const [commissionList, setcommissionList]: any = useState([]);
     const [commission, setCommission] = useState("");
+    const [date, setDate] = useState(`${data.getFullYear()}-${("0" + (data.getMonth() + 1)).slice(-2)}-${("0" + data.getDate()).slice(-2)}T${("0" + data.getHours()).slice(-2)}:${("0" + data.getMinutes()).slice(-2)}`);
+
     let actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear();
 
-
-    useEffect(() => { 
+    useEffect(() => {
         getProposal();
     }, [])
 
@@ -69,9 +71,8 @@ export default function CreateAgenda() {
                 ServicesProposals.updatePublish(proposals[i].proposalCode, proposals[i].publishedMinute);
             }
 
-            const year = new Date().getFullYear().toString();
 
-            Services.save("1", year, commissionArray, actualDate, proposals).then((response: any) => {
+            Services.save("1", date, commissionArray, actualDate, proposals).then((response: any) => {
                 navigate("/agenda/view/" + response.agendaCode);
 
                 localStorage.removeItem("proposals");
@@ -110,7 +111,7 @@ export default function CreateAgenda() {
 
     return (
         <div className="create-agenda">
-          
+
             <div className="container">
                 <div className="background-title">
                     <Title title={t("createAgenda")} nav={t("agendaCreateAgenda")} />
@@ -176,6 +177,10 @@ export default function CreateAgenda() {
 
                     </div>
 
+                    <div className="input">
+                        <label>{t("dateAgenda")} *</label>
+                        <input type="datetime-local" onChange={(e) => {setDate(e.target.value); console.log("value ===>", e.target.value) }}  value={date} />
+                    </div>
 
                     <div className="input">
 

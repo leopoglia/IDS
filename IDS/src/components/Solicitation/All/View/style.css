@@ -162,9 +162,6 @@
     font-size: var(--p);
 }
 
-.view-demand .w20 {
-    width: 300px;
-}
 
 .view-demand .btn-unique {
     width: 45px !important;
@@ -180,8 +177,17 @@
     width: 100%;
 }
 
+.view-demand .h50pxs{
+    height: 60px !important;
+}
+
+.view-demand .noBorder{
+    border: none !important;
+}
+
 .view-demand .h50px {
     height: 60px !important;
+    border-bottom: 1px solid var(--greyC4);
 }
 
 

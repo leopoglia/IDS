@@ -180,7 +180,6 @@ export default function CreateDemands1() {
                     <div className="text-area">
                         <label>{t("currentSituation")} *</label>
                         <Editor handleChange={handleChange} type={"currentSituation"} />
-
                     </div>
                     {/* 
                     <TextArea label="currentSituation" required="*" onChange={(e) => { setDemandProblem(e.target.value) }}></TextArea> */}

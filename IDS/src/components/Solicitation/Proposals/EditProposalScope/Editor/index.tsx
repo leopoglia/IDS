@@ -8,12 +8,10 @@ const RichTextEditor = (props: any) => {
 
   useEffect(() => {
 
-    console.log(url)
-
     setContent(props.content);
 
     if (props.content === undefined) {
-      if (url !== "demand") {
+      if (url !== "demand" && url !== "minutes") {
         setContent(
           "<h1>" + "Escopo do Projeto:" + "</h1></br>" +
           "<h1>" + "Não faz parte do Escopo:" + "</h1></br>" +

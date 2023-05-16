@@ -156,7 +156,10 @@ export default function Configuration() {
 
 
 
-                                <span className="title-confuration text-background">{t("accessibility")}</span>
+                                <div className="title-confuration text-background">
+                                    <span>{t("accessibility")}
+                                    </span>
+                                </div>
 
                             </div>
 

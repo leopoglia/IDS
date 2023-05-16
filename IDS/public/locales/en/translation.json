@@ -230,5 +230,7 @@
     "dateMeeting":"Meeting date",
     "meetingAgenda": "Meeting Agenda",
     "unpublishedMinutes": "Unpublished minute",
-    "demand": "Demand"
+    "demand": "Demand",
+    "voiceCommand": "Voice command",
+    "screenReading": "Screen reading"
 }

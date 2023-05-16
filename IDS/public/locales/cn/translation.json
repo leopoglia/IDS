@@ -230,5 +230,7 @@
     "dateMeeting": "會議日期",
     "meetingAgenda":"會議議程",
     "unpublishedMinutes": "出版矮人",
-    "demand": "需求"
+    "demand": "需求",
+    "voiceCommand": "語音命令",
+    "screenReading": "屏幕閱讀"
 }

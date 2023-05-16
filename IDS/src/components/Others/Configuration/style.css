@@ -221,6 +221,7 @@
 
 .text-background {
     position: fixed;
+    right: 150px;
     font-size: calc(var(--gg) + 35px);
     opacity: 0.1;
     font-weight: 600;
@@ -228,6 +229,9 @@
     margin-top: 230px;
     margin-left: 150px;
     user-select: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
 }
 
 .configuration .sliders-accessibility .display-space-between {
@@ -243,10 +247,11 @@
 }
 
 .configuration .sliders-accessibility .switch-accessibility {
-    width: 150px;
+    width: 128px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    margin-left: 15px;
 }
 
 .configuration .sliders-accessibility .switch-accessibility .switch {
@@ -268,17 +273,17 @@
 
 
 @media (max-width: 1380px) {
-    .configuration .background-configurations{
+    .configuration .background-configurations {
         display: block !important;
     }
 
-    .configuration .box-accesibility{
+    .configuration .box-accesibility {
         margin-left: 0px;
         width: 100%;
         margin-top: 30px;
     }
 
-    .configuration .box-configurations{
+    .configuration .box-configurations {
         width: 100%;
     }
 }

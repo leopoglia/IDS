@@ -448,3 +448,8 @@
 .costCenter-td .code:hover{
     background-color: var(--greyF7);
 }
+
+
+.view-demand .proposal-status{
+    white-space: nowrap;
+}

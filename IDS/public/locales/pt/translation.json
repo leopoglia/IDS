@@ -237,5 +237,7 @@
     "newAgendas": "Novas pautas",
     "meetingAgenda": "Pauta da reunião",
     "unpublishedMinutes": "Ata não publicada",
-    "demand": "Demanda"
+    "demand": "Demanda",
+    "voiceCommand": "Comando de voz",
+    "screenReading": "Leitura de tela"
 }

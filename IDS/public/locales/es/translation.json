@@ -229,5 +229,7 @@
     "dateMeeting": "Fecha de la reunión",
     "meetingAgenda":"Agenda de la reunión",
     "unpublishedMinutes": "Acta inéditos",
-    "demand": "Demanda"
+    "demand": "Demanda",
+    "voiceCommand": "Comando de voz",
+    "screenReading": "Lectura de pantalla"
 }

@@ -880,7 +880,7 @@ export default function ViewDemand() {
                                                                         <button className="btn-primary">{t("insertCommissionOpinion")}</button>
                                                                     </Link>
                                                                 ) : (
-                                                                    <div>
+                                                                    <div className="proposal-status">
                                                                         Status: {val.proposalStatus}
                                                                     </div>
                                                                 )}
@@ -922,7 +922,7 @@ export default function ViewDemand() {
                                                                         <button className="btn-primary">{t("insertCommissionOpinion")}</button>
                                                                     </Link>
                                                                 ) : (
-                                                                    <div>
+                                                                    <div className="proposal-status">
                                                                         Status: {val.proposalStatus}
                                                                     </div>
                                                                 )}

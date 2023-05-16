@@ -140,7 +140,9 @@
 }
 
 .messages .box-message .message-user {
-    max-width: fit-content;
+    max-width: 50%;
+    overflow: hidden;
+    word-wrap: break-word;
     padding: 10px;
     margin-bottom: 20px;
     border-radius: var(--r);
@@ -237,6 +239,7 @@
 .messages .chat-box .chat-content {
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
 .messages .chat-box ul {

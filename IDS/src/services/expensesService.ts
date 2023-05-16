@@ -27,7 +27,6 @@ const Services = {
                 method: 'POST', body: JSON.stringify({
                     expensesType: expenseName,
                     proposal: { proposalCode: proposal },
-                    costCenter: costCenters,
                     expense: expenses,
                     expenseCostCenter: [{"costCenter": { "costCenterCode":  costCenters }, "percent": 50}]
                 }), headers: { 'Content-Type': 'application/json' }, credentials: 'include'

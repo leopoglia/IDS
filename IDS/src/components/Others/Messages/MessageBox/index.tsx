@@ -1,18 +1,37 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./style.css"
+import ServicesDemand from "../../../../services/demandService";
+import { useTranslation } from "react-i18next";
 
 
 export default function Message(props: any) {
 
+    const { t } = useTranslation();
+    const [requester, setRequester]: any = useState("");
+    const [demandTitle, setDemandTitle]: any = useState("")
+    const [imageRequester, setImageRequester]: any = useState("");
+
     console.log(props)
 
+    useEffect(() => {
+
+        ServicesDemand.findById(props.message.demandCode).then((response: any) => {
+            console.log(response)
+            setRequester(response.requesterRegistration.workerName);
+            setImageRequester(response.requesterRegistration.workerName.substring(0, 1));
+            setDemandTitle(response.demandTitle);
+        })
+
+    }, [props.message]);
+
     return (
-        <Link to="message">
-            <div className={"message-" + props.bottom }>
+        <Link to={"message/" + props.message.demandCode}>
+            <div className={"message-" + props.bottom}>
                 <div className="profile">
-                    <img className="user-picture" src="https://media-exp1.licdn.com/dms/image/C5603AQGoPhhWyeL2-Q/profile-displayphoto-shrink_200_200/0/1516833080377?e=2147483647&v=beta&t=O_q0eYPuycqoRh8ACadEX5gQhrVbPnomvJKRFQTIycI" alt="" />
+                    <div className="user-picture">{imageRequester}</div>
                     <div className="message-name">
-                        <p className="username">{props.message.sender.workerName} - demanda {props.message.demandCode}</p>
+                        <p className="username">{requester} - {demandTitle}</p>
                         <p className="last-message">{props.message.sender.workerName}: {props.message.message}</p>
                     </div>
                 </div>

@@ -189,3 +189,96 @@
     background: var(--white);
     cursor: pointer;
 }
+
+.configuration .box-accesibility {
+    width: 50%;
+    height: 300px;
+    border-radius: 20px;
+    margin-left: 50px;
+    background: linear-gradient(99.05deg, #00579D 8.81%, #448DCA 153.91%);
+    box-shadow: 0px 4px 4px rgba(49, 49, 49, 0.25);
+    overflow: hidden;
+}
+
+.configuration .box-configurations {
+    width: 50%;
+}
+
+.configuration .accessibility-person {
+    margin-left: -137px;
+}
+
+.configuration .accesibility-options {
+    height: 230px;
+    color: var(--white);
+    z-index: 1;
+}
+
+.configuration .accesibility-options .title-confuration {
+    font-size: var(--g);
+    text-shadow: 0px 4px 4px rgba(49, 49, 49, 0.25);
+}
+
+.text-background {
+    position: fixed;
+    font-size: calc(var(--gg) + 35px);
+    opacity: 0.1;
+    font-weight: 600;
+    color: var(--white);
+    margin-top: 230px;
+    margin-left: 150px;
+    user-select: none;
+}
+
+.configuration .sliders-accessibility .display-space-between {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.configuration .sliders-accessibility .subtitle-confuration {
+    font-size: var(--m);
+    display: flex;
+    align-items: center;
+}
+
+.configuration .sliders-accessibility .switch-accessibility {
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.configuration .sliders-accessibility .switch-accessibility .switch {
+    margin-left: 0px;
+}
+
+.configuration .sliders-accessibility label {
+    background-color: rgba(255, 255, 255, 0.28)
+}
+
+.configuration .sliders-accessibility input:checked+label {
+    background-color: rgba(255, 255, 255, 0.70);
+    box-shadow: 0 0 5px 1px var(--blueF7);
+}
+
+.configuration .switch-slider-fontSize {
+    margin-left: 15px
+}
+
+
+@media (max-width: 1380px) {
+    .configuration .background-configurations{
+        display: block !important;
+    }
+
+    .configuration .box-accesibility{
+        margin-left: 0px;
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    .configuration .box-configurations{
+        width: 100%;
+    }
+}

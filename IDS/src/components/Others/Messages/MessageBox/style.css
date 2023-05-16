@@ -52,6 +52,9 @@
     white-space: nowrap;
     width: 100%;
     margin: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
 }
 
 

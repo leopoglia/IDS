@@ -13,14 +13,19 @@
 }
 
 
-.messages .box-message .user-picture {
-    max-width: 50px;
-    min-width: 50px;
-    width: 50px;
-    max-height: 50px;
-    height: 50px;
-    background-color: var(--greyD9);
+.messages .user-picture {
+    max-width: 60px;
+    min-width: 60px;
+    width: 60px;
+    max-height: 60px;
+    height: 60px;
+    background-color: var(--blue);
     border-radius: var(--rr);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(var(--g) + 5px);
+    color: var(--white);
 }
 
 .messages .box-message .message-name {
@@ -167,18 +172,18 @@
     overflow: hidden;
 }
 
-.messages .chat-box .arrow-chat{
+.messages .chat-box .arrow-chat {
     position: absolute;
     transform: rotate(90deg);
 }
 
-.messages .chat-box .chats-true{
+.messages .chat-box .chats-true {
     width: 0px;
     border: 0px;
     margin-right: 0px;
 }
 
-.messages .chat-box .arrow-chat-true{
+.messages .chat-box .arrow-chat-true {
     transform: rotate(-90deg);
 }
 
@@ -321,7 +326,7 @@
     width: 12px;
 }
 
-.chat-messages::-webkit-scrollbar-track{
+.chat-messages::-webkit-scrollbar-track {
     background: white;
 }
 

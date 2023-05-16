@@ -8,18 +8,21 @@ import { useContext } from "react";
 import UserContext from "../../../context/userContext";
 
 export default function Messages() {
-    const worker:any = useContext(UserContext).worker;
-    let [messages, setMessages]:any = useState([]);
+    const worker: any = useContext(UserContext).worker;
+    let [messages, setMessages]: any = useState([]);
 
     useEffect(() => {
         MessageService.findChatByDemand(worker.id).then((response: any) => {
             setMessages(response);
         })
-    }, []);
+
+        console.log("oi")
+
+    }, [worker.id]);
 
     return (
         <div className="messages">
-         
+
 
             <div className="container">
                 <div className="backgroud-title">
@@ -28,18 +31,20 @@ export default function Messages() {
 
                 <div className="container-background">
                     <div className="boxNoPadding">
+
                         {
+                            messages.length > 0 &&
                             messages.map((val: any, index: any) => {
                                 if (index > 5 && messages.length - 1 === index) {
                                     return (
-                                        <div>
-                                            <Message message={messages[index]} bottom={false} />
+                                        <div key={index}>
+                                            <Message message={val} bottom={false} />
                                         </div>
                                     );
                                 } else {
                                     return (
-                                        <div>
-                                            <Message message={messages[index]} bottom={true} />
+                                        <div key={index}>
+                                            <Message message={val} bottom={true} />
                                         </div>
                                     );
                                 }

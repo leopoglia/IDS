@@ -8,7 +8,11 @@ import ServicesDemand from '../../../../../services/demandService';
 export default function SelectLabels(props: any) {
     // const [age, setAge] = React.useState('');
 
-    const [status, SetStatus] = React.useState(["Backlog", "BacklogRanked", "BacklogEdit", "BacklogRankApproved", "BacklogComplement", "Assesment"]);
+    const [status, SetStatus] = React.useState([]);
+
+    useEffect(() => {
+        SetStatus(props.array);
+    }, [props.array])
 
 
     const handleChange = (event: any, type: string) => {

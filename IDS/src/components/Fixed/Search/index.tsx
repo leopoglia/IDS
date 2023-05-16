@@ -22,6 +22,7 @@ export default function Search(props: any) {
     const [filter, setFilter] = useState(false); // Estado do filtro
 
     useEffect(() => {
+        callback(props.name, props.type)
     }, [props.name, props.type])
 
 

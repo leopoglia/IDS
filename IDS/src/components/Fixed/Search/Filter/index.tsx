@@ -1,7 +1,8 @@
 import "./style.css";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import SelectStatus from "./SelectStatus";
+import UserContext from "../../../../context/userContext";
 
 export interface FilterProps {
     onClick: (name: string | undefined, type: string) => void
@@ -10,6 +11,8 @@ export interface FilterProps {
 export default function Filter(props: FilterProps) {
 
     const { t } = useTranslation();
+
+    let worker: any = useContext(UserContext).worker;
 
     const url = window.location.pathname.split("/")[1];
     const [filter, setFilter] = useState(false);
@@ -22,23 +25,39 @@ export default function Filter(props: FilterProps) {
     }, [status])
 
     const sendFilter = () => {
-        if (filter === true && type !== "status") {
+
+
+
+        if ((type !== "status" && filter === true) && (type !== "size" && filter === true)) {
             return (
                 <div className="send-filter">
                     <div className="hr" />
 
+                    {type !== "home" &&
+
                     <input onChange={onButtonPress} type="text" ref={inputName} placeholder="Insira o parametro aqui" />
+
+                    }
 
                     <button onClick={onButtonPress} className="btn-primary">Filtrar</button>
 
                 </div>
             )
-        } else if (filter === true && type === "status") {
+        } else if (filter === true && (type === "status" || type === "size")) {
+
+            let arraySelect: string[] = [];
+
+            if (type === "status") {
+                arraySelect = ["Backlog", "BacklogRanked", "BacklogEdit", "BacklogRankApproved", "BacklogComplement", "Assesment"];
+            } else if (type === "size") {
+                arraySelect = ["Muito pequeno", "Pequeno", "Médio", "Grande", "Muito grande"];
+            }
+
             return (
                 <div className="send-filter">
                     <div className="hr" />
 
-                    <SelectStatus status={status} setStatus={setStatus} />
+                    <SelectStatus status={status} setStatus={setStatus} array={arraySelect} />
 
                     <button onClick={onButtonPressSelect} className="btn-primary">Filtrar</button>
 
@@ -54,15 +73,19 @@ export default function Filter(props: FilterProps) {
 
     const onButtonPressSelect = () => {
         props.onClick(status, type);
-        
+
+    }
+
+    const onButtonPressHome = () => {
+        props.onClick(worker.name, "home")
     }
 
     if (url === 'demands') {
         return (
             <div className="filter-modal modal">
 
-                <div className="li">
-                    <span className="material-symbols-outlined" onClick={() => { setFilter(true); setType("home") }}>home</span>
+                <div className="li" onClick={() => { setFilter(true); setType("home"); onButtonPressHome() }}>
+                    <span className="material-symbols-outlined" >home</span>
                     <span className="font-p">{t("myDemands")}</span>
                 </div>
 

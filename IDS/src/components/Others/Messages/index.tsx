@@ -16,7 +16,8 @@ export default function Messages() {
             setMessages(response);
         })
 
-        console.log("oi")
+
+        console.log("messages ===> ", messages)
 
     }, [worker.id]);
 
@@ -33,22 +34,22 @@ export default function Messages() {
                     <div className="boxNoPadding">
 
                         {
-                            messages.length > 0 &&
                             messages.map((val: any, index: any) => {
-                                if (index > 5 && messages.length - 1 === index) {
-                                    return (
-                                        <div key={index}>
-                                            <Message message={val} bottom={false} />
-                                        </div>
-                                    );
-                                } else {
-                                    return (
-                                        <div key={index}>
-                                            <Message message={val} bottom={true} />
-                                        </div>
-                                    );
+                                if (val !== null) {
+                                    if (index > 5 && messages.length - 1 === index) {
+                                        return (
+                                            <div key={index}>
+                                                <Message message={val} bottom={false} />
+                                            </div>
+                                        );
+                                    } else {
+                                        return (
+                                            <div key={index}>
+                                                <Message message={val} bottom={true} />
+                                            </div>
+                                        );
+                                    }
                                 }
-
                             })
                         }
 

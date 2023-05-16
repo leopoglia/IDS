@@ -5,8 +5,10 @@
 const othersUtil = {
 
     // Função para mostrar o navigator
-    footer: (url: string[], demands: string | any[], proposals: string | any[], agendas: string | any[], minutes: string | any[], search: string, pages: number, page: any, navigate: any) => {
+    footer: (url: string[], demands: string | any[], proposals: string | any[], agendas: string | any[], minutes: string | any[], search: string, pages: number, page: any, navigate: any, demandsSize: any) => {
 
+
+        console.log(demandsSize)
 
         let nav: any;
 

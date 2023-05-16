@@ -34,6 +34,9 @@ export default function Demands() {
     const [agendas, setAgendas] = useState([]);
     const [minutes, setMinutes] = useState([]);
 
+
+    const [demandsSize, setDemandsSize] = useState(0);
+
     const [loading, setLoading] = useState(true);
 
     // Entra na página e busca as demandas cadastradas
@@ -225,7 +228,7 @@ export default function Demands() {
 
                         <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1" />
                         <div className="container-background">
-                            {
+                            {/* {
                                 demands.map((val: any, index) => {
                                     if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
                                         return (
@@ -243,10 +246,6 @@ export default function Demands() {
                                                 return noResult();
                                             }
                                         }
-
-
-                                        console.log("val.requesterRegistration.departament ========>", val.requesterRegistration.department , "nameFilter ========>", nameFilter, "typeFilter ========>", typeFilter)
-
 
                                         if (typeFilter === "requester" && val.requesterRegistration.workerName.toUpperCase().includes(nameFilter.toUpperCase())) {
                                             return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus} proposalCode={val.proposalCode} demandVersion={val.demandVersion} type="demand" />);
@@ -267,7 +266,63 @@ export default function Demands() {
                                         }
                                     }
                                 })
+                            } */}
+
+                            {
+                                demands
+                                    .filter((val: any) => {
+                                        if (
+                                            (nameFilter === "" || nameFilter === undefined) &&
+                                            (typeFilter === "" || typeFilter === undefined) &&
+                                            search === ""
+                                        ) {
+                                            return true;
+                                        }
+
+                                        if (search !== "" && val.demandTitle.toUpperCase().includes(search.toUpperCase())) {
+                                            return true;
+                                        }
+
+                                        if (
+                                            typeFilter === "requester" &&
+                                            val.requesterRegistration.workerName.toUpperCase().includes(nameFilter.toUpperCase())
+                                        ) {
+                                            return true;
+                                        } else if (typeFilter === "status" && val?.demandStatus.toUpperCase() === nameFilter.toUpperCase()) {
+                                            return true;
+                                        } else if (typeFilter === "size" && val?.classification?.classificationSize.toUpperCase() === nameFilter.toUpperCase()) {
+                                            return true;
+                                        } else if (typeFilter === "ppm" && val?.classification?.ppmCode.toUpperCase() === nameFilter.toUpperCase()) {
+                                            return true;
+                                        } else if (typeFilter === "code-demand" && val?.demandCode === parseInt(nameFilter)) {
+                                            return true;
+                                        } else if (typeFilter === "home" && val?.requesterRegistration.workerName === nameFilter) {
+                                            return true;
+                                        } else if (typeFilter === "department" && val?.requesterRegistration.department === nameFilter) {
+                                            return true;
+                                        }
+
+                                        return false;
+                                    })
+                                    .map((val: any, index: number) => {
+
+                                        return (
+                                            <Demand
+                                                key={val.demandCode}
+                                                demandCode={val.demandCode}
+                                                listDirection={table}
+                                                name={val.demandTitle}
+                                                requester={val?.requesterRegistration?.workerName}
+                                                date={val.demandDate}
+                                                situation={val.demandStatus}
+                                                proposalCode={val.proposalCode}
+                                                demandVersion={val.demandVersion}
+                                                type="demand"
+                                            />
+                                        )
+                                    })
                             }
+
 
 
                             {demands.length === 0 && loading === true && <Load />}
@@ -276,7 +331,7 @@ export default function Demands() {
 
                         </div>
 
-                        {othersUtil.footer(url, demands, proposals, agendas, minutes, search, pages, page, navigate)}
+                        {othersUtil.footer(url, demands, proposals, agendas, minutes, search, pages, page, navigate, demandsSize)}
 
                         <Footer />
 
@@ -329,7 +384,7 @@ export default function Demands() {
 
                             {proposals.length === 0 && loading === false && noResult()}
                         </div>
-                        {othersUtil.footer(url, demands, proposals, agendas, minutes, search, pages, page, navigate)}
+                        {othersUtil.footer(url, demands, proposals, agendas, minutes, search, pages, page, navigate, demandsSize)}
 
                         <Footer />
 
@@ -365,7 +420,7 @@ export default function Demands() {
 
                         </div>
 
-                        {othersUtil.footer(url, demands, proposals, agendas, minutes, search, pages, page, navigate)}
+                        {othersUtil.footer(url, demands, proposals, agendas, minutes, search, pages, page, navigate, demandsSize)}
 
                         <Footer />
 
@@ -401,7 +456,7 @@ export default function Demands() {
                             {minutes.length === 0 && loading === false && noResult()}
 
                         </div>
-                        {othersUtil.footer(url, demands, proposals, agendas, minutes, search, pages, page, navigate)}
+                        {othersUtil.footer(url, demands, proposals, agendas, minutes, search, pages, page, navigate, demandsSize)}
 
                         <Footer />
 

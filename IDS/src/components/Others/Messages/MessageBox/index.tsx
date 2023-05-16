@@ -16,7 +16,7 @@ export default function Message(props: any) {
 
     useEffect(() => {
 
-        ServicesDemand.findById(props.message.demandCode).then((response: any) => {
+        ServicesDemand.findById(props.message?.demandCode).then((response: any) => {
             console.log(response)
             setRequester(response.requesterRegistration.workerName);
             setImageRequester(response.requesterRegistration.workerName.substring(0, 1));
@@ -26,18 +26,18 @@ export default function Message(props: any) {
     }, [props.message]);
 
     return (
-        <Link to={"message/" + props.message.demandCode}>
+        <Link to={"message/" + props.message?.demandCode}>
             <div className={"message-" + props.bottom}>
                 <div className="profile">
                     <div className="user-picture">{imageRequester}</div>
                     <div className="message-name">
                         <p className="username">{requester} - {demandTitle}</p>
-                        <p className="last-message">{props.message.sender.workerName}: {props.message.message}</p>
+                        <p className="last-message">{props.message?.sender.workerName}: {props.message?.message}</p>
                     </div>
                 </div>
 
                 <div className="date-horary">
-                    <span className="date">{props.message.dateMessage}</span>
+                    <span className="date">{props.message?.dateMessage}</span>
 
                 </div>
             </div>

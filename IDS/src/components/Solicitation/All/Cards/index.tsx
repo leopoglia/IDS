@@ -283,10 +283,7 @@ export default function Demands() {
                                             return true;
                                         }
 
-                                        if (
-                                            typeFilter === "requester" &&
-                                            val.requesterRegistration.workerName.toUpperCase().includes(nameFilter.toUpperCase())
-                                        ) {
+                                        if (typeFilter === "requester" && val.requesterRegistration.workerName.toUpperCase().includes(nameFilter.toUpperCase())) {
                                             return true;
                                         } else if (typeFilter === "status" && val?.demandStatus.toUpperCase() === nameFilter.toUpperCase()) {
                                             return true;
@@ -307,18 +304,9 @@ export default function Demands() {
                                     .map((val: any, index: number) => {
 
                                         return (
-                                            <Demand
-                                                key={val.demandCode}
-                                                demandCode={val.demandCode}
-                                                listDirection={table}
-                                                name={val.demandTitle}
-                                                requester={val?.requesterRegistration?.workerName}
-                                                date={val.demandDate}
-                                                situation={val.demandStatus}
-                                                proposalCode={val.proposalCode}
-                                                demandVersion={val.demandVersion}
-                                                type="demand"
-                                            />
+                                            <Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle}
+                                                requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus}
+                                                proposalCode={val.proposalCode} demandVersion={val.demandVersion} type="demand" />
                                         )
                                     })
                             }
@@ -345,40 +333,49 @@ export default function Demands() {
                         <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} nav={t("proposalViewProposal")} title="proposals" button="createProposal" link="/demands/1" />
                         <div className="container-background">
                             {
-                                proposals.map((val: any, index) => {
-                                    if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
-                                        return (
-                                            <Demand key={val.proposalCode} listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />
-                                        );
-                                    } else {
-                                        if (search !== "") {
-
-                                            if (val.demandTitle.toUpperCase().includes(search.toUpperCase())) {
-                                                return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus} proposalCode={val.proposalCode} demandVersion={val.demandVersion} type="demand" />);
-
-                                            } else if (index === demands.length - 1) {
-                                                return noResult();
-                                            }
+                                proposals
+                                    .filter((val: any) => {
+                                        if (
+                                            (nameFilter === "" || nameFilter === undefined) &&
+                                            (typeFilter === "" || typeFilter === undefined) &&
+                                            search === ""
+                                        ) {
+                                            return true;
                                         }
 
-                                        console.log(val.demand?.classification.classificationSize.toUpperCase().includes(nameFilter.toUpperCase()))
+                                        if (search !== "" && val.demand?.demandTitle.toUpperCase().includes(search.toUpperCase())) {
+                                            return true;
+                                        }
 
-                                        if (typeFilter === "requester" && val.demand.requesterRegistration.workerName.toUpperCase().includes(nameFilter.toUpperCase())) {
-                                            return (<Demand key={val.proposalCode} listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />);
+                                        if (typeFilter === "requester" && val.demand?.requesterRegistration.workerName.toUpperCase().includes(nameFilter.toUpperCase())) {
+                                            return true;
                                         } else if (typeFilter === "size" && val.demand?.classification.classificationSize.toUpperCase() === nameFilter.toUpperCase()) {
-                                            return (<Demand key={val.proposalCode} listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />);
+                                            return true;
                                         } else if (typeFilter === "ppm" && val.demand?.classification.ppmCode.toUpperCase() === nameFilter.toUpperCase()) {
-                                            return (<Demand key={val.proposalCode} listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />);
+                                            return true;
                                         } else if (typeFilter === "code-proposal" && val.proposalCode === parseInt(nameFilter)) {
-                                            return (<Demand key={val.proposalCode} listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />);
-                                        } else {
-                                            return noResult();
+                                            return true;
+                                        } else if (typeFilter === "department" && val.demand?.requesterRegistration.department === nameFilter) {
+                                            return true;
                                         }
 
-                                    }
-
-                                })
+                                        return false;
+                                    })
+                                    .map((val: any) => (
+                                        <Demand
+                                            key={val.proposalCode}
+                                            listDirection={table}
+                                            demandCode={val.proposalCode}
+                                            name={val.demand?.demandTitle}
+                                            requester={val.demand?.requesterRegistration.workerName}
+                                            analyst={val.responsibleAnalyst?.workerName}
+                                            date={val.demand?.demandDate}
+                                            situation={val.proposalStatus}
+                                            type="proposal"
+                                        />
+                                    ))
                             }
+
 
                             {proposals.length === 0 && loading === true && <Load />}
 

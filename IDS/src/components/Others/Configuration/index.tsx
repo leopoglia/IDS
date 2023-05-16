@@ -89,10 +89,10 @@ export default function Configuration() {
                             </div>
 
                             <div className="change-configuration">
-                                <span className="title-confuration">{t("rounded")}</span>
+                                <span className="title-confuration">{t("square")}</span>
 
                                 <div className="display-flex">
-                                    <span className="subtitle-confuration">{t("messagesNotify")}</span>
+                                    <span className="subtitle-confuration">{t("squareStyleLayout")}</span>
 
                                     <div className="switch">
                                         <input onChange={(e) => handleChange(e)} type="checkbox" id="switch" name="switch" />
@@ -102,7 +102,7 @@ export default function Configuration() {
 
                             </div>
                         </div>
-
+           
                         <div className="box-accesibility">
 
                             <div className="display-flex">

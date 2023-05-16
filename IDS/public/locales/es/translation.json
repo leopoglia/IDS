@@ -231,5 +231,7 @@
     "unpublishedMinutes": "Acta inéditos",
     "demand": "Demanda",
     "voiceCommand": "Comando de voz",
-    "screenReading": "Lectura de pantalla"
+    "screenReading": "Lectura de pantalla",
+    "square": "Cuadrado",
+    "squareStyleLayout": "Diseño de estilo cuadrado"
 }

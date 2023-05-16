@@ -232,5 +232,7 @@
     "unpublishedMinutes": "Unpublished minute",
     "demand": "Demand",
     "voiceCommand": "Voice command",
-    "screenReading": "Screen reading"
+    "screenReading": "Screen reading",
+    "square": "Square",
+    "squareStyleLayout": "Square style layout"
 }

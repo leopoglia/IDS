@@ -239,5 +239,7 @@
     "unpublishedMinutes": "Ata não publicada",
     "demand": "Demanda",
     "voiceCommand": "Comando de voz",
-    "screenReading": "Leitura de tela"
+    "screenReading": "Leitura de tela",
+    "square": "Quadrado",
+    "squareStyleLayout": "Layout estilo quadrado"
 }

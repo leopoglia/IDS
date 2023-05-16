@@ -232,5 +232,7 @@
     "unpublishedMinutes": "出版矮人",
     "demand": "需求",
     "voiceCommand": "語音命令",
-    "screenReading": "屏幕閱讀"
+    "screenReading": "屏幕閱讀",
+    "square": "正方形",
+    "squareStyleLayout": "方形佈局"
 }

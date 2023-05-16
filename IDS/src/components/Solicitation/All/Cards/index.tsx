@@ -14,6 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import Presentation from "./Presentation";
 import Notification from "../../../../utils/notifyUtil";
+import othersUtil from "../../../../utils/othersUtil";
 
 export default function Demands() {
     const url = window.location.href.split("/");
@@ -23,8 +24,7 @@ export default function Demands() {
     let navigate = useNavigate();
     const { t } = useTranslation();
 
-    const [presentation, setPresentation] = useState(localStorage.getItem("presentation") === "true" ? true : false);
-
+    const [presentation, setPresentation] = useState(localStorage.getItem("presentation") === "true" ? true : false); // Estado para mostrar a apresentação
     const [table, setTableList] = useState(false); // Estado para mostrar a tabela de demandas
     const [search, setSearch]: any = useState(""); // Retorno do campo de busca de demandas
     const [pages, setPages] = useState(0); // Quantidade de páginas
@@ -40,7 +40,7 @@ export default function Demands() {
     useEffect(() => {
         setLoading(true);
         if (url[3] === "demands") {
-            if (search === "") {
+            if (search === "" || typeFilter === "") {
                 getDemands(); // Busca as demandas cadastradas
             } else {
                 ServicesDemand.findAll().then((res: any) => {
@@ -48,7 +48,7 @@ export default function Demands() {
                 });
             }
         } else if (url[3] === "proposals") {
-            if (search === "") {
+            if (search === "" || typeFilter === "") {
                 getProposals(); // Busca as demandas cadastradas
             } else {
                 ServicesProposal.findAll().then((res: any) => {
@@ -56,7 +56,7 @@ export default function Demands() {
                 });
             }
         } else if (url[3] === "agendas") {
-            if (search === "") {
+            if (search === "" || typeFilter === "") {
                 getAgendas(); // Busca as demandas cadastradas
             } else {
                 ServicesAgenda.findAll().then((res: any) => {
@@ -64,7 +64,7 @@ export default function Demands() {
                 });
             }
         } else if (url[3] === "minutes") {
-            if (search === "") {
+            if (search === "" || typeFilter === "") {
                 getMinutes(); // Busca as demandas cadastradas
             } else {
                 ServicesMinute.findAll().then((res: any) => {
@@ -176,62 +176,6 @@ export default function Demands() {
     }
 
 
-    // Função para mostrar o navigator
-    const footer = () => {
-
-        let nav: any;
-
-        if (url[3] === "demands") {
-            nav = demands.length;
-        } else if (url[3] === "proposals") {
-            nav = proposals.length;
-        } else if (url[3] === "agendas") {
-            nav = agendas.length;
-        } else if (url[3] === "minutes") {
-            nav = minutes.length;
-        }
-
-        return (
-            <div className="h45">
-                {search === "" && pages > 1 && (
-                    <div className="navigator">
-                        {page > 1 ? (
-                            <div onClick={() => {
-                                navigate("/" + url[3] + "/" + (parseInt(page) - 1));
-                            }}>{"<"}</div>
-                        ) : (
-                            <div className="arrow-disabled">{"<"}</div>
-                        )}
-                        {[...Array(pages)].map((_, index) => {
-                            const pageNumber = index + 1;
-                            const distance = Math.abs(pageNumber - page);
-                            const showPage = distance <= 1 || pageNumber === 1 || pageNumber === pages;
-                            return showPage ? (
-                                <div
-                                    key={pageNumber}
-                                    className={pageNumber === parseInt(page) ? "current" : ""}
-                                    onClick={() => navigate(`/${url[3]}/${pageNumber}`)}
-                                >
-                                    {pageNumber}
-                                </div>
-                            ) : (
-                                null
-                            );
-                        })}
-                        {page < pages ? (
-                            <div onClick={() => {
-                                navigate("/" + url[3] + "/" + (parseInt(page) + 1));
-                            }}>{">"}</div>
-                        ) : (
-                            <div className="arrow-disabled">{">"}</div>
-                        )}
-                    </div>
-                )}
-            </div>
-
-        )
-    }
-
     // Função para setar o estado da tabela
     const setTable = () => {
         setTableList(!table);
@@ -258,6 +202,7 @@ export default function Demands() {
             </div>
         )
     }
+
 
     return (
         <div className="solicitation">
@@ -289,8 +234,6 @@ export default function Demands() {
 
                                     } else {
 
-                                        console.log(typeFilter, nameFilter, search)
-
                                         if (search !== "") {
 
                                             if (val.demandTitle.toUpperCase().includes(search.toUpperCase())) {
@@ -300,6 +243,10 @@ export default function Demands() {
                                                 return noResult();
                                             }
                                         }
+
+
+                                        console.log("val.requesterRegistration.departament ========>", val.requesterRegistration.department , "nameFilter ========>", nameFilter, "typeFilter ========>", typeFilter)
+
 
                                         if (typeFilter === "requester" && val.requesterRegistration.workerName.toUpperCase().includes(nameFilter.toUpperCase())) {
                                             return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus} proposalCode={val.proposalCode} demandVersion={val.demandVersion} type="demand" />);
@@ -312,6 +259,8 @@ export default function Demands() {
                                         } else if (typeFilter === "code-demand" && val.demandCode === parseInt(nameFilter)) {
                                             return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus} proposalCode={val.proposalCode} demandVersion={val.demandVersion} type="demand" />);
                                         } else if (typeFilter === "home" && val.requesterRegistration.workerName === nameFilter) {
+                                            return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus} proposalCode={val.proposalCode} demandVersion={val.demandVersion} type="demand" />);
+                                        } else if (typeFilter === "department" && val.requesterRegistration.department === nameFilter) {
                                             return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus} proposalCode={val.proposalCode} demandVersion={val.demandVersion} type="demand" />);
                                         } else if (index === demands.length - 1) {
                                             return noResult();
@@ -327,7 +276,7 @@ export default function Demands() {
 
                         </div>
 
-                        {footer()}
+                        {othersUtil.footer(url, demands, proposals, agendas, minutes, search, pages, page, navigate)}
 
                         <Footer />
 
@@ -346,15 +295,31 @@ export default function Demands() {
                                         return (
                                             <Demand key={val.proposalCode} listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />
                                         );
-                                    } else if (search !== "") {
+                                    } else {
+                                        if (search !== "") {
 
-                                        if (typeFilter === "requester" && val.demand?.requesterRegistration.toUpperCase().includes(nameFilter.toUpperCase())) {
+                                            if (val.demandTitle.toUpperCase().includes(search.toUpperCase())) {
+                                                return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus} proposalCode={val.proposalCode} demandVersion={val.demandVersion} type="demand" />);
+
+                                            } else if (index === demands.length - 1) {
+                                                return noResult();
+                                            }
+                                        }
+
+                                        console.log(val.demand?.classification.classificationSize.toUpperCase().includes(nameFilter.toUpperCase()))
+
+                                        if (typeFilter === "requester" && val.demand.requesterRegistration.workerName.toUpperCase().includes(nameFilter.toUpperCase())) {
+                                            return (<Demand key={val.proposalCode} listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />);
+                                        } else if (typeFilter === "size" && val.demand?.classification.classificationSize.toUpperCase() === nameFilter.toUpperCase()) {
+                                            return (<Demand key={val.proposalCode} listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />);
+                                        } else if (typeFilter === "ppm" && val.demand?.classification.ppmCode.toUpperCase() === nameFilter.toUpperCase()) {
+                                            return (<Demand key={val.proposalCode} listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />);
+                                        } else if (typeFilter === "code-proposal" && val.proposalCode === parseInt(nameFilter)) {
                                             return (<Demand key={val.proposalCode} listDirection={table} demandCode={val.proposalCode} name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName} date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal" />);
                                         } else {
                                             return noResult();
                                         }
-                                    } else {
-                                        return noResult();
+
                                     }
 
                                 })
@@ -364,7 +329,7 @@ export default function Demands() {
 
                             {proposals.length === 0 && loading === false && noResult()}
                         </div>
-                        {footer()}
+                        {othersUtil.footer(url, demands, proposals, agendas, minutes, search, pages, page, navigate)}
 
                         <Footer />
 
@@ -400,7 +365,7 @@ export default function Demands() {
 
                         </div>
 
-                        {footer()}
+                        {othersUtil.footer(url, demands, proposals, agendas, minutes, search, pages, page, navigate)}
 
                         <Footer />
 
@@ -436,7 +401,7 @@ export default function Demands() {
                             {minutes.length === 0 && loading === false && noResult()}
 
                         </div>
-                        {footer()}
+                        {othersUtil.footer(url, demands, proposals, agendas, minutes, search, pages, page, navigate)}
 
                         <Footer />
 

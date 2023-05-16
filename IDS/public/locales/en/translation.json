@@ -229,5 +229,6 @@
     "newAgendas": "New agendas",
     "dateMeeting":"Meeting date",
     "meetingAgenda": "Meeting Agenda",
-    "unpublishedMinutes": "Unpublished minute"
+    "unpublishedMinutes": "Unpublished minute",
+    "demand": "Demand"
 }

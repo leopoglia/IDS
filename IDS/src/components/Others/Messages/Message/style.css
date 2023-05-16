@@ -141,6 +141,7 @@
 
 .messages .box-message .message-user {
     max-width: 50%;
+    width: max-content;
     overflow: hidden;
     word-wrap: break-word;
     padding: 10px;

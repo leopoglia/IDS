@@ -28,7 +28,8 @@ const Services = {
                     expensesType: expenseName,
                     proposal: { proposalCode: proposal },
                     costCenter: costCenters,
-                    expense: expenses
+                    expense: expenses,
+                    expenseCostCenter: [{"costCenter": { "costCenterCode":  costCenters }, "percent": 50}]
                 }), headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); })
                 .then(resolve)

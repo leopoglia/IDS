@@ -536,3 +536,10 @@ hr {
     -ms-zoom: 0.5 !important;
   }
 }
+
+
+/* VLIBRAS */
+
+[vw-plugin-wrapper].active {
+  border-radius: var(--r) !important;
+}

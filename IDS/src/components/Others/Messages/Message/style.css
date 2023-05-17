@@ -154,7 +154,7 @@
 .messages .chat-box .chats {
     margin-right: 15px;
     height: 100%;
-    max-height: calc(50vh + 55px);
+    height: calc(50vh + 55px);
     overflow-x: hidden;
     overflow-y: auto;
     border: 1px solid var(--greyC4);

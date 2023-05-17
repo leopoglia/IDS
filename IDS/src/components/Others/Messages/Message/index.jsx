@@ -29,6 +29,7 @@ const ChatRoom = () => {
     const divRef = useRef(null);
 
     const [chatsOpen, setChatsOpen] = useState(true);
+    const [sender, setSender] = useState({});
 
     let [chat, setChat] = useState([]);
 
@@ -60,6 +61,9 @@ const ChatRoom = () => {
             setSubscribeId(subscribe("/" + demandCode + "/chat", newMessage));
         }
 
+        ServicesMessage.findSender(worker.id, message.demandCode).then((response) => {
+            setSender(response);
+        })
 
     }, [messages, stompClient]);
 
@@ -148,12 +152,12 @@ const ChatRoom = () => {
 
                         <div className='person'>
                             <span>
-                                {workerDemand.workerName?.slice(0, 1)}
+                                {sender.workerName?.slice(0, 1)}
                             </span>
                         </div>
 
                         <div className="message-name">
-                            <span className="username">{workerDemand.workerName}</span>
+                            <span className="username">{sender.workerName}</span>
 
                             <div className="online">
                                 <span>online</span>

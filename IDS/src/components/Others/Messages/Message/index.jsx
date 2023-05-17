@@ -195,12 +195,22 @@ const ChatRoom = () => {
                                                     </span>
 
                                                 </div>
-
-                                                <div className='display-flex span-message-chat'>
+                                            {
+                                                worker.id === item.sender.workerCode ? (
+                                                    <div className='display-flex span-message-chat'>
                                                     <span className='message-chat'>
-                                                        {item.message}
+                                                        você: {item.message}
                                                     </span>
                                                 </div>
+                                                ):(
+                                                    <div className='display-flex span-message-chat'>
+                                                    <span className='message-chat'>
+                                                        {sender.workerName}: {item.message}
+                                                    </span>
+                                                </div>
+                                                )
+                                            }
+                                                
                                             </div>
 
                                         </div>

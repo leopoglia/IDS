@@ -24,10 +24,10 @@ export default function CreateDemands1() {
     useEffect(() => {
         let demand = JSON.parse(localStorage.getItem('demand') || '{}')
 
-        setTitleDemand(demand.titleInput)
-        setCurrentSituation(demand.currentSituation)
-        setObjective(demand.objective)
-        setCostsCenters(demand.costCenter)
+        setTitleDemand(demand?.titleInput)
+        setCurrentSituation(demand?.currentSituation)
+        setObjective(demand?.objective)
+        setCostsCenters(demand?.costCenter)
     }, [])
 
     const [costCenter, setCostCenter] = useState("");

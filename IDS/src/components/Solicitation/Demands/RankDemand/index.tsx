@@ -12,6 +12,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../../../../context/userContext";
+import othersUtil from "../../../../utils/othersUtil";
 
 export default function RankDemand() {
     const { t } = useTranslation();
@@ -153,22 +154,22 @@ export default function RankDemand() {
     }
 
 
-    const attatchmentType = (demand: any) => {
-        if (demand.type === "image/png" || demand.type === "image/jpeg") {
-            return "png";
-        } else if (demand.type === "application/pdf") {
-            return "pdf";
-        } else if (demand.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
-            return "word";
-        } else if (demand.type === "application/msword" || demand.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||
-            demand.demandAttachment.type === "application/vnd.ms-excel") {
-            return "excel";
-        } else if (demand.type === "application/zip") {
-            return "zip";
-        } else if (demand.type === "application/x-rar-compressed") {
-            return "rar";
-        }
-    }
+    // const attatchmentType = (demand: any) => {
+    //     if (demand.type === "image/png" || demand.type === "image/jpeg") {
+    //         return "png";
+    //     } else if (demand.type === "application/pdf") {
+    //         return "pdf";
+    //     } else if (demand.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
+    //         return "word";
+    //     } else if (demand.type === "application/msword" || demand.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||
+    //         demand.demandAttachment.type === "application/vnd.ms-excel") {
+    //         return "excel";
+    //     } else if (demand.type === "application/zip") {
+    //         return "zip";
+    //     } else if (demand.type === "application/x-rar-compressed") {
+    //         return "rar";
+    //     }
+    // }
 
     return (
         <div className="rank-demand">
@@ -271,7 +272,7 @@ export default function RankDemand() {
 
                                             <div className="attachment">
                                                 <div className="attachment-image">
-                                                    <img src={"/attachment/" + attatchmentType(file) + ".png"} alt="" />
+                                                    <img src={"/attachment/" + othersUtil.attatchmentType(file) + ".png"} alt="" />
                                                 </div>
                                                 <span>{file.name}</span>
                                             </div>

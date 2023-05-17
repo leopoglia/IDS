@@ -12,12 +12,10 @@ export default function Message(props: any) {
     const [demandTitle, setDemandTitle]: any = useState("")
     const [imageRequester, setImageRequester]: any = useState("");
 
-    console.log(props)
 
     useEffect(() => {
 
         ServicesDemand.findById(props.message?.demandCode).then((response: any) => {
-            console.log(response)
             setRequester(response.requesterRegistration.workerName);
             setImageRequester(response.requesterRegistration.workerName.substring(0, 1));
             setDemandTitle(response.demandTitle);

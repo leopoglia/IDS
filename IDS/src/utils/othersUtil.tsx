@@ -1,14 +1,8 @@
 
-
-
-
 const othersUtil = {
 
     // Função para mostrar o navigator
     footer: (url: string[], demands: string | any[], proposals: string | any[], agendas: string | any[], minutes: string | any[], search: string, pages: number, page: any, navigate: any, demandsSize: any) => {
-
-
-        console.log(demandsSize)
 
         let nav: any;
 
@@ -64,7 +58,26 @@ const othersUtil = {
             </div>
 
         )
-    }
+    },
+
+
+    attatchmentType: (demand: { type: string; demandAttachment: { type: string; }; }) => {
+        if (demand.type === "image/png" || demand.type === "image/jpeg") {
+            return "png";
+        } else if (demand.type === "application/pdf") {
+            return "pdf";
+        } else if (demand.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
+            return "word";
+        } else if (demand.type === "application/msword" || demand.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||
+            demand.demandAttachment.type === "application/vnd.ms-excel") {
+            return "excel";
+        } else if (demand.type === "application/zip") {
+            return "zip";
+        } else if (demand.type === "application/x-rar-compressed") {
+            return "rar";
+        }
+    },
+
 
 }
 

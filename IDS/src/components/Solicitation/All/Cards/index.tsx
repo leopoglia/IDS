@@ -228,45 +228,6 @@ export default function Demands() {
 
                         <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1" />
                         <div className="container-background">
-                            {/* {
-                                demands.map((val: any, index) => {
-                                    if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
-                                        return (
-                                            <Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus} proposalCode={val.proposalCode} demandVersion={val.demandVersion} type="demand" />
-                                        );
-
-                                    } else {
-
-                                        if (search !== "") {
-
-                                            if (val.demandTitle.toUpperCase().includes(search.toUpperCase())) {
-                                                return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus} proposalCode={val.proposalCode} demandVersion={val.demandVersion} type="demand" />);
-
-                                            } else if (index === demands.length - 1) {
-                                                return noResult();
-                                            }
-                                        }
-
-                                        if (typeFilter === "requester" && val.requesterRegistration.workerName.toUpperCase().includes(nameFilter.toUpperCase())) {
-                                            return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus} proposalCode={val.proposalCode} demandVersion={val.demandVersion} type="demand" />);
-                                        } else if (typeFilter === "status" && val.demandStatus.toUpperCase() === nameFilter.toUpperCase()) {
-                                            return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus} proposalCode={val.proposalCode} demandVersion={val.demandVersion} type="demand" />);
-                                        } else if (typeFilter === "size" && val.classification.classificationSize.toUpperCase() === nameFilter.toUpperCase()) {
-                                            return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus} proposalCode={val.proposalCode} demandVersion={val.demandVersion} type="demand" />);
-                                        } else if (typeFilter === "ppm" && val.classification.ppmCode.toUpperCase() === nameFilter.toUpperCase()) {
-                                            return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus} proposalCode={val.proposalCode} demandVersion={val.demandVersion} type="demand" />);
-                                        } else if (typeFilter === "code-demand" && val.demandCode === parseInt(nameFilter)) {
-                                            return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus} proposalCode={val.proposalCode} demandVersion={val.demandVersion} type="demand" />);
-                                        } else if (typeFilter === "home" && val.requesterRegistration.workerName === nameFilter) {
-                                            return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus} proposalCode={val.proposalCode} demandVersion={val.demandVersion} type="demand" />);
-                                        } else if (typeFilter === "department" && val.requesterRegistration.department === nameFilter) {
-                                            return (<Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle} requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus} proposalCode={val.proposalCode} demandVersion={val.demandVersion} type="demand" />);
-                                        } else if (index === demands.length - 1) {
-                                            return noResult();
-                                        }
-                                    }
-                                })
-                            } */}
 
                             {
                                 demands
@@ -363,15 +324,9 @@ export default function Demands() {
                                     })
                                     .map((val: any) => (
                                         <Demand
-                                            key={val.proposalCode}
-                                            listDirection={table}
-                                            demandCode={val.proposalCode}
-                                            name={val.demand?.demandTitle}
-                                            requester={val.demand?.requesterRegistration.workerName}
-                                            analyst={val.responsibleAnalyst?.workerName}
-                                            date={val.demand?.demandDate}
-                                            situation={val.proposalStatus}
-                                            type="proposal"
+                                            key={val.proposalCode} listDirection={table} demandCode={val.proposalCode}
+                                            name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName}
+                                            date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal"
                                         />
                                     ))
                             }
@@ -394,22 +349,42 @@ export default function Demands() {
                         <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} setTipe={setType} setTable={setTable} nav={t("agendaViewAgenda")} title="agendas" button="createAgenda" link="/agenda/create" />
                         <div className="container-background">
                             {
-                                agendas.map((val: any, index) => {
-                                    if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
-                                        return (
-                                            <Demand key={val.agendaCode} val={val.agendaCode} listDirection={table} name={t("meetingAgenda") + " " + val.agendaCode} demandCode={val.agendaCode} date={val.agendaDate} number={val.sequentialNumber} year={val.yearAgenda} type="agenda" />
-                                        );
-                                    } else if (search !== "") {
-                                        if (val.agendaCode.toString().includes(search)) {
-                                            return (
-                                                <Demand key={val.agendaCode} val={val.agendaCode} listDirection={table} name={t("meetingAgenda") + " " + val.agendaCode} demandCode={val.agendaCode} date={val.agendaDate} number={val.sequentialNumber} year={val.yearAgenda} type="agenda" />
-                                            );
-                                        } else {
-                                            return noResult();
+                                agendas
+                                    .filter((val: any) => {
+                                        if (
+                                            (nameFilter === "" || nameFilter === undefined) &&
+                                            (typeFilter === "" || typeFilter === undefined) &&
+                                            search === ""
+                                        ) {
+                                            return true;
                                         }
-                                    }
-                                })
+
+                                        if (search !== "" && val.agendaCode.toString().includes(search)) {
+                                            return true;
+                                        }
+
+                                        if (typeFilter === "code-agendas") {
+
+                                            for (let i = 0; i < val.proposals.length; i++) {
+
+                                                if (val.proposals[i].proposalCode === parseInt(nameFilter)) {
+                                                    return true;
+                                                }
+
+                                            }
+                                        }
+
+                                        return false;
+                                    })
+                                    .map((val: any) => (
+                                        <Demand
+                                            key={val.agendaCode} val={val.agendaCode} listDirection={table}
+                                            name={t("meetingAgenda") + " " + val.yearAgenda.split('T', 1)} demandCode={val.agendaCode} date={val.agendaDate}
+                                            number={val.sequentialNumber} year={val.yearAgenda} type="agenda"
+                                        />
+                                    ))
                             }
+
 
                             {agendas.length === 0 && loading === true && <Load />}
 

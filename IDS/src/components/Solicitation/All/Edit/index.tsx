@@ -15,6 +15,9 @@ import SelectCoin from "../../Demands/CrateDemand/SelectCoin";
 import CheckBox from "../../Demands/CrateDemand/CheckBox";
 import Editor from "../../Proposals/EditProposalScope/Editor";
 
+import othersUtil from "../../../../utils/othersUtil";
+
+
 export default function Edit() {
 
 	const { t } = useTranslation();
@@ -128,15 +131,11 @@ export default function Edit() {
 		if (window.location.href.split("?")[1] === undefined) {
 			if (url === "demand" || type === "demand") {
 				getDemand(demandCode);
-
-				console.log("1")
 			} else {
 				getProposal();
-				console.log("2")
 			}
 		} else {
 			getProposal();
-			console.log("3")
 
 		}
 

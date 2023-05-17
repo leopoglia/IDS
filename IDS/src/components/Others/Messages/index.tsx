@@ -16,9 +16,6 @@ export default function Messages() {
             setMessages(response);
         })
 
-
-        console.log("messages ===> ", messages)
-
     }, [worker.id]);
 
     return (

@@ -35,7 +35,6 @@ export default function ViewDemand() {
     const workerId = worker.id; // Buscar código do usuário
     const url = window.location.href.split("/")[3]; // Buscar tipo da demanda
     const demandCode = parseInt(window.location.href.split("/")[5]); // Buscar código da demanda
-    let pendingMinute: any = 0;
     const demandVersion = parseInt(window.location.href.split("?")[1]); // Buscar versão da demanda
 
     // Botões superiores
@@ -58,6 +57,10 @@ export default function ViewDemand() {
     const [classification, setClassification]: any = useState({}); // Dados da classificação
     const [beneficiariesBu, setBeneficiariesBu]: any = useState([]); // Dados dos beneficiários da BU
     const [comission, setComission] = useState([]); // Dados da comissão
+
+    const [pendingMinute, setPendingMinute]: any = useState(0); // Quantidade de propostas pendentes
+
+
 
     // Dados da demanda
     const [demand, setDemand]: any = useState({
@@ -290,13 +293,15 @@ export default function ViewDemand() {
 
             })
 
-            proposalSpecific.map((val: any) => (
+            proposals.map((val: any) => (
                 val.proposalStatus === "Pending" ? (
-                    pendingMinute += 1
+                    setPendingMinute(pendingMinute + 1)
                 ) : (
                     null
                 )
             ))
+
+            console.log(pendingMinute)
 
         })
 
@@ -845,7 +850,7 @@ export default function ViewDemand() {
 
 
                             <div className={"proposals-view " + benefitQualitativeOpen} >
-                                <div className="display-flex-space-between">
+                                <div className="display-flex-space-between header-proposals-view">
                                     <p className="title">{t("proposals")}</p>
 
                                     <span onClick={() => setBenefitQualitativeOpen(!benefitQualitativeOpen)} className="material-symbols-outlined arrow-expend">

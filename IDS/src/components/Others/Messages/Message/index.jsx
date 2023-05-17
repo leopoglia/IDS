@@ -46,7 +46,6 @@ const ChatRoom = () => {
 
         if (messages[messages.length - 1]?.sender?.workerCode !== worker.id && workerDemand.workerName === "Analista") {
             ServicesWorker.findById(messages[messages.length - 1]?.sender.workerCode).then((response) => {
-                console.log(response);
                 setWorkerDemand({ workerCode: response.workerCode, workerName: response.workerName });
             }).catch((error) => {
                 console.log(error);
@@ -88,8 +87,6 @@ const ChatRoom = () => {
             await ServicesMessage.findById(demandCode)
                 .then((response) => {
 
-                    console.log(response);
-
                     setMessages(response);
                 }).catch((error) => {
                     console.log(error);
@@ -130,7 +127,6 @@ const ChatRoom = () => {
         setSelectedEmoji(emojiData.unified);
 
         setMessage({ ...message, message: message.message + emojiData.emoji, dateMessage: new Date().toLocaleString() });
-        console.log(message);
     }
 
 

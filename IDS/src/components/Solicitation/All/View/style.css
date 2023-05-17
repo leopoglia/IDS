@@ -117,6 +117,10 @@
     margin-bottom: 15px;
 }
 
+.view-demand .proposals-view .header-proposals-view {
+    border-bottom: 1px solid var(--greyC4);
+}
+
 .view-demand .responsible {
     margin-top: 30px;
 }
@@ -176,11 +180,11 @@
     width: 100%;
 }
 
-.view-demand .h50pxs{
+.view-demand .h50pxs {
     height: 60px !important;
 }
 
-.view-demand .noBorder{
+.view-demand .noBorder {
     border: none !important;
 }
 
@@ -414,7 +418,7 @@
 }
 
 
- .costCenter-td {
+.costCenter-td {
     border-left: 1px solid var(--greyC4);
     width: 250px;
 }
@@ -431,25 +435,25 @@
     background-color: var(--blueF4);
 }
 
-.p10{
+.p10 {
     padding: 10px !important;
 }
 
-.costCenter-td .display-flex-center{
-   margin-bottom: 10px;
+.costCenter-td .display-flex-center {
+    margin-bottom: 10px;
 }
 
-.costCenter-td .code{
+.costCenter-td .code {
     margin-left: 0px;
     width: 100%;
     background-color: var(--greyF7);
 }
 
-.costCenter-td .code:hover{
+.costCenter-td .code:hover {
     background-color: var(--greyF7);
 }
 
 
-.view-demand .proposal-status{
+.view-demand .proposal-status {
     white-space: nowrap;
 }

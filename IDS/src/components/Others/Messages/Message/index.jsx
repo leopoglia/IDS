@@ -168,7 +168,9 @@ const ChatRoom = () => {
                             (
                                 <div className={'chats chats-' + chatsOpen}>
 
-                                    {chat.map((item) => (
+                                    {
+                                    chat?.length > 0 &&
+                                    chat.map((item) => (
                                         <div className="chats-profile">
 
                                             <div className="person">

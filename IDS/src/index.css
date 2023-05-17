@@ -68,7 +68,8 @@ h3,
 p,
 button,
 span,
-div {
+div,
+input {
   font-family: "Helvetica", sans-serif;
 }
 
@@ -542,4 +543,12 @@ hr {
 
 [vw-plugin-wrapper].active {
   border-radius: var(--r) !important;
+}
+
+[vp] .vpw-settings-btn {
+  background-color: var(--blue);
+}
+
+[vp] .vpw-controls.vpw-playing .vpw-controls-play .vpw-component-pause{
+  filter: grayscale(10);
 }

@@ -33,6 +33,7 @@ import { WebSocketService } from "./services/webSocketService";
 import Header from "./components/Fixed/Header";
 import Nav from "./components/Fixed/Nav";
 import Cookies from 'js-cookie';
+import Accessibility from "./components/Fixed/Accessibility/vlibras";
 
 
 export default function Router() {
@@ -116,6 +117,8 @@ function RouterContent() {
                     <Nav />
                 </>
             )}
+
+            {/* <Accessibility /> */}
 
             <Routes>
                 <Route path="/" element={<Form />} />

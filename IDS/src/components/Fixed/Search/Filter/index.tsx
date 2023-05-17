@@ -28,14 +28,14 @@ export default function Filter(props: FilterProps) {
 
 
 
-        if ((type !== "status" && filter === true) && (type !== "size" && filter === true)) {
+        if ((type !== "status" && filter === true) && (type !== "size" && filter === true) && (type !== "date" && filter === true)) {
             return (
                 <div className="send-filter">
                     <div className="hr" />
 
                     {type !== "home" &&
 
-                    <input onChange={onButtonPress} type="text" ref={inputName} placeholder="Insira o parametro aqui" />
+                        <input onChange={onButtonPress} type="text" ref={inputName} placeholder="Insira o parametro aqui" />
 
                     }
 
@@ -60,6 +60,20 @@ export default function Filter(props: FilterProps) {
                     <SelectStatus status={status} setStatus={setStatus} array={arraySelect} />
 
                     <button onClick={onButtonPressSelect} className="btn-primary">Filtrar</button>
+
+                </div>
+            )
+        } else if (filter === true && type === "date") {
+
+            return (
+                <div className="send-filter">
+                    <div className="hr" />
+
+
+                    <input onChange={onButtonPress} type="date" ref={inputName} placeholder="Insira o parametro aqui" />
+
+
+                    <button onClick={onButtonPress} className="btn-primary">Filtrar</button>
 
                 </div>
             )

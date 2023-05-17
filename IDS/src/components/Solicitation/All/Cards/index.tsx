@@ -406,21 +406,46 @@ export default function Demands() {
                         <Search onClick={callback} name={nameFilter} type={typeFilter} setType={setType} nav={t("minuteViewMinute")} title="minutes" button="createMinute" link="/agendas/1" setTable={setTable} />
                         <div className="container-background">
                             {
-                                minutes.map((val: any, index) => {
-                                    if ((nameFilter === "" || nameFilter === undefined) && (typeFilter === "" || typeFilter === undefined) && (search === "")) {
-                                        return (
-                                            <Demand key={val.minuteCode} listDirection={table} name={val.minuteName} demandCode={val.minuteCode} director={val.director?.workerName} number={val.minuteCode} date={val.minuteStartDate} type="minute" />
-                                        );
-                                    } else if (search !== "") {
-                                        if (val.minuteCode.toString().includes(search)) {
-                                            return (
-                                                <Demand key={val.minuteCode} listDirection={table} name={val.minuteName} demandCode={val.minuteCode} director={val.director?.workerName} number={val.minuteCode} date={val.minuteStartDate} type="minute" />
-                                            );
-                                        } else {
-                                            return noResult();
+                                minutes
+                                    .filter((val: any) => {
+                                        if (
+                                            (nameFilter === "" || nameFilter === undefined) &&
+                                            (typeFilter === "" || typeFilter === undefined) &&
+                                            search === ""
+                                        ) {
+                                            return true;
                                         }
-                                    }
-                                })
+
+                                        if (search !== "" && val.minuteCode.toString().includes(search)) {
+                                            return true;
+                                        }
+
+                                        console.log(val.minuteStartDate)
+
+                                        console.log(nameFilter.split("-").reverse().join(""))
+
+                                        if (typeFilter === "code-minutes" && val.minuteCode === parseInt(nameFilter)) {
+                                            return true;
+                                        } else if (typeFilter === "date" && val.minuteStartDate.includes(nameFilter.split("/").reverse())) {
+                                            return true;
+                                        }
+
+
+
+                                        return false;
+                                    })
+                                    .map((val: any) => (
+                                        <Demand
+                                            key={val.minuteCode}
+                                            listDirection={table}
+                                            name={val.minuteName}
+                                            demandCode={val.minuteCode}
+                                            director={val.director?.workerName}
+                                            number={val.minuteCode}
+                                            date={val.minuteStartDate}
+                                            type="minute"
+                                        />
+                                    ))
                             }
 
                             {minutes.length === 0 && loading === true && <Load />}

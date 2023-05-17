@@ -107,7 +107,7 @@ export default function Nav() {
                 </li>
 
 
-                <Tooltip title={nav !== "nav-open" ?  t("demands") : ""} placement="right">
+                <Tooltip title={nav !== "nav-open" ? t("demands") : ""} placement="right">
                     <Link to="/demands/1">
                         <li id={hover("demands")}>
                             <div>
@@ -124,7 +124,7 @@ export default function Nav() {
                 {(worker.office === "analyst" || worker.office === "ti") &&
                     (
                         <>
-                            <Tooltip title={nav !== "nav-open" ?  t("proposals") : ""} placement="right">
+                            <Tooltip title={nav !== "nav-open" ? t("proposals") : ""} placement="right">
                                 <Link to="/proposals/1">
                                     <li id={hover("proposals")}>
                                         <div>
@@ -137,7 +137,7 @@ export default function Nav() {
                                 </Link>
                             </Tooltip>
 
-                            <Tooltip title={nav !== "nav-open" ?  t("agendas") : ""} placement="right">
+                            <Tooltip title={nav !== "nav-open" ? t("agendas") : ""} placement="right">
                                 <Link to="/agendas/1">
                                     <li id={hover("agendas")}>
                                         <div>
@@ -150,7 +150,7 @@ export default function Nav() {
                                 </Link>
                             </Tooltip>
 
-                            <Tooltip title={nav !== "nav-open" ?  t("minutes") : ""} placement="right">
+                            <Tooltip title={nav !== "nav-open" ? t("minutes") : ""} placement="right">
                                 <Link to="/minutes/1">
                                     <li id={hover("minutes")}>
                                         <div>
@@ -163,7 +163,7 @@ export default function Nav() {
                                 </Link>
                             </Tooltip>
 
-                            <Tooltip title={nav !== "nav-open" ?  t("dashboard") : ""} placement="right">
+                            <Tooltip title={nav !== "nav-open" ? t("dashboard") : ""} placement="right">
                                 <Link to="/dashboard">
                                     <li id={hover("dashboard")}>
                                         <div>
@@ -181,7 +181,7 @@ export default function Nav() {
 
                 {(worker.office === "analyst" || worker.office === "ti" || messagesOn) &&
                     (
-                        <Tooltip title={nav !== "nav-open" ?  t("messages") : ""} placement="right">
+                        <Tooltip title={nav !== "nav-open" ? t("messages") : ""} placement="right">
                             <Link to="/messages">
                                 <li id={hover("messages")}>
                                     <div>
@@ -199,7 +199,7 @@ export default function Nav() {
 
 
 
-                <Tooltip title={nav !== "nav-open" ?  t("notifications") : ""} placement="right">
+                <Tooltip title={nav !== "nav-open" ? t("notifications") : ""} placement="right">
 
                     <Link to="/notifications">
                         <li id={hover("notifications")}>
@@ -221,7 +221,7 @@ export default function Nav() {
 
 
                 <Link to="https://manualdeusuarioids.vercel.app/" target="_blank">
-                    <Tooltip title={nav !== "nav-open" ?  t("help") : ""} placement="right">
+                    <Tooltip title={nav !== "nav-open" ? t("help") : ""} placement="right">
 
                         <li className="help">
                             <div>
@@ -235,7 +235,7 @@ export default function Nav() {
                 </Link>
 
                 {/* <Link to="/"> */}
-                <Tooltip onClick={() => { logout() }} title={nav !== "nav-open" ?  t("logout") : ""} placement="right">
+                <Tooltip onClick={() => { logout() }} title={nav !== "nav-open" ? t("logout") : ""} placement="right">
                     <li className="logout">
                         <div>
                             <span className="material-symbols-outlined">

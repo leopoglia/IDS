@@ -25,7 +25,9 @@ export default function ExecutionCosts() {
     const proposal = JSON.parse(localStorage.getItem('proposal') || '{}');
     const scope: any = localStorage.getItem('proposalScope');
     let actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear(); // Data atual
-    let [expensesCostCenter, setExpensesCostCenter]: any = useState([{ costCenter: null, percent: 0 }]);
+    // let [costCenter, setCostCenter]: any = useState([]);
+    // let [percent, setPercent]: any = useState(0);
+    // let [expensesCostCenter, setExpensesCostCenter]: any = useState([{ costCenter: null, percent: 0 }]);
 
     let [internalCosts, setInternalCosts]: any = useState(0);
     let [recurrentCosts, setRecurrentCosts]: any = useState(0);
@@ -78,29 +80,36 @@ export default function ExecutionCosts() {
         }
     }
 
-    function setCostCenter(costCenter: any) {
-        setExpensesCostCenter([{costCenter: costCenter, percent: 100}]);
-    }
-
     async function saveExpenseFinal() {
+        let typeExpenses: any = [];
         let centerOfCustProposalInternal: any = [localStorage.getItem('centerOfCustProposalinternal')]
+        if (centerOfCustProposalInternal[0] != null) {
+            typeExpenses.push("internal");
+        }
         let centerOfCustProposalExpenses: any = [localStorage.getItem('centerOfCustProposalexpenses')]
+        if (centerOfCustProposalExpenses[0] != null) {
+            typeExpenses.push("expenses");
+        }
         let centerOfCustProposalRecurrent: any = [localStorage.getItem('centerOfCustProposalrecurrent')]
-        let typeExpenses: any = ["internal", "recurrent", "expenses"];
+        if (centerOfCustProposalRecurrent[0] != null) {
+            typeExpenses.push("recurrent");
+        }
 
-        for (let i = 0; i < 3; i++) {
-            let costCentersCode = i === 0 ? centerOfCustProposalInternal : i === 1 ? centerOfCustProposalRecurrent : centerOfCustProposalExpenses;
+        console.log("Type expenses ---> ", typeExpenses);
 
-            for (let i = 0; i < JSON.parse(costCentersCode).length; i++) {
-                setCostCenter(JSON.parse(costCentersCode[i]));
+        for (let i = 0; i < typeExpenses.length; i++) {
+            let expensesCostCenter: any = [];
+            let costCentersCode = typeExpenses[i] === "internal" ? centerOfCustProposalInternal : typeExpenses[i] === "recurrent" ? centerOfCustProposalRecurrent : centerOfCustProposalExpenses;
+
+            for (let j = 0; j < costCentersCode.length; j++) {
+                expensesCostCenter.push({ costCenter: { costCenterCode: JSON.parse(costCentersCode)[j] }, percent: 50 });
             }
-
-
-            console.log(expensesCostCenter);
             ExpensesService.save(typeExpenses[i], demandCode, JSON.parse(costCentersCode), expenseListStorage, expensesCostCenter).then((expenses: any) => {
                 console.log(expenses);
             })
+
         }
+
 
 
         localStorage.removeItem('centerOfCustProposalexpenses')

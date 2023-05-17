@@ -31,6 +31,7 @@ export default function Messages() {
                     <div className="boxNoPadding">
 
                         {
+                            messages.length > 0 &&
                             messages.map((val: any, index: any) => {
                                 if (val !== null) {
                                     if (index > 5 && messages.length - 1 === index) {

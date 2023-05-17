@@ -69,7 +69,8 @@ p,
 button,
 span,
 div,
-input {
+input,
+li {
   font-family: "Helvetica", sans-serif;
 }
 
@@ -545,10 +546,55 @@ hr {
   border-radius: var(--r) !important;
 }
 
-[vp] .vpw-settings-btn {
+[vp] .vpw-settings-btn,
+[vp] .vpw-settings .vpw-content {
   background-color: var(--blue);
 }
 
-[vp] .vpw-controls.vpw-playing .vpw-controls-play .vpw-component-pause{
+[vp] .vpw-controls.vpw-playing .vpw-controls-play .vpw-component-pause {
   filter: grayscale(10);
+}
+
+
+[vp] .vpw-slider-check.vpw-round {
+  background-color: rgba(255, 255, 255, 0.28) !important;
+  width: 53px;
+  height: 25px;
+}
+
+[vp] input:checked+.vpw-slider-check {
+  background-color: rgba(255, 255, 255, 0.70);
+}
+
+[vp] .vpw-slider-check::before {
+  position: absolute;
+  content: "";
+  margin-top: 6px;
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: var(--white);
+  transition: .4s;
+  border-radius: var(--rr);
+}
+
+[vp] .vpw-settings .vpw-content > ul .vpw-opacity{
+  display: none !important;
+}
+
+[vw] span{
+  font-family: "Helvetica", sans-serif !important;
+}
+
+[vp] .vpw-settings .vpw-content > ul .vpw-localism .vpw-abbrev{
+  font-weight: none !important;
+}
+
+[vp] .vpw-settings .vpw-content .vpw-flag{
+  border-radius: 3px !important;
+}
+
+[vp] [vp-change-avatar] .vp-button-change-avatar{
+  box-shadow: none;
 }

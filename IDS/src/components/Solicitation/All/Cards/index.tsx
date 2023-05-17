@@ -420,13 +420,16 @@ export default function Demands() {
                                             return true;
                                         }
 
-                                        console.log(val.minuteStartDate)
+                                        let dateFormat: any;
 
-                                        console.log(nameFilter.split("-").reverse().join(""))
+                                        // se for menos de 9 colocar 0 na frente
+                                        if (val.minuteStartDate?.split("/")[1].length === 1) {
+                                            dateFormat = val.minuteStartDate.split("/")[0] + "0" + val.minuteStartDate.split("/")[1] + val.minuteStartDate.split("/")[2]
+                                        }
 
                                         if (typeFilter === "code-minutes" && val.minuteCode === parseInt(nameFilter)) {
                                             return true;
-                                        } else if (typeFilter === "date" && val.minuteStartDate.includes(nameFilter.split("/").reverse())) {
+                                        } else if (typeFilter === "date" && dateFormat.includes(nameFilter.split("-").reverse().join(""))) {
                                             return true;
                                         }
 

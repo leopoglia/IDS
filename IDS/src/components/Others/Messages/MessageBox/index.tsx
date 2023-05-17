@@ -27,7 +27,6 @@ export default function Message(props: any) {
 
         ServicesMessage.findSender(worker.id, props.message?.demandCode).then((response: any) => {
             setSender(response);
-            console.log(response);
         })
 
 
@@ -40,21 +39,11 @@ export default function Message(props: any) {
                 <div className="profile">
                     <div className="user-picture">{imageRequester}</div>
 
-                    {
-                        props.message.sender.workerName === worker.name ? (
                             <div className="message-name">
                                 <p className="username">
                                     {sender.workerName} - {demandTitle}</p>
                                 <p className="last-message">Você: {props.message?.message}</p>
                             </div>
-                        ) : (
-                            <div className="message-name">
-                                <p className="username">
-                                    {requester} - {demandTitle}</p>
-                                <p className="last-message">{props.message.sender.workerName}: {props.message?.message}</p>
-                            </div>
-                        )
-                    }
 
 
                 </div>

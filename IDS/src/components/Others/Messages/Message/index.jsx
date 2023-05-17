@@ -30,6 +30,8 @@ const ChatRoom = () => {
 
     const [chatsOpen, setChatsOpen] = useState(true);
 
+    let [chat, setChat] = useState([]);
+
     useEffect(() => {
         divRef.current.scrollTop = divRef.current.scrollHeight;
 
@@ -38,6 +40,9 @@ const ChatRoom = () => {
             setMessages((previousMessages) => [...previousMessages, messageReceived]);
         }
 
+        ServicesMessage.findChatByDemand(demandCode).then((response) => {
+            setChat(response);
+        })
 
         if (messages[messages.length - 1]?.sender?.workerCode !== worker.id && workerDemand.workerName === "Analista") {
             ServicesWorker.findById(messages[messages.length - 1]?.sender.workerCode).then((response) => {
@@ -167,7 +172,7 @@ const ChatRoom = () => {
                             (
                                 <div className={'chats chats-' + chatsOpen}>
 
-                                    {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
+                                    {chat.map((item) => (
                                         <div className="chats-profile">
 
                                             <div className="person">
@@ -180,18 +185,18 @@ const ChatRoom = () => {
 
                                                 <div className='display-flex-space-between w100 chat-time-chats'>
                                                     <div className="message-name-chats">
-                                                        <span className="username">{workerDemand.workerName}</span>
+                                                            <span className="username">{workerDemand.workerName}</span>
                                                     </div>
 
                                                     <span className='time-chat'>
-                                                        12:00
+                                                        {item.dateMessage.split(",")[1]}
                                                     </span>
 
                                                 </div>
 
                                                 <div className='display-flex span-message-chat'>
                                                     <span className='message-chat'>
-                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.
+                                                        {item.message}
                                                     </span>
                                                 </div>
                                             </div>

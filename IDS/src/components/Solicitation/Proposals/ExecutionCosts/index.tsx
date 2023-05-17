@@ -25,6 +25,7 @@ export default function ExecutionCosts() {
     const proposal = JSON.parse(localStorage.getItem('proposal') || '{}');
     const scope: any = localStorage.getItem('proposalScope');
     let actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear(); // Data atual
+    let [expensesCostCenter, setExpensesCostCenter]: any = useState([{ costCenter: null, percent: 0 }]);
 
     let [internalCosts, setInternalCosts]: any = useState(0);
     let [recurrentCosts, setRecurrentCosts]: any = useState(0);
@@ -77,20 +78,30 @@ export default function ExecutionCosts() {
         }
     }
 
+    function setCostCenter(costCenter: any) {
+        setExpensesCostCenter([{costCenter: costCenter, percent: 100}]);
+    }
+
     async function saveExpenseFinal() {
         let centerOfCustProposalInternal: any = [localStorage.getItem('centerOfCustProposalinternal')]
         let centerOfCustProposalExpenses: any = [localStorage.getItem('centerOfCustProposalexpenses')]
         let centerOfCustProposalRecurrent: any = [localStorage.getItem('centerOfCustProposalrecurrent')]
         let typeExpenses: any = ["internal", "recurrent", "expenses"];
 
-
         for (let i = 0; i < 3; i++) {
             let costCentersCode = i === 0 ? centerOfCustProposalInternal : i === 1 ? centerOfCustProposalRecurrent : centerOfCustProposalExpenses;
 
-            ExpensesService.save(typeExpenses[i], demandCode, JSON.parse(costCentersCode), expenseListStorage).then((expenses: any) => {
+            for (let i = 0; i < JSON.parse(costCentersCode).length; i++) {
+                setCostCenter(JSON.parse(costCentersCode[i]));
+            }
+
+
+            console.log(expensesCostCenter);
+            ExpensesService.save(typeExpenses[i], demandCode, JSON.parse(costCentersCode), expenseListStorage, expensesCostCenter).then((expenses: any) => {
                 console.log(expenses);
             })
         }
+
 
         localStorage.removeItem('centerOfCustProposalexpenses')
         localStorage.removeItem('centerOfCustProposalinternal')

@@ -1,10 +1,10 @@
 const url = "http://localhost:8443/api/expenses";
 
 const Services = {
-    save: function (expenseName: String, proposal: any, costCenter: any, expense: any) {
+    save: function (expenseName: String, proposal: any, costCenter: any, expense: any, expensesCostCenters: any) {
         return new Promise((resolve, reject) => {
 
-
+            console.log("expensesCostCenters: " + expensesCostCenters);
             console.log("expenseName: " + expenseName);
             console.log("proposal: " + proposal);
             console.log("costCenter: " + costCenter);
@@ -12,6 +12,7 @@ const Services = {
 
             let costCenters = [];
             let expenses = [];
+            let expensesCostCenter = [];
 
             for (let i = 0; i < costCenter.length; i++) {
                 costCenters.push({ "costCenterCode": costCenter[i] });
@@ -28,7 +29,7 @@ const Services = {
                     expensesType: expenseName,
                     proposal: { proposalCode: proposal },
                     expense: expenses,
-                    expenseCostCenter: [{"costCenter": { "costCenterCode":  costCenters }, "percent": 50}]
+                    expensesCostCenters: expensesCostCenters
                 }), headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); })
                 .then(resolve)

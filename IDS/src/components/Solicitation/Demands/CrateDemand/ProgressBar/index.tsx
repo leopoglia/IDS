@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./style.css"
 
 export default function ProgressBar(props: {
@@ -21,11 +22,13 @@ export default function ProgressBar(props: {
     } else if (props.atual === "2") {
         return (
             <div className="progress-bar">
-                <div className="ellipse-current">
-                    <span className="material-symbols-outlined">
-                        done
-                    </span>
-                </div>
+                <Link to={"/demand/create/1"}>
+                    <div className="ellipse-current">
+                        <span className="material-symbols-outlined">
+                            done
+                        </span>
+                    </div>
+                </Link>
                 <div className="line-current"></div>
                 <div className="ellipse-current">
                     <span className="material-symbols-outlined">
@@ -39,17 +42,22 @@ export default function ProgressBar(props: {
     } else if (props.atual === "3") {
         return (
             <div className="progress-bar">
-                <div className="ellipse-current">
-                    <span className="material-symbols-outlined">
-                        done
-                    </span>
-                </div>
+                <Link to={"/demand/create/1"}>
+                    <div className="ellipse-current">
+                        <span className="material-symbols-outlined">
+                            done
+                        </span>
+                    </div>
+                </Link>
                 <div className="line-current"></div>
-                <div className="ellipse-current">
-                    <span className="material-symbols-outlined">
-                        done
-                    </span>
-                </div>
+
+                <Link to={"/demand/create/2"}>
+                    <div className="ellipse-current">
+                        <span className="material-symbols-outlined">
+                            done
+                        </span>
+                    </div>
+                </Link>
                 <div className="line-current"></div>
                 <div className="ellipse-current">
                     <span className="material-symbols-outlined">

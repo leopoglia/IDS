@@ -27,6 +27,7 @@ export default function CreateDemands1() {
         setTitleDemand(demand.titleInput)
         setCurrentSituation(demand.currentSituation)
         setObjective(demand.objective)
+        setCostsCenters(demand.costCenter)
     }, [])
 
     const [costCenter, setCostCenter] = useState("");
@@ -154,14 +155,14 @@ export default function CreateDemands1() {
 
     return (
         <div className="create-demands-1">
-        
+
             <div className="container">
                 <div className="background-title">
                     <Title nav="demandsCreateDemand" title="createDemand" />
 
                     <ProgressBar atual="1" />
                 </div>
- 
+
 
 
                 <div className="box">
@@ -174,12 +175,12 @@ export default function CreateDemands1() {
 
                     <div className="text-area">
                         <label>{t("objective")} *</label>
-                        <Editor handleChange={handleChange} type={"objective"} />
+                        <Editor handleChange={handleChange} type={"objective"} content={objective} />
                     </div>
 
                     <div className="text-area">
                         <label>{t("currentSituation")} *</label>
-                        <Editor handleChange={handleChange} type={"currentSituation"} />
+                        <Editor handleChange={handleChange} type={"currentSituation"} content={currentSituation} />
                     </div>
                     {/* 
                     <TextArea label="currentSituation" required="*" onChange={(e) => { setDemandProblem(e.target.value) }}></TextArea> */}
@@ -210,8 +211,6 @@ export default function CreateDemands1() {
                         </div>
                     })
                     }
-
-                    {/* <Input label="costCenter" required="*" onChange={(e) => { setCostCenter(e.target.value) }}></Input> */}
 
                 </div>
 

@@ -70,7 +70,8 @@ button,
 span,
 div,
 input,
-li {
+li,
+textarea {
   font-family: "Helvetica", sans-serif;
 }
 
@@ -336,7 +337,8 @@ tr td:last-child {
   border-right: none;
 }
 
-tr:hover {
+tr:hover,
+.tr:hover {
   background-color: var(--blueF4);
 }
 

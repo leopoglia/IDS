@@ -867,7 +867,7 @@ export default function ViewDemand() {
 
                                             if (proposalSpecific.length !== index + 1) {
                                                 return (
-                                                    <div className="h50px display-flex" key={index}>
+                                                    <div className="h50px display-flex tr" key={index}>
                                                         <div className="display-flex-start pl20 display-flex-center">
                                                             <div className="code">
                                                                 {val.proposalCode}
@@ -909,7 +909,7 @@ export default function ViewDemand() {
                                                 )
                                             } else {
                                                 return (
-                                                    <div className="h50px noBorder display-flex" key={index}>
+                                                    <div className="h50px noBorder display-flex tr" key={index}>
                                                         <div className="display-flex-start pl20 display-flex-center">
                                                             <div className="code">
                                                                 {val.proposalCode}

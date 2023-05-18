@@ -193,7 +193,7 @@
 .configuration .box-accesibility {
     width: 50%;
     height: 300px;
-    border-radius: 20px;
+    border-radius: calc(var(--r) * 4);
     margin-left: 50px;
     background: linear-gradient(99.05deg, #00579D 8.81%, #448DCA 153.91%);
     box-shadow: 0px 4px 4px rgba(49, 49, 49, 0.25);

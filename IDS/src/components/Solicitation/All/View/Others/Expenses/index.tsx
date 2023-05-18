@@ -16,6 +16,9 @@ export default function Expenses(props: any) {
     const demandCode = useParams().id;
 
     useEffect(() => {
+
+        console.log(props);
+
         let totalAmountOfHoursLet = 0;
         let totalHourValueLet = 0;
         let totalValueLet = 0;
@@ -151,12 +154,12 @@ export default function Expenses(props: any) {
                             </tr>
 
                             <div className="p10">
-                                {props.proposalExpense.costCenter !== undefined ?
+                                {props.proposalExpense.expensesCostCenters !== undefined ?
                                     <>
-                                        {props.proposalExpense.costCenter.map((costCenter: any, index: any) => {
+                                        {props.proposalExpense.expensesCostCenters.map((costCenter: any, index: any) => {
                                             return (
-                                                <Tooltip title={costCenter.costCenter} arrow>
-                                                    <div className="display-flex-center code">{costCenter.costCenter}</div>
+                                                <Tooltip title={costCenter.costCenter.costCenter} arrow>
+                                                    <div className="display-flex-center code">{costCenter.costCenter.costCenter}</div>
                                                 </Tooltip>
                                             )
                                         })

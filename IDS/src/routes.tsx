@@ -33,12 +33,11 @@ import { WebSocketService } from "./services/webSocketService";
 import Header from "./components/Fixed/Header";
 import Nav from "./components/Fixed/Nav";
 import Cookies from 'js-cookie';
-import Accessibility from "./components/Fixed/Accessibility/vlibras";
 
 
 export default function Router() {
 
-
+    // State do context do usuário
     const [worker, setWorker] = useState({
         id: "",
         office: "",
@@ -49,21 +48,24 @@ export default function Router() {
 
     useEffect(() => {
 
+        // Verifica se o usuário não está na tela de login
         if (window.location.pathname !== "/") {
-            let workerCode;
+            let workerCode; // Variável que armazena o código do usuário
 
-            let cookieUser: any = Cookies?.get('user');
+            let cookieUser: any = Cookies?.get('user'); // Pega o cookie do usuário
 
+            // Verifica se o cookie existe
             if (cookieUser !== undefined) {
+                // Pega o código do usuário
                 workerCode = JSON.parse(cookieUser).worker.workerCode;
             }
 
 
             if (worker.id === "") {
-                const id = workerCode;
-
-                if (id !== null && id !== undefined) {
-                    ServicesWorker.findById(JSON.parse(id)).then((response: any) => {
+                
+                if (workerCode !== null && workerCode !== undefined) {
+                    // Busca os dados do usuário
+                    ServicesWorker.findById(JSON.parse(workerCode)).then((response: any) => {
                         const worker = {
                             id: response.workerCode,
                             office: response.workerOffice,
@@ -71,9 +73,11 @@ export default function Router() {
                             email: response.corporateEmail,
                             language: response.language
                         }
+                        // Seta os dados do usuário no context
                         setWorker(worker);
                     });
                 } else {
+                    // Redireciona para a tela de login
                     if (window.location.pathname !== "/") {
                         window.location.href = "/";
                     }

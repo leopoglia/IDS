@@ -148,7 +148,7 @@ const ChatRoom = () => {
 
 
                 <div className="box-message">
-                {
+                    {
                         !messages.includes(workerDemand) && workerDemand.workerCode !== worker.id ? (
                             <div className="profile">
                                 <div className='person'>
@@ -183,59 +183,60 @@ const ChatRoom = () => {
                                     </div>
                                 </div>
                             </div>
-                    )
+                        )
 
                     }
 
                     <div className="chat-box display-flex">
 
-                        {worker.office !== "requester"  && worker.office !== "analyst" ?
+                        {worker.office !== "requester" && worker.office !== "analyst" ?
                             (
                                 <div className={'chats chats-' + chatsOpen}>
 
                                     {
-                                    chat?.length > 0 &&
-                                    chat.map((item) => (
-                                        <div className="chats-profile">
+                                        chat?.length > 0 &&
+                                        chat.map((item) => (
+                                            <div className="chats-profile">
 
-                                            <div className="person">
-                                                <span>
-                                                    {workerDemand.workerName?.slice(0, 1)}
-                                                </span>
-                                            </div>
+                                                <div className="person">
+                                                    <span>
+                                                        {workerDemand.workerName?.slice(0, 1)}
+                                                    </span>
+                                                </div>
 
-                                            <div className='text-person-chats w100'>
+                                                <div className='text-person-chats w100'>
 
-                                                <div className='display-flex-space-between w100 chat-time-chats'>
-                                                    <div className="message-name-chats">
+                                                    <div className='display-flex-space-between w100 chat-time-chats'>
+                                                        <div className="message-name-chats">
                                                             <span className="username">{workerDemand.workerName}</span>
+                                                        </div>
+
+                                                        <span className='time-chat'>
+                                                            {item.dateMessage.split(",")[1]}
+                                                        </span>
+
+
                                                     </div>
+                                                    {
+                                                        worker.id === item.sender.workerCode ? (
+                                                            <div className='display-flex span-message-chat'>
+                                                                <span className='message-chat'>
+                                                                    Você: {item.message}
+                                                                </span>
+                                                            </div>
+                                                        ) : (
+                                                            <div className='display-flex span-message-chat'>
+                                                                <span className='message-chat'>
+                                                                    {sender.workerName}: {item.message}
+                                                                </span>
+                                                            </div>
+                                                        )
+                                                    }
 
-                                                    <span className='time-chat'>
-                                                        {item.dateMessage.split(",")[1]}
-                                                    </span>
+                                                </div>
 
-                                                </div>
-                                            {
-                                                worker.id === item.sender.workerCode ? (
-                                                    <div className='display-flex span-message-chat'>
-                                                    <span className='message-chat'>
-                                                        você: {item.message}
-                                                    </span>
-                                                </div>
-                                                ):(
-                                                    <div className='display-flex span-message-chat'>
-                                                    <span className='message-chat'>
-                                                        {sender.workerName}: {item.message}
-                                                    </span>
-                                                </div>
-                                                )
-                                            }
-                                                
                                             </div>
-
-                                        </div>
-                                    ))
+                                        ))
                                     }
 
                                 </div>
@@ -271,9 +272,21 @@ const ChatRoom = () => {
 
                                                 <span>{message?.message}</span>
 
-                                                <div className="message-data">
-                                                    <span>{message?.dateMessage.split(",")[1]}</span>
+
+                                                <div className='display-flex-end'>
+                                                    <div className="message-data">
+                                                        <span>{message?.dateMessage.split(",")[1]}</span>
+                                                    </div>
+
+                                                    {message?.sender?.workerCode === worker.id || message?.sender?.workerCode === parseInt(localStorage.getItem("id")) ? (
+                                                        <span className='material-symbols-outlined check-done'>
+                                                            done
+                                                        </span>
+                                                    )
+                                                        : null
+                                                    }
                                                 </div>
+
 
                                             </div>
 

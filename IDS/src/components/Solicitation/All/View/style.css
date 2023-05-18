@@ -15,6 +15,7 @@
 
 .view-demand .box div span {
     font-size: var(--p);
+    color: var(--grey3d) !important;
 }
 
 .view-demand .box .title {

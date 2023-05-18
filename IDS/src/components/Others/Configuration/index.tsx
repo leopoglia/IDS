@@ -28,8 +28,8 @@ export default function Configuration() {
             document.documentElement.style.setProperty('--r', ".375rem");
             document.documentElement.style.setProperty('--rr', "50px");
         } else {
-            document.documentElement.style.setProperty('--r', ".10rem");
-            document.documentElement.style.setProperty('--rr', "4px");
+            document.documentElement.style.setProperty('--r', "2px");
+            document.documentElement.style.setProperty('--rr', "2px");
         }
     }
 

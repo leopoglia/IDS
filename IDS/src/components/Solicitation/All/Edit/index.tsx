@@ -605,13 +605,10 @@ export default function Edit() {
 						<>
 							<div className="box">
 
-								<div className="display-flex">
-									<p>{t(expenseType)}</p>
-								</div>
 
 								<div className="display-flex-space-between">
 
-									<Link to={"/proposal/execution-costs/add-expense/" + demandCode}>
+									<Link to={"/proposal/execution-costs/add-expense/" + demandCode + "?" + expenseType}>
 										<button className="btn-secondary">{t("addExpense")}</button>
 									</Link>
 

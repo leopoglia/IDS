@@ -25,6 +25,11 @@ export default function AddExpense() {
     useEffect(() => {
         setExpenseList(JSON.parse(localStorage.getItem('expenseList') || '[]'));
 
+
+        if(window.location.href.split("?")[1] !== undefined){
+            setExpenseType(window.location.href.split("?")[1])
+        }
+
     }, [expenseType]);
 
     const nextStep = () => {
@@ -52,7 +57,7 @@ export default function AddExpense() {
 
                     <div className="display-flex-grid">
                         <label>{t("expenseType")} *</label>
-                        <SelectAddExpense setExpenseType={setExpenseType} type="expenseType" />
+                        <SelectAddExpense setExpenseType={setExpenseType} value={expenseType} type="expenseType" />
                     </div>
 
                     <div className="display-flex-grid">

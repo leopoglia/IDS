@@ -113,11 +113,11 @@ export default function ExecutionCosts() {
 
         }
 
-        // localStorage.removeItem('centerOfCustProposalexpenses')
-        // localStorage.removeItem('centerOfCustProposalinternal')
-        // localStorage.removeItem('centerOfCustProposalrecurrent')
-        // localStorage.removeItem('demand');
-        // localStorage.removeItem('expenseList');
+        localStorage.removeItem('centerOfCustProposalexpenses')
+        localStorage.removeItem('centerOfCustProposalinternal')
+        localStorage.removeItem('centerOfCustProposalrecurrent')
+        localStorage.removeItem('demand');
+        localStorage.removeItem('expenseList');
 
     }
 

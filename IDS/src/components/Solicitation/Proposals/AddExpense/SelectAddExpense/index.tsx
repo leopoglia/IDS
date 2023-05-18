@@ -16,7 +16,18 @@ export default function SelectLabels(props: any) {
             setCostCenter(response);
 
         });
+
+
     }, []);
+
+    useEffect(() => {
+        if (props.type === "expenseType") {
+            setSelect(props.value)
+
+            console.log("props.value", props.value);
+            console.log("props.type", props.type);
+        }
+    }, [props.value]);
 
 
     const handleChange = (event: SelectChangeEvent) => {
@@ -39,6 +50,7 @@ export default function SelectLabels(props: any) {
                     onChange={handleChange}
                     displayEmpty
                     inputProps={{ 'aria-label': 'Without label' }}
+                    disabled={props.value === "internal" || "recurrent" || "expenses" ? true : false}
 
                     sx={{ height: '45px' }}
                 >

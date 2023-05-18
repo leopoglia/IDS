@@ -11,16 +11,17 @@ import ServicesMessage from "../../../../services/messageService";
 export default function Message(props: any) {
 
     const { t } = useTranslation();
-    const [requester, setRequester]: any = useState("");
+    const [requester, setRequester]: any = useState({});
     const [demandTitle, setDemandTitle]: any = useState("")
     const [imageRequester, setImageRequester]: any = useState("");
-    const [sender, setSender]: any = useState("");
+    const [sender, setSender]: any = useState({});
+    let senderName = "";
     const worker: any = useContext(UserContext).worker;
 
     useEffect(() => {
 
         ServicesDemand.findById(props.message?.demandCode).then((response: any) => {
-            setRequester(response.requesterRegistration.workerName);
+            setRequester(response.requesterRegistration);
             setImageRequester(response.requesterRegistration.workerName.substring(0, 1));
             setDemandTitle(response.demandTitle);
         })
@@ -29,8 +30,6 @@ export default function Message(props: any) {
             setSender(response);
         })
 
-
-
     }, [props.message]);
 
     return (
@@ -38,14 +37,34 @@ export default function Message(props: any) {
             <div className={"message-" + props.bottom}>
                 <div className="profile">
                     <div className="user-picture">{imageRequester}</div>
+                    {
+                        props.message.sender !== requester && requester.workerCode !== worker.id ? (
+                            <div className="message-name">
+                                <p className="username">
+                                    {requester.workerName} - {demandTitle}</p>
+                                {
+                                    props.message?.sender.workerCode === worker.id ? (
+                                        <p className="last-message">Você: {props.message?.message}</p>
+                                    ) : (
+                                        <p className="last-message">{sender.workerName}: {props.message?.message}</p>
+                                    )
+                                }
 
+                            </div>
+                        ) : (
                             <div className="message-name">
                                 <p className="username">
                                     {sender.workerName} - {demandTitle}</p>
-                                <p className="last-message">Você: {props.message?.message}</p>
+                                {
+                                    props.message?.sender.workerCode === worker.id ? (
+                                        <p className="last-message">Você: {props.message?.message}</p>
+                                    ) : (
+                                        <p className="last-message">{sender.workerName}: {props.message?.message}</p>
+                                    )
+                                }
                             </div>
-
-
+                        )
+                    }
                 </div>
 
                 <div className="date-horary">

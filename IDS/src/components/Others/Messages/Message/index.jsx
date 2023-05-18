@@ -148,27 +148,48 @@ const ChatRoom = () => {
 
 
                 <div className="box-message">
-                    <div className="profile">
+                {
+                        !messages.includes(workerDemand) && workerDemand.workerCode !== worker.id ? (
+                            <div className="profile">
+                                <div className='person'>
+                                    <span>
+                                        {workerDemand.workerName?.slice(0, 1)}
+                                    </span>
+                                </div>
 
-                        <div className='person'>
-                            <span>
-                                {sender.workerName?.slice(0, 1)}
-                            </span>
-                        </div>
+                                <div className="message-name">
+                                    <span className="username">{workerDemand.workerName}</span>
 
-                        <div className="message-name">
-                            <span className="username">{sender.workerName}</span>
+                                    <div className="online">
+                                        <span>online</span>
 
-                            <div className="online">
-                                <span>online</span>
-
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        ) : (
+                            <div className="profile">
+                                <div className='person'>
+                                    <span>
+                                        {sender.workerName?.slice(0, 1)}
+                                    </span>
+                                </div>
+
+                                <div className="message-name">
+                                    <span className="username">{sender.workerName}</span>
+
+                                    <div className="online">
+                                        <span>online</span>
+
+                                    </div>
+                                </div>
+                            </div>
+                    )
+
+                    }
 
                     <div className="chat-box display-flex">
 
-                        {worker.office !== "requester" ?
+                        {worker.office !== "requester"  && worker.office !== "analyst" ?
                             (
                                 <div className={'chats chats-' + chatsOpen}>
 

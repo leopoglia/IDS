@@ -76,7 +76,7 @@ export default function Table(props: any) {
 
                             <tr>
                                 {props.items.map((item: any, index: any) => {
-                                    if (item.length > 20) {
+                                    if (item.length > 30) {
                                         if (item.includes("http://") || item.includes("https://")) {
                                             return (
                                                 <Tooltip title={item} arrow>

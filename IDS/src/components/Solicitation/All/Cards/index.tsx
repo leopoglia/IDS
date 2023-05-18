@@ -41,7 +41,7 @@ export default function Demands() {
 
     // Entra na página e busca as demandas cadastradas
     useEffect(() => {
-        setLoading(true);
+
         if (url[3] === "demands") {
             if (search === "" || typeFilter === "") {
                 getDemands(); // Busca as demandas cadastradas

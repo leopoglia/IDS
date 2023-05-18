@@ -7,15 +7,20 @@ import MessageService from "../../../services/messageService";
 import { useContext } from "react";
 import UserContext from "../../../context/userContext";
 import { useTranslation } from "react-i18next";
+import Load from "../../Fixed/Load";
 
 export default function Messages() {
     const worker: any = useContext(UserContext).worker;
     let [messages, setMessages]: any = useState([]);
+    const [loading, setLoading] = useState(true);
     const { t } = useTranslation();
 
     useEffect(() => {
         MessageService.findChatByDemand(worker.id).then((response: any) => {
             setMessages(response);
+
+            setLoading(false);
+
         })
 
     }, [worker.id]);
@@ -33,32 +38,36 @@ export default function Messages() {
                     <div className="boxNoPadding">
 
                         {
-                            messages.length > 0 ?
-                                (
-                                    messages.map((val: any, index: any) => {
-                                        if (val !== null) {
-                                            if (index > 5 && messages.length - 1 === index) {
-                                                return (
-                                                    <div key={index}>
-                                                        <Message message={val} bottom={false} />
-                                                    </div>
-                                                );
-                                            } else {
-                                                return (
-                                                    <div key={index}>
-                                                        <Message message={val} bottom={true} />
-                                                    </div>
-                                                );
+                            loading === true ? (
+                                <Load />
+                            ) : (
+                                messages.length > 0 ?
+                                    (
+                                        messages.map((val: any, index: any) => {
+                                            if (val !== null) {
+                                                if (index > 5 && messages.length - 1 === index) {
+                                                    return (
+                                                        <div key={index}>
+                                                            <Message message={val} bottom={false} />
+                                                        </div>
+                                                    );
+                                                } else {
+                                                    return (
+                                                        <div key={index}>
+                                                            <Message message={val} bottom={true} />
+                                                        </div>
+                                                    );
+                                                }
                                             }
-                                        }
-                                    })
-                                ) : (
+                                        })
+                                    ) : (
 
-                                    <div className="no-results">
-                                        <span className="material-symbols-outlined">chat_bubble</span>
-                                        <h1>{t("noResults")}</h1>
-                                    </div>
-                                )
+                                        <div className="no-results">
+                                            <span className="material-symbols-outlined">chat_bubble</span>
+                                            <h1>{t("noResults")}</h1>
+                                        </div>
+                                    )
+                            )
                         }
 
 

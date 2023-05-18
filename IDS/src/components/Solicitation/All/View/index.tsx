@@ -466,6 +466,9 @@ export default function ViewDemand() {
     const [proposalScopeOpen, setProposalScopeOpen] = useState(false);
     const [complementOpen, setComplementOpen] = useState(false);
 
+
+    console.log(demand.qualitativeBenefit.interalControlsRequirements)
+
     return (
         <div className="view-demand">
 
@@ -680,7 +683,7 @@ export default function ViewDemand() {
                                     <div className="infos">
 
                                         <div>
-                                            <span>{t("legalObligation")}: {demand.qualitativeBenefit.frequencyOfUse}</span>
+                                            <span>{t("internalControlRequirements")}: {(demand.qualitativeBenefit.interalControlsRequirements === true) ? (<span>Sim</span>) : <span>Não</span>}</span>
                                         </div>
 
                                     </div>

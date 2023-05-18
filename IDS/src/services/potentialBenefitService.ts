@@ -7,7 +7,7 @@ const Services = {
                 method: 'POST', body: JSON.stringify({
                     potentialMonthlyValue: potentialMonthlyValue,
                     potentialBenefitDescription: potentialBenefitDescription,
-                    legalObrigation: legalObrigation,
+                    legalObrigation: legalObrigation == null ? false : legalObrigation,
                     potentialCurrency: potentialCurrency
                 }), headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); })

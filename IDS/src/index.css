@@ -141,6 +141,11 @@ textarea {
   min-height: 100px;
 }
 
+input[type=checkbox] {
+  accent-color: var(--blue);
+  width: 20px !important;
+}
+
 input[type=checkbox]:checked {
   outline: none;
 }
@@ -463,6 +468,18 @@ hr {
   color: var(--grey3d);
 }
 
+.checkbox{
+  display: flex;
+}
+
+.pl10{
+  padding-left: 10px !important;
+}
+
+.mb0{
+  margin-bottom: 0px !important;
+}
+
 .checkbox span {
   font-size: var(--p) !important;
 }
@@ -579,22 +596,22 @@ hr {
   border-radius: var(--rr);
 }
 
-[vp] .vpw-settings .vpw-content > ul .vpw-opacity{
+[vp] .vpw-settings .vpw-content>ul .vpw-opacity {
   display: none !important;
 }
 
-[vw] span{
+[vw] span {
   font-family: "Helvetica", sans-serif !important;
 }
 
-[vp] .vpw-settings .vpw-content > ul .vpw-localism .vpw-abbrev{
+[vp] .vpw-settings .vpw-content>ul .vpw-localism .vpw-abbrev {
   font-weight: none !important;
 }
 
-[vp] .vpw-settings .vpw-content .vpw-flag{
+[vp] .vpw-settings .vpw-content .vpw-flag {
   border-radius: 3px !important;
 }
 
-[vp] [vp-change-avatar] .vp-button-change-avatar{
+[vp] [vp-change-avatar] .vp-button-change-avatar {
   box-shadow: none;
 }

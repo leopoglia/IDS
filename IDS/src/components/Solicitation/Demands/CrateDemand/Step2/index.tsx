@@ -26,12 +26,12 @@ export default function CreateDemands2() {
 
     const [potentialMonthlyValue, setPotentialMonthlyValue] = useState("");
     const [potentialBenefitDescription, setPotentialBenefitDescription] = useState("");
-    const [legalObrigation, setLegalObrigation] = useState("");
+    const [legalObrigation, setLegalObrigation] = useState(false);
     const [potentialCurrency, setPotentialCurrency] = useState("");
 
     const [qualitativeBenefitDescription, setQualitativeBenefitDescription] = useState("");
     const [frequencyOfUse, setFrequencyOfUse] = useState("");
-    const [interalControlsRequirements, setInteralControlsRequirements] = useState("");
+    const [interalControlsRequirements, setInteralControlsRequirements] = useState(false);
 
     useEffect(() => { 
 
@@ -77,12 +77,14 @@ export default function CreateDemands2() {
 
 
         let realBenefits: any = await RealServices.save(Number.parseFloat(realMonthlyValue), realBenefitDescription, realCurrencyFinal);
-        let potentialBenefits: any = await PotentialServices.save(Number.parseFloat(potentialMonthlyValue), potentialBenefitDescription, true, potentialCurrencyFinal);
-        let qualitativeBenefits: any = await QualitativeServices.save("1", qualitativeBenefitDescription, true);
+        let potentialBenefits: any = await PotentialServices.save(Number.parseFloat(potentialMonthlyValue), potentialBenefitDescription, legalObrigation, potentialCurrencyFinal);
+        let qualitativeBenefits: any = await QualitativeServices.save("1", qualitativeBenefitDescription, interalControlsRequirements);
 
         localStorage.setItem("realBenefits", JSON.stringify(realBenefits));
         localStorage.setItem("potentialBenefits", JSON.stringify(potentialBenefits));
         localStorage.setItem("qualitativeBenefits", JSON.stringify(qualitativeBenefits));
+
+        console.log(potentialBenefits);
     }
 
 
@@ -155,7 +157,8 @@ export default function CreateDemands2() {
                             <div className="input-checkbox">
                                 <label>{t("legalObligation")}</label>
                                 <div className="checkbox">
-                                    <CheckBox />
+                                    <input type="checkbox" id="legalObrigation" name="legalObrigation" checked={legalObrigation} onChange={(e) => { setLegalObrigation(e.target.checked)}} />
+                                    <label htmlFor="legalObrigation" className="pl10 mb0">{t("yes")}</label>
                                 </div>
                             </div>
                         </div>
@@ -186,7 +189,9 @@ export default function CreateDemands2() {
                         <div className="input-checkbox">
                             <label className="requirements">{t("internalControlRequirements")}</label>
                             <div className="checkbox">
-                                <CheckBox />
+                                <input type="checkbox" id="interalControlsRequirements" name="interalControlsRequirements" checked={interalControlsRequirements} onChange={(e) => { setInteralControlsRequirements(e.target.checked)}} />
+                                <label htmlFor="interalControlsRequirements" className="pl10 mb0">{t("yes")}</label>
+
                             </div>
                         </div>
                     </div>

@@ -20,6 +20,10 @@
     margin-bottom: 15px;
 }
 
+.box .input-checkbox label{
+    width: max-content;
+}
+
 .box .input-checkbox .checkbox {
     height: var(--h);
     display: flex;

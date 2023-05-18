@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from "react-i18next";
+import { useParams } from 'react-router';
 import SelectCostCenter from '../SelectCostCenter';
 import "./style.css"
 
@@ -10,8 +11,15 @@ export default function ConditionalValidationGrid(props: any) {
     const [expenseList, setExpenseList]: any = useState(JSON.parse(localStorage.getItem('expenseList') || '[]'));
     const [deleteNumber, setDeleteNumber] = useState<any>(0);
 
+    const [editExpense, setEditExpense] = useState<any>(false);
+
     useEffect(() => {
-        setExpenseList(JSON.parse(localStorage.getItem('expenseList') || '[""]'));
+
+        if (localStorage.getItem('expenseList') === null) {
+            setEditExpense(true);
+        } else {
+            setExpenseList(JSON.parse(localStorage.getItem('expenseList') || '[""]'));
+        }
 
     }, [deleteNumber, localStorage.getItem('expenseList')]);
 

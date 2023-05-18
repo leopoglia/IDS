@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Title from "../../../Fixed/Search/Title";
 import ServicesDemand from "../../../../services/demandService";
 import "./style.css"
@@ -16,6 +16,8 @@ import CheckBox from "../../Demands/CrateDemand/CheckBox";
 import Editor from "../../Proposals/EditProposalScope/Editor";
 
 import othersUtil from "../../../../utils/othersUtil";
+import ExecutionCosts from "../../Proposals/ExecutionCosts";
+import GridCostExecution from "../../Proposals/ExecutionCosts/GridCostExecution";
 
 
 export default function Edit() {
@@ -28,6 +30,7 @@ export default function Edit() {
 
 	const [proposalCode, setProposalCode] = useState(window.location.href.split("?")[1]); // Código da proposta
 	const [editType, setEditType]: any = useState(window.location.href.split("?")[2]); // Tipo de edição (Tabelas, classificação, complementos, despesas)
+	const [expenseType, setExpenseType]: any = useState(window.location.href.split("?")[1]); // Tipo de despesa (Custo, investimento, despesa)
 
 	const [demandCode, setDemandCode] = useState(parseInt(window.location.href.split("/")[5])); // Código da demanda
 	let [demandVersion, setDemandVersion] = useState(); // Versão da demanda
@@ -279,7 +282,7 @@ export default function Edit() {
 							ServicesDemand.findById(demandCode).then((response: any) => {
 								demandVersion = response.demandVersion;
 								localStorage.setItem("route", "edit");
-							navigate("/demand/view/" + demandCode + "?" + demandVersion);
+								navigate("/demand/view/" + demandCode + "?" + demandVersion);
 							});
 						} else if (url === "demand") {
 							navigate("/proposal/edit-scope/" + demandCode);
@@ -306,7 +309,7 @@ export default function Edit() {
 	const [situationAdicional, setAdicionalOpen] = useState(true);
 
 	return (
-		<div className="create-demands-1">
+		<div className="create-demands-1 execution-costs">
 
 			{demands &&
 				<div className="container">
@@ -322,9 +325,7 @@ export default function Edit() {
 					</div>
 
 
-					{editType}
-
-					{editType === undefined ? (
+					{editType === undefined && expenseType !== "expenses" && expenseType !== "internal" && expenseType !== "recurrent" ? (
 						<>
 
 							<div className={"box box-" + situationInfo}>
@@ -600,7 +601,29 @@ export default function Edit() {
 							</div>
 						</>
 
-					) : (<></>)
+					) : expenseType === "internal" || expenseType === "recurrent" || expenseType === "expenses" ? (
+						<>
+							<div className="box">
+
+								<div className="display-flex">
+									<p>{t(expenseType)}</p>
+								</div>
+
+								<div className="display-flex-space-between">
+
+									<Link to={"/proposal/execution-costs/add-expense/" + demandCode}>
+										<button className="btn-secondary">{t("addExpense")}</button>
+									</Link>
+
+									
+								</div>
+
+								<GridCostExecution title={expenseType} />
+
+							</div>
+						</>
+					) : null
+
 					}
 
 

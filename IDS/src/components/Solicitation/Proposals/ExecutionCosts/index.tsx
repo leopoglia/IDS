@@ -97,9 +97,8 @@ export default function ExecutionCosts() {
 
         console.log("Type expenses ---> ", typeExpenses);
 
-        let expensesCostCenter: any = [];
-
         for (let i = 0; i < typeExpenses.length; i++) {
+            let expensesCostCenter: any = [];
             let costCentersCode = typeExpenses[i] === "internal" ? centerOfCustProposalInternal : typeExpenses[i] === "recurrent" ? centerOfCustProposalRecurrent : centerOfCustProposalExpenses;
 
             for (let j = 0; j < JSON.parse(costCentersCode).length; j++) {

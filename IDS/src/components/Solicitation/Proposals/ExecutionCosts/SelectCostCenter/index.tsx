@@ -44,6 +44,9 @@ export default function SelectCostCenter(props: any) {
             let service: any = await Services.save(costCenter);
 
             idCostCenter.push(service.costCenterCode);
+
+            localStorage.setItem('centerOfCustProposal' + props.type, JSON.stringify(idCostCenter));
+
         } else {
             for (let i = 0; i < costsCenterBd.length; i++) {
                 if (costsCenterBd[i].costCenter === costCenter) {

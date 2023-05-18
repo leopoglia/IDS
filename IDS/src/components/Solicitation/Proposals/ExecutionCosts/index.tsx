@@ -97,26 +97,28 @@ export default function ExecutionCosts() {
 
         console.log("Type expenses ---> ", typeExpenses);
 
+        let expensesCostCenter: any = [];
+
         for (let i = 0; i < typeExpenses.length; i++) {
-            let expensesCostCenter: any = [];
             let costCentersCode = typeExpenses[i] === "internal" ? centerOfCustProposalInternal : typeExpenses[i] === "recurrent" ? centerOfCustProposalRecurrent : centerOfCustProposalExpenses;
 
-            for (let j = 0; j < costCentersCode.length; j++) {
+            for (let j = 0; j < JSON.parse(costCentersCode).length; j++) {
                 expensesCostCenter.push({ costCenter: { costCenterCode: JSON.parse(costCentersCode)[j] }, percent: 50 });
             }
-            ExpensesService.save(typeExpenses[i], demandCode, JSON.parse(costCentersCode), expenseListStorage, expensesCostCenter).then((expenses: any) => {
-                console.log(expenses);
-            })
+
+            if (JSON.parse(costCentersCode).length > 0) {
+                ExpensesService.save(typeExpenses[i], demandCode, JSON.parse(costCentersCode), expenseListStorage, expensesCostCenter).then((expenses: any) => {
+                    console.log(expenses);
+                })
+            }
 
         }
 
-
-
-        localStorage.removeItem('centerOfCustProposalexpenses')
-        localStorage.removeItem('centerOfCustProposalinternal')
-        localStorage.removeItem('centerOfCustProposalrecurrent')
-        localStorage.removeItem('demand');
-        localStorage.removeItem('expenseList');
+        // localStorage.removeItem('centerOfCustProposalexpenses')
+        // localStorage.removeItem('centerOfCustProposalinternal')
+        // localStorage.removeItem('centerOfCustProposalrecurrent')
+        // localStorage.removeItem('demand');
+        // localStorage.removeItem('expenseList');
 
     }
 

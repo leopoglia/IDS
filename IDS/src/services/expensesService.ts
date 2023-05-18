@@ -12,7 +12,6 @@ const Services = {
 
             let costCenters = [];
             let expenses = [];
-            let expensesCostCenter = [];
 
             for (let i = 0; i < costCenter.length; i++) {
                 costCenters.push({ "costCenterCode": costCenter[i] });

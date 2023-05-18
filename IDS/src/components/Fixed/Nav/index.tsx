@@ -73,14 +73,15 @@ export default function Nav() {
         if (worker.office === "requester") {
             ServicesMessages.findAllByDemandRequester(worker.id).then((response: any) => {
                 if (response === true) {
+
+                    console.log(response)
                     setMessagesOn(response)
                 }
             }).catch((error: any) => {
                 console.log(error);
             });
         }
-    }, []);
-
+    }, [worker.office]);
 
 
     function logout() {

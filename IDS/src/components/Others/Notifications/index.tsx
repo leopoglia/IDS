@@ -5,15 +5,18 @@ import Footer from "../../Fixed/Footer";
 import { useState, useEffect, useContext } from "react";
 import Services from "../../../services/notificationService";
 import UserContext from "../../../context/userContext";
+import { useTranslation } from "react-i18next";
+
 
 export default function Notifications() {
 
     const [notifications, setNotifications]: any = useState([]);
     const [haveNotification, setHaveNotification]: any = useState(0);
-    const worker = useContext(UserContext).worker
+    const worker = useContext(UserContext).worker;
+    const { t } = useTranslation();
 
 
-    useEffect(() => { 
+    useEffect(() => {
         Services.findAll().then((response: any) => {
             setNotifications(response.reverse())
         })
@@ -32,28 +35,36 @@ export default function Notifications() {
 
                 <div className="container-background">
                     <div className="boxNoPadding">
-                        {notifications.map((notification: any) => {
-                            if (notification.worker.workerCode === worker.id) {
+                        {
+                            notifications.length > 0 ? (
+                                notifications.map((notification: any) => {
+                                    if (notification.worker.workerCode === worker.id) {
 
-                                return (
-                                    <Notification
-                                        key={notification.notificationCode}
-                                        id={notification.notificationCode}
-                                        description={notification.description}
-                                        date={notification.date}
-                                        icon={notification.icon}
-                                        view={notification.visualized}
-                                        type={notification.type}
-                                    />
-                                )
-                            }
+                                        return (
+                                            <Notification
+                                                key={notification.notificationCode}
+                                                id={notification.notificationCode}
+                                                description={notification.description}
+                                                date={notification.date}
+                                                icon={notification.icon}
+                                                view={notification.visualized}
+                                                type={notification.type}
+                                            />
+                                        )
+                                    }
 
-                            if (notification.worker.workerCode === worker.id) {
-                                setHaveNotification(haveNotification + 1)
-                            }
+                                    if (notification.worker.workerCode === worker.id) {
+                                        setHaveNotification(haveNotification + 1)
+                                    }
 
 
-                        }, [])
+                                })
+                            ) : (
+                                <div className="no-results">
+                                    <span className="material-symbols-outlined">notifications</span>
+                                    <h1>{t("noResults")}</h1>
+                                </div>
+                            )
                         }
 
 

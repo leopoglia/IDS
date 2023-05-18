@@ -199,11 +199,38 @@ export default function Demands() {
     }
 
     const noResult = () => {
-        return (
-            <div className="no-results">
-                <h1>{t("noResults")}</h1>
-            </div>
-        )
+
+        console.log(url[3])
+
+        if (url[3] === "demands") {
+            return (
+                <div className="no-results">
+                    <span className="material-symbols-outlined">draft</span>
+                    <h1>{t("noResults")}</h1>
+                </div>
+            )
+        } else if (url[3] === "proposals") {
+            return (
+                <div className="no-results">
+                    <span className="material-symbols-outlined">request_quote</span>
+                    <h1>{t("noResults")}</h1>
+                </div>
+            )
+        } else if (url[3] === "agendas") {
+            return (
+                <div className="no-results">
+                    <span className="material-symbols-outlined">folder</span>
+                    <h1>{t("noResults")}</h1>
+                </div>
+            )
+        } else if (url[3] === "minutes") {
+            return (
+                <div className="no-results">
+                    <span className="material-symbols-outlined">file_present</span>
+                    <h1>{t("noResults")}</h1>
+                </div>
+            )
+        }
     }
 
 

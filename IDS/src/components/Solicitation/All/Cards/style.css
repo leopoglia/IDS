@@ -68,8 +68,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: var(--grey59);
+    color: var(--greyC4);
     height: calc(100vh - 400px);
+}
+
+.no-results .material-symbols-outlined{
+    font-size: 200px !important;
+    color: var(--greyC4) !important
 }
 
 .minute iframe {

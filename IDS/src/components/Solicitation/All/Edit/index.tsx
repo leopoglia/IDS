@@ -241,16 +241,14 @@ export default function Edit() {
 
 	async function editUnit() {
 
-		console.log(editType)
-
 		if (editType === "costcenter") {
 			ServicesDemand.updateCostCenter(demandCode, costsCentersId).then((response: any) => {
 
 				navigate("/proposal/view/" + proposalCode);
 			})
-		} else if (editType === "recurrent" || editType === "internal" || editType === "external") {
+		} else if (expenseType === "recurrent" || expenseType === "internal" || expenseType === "external") {
 
-			console.log("OPAAAA")
+			console.log("TERMINEI AQUI!!!!!")
 		}
 
 	}

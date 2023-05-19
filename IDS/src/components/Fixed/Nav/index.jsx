@@ -3,6 +3,7 @@ import "./style.css"
 import { useState, useEffect, useContext } from 'react'
 import { useTranslation } from "react-i18next";
 import ServicesNotification from "../../../services/notificationService";
+import { WebSocketContext } from '../../../services/webSocketService';
 import ServicesMessages from "../../../services/messageService";
 import UserContext from "../../../context/userContext";
 import { Tooltip } from "@mui/material";
@@ -14,13 +15,17 @@ export default function Nav() {
     const navigate = useNavigate();
 
     const url = window.location.pathname.split("/")[1]; // Pega a url atual e separa por "/" e pega o primeiro item do array (que é a página atual)
-    const worker: any = useContext(UserContext).worker; // Pega o usuário logado
-    const [numNotification, setNumNotification]: any = useState(0); // Quantidade de notificações não lidas
+    const worker = useContext(UserContext).worker; // Pega o usuário logado
+    const [numNotification, setNumNotification] = useState(0); // Quantidade de notificações não lidas
+    let [notification, setNotification] = useState([]); // Notificações do usuário
     const [nav, setNav] = useState(localStorage.getItem("nav") || "nav");  // Estado do menu
     const [messagesOn, setMessagesOn] = useState(false); // Se tiver true, mostra as mensagens para o solicitante
+    const [subscribeId, setSubscribeId] = useState(null);
+
+    const { send, subscribe, stompClient } = useContext(WebSocketContext);
 
     // Verifica qual página está sendo acessada e retorna a classe "current" para o item do menu
-    function hover(li: string): string {
+    function hover(li) {
         if (url === li || url === li.substring(0, li.length - 1)) {
             return "current";
         } else {
@@ -39,7 +44,7 @@ export default function Nav() {
         setNav(navState); // Atualiza o estado do menu
 
         // Busca as notificações do usuário
-        ServicesNotification.findAll().then((response: any) => {
+        ServicesNotification.findAll().then((response) => {
             let numNotificationVisualized = 0;
             let numberNotification = 0;
             for (let i = 0; i < response.length; i++) {
@@ -52,32 +57,50 @@ export default function Nav() {
                 }
             }
 
+            if (stompClient && !subscribeId) {
+                setSubscribeId(subscribe("/notifications/" + worker.id, notification));
+            }
+
             if (numberNotification === 0) {
                 if (numNotification === 0) {
-                    ServicesNotification.save("welcomeNotification", JSON.parse(worker.id), "sentiment_satisfied", "presentation").then((response: any) => { })
+                    send("/api/worker/" + worker.id, notification);
+                    setDefaultNotification();
                     numberNotification++;
                     numNotificationVisualized++;
                 }
             }
 
             setNumNotification(numNotificationVisualized);
-        }).catch((error: any) => {
+        }).catch((error) => {
             console.log(error);
         });
+    }, [numNotification, stompClient]);
 
+    function createNotification(event) {
+        event.preventDefault();
+        send("/api/worker/" + worker.id, notification);
+        setDefaultNotification();
+    }
 
-
-    }, [numNotification]);
+    const setDefaultNotification = () => {
+        setNotification({
+            date: new Date(),
+            description: "welcomeNotification",
+            worker: { workerCode: JSON.parse(worker.id) },
+            icon: "sentiment_satisfied",
+            type: "presentation",
+        })
+    }
 
     useEffect(() => {
         if (worker.office === "requester") {
-            ServicesMessages.findAllByDemandRequester(worker.id).then((response: any) => {
+            ServicesMessages.findAllByDemandRequester(worker.id).then((response) => {
                 if (response === true) {
 
                     console.log(response)
                     setMessagesOn(response)
                 }
-            }).catch((error: any) => {
+            }).catch((error) => {
                 console.log(error);
             });
         }
@@ -202,7 +225,7 @@ export default function Nav() {
 
                 <Tooltip title={nav !== "nav-open" ? t("notifications") : ""} placement="right">
 
-                    <Link to="/notifications">
+                    <Link to={"/notifications/" + worker.id}>
                         <li id={hover("notifications")}>
                             {numNotification > 0 &&
                                 <li className="booble">

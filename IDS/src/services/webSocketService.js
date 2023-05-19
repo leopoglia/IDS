@@ -23,7 +23,6 @@ export const WebSocketService = ({ children }) => {
                 }, 5000);
             })
         }
-
         connect();
     }, [])
 

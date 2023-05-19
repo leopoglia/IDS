@@ -40,7 +40,6 @@ const Services = {
                 .catch(resolve)
         })
     }
-
 }
 
 export default Services;

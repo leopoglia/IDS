@@ -125,8 +125,6 @@ const ChatRoom = () => {
         setDefaultMessage();
     }
 
-
-
     function onClick(emojiData) {
         setSelectedEmoji(emojiData.unified);
 

@@ -95,7 +95,6 @@ export default function ExecutionCosts() {
             typeExpenses.push("recurrent");
         }
 
-        console.log("Type expenses ---> ", typeExpenses);
 
         for (let i = 0; i < typeExpenses.length; i++) {
             let expensesCostCenter: any = [];

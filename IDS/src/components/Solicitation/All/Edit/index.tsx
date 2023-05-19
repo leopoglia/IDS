@@ -8,13 +8,13 @@ import SelectCenterCost from "../../Demands/CrateDemand/Step1/SelectCenterCost";
 import ServicesRealBenefit from "../../../../services/realBenefitService";
 import ServicesPotentialBenefit from "../../../../services/potentialBenefitService";
 import ServicesQualitativeBenefit from "../../../../services/qualitativeBenefitService";
-import ServicesHistorical from "../../../../services/historicalService";
 import ServicesProposal from "../../../../services/proposalService";
 import Services from "../../../../services/costCenterService";
 import SelectCoin from "../../Demands/CrateDemand/SelectCoin";
 import CheckBox from "../../Demands/CrateDemand/CheckBox";
 import Editor from "../../Proposals/EditProposalScope/Editor";
 import GridCostExecution from "../../Proposals/ExecutionCosts/GridCostExecution";
+import ExpensesService from "../../../../services/expensesService";
 
 
 export default function Edit() {
@@ -25,7 +25,7 @@ export default function Edit() {
 	const [url, setUrl] = useState(window.location.href.split("/")[4]); // Url da página
 	const [type, setType] = useState(window.location.href.split("/")[3]); // Tipo da página
 
-	const [proposalCode, setProposalCode] = useState(window.location.href.split("?")[1]); // Código da proposta
+	const [proposalCode, setProposalCode]: any = useState(window.location.href.split("?")[1]); // Código da proposta
 	const [editType, setEditType]: any = useState(window.location.href.split("?")[2]); // Tipo de edição (Tabelas, classificação, complementos, despesas)
 	const [expenseType, setExpenseType]: any = useState(window.location.href.split("?")[1]); // Tipo de despesa (Custo, investimento, despesa)
 
@@ -63,6 +63,8 @@ export default function Edit() {
 	const [demandClassification, setDemandClassification]: any = useState(""); // Classificação da demanda
 	const [demandRequester, setDemandRequester]: any = useState(""); // Solicitante da demanda
 	const [demandDate, setDemandDate]: any = useState(""); // Data da demanda
+
+	const [expenses, setExpenses]: any = useState([]); // Despesas
 
 	function getDemand(demandCodeParam: number) {
 		ServicesDemand.findById(demandCodeParam).then((response: any) => {
@@ -221,24 +223,6 @@ export default function Edit() {
 		setFileAttachment(filesArray);
 	}
 
-
-	const attatchmentType = (demands: any) => {
-		if (demands.type === "image/png" || demands.type === "image/jpeg") {
-			return "png";
-		} else if (demands.type === "application/pdf") {
-			return "pdf";
-		} else if (demands.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
-			return "word";
-		} else if (demands.type === "application/msword" || demands.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||
-			demands.demandAttachment.type === "application/vnd.ms-excel") {
-			return "excel";
-		} else if (demands.type === "application/zip") {
-			return "zip";
-		} else if (demands.type === "application/x-rar-compressed") {
-			return "rar";
-		}
-	}
-
 	async function editUnit() {
 
 		if (editType === "costcenter") {
@@ -246,10 +230,46 @@ export default function Edit() {
 
 				navigate("/proposal/view/" + proposalCode);
 			})
-		} else if (expenseType === "recurrent" || expenseType === "internal" || expenseType === "external") {
+		} else if (expenseType === "recurrent" || expenseType === "internal" || expenseType === "expenses") {
 
-			console.log("TERMINEI AQUI!!!!!")
+
+			let costCentersCode: any = [];
+			let expensesCostCenter: any = [];
+			let expenseListStorage = JSON.parse(localStorage.getItem('expenseList') || '[]');
+
+
+			if (localStorage.getItem("centerOfCustProposalexpenses") !== null) {
+				costCentersCode = JSON.parse(localStorage.getItem("centerOfCustProposalexpenses") || '[]');
+			} else {
+				costCentersCode = costsCentersId;
+			}
+
+			for (let j = 0; j < costCentersCode.length; j++) {
+				expensesCostCenter.push({ costCenter: { costCenterCode: costCentersCode[j] }, percent: 50 });
+			}
+
+			ExpensesService.findByProposal(parseInt(window.location.href.split("/")[5])).then((expenses: any) => {
+
+				expenses.map((expense: any) => {
+
+					if (expense.expensesType === expenseType) {
+
+						console.log(expensesCostCenter)
+						if (expensesCostCenter.length > 0) {
+
+							ExpensesService.update(expenseType, demandCode, costCentersCode, expenseListStorage, expensesCostCenter, expense.expensesCode).then((expenses: any) => {
+								console.log(expenses);
+
+								navigate("/proposal/view/" + demandCode);
+								localStorage.removeItem("centerOfCustProposalexpenses");
+								localStorage.removeItem("expenseList");
+							})
+						}
+					}
+				})
+			})
 		}
+
 
 	}
 

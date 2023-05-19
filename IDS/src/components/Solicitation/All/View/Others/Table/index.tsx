@@ -10,14 +10,6 @@ export default function Table(props: any) {
     const url = window.location.href.split("/")[3];
     const navigate = useNavigate();
 
-    useEffect(() => {
-
-        console.log(url)
-
-        console.log(props.id)
-    }, [])
-
-
     // Função para criar tabela (tr)
     const tr = (dataOne: any, dataTwo: any, index: any) => {
         return (

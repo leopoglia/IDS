@@ -179,7 +179,7 @@ export default function CreateAgenda() {
 
                     <div className="input">
                         <label>{t("dateAgenda")} *</label>
-                        <input type="datetime-local" onChange={(e) => {setDate(e.target.value); console.log("value ===>", e.target.value) }}  value={date} />
+                        <input type="datetime-local" onChange={(e) => {setDate(e.target.value); }}  value={date} />
                     </div>
 
                     <div className="input">

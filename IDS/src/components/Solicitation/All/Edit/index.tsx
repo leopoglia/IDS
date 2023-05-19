@@ -14,9 +14,6 @@ import Services from "../../../../services/costCenterService";
 import SelectCoin from "../../Demands/CrateDemand/SelectCoin";
 import CheckBox from "../../Demands/CrateDemand/CheckBox";
 import Editor from "../../Proposals/EditProposalScope/Editor";
-
-import othersUtil from "../../../../utils/othersUtil";
-import ExecutionCosts from "../../Proposals/ExecutionCosts";
 import GridCostExecution from "../../Proposals/ExecutionCosts/GridCostExecution";
 
 
@@ -93,9 +90,6 @@ export default function Edit() {
 			setDemandScore(demand.score);
 			setDemandRequester(demand.requesterRegistration.workerCode);
 			setDemandDate(demand.demandDate);
-
-			console.log(demand?.classification?.classificationCode)
-
 			setDemandClassification(demand?.classification?.classificationCode);
 
 
@@ -247,11 +241,16 @@ export default function Edit() {
 
 	async function editUnit() {
 
+		console.log(editType)
+
 		if (editType === "costcenter") {
 			ServicesDemand.updateCostCenter(demandCode, costsCentersId).then((response: any) => {
 
 				navigate("/proposal/view/" + proposalCode);
 			})
+		} else if (editType === "recurrent" || editType === "internal" || editType === "external") {
+
+			console.log("OPAAAA")
 		}
 
 	}
@@ -612,11 +611,15 @@ export default function Edit() {
 										<button className="btn-secondary">{t("addExpense")}</button>
 									</Link>
 
-									
+
 								</div>
 
 								<GridCostExecution title={expenseType} />
 
+							</div>
+
+							<div className="display-flex-end">
+								<button onClick={() => editUnit()} className="btn-primary">{t("edit")}</button>
 							</div>
 						</>
 					) : null

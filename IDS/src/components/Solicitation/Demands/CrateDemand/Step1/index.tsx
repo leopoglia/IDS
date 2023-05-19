@@ -24,8 +24,6 @@ export default function CreateDemands1() {
     useEffect(() => {
         let demand = JSON.parse(localStorage.getItem('demand') || '{}')
 
-        console.log("demand ---> ", demand)
-
         if (demand?.titleInput !== undefined) {
             setTitleDemand(demand?.titleInput)
             setCurrentSituation(demand?.currentSituation)

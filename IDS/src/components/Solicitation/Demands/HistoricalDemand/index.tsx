@@ -39,7 +39,6 @@ export default function HistoricalDemand() {
         navigate(`/demand/view/${demandCode}?${demandVersion}`);
     }
 
-    console.log(demand);
 
     function setActiveVersion(demandCode: any, nextDemandVersion: any) {
         ServiceDemand.setActiveVersion(demandCode, nextDemandVersion).then((response: any) => {

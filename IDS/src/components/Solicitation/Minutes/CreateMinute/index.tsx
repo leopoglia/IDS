@@ -24,8 +24,6 @@ export default function CreateMinute() {
         AgendaService.findById(code).then((response: any) => {
 
             setProposals(response[0].proposals);
-
-            console.log(response);
         })
 
 

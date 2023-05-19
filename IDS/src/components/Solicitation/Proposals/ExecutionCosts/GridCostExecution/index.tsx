@@ -3,20 +3,38 @@ import { useTranslation } from "react-i18next";
 import { useParams } from 'react-router';
 import SelectCostCenter from '../SelectCostCenter';
 import "./style.css"
+import ServicesExpenses from '../../../../../services/expensesService';
 
 
 
 export default function ConditionalValidationGrid(props: any) {
 
-    const [expenseList, setExpenseList]: any = useState(JSON.parse(localStorage.getItem('expenseList') || '[]'));
+    const [expenseList, setExpenseList]: any = useState([]);
     const [deleteNumber, setDeleteNumber] = useState<any>(0);
 
     const [editExpense, setEditExpense] = useState<any>(false);
+    const proposalCode: any = useParams().id;
+    const expenseType = window.location.href.split("?")[1];
 
     useEffect(() => {
 
-        if (localStorage.getItem('expenseList') === null) {
+        console.log(localStorage.getItem('expenseList'))
+
+        if ((expenseType === "internal" || expenseType === "recurrent" || expenseType === "expenses") && (localStorage.getItem('expenseList') === undefined || localStorage.getItem('expenseList') === null)) {
             setEditExpense(true);
+
+            ServicesExpenses.findByProposal(proposalCode).then((expenses: any) => {
+
+                expenses.forEach((expense: any) => {
+                    if (expense.expensesType === expenseType) {
+                        setExpenseList(expense.expense);
+                        localStorage.setItem('expenseList', JSON.stringify(expense.expense));
+
+                    }
+                });
+            })
+
+
         } else {
             setExpenseList(JSON.parse(localStorage.getItem('expenseList') || '[""]'));
         }
@@ -55,7 +73,9 @@ export default function ConditionalValidationGrid(props: any) {
 
                         {
                             expenseList.map((val: any, index: any) => {
+
                                 if (val.expenseType === props.title) {
+
                                     return (
                                         <tr>
                                             <td>{val.expenseProfile}</td>
@@ -70,6 +90,7 @@ export default function ConditionalValidationGrid(props: any) {
                                         </tr>
                                     )
                                 }
+
                             })
                         }
                     </table>
@@ -79,12 +100,6 @@ export default function ConditionalValidationGrid(props: any) {
 
 
             <SelectCostCenter type={props.title} />
-
-            {props.title !== "internal" ?
-                <div className="hr mtwo30"></div>
-                : null
-            }
-
         </div >
 
     );

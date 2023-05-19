@@ -26,7 +26,7 @@ export default function AddExpense() {
         setExpenseList(JSON.parse(localStorage.getItem('expenseList') || '[]'));
 
 
-        if(window.location.href.split("?")[1] !== undefined){
+        if (window.location.href.split("?")[1] !== undefined) {
             setExpenseType(window.location.href.split("?")[1])
         }
 
@@ -38,7 +38,12 @@ export default function AddExpense() {
         } else {
             expenseList.push(expense);
             localStorage.setItem('expenseList', JSON.stringify(expenseList));
-            navigate('/proposal/execution-costs/' + demandCode);
+
+            if (window.location.href.split("?")[1] === undefined) {
+                navigate('/proposal/execution-costs/' + demandCode);
+            } else {
+                navigate('/proposal/edit/' + demandCode + "?" + expenseType);
+            }
         }
     }
 

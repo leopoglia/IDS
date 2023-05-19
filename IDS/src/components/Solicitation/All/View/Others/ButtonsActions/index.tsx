@@ -7,9 +7,6 @@ export default function ButtonsActions(props: any) {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        console.log("props.actionsDemanda ==>" , props.actionsDemand)
-    }, [props.demand])
 
     return (
         <div className="display-flex-end">

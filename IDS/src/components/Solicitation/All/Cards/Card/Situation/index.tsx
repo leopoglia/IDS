@@ -7,7 +7,7 @@ export default function Situation(props: any) {
 
     const { t } = useTranslation();
 
-    useEffect(() => { 
+    useEffect(() => {
 
         // if (props.situation) {
         //     // dar espaço quando a letra for maiuscula no props.situation
@@ -56,19 +56,23 @@ export default function Situation(props: any) {
 
     if (props.type === "demand") {
         return (
-            <Tooltip title={t("situation-" + props.situation)} arrow>
-                <div className="graphic">
-                    {situation()}
-                </div>
-            </Tooltip>
+            <div className="display-flex">
+                <Tooltip title={t("situation-" + props.situation)} arrow>
+                    <div className="graphic">
+                        {situation()}
+                    </div>
+                </Tooltip>
+            </div>
         );
     } else if (props.type === "proposal") {
         return (
-            <Tooltip title={t(props.situation)} arrow>
-                <div className="graphic-proposal">
-                    {situation()}
-                </div>
-            </Tooltip>
+            <div className="display-flex">
+                <Tooltip title={t(props.situation)} arrow>
+                    <div className="graphic-proposal">
+                        {situation()}
+                    </div>
+                </Tooltip>
+            </div>
         );
     } else {
         return (

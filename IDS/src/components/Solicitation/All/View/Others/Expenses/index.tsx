@@ -17,8 +17,6 @@ export default function Expenses(props: any) {
 
     useEffect(() => {
 
-        console.log(props);
-
         let totalAmountOfHoursLet = 0;
         let totalHourValueLet = 0;
         let totalValueLet = 0;

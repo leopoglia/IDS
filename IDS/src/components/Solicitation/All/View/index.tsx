@@ -301,7 +301,6 @@ export default function ViewDemand() {
                 )
             ))
 
-            console.log(pendingMinute)
 
         })
 
@@ -466,8 +465,6 @@ export default function ViewDemand() {
     const [proposalScopeOpen, setProposalScopeOpen] = useState(false);
     const [complementOpen, setComplementOpen] = useState(false);
 
-
-    console.log(demand.qualitativeBenefit.interalControlsRequirements)
 
     return (
         <div className="view-demand">

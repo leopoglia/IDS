@@ -84,7 +84,6 @@ export default function CreateDemands2() {
         localStorage.setItem("potentialBenefits", JSON.stringify(potentialBenefits));
         localStorage.setItem("qualitativeBenefits", JSON.stringify(qualitativeBenefits));
 
-        console.log(potentialBenefits);
     }
 
 

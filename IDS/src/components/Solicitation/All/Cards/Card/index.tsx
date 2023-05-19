@@ -35,6 +35,7 @@ export default function Demand(props: any) {
                     <div className="requester"><p>{t("requester")}: {props.requester}</p></div>
                     <div><p>{t("date")}: {props.date}</p></div>
                     <div className="situation"><p>{t("situation")}: {t(props.situation)}</p></div>
+
                 </div>)
             )
 

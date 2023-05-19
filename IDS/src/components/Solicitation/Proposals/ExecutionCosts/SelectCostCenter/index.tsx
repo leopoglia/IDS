@@ -2,7 +2,7 @@ import { t } from "i18next"
 import { useEffect, useState } from "react";
 import SelectCostExecution from "../SelectCostExecution"
 import Services from "../../../../../services/costCenterService";
-
+import ServicesExpenses from "../../../../../services/expensesService";
 
 export default function SelectCostCenter(props: any) {
 
@@ -11,10 +11,38 @@ export default function SelectCostCenter(props: any) {
     const [idCostCenter, setIdCostCenter]: any = useState([]);
     let centerOfCustProposal: any = JSON.parse(localStorage.getItem('centerOfCustProposal' + props.type) || '[]');
 
+    const editType = window.location.href.split("?")[1];
+    const proposalCode: any = window.location.href.split("/")[5];
+
 
     useEffect(() => {
-        setCostsCenters(JSON.parse(localStorage.getItem('centerOfCustProposal' + props.type) || '[]'));
+
+        if (editType !== undefined) {
+            ServicesExpenses.findByProposal(proposalCode).then((expenses: any) => {
+
+                expenses.forEach((expense: any) => {
+                    if (expense.expensesType === editType) {
+
+                        let costsCentersAux: any[] = [];
+                        let idCostCenterAux: any[] = [];
+
+                        expense.expensesCostCenters.forEach((costCenter: any) => {
+                            costsCentersAux.push(costCenter.costCenter.costCenter);
+                            idCostCenterAux.push(costCenter.costCenter.costCenterCode);
+                        });
+
+                        setCostsCenters(costsCentersAux);
+                        setIdCostCenter(idCostCenterAux);
+                    }
+                });
+            })
+
+        } else {
+            setCostsCenters(JSON.parse(localStorage.getItem('centerOfCustProposal' + props.type) || '[]'));
+        }
     }, [localStorage.getItem('costsCenters' + props.type)]);
+    
+
 
 
     function addCostCenter(costCenterAdd: any) {

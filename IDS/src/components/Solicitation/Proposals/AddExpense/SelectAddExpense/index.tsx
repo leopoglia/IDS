@@ -41,6 +41,8 @@ export default function SelectLabels(props: any) {
         }
     };
 
+    console.log(props.value)
+
     return (
         <div>
 
@@ -50,7 +52,7 @@ export default function SelectLabels(props: any) {
                     onChange={handleChange}
                     displayEmpty
                     inputProps={{ 'aria-label': 'Without label' }}
-                    disabled={props.value === "internal" || "recurrent" || "expenses" ? true : false}
+                    disabled={(props.value === "internal" || props.value === "recurrent" || props.value === "expenses") && props.value !== "" && window.location.href.split("?")[1] !== undefined ? true : false}
 
                     sx={{ height: '45px' }}
                 >

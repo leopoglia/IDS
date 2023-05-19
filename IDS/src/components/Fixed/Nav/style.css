@@ -175,7 +175,7 @@ nav li {
     z-index: 1;
     width: 15px;
     height: 15px;
-    border-radius: var(--r);
+    border-radius: var(--rr);
     background-color: var(--blue);
     font-size: 9px;
     color: white;

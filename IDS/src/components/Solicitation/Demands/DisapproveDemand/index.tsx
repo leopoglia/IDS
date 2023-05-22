@@ -5,10 +5,12 @@ import "./style.css"
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ButtonAction from "../CrateDemand/ButtonAction";
 import DemandService from "../../../../services/demandService";
 import Services from "../../../../services/reproachService";
+import { WebSocketContext } from '../../../../services/webSocketService';
+import UserContext from "../../../../context/userContext";
 
 
 export default function DisapproveDemand() {
@@ -16,11 +18,27 @@ export default function DisapproveDemand() {
     const navigate = useNavigate();
     const [disapprovalReason, setDisapprovalReason]: any = useState(""); // Motivo de reprovação
     const demandCode = parseInt(window.location.href.split("/")[5]);
-    let demandVersion:any;
+    let demandVersion: any;
+    let notification = {}; // Notificações do usuário
+    const { send, subscribe, stompClient }: any = useContext(WebSocketContext);
+    const [subscribeId, setSubscribeId] = useState(null);
+    const [demand, setDemand]: any = useState({});
+    const workerOffice: any = useContext(UserContext).worker.office;
+
+    useEffect(() => {
+        DemandService.findById(demandCode).then((response: any) => {
+            setDemand(response);
+        });
+
+        if (stompClient && !subscribeId) {
+            setSubscribeId(subscribe("/notifications/" + demand?.requesterRegistration?.workerCode, notification));
+        }
+    }, [stompClient]);
 
     // Função para reprovar demanda
     function disapproveDemand() {
         Services.save(disapprovalReason, demandCode).then((response) => {
+            send("/api/worker/" + demand.requesterRegistration.workerCode, setReproveNotification());
         }).catch((error) => {
             console.log(error);
         }
@@ -29,6 +47,34 @@ export default function DisapproveDemand() {
         }).catch((error) => {
             console.log(error);
         });
+    }
+
+    const setReproveNotification = () => {
+        if (workerOffice === "Analyst") {
+            return notification = {
+                date: new Date(),
+                description: "Um analista reprovou a sua demanda de código " + demand.demandCode,
+                worker: { workerCode: JSON.parse(demand.requesterRegistration.workerCode) },
+                icon: "info",
+                type: "demand",
+            };
+        }else if(workerOffice == "business"){
+            return notification = {
+                date: new Date(),
+                description: "Um gerente de negócio reprovou a sua demanda de código " + demand.demandCode,
+                worker: { workerCode: JSON.parse(demand.requesterRegistration.workerCode) },
+                icon: "info",
+                type: "demand",
+            };
+        }else {
+            return notification = {
+                date: new Date(),
+                description: "Um gerente de ti reprovou a sua demanda de código " + demand.demandCode,
+                worker: { workerCode: JSON.parse(demand.requesterRegistration.workerCode) },
+                icon: "info",
+                type: "demand",
+            };
+        }
     }
 
     DemandService.findById(demandCode).then((response: any) => {

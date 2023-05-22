@@ -12,6 +12,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../../../../context/userContext";
+import { WebSocketContext } from '../../../../services/webSocketService';
 import othersUtil from "../../../../utils/othersUtil";
 
 export default function RankDemand() {
@@ -27,6 +28,9 @@ export default function RankDemand() {
     const [fileAttachment, setFileAttachment]: any = useState([]);
     const url = parseInt(window.location.href.split("/")[5]); // Pegando o id da demanda
     const edit = window.location.href.split("?")[1]
+    let notification = {}; // Notificações do usuário
+    const { send, subscribe, stompClient }: any = useContext(WebSocketContext);
+    const [subscribeId, setSubscribeId] = useState(null);
 
     useEffect(() => {
         // Pegando a demanda inicial
@@ -40,8 +44,13 @@ export default function RankDemand() {
             })
         }
 
-
-    }, [buBenefiteds])
+        if (demand != undefined) {
+            if (stompClient && !subscribeId) {
+                console.log(demand)
+                setSubscribeId(subscribe("/notifications/" + demand?.requesterRegistration?.workerCode, notification));
+            }
+        }
+    }, [buBenefiteds, stompClient])
 
     async function getDemand() {
         setDemand(await ServicesDemand.findById(url));
@@ -75,7 +84,7 @@ export default function RankDemand() {
                         ServicesDemand.updateStatus(url, "BacklogRanked").then((response: any) => {
                             localStorage.setItem("route", "classification");
                             localStorage.removeItem("classification");
-
+                            send("/api/worker/" + demand.requesterRegistration.workerCode, setRankNotification());
                             // ServicesNotification.save("Um analista classificou a sua demanda de código  " + demand.demandCode, demand.requesterRegistration.workerCode, "done", "demand");
 
                             window.history.back();
@@ -118,6 +127,16 @@ export default function RankDemand() {
 
 
 
+    }
+
+    const setRankNotification = () => {
+        return notification = {
+            date: new Date(),
+            description: "Um analista classificou a sua demanda de código " + demand.demandCode,
+            worker: { workerCode: JSON.parse(demand.requesterRegistration.workerCode) },
+            icon: "done",
+            type: "demand",
+        };
     }
 
     // Deletando a unidade de negócio beneficiada
@@ -220,7 +239,7 @@ export default function RankDemand() {
 
                         {buBenefitedsList.map((bu: any, index: any) => {
                             return <div className="costCenter" key={index}>
-                                <span>{bu.bu}</span>
+                                <span>{bu?.bu}</span>
                                 <span className="material-symbols-outlined delete-cost-center" onClick={deleteBuBenefited(bu)}>
                                     delete
                                 </span>

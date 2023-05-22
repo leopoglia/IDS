@@ -345,28 +345,50 @@ export default function ViewDemand() {
             getDemand();
             setActionsDemand(0);
 
-            
+
         }).catch((error: any) => {
             notifyUtil.error(t("somethingWrong"));
         })
     }
 
-    function setDefaultNotification() {
-        return notification = {
-            date: new Date(),
-            description: "Um gerente de Negócio aprovou a sua demanda de código  " + demand.demandCode,
-            worker: { workerCode: JSON.parse(demand.requesterRegistration.workerCode) },
-            icon: "done",
-            type: "demand",
+    const setDefaultNotification = () => {
+        if (worker.office === "business") {
+            return notification = {
+                date: new Date(),
+                description: "Um gerente de Negócio aprovou a sua demanda de código  " + demand.demandCode,
+                worker: { workerCode: JSON.parse(demand.requesterRegistration.workerCode) },
+                icon: "done",
+                type: "demand",
+            }
         }
     }
 
     // Devolver demanda (Analista)
     function giveBack() {
         ServicesDemand.updateStatus(demandCode, "BacklogEdit").then((response: any) => {
-        send("/api/worker/" + demand.requesterRegistration.workerCode, setReproveNotification());
-        notifyUtil.success(t("demandReturn"));
-        getDemand();
+            send("/api/worker/" + demand.requesterRegistration.workerCode, setGiveBackNotification());
+            notifyUtil.success(t("demandReturn"));
+            getDemand();
+        }).catch((error: any) => {
+            notifyUtil.error(t("somethingWrong"));
+        })
+    }
+
+    const setGiveBackNotification = () => {
+        return notification = {
+            date: new Date(),
+            description: "Um analista devolveu a sua demanda de código " + demand.demandCode,
+            worker: { workerCode: JSON.parse(demand.requesterRegistration.workerCode) },
+            icon: "info",
+            type: "demand",
+        };
+    }
+
+    function reprove() {
+        ServicesDemand.updateStatus(demandCode, "BacklogEdit").then((response: any) => {
+            send("/api/worker/" + demand.requesterRegistration.workerCode, setReproveNotification());
+            notifyUtil.success(t("demandReturn"));
+            getDemand();
         }).catch((error: any) => {
             notifyUtil.error(t("somethingWrong"));
         })

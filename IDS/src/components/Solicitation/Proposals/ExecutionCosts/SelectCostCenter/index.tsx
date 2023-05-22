@@ -23,9 +23,11 @@ export default function SelectCostCenter(props: any) {
                         let costsCentersAux: any[] = [];
                         let idCostCenterAux: any[] = [];
                         expense.expensesCostCenters.forEach((costCenter: any) => {
-                            costsCentersAux.push(costCenter.costCenter.costCenter);
-                            idCostCenterAux.push(costCenter.costCenter.costCenterCode);
+                            costsCentersAux.push(costCenter.costCenter);
+                            idCostCenterAux.push(costCenter.costCenter);
                         });
+
+                        console.log(costsCentersAux);
                         setCostsCenters(costsCentersAux);
                         setIdCostCenter(idCostCenterAux);
                     }
@@ -178,6 +180,7 @@ export default function SelectCostCenter(props: any) {
                                 <span>{costCenter.costCenterCode}</span>
                                 <div className="percentage">
                                     <input
+                                        value={costCenter.percent}
                                         type="number"
                                         placeholder="%"
                                         min={0}

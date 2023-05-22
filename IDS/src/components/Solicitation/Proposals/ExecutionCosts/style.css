@@ -47,7 +47,7 @@
     padding: 0 10px;
 }
 
-.mtwo30{
+.mtwo30 {
     margin-top: 40px !important;
     margin-bottom: 40px !important;
 }
@@ -76,7 +76,7 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
-.execution-costs .display-flex-space-between {
+.execution-costs .display-block-execution {
     margin-top: 20px;
 }
 
@@ -94,10 +94,53 @@ input[type=number] {
     border: 1px solid var(--greyC4);
     color: var(--grey59);
     margin-left: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
 }
 
 .noExpenses {
     margin: 50px 0px !important;
     font-size: 20px;
     color: var(--grey59) !important
+}
+
+.execution-costs .percentage,
+.execution-costs .percentage input {
+    margin-right: 8px !important;
+}
+
+.execution-costs .percentage span {
+    color: var(--grey59) !important;
+}
+
+
+@media(max-width: 1400px) {
+
+    .display-block-execution {
+        display: block !important;
+    }
+
+    .display-block-execution .costs-execution div {
+        margin-top: 15px !important;
+        margin-right: 10px;
+        display: grid !important;
+        width: 100%;
+    }
+
+    .execution-costs .costs-execution span {
+        margin-left: 0px;
+        margin-top: 10px;
+    }
+}
+
+@media(max-width: 1000px) {
+    .display-block-execution .costs-execution {
+        display: grid !important;
+    }
+
+    .display-block-execution .costs-execution div {
+        margin-top: 0px !important;
+    }
 }

@@ -55,7 +55,7 @@ export default function ConditionalValidationGrid(props: any) {
 
     return (
         <div className='view-demand grid-cost-execution' >
-            < div className='classification' >
+            <div className='classification' >
 
                 <div className="display-block">
                     <p className="title">{t(props.title)}</p>

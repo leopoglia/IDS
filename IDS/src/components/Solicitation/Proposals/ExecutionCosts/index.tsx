@@ -8,10 +8,9 @@ import { toast, ToastContainer } from 'react-toastify';
 import { useState, useContext, useEffect } from "react";
 import ProposalServices from "../../../../services/proposalService";
 import DemandService from "../../../../services/demandService";
-import ExpenseService from "../../../../services/expenseService";
 import UserContext from "../../../../context/userContext";
 import ExpensesService from "../../../../services/expensesService";
-import SelectCostCenter from "./SelectCostCenter";
+import { Tooltip } from "@mui/material";
 
 export default function ExecutionCosts() {
     const { t } = useTranslation();
@@ -82,30 +81,26 @@ export default function ExecutionCosts() {
 
     async function saveExpenseFinal() {
         let typeExpenses: any = [];
-        let centerOfCustProposalInternal: any = [localStorage.getItem('centerOfCustProposalinternal')]
+        let centerOfCustProposalInternal: any = localStorage.getItem('centerOfCustProposalinternal') || [];
         if (centerOfCustProposalInternal[0] != null) {
             typeExpenses.push("internal");
         }
-        let centerOfCustProposalExpenses: any = [localStorage.getItem('centerOfCustProposalexpenses')]
+        let centerOfCustProposalExpenses: any = localStorage.getItem('centerOfCustProposalexpenses') || [];
         if (centerOfCustProposalExpenses[0] != null) {
             typeExpenses.push("expenses");
         }
-        let centerOfCustProposalRecurrent: any = [localStorage.getItem('centerOfCustProposalrecurrent')]
+        let centerOfCustProposalRecurrent: any = localStorage.getItem('centerOfCustProposalrecurrent') || [];
         if (centerOfCustProposalRecurrent[0] != null) {
             typeExpenses.push("recurrent");
         }
 
 
         for (let i = 0; i < typeExpenses.length; i++) {
-            let expensesCostCenter: any = [];
-            let costCentersCode = typeExpenses[i] === "internal" ? centerOfCustProposalInternal : typeExpenses[i] === "recurrent" ? centerOfCustProposalRecurrent : centerOfCustProposalExpenses;
+            let expensesCostCenter = typeExpenses[i] === "internal" ? centerOfCustProposalInternal : typeExpenses[i] === "recurrent" ? centerOfCustProposalRecurrent : centerOfCustProposalExpenses;
 
-            for (let j = 0; j < JSON.parse(costCentersCode).length; j++) {
-                expensesCostCenter.push({ costCenter: { costCenterCode: JSON.parse(costCentersCode)[j] }, percent: 50 });
-            }
-
-            if (JSON.parse(costCentersCode).length > 0) {
-                ExpensesService.save(typeExpenses[i], demandCode, JSON.parse(costCentersCode), expenseListStorage, expensesCostCenter).then((expenses: any) => {
+    
+            if (JSON.parse(expensesCostCenter).length > 0) {
+                ExpensesService.save(typeExpenses[i], demandCode, expenseListStorage, JSON.parse(expensesCostCenter)).then((expenses: any) => {
                     console.log(expenses);
                 })
             }
@@ -138,21 +133,33 @@ export default function ExecutionCosts() {
                         <p>{t("executionCostsProject")}</p>
                     </div>
 
-                    <div className="display-flex-space-between">
+                    <div className="display-flex-space-between display-block-execution">
 
                         <Link to={"/proposal/execution-costs/add-expense/" + demandCode}>
                             <button className="btn-secondary">{t("addExpense")}</button>
                         </Link>
 
                         <div className="costs-execution">
-                            <span>{t("totalsCosts")}: R$ {totalsCosts}</span>
 
-                            <span>{t("expenses")}: R$ {externalCosts}</span>
+                            <div>
+                                <Tooltip title={totalsCosts} arrow>
+                                    <span>{t("totalsCosts")}: R$ {totalsCosts}</span>
+                                </Tooltip>
 
+                                <Tooltip title={externalCosts} arrow>
+                                    <span>{t("expenses")}: R$ {externalCosts}</span>
+                                </Tooltip>
+                            </div>
 
-                            <span>{t("recurrent")}: R$ {recurrentCosts}</span>
+                            <div>
+                                <Tooltip title={externalCosts} arrow>
+                                    <span>{t("recurrent")}: R$ {externalCosts}</span>
+                                </Tooltip>
 
-                            <span>{t("internal")}: R$ {internalCosts}</span>
+                                <Tooltip title={internalCosts} arrow>
+                                    <span>{t("internal")}: R$ {internalCosts}</span>
+                                </Tooltip>
+                            </div>
 
                         </div>
                     </div>

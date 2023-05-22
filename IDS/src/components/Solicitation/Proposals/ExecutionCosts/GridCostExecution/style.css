@@ -2,6 +2,10 @@
     margin-top: 10px;
 }
 
+.grid-cost-execution .classification{
+    overflow: auto;
+}
+
 .w40 {
     width: 30%
 }

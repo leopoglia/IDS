@@ -1,15 +1,10 @@
 const url = "http://localhost:8443/api/expenses";
 
 const Services = {
-    save: function (expenseName: String, proposal: any, costCenter: any, expense: any, expensesCostCenters: any) {
+    save: function (expenseName: String, proposal: any, expense: any, expensesCostCenters: any) {
         return new Promise((resolve, reject) => {
-
-            let costCenters = [];
             let expenses = [];
-
-            for (let i = 0; i < costCenter.length; i++) {
-                costCenters.push({ "costCenterCode": costCenter[i] });
-            }
+            let expensesCostCentersNew = [];
 
             for (let i = 0; i < expense.length; i++) {
                 if (expense[i].expenseType === expenseName) {
@@ -17,19 +12,24 @@ const Services = {
                 }
             }
 
+            for (let i = 0; i < expensesCostCenters.length; i++) {
+                console.log("expensesCostCenters[i] ---> ", expensesCostCenters[i])
+                expensesCostCentersNew.push({ "costCenter": { "costCenterCode": expensesCostCenters[i].costCenterCode }, "percent": expensesCostCenters[i].percent })
+            }
+
             fetch(url, {
                 method: 'POST', body: JSON.stringify({
                     expensesType: expenseName,
                     proposal: { proposalCode: proposal },
                     expense: expenses,
-                    expensesCostCenters: expensesCostCenters
+                    expensesCostCenters: expensesCostCentersNew
                 }), headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(resolve)
         })
     },
-    update: function (expenseName: String, proposal: any, costCenter: any, expense: any, expensesCostCenters: any, expensesCode:any) {
+    update: function (expenseName: String, proposal: any, costCenter: any, expense: any, expensesCostCenters: any, expensesCode: any) {
         return new Promise((resolve, reject) => {
 
             let costCenters = [];

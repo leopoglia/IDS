@@ -23,7 +23,7 @@ import "./style.css";
 import Table from "./Others/Table";
 import ButtonsActions from "./Others/ButtonsActions";
 import notifyUtil from "../../../../utils/notifyUtil";
-
+import { WebSocketContext } from '../../../../services/webSocketService';
 
 export default function ViewDemand() {
 
@@ -57,9 +57,12 @@ export default function ViewDemand() {
     const [classification, setClassification]: any = useState({}); // Dados da classificação
     const [beneficiariesBu, setBeneficiariesBu]: any = useState([]); // Dados dos beneficiários da BU
     const [comission, setComission] = useState([]); // Dados da comissão
-
+    const [subscribeId, setSubscribeId] = useState(null);
+    let notification = {}; // Notificações do usuário
     const [pendingMinute, setPendingMinute]: any = useState(0); // Quantidade de propostas pendentes
 
+
+    const { send, subscribe, stompClient }: any = useContext(WebSocketContext);
 
 
     // Dados da demanda
@@ -135,11 +138,15 @@ export default function ViewDemand() {
             localStorage.removeItem("route");
         }
 
-    }, [url, demand.demandStatus, proposal.proposalStatus, proposalSpecific[0].proposalStatus]);
+        if (stompClient && !subscribeId) {
+            setSubscribeId(subscribe("/notifications/" + demand.requesterRegistration.workerCode, notification));
+        }
+
+    }, [url, demand.demandStatus, proposal.proposalStatus, proposalSpecific[0].proposalStatus, stompClient]);
 
     function getDemand() {
         ServicesDemand.findByDemandCodeAndDemandVersion(demandCode, demandVersion).then((response: any) => {
-      
+
             setDemand(response);
 
             // Verificar se o usuário é o solicitante
@@ -329,30 +336,50 @@ export default function ViewDemand() {
 
     // Aprovar demanda (Gerente de Negócios)
     function approveDemand() {
+
         ServicesDemand.updateStatus(demandCode, "BacklogRankApproved").then((response: any) => {
             // Notificação para o solicitante
-            ServicesNotification.save("Um gerente de Negócio aprovou a sua demanda de código  " + demand.demandCode, demand.requesterRegistration.workerCode, "done", "demand");
-            ServicesDemand.approve(demandCode);
+            // ServicesNotification.save("Um gerente de Negócio aprovou a sua demanda de código  " + demand.demandCode, demand.requesterRegistration.workerCode, "done", "demand");
+            send("/api/worker/" + demand.requesterRegistration.workerCode, setDefaultNotification());
             notifyUtil.success(t("demandApproved"));
             getDemand();
             setActionsDemand(0);
+
+            
         }).catch((error: any) => {
             notifyUtil.error(t("somethingWrong"));
         })
     }
 
+    function setDefaultNotification() {
+        return notification = {
+            date: new Date(),
+            description: "Um gerente de Negócio aprovou a sua demanda de código  " + demand.demandCode,
+            worker: { workerCode: JSON.parse(demand.requesterRegistration.workerCode) },
+            icon: "done",
+            type: "demand",
+        }
+    }
+
     // Devolver demanda (Analista)
     function giveBack() {
-
         ServicesDemand.updateStatus(demandCode, "BacklogEdit").then((response: any) => {
-            // Notificação para o solicitante
-            ServicesNotification.save("Um analista devolveu a sua demanda de código  " + demand.demandCode, demand.requesterRegistration.workerCode, "info", "demand");
-            notifyUtil.success(t("demandReturn"));
-
-            getDemand();
+        send("/api/worker/" + demand.requesterRegistration.workerCode, setReproveNotification());
+        notifyUtil.success(t("demandReturn"));
+        getDemand();
         }).catch((error: any) => {
             notifyUtil.error(t("somethingWrong"));
         })
+    }
+
+    const setReproveNotification = () => {
+        return notification = {
+            date: new Date(),
+            description: "Um analista devolveu a sua demanda de código " + demand.demandCode,
+            worker: { workerCode: JSON.parse(demand.requesterRegistration.workerCode) },
+            icon: "info",
+            type: "demand",
+        };
     }
 
     // Abrir modal de PDF
@@ -418,7 +445,7 @@ export default function ViewDemand() {
         return bytes.buffer;
     }
 
-   
+
     const dateFormat = (date: any) => {
         const year = date.slice(0, 4);
         const month = date.slice(5, 7) - 1;

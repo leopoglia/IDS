@@ -24,7 +24,7 @@ export default function Notifications() {
 
             setLoading(false);
         })
-    }, [])
+    }, [notifications])
 
 
 

@@ -18,12 +18,12 @@ export default function Messages() {
     useEffect(() => {
         MessageService.findChatByDemand(worker.id).then((response: any) => {
             setMessages(response);
-
             setLoading(false);
-
         })
 
     }, [worker.id]);
+
+    console.log("messages.length ---> ", messages.length)
 
     return (
         <div className="messages">
@@ -41,7 +41,7 @@ export default function Messages() {
                             loading === true ? (
                                 <Load />
                             ) : (
-                                messages.length > 0 ?
+                                messages.length > 0 && messages[0] !== null ?
                                     (
                                         messages.map((val: any, index: any) => {
                                             if (val !== null) {
@@ -67,7 +67,7 @@ export default function Messages() {
                                             <h1>{t("noResults")}</h1>
                                         </div>
                                     )
-                            )
+                            ) 
                         }
 
 

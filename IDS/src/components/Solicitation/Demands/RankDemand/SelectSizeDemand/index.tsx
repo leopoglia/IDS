@@ -3,6 +3,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Services from '../../../../../services/buService';
+import { InputLabel } from '@mui/material';
 
 export default function SelectLabels(props: any) {
     const [select, setSelect] = useState('');
@@ -12,7 +13,7 @@ export default function SelectLabels(props: any) {
     const size = ["Muito Pequeno", "Pequeno", "Médio", "Grande", "Muito Grande"]
 
 
-    useEffect(() => { 
+    useEffect(() => {
         Services.findAll().then((response: any) => {
             setBu(response)
         }
@@ -116,17 +117,13 @@ export default function SelectLabels(props: any) {
 
     return (
         <div className='SelectLabels'>
-
             <FormControl sx={{ minWidth: "100%", height: "60px" }}>
                 <Select
                     value={select}
-                    onChange={handleChange}
                     displayEmpty
-                    inputProps={{ 'aria-label': 'Without label' }}
-
+                    onChange={handleChange}
                     sx={{ height: '45px' }}
                 >
-
                     {typeSet()}
                 </Select>
             </FormControl>

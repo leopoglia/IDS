@@ -303,6 +303,11 @@ textarea {
 }
 
 
+/** Espaço em branco em cima do input MUI CORE **/ 
+.css-ihdtdm{
+  width: 0px !important;
+}
+
 
 table,
 tbody {

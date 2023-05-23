@@ -19,8 +19,7 @@ export default function Messages() {
         MessageService.findChatByDemand(worker.id).then((response: any) => {
             setMessages(response);
             setLoading(false);
-        })
-
+        });
     }, [worker.id]);
 
     return (

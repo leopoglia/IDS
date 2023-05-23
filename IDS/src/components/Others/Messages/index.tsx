@@ -23,8 +23,6 @@ export default function Messages() {
 
     }, [worker.id]);
 
-    console.log("messages.length ---> ", messages.length)
-
     return (
         <div className="messages">
 

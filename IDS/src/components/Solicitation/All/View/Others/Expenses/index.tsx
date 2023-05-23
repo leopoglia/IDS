@@ -157,7 +157,11 @@ export default function Expenses(props: any) {
                                         {props.proposalExpense.expensesCostCenters.map((costCenter: any, index: any) => {
                                             return (
                                                 <Tooltip title={costCenter.costCenter.costCenter} arrow>
-                                                    <div className="display-flex-center code">{costCenter.costCenter.costCenter}</div>
+                                                    <div className="display-flex-center code">{costCenter.costCenter.costCenter} – {costCenter.percent}%
+
+                                                    </div>
+
+
                                                 </Tooltip>
                                             )
                                         })

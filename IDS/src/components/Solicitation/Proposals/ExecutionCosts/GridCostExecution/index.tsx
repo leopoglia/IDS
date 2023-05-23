@@ -29,13 +29,13 @@ export default function ConditionalValidationGrid(props: any) {
                     if (expense.expensesType === expenseType) {
                         setExpenseList(expense.expense);
                         localStorage.setItem('expenseList', JSON.stringify(expense.expense));
-
                     }
                 });
             })
 
 
         } else {
+
             setExpenseList(JSON.parse(localStorage.getItem('expenseList') || '[""]'));
         }
 

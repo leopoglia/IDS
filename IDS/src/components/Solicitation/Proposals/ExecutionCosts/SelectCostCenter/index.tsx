@@ -8,10 +8,7 @@ export default function SelectCostCenter(props: any) {
     const [costCenter, setCostCenter] = useState("");
     const [costsCenters, setCostsCenters]: any = useState([]);
     const [idCostCenter, setIdCostCenter]: any = useState([]);
-    let centerOfCustProposal: any = JSON.parse(
-        localStorage.getItem("centerOfCustProposal" + props.type) || "[]"
-    );
-
+    let centerOfCustProposal: any = JSON.parse(localStorage.getItem('centerOfCustProposal' + props.type) || '[]');
     const editType = window.location.href.split("?")[1];
     const proposalCode: any = window.location.href.split("/")[5];
 
@@ -23,22 +20,21 @@ export default function SelectCostCenter(props: any) {
                         let costsCentersAux: any[] = [];
                         let idCostCenterAux: any[] = [];
                         expense.expensesCostCenters.forEach((costCenter: any) => {
+
+                            costCenter.costCenter =  { "costCenterCode": costCenter.costCenter.costCenterCode, "percent":  costCenter.percent};
+
                             costsCentersAux.push(costCenter.costCenter);
                             idCostCenterAux.push(costCenter.costCenter);
                         });
 
-                        console.log(costsCentersAux);
                         setCostsCenters(costsCentersAux);
                         setIdCostCenter(idCostCenterAux);
                     }
                 });
             });
         } else {
-            setCostsCenters(
-                JSON.parse(
-                    localStorage.getItem("centerOfCustProposal" + props.type) || "[]"
-                )
-            );
+            setCostsCenters(JSON.parse(localStorage.getItem('centerOfCustProposal' + props.type) || '[]'));
+
         }
     }, [localStorage.getItem("costsCenters" + props.type)]);
 
@@ -130,10 +126,9 @@ export default function SelectCostCenter(props: any) {
 
         const updatedCostCenters = costsCenters.map((costCenter: any) => {
 
-            console.log(costCenter.costCenterCode === costCenterActual.costCenterCode)
-
-
             if (costCenter.costCenterCode === costCenterActual.costCenterCode) {
+
+
                 return {
                     ...costCenter,
                     percent: value,
@@ -174,6 +169,7 @@ export default function SelectCostCenter(props: any) {
                             <span className="material-symbols-outlined">add</span>
                         </button>
                     </div>
+
                     {costsCenters.map((costCenter: any) => {
                         return (
                             <div className="cost-center" key={costCenter.costCenterCode}>
@@ -189,8 +185,7 @@ export default function SelectCostCenter(props: any) {
                                     />
                                     <span
                                         className="material-symbols-outlined delete-cost-center"
-                                        onClick={deleteCostCenter(costCenter)}
-                                    >
+                                        onClick={deleteCostCenter(costCenter)}>
                                         delete
                                     </span>
                                 </div>

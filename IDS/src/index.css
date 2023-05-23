@@ -90,6 +90,7 @@ body {
 .container {
   margin-left: 65px;
   padding: 20px 120px;
+  min-height: calc(100vh - 65px);
 }
 
 body {

@@ -245,7 +245,7 @@ export default function Edit() {
 			}
 
 			for (let j = 0; j < costCentersCode.length; j++) {
-				expensesCostCenter.push({ costCenter: { costCenterCode: costCentersCode[j] }, percent: 50 });
+				expensesCostCenter.push({ costCenter: { costCenterCode: costCentersCode[j] } });
 			}
 
 			ExpensesService.findByProposal(parseInt(window.location.href.split("/")[5])).then((expenses: any) => {
@@ -254,11 +254,10 @@ export default function Edit() {
 
 					if (expense.expensesType === expenseType) {
 
-						console.log(expensesCostCenter)
 						if (expensesCostCenter.length > 0) {
 
-							ExpensesService.update(expenseType, demandCode, costCentersCode, expenseListStorage, expensesCostCenter, expense.expensesCode).then((expenses: any) => {
-								console.log(expenses);
+							ExpensesService.update(expenseType, demandCode, costCentersCode, expenseListStorage, expensesCostCenter, expense.expensesCode).then((expenseses: any) => {
+								console.log(expenseses);
 
 								navigate("/proposal/view/" + demandCode);
 								localStorage.removeItem("centerOfCustProposalexpenses");

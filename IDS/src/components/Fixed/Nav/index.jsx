@@ -39,42 +39,49 @@ export default function Nav() {
         localStorage.setItem("nav", newNav);
     }
 
-    useEffect(() => {
-        const navState = localStorage.getItem("nav") === "nav-open" ? "nav-open" : "nav"; // Verifica se o menu está aberto ou fechado
-        setNav(navState); // Atualiza o estado do menu
 
-        // Busca as notificações do usuário
-        ServicesNotification.findAll().then((response) => {
-            let numNotificationVisualized = 0;
-            let numberNotification = 0;
-            for (let i = 0; i < response.length; i++) {
-                if (response[i].worker.workerCode === worker.id) {
-                    numberNotification++;
-                    if (response[i].visualized === false) {
+    useEffect(() => {
+        const navState = localStorage.getItem("nav") === "nav-open" ? "nav-open" : "nav";
+        setNav(navState);
+
+        ServicesNotification.findAll()
+            .then((response) => {
+                let numNotificationVisualized = 0;
+                let numberNotification = 0;
+                const newNotifications = [];
+
+                for (let i = 0; i < response.length; i++) {
+                    if (response[i].worker.workerCode === worker.id) {
+                        numberNotification++;
+                        if (response[i].visualized === false) {
+                            numNotificationVisualized++;
+                        }
+                        newNotifications.push(response[i]);
+                    }
+                }
+
+                setNotification(newNotifications);
+
+                if (stompClient && !subscribeId) {
+                    setSubscribeId(subscribe("/notifications/" + worker.id, newNotifications));
+                }
+
+                if (numberNotification === 0) {
+                    if (numNotification === 0) {
+                        send("/api/worker/" + worker.id, newNotifications);
+                        setDefaultNotification();
+                        numberNotification++;
                         numNotificationVisualized++;
                     }
-
                 }
-            }
 
-            if (stompClient && !subscribeId) {
-                setSubscribeId(subscribe("/notifications/" + worker.id, notification));
-            }
+                setNumNotification(numNotificationVisualized);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
 
-            if (numberNotification === 0) {
-                if (numNotification === 0) {
-                    send("/api/worker/" + worker.id, notification);
-                    setDefaultNotification();
-                    numberNotification++;
-                    numNotificationVisualized++;
-                }
-            }
-
-            setNumNotification(numNotificationVisualized);
-        }).catch((error) => {
-            console.log(error);
-        });
-    }, [numNotification, stompClient]);
+    }, [notification, stompClient]);
 
     function createNotification(event) {
         event.preventDefault();

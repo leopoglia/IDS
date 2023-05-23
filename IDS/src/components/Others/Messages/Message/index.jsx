@@ -19,10 +19,15 @@ const ChatRoom = () => {
     const [selectedEmoji, setSelectedEmoji] = useState("");
     const [workerDemand, setWorkerDemand] = useState({});
 
+    const [demand, setDemand] = useState({});
+
     const demandCode = useParams().id;
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
-    const [subscribeId, setSubscribeId] = useState(null);
+    const [subscribeMessage, setSubscribeMessage] = useState(null);
+    const [subscribeNotification, setSubscribeNotification] = useState(null);
+
+    let notification = {};
 
     const { send, subscribe, stompClient } = useContext(WebSocketContext);
     const { worker } = useContext(UserContext);
@@ -57,8 +62,8 @@ const ChatRoom = () => {
         }
 
 
-        if (stompClient && !subscribeId) {
-            setSubscribeId(subscribe("/" + demandCode + "/chat", newMessage));
+        if (stompClient && !subscribeMessage) {
+            setSubscribeMessage(subscribe("/" + demandCode + "/chat", newMessage));
         }
 
         ServicesMessage.findSender(worker.id, message.demandCode).then((response) => {
@@ -73,6 +78,7 @@ const ChatRoom = () => {
             await ServicesDemand.findById(demandCode)
                 .then((response) => {
 
+                    setDemand(response);
 
                     if (response.requesterRegistration.workerCode !== parseInt(localStorage.getItem("id"))) {
                         setWorkerDemand(response.requesterRegistration);
@@ -87,6 +93,13 @@ const ChatRoom = () => {
 
         getDemand();
 
+
+        console.log("vytor augusto rosa: " + demand?.requesterRegistration?.workerCode);
+
+        if (stompClient && !subscribeNotification) {
+            setSubscribeNotification(subscribe("/notifications/" + demand?.requesterRegistration?.workerCode, notification));
+        }
+
         async function loading() {
             await ServicesMessage.findById(demandCode)
                 .then((response) => {
@@ -100,7 +113,7 @@ const ChatRoom = () => {
         loading();
 
 
-    }, [demandCode]);
+    }, [demandCode, stompClient]);
 
 
     const setDefaultMessage = () => {
@@ -123,6 +136,21 @@ const ChatRoom = () => {
         event.preventDefault();
         send("/api/demand/" + demandCode, message);
         setDefaultMessage();
+
+        if (messages.length === 0) {
+            setNotification();
+            send("/api/worker/" + demand.requesterRegistration.workerCode, setNotification());
+        }
+    }
+
+    const setNotification = () => {
+        return notification = {
+            date: new Date(),
+            description: worker.name + " iniciou uma conversa com você.",
+            worker: { workerCode: JSON.parse(demand.requesterRegistration.workerCode) },
+            icon: "info",
+            type: "demand",
+        };
     }
 
     function onClick(emojiData) {

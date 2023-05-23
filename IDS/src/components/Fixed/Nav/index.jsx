@@ -21,7 +21,7 @@ export default function Nav() {
     const [nav, setNav] = useState(localStorage.getItem("nav") || "nav");  // Estado do menu
     const [messagesOn, setMessagesOn] = useState(false); // Se tiver true, mostra as mensagens para o solicitante
     const [subscribeId, setSubscribeId] = useState(null);
-
+    const [notifications, setNotifications] = useState([]); // Notificações do usuário
     const { send, subscribe, stompClient } = useContext(WebSocketContext);
 
     // Verifica qual página está sendo acessada e retorna a classe "current" para o item do menu
@@ -74,7 +74,11 @@ export default function Nav() {
         }).catch((error) => {
             console.log(error);
         });
-    }, [numNotification, stompClient]);
+    }, [numNotification, notifications.length, stompClient]);
+
+    ServicesNotification.findAll().then((response) => {
+        setNotifications(response);
+    });
 
     function createNotification(event) {
         event.preventDefault();

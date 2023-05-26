@@ -14,6 +14,8 @@ import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from 'react-router-dom';
 import Editor from "../../../Proposals/EditProposalScope/Editor";
+import Label from "../Label/label";
+import notifyUtil from "../../../../../utils/notifyUtil";
 
 export default function CreateDemands2() {
 
@@ -33,7 +35,7 @@ export default function CreateDemands2() {
     const [frequencyOfUse, setFrequencyOfUse] = useState("");
     const [interalControlsRequirements, setInteralControlsRequirements] = useState(false);
 
-    useEffect(() => { 
+    useEffect(() => {
 
 
         let realBenefits = JSON.parse(localStorage.getItem("realBenefits") || "{}");
@@ -94,7 +96,7 @@ export default function CreateDemands2() {
         addBenefits();
         if (realMonthlyValue === undefined || realBenefitDescription === undefined || potentialMonthlyValue === undefined || potentialBenefitDescription === undefined || qualitativeBenefitDescription === undefined ||
             realMonthlyValue === "" || realBenefitDescription === "" || potentialMonthlyValue === "" || potentialBenefitDescription === "" || qualitativeBenefitDescription === "") {
-            notify();
+            notifyUtil.error(t("fillAllFields"))
         } else {
             navigate('/demand/create/3');
         }
@@ -102,7 +104,7 @@ export default function CreateDemands2() {
 
     return (
         <div className="create-demands-2">
-     
+
 
             <div className="container">
                 <div className="background-title">
@@ -112,12 +114,14 @@ export default function CreateDemands2() {
                 </div>
 
                 <div className="box">
-                    <p>{t("benefitReal")}</p>
+                    <div className="display-flex">
+                        <p>{t("benefitReal")}</p>
+                    </div>
 
                     <div className="flex">
-                        {/* <Input label="monthlyValue" required="*" /> */}
                         <div className="input">
-                            <label>{t("monthlyValue")} *</label>
+                            <Label title="monthlyValue" required="true" />
+
                             <input type="text" onChange={(e) => { setRealMonthlyValue(e.target.value) }} value={realMonthlyValue} />
                         </div>
                         <SelectCoin setrealCurrency={setrealCurrency} type="real" value={realCurrency} />
@@ -125,7 +129,7 @@ export default function CreateDemands2() {
 
                     {/* <Input label="description" required=""></Input> */}
                     <div className="input">
-                        <label>{t("description")}</label>
+                        <Label title="description" required="true" />
                         <input onChange={(e) => { setrealBenefitDescription(e.target.value) }} type="text" value={realBenefitDescription} />
                     </div>
 
@@ -139,7 +143,7 @@ export default function CreateDemands2() {
                         <div className="flex">
                             {/* <Input label="monthlyValue" required="*" /> */}
                             <div className="input">
-                                <label>{t("monthlyValue")} *</label>
+                                <Label title="monthlyValue" required="true" />
                                 <input type="text" onChange={(e) => { setPotentialMonthlyValue(e.target.value) }} value={potentialMonthlyValue} />
                             </div>
                             <SelectCoin setPotentialCurrency={setPotentialCurrency} type="potencial" value={potentialCurrency} />
@@ -149,14 +153,14 @@ export default function CreateDemands2() {
                             {/* <Input label="description" required=""></Input> */}
 
                             <div className="input">
-                                <label>{t("description")}</label>
+                                <Label title="description" />
                                 <input onChange={(e) => { setPotentialBenefitDescription(e.target.value) }} type="text" value={potentialBenefitDescription} />
                             </div>
 
                             <div className="input-checkbox">
                                 <label>{t("legalObligation")}</label>
                                 <div className="checkbox">
-                                    <input type="checkbox" id="legalObrigation" name="legalObrigation" checked={legalObrigation} onChange={(e) => { setLegalObrigation(e.target.checked)}} />
+                                    <input type="checkbox" id="legalObrigation" name="legalObrigation" checked={legalObrigation} onChange={(e) => { setLegalObrigation(e.target.checked) }} />
                                     <label htmlFor="legalObrigation" className="pl10 mb0">{t("yes")}</label>
                                 </div>
                             </div>
@@ -167,19 +171,9 @@ export default function CreateDemands2() {
                 <div className="box">
                     <p>{t("benefitQualitative")}</p>
 
-                    <div className="flex">
-                        {/* <Input label="monthlyValue" required="*" /> */}
-                        {/* <div className="input">
-                            <label>{t("monthlyValue")} *</label>
-                            <input type="text" onChange={(e) => { setFrequencyOfUse(e.target.value) }} value={qualitativeMonthlyValue} />
-                        </div> */}
-                    </div>
-
                     <div className="display-grid">
-                        {/* <Input label="description" required=""></Input> */}
                         <div className="input">
-                            <label>{t("description")}</label>
-                            {/* <input onChange={(e) => { setQualitativeBenefitDescription(e.target.value) }} type="text" value={qualitativeBenefitDescription} /> */}
+                            <Label title="description" />
 
                             <Editor setContent={setQualitativeBenefitDescription} content={qualitativeBenefitDescription} />
 
@@ -188,7 +182,7 @@ export default function CreateDemands2() {
                         <div className="input-checkbox">
                             <label className="requirements">{t("internalControlRequirements")}</label>
                             <div className="checkbox">
-                                <input type="checkbox" id="interalControlsRequirements" name="interalControlsRequirements" checked={interalControlsRequirements} onChange={(e) => { setInteralControlsRequirements(e.target.checked)}} />
+                                <input type="checkbox" id="interalControlsRequirements" name="interalControlsRequirements" checked={interalControlsRequirements} onChange={(e) => { setInteralControlsRequirements(e.target.checked) }} />
                                 <label htmlFor="interalControlsRequirements" className="pl10 mb0">{t("yes")}</label>
 
                             </div>
@@ -211,17 +205,3 @@ export default function CreateDemands2() {
         </div>
     );
 }
-
-// Notificação de erro ao preencher os campos obrigatórios
-const notify = () => {
-    toast.error('Preencha todos os campos!', {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-    });
-};

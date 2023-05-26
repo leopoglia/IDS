@@ -63,6 +63,9 @@ const Services = {
     },
     update: function (demandCode: number, proposal: any) {
         return new Promise((resolve, reject) => {
+
+            proposal.demand.demandAttachment = undefined;
+
             fetch(url + "/" + demandCode, {
                 method: 'PUT', body: JSON.stringify(proposal), headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); })

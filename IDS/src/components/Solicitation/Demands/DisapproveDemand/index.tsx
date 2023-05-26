@@ -11,6 +11,7 @@ import DemandService from "../../../../services/demandService";
 import Services from "../../../../services/reproachService";
 import { WebSocketContext } from '../../../../services/webSocketService';
 import UserContext from "../../../../context/userContext";
+import notifyUtil from "../../../../utils/notifyUtil";
 
 
 export default function DisapproveDemand() {
@@ -84,7 +85,7 @@ export default function DisapproveDemand() {
     const nextStep = () => {
         // Função para verificar se o motivo de reprovação foi preenchido
         if (disapprovalReason === undefined || disapprovalReason === "") {
-            notify();
+            notifyUtil.error(t("fillAllFields"))
         } else {
             disapproveDemand();
             localStorage.setItem('route', 'reprove')
@@ -138,17 +139,3 @@ export default function DisapproveDemand() {
         </div>
     );
 }
-
-// Notificação de erro ao tentar cadastrar sem preencher todos os campos
-const notify = () => {
-    toast.error('Preencha todos os campos!', {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-    });
-};

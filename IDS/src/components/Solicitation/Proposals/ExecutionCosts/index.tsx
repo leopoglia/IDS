@@ -11,6 +11,7 @@ import DemandService from "../../../../services/demandService";
 import UserContext from "../../../../context/userContext";
 import ExpensesService from "../../../../services/expensesService";
 import { Tooltip } from "@mui/material";
+import notifyUtil from "../../../../utils/notifyUtil";
 
 export default function ExecutionCosts() {
     const { t } = useTranslation();
@@ -59,7 +60,7 @@ export default function ExecutionCosts() {
     const nextStep = () => {
 
         if (totalsCosts === 0) {
-            notify()
+            notifyUtil.error(t("fillAllFields"))
         } else {
 
             DemandService.findById(demandCode).then((demand: any) => {
@@ -217,17 +218,3 @@ export default function ExecutionCosts() {
         </div>
     );
 }
-
-// Notificação de erro ao preencher campo obrigatório
-const notify = () => {
-    toast.error('Preencha todos os campos!', {
-        position: "bottom-right",
-        autoClose: 4000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-    });
-};

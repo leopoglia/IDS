@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import notifyUtil from "../../../../utils/notifyUtil";
 
 export default function EditProposalScope() {
   const { t } = useTranslation();
@@ -18,7 +19,7 @@ export default function EditProposalScope() {
 
   const nextStep = () => {
     if (content === "" || content === undefined) {
-      notify()
+      notifyUtil.error(t("fillAllFields"))
     } else {
 
       localStorage.setItem('proposalScope', content);
@@ -56,17 +57,3 @@ export default function EditProposalScope() {
   );
 
 }
-
-// Notificação de erro ao preencher campo obrigatório
-const notify = () => {
-  toast.error('Preencha todos os campos!', {
-    position: "bottom-right",
-    autoClose: 4000,
-    hideProgressBar: true,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-  });
-};

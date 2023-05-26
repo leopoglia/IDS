@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import { useTranslation } from "react-i18next";
+import notifyUtil from "../../../../utils/notifyUtil";
 
 
 export default function AddExpense() {
@@ -34,7 +35,7 @@ export default function AddExpense() {
 
     const nextStep = () => {
         if (expenseType === '' || expenseProfile === '' || amountOfHours === '' || hourValue === '') {
-            notify()
+            notifyUtil.error(t("fillAllFields"))
         } else {
             expenseList.push(expense);
             localStorage.setItem('expenseList', JSON.stringify(expenseList));
@@ -109,17 +110,3 @@ export default function AddExpense() {
         </div>
     );
 }
-
-// Notificação de erro ao preencher os campos obrigatórios
-const notify = () => {
-    toast.error('Preencha todos os campos!', {
-        position: "bottom-right",
-        autoClose: 4000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-    });
-};

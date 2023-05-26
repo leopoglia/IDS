@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import SelectCenterCost from "./SelectCenterCost";
 import Editor from "../../../Proposals/EditProposalScope/Editor";
 import notifyUtil from "../../../../../utils/notifyUtil";
+import Label from "../Label/label";
 
 export default function CreateDemands1() {
 
@@ -171,28 +172,27 @@ export default function CreateDemands1() {
                     <p>{t("generalInformation")}</p>
 
                     <div className="input">
-                        <label>{t("titleInput")} *</label>
+
+                        <Label title="titleInput" required="true" textInfo="Digite um texto para a sua demanda" />
+
                         <input onChange={(e) => { handleChange(e, 'titleInput'); }} type="text" value={titleDemand} />
                     </div>
 
                     <div className="text-area">
-                        <label>{t("objective")} *</label>
+                        <Label title="objective" required="true" textInfo="Digite o objetivo que você deseja realizando a demanda" />
+
                         <Editor handleChange={handleChange} type={"objective"} content={objective} />
                     </div>
 
                     <div className="text-area">
-                        <label>{t("currentSituation")} *</label>
+                        <Label title="currentSituation" required="true" textInfo="Digite o situação atual" />
+
                         <Editor handleChange={handleChange} type={"currentSituation"} content={currentSituation} />
                     </div>
-                    {/* 
-                    <TextArea label="currentSituation" required="*" onChange={(e) => { setDemandProblem(e.target.value) }}></TextArea> */}
-
-
-
-                    {/* <TextArea label="proposal" required="*" onChange={(e) => { setProposal(e.target.value) }}></TextArea> */}
-
+           
                     <div className="input">
-                        <label>{t("costCenter")} *</label>
+                        <Label title="costCenter" required="true" textInfo="Digite o centro de custo que ira pagar" />
+
 
                         <div className="display-flex">
                             <SelectCenterCost setCostCenter={setCostCenter} costCenter={costCenter} addCostCenter={addCostCenter} />

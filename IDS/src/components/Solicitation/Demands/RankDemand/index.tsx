@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import UserContext from "../../../../context/userContext";
 import { WebSocketContext } from '../../../../services/webSocketService';
 import othersUtil from "../../../../utils/othersUtil";
+import notifyUtil from "../../../../utils/notifyUtil";
 
 export default function RankDemand() {
     const { t } = useTranslation();
@@ -68,7 +69,7 @@ export default function RankDemand() {
 
 
         if (classification.size === "" || classification.ti === "" || classification.buReq === "" || classification.buBenList === undefined) {
-            notify();
+            notifyUtil.error(t("fillAllFields"))
             return;
         } else {
             // Salvando a classificação
@@ -103,7 +104,7 @@ export default function RankDemand() {
                 })
             } else {
                 if (classification.ppmCode === undefined || classification.epicJiraLink === "") {
-                    notify();
+                    notifyUtil.error(t("fillAllFields"))
                 } else {
                     ServicesClassification.save(classification.size, classification.ti, classification.ppmCode, classification.epicJiraLink, classification.buReq, classification.buBenList, analysis.id, fileAttachment[0]).then((response: any) => {
                         let classificationCode = response.classificationCode; // Pegando o código da classificação
@@ -338,17 +339,3 @@ export default function RankDemand() {
 
     );
 }
-
-// Notificação de erro ao preencher os campos obrigatórios
-const notify = () => {
-    toast.error('Preencha todos os campos!', {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-    });
-};

@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import ButtonAction from "../../Demands/CrateDemand/ButtonAction";
+import notifyUtil from "../../../../utils/notifyUtil";
 
 
 export default function ProposedInformation() {
@@ -57,7 +58,7 @@ export default function ProposedInformation() {
         localStorage.setItem('proposal', JSON.stringify(proposal));
         
         if (responsiblesBussiness === "" || responsiblesBussiness === "" || end === "" || start === "") {
-            notify();
+            notifyUtil.error(t("fillAllFields"))
         } else {
             navigate('/proposal/execution-costs/' + demandCode);
         }
@@ -149,19 +150,6 @@ export default function ProposedInformation() {
     );
 }
 
-// Notificação de erro ao preencher os campos obrigatórios
-const notify = () => {
-    toast.error('Preencha todos os campos!', {
-        position: "bottom-right",
-        autoClose: 4000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-    });
-};
 
 const notifyResponsible = () => {
     toast.error('Adicione um responsavel', {

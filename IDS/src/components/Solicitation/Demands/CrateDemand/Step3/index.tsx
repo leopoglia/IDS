@@ -10,6 +10,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router";
 import UserContext from "../../../../../context/userContext";
 import othersUtil from '../../../../../utils/othersUtil';
+import Label from '../Label/label';
+import notifyUtil from '../../../../../utils/notifyUtil';
 
 export default function CreateDemands3() {
 
@@ -32,7 +34,7 @@ export default function CreateDemands3() {
     async function cadastrarDemanda() {
         // Verificando se os campos obrigatórios foram preenchidos
         if (executionPeriod === "") {
-            notify();
+            notifyUtil.error(t("fillAllFields"))
             return;
         }
 
@@ -88,23 +90,6 @@ export default function CreateDemands3() {
         setFileAttachment(filesArray);
     }
 
-    // const attatchmentType = (demand: any) => {
-    //     if (demand.type === "image/png" || demand.type === "image/jpeg") {
-    //         return "png";
-    //     } else if (demand.type === "application/pdf") {
-    //         return "pdf";
-    //     } else if (demand.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
-    //         return "word";
-    //     } else if (demand.type === "application/msword" || demand.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||
-    //         demand.demandAttachment.type === "application/vnd.ms-excel") {
-    //         return "excel";
-    //     } else if (demand.type === "application/zip") {
-    //         return "zip";
-    //     } else if (demand.type === "application/x-rar-compressed") {
-    //         return "rar";
-    //     }
-    // }
-
     return (
         <div className="create-demands-3">
     
@@ -121,14 +106,13 @@ export default function CreateDemands3() {
                     <p>{t("additionals")}</p>
 
                     <div className="frequency">
-                        <label>{t("frequencyUse")} * </label>
+                        <Label title="frequencyUse" required="true" />
+
                         <input type="text" onChange={(e) => { setExecutionPeriod(e.target.value) }} />
                     </div>
 
 
                     <div className="attachments display-flex">
-
-                        <div className=''></div>
 
                         <div className='display-block'>
                             <span>{t("attachments")}</span>
@@ -176,17 +160,3 @@ export default function CreateDemands3() {
         </div>
     );
 }
-
-// Notificação de erro ao preencher os campos obrigatórios
-const notify = () => {
-    toast.error('Preencha todos os campos!', {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-    });
-};

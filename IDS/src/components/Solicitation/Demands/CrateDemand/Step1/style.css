@@ -98,6 +98,31 @@
     max-height: 150px !important;
 }
 
+.label{
+    margin-bottom: 5px;
+}
+
+.label label{
+    display: flex;
+    align-items: center;
+}
+
+.label .material-symbols-outlined {
+    margin-left: 5px;
+    font-variation-settings: 'FILL' 1, 'wght' 350, 'GRAD' -25, 'opsz' 50 !important;
+    color: #a0a0a0;
+    font-size: 15px !important;
+    display: flex;
+    align-items: center;
+}
+
+.label .required{
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 @media(max-width: 1050px) {
     .create-demands-1 .progress-bar {
         width: 70%;

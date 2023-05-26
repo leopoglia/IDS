@@ -6,7 +6,6 @@ import { ToastContainer, toast } from "react-toastify";
 import notifyUtil from "../../../../utils/notifyUtil";
 import UserContext from "../../../../context/userContext";
 import Services from "../../../../services/workerService";
-import "react-toastify/dist/ReactToastify.css";
 
 export default function LoginForm() {
   const { t } = useTranslation();

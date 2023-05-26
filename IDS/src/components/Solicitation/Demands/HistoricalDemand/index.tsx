@@ -1,12 +1,11 @@
-import Title from "../../../Fixed/Search/Title";
-import "./style.css";
-import { t } from "i18next";
-import Demand from "../../All/Cards/Card";
 import { useEffect, useState } from "react";
-import ServiceDemand from "../../../../services/demandService";
-import ServiceProposal from "../../../../services/proposalService";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
+
+import Title from "../../../Fixed/Search/Title";
+import ServiceDemand from "../../../../services/demandService";
+import ServiceProposal from "../../../../services/proposalService";
+import "./style.css";
 
 export default function HistoricalDemand() {
 

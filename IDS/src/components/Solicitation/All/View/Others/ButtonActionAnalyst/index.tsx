@@ -1,13 +1,11 @@
-import "./style.css"
 import { useState } from "react";
+
 import ModalActionAnalyst from "../ModalActionAnalyst";
-
-
+import "./style.css";
 
 export default function ButtonActionAnalyst(props:any) {
 
     const [modal, setModal]: any = useState(false);
-
 
     return (
         <div className="modal-action">

@@ -1,16 +1,14 @@
-import * as React from 'react';
 import { useState, useEffect } from 'react';
+
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import ServicesDemand from '../../../../../services/demandService';
 
 export default function SelectLabels(props: any) {
-    // const [age, setAge] = React.useState('');
 
-    const [centerCost, setCenterCost] = React.useState([{ costCenter: "" }]);
+    const [centerCost, setCenterCost] = useState([{ costCenter: "" }]);
     const url = parseInt(window.location.href.split('/')[5]);
-    // const [select, setSelect] = React.useState('');
 
     useEffect(() => { 
         getBu();

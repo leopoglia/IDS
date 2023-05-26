@@ -1,20 +1,19 @@
-import "./style.css"
 import { useState, useEffect, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import { useTranslation } from "react-i18next";
+import { WebSocketContext } from '../../../../services/webSocketService';
+
 import Title from "../../../Fixed/Search/Title";
 import SelectSizeDemand from "./SelectSizeDemand";
-import { useTranslation } from "react-i18next";
 import ServicesClassification from "../../../../services/classificationService"
 import ServicesDemand from "../../../../services/demandService";
-import ServicesNotification from "../../../../services/notificationService";
 import ServicesBu from "../../../../services/buService";
-import { Link } from "react-router-dom";
-import { toast, ToastContainer } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
 import UserContext from "../../../../context/userContext";
-import { WebSocketContext } from '../../../../services/webSocketService';
 import othersUtil from "../../../../utils/othersUtil";
 import notifyUtil from "../../../../utils/notifyUtil";
+import "./style.css"
+
 
 export default function RankDemand() {
     const { t } = useTranslation();

@@ -1,20 +1,21 @@
-import "./style.css"
+import { useEffect, useState } from "react";
+import { ToastContainer } from 'react-toastify';
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+
 import Search from "../../../Fixed/Search";
 import Demand from "./Card";
 import Footer from "../../../Fixed/Footer";
-import { useEffect, useState } from "react";
 import Load from "../../../Fixed/Load";
 import ServicesDemand from "../../../../services/demandService";
 import ServicesProposal from "../../../../services/proposalService";
 import ServicesAgenda from "../../../../services/agendaService";
 import ServicesMinute from "../../../../services/minuteService";
-import { ToastContainer } from 'react-toastify';
-import { useTranslation } from "react-i18next";
-import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
 import Presentation from "./Presentation";
 import Notification from "../../../../utils/notifyUtil";
 import othersUtil from "../../../../utils/othersUtil";
+import "./style.css"
+
 
 export default function Demands() {
     const url = window.location.href.split("/");

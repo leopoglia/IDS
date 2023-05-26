@@ -1,9 +1,11 @@
-import Title from "../../../Fixed/Search/Title";
-import { Link } from "react-router-dom";
-import "./style.css";
-import { useTranslation } from "react-i18next";
-import ProposalService from "../../../../services/proposalService";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+
+import Title from "../../../Fixed/Search/Title";
+import "./style.css";
+
+import ProposalService from "../../../../services/proposalService";
 
 export default function CommissionOpinion() {
 

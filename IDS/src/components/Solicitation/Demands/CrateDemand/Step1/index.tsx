@@ -1,17 +1,18 @@
-import "./style.css"
-import Title from "../../../../Fixed/Search/Title";
-import ProgressBar from "../ProgressBar";
-import ButtonAction from "../ButtonAction";
-import { useTranslation } from "react-i18next";
 import { useState, useEffect } from 'react';
-import Services from '../../../../../services/costCenterService';
+import { useTranslation } from "react-i18next";
 import { ToastContainer } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from 'react-router-dom';
-import SelectCenterCost from "./SelectCenterCost";
+
+import Title from "../../../../Fixed/Search/Title";
+import ProgressBar from "../Others/ProgressBar";
+import ButtonAction from "../Others/ButtonAction";
+import Services from '../../../../../services/costCenterService';
+import SelectCenterCost from "../Others/SelectCenterCost";
 import Editor from "../../../Proposals/EditProposalScope/Editor";
 import notifyUtil from "../../../../../utils/notifyUtil";
-import Label from "../Label/label";
+import Label from "../Others/Label/label";
+import "./style.css"
+
 
 export default function CreateDemands1() {
 

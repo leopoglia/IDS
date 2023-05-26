@@ -1,12 +1,13 @@
-import Title from "../../../Fixed/Search/Title";
 import { Link } from "react-router-dom";
-import "./style.css";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
-import ButtonAction from "../../Demands/CrateDemand/ButtonAction";
+
+import Title from "../../../Fixed/Search/Title";
+import ButtonAction from "../../Demands/CrateDemand/Others/ButtonAction";
 import notifyUtil from "../../../../utils/notifyUtil";
+import "./style.css";
 
 
 export default function ProposedInformation() {

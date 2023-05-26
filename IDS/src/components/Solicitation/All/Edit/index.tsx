@@ -1,20 +1,23 @@
 import { Link, useNavigate } from "react-router-dom";
-import Title from "../../../Fixed/Search/Title";
-import ServicesDemand from "../../../../services/demandService";
-import "./style.css"
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import SelectCenterCost from "../../Demands/CrateDemand/Step1/SelectCenterCost";
+
+import Title from "../../../Fixed/Search/Title";
+import ServicesDemand from "../../../../services/demandService";
+import SelectCenterCost from "../../Demands/CrateDemand/Others/SelectCenterCost";
 import ServicesRealBenefit from "../../../../services/realBenefitService";
 import ServicesPotentialBenefit from "../../../../services/potentialBenefitService";
 import ServicesQualitativeBenefit from "../../../../services/qualitativeBenefitService";
 import ServicesProposal from "../../../../services/proposalService";
 import Services from "../../../../services/costCenterService";
-import SelectCoin from "../../Demands/CrateDemand/SelectCoin";
-import CheckBox from "../../Demands/CrateDemand/CheckBox";
+import SelectCoin from "../../Demands/CrateDemand/Others/SelectCoin";
+import CheckBox from "../../Demands/CrateDemand/Others/CheckBox";
 import Editor from "../../Proposals/EditProposalScope/Editor";
 import GridCostExecution from "../../Proposals/ExecutionCosts/GridCostExecution";
 import ExpensesService from "../../../../services/expensesService";
+
+import "./style.css"
+
 
 
 export default function Edit() {

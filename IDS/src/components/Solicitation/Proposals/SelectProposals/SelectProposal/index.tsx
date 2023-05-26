@@ -1,7 +1,9 @@
-import "./style.css";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { t } from "i18next";
+
+import "./style.css";
+
 
 export default function SelectProposal(props: any) {
 
@@ -15,7 +17,7 @@ export default function SelectProposal(props: any) {
     const [cheacked, setCheacked] = useState(false);
     const [proposal, setProposal]: any = useState([]);
 
-    useEffect(() => { 
+    useEffect(() => {
         let proposals = JSON.parse(localStorage.getItem("proposals") || "[]");
         setProposal(proposals);
 

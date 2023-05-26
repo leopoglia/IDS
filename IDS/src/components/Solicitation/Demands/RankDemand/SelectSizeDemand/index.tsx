@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Services from '../../../../../services/buService';
-import { InputLabel } from '@mui/material';
 
 export default function SelectLabels(props: any) {
     const [select, setSelect] = useState('');

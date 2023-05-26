@@ -1,20 +1,19 @@
 import "./style.css"
 import "../Input/style.css"
 import Title from "../../../../Fixed/Search/Title";
-import ProgressBar from "../ProgressBar";
-import ButtonAction from "../ButtonAction";
-import SelectCoin from "../SelectCoin";
-import CheckBox from "../CheckBox";
-import { useTranslation } from "react-i18next";
 import { useEffect, useState } from 'react';
+import { useTranslation } from "react-i18next";
+import { ToastContainer } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+
+import ProgressBar from "../Others/ProgressBar";
+import ButtonAction from "../Others/ButtonAction";
+import SelectCoin from "../Others/SelectCoin";
 import RealServices from "../../../../../services/realBenefitService";
 import QualitativeServices from "../../../../../services/qualitativeBenefitService";
 import PotentialServices from "../../../../../services/potentialBenefitService";
-import { toast, ToastContainer } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from 'react-router-dom';
 import Editor from "../../../Proposals/EditProposalScope/Editor";
-import Label from "../Label/label";
+import Label from "../Others/Label/label";
 import notifyUtil from "../../../../../utils/notifyUtil";
 
 export default function CreateDemands2() {

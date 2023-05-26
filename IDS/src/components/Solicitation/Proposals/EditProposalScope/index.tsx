@@ -1,11 +1,12 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { ToastContainer } from 'react-toastify';
+
 import Title from "../../../Fixed/Search/Title";
 import Editor from "./Editor";
 import "./style.css"
-import { Link, useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { toast, ToastContainer } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
+
 import notifyUtil from "../../../../utils/notifyUtil";
 
 export default function EditProposalScope() {

@@ -1,8 +1,9 @@
-import Tooltip from "@mui/material/Tooltip";
 import { t } from "i18next";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
+import Tooltip from "@mui/material/Tooltip";
 
 export default function Table(props: any) {
 

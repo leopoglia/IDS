@@ -1,7 +1,9 @@
-import "./style.css"
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
+
 import Tooltip from '@mui/material/Tooltip';
-import { useEffect, useState } from "react";
+import "./style.css"
+
 
 export default function Situation(props: any) {
 

@@ -1,6 +1,6 @@
 import { t } from "i18next";
-import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+
 import ButtonActionAnalyst from "../ButtonActionAnalyst";
 
 export default function ButtonsActions(props: any) {

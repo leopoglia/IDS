@@ -1,13 +1,14 @@
-import Title from "../../../Fixed/Search/Title";
-import "./style.css";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import Title from "../../../Fixed/Search/Title";
 import ServicesProposals from "../../../../services/proposalService";
 import Services from "../../../../services/agendaService";
 import SelectWorker from "../SelectWorker";
 import Servicescommission from "../../../../services/commissionService";
+import "./style.css";
 
 export default function CreateAgenda() {
 
@@ -179,7 +180,7 @@ export default function CreateAgenda() {
 
                     <div className="input">
                         <label>{t("dateAgenda")} *</label>
-                        <input type="datetime-local" onChange={(e) => {setDate(e.target.value); }}  value={date} />
+                        <input type="datetime-local" onChange={(e) => { setDate(e.target.value); }} value={date} />
                     </div>
 
                     <div className="input">

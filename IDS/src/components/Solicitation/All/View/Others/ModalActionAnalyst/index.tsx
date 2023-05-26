@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import "./style.css";
-import ModalChangeStatus from "../ModalChangeStatus";
 import { t } from "i18next";
+
+import ModalChangeStatus from "../ModalChangeStatus";
+import "./style.css";
+
 
 export default function InsetList(props: any) {
 

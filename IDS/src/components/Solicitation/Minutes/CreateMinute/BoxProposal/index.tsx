@@ -1,9 +1,10 @@
-import Editor from "../../../Proposals/EditProposalScope/Editor"
-import Expenses from "../../../All/View/Others/Expenses";
 import { useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
-import ServicesExpenses from "../../../../../services/expensesService";
 import { useTranslation } from "react-i18next";
+
+import Editor from "../../../Proposals/EditProposalScope/Editor"
+import Expenses from "../../../All/View/Others/Expenses";
+import ServicesExpenses from "../../../../../services/expensesService";
 
 
 export default function BoxProposal(props: any) {

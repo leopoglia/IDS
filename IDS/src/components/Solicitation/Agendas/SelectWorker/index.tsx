@@ -1,13 +1,13 @@
-import * as React from 'react';
-import Services from '../../../../services/commissionService';
 import { useState, useEffect } from 'react';
 import { Autocomplete, Stack, TextField } from '@mui/material';
+
+import Services from '../../../../services/commissionService';
 
 export default function FreeSolo(props: any) {
 
     const [commission, setCommission] = useState([{ commissionName: "" }]);
 
-    useEffect(() => { 
+    useEffect(() => {
         getWorker();
     }, []);
 

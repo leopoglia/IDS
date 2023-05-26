@@ -1,12 +1,12 @@
-import Title from "../../../Fixed/Search/Title";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+
+import Title from "../../../Fixed/Search/Title";
 import MinuteService from "../../../../services/minuteService";
 import ProposalService from "../../../../services/proposalService";
 import AgendaService from "../../../../services/agendaService";
-import { useContext, useEffect, useState } from "react";
 import UserContext from "../../../../context/userContext";
-import { useNavigate } from "react-router";
 import BoxProposal from "./BoxProposal";
 
 

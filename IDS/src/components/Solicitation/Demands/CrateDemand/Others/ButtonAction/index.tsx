@@ -1,6 +1,7 @@
-import "./style.css";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+
+import "./style.css";
 
 export default function ButtonAction(props: any) {
 

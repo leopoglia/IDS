@@ -1,11 +1,11 @@
-import * as React from 'react';
+import { useState, useEffect } from 'react'; 
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { useEffect } from 'react';
 
 export default function SelectLabels(props: any) {
-    const [coin, setCoin] = React.useState('');
+    const [coin, setCoin] = useState('');
 
     useEffect(() => { 
         addChange();

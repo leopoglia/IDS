@@ -1,10 +1,11 @@
-import * as React from 'react';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
+import { useState } from 'react';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+
 export default function SelectLabels() {
-    const [age, setAge] = React.useState('');
+    const [age, setAge] = useState('');
 
     const handleChange = (event: SelectChangeEvent) => {
         setAge(event.target.value);

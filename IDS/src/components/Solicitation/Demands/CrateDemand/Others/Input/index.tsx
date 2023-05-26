@@ -1,7 +1,8 @@
-import "./style.css"
 import { useTranslation } from "react-i18next";
 
-export default function TextArea(props: {
+import "./style.css"
+
+export default function Input(props: {
     label: string;
     required: string;
 }) {
@@ -9,9 +10,9 @@ export default function TextArea(props: {
     const { t } = useTranslation();
 
     return (
-        <div className="text-area">
+        <div className="input">
             <label>{t(props.label)} {props.required}</label>
-            <textarea />
+            <input  type="text" />
         </div>
     );
 }

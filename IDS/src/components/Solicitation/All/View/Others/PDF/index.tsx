@@ -1,7 +1,9 @@
-import "./style.css"
+import { useEffect } from "react";
+
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-import { useEffect } from "react";
+import "./style.css"
+
 
 export default function PDF(props: any) {
 

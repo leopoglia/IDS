@@ -1,17 +1,18 @@
 import { useState, useEffect, useContext } from 'react';
-import "./style.css"
-import Title from "../../../../Fixed/Search/Title";
-import ProgressBar from "../ProgressBar";
-import ButtonAction from "../ButtonAction";
-import { useTranslation } from "react-i18next";
-import Services from "../../../../../services/demandService";
-import { toast, ToastContainer } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from 'react-toastify';
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
+
+import Title from "../../../../Fixed/Search/Title";
+import Label from '../Others/Label/label';
+import ProgressBar from "../Others/ProgressBar";
+import ButtonAction from "../Others/ButtonAction";
+import Services from "../../../../../services/demandService";
 import UserContext from "../../../../../context/userContext";
 import othersUtil from '../../../../../utils/othersUtil';
-import Label from '../Label/label';
 import notifyUtil from '../../../../../utils/notifyUtil';
+import "./style.css"
+
 
 export default function CreateDemands3() {
 

@@ -35,7 +35,7 @@ export default function CreateMinute() {
 
         proposals.forEach(async (proposal: any) => {
 
-            await ProposalService.update(proposal.ProposalCode, proposal).then((response: any) => {
+            await ProposalService.update(proposal.proposalCode, proposal).then((response: any) => {
                 console.log(response)
             })
         });

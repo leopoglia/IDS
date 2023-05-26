@@ -33,18 +33,17 @@ export default function CreateMinute() {
 
     function saveMinute() {
 
-        proposals.forEach((element: any) => {
-            console.log(element)
+        proposals.forEach(async (proposal: any) => {
 
-          
-
+            await ProposalService.update(proposal.ProposalCode, proposal).then((response: any) => {
+                console.log(response)
+            })
         });
 
+        MinuteService.save(t("unpublishedMinutes") + "", code, actualDate, worker.id, "Not Published");
+        MinuteService.save(t("publiquedMinute") + "", code, actualDate, worker.id, "Published");
 
-        // MinuteService.save(t("unpublishedMinutes") + "", code, actualDate, worker.id, "Not Published");
-        // MinuteService.save(t("publiquedMinute") + "", code, actualDate, worker.id, "Published");
-
-        // navigate("/minutes/1");
+        navigate("/minutes/1");
     }
 
 

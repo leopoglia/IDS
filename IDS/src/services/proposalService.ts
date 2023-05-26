@@ -61,6 +61,15 @@ const Services = {
                 .catch(resolve)
         })
     },
+    update: function (demandCode: number, proposal: any) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/" + demandCode, {
+                method: 'PUT', body: JSON.stringify(proposal), headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(resolve)
+        })
+    },
     delete: function (id: number) {
         return new Promise((resolve, reject) => {
             fetch(url + "/" + id, {

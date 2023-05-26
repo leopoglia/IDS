@@ -13,6 +13,13 @@ export default function BoxProposal(props: any) {
     const code: any = useParams().id;
     const { t } = useTranslation();
 
+    const [proposalTitle, setProposalTitle]: any = useState(props.proposal.proposalName);
+    const [proposalObjective, setProposalObjective]: any = useState(props.proposal.demand.demandObjective);  
+    const [proposalScope, setProposalScope]: any = useState(props.proposal.descriptiveProposal);
+
+    const [proposalQualitativeBenefitDescription, setProposalQualitativeBenefitDescription]: any = useState(props.proposal.demand.qualitativeBenefit.qualitativeBenefitDescription);
+    const [proposalPotentialBenefitDescription, setProposalPotentialBenefitDescription]: any = useState(props.proposal.demand.potentialBenefit.potentialBenefitDescription);
+
 
     const [proposalExpense, setProposalExpense]: any = useState([]);
     const [proposalExpenseValue, setProposalExpenseValue]: any = useState(0);
@@ -43,7 +50,7 @@ export default function BoxProposal(props: any) {
             return diffInMonths.toFixed(0) + " mês";
         } else {
             return diffInMonths.toFixed(0) + " meses";
-        }
+        } 
     }
 
 
@@ -80,8 +87,8 @@ export default function BoxProposal(props: any) {
 
 
                 if (expense.length > 0) {
-                    setInitialRunPeriod(dateFormat(expense[0].proposal.initialRunPeriod));
-                    setFinalExecutionPeriod(dateFormat(expense[0].proposal.finalExecutionPeriod));
+                    setInitialRunPeriod(expense[0].proposal.initialRunPeriod.split("T")[0]);
+                    setFinalExecutionPeriod(expense[0].proposal.finalExecutionPeriod.split("T")[0]);
                     setPayBack(payback(expense[0].proposal.initialRunPeriod, expense[0].proposal.finalExecutionPeriod));
                     setResponsibleBussiness(expense[0].proposal.responsibleAnalyst.workerName);
 
@@ -93,7 +100,23 @@ export default function BoxProposal(props: any) {
     }, [props.proposal])
 
 
-    const handleChange = (value: React.SetStateAction<string>, type: string) => {
+    const handleChange = (value: any, type: string) => {
+
+        if(type === "objective"){
+            setProposalObjective(value.target.value);
+        }else if(type === "scope"){
+            setProposalScope(value.target.value);
+        } else if(type === "benefitQualitative"){
+            setProposalQualitativeBenefitDescription(value.target.value);
+        } else if(type === "benefitPotential"){
+            setProposalPotentialBenefitDescription(value.target.value);
+        } else if(type === "dateStart"){
+            setInitialRunPeriod(value.target.value);
+        } else if(type === "dateEnd"){
+            setFinalExecutionPeriod(value.target.value);
+        }
+
+
     }
 
 
@@ -107,7 +130,7 @@ export default function BoxProposal(props: any) {
 
                     <span className="code noMargin">{props.proposal.proposalCode}</span>
 
-                    <p className="title"> {t(props.proposal.proposalName)}</p>
+                    <p className="title"> {t(proposalTitle)}</p>
 
                 </div>
 
@@ -121,29 +144,29 @@ export default function BoxProposal(props: any) {
 
             <div className="input">
                 <label>{t("titleProposal")}</label>
-                <input type="text" value={props.proposal.proposalName} />
+                <input type="text" value={proposalTitle} onChange={(e) => setProposalTitle(e.target.value)}  />
             </div>
 
 
             <div className="text-area">
                 <label>{t("objective")}</label>
-                <Editor handleChange={handleChange} type={"objective"} content={props.proposal.demand.demandObjective} />
+                <Editor handleChange={handleChange} type={"objective"} content={proposalObjective} />
             </div>
 
             <div className="text-area">
                 <label>{t("proposalScope")}</label>
-                <Editor handleChange={handleChange} type={"scope"} content={props.proposal.descriptiveProposal} />
+                <Editor handleChange={handleChange} type={"scope"} content={proposalScope} />
             </div>
 
 
             <div className="text-area">
                 <label>{t("benefitQualitative")}</label>
-                <Editor handleChange={handleChange} type={"objective"} content={props.proposal.demand.qualitativeBenefit.qualitativeBenefitDescription} />
+                <Editor handleChange={handleChange} type={"benefitQualitative"} content={proposalQualitativeBenefitDescription} />
             </div>
 
             <div className="text-area">
                 <label>{t("benefitPotential")}</label>
-                <Editor handleChange={handleChange} type={"objective"} content={props.proposal.demand.potentialBenefit.potentialBenefitDescription} />
+                <Editor handleChange={handleChange} type={"benefitPotential"} content={proposalPotentialBenefitDescription} />
             </div>
 
             {proposalExpenseValue?.expensesCode > 0 ? (<Expenses type="expenses" proposalExpense={proposalExpenseValue} />) : (null)}
@@ -157,28 +180,15 @@ export default function BoxProposal(props: any) {
 
                 <div className="input mr20">
                     <label>{t("start")}</label>
-                    <input type="date" value={initialRunPeriod} />
+                    <input type="date" value={initialRunPeriod} onChange={(e) => handleChange(e, "dateStart")} />
                 </div>
 
                 <div className="input">
                     <label>{t("end")}</label>
-                    <input type="date" value={finalExecutionPeriod} />
+                    <input type="date" value={finalExecutionPeriod} onChange={(e) => handleChange(e, "dateEnd")} />
                 </div>
 
             </div>
-
-            <div className="input">
-                <label>{t("Payback")}</label>
-                <input type="text" value={payBack} />
-            </div>
-
-            <div className="input">
-                <label>{t("responsibleBussiness")}</label>
-                <input type="text" value={responsibleBussiness} />
-            </div>
-
-
-
 
         </div>
     )

@@ -31,6 +31,12 @@ export default function CreateMinute() {
 
 
     function saveMinute() {
+
+        proposals.forEach((element: any) => {
+            console.log(element)
+        });
+
+
         MinuteService.save(t("unpublishedMinutes") + "", code, actualDate, worker.id, "Not Published");
         MinuteService.save(t("publiquedMinute") + "", code, actualDate, worker.id, "Published");
     }

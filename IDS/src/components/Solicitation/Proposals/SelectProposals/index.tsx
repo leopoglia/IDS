@@ -14,7 +14,7 @@ export default function Proposals() {
     const [proposals, setProposals] = useState([]);
     const navigate = useNavigate();
 
-    useEffect(() => { 
+    useEffect(() => {
         ServicesProposal.findAll().then((response: any) => {
             setProposals(response);
         })
@@ -47,14 +47,26 @@ export default function Proposals() {
                         }
                     })}
 
+                    {proposals.filter((proposal: any) => proposal.proposalStatus === "Pending").length === 0 &&
+                        <div className="box-proposal">
+                            <div className="no-results">
+                                <span className="material-symbols-outlined">request_quote</span>
+                                <h1>{t("noResults")}</h1>
+                            </div>
+                        </div>
+                    }
+
                 </div>
 
 
-                <div className="display-flex-end">
+                {proposals.filter((proposal: any) => proposal.proposalStatus === "Pending").length !== 0 &&
 
-                    <button onClick={() => nextAdd()} className="btn-primary">{t("add")}</button>
+                    <div className="display-flex-end">
 
-                </div>
+                        <button onClick={() => nextAdd()} className="btn-primary">{t("add")}</button>
+
+                    </div>
+                }
 
                 <Footer />
 

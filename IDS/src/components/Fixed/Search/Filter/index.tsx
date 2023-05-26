@@ -1,8 +1,9 @@
-import "./style.css";
 import { useContext, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+
 import SelectStatus from "./SelectStatus";
 import UserContext from "../../../../context/userContext";
+import "./style.css";
 
 export interface FilterProps {
     onClick: (name: string | undefined, type: string) => void

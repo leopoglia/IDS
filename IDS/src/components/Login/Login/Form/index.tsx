@@ -1,11 +1,12 @@
-import "./style.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useRef, useContext } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+
 import notifyUtil from "../../../../utils/notifyUtil";
 import UserContext from "../../../../context/userContext";
 import Services from "../../../../services/workerService";
+import "./style.css";
 
 export default function LoginForm() {
   const { t } = useTranslation();

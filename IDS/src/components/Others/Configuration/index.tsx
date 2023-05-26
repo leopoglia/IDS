@@ -1,10 +1,11 @@
 import { useContext } from "react";
-import "./style.css"
+import { useTranslation } from "react-i18next";
+
 import Title from "../../Fixed/Search/Title";
 import Footer from "../../Fixed/Footer";
-import { useTranslation } from "react-i18next";
 import UserContext from "../../../context/userContext";
 import Slider from "./Slider";
+import "./style.css"
 
 
 export default function Configuration() {

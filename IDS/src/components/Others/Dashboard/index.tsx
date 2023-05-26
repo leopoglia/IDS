@@ -1,6 +1,7 @@
-import Title from "../../Fixed/Search/Title";
-import "./style.css";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+
+import Title from "../../Fixed/Search/Title";
 import Box from "./Box";
 import List from "./List";
 import ServicesDemand from '../../../services/demandService';
@@ -8,7 +9,7 @@ import ServicesProposal from '../../../services/proposalService';
 import ServicesAgenda from '../../../services/agendaService';
 import ServicesMinutes from "../../../services/minuteService";
 import Footer from "../../Fixed/Footer";
-import { useTranslation } from "react-i18next";
+import "./style.css";
 
 export default function Dashboard() {
 

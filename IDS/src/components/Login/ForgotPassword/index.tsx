@@ -1,8 +1,9 @@
-import './style.css';
 import { Link } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
+
 import Language from '../../Fixed/Language';
 import Footer from '../../Fixed/Footer';
+import './style.css';
 
 export default function Form() {
     const { t } = useTranslation();

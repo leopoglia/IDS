@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { useState, useEffect } from 'react';
+
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
@@ -8,7 +8,7 @@ import ServicesDemand from '../../../../../services/demandService';
 export default function SelectLabels(props: any) {
     // const [age, setAge] = React.useState('');
 
-    const [status, SetStatus] = React.useState([]);
+    const [status, SetStatus] = useState([]);
 
     useEffect(() => {
         SetStatus(props.array);

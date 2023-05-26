@@ -1,7 +1,8 @@
-import "./style.css"
-import Language from "../Language"
 import { Link } from "react-router-dom";
+
+import Language from "../Language"
 import User from "../User";
+import "./style.css"
 
 export default function Header() {
 

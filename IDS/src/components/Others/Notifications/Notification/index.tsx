@@ -1,8 +1,8 @@
-import "./style.css"
-import Services from "../../../../services/notificationService"
 import { useNavigate } from "react-router"
 import { t } from "i18next"
 
+import Services from "../../../../services/notificationService"
+import "./style.css"
 
 export default function Notification(props: any) {
 

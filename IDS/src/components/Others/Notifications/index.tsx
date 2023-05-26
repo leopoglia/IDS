@@ -1,13 +1,13 @@
-import "./style.css"
+import { useState, useEffect, useContext } from "react";
+import { useTranslation } from "react-i18next";
+
 import Title from "../../Fixed/Search/Title";
 import Notification from "./Notification";
 import Footer from "../../Fixed/Footer";
-import { useState, useEffect, useContext } from "react";
 import Services from "../../../services/notificationService";
 import UserContext from "../../../context/userContext";
-import { useTranslation } from "react-i18next";
 import Load from "../../Fixed/Load";
-
+import "./style.css"
 
 export default function Notifications() {
 

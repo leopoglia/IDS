@@ -1,8 +1,9 @@
-import "./style.css"
+import { useEffect } from "react";
+
 import Form from "./Form"
 import Language from "../../Fixed/Language";
 import Footer from "../../Fixed/Footer";
-import { useEffect } from "react";
+import "./style.css"
 
 export default function Login() {
 

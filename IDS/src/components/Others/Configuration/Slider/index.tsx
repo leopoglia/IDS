@@ -1,7 +1,7 @@
-import * as React from 'react';
+import { useTheme } from '@mui/material';
+
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-import { useTheme } from '@mui/material';
 
 function valuetext(value: number) {
     return `${value}°C`;

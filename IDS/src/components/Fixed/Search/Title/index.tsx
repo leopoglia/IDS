@@ -1,5 +1,6 @@
-import "./style.css"
 import { useTranslation } from "react-i18next";
+
+import "./style.css"
 
 
 export default function Title(props: any) {

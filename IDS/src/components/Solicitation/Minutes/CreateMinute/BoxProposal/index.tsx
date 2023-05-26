@@ -102,7 +102,9 @@ export default function BoxProposal(props: any) {
 
     const handleChange = (value: any, type: string) => {
 
-        if(type === "objective"){
+        if(type === "title"){
+            setProposalTitle(value.target.value);
+        } else if(type === "objective"){
             setProposalObjective(value.target.value);
         }else if(type === "scope"){
             setProposalScope(value.target.value);
@@ -116,7 +118,7 @@ export default function BoxProposal(props: any) {
             setFinalExecutionPeriod(value.target.value);
         }
 
-
+        props.handleChange(value, type, props.proposal.proposalCode);
     }
 
 
@@ -144,7 +146,7 @@ export default function BoxProposal(props: any) {
 
             <div className="input">
                 <label>{t("titleProposal")}</label>
-                <input type="text" value={proposalTitle} onChange={(e) => setProposalTitle(e.target.value)}  />
+                <input type="text" value={proposalTitle} onChange={(e) => handleChange(e, "title")}  />
             </div>
 
 

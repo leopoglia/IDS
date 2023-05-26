@@ -370,10 +370,14 @@ const ChatRoom = () => {
 
                                             <div className="actions-message">
 
-                                                <div className="attach_file">
-                                                    <span className="material-symbols-outlined">
-                                                        attach_file
-                                                    </span>
+                                                <div className='file-message'>
+                                                    <label className="attach_file" htmlFor="file">
+                                                        <span className="material-symbols-outlined">
+                                                            attach_file
+                                                        </span>
+                                                    </label>
+
+                                                    <input type="file" id='file' />
                                                 </div>
 
 

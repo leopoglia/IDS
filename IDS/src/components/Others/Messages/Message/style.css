@@ -304,7 +304,7 @@
     min-height: 35px;
     height: 35px;
     margin-left: 5px;
-    border-radius: var(--r);
+    border-radius: var(--rr);
 }
 
 
@@ -380,7 +380,7 @@
 }
 
 .messages .separation .display-date {
-    background-color: var(--greyE5);
+    background-color: var(--greyF7);
     color: var(--grey59) !important;
     display: flex;
     align-items: center;
@@ -389,6 +389,14 @@
     border-radius: var(--r);
     font-size: var(--pp);
     z-index: 1;
+}
+
+.messages .separation .display-date:hover{
+    background-color: var(--greyE5);
+}
+
+.messages .file-message input{
+    display: none;
 }
 
 

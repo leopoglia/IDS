@@ -1,3 +1,4 @@
+import ServicesCostCenter from "./costCenterService";
 const url = "http://localhost:8443/api/expenses";
 
 const Services = {
@@ -29,7 +30,11 @@ const Services = {
         })
     },
     update: function (expenseName: String, proposal: any, costCenter: any, expense: any, expensesCostCenters: any, expensesCode: any) {
-        return new Promise((resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
+
+
+            let costCenterLocalStorage = JSON.parse(localStorage.getItem("centerOfCustProposalrecurrent") || "[]");
+
 
             let expenses = [];
             let expensesCostCentersNew = [];
@@ -40,12 +45,26 @@ const Services = {
                 }
             }
 
-            for (let i = 0; i < expensesCostCenters.length; i++) {
-                console.log("expensesCostCenters[i] ----> ", expensesCostCenters[i])
-                expensesCostCentersNew.push({ "costCenter": { "costCenterCode": JSON.parse(expensesCostCenters[i].costCenter.costCenterCode.costCenterCode) }, "percent": JSON.parse(expensesCostCenters[i].costCenter.costCenterCode.percent) })
+            for (let i = 0; i < costCenterLocalStorage.length; i++) {
+
+
+                if (costCenterLocalStorage[i].edit === true) {
+                    console.log("entrou no if")
+                    expensesCostCentersNew.push({ "costCenter": { "costCenterCode": parseInt(costCenterLocalStorage[i].costCenterCode) }, "percent": costCenterLocalStorage[i].percent })
+                } else {
+                    await ServicesCostCenter.findByCostCenter(costCenterLocalStorage[i].costCenterCode).then((costCenterFindByCostCenter: any) => {
+                        console.log("entrou no else ---> ", { "costCenter": { "costCenterCode": costCenterFindByCostCenter.costCenterCode }, "percent": costCenterLocalStorage[i].percent })
+
+
+                        expensesCostCentersNew.push({ "costCenter": { "costCenterCode": costCenterFindByCostCenter.costCenterCode }, "percent": costCenterLocalStorage[i].percent })
+                    })
+                }
             }
 
-            console.log("expensesCostCenters ==> ", expensesCostCenters)
+
+
+            console.log("expensesCostCentersNew -----> ", expensesCostCentersNew)
+
 
             fetch(url + "/" + expensesCode, {
                 method: 'PUT', body: JSON.stringify({

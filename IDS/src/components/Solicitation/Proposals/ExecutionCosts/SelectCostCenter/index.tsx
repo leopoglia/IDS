@@ -21,7 +21,7 @@ export default function SelectCostCenter(props: any) {
                         let idCostCenterAux: any[] = [];
                         expense.expensesCostCenters.forEach((costCenter: any) => {
 
-                            costCenter.costCenter =  { "costCenterCode": costCenter.costCenter.costCenterCode, "percent":  costCenter.percent};
+                            costCenter.costCenter =  { "costCenterCode": costCenter.costCenter.costCenterCode, "percent":  costCenter.percent, "edit": true};
 
                             costsCentersAux.push(costCenter.costCenter);
                             idCostCenterAux.push(costCenter.costCenter);

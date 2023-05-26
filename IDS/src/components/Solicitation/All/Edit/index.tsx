@@ -148,6 +148,7 @@ export default function Edit() {
 		} else {
 			createCostCenter(costCenterAdd);
 			let costCentersArray = costsCenters;
+			
 			costCentersArray.push(costCenterAdd);
 			setCostsCenters(costCentersArray);
 
@@ -194,6 +195,7 @@ export default function Edit() {
 			for (let i = 0; i < costsCenterBd.length; i++) {
 				if (costsCenterBd[i].costCenter === costCenterParameter) {
 					id = costsCenterBd[i].costCenterCode;
+					costsCenterBd[i].edit = true;
 				}
 			}
 			idCostCenter.push(id);

@@ -30,6 +30,15 @@ const Services = {
                 .catch(resolve)
         })
     },
+    findByCostCenter: function (costCenter: string) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/name/" + costCenter, {
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(resolve)
+        })
+    },
     delete: function (id: number) {
         return new Promise((resolve, reject) => {
             fetch(url + "/" + id, {

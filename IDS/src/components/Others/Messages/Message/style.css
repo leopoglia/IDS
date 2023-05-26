@@ -362,14 +362,35 @@
     font-size: var(--g);
 }
 
-.messages .check-done{
+.messages .check-done {
     font-size: 16px !important;
     margin-left: 2px;
 }
 
-.messages .message-user .display-flex-end{
+.messages .message-user .display-flex-end {
     align-items: center;
 }
+
+.messages .separation{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.messages .separation .display-date {
+    background-color: var(--greyE5);
+    color: var(--grey59) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: var(--r);
+    font-size: var(--pp);
+    z-index: 1;
+}
+
 
 @media(max-width: 1140px) {
     .messages .box-message .message-user {

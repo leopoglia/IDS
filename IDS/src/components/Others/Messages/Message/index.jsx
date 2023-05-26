@@ -1,3 +1,4 @@
+import React from 'react';
 import { useContext, useEffect, useState, useRef } from 'react'
 import EmojiPicker from "emoji-picker-react";
 import { useTranslation } from "react-i18next";
@@ -37,6 +38,9 @@ const ChatRoom = () => {
     const [sender, setSender] = useState({});
 
     let [chat, setChat] = useState([]);
+
+    let lastProcessedDate = '';
+
 
     useEffect(() => {
         divRef.current.scrollTop = divRef.current.scrollHeight;
@@ -288,38 +292,63 @@ const ChatRoom = () => {
                             <ul className="chat-messages" ref={divRef}>
 
 
+
                                 {messages.length > 0 &&
-                                    messages.map((message) => (
+                                    messages.map((message, index) => {
+                                        const messageDate = message?.dateMessage.split(",")[0].split("/");
 
-                                        <li key={message.id} className={
-                                            message?.sender?.workerCode === worker.id || message?.sender?.workerCode === parseInt(localStorage.getItem("id")) ? "message-two" : null}>
+                                        const currentDate = new Date();
 
-                                            <div className='message-user'>
+                                        // Verificar se a data é hoje
+                                        const isToday =
+                                            parseInt(messageDate[0]) === currentDate.getDate() &&
+                                            parseInt(messageDate[1]) === currentDate.getMonth() + 1 &&
+                                            parseInt(messageDate[2]) === currentDate.getFullYear();
 
-                                                <span>{message?.message}</span>
+                                        // Obter a representação da data a ser exibida
+                                        const displayDate = isToday ? "Hoje" : message.dateMessage.split(",")[0];
 
+                                        // Verificar se a data é diferente da última data processada
+                                        const isDifferentDate = displayDate !== lastProcessedDate;
 
-                                                <div className='display-flex-end'>
-                                                    <div className="message-data">
-                                                        <span>{message?.dateMessage.split(",")[1]}</span>
-                                                    </div>
+                                        // Atualizar a última data processada com a data atual da mensagem
+                                        lastProcessedDate = displayDate;
 
-                                                    {message?.sender?.workerCode === worker.id || message?.sender?.workerCode === parseInt(localStorage.getItem("id")) ? (
-                                                        <span className='material-symbols-outlined check-done'>
-                                                            done
-                                                        </span>
-                                                    )
-                                                        : null
+                                        return (
+                                            <React.Fragment key={message.id}>
+                                                {isDifferentDate && (
+                                                    <li className="separation">
+                                                        <span className="display-date">{displayDate}</span>
+                                                    </li>
+                                                )}
+
+                                                <li
+                                                    className={
+                                                        message.sender?.workerCode === worker.id ||
+                                                            message.sender?.workerCode === parseInt(localStorage.getItem("id"))
+                                                            ? "message-two"
+                                                            : null
                                                     }
-                                                </div>
+                                                >
+                                                    <div className="message-user">
+                                                        <span>{message.message}</span>
+                                                        <div className="display-flex-end">
+                                                            <div className="message-data">
+                                                                <span>{message.dateMessage.split(",")[1]}</span>
+                                                            </div>
+                                                            {message.sender?.workerCode === worker.id ||
+                                                                message.sender?.workerCode === parseInt(localStorage.getItem("id")) ? (
+                                                                <span className="material-symbols-outlined check-done">done</span>
+                                                            ) : null}
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </React.Fragment>
+                                        );
+                                    })}
 
 
-                                            </div>
 
-                                        </li>
-
-                                    ))
-                                }
 
                             </ul>
 

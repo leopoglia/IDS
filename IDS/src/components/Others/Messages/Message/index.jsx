@@ -75,12 +75,10 @@ const ChatRoom = () => {
 
         if (worker.id === 1) {
             ServicesWorker.isUserOnline(2).then((response) => {
-                console.log(response);
                 setIsUserOnline(response);
             });
         } else{
             ServicesWorker.isUserOnline(1).then((response) => {
-                console.log(response);
                 setIsUserOnline(response);
             });
         }
@@ -172,8 +170,6 @@ const ChatRoom = () => {
 
         setMessage({ ...message, message: message.message + emojiData.emoji, dateMessage: new Date().toLocaleString() });
     }
-
-    console.log("isUserOnline: " + isUserOnline);
 
     return (
         <div className="messages">

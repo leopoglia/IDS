@@ -262,8 +262,6 @@ export default function Edit() {
 						if (expensesCostCenter.length > 0) {
 
 							ExpensesService.update(expenseType, demandCode, costCentersCode, expenseListStorage, expensesCostCenter, expense.expensesCode).then((expenseses: any) => {
-								console.log(expenseses);
-
 								navigate("/proposal/view/" + demandCode);
 								localStorage.removeItem("centerOfCustProposalexpenses");
 								localStorage.removeItem("expenseList");

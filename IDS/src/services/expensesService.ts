@@ -49,22 +49,13 @@ const Services = {
 
 
                 if (costCenterLocalStorage[i].edit === true) {
-                    console.log("entrou no if")
                     expensesCostCentersNew.push({ "costCenter": { "costCenterCode": parseInt(costCenterLocalStorage[i].costCenterCode) }, "percent": costCenterLocalStorage[i].percent })
                 } else {
                     await ServicesCostCenter.findByCostCenter(costCenterLocalStorage[i].costCenterCode).then((costCenterFindByCostCenter: any) => {
-                        console.log("entrou no else ---> ", { "costCenter": { "costCenterCode": costCenterFindByCostCenter.costCenterCode }, "percent": costCenterLocalStorage[i].percent })
-
-
                         expensesCostCentersNew.push({ "costCenter": { "costCenterCode": costCenterFindByCostCenter.costCenterCode }, "percent": costCenterLocalStorage[i].percent })
                     })
                 }
             }
-
-
-
-            console.log("expensesCostCentersNew -----> ", expensesCostCentersNew)
-
 
             fetch(url + "/" + expensesCode, {
                 method: 'PUT', body: JSON.stringify({

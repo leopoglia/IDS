@@ -9,9 +9,10 @@ export default function SelectCostCenter(props: any) {
     const [costCenter, setCostCenter] = useState("");
     const [costsCenters, setCostsCenters]: any = useState([]);
     const [idCostCenter, setIdCostCenter]: any = useState([]);
-    let centerOfCustProposal: any = JSON.parse(localStorage.getItem('centerOfCustProposal' + props.type) || '[]');
     const editType = window.location.href.split("?")[1];
     const proposalCode: any = window.location.href.split("/")[5];
+    let centerOfCustProposal: any = JSON.parse(localStorage.getItem('centerOfCustProposal' + props.type) || '[]');
+
 
     useEffect(() => {
         if (editType !== undefined) {
@@ -22,7 +23,7 @@ export default function SelectCostCenter(props: any) {
                         let idCostCenterAux: any[] = [];
                         expense.expensesCostCenters.forEach((costCenter: any) => {
 
-                            costCenter.costCenter =  { "costCenterCode": costCenter.costCenter.costCenterCode, "percent":  costCenter.percent, "edit": true};
+                            costCenter.costCenter = { "costCenterCode": costCenter.costCenter.costCenterCode, "percent": costCenter.percent, "edit": true };
 
                             costsCentersAux.push(costCenter.costCenter);
                             idCostCenterAux.push(costCenter.costCenter);

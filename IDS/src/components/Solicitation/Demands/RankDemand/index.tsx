@@ -46,7 +46,6 @@ export default function RankDemand() {
 
         if (demand != undefined) {
             if (stompClient && !subscribeId) {
-                console.log(demand)
                 setSubscribeId(subscribe("/notifications/" + demand?.requesterRegistration?.workerCode, notification));
             }
         }

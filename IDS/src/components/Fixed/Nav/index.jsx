@@ -101,8 +101,6 @@ export default function Nav() {
         if (worker.office === "requester") {
             ServicesMessages.findAllByDemandRequester(worker.id).then((response) => {
                 if (response === true) {
-
-                    console.log(response)
                     setMessagesOn(response)
                 }
             }).catch((error) => {

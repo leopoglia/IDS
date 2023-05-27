@@ -19,8 +19,6 @@ export default function ConditionalValidationGrid(props: any) {
 
     useEffect(() => {
 
-        console.log(localStorage.getItem('expenseList'))
-
         if ((expenseType === "internal" || expenseType === "recurrent" || expenseType === "expenses") && (localStorage.getItem('expenseList') === undefined || localStorage.getItem('expenseList') === null)) {
             setEditExpense(true);
 

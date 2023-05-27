@@ -16,9 +16,6 @@ const othersUtil = {
             nav = minutes.length;
         }
 
-        console.log(nav);
-
-
         return (
             <div className="h45">
                 {search === "" && pages > 1 && (

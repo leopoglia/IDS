@@ -16,15 +16,7 @@ export default function Configuration() {
     const email = worker.email;
     const image = name.substring(0, 1);
 
-
-    function changeName() {
-    }
-
-
     const handleChange = (event: any) => {
-
-        console.log("event ->", event.target.checked)
-
         if (event.target.checked === false) {
             document.documentElement.style.setProperty('--r', ".375rem");
             document.documentElement.style.setProperty('--rr', "50px");

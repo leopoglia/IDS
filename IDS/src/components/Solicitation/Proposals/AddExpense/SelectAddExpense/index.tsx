@@ -23,9 +23,6 @@ export default function SelectLabels(props: any) {
     useEffect(() => {
         if (props.type === "expenseType") {
             setSelect(props.value)
-
-            console.log("props.value", props.value);
-            console.log("props.type", props.type);
         }
     }, [props.value]);
 
@@ -40,8 +37,6 @@ export default function SelectLabels(props: any) {
             setSelect(event.target.value)
         }
     };
-
-    console.log(props.value)
 
     return (
         <div>

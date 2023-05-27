@@ -35,9 +35,7 @@ export default function CreateMinute() {
 
         proposals.forEach(async (proposal: any) => {
 
-            await ProposalService.update(proposal.proposalCode, proposal).then((response: any) => {
-                console.log(response)
-            })
+            await ProposalService.update(proposal.proposalCode, proposal);
         });
 
         MinuteService.save(t("unpublishedMinutes") + "", code, actualDate, worker.id, "Not Published");
@@ -48,10 +46,6 @@ export default function CreateMinute() {
 
 
     const handleChange = (event: any, type: any, proposalCode: any) => {
-
-        console.log(event.target.value)
-        console.log(type)
-        console.log(proposalCode)
 
         for (let i = 0; i < proposals.length; i++) {
             if (proposalCode === proposals[i].proposalCode) {
@@ -75,8 +69,6 @@ export default function CreateMinute() {
 
             setProposals(proposals);
         }
-
-        console.log(proposals)
     };
 
 

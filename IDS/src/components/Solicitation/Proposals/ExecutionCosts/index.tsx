@@ -104,7 +104,6 @@ export default function ExecutionCosts() {
     
             if (JSON.parse(expensesCostCenter).length > 0) {
                 ExpensesService.save(typeExpenses[i], proposalCode, expenseListStorage, JSON.parse(expensesCostCenter)).then((expenses: any) => {
-                    console.log(expenses);
                 })
             }
 

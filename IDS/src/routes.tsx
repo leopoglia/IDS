@@ -1,4 +1,10 @@
+import { useState, useEffect } from "react";
 import { Route, Routes, BrowserRouter, useLocation } from "react-router-dom";
+import { WebSocketService } from "./services/webSocketService";
+
+import UserContext from "./context/userContext";
+import ServicesWorker from "./services/workerService";
+import Cookies from 'js-cookie';
 
 import Form from './components/Login/Login';
 import ForgetPassword from './components/Login/ForgotPassword';
@@ -26,25 +32,15 @@ import Message from "./components/Others/Messages/Message";
 import Dashboard from "./components/Others/Dashboard";
 import EditDemand from "./components/Solicitation/All/Edit";
 import Error from "./components/Others/Error";
-import UserContext from "./context/userContext";
-import { useState, useEffect } from "react";
-import ServicesWorker from "./services/workerService";
-import { WebSocketService } from "./services/webSocketService";
 import Header from "./components/Fixed/Header";
 import Nav from "./components/Fixed/Nav";
-import Cookies from 'js-cookie';
-
 
 export default function Router() {
 
     // Contexto do usuário
-    const [worker, setWorker] = useState({
-        id: "", office: "", name: "",
-        email: "", language: ""
-    });
+    const [worker, setWorker] = useState({ id: "", office: "", name: "", email: "", language: ""});
 
     useEffect(() => {
-
         // Verifica se o usuário não está na tela de login
         if (window.location.pathname !== "/") {
             let workerCode; // Variável que armazena o código do usuário
@@ -56,7 +52,6 @@ export default function Router() {
                 // Pega o código do usuário
                 workerCode = JSON.parse(cookieUser).worker.workerCode;
             }
-
 
             if (worker.id === "") {
 

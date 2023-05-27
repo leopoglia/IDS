@@ -14,7 +14,7 @@ import UserContext from '../../../../context/userContext';
 import ServicesWorker from '../../../../services/workerService';
 
 const ChatRoom = () => {
-
+    const [isUserOnline, setIsUserOnline] = useState(false);
     const { t } = useTranslation();
     const [emoji, setEmoji] = useState(false);
     const [selectedEmoji, setSelectedEmoji] = useState("");
@@ -40,7 +40,6 @@ const ChatRoom = () => {
     let [chat, setChat] = useState([]);
 
     let lastProcessedDate = '';
-
 
     useEffect(() => {
         divRef.current.scrollTop = divRef.current.scrollHeight;
@@ -74,7 +73,21 @@ const ChatRoom = () => {
             setSender(response);
         })
 
-    }, [messages, stompClient]);
+        if (worker.id === 1) {
+            ServicesWorker.isUserOnline(2).then((response) => {
+                console.log(response);
+                setIsUserOnline(response);
+            });
+        } else{
+            ServicesWorker.isUserOnline(1).then((response) => {
+                console.log(response);
+                setIsUserOnline(response);
+            });
+        }
+
+    }, [messages, stompClient, isUserOnline]);
+
+
 
     useEffect(() => {
 
@@ -96,9 +109,6 @@ const ChatRoom = () => {
         }
 
         getDemand();
-
-
-        console.log("vytor augusto rosa: " + demand?.requesterRegistration?.workerCode);
 
         if (stompClient && !subscribeNotification) {
             setSubscribeNotification(subscribe("/notifications/" + demand?.requesterRegistration?.workerCode, notification));
@@ -163,7 +173,7 @@ const ChatRoom = () => {
         setMessage({ ...message, message: message.message + emojiData.emoji, dateMessage: new Date().toLocaleString() });
     }
 
-
+    console.log("isUserOnline: " + isUserOnline);
 
     return (
         <div className="messages">
@@ -189,11 +199,17 @@ const ChatRoom = () => {
 
                                 <div className="message-name">
                                     <span className="username">{workerDemand.workerName}</span>
+                                    {isUserOnline ? (
+                                        <div className="online">
+                                            <span>online</span>
+                                        </div>
+                                    ) : (
+                                        <div className="offline">
+                                            <span>offline</span>
+                                        </div>
+                                    )
+                                    }
 
-                                    <div className="online">
-                                        <span>online</span>
-
-                                    </div>
                                 </div>
                             </div>
                         ) : (
@@ -206,11 +222,16 @@ const ChatRoom = () => {
 
                                 <div className="message-name">
                                     <span className="username">{sender.workerName}</span>
-
-                                    <div className="online">
-                                        <span>online</span>
-
-                                    </div>
+                                    {isUserOnline ? (
+                                        <div className="online">
+                                            <span>online</span>
+                                        </div>
+                                    ) : (
+                                        <div className="offline">
+                                            <span>offline</span>
+                                        </div>
+                                    )
+                                    }
                                 </div>
                             </div>
                         )

@@ -75,6 +75,15 @@ const Services = {
                 .then(resolve)
                 .catch(resolve)
         })
+    },
+    isUserOnline: function (workerCode: any){
+        return new Promise((resolve, reject) => {
+            fetch(url + '/user/' + workerCode + "/online", {
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(resolve)
+        })
     }
 }
 

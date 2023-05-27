@@ -1,11 +1,9 @@
-import "./style.css"
-import "../Others/Input/style.css"
-import Title from "../../../../Fixed/Search/Title";
 import { useEffect, useState } from 'react';
 import { useTranslation } from "react-i18next";
 import { ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
+import Title from "../../../../Fixed/Search/Title";
 import ProgressBar from "../Others/ProgressBar";
 import ButtonAction from "../Others/ButtonAction";
 import SelectCoin from "../Others/SelectCoin";
@@ -14,7 +12,9 @@ import QualitativeServices from "../../../../../services/qualitativeBenefitServi
 import PotentialServices from "../../../../../services/potentialBenefitService";
 import Editor from "../../../Proposals/EditProposalScope/Editor";
 import Label from "../Others/Label/label";
+import "../Others/Input/style.css"
 import notifyUtil from "../../../../../utils/notifyUtil";
+import "./style.css"
 
 export default function CreateDemands2() {
 

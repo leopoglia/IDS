@@ -233,5 +233,8 @@
     "voiceCommand": "Comando de voz",
     "screenReading": "Lectura de pantalla",
     "square": "Cuadrado",
-    "squareStyleLayout": "Diseño de estilo cuadrado"
+    "squareStyleLayout": "Diseño de estilo cuadrado",
+    "projectScope": "Alcance del proyecto",
+    "notPartOfTheScope": "No forma parte del alcance del proyecto",
+    "evaluatedAlternatives": "Alternativas evaluadas"
 }

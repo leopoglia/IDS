@@ -234,5 +234,8 @@
     "voiceCommand": "Voice command",
     "screenReading": "Screen reading",
     "square": "Square",
-    "squareStyleLayout": "Square style layout"
+    "squareStyleLayout": "Square style layout",
+    "projectScope": "Project scope",
+    "notPartOfTheScope": "Not part of the scope",
+    "evaluatedAlternatives": "Evaluated alternatives"
 }

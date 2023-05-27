@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { useTranslation } from 'react-i18next';
 
 const RichTextEditor = (props: any) => {
+  const { t } = useTranslation();
   const [content, setContent] = useState('');
   const url = window.location.href.split("/")[3];
 
@@ -13,11 +15,11 @@ const RichTextEditor = (props: any) => {
     if (props.content === undefined) {
       if (url !== "demand" && url !== "minutes") {
         setContent(
-          "<h1>" + "Escopo do Projeto:" + "</h1></br>" +
-          "<h1>" + "Não faz parte do Escopo:" + "</h1></br>" +
-          "<h1>" + "Alternativas Avaliadas:" + "</h1></br>" +
-          "<h1>" + "Abrangência do Projeto:" + "</h1></br>" +
-          "<h1>" + "Principais Riscos/ Plano de Mitigação:" + "</h1></br>"
+          "<h1>" + t("projectScope") + ": </h1></br>" +
+          "<h1>" + t("notPartOfTheScope") + ": </h1></br>" +
+          "<h1>" + t("evaluatedAlternatives") + ": </h1></br>" +
+          "<h1>" + "Abrangência do Projeto" + ": </h1></br>" +  /// TERMINAR 
+          "<h1>" + "Principais Riscos/ Plano de Mitigação" + ": </h1></br>" /// TERMINAR 
 
         )
       }

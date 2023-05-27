@@ -234,5 +234,9 @@
     "voiceCommand": "語音命令",
     "screenReading": "屏幕閱讀",
     "square": "正方形",
-    "squareStyleLayout": "方形佈局"
+    "squareStyleLayout": "方形佈局",
+    "projectScope": "項目範圍",
+    "notPartOfTheScope": "不是範圍的一部分",
+    "scopeOfTheProject": "項目範圍",
+    "evaluatedAlternatives": "評估的替代方案"
 }

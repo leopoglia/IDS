@@ -37,13 +37,10 @@ import Cookies from 'js-cookie';
 
 export default function Router() {
 
-    // State do context do usuário
+    // Contexto do usuário
     const [worker, setWorker] = useState({
-        id: "",
-        office: "",
-        name: "",
-        email: "",
-        language: ""
+        id: "", office: "", name: "",
+        email: "", language: ""
     });
 
     useEffect(() => {
@@ -62,8 +59,9 @@ export default function Router() {
 
 
             if (worker.id === "") {
-                
-                if (workerCode !== null && workerCode !== undefined) {
+
+                if (workerCode !== null && workerCode !== undefined) { // Verifica se o código do usuário existe
+
                     // Busca os dados do usuário
                     ServicesWorker.findById(JSON.parse(workerCode)).then((response: any) => {
                         const worker = {
@@ -73,13 +71,11 @@ export default function Router() {
                             email: response.corporateEmail,
                             language: response.language
                         }
-                        // Seta os dados do usuário no context
-                        setWorker(worker);
+                        setWorker(worker); // Seta os dados do usuário no context
                     });
                 } else {
-                    // Redireciona para a tela de login
                     if (window.location.pathname !== "/") {
-                        window.location.href = "/";
+                        window.location.href = "/";  // Redireciona para a tela de login
                     }
                 }
             }

@@ -1,5 +1,5 @@
 import "./style.css"
-import "../Input/style.css"
+import "../Others/Input/style.css"
 import Title from "../../../../Fixed/Search/Title";
 import { useEffect, useState } from 'react';
 import { useTranslation } from "react-i18next";

@@ -38,7 +38,7 @@ const Services = {
                 .catch(reject)
         })
     },
-    historical: function(demandCode: Number){
+    historical: function (demandCode: Number) {
         return new Promise((resolve, reject) => {
             fetch(url + "/historical/" + demandCode, {
                 method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
@@ -81,7 +81,11 @@ const Services = {
 
         let costCenters = [];
         for (let i = 0; i < costCenter.length; i++) {
-            costCenters.push({ "costCenterCode": costCenter[i] });
+            if (costCenter[i].costCenterCode !== undefined) {
+                costCenters.push({ "costCenterCode": costCenter[i].costCenterCode });
+            } else {
+                costCenters.push({ "costCenterCode": costCenter[i] });
+            }
         }
 
         let demand = {}
@@ -182,7 +186,7 @@ const Services = {
         })
     },
     updateCostCenter: function (id: Number, costCenter: any) {
-        let costCenters:any = [];
+        let costCenters: any = [];
         for (let i = 0; i < costCenter.length; i++) {
             costCenters.push({ "costCenterCode": costCenter[i] });
         }
@@ -191,9 +195,9 @@ const Services = {
         return new Promise((resolve, reject) => {
             fetch(url + "/costcenter/" + id, {
                 method: 'PUT',
-                body: JSON.stringify({ 
+                body: JSON.stringify({
                     "costCenter": costCenters
-                 }),
+                }),
                 headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); }).then(resolve).catch(reject)
         })

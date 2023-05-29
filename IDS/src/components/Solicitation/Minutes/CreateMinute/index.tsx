@@ -34,20 +34,30 @@ export default function CreateMinute() {
     }, [])
 
 
-    function saveMinute() {
+    async function saveMinute() {
 
-        proposals.forEach(async (proposal: any) => {
+        await proposals.forEach(async (proposal: any) => {
 
             await RealBenefitService.update(proposal.demand.realBenefit.realBenefitCode, proposal.demand.realBenefit.realMonthlyValue, proposal.demand.realBenefit.realBenefitDescription, proposal.demand.realBenefit.realCurrency);
             await PotentialBenefitService.update(proposal.demand.potentialBenefit.potentialBenefitCode, proposal.demand.potentialBenefit.potentialMonthlyValue, proposal.demand.potentialBenefit.potentialBenefitDescription, proposal.demand.potentialBenefit.legalObrigation, proposal.demand.potentialBenefit.potentialCurrency);
-            await QualitativeService.update(proposal.demand.qualitativeBenefit.qualitativeBenefitCode, proposal.demand.qualitativeBenefit.qualitativeBenefitDescription, proposal.demand.qualitativeBenefit.frequencyOfUse, proposal.demand.qualitativeBenefit.interalControlsRequirements);
+            await QualitativeService.update(proposal.demand.qualitativeBenefit.qualitativeBenefitCode, proposal.demand.qualitativeBenefit.qualitativeBenefitDescription, proposal.demand.qualitativeBenefit.frequencyOfUse === "1" ? true : false, proposal.demand.qualitativeBenefit.interalControlsRequirements);
+
+            await DemandService.findById(proposal.demand.demandCode).then((response: any) => {
+                proposal.demand = response[0];
+            });
 
             await DemandService.update(proposal.demand.demandCode, proposal.demand.demandTitle, proposal.demand.currentProblem, proposal.demand.demandObjective,
-                proposal.demand.costCenter, proposal.demand.executionPeriod, proposal.demnad.realBenefit, proposal.demand.potentialBenefit, proposal.demand.qualitativeBenefit,
-                proposal.demand.demandAttachment, proposal.demand.demandDate, proposal.demand.demandStatus, proposal.demand.score, proposal.demand.requesterRegistration,
-                proposal.demand.classification);
+                proposal.demand.costCenter, proposal.demand.executionPeriod, proposal.demand.realBenefit.realBenefitCode, proposal.demand.potentialBenefit.potentialBenefitCode, proposal.demand.qualitativeBenefit.qualitativeBenefitCode,
+                proposal.demand.demandAttachment, proposal.demand.demandDate, proposal.demand.demandStatus, proposal.demand.score, proposal.demand.requesterRegistration.workerCode,
+                proposal.demand.classification.classificationCode);
 
-            await ProposalService.update(proposal.proposalCode, proposal);
+
+            await ProposalService.update(proposal.proposalCode, proposal).then((response: any) => {
+                console.log(response)
+            }
+            ).catch((error: any) => {
+                console.log(error)
+            });
         });
 
         MinuteService.save(t("unpublishedMinutes") + "", code, actualDate, worker.id, "Not Published");
@@ -81,8 +91,6 @@ export default function CreateMinute() {
 
             setProposals(proposals);
         }
-
-        console.log("proposals ===> ", proposals)
     };
 
 

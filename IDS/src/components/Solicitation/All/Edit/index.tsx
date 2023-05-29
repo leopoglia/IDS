@@ -231,8 +231,6 @@ export default function Edit() {
 	}
 
 
-	console.log(minuteEdit)
-
 	async function editUnit() {
 
 		if (editType === "costcenter") {
@@ -268,7 +266,7 @@ export default function Edit() {
 
 							ExpensesService.update(expenseType, demandCode, costCentersCode, expenseListStorage, expensesCostCenter, expense.expensesCode).then((expenseses: any) => {
 
-								if (minuteEdit.split("=")[0] === "minute") {
+								if (minuteEdit?.split("=")[0] === "minute") {
 									navigate("/minutes/create/" + minuteEdit.split("=")[1]);
 								} else {
 									navigate("/proposal/view/" + demandCode);

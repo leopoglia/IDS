@@ -281,12 +281,16 @@ export default function ViewDemand() {
     // Buscar proposta específica
     function getProposalSpecific() {
 
-        ServicesAgenda.findById(demandCode).then((response: any) => {
+        ServicesAgenda.findById(demandCode).then(async (response: any) => {
             let proposals: any = [];
             setComission(response[0].commission)
 
-
             for (let i = 0; i < response[0].proposals.length; i++) {
+                await ServicesDemand.findById(response[0].proposals[i].demand.demandCode).then((demand: any) => {
+                    response[0].proposals[i].demand = demand;
+                    console.log(demand)
+                })
+
                 proposals.push(response[0].proposals[i])
             }
             setProposalSpecific(proposals)
@@ -911,7 +915,11 @@ export default function ViewDemand() {
                                     <tbody>
                                         {proposalSpecific.map((val: any, index: any) => {
 
+                                            console.log(val)
+
                                             if (proposalSpecific.length !== index + 1) {
+
+
                                                 return (
                                                     <div className="h50px display-flex tr" key={index}>
                                                         <div className="display-flex-start pl20 display-flex-center">
@@ -920,10 +928,8 @@ export default function ViewDemand() {
                                                             </div>
 
                                                             <span>
-                                                                {val.proposalName}
+                                                                {val.demand.demandTitle}
                                                             </span>
-
-
                                                         </div>
 
                                                         <div className="w20 display-flex-align-center">
@@ -962,7 +968,7 @@ export default function ViewDemand() {
                                                             </div>
 
                                                             <span>
-                                                                {val.proposalName}
+                                                                {val.demand.demandTitle}
                                                             </span>
 
 

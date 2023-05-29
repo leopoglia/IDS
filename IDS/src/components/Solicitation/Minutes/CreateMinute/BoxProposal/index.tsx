@@ -14,7 +14,7 @@ export default function BoxProposal(props: any) {
     const code: any = useParams().id;
     const { t } = useTranslation();
 
-    const [proposalTitle, setProposalTitle]: any = useState(props.proposal.proposalName);
+    const [proposalTitle, setProposalTitle]: any = useState(props.proposal.demand.demandTitle);
     const [proposalObjective, setProposalObjective]: any = useState(props.proposal.demand.demandObjective);  
     const [proposalScope, setProposalScope]: any = useState(props.proposal.descriptiveProposal);
 
@@ -172,11 +172,11 @@ export default function BoxProposal(props: any) {
                 <Editor handleChange={handleChange} type={"benefitPotential"} content={proposalPotentialBenefitDescription} />
             </div>
 
-            {proposalExpenseValue?.expensesCode > 0 ? (<Expenses type="expenses" proposalExpense={proposalExpenseValue} />) : (null)}
+            {proposalExpenseValue?.expensesCode > 0 ? (<Expenses type="expenses" proposalExpense={proposalExpenseValue} minute={true} minuteCode={code} />) : (null)}
 
-            {proposalExpenseRecurrent?.expensesCode > 0 ? (<Expenses type="recurrent" proposalExpense={proposalExpenseRecurrent} />) : (null)}
+            {proposalExpenseRecurrent?.expensesCode > 0 ? (<Expenses type="recurrent" proposalExpense={proposalExpenseRecurrent} minute={true} minuteCode={code} />) : (null)}
 
-            {proposalExpenseInternal?.expensesCode > 0 ? (<Expenses type="internal" proposalExpense={proposalExpenseInternal} />) : (null)}
+            {proposalExpenseInternal?.expensesCode > 0 ? (<Expenses type="internal" proposalExpense={proposalExpenseInternal} minute={true} minuteCode={code} />) : (null)}
 
 
             <div className="display-flex-align-center mt20">

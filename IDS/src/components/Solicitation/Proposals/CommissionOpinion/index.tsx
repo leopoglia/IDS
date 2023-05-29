@@ -1,25 +1,31 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Title from "../../../Fixed/Search/Title";
 import "./style.css";
+
 
 import ProposalService from "../../../../services/proposalService";
 
 export default function CommissionOpinion() {
 
+    const navigate = useNavigate();
     const proposalCode = parseInt(window.location.href.split("/")[5]);
     const agendaCode = parseInt(window.location.href.split("?")[1]);
 
-    
+
     const [commissionOpinion, setCommissionOpinion] = useState("");
     const [proposalStatus, setProposalStatus] = useState("");
 
     const { t } = useTranslation();
 
-    function addOpinion(){
-        ProposalService.addOpinion(proposalCode, proposalStatus, commissionOpinion);
+    async function addOpinion() {
+        await ProposalService.addOpinion(proposalCode, proposalStatus, commissionOpinion).then((response: any) => {
+            navigate("/agenda/view/" + agendaCode);
+        }
+        )
     }
 
     return (
@@ -60,9 +66,7 @@ export default function CommissionOpinion() {
                 </div>
 
                 <div className="display-flex-end">
-                    <Link to={"/agenda/view/" + agendaCode}>
-                        <button className="btn-primary" onClick={addOpinion}>{t("save")}</button>
-                    </Link>
+                    <button className="btn-primary" onClick={addOpinion}>{t("save")}</button>
                 </div>
             </div>
         </div>

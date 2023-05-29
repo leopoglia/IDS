@@ -49,7 +49,11 @@ export default function Expenses(props: any) {
     }, [props.proposalExpense])
 
     const click = () => {
-        navigate("/proposal/edit/" + demandCode + "?" + props.type);
+        if (props.minute === true) {
+            navigate("/proposal/edit/" + demandCode + "?" + props.type + "?minute=" + props.minuteCode);
+        } else {
+            navigate("/proposal/edit/" + demandCode + "?" + props.type);
+        }
     }
 
 
@@ -91,8 +95,6 @@ export default function Expenses(props: any) {
                                 )}
 
                                 <td>{t("expenseTotalValue")}</td>
-
-                                {/* <td>{t("costCenter")}</td> */}
                             </tr>
 
                             {expense.length > 0 || expense !== undefined ?
@@ -139,8 +141,6 @@ export default function Expenses(props: any) {
 
                                 <td>{totalValue}</td>
 
-                                {/* <td></td> */}
-
                             </tr>
                         </tbody>
                     </table>
@@ -160,8 +160,6 @@ export default function Expenses(props: any) {
                                                     <div className="display-flex-center code">{costCenter.costCenter.costCenter} – {costCenter.percent}%
 
                                                     </div>
-
-
                                                 </Tooltip>
                                             )
                                         })

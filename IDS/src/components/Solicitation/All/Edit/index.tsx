@@ -9,6 +9,7 @@ import ServicesRealBenefit from "../../../../services/realBenefitService";
 import ServicesPotentialBenefit from "../../../../services/potentialBenefitService";
 import ServicesQualitativeBenefit from "../../../../services/qualitativeBenefitService";
 import ServicesProposal from "../../../../services/proposalService";
+import ServicesAgenda from "../../../../services/agendaService";
 import Services from "../../../../services/costCenterService";
 import SelectCoin from "../../Demands/CrateDemand/Others/SelectCoin";
 import CheckBox from "../../Demands/CrateDemand/Others/CheckBox";
@@ -29,6 +30,7 @@ export default function Edit() {
 	const [type, setType] = useState(window.location.href.split("/")[3]); // Tipo da página
 
 	const [proposalCode, setProposalCode]: any = useState(window.location.href.split("?")[1]); // Código da proposta
+	const [minuteEdit, setMinuteEdit]: any = useState(window.location.href.split("?")[2]); // Edição da minuta (true, false)
 	const [editType, setEditType]: any = useState(window.location.href.split("?")[2]); // Tipo de edição (Tabelas, classificação, complementos, despesas)
 	const [expenseType, setExpenseType]: any = useState(window.location.href.split("?")[1]); // Tipo de despesa (Custo, investimento, despesa)
 
@@ -151,7 +153,7 @@ export default function Edit() {
 		} else {
 			createCostCenter(costCenterAdd);
 			let costCentersArray = costsCenters;
-			
+
 			costCentersArray.push(costCenterAdd);
 			setCostsCenters(costCentersArray);
 
@@ -228,6 +230,9 @@ export default function Edit() {
 		setFileAttachment(filesArray);
 	}
 
+
+	console.log(minuteEdit)
+
 	async function editUnit() {
 
 		if (editType === "costcenter") {
@@ -262,7 +267,12 @@ export default function Edit() {
 						if (expensesCostCenter.length > 0) {
 
 							ExpensesService.update(expenseType, demandCode, costCentersCode, expenseListStorage, expensesCostCenter, expense.expensesCode).then((expenseses: any) => {
-								navigate("/proposal/view/" + demandCode);
+
+								if (minuteEdit.split("=")[0] === "minute") {
+									navigate("/minutes/create/" + minuteEdit.split("=")[1]);
+								} else {
+									navigate("/proposal/view/" + demandCode);
+								}
 								localStorage.removeItem("centerOfCustProposalexpenses");
 								localStorage.removeItem("expenseList");
 							})
@@ -626,10 +636,17 @@ export default function Edit() {
 
 
 								<div className="display-flex-space-between">
-
-									<Link to={"/proposal/execution-costs/add-expense/" + demandCode + "?" + expenseType}>
-										<button className="btn-secondary">{t("addExpense")}</button>
-									</Link>
+									{minuteEdit ? (
+										<Link to={"/proposal/execution-costs/add-expense/" + demandCode + "?" + expenseType + "?" + minuteEdit}>
+											<button className="btn-secondary">{t("addExpense")}</button>
+										</Link>
+									) :
+										(
+											<Link to={"/proposal/execution-costs/add-expense/" + demandCode + "?" + expenseType}>
+												<button className="btn-secondary">{t("addExpense")}</button>
+											</Link>
+										)
+									}
 
 
 								</div>

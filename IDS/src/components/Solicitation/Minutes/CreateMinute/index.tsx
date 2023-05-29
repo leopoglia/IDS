@@ -4,6 +4,10 @@ import { useNavigate } from "react-router";
 
 import Title from "../../../Fixed/Search/Title";
 import MinuteService from "../../../../services/minuteService";
+import DemandService from "../../../../services/demandService";
+import RealBenefitService from "../../../../services/realBenefitService";
+import PotentialBenefitService from "../../../../services/potentialBenefitService";
+import QualitativeService from "../../../../services/qualitativeBenefitService";
 import ProposalService from "../../../../services/proposalService";
 import AgendaService from "../../../../services/agendaService";
 import UserContext from "../../../../context/userContext";
@@ -24,7 +28,6 @@ export default function CreateMinute() {
     useEffect(() => {
 
         AgendaService.findById(code).then((response: any) => {
-
             setProposals(response[0].proposals);
         })
 
@@ -34,6 +37,15 @@ export default function CreateMinute() {
     function saveMinute() {
 
         proposals.forEach(async (proposal: any) => {
+
+            await RealBenefitService.update(proposal.demand.realBenefit.realBenefitCode, proposal.demand.realBenefit.realMonthlyValue, proposal.demand.realBenefit.realBenefitDescription, proposal.demand.realBenefit.realCurrency);
+            await PotentialBenefitService.update(proposal.demand.potentialBenefit.potentialBenefitCode, proposal.demand.potentialBenefit.potentialMonthlyValue, proposal.demand.potentialBenefit.potentialBenefitDescription, proposal.demand.potentialBenefit.legalObrigation, proposal.demand.potentialBenefit.potentialCurrency);
+            await QualitativeService.update(proposal.demand.qualitativeBenefit.qualitativeBenefitCode, proposal.demand.qualitativeBenefit.qualitativeBenefitDescription, proposal.demand.qualitativeBenefit.frequencyOfUse, proposal.demand.qualitativeBenefit.interalControlsRequirements);
+
+            await DemandService.update(proposal.demand.demandCode, proposal.demand.demandTitle, proposal.demand.currentProblem, proposal.demand.demandObjective,
+                proposal.demand.costCenter, proposal.demand.executionPeriod, proposal.demnad.realBenefit, proposal.demand.potentialBenefit, proposal.demand.qualitativeBenefit,
+                proposal.demand.demandAttachment, proposal.demand.demandDate, proposal.demand.demandStatus, proposal.demand.score, proposal.demand.requesterRegistration,
+                proposal.demand.classification);
 
             await ProposalService.update(proposal.proposalCode, proposal);
         });
@@ -51,7 +63,7 @@ export default function CreateMinute() {
             if (proposalCode === proposals[i].proposalCode) {
 
                 if (type === "title") {
-                    proposals[i].proposalName = event.target.value;
+                    proposals[i].demand.demandTitle = event.target.value;
                 } else if (type === "objective") {
                     proposals[i].demand.demandObjective = event.target.value;
                 } else if (type === "scope") {
@@ -69,6 +81,8 @@ export default function CreateMinute() {
 
             setProposals(proposals);
         }
+
+        console.log("proposals ===> ", proposals)
     };
 
 
@@ -82,10 +96,7 @@ export default function CreateMinute() {
                     <Title title={t("createMinute")} nav={t("minuteCreateMinute")} />
                 </div>
 
-                {/* <Editor /> */}
-
                 <div className="box">
-
                     <p className="mb10">{t("proposals")}</p>
 
                     {proposals?.map((proposal: any, index: any) => {

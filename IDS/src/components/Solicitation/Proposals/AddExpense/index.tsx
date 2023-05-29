@@ -14,6 +14,7 @@ export default function AddExpense() {
     const navigate = useNavigate();
 
     const demandCode = parseInt(window.location.href.split("/")[6]);
+    const [minuteEdit, setMinuteEdit] = useState(window.location.href.split("?")[2]);
 
     const [expenseType, setExpenseType] = useState('');
     const [expenseProfile, setExpenseProfile] = useState('');
@@ -44,7 +45,11 @@ export default function AddExpense() {
             if (window.location.href.split("?")[1] === undefined) {
                 navigate('/proposal/execution-costs/' + demandCode);
             } else {
-                navigate('/proposal/edit/' + demandCode + "?" + expenseType);
+                if (minuteEdit === undefined) {
+                    navigate('/proposal/edit/' + demandCode + "?" + expenseType);
+                } else {
+                    navigate('/proposal/edit/' + demandCode + "?" + expenseType + "?" + minuteEdit);
+                }
             }
         }
     }

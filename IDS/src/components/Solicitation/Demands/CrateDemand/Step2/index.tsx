@@ -170,21 +170,19 @@ export default function CreateDemands2() {
                 <div className="box">
                     <p>{t("benefitQualitative")}</p>
 
-                    <div className="display-grid">
-                        <div className="input">
-                            <Label title="description" />
+                    <div className="input">
+                        <Label title="description" />
 
-                            <Editor setContent={setQualitativeBenefitDescription} content={qualitativeBenefitDescription} />
+                        <Editor setContent={setQualitativeBenefitDescription} content={qualitativeBenefitDescription} />
 
-                        </div>
+                    </div>
 
-                        <div className="input-checkbox">
-                            <label className="requirements">{t("internalControlRequirements")}</label>
-                            <div className="checkbox">
-                                <input type="checkbox" id="interalControlsRequirements" name="interalControlsRequirements" checked={interalControlsRequirements} onChange={(e) => { setInteralControlsRequirements(e.target.checked) }} />
-                                <label htmlFor="interalControlsRequirements" className="pl10 mb0">{t("yes")}</label>
+                    <div className="input-checkbox">
+                        <label className="requirements">{t("internalControlRequirements")}</label>
+                        <div className="checkbox">
+                            <input type="checkbox" id="interalControlsRequirements" name="interalControlsRequirements" checked={interalControlsRequirements} onChange={(e) => { setInteralControlsRequirements(e.target.checked) }} />
+                            <label htmlFor="interalControlsRequirements" className="pl10 mb0">{t("yes")}</label>
 
-                            </div>
                         </div>
                     </div>
 

@@ -1,25 +1,28 @@
 import React from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
-const VoiceInput = () => {
-  const { transcript, resetTranscript, listening } = useSpeechRecognition();
+const Dictaphone = () => {
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition
+  } = useSpeechRecognition();
 
-  const handleChange = (event) => {
-    // Atualiza o valor do input com o texto falado
-    event.target.value = transcript;
+  if (!browserSupportsSpeechRecognition) {
+    return <span>Browser doesn't support speech recognition.</span>;
+  }
 
-    console.log(event.target.value);
-  };
+  console.log(transcript)
 
   return (
     <div>
-      <input type="text" onChange={handleChange} />
-      <button onClick={SpeechRecognition.startListening}>Iniciar Escuta</button>
-      <button onClick={SpeechRecognition.stopListening}>Parar de Escutar</button>
-      <button onClick={resetTranscript}>Limpar</button>
-      {listening && <div>Escutando...</div>}
+      <p>Microphone: {listening ? 'on' : 'off'}</p>
+      <button onClick={SpeechRecognition.startListening}>Start</button>
+      <button onClick={SpeechRecognition.stopListening}>Stop</button>
+      <button onClick={resetTranscript}>Reset</button>
+      <p>{transcript}</p>
     </div>
   );
 };
-
-export default VoiceInput;
+export default Dictaphone;

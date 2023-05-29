@@ -42,6 +42,9 @@ const ChatRoom = () => {
     let lastProcessedDate = '';
 
     useEffect(() => {
+
+        getUserOnline();
+
         divRef.current.scrollTop = divRef.current.scrollHeight;
 
         const newMessage = (response) => {
@@ -64,7 +67,6 @@ const ChatRoom = () => {
             setWorkerDemand({ workerCode: messages[messages.length - 1]?.sender.workerCode });
         }
 
-
         if (stompClient && !subscribeMessage) {
             setSubscribeMessage(subscribe("/" + demandCode + "/chat", newMessage));
         }
@@ -73,19 +75,20 @@ const ChatRoom = () => {
             setSender(response);
         })
 
-        if (worker.id === 1) {
-            ServicesWorker.isUserOnline(2).then((response) => {
+       
+    }, [messages, stompClient, workerDemand, sender]);
+
+    const getUserOnline = () => {
+        if (!messages.includes(workerDemand) && workerDemand.workerCode !== worker.id) {
+            ServicesWorker.isUserOnline(workerDemand?.workerCode).then((response) => {
                 setIsUserOnline(response);
             });
-        } else{
-            ServicesWorker.isUserOnline(1).then((response) => {
+        } else {
+            ServicesWorker.isUserOnline(sender.workerCode).then((response) => {
                 setIsUserOnline(response);
             });
         }
-
-    }, [messages, stompClient, isUserOnline]);
-
-
+    }
 
     useEffect(() => {
 

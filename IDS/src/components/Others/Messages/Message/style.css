@@ -65,6 +65,22 @@
     margin-left: 5px;
 }
 
+.messages .box-message .offline span {
+    font-size: var(--p);
+}
+
+.messages .box-message .offline span::after {
+    content: "";
+
+    margin-top: 5px;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: var(--greyD9);
+    margin-left: 5px;
+}
+
 .messages .box-message .input-message {
     width: 100%;
     height: var(--h);

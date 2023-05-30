@@ -120,9 +120,6 @@ export default function Expenses(props: any) {
 
                                                         <td>{proposalExpense.totalValue}</td>
 
-                                                        {/* <Tooltip title={proposalExpense.costCenter.costCenter} arrow>
-                                                        <td>{proposalExpense.costCenter.costCenter}</td>
-                                                    </Tooltip> */}
                                                     </tr>
                                                 )
                                             }

@@ -114,8 +114,6 @@ function RouterContent() {
                 </>
             )}
 
-            {/* <Accessibility /> */}
-
             <Routes>
                 <Route path="/" element={<Form />} />
 

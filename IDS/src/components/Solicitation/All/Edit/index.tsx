@@ -369,16 +369,11 @@ export default function Edit() {
 
 
 								<div>
-									{/* <div className="input">
-										<label>{t("titleProposal")} *</label>
-										<input type="text" value={demandTitle} onChange={(e) => { setDemandTitle(e.target.value) }} />
-									</div> */}
-
+								
 									<Input label="titleProposal" type="text" value={demandTitle} setValue={setDemandTitle} required="true" />
 
 									<div className="text-area">
 										<label>{t("objective")} *</label>
-										{/* <textarea value={demandObjective} onChange={(e) => { setDemandObjective(e.target.value) }} /> */}
 
 										<Editor setContent={setDemandObjective} content={demandObjective} />
 									</div>
@@ -386,7 +381,6 @@ export default function Edit() {
 
 									<div className="text-area">
 										<label>{t("problemToBeSolved")} *</label>
-										{/* <textarea value={demandProblem} onChange={(e) => { setDemandProblem(e.target.value) }} /> */}
 
 										<Editor setContent={setDemandProblem} content={demandProblem} />
 
@@ -434,11 +428,6 @@ export default function Edit() {
 								</div>
 
 								<div className="flex">
-
-									{/* <div className="input">
-										<label>{t("monthlyValue")} *</label>
-										<input type="text" value={realBenefitValue} onChange={(e) => { setRealBenefitValue(e.target.value) }} />
-									</div> */}
 
 									<Input label="monthlyValue" type="text" value={realBenefitValue} setValue={setRealBenefitValue} />
 

@@ -9,11 +9,7 @@ export default function Label(props: any) {
                 {props.required ? <span className="required">*</span> : null}
             </label>
 
-            {/* <Tooltip title={t(props.textInfo)} placement="right" arrow>
-                <span className="material-symbols-outlined">
-                    info
-                </span>
-            </Tooltip> */}
+           
         </div>
     )
 }

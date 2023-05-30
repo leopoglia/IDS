@@ -177,7 +177,6 @@ export default function CreateDemands1() {
 
                         <Input type="text" label="titleInput" handle={handleChange} value={titleDemand} required="true" />
 
-                        {/* <input onChange={(e) => { handleChange(e, 'titleInput'); }} type="text" value={titleDemand} /> */}
                     </div>
 
                     <div className="text-area">

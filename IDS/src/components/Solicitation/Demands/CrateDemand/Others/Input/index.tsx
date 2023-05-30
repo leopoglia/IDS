@@ -40,8 +40,6 @@ export default function Input(props: any) {
                 <span className="material-symbols-outlined">{props.icon}</span>
                 <input value={props.value} type={props.type} placeholder={props.placeholder} onChange={onChange} required={props.required} ref={props.ref} disabled={props.disabled}  />
 
-                {worker.voiceCommand}
-
                 {voiceCommand === true && props.type !== "date" && props.type !== "datetime-local"  && props?.disabled !== true  ?
                     <Mic setValue={props.setValue} value={props.value} handle={props.handle} label={props.label} />
                     : null}

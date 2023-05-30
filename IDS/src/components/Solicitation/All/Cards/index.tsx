@@ -43,6 +43,8 @@ export default function Demands() {
     // Entra na página e busca as demandas cadastradas
     useEffect(() => {
 
+        setLoading(true);
+
         if (url[3] === "demands") {
             if (search === "" || typeFilter === "") {
                 getDemands(); // Busca as demandas cadastradas
@@ -109,7 +111,6 @@ export default function Demands() {
                 })
 
                 setDemands(demandsContent);
-                setLoading(false);
             });
         } else {
             findDemands = await ServicesDemand.findByPage(page, 9).then(async (res: any) => {
@@ -144,6 +145,10 @@ export default function Demands() {
 
                 })
                 setDemands(demandsContent);
+
+                if (res.content.length === 0) {
+                    setLoading(false);
+                }
             });
         }
 
@@ -155,8 +160,13 @@ export default function Demands() {
         findDemands = await ServicesProposal.findByPage(page, 5).then((res: any) => {
             setProposals(res.content); // Atualiza o estado das demandas
             setPages(res.totalPages); // Atualiza o estado das páginas
-            setLoading(false);
+
+            if (res.content.length === 0) {
+                setLoading(false);
+            }
         });
+
+      
         return findDemands;
     }
 
@@ -165,8 +175,13 @@ export default function Demands() {
         findDemands = await ServicesAgenda.findByPage(page, 5).then((res: any) => {
             setAgendas(res.content); // Atualiza o estado das demandas
             setPages(res.totalPages); // Atualiza o estado das páginas
-            setLoading(false);
+
+            if (res.content.length === 0) {
+                setLoading(false);
+            }
         });
+
+       
         return findDemands;
     }
 
@@ -175,8 +190,13 @@ export default function Demands() {
         findDemands = await ServicesMinute.findByPage(page, 5).then((res: any) => {
             setMinutes(res.content); // Atualiza o estado das demandas
             setPages(res.totalPages); // Atualiza o estado das páginas
-            setLoading(false);
+
+            if (res.content.length === 0) {
+                setLoading(false);
+            }
         });
+
+      
         return findDemands;
     }
 

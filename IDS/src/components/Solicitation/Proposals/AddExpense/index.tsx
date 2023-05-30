@@ -74,8 +74,7 @@ export default function AddExpense() {
                     </div>
 
                     <div className="display-flex-grid">
-                        {/* <label>{t("expenseProfile")} *</label>
-                        <input onChange={(e) => { setExpenseProfile(e.target.value) }} type="expenseProfile" /> */}
+          
 
                         <Input label="expenseProfile" value={expenseProfile} setValue={setExpenseProfile} required="true" />
                     </div>

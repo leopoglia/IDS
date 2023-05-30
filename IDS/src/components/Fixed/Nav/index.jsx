@@ -261,7 +261,6 @@ export default function Nav() {
                     </Tooltip>
                 </Link>
 
-                {/* <Link to="/"> */}
                 <Tooltip onClick={() => { logout() }} title={nav !== "nav-open" ? t("logout") : ""} placement="right">
                     <li className="logout">
                         <div>
@@ -272,7 +271,6 @@ export default function Nav() {
                         </div>
                     </li>
                 </Tooltip>
-                {/* </Link> */}
 
             </ul>
 

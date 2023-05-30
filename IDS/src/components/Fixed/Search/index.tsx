@@ -104,15 +104,6 @@ export default function Search(props: any) {
 
                 <Input background={"input-search"} setValue={props.setSearch} value={props.search} icon={"search"} type="text" placeholder={search()} required={true} />
 
-                {/* <div className="input-search">
-
-                    <span className="material-symbols-outlined">search</span>
-                    <input onChange={(e) => { props.setSearch(e.target.value) }} type="text" placeholder={search()} required />
-                    <Mic />
-
-                </div> */}
-
-
                 <div className="display-flex">
                     <Link to={props.link}>
                         <button className="btn-primary btn-create-demand mw100">

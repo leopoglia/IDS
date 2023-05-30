@@ -1,13 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useTranslation } from 'react-i18next';
 import Mic from '../../../../Fixed/Accessibility/Mic';
+import UserContext from '../../../../../context/userContext';
 
 const RichTextEditor = (props: any) => {
   const { t } = useTranslation();
   const [content, setContent] = useState('');
   const url = window.location.href.split("/")[3];
+  const worker: any = useContext(UserContext).worker; // Busca o usuário logado no contexto
+
 
   useEffect(() => {
 
@@ -60,7 +63,10 @@ const RichTextEditor = (props: any) => {
       <ReactQuill modules={quillModules} value={content} onChange={handleChange} />
 
       <div className='mic-absolute'>
-        <Mic value={content} setValue={setContent} />
+
+        {worker.voiceCommand === true ?
+          <Mic value={content} setValue={setContent} />
+          : null}
       </div>
     </>
   );

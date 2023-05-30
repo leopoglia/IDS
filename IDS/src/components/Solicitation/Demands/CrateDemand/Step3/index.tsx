@@ -12,6 +12,7 @@ import UserContext from "../../../../../context/userContext";
 import othersUtil from '../../../../../utils/othersUtil';
 import notifyUtil from '../../../../../utils/notifyUtil';
 import "./style.css"
+import Input from '../Others/Input';
 
 
 export default function CreateDemands3() {
@@ -107,9 +108,9 @@ export default function CreateDemands3() {
                     <p>{t("additionals")}</p>
 
                     <div className="frequency">
-                        <Label title="frequencyUse" required="true" />
+    
+                        <Input type="text" label="frequencyUse" setValue={setExecutionPeriod} value={executionPeriod} />
 
-                        <input type="text" onChange={(e) => { setExecutionPeriod(e.target.value) }} />
                     </div>
 
 

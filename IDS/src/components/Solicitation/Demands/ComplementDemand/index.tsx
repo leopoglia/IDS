@@ -8,6 +8,7 @@ import Services from "../../../../services/classificationService"
 import ServicesDemand from "../../../../services/demandService"
 import notifyUtil from "../../../../utils/notifyUtil";
 import './style.css'
+import Input from "../CrateDemand/Others/Input";
 
 
 export default function ComplementDemand() {
@@ -44,9 +45,7 @@ export default function ComplementDemand() {
     return (
         <div className="complement-demand">
 
-         
-
-
+        
             <div className="container">
 
 
@@ -59,12 +58,12 @@ export default function ComplementDemand() {
 
                 <div className="box">
                     <div className="display-grid">
-                        <label htmlFor="">{t("ppmCode")} *</label>
-                        <input onChange={(e) => setPpmCode(e.target.value)} type="text" />
+                
+                        <Input label="ppmCode" setValue={setPpmCode} value={ppmCode} type="text" required={true} />
                     </div>
                     <div className="display-grid">
-                        <label htmlFor="">{t("linkEpicJira")} *</label>
-                        <input onChange={(e) => setLinkEpicJira(e.target.value)} type="text" />
+
+                        <Input label="linkEpicJira" setValue={setLinkEpicJira} value={linkEpicJira} type="text" required={true} />
                     </div>
 
 

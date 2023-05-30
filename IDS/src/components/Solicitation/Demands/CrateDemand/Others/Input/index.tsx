@@ -29,7 +29,7 @@ export default function Input(props: any) {
     }
 
     return (
-        <>
+        <div className="display-block w100">
             {props.label !== undefined ?
                 <Label title={props.label} required="true" textInfo="Digite o centro de custo que ira pagar" />
                 : null
@@ -42,10 +42,10 @@ export default function Input(props: any) {
 
                 {worker.voiceCommand}
 
-                {voiceCommand === true ?
+                {voiceCommand === true && props.type !== "date" ?
                     <Mic setValue={props.setValue} value={props.value} handle={props.handle} label={props.label} />
                     : null}
             </div>
-        </>
+        </div>
     );
 }

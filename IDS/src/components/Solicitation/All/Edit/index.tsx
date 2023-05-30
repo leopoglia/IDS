@@ -18,6 +18,8 @@ import GridCostExecution from "../../Proposals/ExecutionCosts/GridCostExecution"
 import ExpensesService from "../../../../services/expensesService";
 
 import "./style.css"
+import Input from "../../Demands/CrateDemand/Others/Input";
+import Label from "../../Demands/CrateDemand/Others/Label/label";
 
 
 
@@ -367,10 +369,12 @@ export default function Edit() {
 
 
 								<div>
-									<div className="input">
+									{/* <div className="input">
 										<label>{t("titleProposal")} *</label>
 										<input type="text" value={demandTitle} onChange={(e) => { setDemandTitle(e.target.value) }} />
-									</div>
+									</div> */}
+
+									<Input label="titleProposal" type="text" value={demandTitle} setValue={setDemandTitle} required="true" />
 
 									<div className="text-area">
 										<label>{t("objective")} *</label>
@@ -389,7 +393,7 @@ export default function Edit() {
 									</div>
 
 
-									<div className="input">
+									<div className="display-grid">
 										<label>{t("costCenter")} *</label>
 
 										<div className="display-flex">
@@ -431,22 +435,18 @@ export default function Edit() {
 
 								<div className="flex">
 
-									<div className="input">
+									{/* <div className="input">
 										<label>{t("monthlyValue")} *</label>
 										<input type="text" value={realBenefitValue} onChange={(e) => { setRealBenefitValue(e.target.value) }} />
+									</div> */}
 
-									</div>
+									<Input label="monthlyValue" type="text" value={realBenefitValue} setValue={setRealBenefitValue} />
 
 									<SelectCoin setrealCurrency={setrealCurrency} type="real" value={realCurrency} />
 								</div>
 
 
-								<div className="input">
-									<label>{t("description")} *</label>
-									<input type="text" value={realBenefitDescription} onChange={(e) => { setRealBenefitDescription(e.target.value) }} />
-								</div>
-
-
+								<Input label="description" type="text" value={realBenefitDescription} setValue={setRealBenefitDescription} />
 
 							</div>
 
@@ -466,21 +466,17 @@ export default function Edit() {
 
 								<div>
 									<div className="flex">
-										<div className="input">
-											<label>{t("monthlyValue")} *</label>
-											<input type="text" value={potentialBenefitValue} onChange={(e) => { setPotentialBenefitValue(e.target.value) }} />
-										</div>
+
+										<Input label="monthlyValue" type="number" value={potentialBenefitValue} setValue={setPotentialBenefitValue} required={true} />
+
 
 										<SelectCoin setPotentialCurrency={setPotentialCurrency} type="potencial" value={potentialCurrency} />
 									</div>
 
 									<div className="flex">
 
+										<Input label="description" type="text" value={potentialBenefitDescription} setValue={setPotentialBenefitDescription} required={true} />
 
-										<div className="input">
-											<label>{t("description")} *</label>
-											<input type="text" value={potentialBenefitDescription} onChange={(e) => { setPotentialBenefitDescription(e.target.value) }} />
-										</div>
 
 										<div className="input-checkbox">
 											<label>{t("legalObligation")}</label>
@@ -506,19 +502,14 @@ export default function Edit() {
 									</span>
 								</div>
 
-								<div className="display-grid">
-									<div className="input">
-										<label>{t("description")} *</label>
-										{/* <input type="text" value={qualitativeBenefitDescription} onChange={(e) => { setQualitativeBenefitDescription(e.target.value) }} /> */}
+								<label className="label">{t("description")} *</label>
 
-										<Editor setContent={setQualitativeBenefitDescription} content={qualitativeBenefitDescription} />
-									</div>
+								<Editor setContent={setQualitativeBenefitDescription} content={qualitativeBenefitDescription} />
 
-									<div className="input-checkbox requirements">
-										<label>{t("internalControlRequirements")}</label>
-										<div className="checkbox">
-											<CheckBox />
-										</div>
+								<div className="input-checkbox requirements">
+									<label>{t("internalControlRequirements")}</label>
+									<div className="checkbox">
+										<CheckBox />
 									</div>
 								</div>
 
@@ -535,13 +526,11 @@ export default function Edit() {
 									</span>
 								</div>
 
+								<Input label="frequencyUse" type="text" value={frequencyOfUse} setValue={setFrequencyOfUse} required={true} />
 
-								<div className="frequency">
-									<label>{t("frequencyUse")} * </label>
-									<input type="text" value={frequencyOfUse} onChange={(e) => { setFrequencyOfUse(e.target.value) }} />
-								</div>
 
-								<label>{t("attachments")}</label>
+								
+								<label className="mt10">{t("attachments")}</label>
 
 								<div className="attachments display-flex">
 									<input type="file" id="file" onChange={handleFileSelected} multiple />

@@ -66,6 +66,26 @@ export default function ProgressBar(props: {
                 </div>
             </div>
         );
+    } else if (props.atual === "4") {
+        return (
+            <div className="progress-bar">
+                <Link to={"/demand/create/1"}>
+                    <div className="ellipse-current">
+                        <span className="material-symbols-outlined">
+                            done
+                        </span>
+                    </div>
+                </Link>
+                <div className="line-current"></div>
+                <div className="ellipse-current">
+                    <span className="material-symbols-outlined">
+                        done
+                    </span>
+                </div>
+                <div className="line"></div>
+                <div className="ellipse">4</div>
+            </div>
+        );
     }
 
 

@@ -12,6 +12,14 @@
     margin-left: 15px;
 }
 
+.box .display-grid .w45{
+    margin-left: 20px !important;
+}
+
+.box .display-grid .w45 span{
+    color: var(--white) !important;
+}
+
 .w45 span {
     margin: 0px !important;
 }
@@ -29,6 +37,7 @@
     height: 45px;
     border: 1px solid var(--greyC4);
     border-radius: var(--r);
+    margin-top: 10px;
 }
 
 .costCenter span {

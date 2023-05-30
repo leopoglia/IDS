@@ -166,12 +166,10 @@ export default function CreateDemands2() {
                 <div className="box">
                     <p>{t("benefitQualitative")}</p>
 
-                    <div className="display-grid">
-                        <Label title="description" />
+                    <Label title="description" />
 
-                        <Editor setContent={setQualitativeBenefitDescription} content={qualitativeBenefitDescription} />
+                    <Editor setContent={setQualitativeBenefitDescription} content={qualitativeBenefitDescription} />
 
-                    </div>
 
                     <div className="input-checkbox">
                         <label className="requirements">{t("internalControlRequirements")}</label>

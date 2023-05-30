@@ -7,6 +7,7 @@ import Title from "../../../Fixed/Search/Title";
 import SelectAddExpense from "./SelectAddExpense";
 import notifyUtil from "../../../../utils/notifyUtil";
 import "./style.css";
+import Input from "../../Demands/CrateDemand/Others/Input";
 
 
 export default function AddExpense() {
@@ -73,8 +74,10 @@ export default function AddExpense() {
                     </div>
 
                     <div className="display-flex-grid">
-                        <label>{t("expenseProfile")} *</label>
-                        <input onChange={(e) => { setExpenseProfile(e.target.value) }} type="expenseProfile" />
+                        {/* <label>{t("expenseProfile")} *</label>
+                        <input onChange={(e) => { setExpenseProfile(e.target.value) }} type="expenseProfile" /> */}
+
+                        <Input label="expenseProfile" value={expenseProfile} setValue={setExpenseProfile} required="true" />
                     </div>
 
                     <div className="display-flex-grid">
@@ -83,7 +86,9 @@ export default function AddExpense() {
                         ) : (
                             <label>{t("licenses")} *</label>
                         )}
-                        <input type="number" onChange={(e) => { setAmountOfHours(e.target.value) }} />
+
+                        <Input type="number" value={amountOfHours} setValue={setAmountOfHours} />
+
                     </div>
 
                     <div className="display-flex-grid">

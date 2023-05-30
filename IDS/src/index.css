@@ -395,6 +395,9 @@ hr {
   background-color: var(--greyE5);
 }
 
+.label{
+  margin-bottom: 2px !important;
+}
 
 .false::-webkit-scrollbar {
   width: 12px;
@@ -406,7 +409,8 @@ hr {
 .message::-webkit-scrollbar,
 .notification-true::-webkit-scrollbar,
 .notification-false::-webkit-scrollbar,
-.container-background::-webkit-scrollbar {
+.container-background::-webkit-scrollbar,
+.ql-editor::-webkit-scrollbar {
   width: 10px;
   height: 4px;
 
@@ -415,7 +419,8 @@ hr {
 .container-background::-webkit-scrollbar,
 .boxNoPadding::-webkit-scrollbar,
 .chat-box .chats::-webkit-scrollbar,
-.false::-webkit-scrollbar {
+.false::-webkit-scrollbar,
+.ql-editor::-webkit-scrollbar {
   width: 6px;
 }
 
@@ -431,7 +436,8 @@ hr {
 .container-background::-webkit-scrollbar-thumb,
 .boxNoPadding::-webkit-scrollbar-thumb,
 .chat-box .chats::-webkit-scrollbar-thumb,
-.false::-webkit-scrollbar-thumb {
+.false::-webkit-scrollbar-thumb,
+.ql-editor::-webkit-scrollbar-thumb {
   background-color: var(--greyD9);
 }
 
@@ -443,7 +449,8 @@ hr {
 .container-background::-webkit-scrollbar-thumb:hover,
 .boxNoPadding::-webkit-scrollbar-thumb:hover,
 .chat-box .chats::-webkit-scrollbar-thumb:hover,
-.false::-webkit-scrollbar-thumb:hover {
+.false::-webkit-scrollbar-thumb:hover,
+.ql-editor::-webkit-scrollbar-thumb:hover {
   background-color: var(--greyD9);
 }
 

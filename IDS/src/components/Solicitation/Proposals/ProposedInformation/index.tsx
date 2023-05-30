@@ -8,6 +8,7 @@ import Title from "../../../Fixed/Search/Title";
 import ButtonAction from "../../Demands/CrateDemand/Others/ButtonAction";
 import notifyUtil from "../../../../utils/notifyUtil";
 import "./style.css";
+import Input from "../../Demands/CrateDemand/Others/Input";
 
 
 export default function ProposedInformation() {
@@ -57,7 +58,7 @@ export default function ProposedInformation() {
     const nextStep = () => {
         let proposal = { responsiblesBussiness, start, end, fileAttachment }
         localStorage.setItem('proposal', JSON.stringify(proposal));
-        
+
         if (responsiblesBussiness === "" || responsiblesBussiness === "" || end === "" || start === "") {
             notifyUtil.error(t("fillAllFields"))
         } else {
@@ -81,10 +82,8 @@ export default function ProposedInformation() {
                     <div className="display-flex-grid">
                         <div className="display-flex">
 
-                            <div>
-                                <label>{t("responsibleBussiness")} *</label>
-                                <input type="text" onChange={(e) => { setResponsibleBussiness(e.target.value) }} />
-                            </div>
+                            <Input label={"responsibleBussiness"} type="text" value={responsibleBussiness} setValue={setResponsibleBussiness} required="true" />
+
                             <div className="btn-primary w45" onClick={addResponsible}>
                                 <span className="material-symbols-outlined">add</span>
                             </div>
@@ -110,15 +109,8 @@ export default function ProposedInformation() {
                     </div>
 
                     <div className="display-flex-grid">
-                        <div className="one">
-                            <label>{t("start")} *</label>
-                            <input type="date" onChange={(e) => { setStart(e.target.value) }} />
-                        </div>
-
-                        <div>
-                            <label>{t("end")} *</label>
-                            <input type="date" onChange={(e) => { setEnd(e.target.value) }} />
-                        </div>
+                        <Input label={"start"} type="date" value={start} setValue={setStart} required="true" />
+                        <Input label={"end"} type="date" value={end} setValue={setEnd} required="true" />
                     </div>
 
                     <div className="display-btn-anexo">

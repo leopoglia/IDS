@@ -109,6 +109,8 @@
     "end": "End",
     "responsibleArea": "Responsible area",
     "start": "Start",
+    "dateStart": "Date start",
+    "dateEnd": "Date end",
     "addExpense": "Add expense",
     "payingCostCenter": "Paying cost center",
     "totalsCosts": "Totals costs",

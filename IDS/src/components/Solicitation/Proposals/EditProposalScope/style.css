@@ -98,3 +98,14 @@
 .create-minute .complement{
     padding: 0px !important;
 }
+
+.mic-absolute{
+    position: absolute;
+    margin-top: -208px;
+    margin-left: 210px;
+}
+
+.mic-absolute .microphone .material-symbols-outlined{
+    color: var(--grey3d) !important;
+    font-size: 20px !important;
+}

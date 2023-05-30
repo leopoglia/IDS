@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import Editor from "../../../Proposals/EditProposalScope/Editor"
 import Expenses from "../../../All/View/Others/Expenses";
 import ServicesExpenses from "../../../../../services/expensesService";
+import Input from "../../../Demands/CrateDemand/Others/Input";
 
 
 export default function BoxProposal(props: any) {
@@ -15,7 +16,7 @@ export default function BoxProposal(props: any) {
     const { t } = useTranslation();
 
     const [proposalTitle, setProposalTitle]: any = useState(props.proposal.demand.demandTitle);
-    const [proposalObjective, setProposalObjective]: any = useState(props.proposal.demand.demandObjective);  
+    const [proposalObjective, setProposalObjective]: any = useState(props.proposal.demand.demandObjective);
     const [proposalScope, setProposalScope]: any = useState(props.proposal.descriptiveProposal);
 
     const [proposalQualitativeBenefitDescription, setProposalQualitativeBenefitDescription]: any = useState(props.proposal.demand.qualitativeBenefit.qualitativeBenefitDescription);
@@ -51,7 +52,7 @@ export default function BoxProposal(props: any) {
             return diffInMonths.toFixed(0) + " mês";
         } else {
             return diffInMonths.toFixed(0) + " meses";
-        } 
+        }
     }
 
 
@@ -103,19 +104,19 @@ export default function BoxProposal(props: any) {
 
     const handleChange = (value: any, type: string) => {
 
-        if(type === "title"){
+        if (type === "titleProposal") {
             setProposalTitle(value.target.value);
-        } else if(type === "objective"){
+        } else if (type === "objective") {
             setProposalObjective(value.target.value);
-        }else if(type === "scope"){
+        } else if (type === "scope") {
             setProposalScope(value.target.value);
-        } else if(type === "benefitQualitative"){
+        } else if (type === "benefitQualitative") {
             setProposalQualitativeBenefitDescription(value.target.value);
-        } else if(type === "benefitPotential"){
+        } else if (type === "benefitPotential") {
             setProposalPotentialBenefitDescription(value.target.value);
-        } else if(type === "dateStart"){
+        } else if (type === "dateStart") {
             setInitialRunPeriod(value.target.value);
-        } else if(type === "dateEnd"){
+        } else if (type === "dateEnd") {
             setFinalExecutionPeriod(value.target.value);
         }
 
@@ -145,10 +146,7 @@ export default function BoxProposal(props: any) {
                 </div>
             </div>
 
-            <div className="input">
-                <label>{t("titleProposal")}</label>
-                <input type="text" value={proposalTitle} onChange={(e) => handleChange(e, "title")}  />
-            </div>
+            <Input label="titleProposal" type="text" value={proposalTitle} handleChange={handleChange} />
 
 
             <div className="text-area">
@@ -181,16 +179,9 @@ export default function BoxProposal(props: any) {
 
             <div className="display-flex-align-center mt20">
 
-                <div className="input mr20">
-                    <label>{t("start")}</label>
-                    <input type="date" value={initialRunPeriod} onChange={(e) => handleChange(e, "dateStart")} />
-                </div>
+                <Input type="date" value={initialRunPeriod} setInitialRunPeriod={handleChange} label="dateStart" />
 
-                <div className="input">
-                    <label>{t("end")}</label>
-                    <input type="date" value={finalExecutionPeriod} onChange={(e) => handleChange(e, "dateEnd")} />
-                </div>
-
+                <Input type="date" value={finalExecutionPeriod} setInitialRunPeriod={handleChange} label="dateEnd" />
             </div>
 
         </div>

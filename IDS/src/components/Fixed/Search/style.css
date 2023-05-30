@@ -85,8 +85,11 @@
 }
 
 @media(max-width: 1280px) {
-    .search input {
-        width: 100%;
+
+    .search .input-background {
+        margin-right: 0px !important;
+        margin-top: 20px;
+
     }
 
     .search .filter-export{
@@ -104,20 +107,6 @@
     .search .section {
         display: block;
     }
-
-    .search .input{
-        margin-top: 20px;
-    }
-
-    /* .search input {
-        margin-left: 0px;
-        margin-top: 20px;
-    }
-
-    .search .input-search .material-symbols-outlined {
-        margin-top: 32px;
-        margin-left: 10px;
-    } */
 
     .search .input-search {
         margin-right: 0px;

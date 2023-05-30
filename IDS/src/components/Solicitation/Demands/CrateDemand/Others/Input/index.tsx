@@ -42,7 +42,7 @@ export default function Input(props: any) {
 
                 {worker.voiceCommand}
 
-                {voiceCommand === true && props.type !== "date" && props?.disabled !== true  ?
+                {voiceCommand === true && props.type !== "date" && props.type !== "datetime-local"  && props?.disabled !== true  ?
                     <Mic setValue={props.setValue} value={props.value} handle={props.handle} label={props.label} />
                     : null}
             </div>

@@ -9,6 +9,7 @@ import Services from "../../../../services/agendaService";
 import SelectWorker from "../SelectWorker";
 import Servicescommission from "../../../../services/commissionService";
 import "./style.css";
+import Input from "../../Demands/CrateDemand/Others/Input";
 
 export default function CreateAgenda() {
 
@@ -178,12 +179,9 @@ export default function CreateAgenda() {
 
                     </div>
 
-                    <div className="input">
-                        <label>{t("dateAgenda")} *</label>
-                        <input type="datetime-local" onChange={(e) => { setDate(e.target.value); }} value={date} />
-                    </div>
+                    <Input label="dateAgenda" type="datetime-local" setValue={setDate} value={date} />
 
-                    <div className="input">
+                    <div className="display-grid mt20">
 
                         <div className="commission-flex">
                             <div className="w100">

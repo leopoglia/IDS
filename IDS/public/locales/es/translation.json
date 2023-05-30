@@ -109,6 +109,8 @@
     "end": "Fin",
     "responsibleArea": "Área responsable",
     "start": "Inicio",
+    "dateStart": "Fecha de inicio",
+    "dateEnd": "Data de término",
     "addExpense": "Agregar gasto",
     "payingCostCenter": "Centro de costo pagador",
     "totalsCosts": "Costos totales",

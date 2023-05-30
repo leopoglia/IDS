@@ -109,6 +109,8 @@
     "end": "結束",
     "responsibleArea": "負責區域",
     "start": "開始",
+    "dateStart": "開始日期",
+    "dateEnd": "結束日期",
     "addExpense": "添加費用",
     "payingCostCenter": "支付成本中心",
     "totalsCosts": "總成本",

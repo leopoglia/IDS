@@ -28,7 +28,7 @@ export default function FreeSolo(props: any) {
     };
 
     return (
-        <div className='select-cost-center'>
+        <div className='select-cost-center input'>
             <Stack spacing={2} sx={{ width: 300 }}>
                 <Autocomplete
                     freeSolo

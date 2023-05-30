@@ -14,11 +14,12 @@
 
 .microphone .material-symbols-outlined{
     margin: 0px !important;
-    color: var(--greyC4) !important;
+    color: var(--grey3d) !important;
+    font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 1000, 'opsz' 150 !important;
 }
 
 .box .microphone .material-symbols-outlined{
-    color: var(--greyC4) !important;
+    color: var(--grey3d) !important;
 }
 
 .microphone:hover{

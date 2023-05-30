@@ -23,9 +23,6 @@ const Dictaphone = (props) => {
       SpeechRecognition.startListening();
       setOn(false)
     }
-
-    console.log('listening?', listening)
-
   };
 
   const [on, setOn] = useState(false)

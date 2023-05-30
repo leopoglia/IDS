@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useTranslation } from 'react-i18next';
+import Mic from '../../../../Fixed/Accessibility/Mic';
 
 const RichTextEditor = (props: any) => {
   const { t } = useTranslation();
@@ -54,7 +55,14 @@ const RichTextEditor = (props: any) => {
 
 
   return (
-    <ReactQuill modules={quillModules} value={content} onChange={handleChange} />
+
+    <>
+      <ReactQuill modules={quillModules} value={content} onChange={handleChange} />
+
+      <div className='mic-absolute'>
+        <Mic value={content} setValue={setContent} />
+      </div>
+    </>
   );
 };
 

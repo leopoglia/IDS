@@ -151,7 +151,6 @@ export default function SelectCostCenter(props: any) {
 
 
     return (
-        <div className="input">
             <div className="display-flex-grid">
                 <div>
                     <label>{t("payingCostCenter")} *</label>
@@ -177,7 +176,7 @@ export default function SelectCostCenter(props: any) {
                             <div className="cost-center" key={costCenter.costCenterCode}>
                                 <span>{costCenter.costCenterCode}</span>
                                 <div className="percentage">
-                                    <input
+                                    <input className="input"
                                         value={costCenter.percent}
                                         type="number"
                                         placeholder="%"
@@ -196,6 +195,5 @@ export default function SelectCostCenter(props: any) {
                     })}
                 </div>
             </div>
-        </div>
     );
 }

@@ -29,7 +29,7 @@ export default function Input(props: any) {
     }
 
     return (
-        <div className="display-block w100">
+        <div className="display-block w100 input-background">
             {props.label !== undefined ?
                 <Label title={props.label} required="true" textInfo="Digite o centro de custo que ira pagar" />
                 : null
@@ -38,11 +38,11 @@ export default function Input(props: any) {
 
             <div className={"input " + props.background + " outlined-" + outlined + " icon-" + (props.icon !== undefined ? "true" : "false")} onClick={() => setOutlined(true)} onMouseOut={() => setOutlined(false)}>
                 <span className="material-symbols-outlined">{props.icon}</span>
-                <input value={props.value} type={props.type} placeholder={props.placeholder} onChange={onChange} required={props.required} ref={props.ref} />
+                <input value={props.value} type={props.type} placeholder={props.placeholder} onChange={onChange} required={props.required} ref={props.ref} disabled={props.disabled}  />
 
                 {worker.voiceCommand}
 
-                {voiceCommand === true && props.type !== "date" ?
+                {voiceCommand === true && props.type !== "date" && props?.disabled !== true  ?
                     <Mic setValue={props.setValue} value={props.value} handle={props.handle} label={props.label} />
                     : null}
             </div>

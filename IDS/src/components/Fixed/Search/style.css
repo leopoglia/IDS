@@ -10,8 +10,8 @@
     margin-bottom: 20px;
 }
 
-.input-search {
-    margin-right: 20px;
+.search .input-background {
+    margin-right: 20px !important;
 }
 
 .search .input-search .material-symbols-outlined {

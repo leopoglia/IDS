@@ -97,13 +97,13 @@ export default function AddExpense() {
                         ) : (
                             <label>{t("unitValue")} *</label>
                         )}
-                        <input type="number" onChange={(e) => { setHourValue(e.target.value) }} />
-                    </div>
 
-                    <div className="display-flex-grid">
-                        <label>{t("expenseTotalValue")} *</label>
-                        <input type="number" value={totalValue} />
+                        <Input type="number" value={hourValue} setValue={setHourValue} />
+
                     </div>
+                    
+                    <Input label="expenseTotalValue" type="number" value={totalValue} disabled={true} />
+
 
                 </div>
 

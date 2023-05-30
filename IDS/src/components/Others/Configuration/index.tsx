@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import Title from "../../Fixed/Search/Title";
@@ -14,6 +14,7 @@ export default function Configuration() {
     const worker: any = useContext(UserContext).worker;
     const name: any = worker.name;
     const email = worker.email;
+    const [voiceCommand, setVoiceCommand] = useState(worker.voiceCommand);
     const image = name.substring(0, 1);
 
     const handleChange = (event: any) => {
@@ -24,6 +25,12 @@ export default function Configuration() {
             document.documentElement.style.setProperty('--r', "2px");
             document.documentElement.style.setProperty('--rr', "2px");
         }
+    }
+
+    const editVoiceCommand = (event: any) => {
+        setVoiceCommand(event.target.checked);
+
+
     }
 
     return (
@@ -123,7 +130,7 @@ export default function Configuration() {
 
                                             <div className="switch-accessibility">
                                                 <div className="switch">
-                                                    <input type="checkbox" id="slider-voiceCommand" name="slider-voiceCommand" />
+                                                    <input type="checkbox" id="slider-voiceCommand" name="slider-voiceCommand" checked={voiceCommand} onChange={editVoiceCommand}/>
                                                     <label htmlFor="slider-voiceCommand" />
                                                 </div>
                                             </div>

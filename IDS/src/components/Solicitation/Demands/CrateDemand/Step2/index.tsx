@@ -118,7 +118,7 @@ export default function CreateDemands2() {
                     </div>
 
                     <div className="flex">
-                        <div className="input">
+                        <div className="display-grid">
                             <Label title="monthlyValue" required="true" />
 
                             <input type="text" onChange={(e) => { setRealMonthlyValue(e.target.value) }} value={realMonthlyValue} />
@@ -127,7 +127,7 @@ export default function CreateDemands2() {
                     </div>
 
                     {/* <Input label="description" required=""></Input> */}
-                    <div className="input">
+                    <div className="display-grid">
                         <Label title="description" required="true" />
                         <input onChange={(e) => { setrealBenefitDescription(e.target.value) }} type="text" value={realBenefitDescription} />
                     </div>
@@ -141,7 +141,7 @@ export default function CreateDemands2() {
 
                         <div className="flex">
                             {/* <Input label="monthlyValue" required="*" /> */}
-                            <div className="input">
+                            <div className="display-grid">
                                 <Label title="monthlyValue" required="true" />
                                 <input type="text" onChange={(e) => { setPotentialMonthlyValue(e.target.value) }} value={potentialMonthlyValue} />
                             </div>
@@ -151,7 +151,7 @@ export default function CreateDemands2() {
                         <div className="flex">
                             {/* <Input label="description" required=""></Input> */}
 
-                            <div className="input">
+                            <div className="display-grid">
                                 <Label title="description" />
                                 <input onChange={(e) => { setPotentialBenefitDescription(e.target.value) }} type="text" value={potentialBenefitDescription} />
                             </div>
@@ -170,7 +170,7 @@ export default function CreateDemands2() {
                 <div className="box">
                     <p>{t("benefitQualitative")}</p>
 
-                    <div className="input">
+                    <div className="display-grid">
                         <Label title="description" />
 
                         <Editor setContent={setQualitativeBenefitDescription} content={qualitativeBenefitDescription} />

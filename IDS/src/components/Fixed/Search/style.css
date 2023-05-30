@@ -14,20 +14,10 @@
     margin-right: 20px;
 }
 
-.search input {
-    width: 250px;
-    height: var(--h);
-    padding-left: 45px;
-    padding-right: 10px;
-    margin-left: 10px;
-    border-radius: var(--r);
-    border: 1px solid var(--greyC4);
-}
-
 .search .input-search .material-symbols-outlined {
     color: var(--greyC4);
     position: absolute;
-    margin: 10px 20px;
+    margin: 10px;
 }
 
 .search a {
@@ -115,7 +105,11 @@
         display: block;
     }
 
-    .search input {
+    .search .input{
+        margin-top: 20px;
+    }
+
+    /* .search input {
         margin-left: 0px;
         margin-top: 20px;
     }
@@ -123,7 +117,7 @@
     .search .input-search .material-symbols-outlined {
         margin-top: 32px;
         margin-left: 10px;
-    }
+    } */
 
     .search .input-search {
         margin-right: 0px;

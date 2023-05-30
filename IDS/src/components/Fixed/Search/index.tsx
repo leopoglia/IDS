@@ -8,6 +8,8 @@ import Title from "./Title";
 import Filter from "./Filter";
 import DemandService from "../../../services/demandService";
 import "./style.css";
+import Mic from "../Accessibility/Mic";
+import Input from "../../Solicitation/Demands/CrateDemand/Others/Input";
 
 export interface FilterProps {
     onClick: (name: string | undefined, type: string) => void
@@ -100,11 +102,15 @@ export default function Search(props: any) {
                     </div>
                 }
 
-                <div className="input-search">
+                <Input background={"input-search"} setValue={props.setSearch} value={props.search} icon={"search"} type="text" placeholder={search()} required={true} />
+
+                {/* <div className="input-search">
 
                     <span className="material-symbols-outlined">search</span>
                     <input onChange={(e) => { props.setSearch(e.target.value) }} type="text" placeholder={search()} required />
-                </div>
+                    <Mic />
+
+                </div> */}
 
 
                 <div className="display-flex">

@@ -38,7 +38,7 @@ import Nav from "./components/Fixed/Nav";
 export default function Router() {
 
     // Contexto do usuário
-    const [worker, setWorker] = useState({ id: "", office: "", name: "", email: "", language: ""});
+    const [worker, setWorker] = useState({ id: "", office: "", name: "", email: "", language: "", voiceCommand: false});
 
     useEffect(() => {
         // Verifica se o usuário não está na tela de login
@@ -64,7 +64,8 @@ export default function Router() {
                             office: response.workerOffice,
                             name: response.workerName,
                             email: response.corporateEmail,
-                            language: response.language
+                            language: response.language,
+                            voiceCommand: response.voiceCommand
                         }
                         setWorker(worker); // Seta os dados do usuário no context
                     });

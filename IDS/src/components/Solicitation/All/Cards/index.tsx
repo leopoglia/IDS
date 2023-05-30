@@ -253,7 +253,7 @@ export default function Demands() {
 
                     <div className="container">
 
-                        <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1" />
+                        <Search setSearch={setSearch} search={search} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1" />
                         <div className="container-background">
 
                             {
@@ -318,7 +318,7 @@ export default function Demands() {
                 <div className="proposals">
 
                     <div className="container">
-                        <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} nav={t("proposalViewProposal")} title="proposals" button="createProposal" link="/demands/1" />
+                        <Search setSearch={setSearch} search={search} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} nav={t("proposalViewProposal")} title="proposals" button="createProposal" link="/demands/1" />
                         <div className="container-background">
                             {
                                 proposals
@@ -373,7 +373,7 @@ export default function Demands() {
                 <div className="agendas">
 
                     <div className="container">
-                        <Search setSearch={setSearch} onClick={callback} name={nameFilter} type={typeFilter} setTipe={setType} setTable={setTable} nav={t("agendaViewAgenda")} title="agendas" button="createAgenda" link="/agenda/create" />
+                        <Search setSearch={setSearch} search={search} onClick={callback} name={nameFilter} type={typeFilter} setTipe={setType} setTable={setTable} nav={t("agendaViewAgenda")} title="agendas" button="createAgenda" link="/agenda/create" />
                         <div className="container-background">
                             {
                                 agendas
@@ -430,7 +430,7 @@ export default function Demands() {
                 <div className="minutes">
 
                     <div className="container">
-                        <Search onClick={callback} name={nameFilter} type={typeFilter} setType={setType} nav={t("minuteViewMinute")} title="minutes" button="createMinute" link="/agendas/1" setTable={setTable} />
+                        <Search onClick={callback} search={search} name={nameFilter} type={typeFilter} setType={setType} nav={t("minuteViewMinute")} title="minutes" button="createMinute" link="/agendas/1" setTable={setTable} />
                         <div className="container-background">
                             {
                                 minutes

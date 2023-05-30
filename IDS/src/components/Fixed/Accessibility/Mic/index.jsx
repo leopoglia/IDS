@@ -1,7 +1,8 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import "./style.css"
 
-const Dictaphone = () => {
+const Dictaphone = (props) => {
   const {
     transcript,
     listening,
@@ -9,20 +10,49 @@ const Dictaphone = () => {
     browserSupportsSpeechRecognition
   } = useSpeechRecognition();
 
-  if (!browserSupportsSpeechRecognition) {
-    return <span>Browser doesn't support speech recognition.</span>;
-  }
 
-  console.log(transcript)
+  const handleListen = () => {
+    if (!browserSupportsSpeechRecognition) {
+      return null;
+    }
+
+    if (listening) {
+      SpeechRecognition.stopListening();
+      setOn(true)
+    } else {
+      SpeechRecognition.startListening();
+      setOn(false)
+    }
+
+    console.log('listening?', listening)
+
+  };
+
+  const [on, setOn] = useState(false)
+
+
+  useEffect(() => {
+    if (props.setValue) {
+
+      if (props.value === "") {
+        if (props.handle) {
+          props.handle(transcript, props.label);
+        } else {
+          props.setValue(transcript);
+        }
+      }
+    }
+  }, [transcript, props])
+
 
   return (
-    <div>
-      <p>Microphone: {listening ? 'on' : 'off'}</p>
-      <button onClick={SpeechRecognition.startListening}>Start</button>
-      <button onClick={SpeechRecognition.stopListening}>Stop</button>
-      <button onClick={resetTranscript}>Reset</button>
-      <p>{transcript}</p>
-    </div>
+    <button className={'microphone mic-' + on} onClick={handleListen}>
+
+      <span className='material-symbols-outlined'>
+        mic
+      </span>
+
+    </button>
   );
 };
 export default Dictaphone;

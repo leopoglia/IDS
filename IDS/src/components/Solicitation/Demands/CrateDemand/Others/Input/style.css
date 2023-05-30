@@ -1,13 +1,27 @@
-.box .input {
+.input {
     width: 100%;
-    display: block;
-    margin-bottom: 15px;
-}
-
-.box .input input {
-    width: 100%;
+    display: flex;
+    align-items: center;
+    overflow: hidden !important;
+    position: relative;
     height: var(--h);
-    padding: 10px;
+    padding-right: 5px;
     border-radius: var(--r);
     border: 1px solid var(--greyC4);
+}
+
+.input .material-symbols-outlined {
+    margin-left: 10px;
+}
+
+.icon-true input {
+    margin-left: 40px !important;
+}
+
+.outlined-true {
+    border: 2px solid var(--blue19) !important;
+}
+
+.outlined-true:hover {
+    border: 2px solid var(--blue19) !important;
 }

@@ -41,6 +41,14 @@
     color: var(--grey3d);
 }
 
+.login-form input:hover{
+    border: 1px solid var(--grey59) !important;
+}
+
+.login-form input:focus{
+    border: 2px solid var(--blue19) !important;
+}
+
 .login-form main #email,
 main #password {
     width: 100%;

@@ -12,6 +12,7 @@ import Editor from "../../../Proposals/EditProposalScope/Editor";
 import notifyUtil from "../../../../../utils/notifyUtil";
 import Label from "../Others/Label/label";
 import "./style.css"
+import Input from '../Others/Input';
 
 
 export default function CreateDemands1() {
@@ -172,11 +173,12 @@ export default function CreateDemands1() {
                 <div className="box">
                     <p>{t("generalInformation")}</p>
 
-                    <div className="input">
+                    <div className="display-grid">
 
-                        <Label title="titleInput" required="true" textInfo="Digite um texto para a sua demanda" />
+                        <Input type="text" label="titleInput" handle={handleChange} value={titleDemand} required="true" />
 
-                        <input onChange={(e) => { handleChange(e, 'titleInput'); }} type="text" value={titleDemand} />
+
+                        {/* <input onChange={(e) => { handleChange(e, 'titleInput'); }} type="text" value={titleDemand} /> */}
                     </div>
 
                     <div className="text-area">
@@ -191,9 +193,8 @@ export default function CreateDemands1() {
                         <Editor handleChange={handleChange} type={"currentSituation"} content={currentSituation} />
                     </div>
            
-                    <div className="input">
+                    <div className="display-grid">
                         <Label title="costCenter" required="true" textInfo="Digite o centro de custo que ira pagar" />
-
 
                         <div className="display-flex">
                             <SelectCenterCost setCostCenter={setCostCenter} costCenter={costCenter} addCostCenter={addCostCenter} />

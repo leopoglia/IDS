@@ -52,15 +52,15 @@ const Services = {
                 .catch(resolve)
         })
     },
-    findByDemand: function (demandCode: number) {
-        return new Promise((resolve, reject) => {
-            fetch(url + "/demand/" + demandCode, {
-                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
-            }).then(function (result) { return result.json(); })
-                .then(resolve)
-                .catch(resolve)
-        })
-    },
+    // findByDemand: function (demandCode: number) {
+    //     return new Promise((resolve, reject) => {
+    //         fetch(url + "/demand/" + demandCode, {
+    //             method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+    //         }).then(function (result) { return result.json(); })
+    //             .then(resolve)
+    //             .catch(resolve)
+    //     })
+    // },
     update: function (demandCode: number, proposal: any) {
         return new Promise((resolve, reject) => {
 

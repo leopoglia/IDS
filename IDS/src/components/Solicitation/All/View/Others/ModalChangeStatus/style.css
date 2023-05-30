@@ -14,7 +14,7 @@
 }
 
 .modalChangeStatus .modal {
-    width: 400px;
+    width: 400px !important;
     height: 350px;
     padding: 20px;
     border-radius: calc(var(--r) * 2);

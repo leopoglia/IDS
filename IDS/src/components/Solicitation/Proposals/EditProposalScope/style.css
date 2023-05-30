@@ -1,3 +1,12 @@
+.edit-proposal-scope .ql-editor{
+    min-height: 300px !important;
+    max-height: 300px !important;
+}
+
+.edit-proposal-scope .microphone{
+    margin-top: -150px !important;
+}
+
 .ql-snow.ql-toolbar::after,
 .ql-snow .ql-toolbar::after {
     content: none;

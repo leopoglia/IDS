@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import Title from "../../Fixed/Search/Title";
@@ -15,6 +15,7 @@ export default function Configuration() {
     const name: any = worker.name;
     const email = worker.email;
     const [voiceCommand, setVoiceCommand] = useState(worker.voiceCommand);
+    const [fontSize, setFontSize] = useState(0);
     const image = name.substring(0, 1);
 
     const handleChange = (event: any) => {
@@ -32,6 +33,19 @@ export default function Configuration() {
 
 
     }
+
+    console.log(fontSize)
+
+    useEffect(() => {
+        document.documentElement.style.setProperty('--gg', fontSize - 2 + "px");
+        document.documentElement.style.setProperty('--g', fontSize - 4 + "px");
+        document.documentElement.style.setProperty('--m', fontSize - 6 + "px");
+        document.documentElement.style.setProperty('--p', fontSize - 10 + "px");
+        document.documentElement.style.setProperty('--pp', fontSize - 12 + "px");
+
+
+
+    }, [fontSize])
 
     return (
         <div className="configuration">
@@ -119,7 +133,7 @@ export default function Configuration() {
                                             <span className="subtitle-confuration">{t("fontSize")}</span>
 
                                             <div className="switch-slider-fontSize">
-                                                <Slider />
+                                                <Slider setValue={setFontSize} />
                                             </div>
 
                                         </div>

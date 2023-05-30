@@ -220,7 +220,7 @@
 }
 
 .text-background {
-    position: fixed;
+    position: absolute;
     right: 150px;
     font-size: calc(var(--gg) + 35px);
     opacity: 0.1;

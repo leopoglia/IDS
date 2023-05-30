@@ -3,24 +3,29 @@ import { useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 
-function valuetext(value: number) {
-    return `${value}°C`;
-}
 
-export default function DiscreteSlider() {
+export default function DiscreteSlider(props: any) {
 
     const theme = useTheme();
+
+
+    function valuetext(value: number) {
+        props.setValue(value);
+        return `${value}°C`;
+    }
+
+
 
     return (
         <Box sx={{ width: 125 }}>
             <Slider
                 aria-label="Temperature"
-                defaultValue={20}
+                defaultValue={24}
                 getAriaValueText={valuetext}
                 valueLabelDisplay="auto"
                 step={1}
-                min={8}
-                max={35}
+                min={15}
+                max={30}
                 sx={{
                     color: theme.palette.mode === 'dark' ? '#fff' : 'rgba(255,255,255,0.87)',
                     height: 8,

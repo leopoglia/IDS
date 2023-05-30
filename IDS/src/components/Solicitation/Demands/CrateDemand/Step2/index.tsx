@@ -15,6 +15,7 @@ import Label from "../Others/Label/label";
 import "../Others/Input/style.css"
 import notifyUtil from "../../../../../utils/notifyUtil";
 import "./style.css"
+import Input from '../Others/Input';
 
 export default function CreateDemands2() {
 
@@ -118,18 +119,17 @@ export default function CreateDemands2() {
                     </div>
 
                     <div className="flex">
-                        <div className="display-grid">
-                            <Label title="monthlyValue" required="true" />
+                        <div className="display-grid w100">
 
-                            <input type="text" onChange={(e) => { setRealMonthlyValue(e.target.value) }} value={realMonthlyValue} />
+                            <Input type="number" label="monthlyValue" setValue={setRealMonthlyValue} value={realMonthlyValue} required="true" />
+
                         </div>
                         <SelectCoin setrealCurrency={setrealCurrency} type="real" value={realCurrency} />
                     </div>
 
-                    {/* <Input label="description" required=""></Input> */}
                     <div className="display-grid">
-                        <Label title="description" required="true" />
-                        <input onChange={(e) => { setrealBenefitDescription(e.target.value) }} type="text" value={realBenefitDescription} />
+
+                        <Input type="text" label="description" setValue={setrealBenefitDescription} value={realBenefitDescription} required="true" />
                     </div>
 
                 </div>
@@ -140,20 +140,16 @@ export default function CreateDemands2() {
                     <div className="flex-grid">
 
                         <div className="flex">
-                            {/* <Input label="monthlyValue" required="*" /> */}
-                            <div className="display-grid">
-                                <Label title="monthlyValue" required="true" />
-                                <input type="text" onChange={(e) => { setPotentialMonthlyValue(e.target.value) }} value={potentialMonthlyValue} />
+                            <div className="display-grid w100">
+
+                                <Input type="number" label="monthlyValue" setValue={setPotentialMonthlyValue} value={potentialMonthlyValue} required="true" />
                             </div>
                             <SelectCoin setPotentialCurrency={setPotentialCurrency} type="potencial" value={potentialCurrency} />
                         </div>
 
                         <div className="flex">
-                            {/* <Input label="description" required=""></Input> */}
-
-                            <div className="display-grid">
-                                <Label title="description" />
-                                <input onChange={(e) => { setPotentialBenefitDescription(e.target.value) }} type="text" value={potentialBenefitDescription} />
+                            <div className="display-grid w100">
+                                <Input type="text" label="description" setValue={setPotentialBenefitDescription} value={potentialBenefitDescription} required="true" />
                             </div>
 
                             <div className="input-checkbox">

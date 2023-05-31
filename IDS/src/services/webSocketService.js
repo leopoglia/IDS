@@ -15,10 +15,10 @@ export const WebSocketService = ({ children }) => {
             stomp.connect({}, () => {
                 setStompClient(stomp);
             }, (error) => {
-                console.log("Connection error: ", error)
+                // console.log("Connection error: ", error)
 
                 setTimeout(() => {
-                    console.log("Trying to reconnect...")
+                    // console.log("Trying to reconnect...")
                     connect();
                 }, 5000);
             })
@@ -38,12 +38,12 @@ export const WebSocketService = ({ children }) => {
         if (stompClient) {
             stompClient.send(destiny, {}, JSON.stringify(message));
         } else {
-            console.log("Connection not established");
+            // console.log("Connection not established");
         }
     }
 
     const subscribe = (destiny, callback) => {
-        console.log(stompClient.subscriptions)
+        // console.log(stompClient.subscriptions)
 
         return stompClient.subscribe(destiny, callback);
     }

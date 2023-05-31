@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { t } from "i18next"
 import { ToastContainer } from 'react-toastify';
-import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import Title from "../../../Fixed/Search/Title"
 import Services from "../../../../services/classificationService"
@@ -13,8 +13,7 @@ import Input from "../CrateDemand/Others/Input";
 
 export default function ComplementDemand() {
 
-    const navigate = useNavigate();
-    const codeDemand = parseInt(window.location.href.split("/")[5])
+    const codeDemand:any = useParams().id;
     const [ppmCode, setPpmCode] = useState("")
     const [linkEpicJira, setLinkEpicJira] = useState("")
 

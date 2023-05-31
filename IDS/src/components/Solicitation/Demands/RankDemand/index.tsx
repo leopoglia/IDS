@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import { useTranslation } from "react-i18next";
 import { WebSocketContext } from '../../../../services/webSocketService';
@@ -26,7 +26,7 @@ export default function RankDemand() {
     const [linkEpicJira, setLinkEpicJira] = useState(""); // Link do epic jira
     const [demand, setDemand]: any = useState({}); // Demanda
     const [fileAttachment, setFileAttachment]: any = useState([]);
-    const url = parseInt(window.location.href.split("/")[5]); // Pegando o id da demanda
+    const url: any = useParams().id; // Pegando o id da demanda
     const edit = window.location.href.split("?")[1]
     let notification = {}; // Notificações do usuário
     const { send, subscribe, stompClient }: any = useContext(WebSocketContext);

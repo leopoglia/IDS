@@ -1,17 +1,18 @@
 import React from 'react';
 import { useContext, useEffect, useState, useRef } from 'react'
-import EmojiPicker from "emoji-picker-react";
 import { useTranslation } from "react-i18next";
-import "./style.css"
+import { useParams } from 'react-router';
+import { WebSocketContext } from '../../../../services/webSocketService';
 
 
 import Title from "../../../Fixed/Search/Title";
-import { useParams } from 'react-router';
-import { WebSocketContext } from '../../../../services/webSocketService';
 import ServicesMessage from '../../../../services/messageService'
 import ServicesDemand from '../../../../services/demandService';
 import UserContext from '../../../../context/userContext';
 import ServicesWorker from '../../../../services/workerService';
+import EmojiPicker from "emoji-picker-react";
+import "./style.css"
+
 
 const ChatRoom = () => {
     const [isUserOnline, setIsUserOnline] = useState(false);

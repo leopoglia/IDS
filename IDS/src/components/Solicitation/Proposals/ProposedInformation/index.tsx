@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +15,7 @@ export default function ProposedInformation() {
     const { t } = useTranslation();
     const navigate = useNavigate();
 
-    const demandCode = parseInt(window.location.href.split("/")[5]);
+    const demandCode = useParams().id;
 
     const [responsibleBussiness, setResponsibleBussiness]: any = useState("");
     const [responsiblesBussiness, setResponsiblesBussiness]: any = useState([]);

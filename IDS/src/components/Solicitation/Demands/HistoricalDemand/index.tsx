@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 import Title from "../../../Fixed/Search/Title";
 import ServiceDemand from "../../../../services/demandService";
@@ -10,7 +10,7 @@ import "./style.css";
 export default function HistoricalDemand() {
 
     const { t } = useTranslation();
-    const url: any = window.location.href.split("/")[5];
+    const url: any = useParams().id;
     const [demand, setDemand]: any = useState();
     const [activeVersionUpdate, setActiveVersionUpdate]: any = useState(true);
     const navigate = useNavigate();

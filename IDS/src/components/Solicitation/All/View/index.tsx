@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ToastContainer } from 'react-toastify';
 import { WebSocketContext } from '../../../../services/webSocketService';
@@ -7,9 +7,7 @@ import { WebSocketContext } from '../../../../services/webSocketService';
 import Title from "../../../Fixed/Search/Title";
 import ServicesDemand from "../../../../services/demandService";
 import ServicesProposal from "../../../../services/proposalService";
-import ServicesNotification from "../../../../services/notificationService";
 import ServicesAgenda from "../../../../services/agendaService";
-import ServicesExpense from "../../../../services/expenseService";
 import ServicesExpenses from "../../../../services/expensesService";
 import ServicesMinute from "../../../../services/minuteService";
 import Footer from "../../../Fixed/Footer";
@@ -34,7 +32,7 @@ export default function ViewDemand() {
     const workerName = worker.name; // Buscar nome do usuário
     const workerId = worker.id; // Buscar código do usuário
     const url = window.location.href.split("/")[3]; // Buscar tipo da demanda
-    const demandCode = parseInt(window.location.href.split("/")[5]); // Buscar código da demanda
+    const demandCode: any = useParams().id; // Buscar código da demanda
     const demandVersion = parseInt(window.location.href.split("?")[1]); // Buscar versão da demanda
 
     // Botões superiores
@@ -288,7 +286,6 @@ export default function ViewDemand() {
             for (let i = 0; i < response[0].proposals.length; i++) {
                 await ServicesDemand.findById(response[0].proposals[i].demand.demandCode).then((demand: any) => {
                     response[0].proposals[i].demand = demand;
-                    console.log(demand)
                 })
 
                 proposals.push(response[0].proposals[i])
@@ -731,11 +728,11 @@ export default function ViewDemand() {
                                     </div>
 
                                     <div className="infos">
+                                        <span>{t("internalControlRequirements")}: {(demand.qualitativeBenefit.interalControlsRequirements === true) ? (<span>Sim</span>) : <span>Não</span>}</span>
+                                    </div>
 
-                                        <div>
-                                            <span>{t("internalControlRequirements")}: {(demand.qualitativeBenefit.interalControlsRequirements === true) ? (<span>Sim</span>) : <span>Não</span>}</span>
-                                        </div>
-
+                                    <div className="infos">
+                                        <span>{t("frequencyUse")}: {demand.qualitativeBenefit.frequencyOfUse}</span>
                                     </div>
 
                                     <div className="description display-grid">
@@ -746,7 +743,6 @@ export default function ViewDemand() {
                                         ) : (
                                             null
                                         )}
-
 
                                     </div>
                                 </div>
@@ -914,8 +910,6 @@ export default function ViewDemand() {
                                 <table>
                                     <tbody>
                                         {proposalSpecific.map((val: any, index: any) => {
-
-                                            console.log(val)
 
                                             if (proposalSpecific.length !== index + 1) {
 

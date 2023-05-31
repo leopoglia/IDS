@@ -34,8 +34,6 @@ const Dictaphone = (props) => {
       const handleTranscript = () => {
         if (transcript !== '' && transcript !== undefined) {
 
-          console.log(props, transcript)
-
           if (props?.handle !== undefined) {
             props.handle(transcript, props.label);
           } else {
@@ -50,7 +48,6 @@ const Dictaphone = (props) => {
 
   }
 
-  console.log(props)
   Run(props)
 
 

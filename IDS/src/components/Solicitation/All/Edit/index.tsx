@@ -9,7 +9,6 @@ import ServicesRealBenefit from "../../../../services/realBenefitService";
 import ServicesPotentialBenefit from "../../../../services/potentialBenefitService";
 import ServicesQualitativeBenefit from "../../../../services/qualitativeBenefitService";
 import ServicesProposal from "../../../../services/proposalService";
-import ServicesAgenda from "../../../../services/agendaService";
 import Services from "../../../../services/costCenterService";
 import SelectCoin from "../../Demands/CrateDemand/Others/SelectCoin";
 import CheckBox from "../../Demands/CrateDemand/Others/CheckBox";
@@ -19,8 +18,6 @@ import ExpensesService from "../../../../services/expensesService";
 
 import "./style.css"
 import Input from "../../Demands/CrateDemand/Others/Input";
-import Label from "../../Demands/CrateDemand/Others/Label/label";
-
 
 
 export default function Edit() {
@@ -38,7 +35,7 @@ export default function Edit() {
 	const [editType, setEditType]: any = useState(window.location.href.split("?")[2]); // Tipo de edição (Tabelas, classificação, complementos, despesas)
 	const [expenseType, setExpenseType]: any = useState(window.location.href.split("?")[1]); // Tipo de despesa (Custo, investimento, despesa)
 
-	const [demandCode, setDemandCode] = useState(parseInt(window.location.href.split("/")[5])); // Código da demanda
+	const [demandCode, setDemandCode]:any = useState(useParams().id); // Código da demanda
 	let [demandVersion, setDemandVersion] = useState(); // Versão da demanda
 	const [demands, setDemands]: any = useState(); // Demanda
 
@@ -238,7 +235,7 @@ export default function Edit() {
 		if (editType === "costcenter") {
 			ServicesDemand.updateCostCenter(demandCode, costsCentersId).then((response: any) => {
 
-				navigate("/proposal/view/" + code);
+				navigate("/proposal/view/" + demandCode);
 			})
 		} else if (expenseType === "recurrent" || expenseType === "internal" || expenseType === "expenses") {
 
@@ -258,7 +255,7 @@ export default function Edit() {
 				expensesCostCenter.push({ costCenter: { costCenterCode: costCentersCode[j] } });
 			}
 
-			ExpensesService.findByProposal(parseInt(window.location.href.split("/")[5])).then((expenses: any) => {
+			ExpensesService.findByProposal(demandCode).then((expenses: any) => {
 
 				expenses.map((expense: any) => {
 
@@ -266,7 +263,7 @@ export default function Edit() {
 
 						if (expensesCostCenter.length > 0) {
 
-							ExpensesService.update(expenseType, code, costCentersCode, expenseListStorage, expensesCostCenter, expense.expensesCode).then((expenseses: any) => {
+							ExpensesService.update(expenseType, demandCode, costCentersCode, expenseListStorage, expensesCostCenter, expense.expensesCode).then((expenseses: any) => {
 
 								if (minuteEdit?.split("=")[0] === "minute") {
 									navigate("/minutes/create/" + minuteEdit.split("=")[1]);

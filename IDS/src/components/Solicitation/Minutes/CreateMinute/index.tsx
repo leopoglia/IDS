@@ -52,10 +52,7 @@ export default function CreateMinute() {
                 proposal.demand.classification.classificationCode);
 
 
-            await ProposalService.update(proposal.proposalCode, proposal).then((response: any) => {
-                console.log(response)
-            }
-            ).catch((error: any) => {
+            await ProposalService.update(proposal.proposalCode, proposal).catch((error: any) => {
                 console.log(error)
             });
         });
@@ -63,7 +60,7 @@ export default function CreateMinute() {
         MinuteService.save(t("unpublishedMinutes") + "", code, actualDate, worker.id, "Not Published");
         MinuteService.save(t("publiquedMinute") + "", code, actualDate, worker.id, "Published");
 
-        navigate("/minutes/1");
+        navigate("/agenda/view/" + code);
     }
 
 

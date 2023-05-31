@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ToastContainer } from 'react-toastify';
 
@@ -13,7 +13,7 @@ export default function EditProposalScope() {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const demandCode = parseInt(window.location.href.split("/")[5]);
+  const demandCode = useParams().id;
 
   const [content, setContent] = useState('');
 

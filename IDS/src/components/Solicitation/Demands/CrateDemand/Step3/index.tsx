@@ -34,12 +34,7 @@ export default function CreateDemands3() {
     let workerCode = worker.id; // Código do funcionário
 
     async function cadastrarDemanda() {
-        // Verificando se os campos obrigatórios foram preenchidos
-        if (executionPeriod === "") {
-            notifyUtil.error(t("fillAllFields"))
-            return;
-        }
-
+      
         let demandTitle: any = demandInitial.titleInput; // Título da demanda
         let currentProblem: any = demandInitial.currentSituation; // Problema atual
         let demandObjective: any = demandInitial.objective; // Objetivo 
@@ -59,7 +54,7 @@ export default function CreateDemands3() {
             costCenter,
             "Backlog",
             null,
-            executionPeriod,
+            0,
             workerCode,
             realBenefitCode,
             potentialBenefitCode,
@@ -109,7 +104,6 @@ export default function CreateDemands3() {
 
                     <div className="frequency">
     
-                        <Input type="text" label="frequencyUse" setValue={setExecutionPeriod} value={executionPeriod} />
 
                     </div>
 

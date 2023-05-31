@@ -42,7 +42,6 @@ export default function Configuration() {
         document.documentElement.style.setProperty('--p', fontSize - 10 + "px");
         document.documentElement.style.setProperty('--pp', fontSize - 12 + "px");
 
-        // console.log("fontSize ===> ", 1 + (fontSize / 100))
 
         // document.documentElement.style.setProperty('--z', JSON.stringify(1 + (fontSize / 100)));
 

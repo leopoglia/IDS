@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { t } from "i18next";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { WebSocketContext } from '../../../../services/webSocketService';
@@ -19,7 +19,7 @@ export default function DisapproveDemand() {
 
     const navigate = useNavigate();
     const [disapprovalReason, setDisapprovalReason]: any = useState(""); // Motivo de reprovação
-    const demandCode = parseInt(window.location.href.split("/")[5]);
+    const demandCode: any = useParams().id;
     let demandVersion: any;
     let notification = {}; // Notificações do usuário
     const { send, subscribe, stompClient }: any = useContext(WebSocketContext);
@@ -60,7 +60,7 @@ export default function DisapproveDemand() {
                 icon: "info",
                 type: "demand",
             };
-        }else if(workerOffice == "business"){
+        } else if (workerOffice == "business") {
             return notification = {
                 date: new Date(),
                 description: "Um gerente de negócio reprovou a sua demanda de código " + demand.demandCode,
@@ -68,7 +68,7 @@ export default function DisapproveDemand() {
                 icon: "info",
                 type: "demand",
             };
-        }else {
+        } else {
             return notification = {
                 date: new Date(),
                 description: "Um gerente de ti reprovou a sua demanda de código " + demand.demandCode,

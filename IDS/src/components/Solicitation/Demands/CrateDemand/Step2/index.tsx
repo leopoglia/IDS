@@ -80,7 +80,7 @@ export default function CreateDemands2() {
 
         let realBenefits: any = await RealServices.save(Number.parseFloat(realMonthlyValue), realBenefitDescription, realCurrencyFinal);
         let potentialBenefits: any = await PotentialServices.save(Number.parseFloat(potentialMonthlyValue), potentialBenefitDescription, legalObrigation, potentialCurrencyFinal);
-        let qualitativeBenefits: any = await QualitativeServices.save("1", qualitativeBenefitDescription, interalControlsRequirements);
+        let qualitativeBenefits: any = await QualitativeServices.save(frequencyOfUse, qualitativeBenefitDescription, interalControlsRequirements);
 
         localStorage.setItem("realBenefits", JSON.stringify(realBenefits));
         localStorage.setItem("potentialBenefits", JSON.stringify(potentialBenefits));
@@ -171,12 +171,17 @@ export default function CreateDemands2() {
                     <Editor setContent={setQualitativeBenefitDescription} content={qualitativeBenefitDescription} />
 
 
-                    <div className="input-checkbox">
-                        <label className="requirements">{t("internalControlRequirements")}</label>
-                        <div className="checkbox">
-                            <input type="checkbox" id="interalControlsRequirements" name="interalControlsRequirements" checked={interalControlsRequirements} onChange={(e) => { setInteralControlsRequirements(e.target.checked) }} />
-                            <label htmlFor="interalControlsRequirements" className="pl10 mb0">{t("yes")}</label>
+                    <div className='display-flex'>
+                        <Input type="text" label="frequencyUse" setValue={setFrequencyOfUse} value={frequencyOfUse} />
 
+
+                        <div className="input-checkbox">
+                            <label className="requirements">{t("internalControlRequirements")}</label>
+                            <div className="checkbox">
+                                <input type="checkbox" id="interalControlsRequirements" name="interalControlsRequirements" checked={interalControlsRequirements} onChange={(e) => { setInteralControlsRequirements(e.target.checked) }} />
+                                <label htmlFor="interalControlsRequirements" className="pl10 mb0">{t("yes")}</label>
+
+                            </div>
                         </div>
                     </div>
 

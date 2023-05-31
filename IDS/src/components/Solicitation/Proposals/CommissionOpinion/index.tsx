@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 import Title from "../../../Fixed/Search/Title";
@@ -12,7 +12,7 @@ import ProposalService from "../../../../services/proposalService";
 export default function CommissionOpinion() {
 
     const navigate = useNavigate();
-    const proposalCode = parseInt(window.location.href.split("/")[5]);
+    const proposalCode: any = useParams().id;
     const agendaCode = parseInt(window.location.href.split("?")[1]);
 
 

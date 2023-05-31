@@ -34,7 +34,6 @@ export default function Configuration() {
 
     }
 
-    console.log(fontSize)
 
     useEffect(() => {
         document.documentElement.style.setProperty('--gg', fontSize - 2 + "px");
@@ -42,6 +41,10 @@ export default function Configuration() {
         document.documentElement.style.setProperty('--m', fontSize - 6 + "px");
         document.documentElement.style.setProperty('--p', fontSize - 10 + "px");
         document.documentElement.style.setProperty('--pp', fontSize - 12 + "px");
+
+        // console.log("fontSize ===> ", 1 + (fontSize / 100))
+
+        // document.documentElement.style.setProperty('--z', JSON.stringify(1 + (fontSize / 100)));
 
 
 
@@ -144,7 +147,7 @@ export default function Configuration() {
 
                                             <div className="switch-accessibility">
                                                 <div className="switch">
-                                                    <input type="checkbox" id="slider-voiceCommand" name="slider-voiceCommand" checked={voiceCommand} onChange={editVoiceCommand}/>
+                                                    <input type="checkbox" id="slider-voiceCommand" name="slider-voiceCommand" checked={voiceCommand} onChange={editVoiceCommand} />
                                                     <label htmlFor="slider-voiceCommand" />
                                                 </div>
                                             </div>

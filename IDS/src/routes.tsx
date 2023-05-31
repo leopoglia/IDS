@@ -38,7 +38,7 @@ import Nav from "./components/Fixed/Nav";
 export default function Router() {
 
     // Contexto do usuário
-    const [worker, setWorker] = useState({ id: "", office: "", name: "", email: "", language: "", voiceCommand: false});
+    const [worker, setWorker] = useState({ id: "", office: "", name: "", email: "", language: "", voiceCommand: false });
 
     useEffect(() => {
         // Verifica se o usuário não está na tela de login
@@ -69,11 +69,9 @@ export default function Router() {
                         }
                         setWorker(worker); // Seta os dados do usuário no context
                     });
-                } else {
-                    if (window.location.pathname !== "/") {
-                        window.location.href = "/";  // Redireciona para a tela de login
-                    }
                 }
+
+
             }
         }
     }, [worker.id]);

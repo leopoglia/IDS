@@ -70,7 +70,6 @@
     justify-content: center;
     color: var(--greyC4);
     height: calc(100vh - 400px);
-    margin: 2%;
 }
 
 .no-results .material-symbols-outlined {

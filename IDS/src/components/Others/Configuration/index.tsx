@@ -14,7 +14,10 @@ export default function Configuration() {
     const worker: any = useContext(UserContext).worker;
     const name: any = worker.name;
     const email = worker.email;
+
+
     const [voiceCommand, setVoiceCommand] = useState(worker.voiceCommand);
+    const [pounds, setPounds] = useState(worker?.pounds);
     const [fontSize, setFontSize] = useState(0);
     const image = name.substring(0, 1);
 
@@ -30,8 +33,10 @@ export default function Configuration() {
 
     const editVoiceCommand = (event: any) => {
         setVoiceCommand(event.target.checked);
+    }
 
-
+    const editPounds = (event: any) => {
+        setPounds(event.target.checked);
     }
 
 
@@ -140,6 +145,7 @@ export default function Configuration() {
 
                                         </div>
 
+
                                         <div className="display-space-between">
                                             <span className="subtitle-confuration">{t("voiceCommand")}</span>
 
@@ -165,6 +171,20 @@ export default function Configuration() {
                                             </div>
 
                                         </div>
+
+
+                                        {worker?.language === "pt" ?
+                                            <div className="display-space-between">
+                                                <span className="subtitle-confuration">{t("pounds")}</span>
+                                                <div className="switch-accessibility">
+                                                    <div className="switch">
+                                                        <input type="checkbox" id="slider-pounds" name="slider-pounds" checked={pounds} onChange={editPounds} />
+                                                        <label htmlFor="slider-pounds" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            : null
+                                        }
                                     </div>
 
 

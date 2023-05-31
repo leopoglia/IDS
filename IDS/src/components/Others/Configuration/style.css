@@ -244,6 +244,7 @@
     font-size: var(--m);
     display: flex;
     align-items: center;
+    white-space: nowrap;
 }
 
 .configuration .sliders-accessibility .switch-accessibility {

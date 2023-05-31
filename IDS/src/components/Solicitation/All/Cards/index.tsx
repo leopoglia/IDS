@@ -110,6 +110,10 @@ export default function Demands() {
                     return demand;
                 })
 
+                if (res.content.length === 0) {
+                    setLoading(false);
+                }
+
                 setDemands(demandsContent);
             });
         } else {
@@ -166,7 +170,7 @@ export default function Demands() {
             }
         });
 
-      
+
         return findDemands;
     }
 
@@ -181,7 +185,7 @@ export default function Demands() {
             }
         });
 
-       
+
         return findDemands;
     }
 
@@ -196,7 +200,7 @@ export default function Demands() {
             }
         });
 
-      
+
         return findDemands;
     }
 

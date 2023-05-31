@@ -11,39 +11,53 @@ const Dictaphone = (props) => {
   } = useSpeechRecognition();
 
 
-  const handleListen = () => {
-    if (!browserSupportsSpeechRecognition) {
-      return null;
-    }
+  if (!browserSupportsSpeechRecognition) {
+    return null;
+  }
 
-    if (listening) {
-      SpeechRecognition.stopListening();
-      setOn(true)
-    } else {
-      SpeechRecognition.startListening();
-      setOn(false)
-    }
-  };
+  // useEffect(() => {
 
-  const [on, setOn] = useState(false)
+  //   // if (props.handle === true) {
+  //   //   props.handle(transcript, props.label);
+  //   // } else {
+  //     props.setValue(transcript);
+  //   // }
 
 
-  useEffect(() => {
-    if (props.setValue) {
+  // }, [props.value])
 
-      if (props.value === "") {
-        if (props.handle) {
-          props.handle(transcript, props.label);
-        } else {
-          props.setValue(transcript);
+  function Run(props) {
+    useEffect(() => {
+      // Função para lidar com a lógica condicional
+
+
+      const handleTranscript = () => {
+        if (transcript !== '' && transcript !== undefined) {
+
+          console.log(props, transcript)
+
+          if (props?.handle !== undefined) {
+            props.handle(transcript, props.label);
+          } else {
+            props.setValue(transcript);
+          }
         }
-      }
-    }
-  }, [transcript, props])
+      };
+
+      handleTranscript();
+
+    }, [transcript, props]);
+
+  }
+
+  console.log(props)
+  Run(props)
+
 
 
   return (
-    <button className={'microphone mic-' + on} onClick={handleListen}>
+    <button className={'microphone mic-' + listening} onClick={SpeechRecognition.startListening}>
+
 
       <span className='material-symbols-outlined'>
         mic

@@ -98,6 +98,8 @@ export default function ExecutionCosts() {
         }
 
 
+
+
         for (let i = 0; i < typeExpenses.length; i++) {
             let expensesCostCenter = typeExpenses[i] === "internal" ? centerOfCustProposalInternal : typeExpenses[i] === "recurrent" ? centerOfCustProposalRecurrent : centerOfCustProposalExpenses;
 
@@ -114,7 +116,6 @@ export default function ExecutionCosts() {
         localStorage.removeItem('centerOfCustProposalrecurrent')
         localStorage.removeItem('demand');
         localStorage.removeItem('expenseList');
-
     }
 
     return (

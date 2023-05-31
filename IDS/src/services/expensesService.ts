@@ -13,7 +13,10 @@ const Services = {
                 }
             }
 
+            console.log("expensesCostCenters ====> ",expensesCostCenters)
+
             for (let i = 0; i < expensesCostCenters.length; i++) {
+                console.log("expensesCostCenters[i].costCenterCode",expensesCostCenters[i])
                 expensesCostCentersNew.push({ "costCenter": { "costCenterCode": expensesCostCenters[i].costCenterCode }, "percent": expensesCostCenters[i].percent })
             }
 
@@ -32,9 +35,7 @@ const Services = {
     update: function (expenseName: String, proposal: any, costCenter: any, expense: any, expensesCostCenters: any, expensesCode: any) {
         return new Promise(async (resolve, reject) => {
 
-
             let costCenterLocalStorage = JSON.parse(localStorage.getItem("centerOfCustProposalrecurrent") || "[]");
-
 
             let expenses = [];
             let expensesCostCentersNew = [];

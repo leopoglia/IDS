@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -28,10 +28,12 @@ export default function Edit() {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
 
+	const [code, setCode] = useState(useParams().id); // Código da proposta
+
+	
 	const [url, setUrl] = useState(window.location.href.split("/")[4]); // Url da página
 	const [type, setType] = useState(window.location.href.split("/")[3]); // Tipo da página
 
-	const [proposalCode, setProposalCode]: any = useState(window.location.href.split("?")[1]); // Código da proposta
 	const [minuteEdit, setMinuteEdit]: any = useState(window.location.href.split("?")[2]); // Edição da minuta (true, false)
 	const [editType, setEditType]: any = useState(window.location.href.split("?")[2]); // Tipo de edição (Tabelas, classificação, complementos, despesas)
 	const [expenseType, setExpenseType]: any = useState(window.location.href.split("?")[1]); // Tipo de despesa (Custo, investimento, despesa)
@@ -70,8 +72,6 @@ export default function Edit() {
 	const [demandClassification, setDemandClassification]: any = useState(""); // Classificação da demanda
 	const [demandRequester, setDemandRequester]: any = useState(""); // Solicitante da demanda
 	const [demandDate, setDemandDate]: any = useState(""); // Data da demanda
-
-	const [expenses, setExpenses]: any = useState([]); // Despesas
 
 	function getDemand(demandCodeParam: number) {
 		ServicesDemand.findById(demandCodeParam).then((response: any) => {
@@ -238,7 +238,7 @@ export default function Edit() {
 		if (editType === "costcenter") {
 			ServicesDemand.updateCostCenter(demandCode, costsCentersId).then((response: any) => {
 
-				navigate("/proposal/view/" + proposalCode);
+				navigate("/proposal/view/" + code);
 			})
 		} else if (expenseType === "recurrent" || expenseType === "internal" || expenseType === "expenses") {
 
@@ -266,12 +266,12 @@ export default function Edit() {
 
 						if (expensesCostCenter.length > 0) {
 
-							ExpensesService.update(expenseType, demandCode, costCentersCode, expenseListStorage, expensesCostCenter, expense.expensesCode).then((expenseses: any) => {
+							ExpensesService.update(expenseType, code, costCentersCode, expenseListStorage, expensesCostCenter, expense.expensesCode).then((expenseses: any) => {
 
 								if (minuteEdit?.split("=")[0] === "minute") {
 									navigate("/minutes/create/" + minuteEdit.split("=")[1]);
 								} else {
-									navigate("/proposal/view/" + demandCode);
+									navigate("/proposal/view/" + code);
 								}
 								localStorage.removeItem("centerOfCustProposalexpenses");
 								localStorage.removeItem("expenseList");
@@ -609,7 +609,6 @@ export default function Edit() {
 					) : expenseType === "internal" || expenseType === "recurrent" || expenseType === "expenses" ? (
 						<>
 							<div className="box">
-
 
 								<div className="display-flex-space-between">
 									{minuteEdit ? (

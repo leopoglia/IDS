@@ -108,9 +108,11 @@ export default function ProposedInformation() {
 
                     </div>
 
-                    <div className="display-flex-grid">
-                        <Input label={"start"} type="date" value={start} setValue={setStart} required="true" />
-                        <Input label={"end"} type="date" value={end} setValue={setEnd} required="true" />
+                    <div className="display-flex-grid dates-input">
+                        <div className="date-first">
+                            <Input label={"dateStart"} type="date" value={start} setValue={setStart} required="true" />
+                        </div>
+                        <Input label={"dateEnd"} type="date" value={end} setValue={setEnd} required="true" />
                     </div>
 
                     <div className="display-btn-anexo">

@@ -16,6 +16,7 @@ export default function SelectCostCenter(props: any) {
 
     useEffect(() => {
         if (editType !== undefined) {
+
             ServicesExpenses.findByProposal(proposalCode).then((expenses: any) => {
                 expenses.forEach((expense: any) => {
                     if (expense.expensesType === editType) {
@@ -125,6 +126,7 @@ export default function SelectCostCenter(props: any) {
             value = 0;
         }
 
+        console.log(idCostCenter)
 
         const updatedCostCenters = idCostCenter.map((costCenter: any) => {
 
@@ -161,6 +163,7 @@ export default function SelectCostCenter(props: any) {
                             costCenter={costCenter}
                             addCostCenter={addCostCenter}
                             type="payingCostCenter"
+                            edit={editType}
                         />
                         <button
                             className="btn-primary btn-center-cost"

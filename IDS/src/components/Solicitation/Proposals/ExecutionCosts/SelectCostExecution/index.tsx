@@ -4,28 +4,46 @@ import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import ServicesDemand from '../../../../../services/demandService';
+import ServicesProposal from '../../../../../services/proposalService';
 
 export default function SelectLabels(props: any) {
 
     const [centerCost, setCenterCost] = useState([{ costCenter: "" }]);
     const url = parseInt(window.location.href.split('/')[5]);
 
-    useEffect(() => { 
+    useEffect(() => {
         getBu();
-    }, []);
+    }, [props]);
 
 
     function getBu() {
 
-        ServicesDemand.findById(url).then((response: any) => {
+        console.log(props.edit)
 
-            let bus = [{ costCenter: ""}];
+        if (props.edit !== undefined) {
+            ServicesProposal.findById(url).then((response: any) => {
 
-            for (let i = 0; i < response.costCenter.length; i++) {
-                bus.push({ costCenter: response.costCenter[i].costCenter });
-            }
-            setCenterCost(bus);
-        });
+                ServicesDemand.findById(response.demand.demandCode).then((response: any) => {
+
+                    let bus = [{ costCenter: "" }];
+
+                    for (let i = 0; i < response.costCenter.length; i++) {
+                        bus.push({ costCenter: response.costCenter[i].costCenter });
+                    }
+                    setCenterCost(bus);
+                });
+            });
+        } else {
+            ServicesDemand.findById(url).then((response: any) => {
+
+                let bus = [{ costCenter: "" }];
+
+                for (let i = 0; i < response.costCenter.length; i++) {
+                    bus.push({ costCenter: response.costCenter[i].costCenter });
+                }
+                setCenterCost(bus);
+            });
+        }
     }
 
     const handleChange = (event: any, type: string) => {

@@ -26,7 +26,7 @@ export default function SelectCostCenter(props: any) {
                             costCenter.costCenter = { "costCenterCode": costCenter.costCenter.costCenterCode, "percent": costCenter.percent, "edit": true };
 
                             costsCentersAux.push(costCenter.costCenter);
-                            idCostCenterAux.push(costCenter.costCenter);
+                            idCostCenterAux.push(costCenter.costCenter.costCenterCode);
                         });
 
                         setCostsCenters(costsCentersAux);
@@ -126,10 +126,11 @@ export default function SelectCostCenter(props: any) {
         }
 
 
-        const updatedCostCenters = costsCenters.map((costCenter: any) => {
+        const updatedCostCenters = idCostCenter.map((costCenter: any) => {
+
+            console.log(costCenter)
 
             if (costCenter.costCenterCode === costCenterActual.costCenterCode) {
-
 
                 return {
                     ...costCenter,

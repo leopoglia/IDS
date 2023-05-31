@@ -177,9 +177,11 @@ export default function BoxProposal(props: any) {
             {proposalExpenseInternal?.expensesCode > 0 ? (<Expenses type="internal" proposalExpense={proposalExpenseInternal} minute={true} minuteCode={code} />) : (null)}
 
 
-            <div className="display-flex-align-center mt20">
+            <div className="display-flex-align-center mt20 dates-input">
 
-                <Input type="date" value={initialRunPeriod} setInitialRunPeriod={handleChange} label="dateStart" />
+                <div className="date-first w100">
+                    <Input type="date" value={initialRunPeriod} setInitialRunPeriod={handleChange} label="dateStart" />
+                </div>
 
                 <Input type="date" value={finalExecutionPeriod} setInitialRunPeriod={handleChange} label="dateEnd" />
             </div>

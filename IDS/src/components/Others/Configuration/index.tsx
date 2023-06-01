@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import Title from "../../Fixed/Search/Title";
 import Footer from "../../Fixed/Footer";
 import UserContext from "../../../context/userContext";
+import WorkerService from "../../../services/workerService";
 import Slider from "./Slider";
 import "./style.css"
 
@@ -31,8 +32,16 @@ export default function Configuration() {
         }
     }
 
-    const editVoiceCommand = (event: any) => {
-        setVoiceCommand(event.target.checked);
+    const editVoiceCommand = async (event: any) => {
+
+
+        await WorkerService.updateVoiceCommand(worker.id, event.target.checked).then((response: any) => {
+            console.log(response)
+
+            setVoiceCommand(response.voiceCommand);
+
+        })
+
     }
 
     const editPounds = (event: any) => {

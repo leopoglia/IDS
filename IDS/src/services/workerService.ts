@@ -76,6 +76,18 @@ const Services = {
                 .catch(resolve)
         })
     },
+    updateVoiceCommand: function (id: number, voiceCommand: any) {
+
+        return new Promise((resolve, reject) => {
+            fetch(url + '/voiceCommand/' + id, {
+                method: 'PUT', body: JSON.stringify({
+                    voiceCommand: voiceCommand
+                }), headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(resolve)
+        })
+    },
     isUserOnline: function (workerCode: any){
         return new Promise((resolve, reject) => {
             fetch(url + '/user/' + workerCode + "/online", {

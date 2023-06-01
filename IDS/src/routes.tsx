@@ -60,6 +60,8 @@ export default function Router() {
 
                     // Busca os dados do usuário
                     ServicesWorker.findById(JSON.parse(workerCode)).then((response: any) => {
+                        console.log(response);
+
                         const worker = {
                             id: response.workerCode,
                             office: response.workerOffice,

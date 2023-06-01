@@ -34,7 +34,8 @@ export default function LoginForm() {
             name: response.workerName,
             email: response.corporateEmail,
             language: response.language,
-            voiceCommand: response.voiceCommand
+            voiceCommand: response.voiceCommand,
+            pounds: response.pounds
           };
           setWorker(worker);
           navigate("/demands/1");

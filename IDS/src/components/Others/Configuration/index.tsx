@@ -13,12 +13,13 @@ export default function Configuration() {
     const { t } = useTranslation();
 
     const worker: any = useContext(UserContext).worker;
+    const setWorker: any = useContext(UserContext).setWorker;
     const name: any = worker.name;
     const email = worker.email;
 
 
-    const [voiceCommand, setVoiceCommand] = useState(worker.voiceCommand);
-    const [pounds, setPounds] = useState(worker?.pounds);
+    const [voiceCommand, setVoiceCommand] = useState(false);
+    const [pounds, setPounds] = useState(false);
     const [fontSize, setFontSize] = useState(0);
     const image = name.substring(0, 1);
 
@@ -33,19 +34,17 @@ export default function Configuration() {
     }
 
     const editVoiceCommand = async (event: any) => {
-
-
         await WorkerService.updateVoiceCommand(worker.id, event.target.checked).then((response: any) => {
-            console.log(response)
-
             setVoiceCommand(response.voiceCommand);
-
+            setWorker({ ...worker, voiceCommand: response.voiceCommand });
         })
-
     }
 
-    const editPounds = (event: any) => {
-        setPounds(event.target.checked);
+    const editPounds = async (event: any) => {
+        await WorkerService.updatePounds(worker.id, event.target.checked).then((response: any) => {
+            setPounds(response.pounds);
+            setWorker({ ...worker, pounds: response.pounds });
+        })
     }
 
 
@@ -56,12 +55,13 @@ export default function Configuration() {
         document.documentElement.style.setProperty('--p', fontSize - 10 + "px");
         document.documentElement.style.setProperty('--pp', fontSize - 12 + "px");
 
+        setPounds(worker?.pounds);
+        setVoiceCommand(worker?.voiceCommand);
+
 
         // document.documentElement.style.setProperty('--z', JSON.stringify(1 + (fontSize / 100)));
 
-
-
-    }, [fontSize])
+    }, [fontSize, worker])
 
     return (
         <div className="configuration">

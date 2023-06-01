@@ -8,6 +8,7 @@ type MyContextType = {
     email: string,
     language: string,
     voiceCommand: boolean,
+    pounds: boolean,
   },
   setWorker: any
 };

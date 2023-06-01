@@ -34,13 +34,15 @@ import EditDemand from "./components/Solicitation/All/Edit";
 import Error from "./components/Others/Error";
 import Header from "./components/Fixed/Header";
 import Nav from "./components/Fixed/Nav";
+import VLibras from "@djpfs/react-vlibras"
 
 export default function Router() {
 
     // Contexto do usuário
-    const [worker, setWorker] = useState({ id: "", office: "", name: "", email: "", language: "", voiceCommand: false });
+    const [worker, setWorker]: any = useState({ id: "", office: "", name: "", email: "", language: "", voiceCommand: false, pounds: false });
 
     useEffect(() => {
+
         // Verifica se o usuário não está na tela de login
         if (window.location.pathname !== "/") {
             let workerCode; // Variável que armazena o código do usuário
@@ -54,7 +56,6 @@ export default function Router() {
             }
 
             if (worker.id === "") {
-
                 if (workerCode !== null && workerCode !== undefined) { // Verifica se o código do usuário existe
 
                     // Busca os dados do usuário
@@ -65,13 +66,12 @@ export default function Router() {
                             name: response.workerName,
                             email: response.corporateEmail,
                             language: response.language,
-                            voiceCommand: response.voiceCommand
+                            voiceCommand: response.voiceCommand,
+                            pounds: response.pounds
                         }
                         setWorker(worker); // Seta os dados do usuário no context
                     });
                 }
-
-
             }
         }
     }, [worker.id]);
@@ -89,7 +89,7 @@ export default function Router() {
 
                     <BrowserRouter>
 
-                        <RouterContent />
+                        <RouterContent worker={worker} />
 
                     </BrowserRouter >
                 </UserContext.Provider>
@@ -99,18 +99,34 @@ export default function Router() {
 }
 
 
-function RouterContent() {
+function RouterContent(props: any) {
     const location = useLocation(); // get the current path
+
 
     return (
 
+
         <>
+
+            {location.pathname === '/' ?
+                <>
+                    <VLibras forceOnload={true} />
+                </>
+                : location.pathname !== '/' && location.pathname !== '/forget-password' && props.worker.pounds === true ?
+                    <>
+                        <VLibras forceOnload={true} />
+                    </>
+                    : <></>
+            }
+
+
             {location.pathname !== '/' && location.pathname !== '/forget-password' && (
                 <>
                     <Header />
                     <Nav />
                 </>
             )}
+
 
             <Routes>
                 <Route path="/" element={<Form />} />

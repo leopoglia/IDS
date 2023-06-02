@@ -177,13 +177,16 @@ nav li {
     height: 15px;
     border-radius: var(--rr);
     background-color: var(--blue);
-    font-size: 9px;
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-left: 28px;
     margin-top: -15px;
+}
+
+.booble span{
+    font-size: 9px !important;
 }
 
 @media(min-width: 1280px) {

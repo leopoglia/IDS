@@ -85,7 +85,8 @@ export default function HistoricalDemand() {
                                                 </td>
                                             ) : null
                                         }
-                                        <td className="table-find-in-page, activeVersion">
+
+                                        <td className="table-find-in-page">
                                             <span className="material-symbols-outlined">find_in_page</span>
                                         </td>
                                         <td className="activeVersion">

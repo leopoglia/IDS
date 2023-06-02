@@ -21,7 +21,6 @@
   --h: 45px;
   --r: .375rem;
   --rr: 50px;
-  --z: 0;
 }
 
 
@@ -61,7 +60,7 @@
 * {
   box-sizing: border-box;
   letter-spacing: 0.55px;
-  zoom: var(--z);
+  font-size: var(--p);
 }
 
 h1,

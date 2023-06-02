@@ -12,7 +12,7 @@ import ProposalService from "../../../../services/proposalService";
 export default function CommissionOpinion() {
 
     const navigate = useNavigate();
-    const proposalCode: any = useParams().id;
+    const proposalCode: any =  parseInt(useParams().id || "null");
     const agendaCode = parseInt(window.location.href.split("?")[1]);
 
 

@@ -25,7 +25,7 @@ export default function Edit() {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
 
-	const [code, setCode] = useState(useParams().id); // Código da proposta
+	const [code, setCode] = useState( parseInt(useParams().id || "null")); // Código da proposta
 
 	
 	const [url, setUrl] = useState(window.location.href.split("/")[4]); // Url da página
@@ -35,7 +35,7 @@ export default function Edit() {
 	const [editType, setEditType]: any = useState(window.location.href.split("?")[2]); // Tipo de edição (Tabelas, classificação, complementos, despesas)
 	const [expenseType, setExpenseType]: any = useState(window.location.href.split("?")[1]); // Tipo de despesa (Custo, investimento, despesa)
 
-	const [demandCode, setDemandCode]:any = useState(useParams().id); // Código da demanda
+	const [demandCode, setDemandCode]:any = useState( parseInt(useParams().id || "null")); // Código da demanda
 	let [demandVersion, setDemandVersion] = useState(); // Versão da demanda
 	const [demands, setDemands]: any = useState(); // Demanda
 

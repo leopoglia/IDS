@@ -19,7 +19,7 @@ export default function DisapproveDemand() {
 
     const navigate = useNavigate();
     const [disapprovalReason, setDisapprovalReason]: any = useState(""); // Motivo de reprovação
-    const demandCode: any = useParams().id;
+    const demandCode: any =  parseInt(useParams().id || "null");
     let demandVersion: any;
     let notification = {}; // Notificações do usuário
     const { send, subscribe, stompClient }: any = useContext(WebSocketContext);

@@ -32,7 +32,7 @@ export default function ViewDemand() {
     const workerName = worker.name; // Buscar nome do usuário
     const workerId = worker.id; // Buscar código do usuário
     const url = window.location.href.split("/")[3]; // Buscar tipo da demanda
-    const demandCode: any = useParams().id; // Buscar código da demanda
+    const demandCode: any = parseInt(useParams().id || "null"); // Buscar código da demanda
     const demandVersion = parseInt(window.location.href.split("?")[1]); // Buscar versão da demanda
 
     // Botões superiores
@@ -243,9 +243,12 @@ export default function ViewDemand() {
 
                 if (expenses.length > 0) {
 
-
                     for (let i = 0; i < expenses.length; i++) {
+                        console.log(demandCode, expenses[i].proposal.proposalCode)
                         if (expenses[i].proposal.proposalCode === demandCode) {
+
+                            console.log(expenses[i])
+
                             expense.push(expenses[i])
 
                             if (expenses[i].expensesType === "recurrent") {
@@ -767,7 +770,6 @@ export default function ViewDemand() {
                                 ) : (null)
                             ) : (null)
                             }
-
 
 
                             {proposalExpenseValue?.expensesCode > 0 ? (<Expenses type="expenses" proposalExpense={proposalExpenseValue} />) : (null)}

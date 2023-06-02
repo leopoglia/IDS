@@ -13,7 +13,7 @@ export default function EditProposalScope() {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const demandCode = useParams().id;
+  const demandCode =  parseInt(useParams().id || "null")
 
   const [content, setContent] = useState('');
 

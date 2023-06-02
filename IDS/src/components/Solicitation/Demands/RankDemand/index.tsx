@@ -26,7 +26,7 @@ export default function RankDemand() {
     const [linkEpicJira, setLinkEpicJira] = useState(""); // Link do epic jira
     const [demand, setDemand]: any = useState({}); // Demanda
     const [fileAttachment, setFileAttachment]: any = useState([]);
-    const url: any = useParams().id; // Pegando o id da demanda
+    const url: any =  parseInt(useParams().id || "null"); // Pegando o id da demanda
     const edit = window.location.href.split("?")[1]
     let notification = {}; // Notificações do usuário
     const { send, subscribe, stompClient }: any = useContext(WebSocketContext);

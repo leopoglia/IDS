@@ -23,7 +23,7 @@ const ChatRoom = () => {
 
     const [demand, setDemand] = useState({});
 
-    const demandCode = useParams().id;
+    const demandCode =  parseInt(useParams().id || "null");
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
     const [subscribeMessage, setSubscribeMessage] = useState(null);

@@ -10,6 +10,9 @@ const Dictaphone = (props) => {
     browserSupportsSpeechRecognition
   } = useSpeechRecognition();
 
+  const [micSelect, setMicSelect] = useState(false);
+
+
 
   if (!browserSupportsSpeechRecognition) {
     return null;
@@ -51,9 +54,16 @@ const Dictaphone = (props) => {
   Run(props)
 
 
+  const handleClick = () => {
+
+    if (micSelect === true) {
+      SpeechRecognition.startListening()
+    }
+    setMicSelect(false);
+  }
 
   return (
-    <button className={'microphone mic-' + listening} onClick={SpeechRecognition.startListening}>
+    <button className={'microphone mic-' + listening} onClick={() => { handleClick(); setMicSelect(true) }}>
 
 
       <span className='material-symbols-outlined'>

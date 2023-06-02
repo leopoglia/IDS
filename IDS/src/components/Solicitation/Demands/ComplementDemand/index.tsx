@@ -13,7 +13,7 @@ import Input from "../CrateDemand/Others/Input";
 
 export default function ComplementDemand() {
 
-    const codeDemand:any = useParams().id;
+    const codeDemand:any =  parseInt(useParams().id || "null");
     const [ppmCode, setPpmCode] = useState("")
     const [linkEpicJira, setLinkEpicJira] = useState("")
 

@@ -10,9 +10,8 @@ import Input from "../../../Demands/CrateDemand/Others/Input";
 
 export default function BoxProposal(props: any) {
 
-    const navigate = useNavigate();
     const [open, setOpen] = useState(true);
-    const code: any = useParams().id;
+    const code: any = parseInt(useParams().id || "null");
     const { t } = useTranslation();
 
     const [proposalTitle, setProposalTitle]: any = useState(props.proposal.demand.demandTitle);

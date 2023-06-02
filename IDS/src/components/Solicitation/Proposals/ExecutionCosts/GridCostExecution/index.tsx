@@ -14,7 +14,7 @@ export default function ConditionalValidationGrid(props: any) {
     const [deleteNumber, setDeleteNumber] = useState<any>(0);
 
     const [editExpense, setEditExpense] = useState<any>(false);
-    const proposalCode: any = useParams().id;
+    const proposalCode: any =  parseInt(useParams().id || "null");
     const expenseType = window.location.href.split("?")[1];
 
     useEffect(() => {

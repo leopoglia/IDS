@@ -10,7 +10,7 @@ import "./style.css";
 export default function HistoricalDemand() {
 
     const { t } = useTranslation();
-    const url: any = useParams().id;
+    const url: any =  parseInt(useParams().id || "null");
     const [demand, setDemand]: any = useState();
     const [activeVersionUpdate, setActiveVersionUpdate]: any = useState(true);
     const navigate = useNavigate();

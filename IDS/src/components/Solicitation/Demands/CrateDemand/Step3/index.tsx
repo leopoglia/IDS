@@ -10,9 +10,7 @@ import ButtonAction from "../Others/ButtonAction";
 import Services from "../../../../../services/demandService";
 import UserContext from "../../../../../context/userContext";
 import othersUtil from '../../../../../utils/othersUtil';
-import notifyUtil from '../../../../../utils/notifyUtil';
 import "./style.css"
-import Input from '../Others/Input';
 
 
 export default function CreateDemands3() {
@@ -21,7 +19,6 @@ export default function CreateDemands3() {
     const navigate = useNavigate();
 
     // const [demandAttachment, setdemandAttachment]: any = useState(""); 
-    const [executionPeriod, setExecutionPeriod]: any = useState(""); // Periodo de execução
     const [demandInitial, setDemand]: any = useState({}); // Demanda inicial
     const [fileAttachment, setFileAttachment]: any = useState([]); // Anexo
 

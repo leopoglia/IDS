@@ -48,6 +48,8 @@ export default function Demands() {
         if (url[3] === "demands") {
             if (search === "" || typeFilter === "") {
                 getDemands(); // Busca as demandas cadastradas
+                console.log("--> passou aqui <--")
+
             } else {
                 ServicesDemand.findAll().then((res: any) => {
                     setDemands(res);
@@ -97,6 +99,7 @@ export default function Demands() {
 
                 let proposalsContent: any = await ServicesProposal.findAll();
 
+
                 demandsContent.map((demand: any) => {
                     if (demand.demandStatus === "Assesment") {
                         proposalsContent.map((proposal: any) => {
@@ -121,40 +124,44 @@ export default function Demands() {
                 let demandsContent = res.content; // Atualiza o estado das demandas
                 setPages(res.totalPages); // Atualiza o estado das páginas
 
+                console.log("demandsContent ---> ", demandsContent)
+
                 let totalDemands: any = 0;
 
                 await ServicesProposal.findAll().then((res: any) => {
                     totalDemands = res.length;
                 })
 
+
                 if (demandsContent.length === 0) {
                     navigate("/demands/" + (Math.ceil((totalDemands / 9) + 1)));
+                    setLoading(false);
                 }
 
                 let proposalsContent: any = await ServicesProposal.findAll();
 
+                try {
+                    demandsContent?.map((demand: any) => {
+                        if (demand.demandStatus === "Assesment") {
+                            proposalsContent.map((proposal: any) => {
 
-                demandsContent.map((demand: any) => {
-                    if (demand.demandStatus === "Assesment") {
-                        proposalsContent.map((proposal: any) => {
-
-                            if (proposal.demand.demandCode === demand.demandCode) {
-                                demand.proposalCode = proposal.proposalCode;
-                            }
-                        })
-                    }
-
-                    return demand;
-
-
-                })
-                setDemands(demandsContent);
-
-                if (res.content.length === 0) {
-                    setLoading(false);
+                                if (proposal.demand.demandCode === demand.demandCode) {
+                                    demand.proposalCode = proposal.proposalCode;
+                                }
+                            })
+                        }
+                        return demand;
+                    })
+                } catch (e) {
+                    console.log("erro ---> ", e)
                 }
+
+                setDemands(demandsContent);
             });
         }
+
+
+        console.log("---> passou aqui <---")
 
         return findDemands;
     }

@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { WebSocketContext } from '../../../services/webSocketService';
 import { Tooltip } from "@mui/material";
-
+import WorkerService from "../../../services/workerService";
 import ServicesNotification from "../../../services/notificationService";
 import ServicesMessages from "../../../services/messageService";
 import UserContext from "../../../context/userContext";
@@ -111,16 +111,16 @@ export default function Nav() {
 
 
     function logout() {
-
+        WorkerService.logout();
         localStorage.clear();
         navigate("/");
-
         const cookies = document.cookie.split(';');
         for (let i = 0; i < cookies.length; i++) {
             const cookie = cookies[i];
             const nomeCookie = cookie.split('=')[0];
             document.cookie = nomeCookie + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; // Define a data de expiração do cookie para uma data passada
         }
+        window.location.reload();
     }
 
     return (

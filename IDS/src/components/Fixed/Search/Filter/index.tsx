@@ -36,7 +36,7 @@ export default function Filter(props: FilterProps) {
 
                     {type !== "home" &&
 
-                        <input onChange={onButtonPress} type="text" ref={inputName} placeholder="Insira o parametro aqui" />
+                        <input className="input" onChange={onButtonPress} type="text" ref={inputName} placeholder="Insira o parametro aqui" />
 
                     }
 
@@ -71,7 +71,7 @@ export default function Filter(props: FilterProps) {
                     <div className="hr" />
 
 
-                    <input onChange={onButtonPress} type="date" ref={inputName} placeholder="Insira o parametro aqui" />
+                    <input className="input" onChange={onButtonPress} type="date" ref={inputName} placeholder="Insira o parametro aqui" />
 
 
                     <button onClick={onButtonPress} className="btn-primary">Filtrar</button>

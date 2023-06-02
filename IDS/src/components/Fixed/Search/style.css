@@ -30,6 +30,7 @@
 
 .export-spreadsheet {
     margin-left: 10px;
+    margin-right: 15px;
     width: 45px;
     right: 0;
 }
@@ -53,7 +54,7 @@
 }
 
 .filters-on div {
-    width: auto;
+    width: max-content;
     height: 20px;
     display: flex;
     align-items: center;
@@ -62,6 +63,9 @@
     background-color: var(--blue);
     border-radius: var(--rr);
     color: var(--white);
+}
+
+.filters-on span {
     font-size: var(--pp);
 }
 
@@ -79,7 +83,7 @@
     font-size: 15px;
 }
 
-.btn-create-demand{
+.btn-create-demand {
     position: relative;
     z-index: 13;
 }
@@ -92,7 +96,7 @@
 
     }
 
-    .search .filter-export{
+    .search .filter-export {
         margin-top: 20px;
     }
 
@@ -113,8 +117,12 @@
         width: 100%;
     }
 
-    .background-title{
+    .background-title {
         display: block !important;
+    }
+
+    .export-spreadsheet {
+        margin-right: 0px;
     }
 }
 

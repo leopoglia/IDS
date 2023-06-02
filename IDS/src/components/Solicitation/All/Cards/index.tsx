@@ -46,17 +46,15 @@ export default function Demands() {
         setLoading(true);
 
         if (url[3] === "demands") {
-            if (search === "" || typeFilter === "") {
+            if (search === "" && typeFilter === "") {
                 getDemands(); // Busca as demandas cadastradas
-                console.log("--> passou aqui <--")
-
             } else {
                 ServicesDemand.findAll().then((res: any) => {
                     setDemands(res);
                 });
             }
         } else if (url[3] === "proposals") {
-            if (search === "" || typeFilter === "") {
+            if (search === "" && typeFilter === "") {
                 getProposals(); // Busca as demandas cadastradas
             } else {
                 ServicesProposal.findAll().then((res: any) => {
@@ -64,7 +62,7 @@ export default function Demands() {
                 });
             }
         } else if (url[3] === "agendas") {
-            if (search === "" || typeFilter === "") {
+            if (search === "" && typeFilter === "") {
                 getAgendas(); // Busca as demandas cadastradas
             } else {
                 ServicesAgenda.findAll().then((res: any) => {
@@ -72,7 +70,7 @@ export default function Demands() {
                 });
             }
         } else if (url[3] === "minutes") {
-            if (search === "" || typeFilter === "") {
+            if (search === "" && typeFilter === "") {
                 getMinutes(); // Busca as demandas cadastradas
             } else {
                 ServicesMinute.findAll().then((res: any) => {
@@ -87,7 +85,7 @@ export default function Demands() {
             localStorage.removeItem("route");
             Notification.success(t("demandCreateSuccess"));
         }
-    }, [url[3], page])
+    }, [url[3], page, search])
 
 
     // Buscar as demandas cadastradas
@@ -140,28 +138,23 @@ export default function Demands() {
 
                 let proposalsContent: any = await ServicesProposal.findAll();
 
-                try {
-                    demandsContent?.map((demand: any) => {
-                        if (demand.demandStatus === "Assesment") {
-                            proposalsContent.map((proposal: any) => {
+                demandsContent?.map((demand: any) => {
+                    if (demand.demandStatus === "Assesment") {
+                        proposalsContent.map((proposal: any) => {
 
-                                if (proposal.demand.demandCode === demand.demandCode) {
-                                    demand.proposalCode = proposal.proposalCode;
-                                }
-                            })
-                        }
-                        return demand;
-                    })
-                } catch (e) {
-                    console.log("erro ---> ", e)
-                }
+                            if (proposal.demand.demandCode === demand.demandCode) {
+                                demand.proposalCode = proposal.proposalCode;
+                            }
+                        })
+                    }
+                    return demand;
+                })
+
 
                 setDemands(demandsContent);
             });
         }
 
-
-        console.log("---> passou aqui <---")
 
         return findDemands;
     }
@@ -338,7 +331,7 @@ export default function Demands() {
 
                         </div>
 
-                        {othersUtil.footer(url, demands, proposals, agendas, minutes, search, pages, page, navigate, demandsSize)}
+                        {othersUtil.footer(url, demands, proposals, agendas, minutes, search, typeFilter, pages, page, navigate, demandsSize)}
 
                         <Footer />
 
@@ -394,7 +387,7 @@ export default function Demands() {
 
                             {proposals.length === 0 && loading === false && noResult()}
                         </div>
-                        {othersUtil.footer(url, demands, proposals, agendas, minutes, search, pages, page, navigate, demandsSize)}
+                        {othersUtil.footer(url, demands, proposals, agendas, minutes, search, typeFilter, pages, page, navigate, demandsSize)}
 
                         <Footer />
 
@@ -450,7 +443,7 @@ export default function Demands() {
 
                         </div>
 
-                        {othersUtil.footer(url, demands, proposals, agendas, minutes, search, pages, page, navigate, demandsSize)}
+                        {othersUtil.footer(url, demands, proposals, agendas, minutes, search, typeFilter, pages, page, navigate, demandsSize)}
 
                         <Footer />
 
@@ -514,7 +507,7 @@ export default function Demands() {
                             {minutes.length === 0 && loading === false && noResult()}
 
                         </div>
-                        {othersUtil.footer(url, demands, proposals, agendas, minutes, search, pages, page, navigate, demandsSize)}
+                        {othersUtil.footer(url, demands, proposals, agendas, minutes, search, typeFilter, pages, page, navigate, demandsSize)}
 
                         <Footer />
 

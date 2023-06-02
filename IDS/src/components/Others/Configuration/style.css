@@ -222,7 +222,6 @@
 .text-background {
     position: absolute;
     right: 150px;
-    font-size: calc(var(--gg) + 35px);
     opacity: 0.1;
     font-weight: 600;
     color: var(--white);
@@ -232,6 +231,10 @@
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
+}
+
+.text-background span{
+    font-size: calc(var(--gg) + 35px);
 }
 
 .configuration .sliders-accessibility .display-space-between {

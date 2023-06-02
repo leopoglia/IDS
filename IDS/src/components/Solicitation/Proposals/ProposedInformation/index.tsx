@@ -9,6 +9,7 @@ import ButtonAction from "../../Demands/CrateDemand/Others/ButtonAction";
 import notifyUtil from "../../../../utils/notifyUtil";
 import "./style.css";
 import Input from "../../Demands/CrateDemand/Others/Input";
+import ProgressBar from "../../Demands/CrateDemand/Others/ProgressBar";
 
 
 export default function ProposedInformation() {
@@ -67,13 +68,15 @@ export default function ProposedInformation() {
     }
 
     return (
-        <div className="execution-costs">
+        <div className="create-demands-1 execution-costs">
 
             <div className="container">
 
 
                 <div className="background-title">
-                    <Title title={t("responsiblesForTheProject")} nav={t("demandResponsibleForTheProject")} />
+                    <Title title={t("createProposal")} nav={t("demandResponsibleForTheProject")} />
+                    <ProgressBar atual="3" proposal={true} />
+
                 </div>
 
                 <div className="box">

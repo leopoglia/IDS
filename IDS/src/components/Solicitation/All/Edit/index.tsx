@@ -18,6 +18,7 @@ import ExpensesService from "../../../../services/expensesService";
 
 import "./style.css"
 import Input from "../../Demands/CrateDemand/Others/Input";
+import ProgressBar from "../../Demands/CrateDemand/Others/ProgressBar";
 
 
 export default function Edit() {
@@ -27,9 +28,12 @@ export default function Edit() {
 
 	const [code, setCode] = useState( parseInt(useParams().id || "null")); // Código da proposta
 
-	
+
 	const [url, setUrl] = useState(window.location.href.split("/")[4]); // Url da página
 	const [type, setType] = useState(window.location.href.split("/")[3]); // Tipo da página
+
+	console.log(url)
+	console.log(type)
 
 	const [minuteEdit, setMinuteEdit]: any = useState(window.location.href.split("?")[2]); // Edição da minuta (true, false)
 	const [editType, setEditType]: any = useState(window.location.href.split("?")[2]); // Tipo de edição (Tabelas, classificação, complementos, despesas)
@@ -342,7 +346,14 @@ export default function Edit() {
 					<div className="background-title">
 						{url === "demand" ?
 							(
+								type === "proposal" ? (
+									<>
+									<Title nav="proposalEditProposal" title="createProposal" />
+									<ProgressBar atual="1" proposal={true} />
+									</>
+								) : (
 								<Title nav="demandEditDemand" title="editDemand" />
+								)
 							) : (
 								<Title nav="proposalEditProposal" title="editProposal" />
 							)
@@ -574,7 +585,7 @@ export default function Edit() {
 					) : editType === "costcenter" ? (
 						<>
 							<div className="box">
-								<div className="input">
+								<div className="display-grid">
 									<label>{t("costCenter")} *</label>
 
 									<div className="display-flex">

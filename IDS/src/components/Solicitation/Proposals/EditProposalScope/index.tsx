@@ -8,12 +8,13 @@ import Editor from "./Editor";
 import "./style.css"
 
 import notifyUtil from "../../../../utils/notifyUtil";
+import ProgressBar from "../../Demands/CrateDemand/Others/ProgressBar";
 
 export default function EditProposalScope() {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const demandCode =  parseInt(useParams().id || "null")
+  const demandCode = parseInt(useParams().id || "null")
 
   const [content, setContent] = useState('');
 
@@ -30,14 +31,15 @@ export default function EditProposalScope() {
   }
 
   return (
-    <div className="edit-proposal-scope">
-    
+    <div className="create-demands-1 edit-proposal-scope">
+
 
       <div className="container">
 
         <div className="background-title">
 
           <Title title={t("proposalScope")} nav={t("proposalScopeProposal")} />
+          <ProgressBar atual="2" proposal={true} />
 
         </div>
 

@@ -105,6 +105,8 @@ export default function ViewDemand() {
     useEffect(() => {
         // Buscar dados da demanda
 
+        localStorage.removeItem('expenseList');
+
         if (url === "demand") {
             getDemand();
             setCenterCost(demand.costCenter)

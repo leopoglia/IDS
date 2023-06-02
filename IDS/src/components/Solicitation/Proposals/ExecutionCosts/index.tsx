@@ -14,6 +14,7 @@ import ExpensesService from "../../../../services/expensesService";
 import notifyUtil from "../../../../utils/notifyUtil";
 
 import "./style.css"
+import ProgressBar from "../../Demands/CrateDemand/Others/ProgressBar";
 
 export default function ExecutionCosts() {
     const { t } = useTranslation();
@@ -119,14 +120,15 @@ export default function ExecutionCosts() {
     }
 
     return (
-        <div className="execution-costs">
+        <div className="create-demands-1 execution-costs">
 
 
             <div className="container">
 
 
                 <div className="background-title">
-                    <Title title="executionCosts" nav={t("demandExecutionCosts")} />
+                    <Title title="createProposal" nav={t("demandExecutionCosts")} />
+                    <ProgressBar atual="4" proposal={true} />
                 </div>
 
                 <div className="box">

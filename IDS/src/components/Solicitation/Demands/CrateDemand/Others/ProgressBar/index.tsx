@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import "./style.css"
 
-export default function ProgressBar(props: {
-    atual: string;
-}) {
+export default function ProgressBar(props: any) {
 
     if (props.atual === "1") {
         return (
@@ -17,6 +15,14 @@ export default function ProgressBar(props: {
                 <div className="ellipse">2</div>
                 <div className="line"></div>
                 <div className="ellipse">3</div>
+                {props.proposal
+                    ?
+                    <>
+                        <div className="line"></div>
+                        <div className="ellipse">4</div>
+                    </>
+                    : <></>
+                }
             </div>
         );
     } else if (props.atual === "2") {
@@ -37,6 +43,15 @@ export default function ProgressBar(props: {
                 </div>
                 <div className="line"></div>
                 <div className="ellipse">3</div>
+
+                {props.proposal
+                    ?
+                    <>
+                        <div className="line"></div>
+                        <div className="ellipse">4</div>
+                    </>
+                    : <></>
+                }
             </div>
         );
     } else if (props.atual === "3") {
@@ -64,6 +79,15 @@ export default function ProgressBar(props: {
                         done
                     </span>
                 </div>
+
+                {props.proposal
+                    ?
+                    <>
+                        <div className="line"></div>
+                        <div className="ellipse">4</div>
+                    </>
+                    : <></>
+                }
             </div>
         );
     } else if (props.atual === "4") {
@@ -82,8 +106,20 @@ export default function ProgressBar(props: {
                         done
                     </span>
                 </div>
-                <div className="line"></div>
-                <div className="ellipse">4</div>
+
+                <div className="line-current"></div>
+                <div className="ellipse-current">
+                    <span className="material-symbols-outlined">
+                        done
+                    </span>
+                </div>
+
+                <div className="line-current"></div>
+                <div className="ellipse-current">
+                    <span className="material-symbols-outlined">
+                        done
+                    </span>
+                </div>
             </div>
         );
     }

@@ -13,6 +13,7 @@ import UserContext from "../../../../context/userContext";
 import othersUtil from "../../../../utils/othersUtil";
 import notifyUtil from "../../../../utils/notifyUtil";
 import "./style.css"
+import Input from "../CrateDemand/Others/Input";
 
 
 export default function RankDemand() {
@@ -26,7 +27,7 @@ export default function RankDemand() {
     const [linkEpicJira, setLinkEpicJira] = useState(""); // Link do epic jira
     const [demand, setDemand]: any = useState({}); // Demanda
     const [fileAttachment, setFileAttachment]: any = useState([]);
-    const url: any =  parseInt(useParams().id || "null"); // Pegando o id da demanda
+    const url: any = parseInt(useParams().id || "null"); // Pegando o id da demanda
     const edit = window.location.href.split("?")[1]
     let notification = {}; // Notificações do usuário
     const { send, subscribe, stompClient }: any = useContext(WebSocketContext);
@@ -254,12 +255,10 @@ export default function RankDemand() {
 
 
                             <div className="display-grid">
-                                <label htmlFor="">{t("ppmCode")} *</label>
-                                <input onChange={(e) => setPpmCode(e.target.value)} type="text" />
+                                <Input type="text" label="ppmCode" value={linkEpicJira} SetValue={setPpmCode} />
                             </div>
                             <div className="display-grid mt10 mb10">
-                                <label htmlFor="">{t("linkEpicJira")} *</label>
-                                <input onChange={(e) => setLinkEpicJira(e.target.value)} type="text" />
+                                <Input type="text" label="linkEpicJira" value={linkEpicJira} SetValue={setLinkEpicJira} />
                             </div>
                         </>
                         : null

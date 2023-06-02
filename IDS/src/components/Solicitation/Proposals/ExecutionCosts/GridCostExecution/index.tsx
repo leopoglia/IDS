@@ -14,7 +14,7 @@ export default function ConditionalValidationGrid(props: any) {
     const [deleteNumber, setDeleteNumber] = useState<any>(0);
 
     const [editExpense, setEditExpense] = useState<any>(false);
-    const proposalCode: any =  parseInt(useParams().id || "null");
+    const proposalCode: any =  window.location.href.split("/")[5];
     const expenseType = window.location.href.split("?")[1];
 
     useEffect(() => {
@@ -38,7 +38,7 @@ export default function ConditionalValidationGrid(props: any) {
             setExpenseList(JSON.parse(localStorage.getItem('expenseList') || '[""]'));
         }
 
-    }, [deleteNumber, localStorage.getItem('expenseList')]);
+    }, [deleteNumber, localStorage.getItem('expenseList'), props.title]);
 
     const { t } = useTranslation();
 

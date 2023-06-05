@@ -172,6 +172,17 @@ const Services = {
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(reject)
+        })  
+    },
+    savePDF: function (demandCode:number) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/pdf/" + demandCode, {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/pdf' },
+                credentials: 'include'
+            }).then(function (result) { return result; })
+                .then(resolve)
+                .catch(reject)
         })
     },
     approve: function (id: Number) {

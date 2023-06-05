@@ -35,6 +35,11 @@ export default function Demands() {
     const [agendas, setAgendas] = useState([]);
     const [minutes, setMinutes] = useState([]);
 
+    
+    const [minute, setMinute] = useState(false); // Verifica se a página é de ata
+    const [nameFilter, setName] = useState<string>(""); // Busca o que foi digitado no input do filtro
+    const [typeFilter, setType] = useState<string>(""); // Busca qual filtro foi selecionado
+
 
     const [demandsSize, setDemandsSize] = useState(0);
 
@@ -85,7 +90,7 @@ export default function Demands() {
             localStorage.removeItem("route");
             Notification.success(t("demandCreateSuccess"));
         }
-    }, [url[3], page, search])
+    }, [url[3], page, search, typeFilter])
 
 
     // Buscar as demandas cadastradas
@@ -210,9 +215,6 @@ export default function Demands() {
         setTableList(!table);
     }
 
-    const [minute, setMinute] = useState(false); // Verifica se a página é de ata
-    const [nameFilter, setName] = useState<string>(""); // Busca o que foi digitado no input do filtro
-    const [typeFilter, setType] = useState<string>(""); // Busca qual filtro foi selecionado
 
     const callback = (name: string, type: string) => {
         setName(name)

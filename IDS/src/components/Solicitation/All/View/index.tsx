@@ -11,7 +11,6 @@ import ServicesAgenda from "../../../../services/agendaService";
 import ServicesExpenses from "../../../../services/expensesService";
 import ServicesMinute from "../../../../services/minuteService";
 import Footer from "../../../Fixed/Footer";
-import PDF from "./Others/PDF";
 import HtmlReactParser from 'html-react-parser';
 import UserContext from "../../../../context/userContext";
 import Tooltip from '@mui/material/Tooltip';
@@ -410,11 +409,22 @@ export default function ViewDemand() {
         };
     }
 
-    // Abrir modal de PDF
-    const [pdf, setPdf] = useState(false);
+    // Gerar PDF
+
     const generatePDF = () => {
-        setPdf(true);
-    }
+
+        ServicesDemand.savePDF(demandCode).then((response: any) => {
+
+            const file = new Blob(response, { type: 'application/pdf' });
+            const fileURL = URL.createObjectURL(file);
+            window.open(fileURL, "_blank");
+
+        }).catch((error) => {
+            console.log("error ===> ", error);
+        });
+
+    };
+
 
     const attatchmentType = (type: string) => {
         if (type === "demand") {
@@ -523,8 +533,6 @@ export default function ViewDemand() {
 
     return (
         <div className="view-demand">
-
-            {pdf ? <PDF requester={workerName} demandTitle={demand.demandTitle} demandCode={demand.demandCode} /> : null}
 
             { /* Verifica se é uma demanda ou uma proposta */  url === "demand" || url === "proposal" ? (
                 <div>

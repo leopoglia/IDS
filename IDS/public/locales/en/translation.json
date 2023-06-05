@@ -242,5 +242,7 @@
     "notPartOfTheScope": "Not part of the scope",
     "evaluatedAlternatives": "Evaluated alternatives",
     "pounds": "Pounds",
-    "searchChat": "Search chat"
+    "searchChat": "Search chat",
+    "viewSelects": "View selects",
+    "removeSelects": "Remove selects"
 }

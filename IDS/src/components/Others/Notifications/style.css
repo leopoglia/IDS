@@ -26,6 +26,13 @@
     background-color: var(--white);
     color: var(--grey59) !important;
     border-bottom: 1px solid var(--greyC4);
+    position: sticky;
+    top: 0;
+}
+
+.notifications .header .input-background .material-symbols-outlined,
+.messages .header .input-background .material-symbols-outlined {
+    color: var(--greyC4) !important;
 }
 
 .notifications .header .selects,
@@ -60,5 +67,12 @@
 }
 
 .modal-more .modal {
-    margin-left: -138px !important;
+    margin-left: -170px !important;
+    width: 230px;
+}
+
+.notifications .selects input[type="checkbox"] {
+    margin-left: 10px !important;
+    margin-right: 20px;
+    height: 60px !important;
 }

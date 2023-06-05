@@ -243,5 +243,7 @@
     "scopeOfTheProject": "項目範圍",
     "evaluatedAlternatives": "評估的替代方案",
     "pounds": "磅",
-    "searchChat": "搜索聊天"
+    "searchChat": "搜索聊天",
+    "viewSelects": "查看選擇",
+    "removeSelects": "刪除選擇"
 }

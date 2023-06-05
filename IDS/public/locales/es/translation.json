@@ -241,5 +241,7 @@
     "notPartOfTheScope": "No forma parte del alcance del proyecto",
     "evaluatedAlternatives": "Alternativas evaluadas",
     "pounds": "Libras",
-    "searchChat": "Buscar chat"
+    "searchChat": "Buscar chat",
+    "viewSelects": "Ver selecciones",
+    "removeSelects": "Eliminar selecciones"
 }

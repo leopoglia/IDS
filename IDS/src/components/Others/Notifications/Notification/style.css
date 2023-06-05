@@ -1,3 +1,17 @@
+.notification-background-true,
+.notification-background-false {
+    border-bottom: 1px solid var(--greyC4);
+}
+
+.notification-background-true{
+    background-color: var(--greyF7);
+}
+
+.notification-background-true:hover,
+.notification-background-false:hover{
+    background-color: var(--blueF4);
+}
+
 .notification-true,
 .notification-false {
     width: 100%;
@@ -5,9 +19,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid var(--greyC4);
     color: var(--grey59);
-    padding: 20px;
     cursor: pointer;
     overflow-x: auto;
     overflow-y: hidden;
@@ -22,29 +34,35 @@
 
 } 
 
-.notification-true{
-    background-color: var(--greyF7);
-}
-
-
-.notification-true:hover,
-.notification-false:hover {
-    background-color: var(--blueF4);
-}
-
-
 
 .notification-true .informations,
 .notification-false .informations {
     display: flex;
     align-items: center;
+    height: 100%;
+    margin-top: 2px;
+}
+
+.notification-true .display-flex-center,
+.notification-false .display-flex-center {
+    height: 100%;
+}
+
+.notification-checkbox{
+    padding-left: 25px !important; 
+    padding-right:50px !important;
+    width: 15px !important;
+    height: 60px;
+}
+
+.notifications input[type="checkbox"]{
+    width: 15px !important;
 }
 
 .notification-true .informations .material-symbols-outlined,
 .notification-false .informations .material-symbols-outlined {
     margin-right: 10px;
     color: var(--grey59);
-    background-color: var(--blueF4);
     display: flex;
     align-items: center;
     justify-content: center;

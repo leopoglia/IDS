@@ -10,21 +10,13 @@ export default function Modal(props: any) {
 
                 (
                     <>
-                        <div className="li li-settings">
-                            <span className="material-symbols-outlined">
-                                select_all
-                            </span>
-                            <span>
-                                {t("selectAll")}
-                            </span>
-                        </div>
-
+                    
                         <div className="li li-settings">
                             <span className="material-symbols-outlined">
                                 visibility
                             </span>
                             <span>
-                                {t("viewAll")}
+                                {t("viewSelects")}
                             </span>
                         </div>
 
@@ -33,7 +25,7 @@ export default function Modal(props: any) {
                                 close
                             </span>
                             <span>
-                                {t("removed")}
+                                {t("removeSelects")}
                             </span>
                         </div>
                     </>

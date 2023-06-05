@@ -4,9 +4,15 @@ import { t } from "i18next"
 import Services from "../../../../services/notificationService"
 import DemandServices from "../../../../services/demandService"
 import "./style.css"
-import Demand from "../../../Solicitation/All/Cards/Card"
+import { useEffect, useState } from "react"
 
 export default function Notification(props: any) {
+
+    const [checked, setChecked] = useState(false)
+
+    useEffect(() => {
+        setChecked(props?.checked)
+    }, [props.checked])
 
     const navigate = useNavigate();
     function arrumarData() {
@@ -54,18 +60,18 @@ export default function Notification(props: any) {
     function viewNotification() {
         Services.updateNotificationVisualized(props.id).then((response: any) => {
             if (props.type !== "presentation" && props.type !== "chat") {
-                if(props.type === "demand"){
-                DemandServices.findById(props.description[props.description.length - 1]).then((demand: any) => {
-                    navigate('/' + props.type + '/view/' + props.description[props.description.length - 1] + "?" + demand.demandVersion, { replace: true });
-                })
-            }else{
-                navigate('/' + props.type + '/view/' + props.description[props.description.length - 1], { replace: true });
-            }
+                if (props.type === "demand") {
+                    DemandServices.findById(props.description[props.description.length - 1]).then((demand: any) => {
+                        navigate('/' + props.type + '/view/' + props.description[props.description.length - 1] + "?" + demand.demandVersion, { replace: true });
+                    })
+                } else {
+                    navigate('/' + props.type + '/view/' + props.description[props.description.length - 1], { replace: true });
+                }
 
-            }else if(props.type === "chat"){
+            } else if (props.type === "chat") {
                 navigate('/messages/message/' + props.description[props.description.length - 1], { replace: true });
             }
-             else {
+            else {
                 navigate('/demands/1')
                 localStorage.setItem("presentation", "true")
             }
@@ -75,17 +81,30 @@ export default function Notification(props: any) {
     }
 
     return (
-        <div onClick={() => viewNotification()} className={"notification-" + props.view}>
-
-            <div className="informations">
-                <span className="material-symbols-outlined">
-                    {props.icon}
-                </span>
-                <span>{t(props.description)}</span>
+        <div className={"display-flex-center notification-background-" + props.view}>
+            <div className="notification-checkbox">
+                <input type="checkbox" onClick={() => {props.onClick(); setChecked(!checked)}} checked={checked} />
             </div>
 
-            <div className="date-horary">
-                <span className="date">{arrumarData()}</span>
+
+            <div className={"notification-" + props.view} onClick={() => viewNotification()}>
+
+
+
+                <div className="display-flex-center">
+
+                    <div className="informations"  >
+                        <span className="material-symbols-outlined">
+                            {props.icon}
+                        </span>
+                        <span>{t(props.description)}</span>
+                    </div>
+                </div>
+
+                <div className="date-horary" >
+                    <span className="date">{arrumarData()}</span>
+
+                </div>
 
             </div>
         </div>

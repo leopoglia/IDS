@@ -42,15 +42,15 @@ const Services = {
     //             .catch(resolve)
     //     })
     // },
-    // delete: function (id: number) {
-    //     return new Promise((resolve, reject) => {
-    //         fetch(url + "/" + id, {
-    //             method: 'DELETE', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
-    //         }).then(function (result) { return result.json(); })
-    //             .then(resolve)
-    //             .catch(resolve)
-    //     })
-    // }
+    delete: function (id: number) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/" + id, {
+                method: 'DELETE', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(resolve)
+        })
+    },
 
     updateNotificationVisualized: function (id: number) {
         return new Promise((resolve, reject) => {

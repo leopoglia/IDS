@@ -24,9 +24,7 @@ export const WebSocketService = ({ children }) => {
             })
         }
         connect();
-    }, [])
-
-
+    }, []);
 
     const disconnect = () => {
         if (stompClient) {

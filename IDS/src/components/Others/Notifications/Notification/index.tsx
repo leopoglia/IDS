@@ -2,7 +2,9 @@ import { useNavigate } from "react-router"
 import { t } from "i18next"
 
 import Services from "../../../../services/notificationService"
+import DemandServices from "../../../../services/demandService"
 import "./style.css"
+import Demand from "../../../Solicitation/All/Cards/Card"
 
 export default function Notification(props: any) {
 
@@ -51,9 +53,19 @@ export default function Notification(props: any) {
 
     function viewNotification() {
         Services.updateNotificationVisualized(props.id).then((response: any) => {
-            if (props.type !== "presentation") {
+            if (props.type !== "presentation" && props.type !== "chat") {
+                if(props.type === "demand"){
+                DemandServices.findById(props.description[props.description.length - 1]).then((demand: any) => {
+                    navigate('/' + props.type + '/view/' + props.description[props.description.length - 1] + "?" + demand.demandVersion, { replace: true });
+                })
+            }else{
                 navigate('/' + props.type + '/view/' + props.description[props.description.length - 1], { replace: true });
-            } else {
+            }
+
+            }else if(props.type === "chat"){
+                navigate('/messages/message/' + props.description[props.description.length - 1], { replace: true });
+            }
+             else {
                 navigate('/demands/1')
                 localStorage.setItem("presentation", "true")
             }

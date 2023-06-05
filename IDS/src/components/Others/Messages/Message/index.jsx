@@ -77,7 +77,7 @@ const ChatRoom = () => {
         })
 
        
-    }, [messages, stompClient, workerDemand, sender]);
+    }, [messages, stompClient, sender]);
 
     const getUserOnline = () => {
         if (!messages.includes(workerDemand) && workerDemand.workerCode !== worker.id) {
@@ -162,10 +162,10 @@ const ChatRoom = () => {
     const setNotification = () => {
         return notification = {
             date: new Date(),
-            description: worker.name + " iniciou uma conversa com você.",
+            description: worker.name + " iniciou uma conversa com você, na demanda " + demandCode ,
             worker: { workerCode: JSON.parse(demand.requesterRegistration.workerCode) },
-            icon: "info",
-            type: "demand",
+            icon: "chat_bubble",
+            type: "chat",
         };
     }
 

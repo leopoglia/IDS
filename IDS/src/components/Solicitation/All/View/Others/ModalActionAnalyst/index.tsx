@@ -10,6 +10,11 @@ export default function InsetList(props: any) {
 
     const [modalChangeStatus, setModalChangeStatus] = useState(false);
 
+    const generatePDF = async () => {
+        window.open("http://localhost:8443/api/demand/pdf/" + props.codeDemand, "_blank");
+    };
+
+
 
 
     return (
@@ -38,7 +43,7 @@ export default function InsetList(props: any) {
                     </div>
                 </Link>
 
-                <div className="li">
+                <div className="li" onClick={generatePDF}>
                     <span className="material-symbols-outlined">
                         download
                     </span>

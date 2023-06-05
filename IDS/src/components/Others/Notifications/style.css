@@ -19,3 +19,38 @@
     overflow: hidden;
 
 }
+
+.notifications .header{
+    padding: 0 20px;
+    background-color: var(--white);
+    color: var(--grey59) !important;
+    border-bottom: 1px solid var(--greyC4);
+}
+
+.notifications .header .selects{
+    width: 50%;
+}
+
+.notifications .header .input-background{
+    width: 300px;
+}
+
+.notifications .header .input-background input{
+    margin-left: 10px !important;
+}
+
+.more_vert{
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--greyC4);
+    border-radius: var(--r);
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.more_vert:hover{
+    background-color: var(--greyF7);
+}

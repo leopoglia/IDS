@@ -8,6 +8,8 @@ import Services from "../../../services/notificationService";
 import UserContext from "../../../context/userContext";
 import Load from "../../Fixed/Load";
 import "./style.css"
+import Search from "../../Fixed/Search";
+import Input from "../../Solicitation/Demands/CrateDemand/Others/Input";
 
 export default function Notifications() {
 
@@ -16,6 +18,9 @@ export default function Notifications() {
     const [loading, setLoading] = useState(true);
     const worker = useContext(UserContext).worker;
     const { t } = useTranslation();
+
+    const [search, setSearch]: any = useState(""); // Retorno do campo de busca de demandas
+
 
 
     useEffect(() => {
@@ -38,14 +43,42 @@ export default function Notifications() {
 
                 <div className="container-background">
                     <div className="boxNoPadding">
+                        <div className="header display-flex-space-between">
+
+
+                            <span className="selects">
+                                Nenhum selecionado
+                            </span>
+
+
+
+                            <div className="display-flex">
+                                <Input background={"input-search"} setValue={setSearch} value={search} icon={"search"} type="text" placeholder={t("searchNotification")} required={true} />
+
+
+                                <span className="material-symbols-outlined more_vert">
+                                    more_vert
+                                </span>
+                            </div>
+
+                        </div>
+
+
+
                         {
                             loading === true ? (
                                 <Load />
                             ) :
                                 notifications.length > 0 ? (
-                                    notifications.map((notification: any) => {
-                                        if (notification.worker.workerCode === worker.id) {
 
+                                    notifications.filter((notification: any) => {
+                                        if (search === "") {
+                                            return notification
+                                        } else if (notification.description.toLowerCase().includes(search.toLowerCase())) {
+                                            return notification
+                                        }
+                                    }).map((notification: any) => {
+                                        if (notification.worker.workerCode === worker.id) {
                                             return (
                                                 <Notification
                                                     key={notification.notificationCode}
@@ -58,11 +91,9 @@ export default function Notifications() {
                                                 />
                                             )
                                         }
-
                                         if (notification.worker.workerCode === worker.id) {
                                             setHaveNotification(haveNotification + 1)
                                         }
-
 
                                     })
                                 ) : (

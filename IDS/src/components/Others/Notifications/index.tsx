@@ -23,15 +23,17 @@ export default function Notifications() {
     const [moreActions, setMoreActions]: any = useState(false); // Abre modal de ações
     const [checked, setChecked] = useState(false);
     const [updateCheckeds, setUpdateCheckeds] = useState(false); 
+    const [alterate, setAlterate] = useState(false); // Atualiza as notificações atualizadas
 
 
     useEffect(() => {
+
         Services.findAll().then((response: any) => {
             setNotifications(response.reverse());
             setLoading(false);
         })
 
-    }, [])
+    }, [alterate])
 
     const selectAll = () => {
 
@@ -62,20 +64,24 @@ export default function Notifications() {
         setUpdateCheckeds(!updateCheckeds)
     }
 
-    const deleteNotification = () => {
+    const deleteNotification = async () => {
         for(let i = 0; i < notifications.length; i++){
             if(notifications[i].checked === true){
-                Services.delete(notifications[i].notificationCode)
+                await Services.delete(notifications[i].notificationCode)
             }
         }
+        setAlterate(!alterate)
     }
 
-    const updateNotificationVisualized = () => {
+    const updateNotificationVisualized = async () => {
         for(let i = 0; i < notifications.length; i++){
             if(notifications[i].checked === true){
-                Services.updateNotificationVisualized(notifications[i].notificationCode)
+                await Services.updateNotificationVisualized(notifications[i].notificationCode)
+                setAlterate(!alterate)
             }
         }
+        
+        setAlterate(!alterate)
     }
 
     const [textSelect, setTextSelect] = useState("Nenhum selecionado");
@@ -99,9 +105,6 @@ export default function Notifications() {
         }else{
             setTextSelect(count + " selecionados")
         }
-
-
-
     }, [checked, updateCheckeds])
 
 
@@ -139,7 +142,7 @@ export default function Notifications() {
 
                                     <div className="modal-more">
                                         {moreActions ?
-                                            <Modal type="notification" /> : null
+                                            <Modal updateNotificationVisualized={updateNotificationVisualized} deleteNotification={deleteNotification} type="notification" /> : null
                                         }
                                     </div>
                                 </div>

@@ -15,7 +15,6 @@ export default function Message(props: any) {
     const [demandTitle, setDemandTitle]: any = useState("")
     const [imageRequester, setImageRequester]: any = useState("");
     const [sender, setSender]: any = useState({});
-    let senderName = "";
     const worker: any = useContext(UserContext).worker;
 
     useEffect(() => {

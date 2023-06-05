@@ -53,8 +53,14 @@
     width: 100%;
     margin: 0px;
     overflow: hidden;
-    text-overflow: ellipsis;
-    
+    text-overflow: ellipsis;    
+}
+
+.message-true .last-message,
+.message-false .last-message{
+    font-size: calc(var(--p) - 1px) !important;
+    color: var(--grey59) !important;
+    opacity: 0.95;
 }
 
 

@@ -11,7 +11,7 @@ export default function Modal(props: any) {
                 (
                     <>
                     
-                        <div className="li li-settings">
+                        <div className="li li-settings" onClick={() => props.updateNotificationVisualized()}>
                             <span className="material-symbols-outlined">
                                 visibility
                             </span>
@@ -20,7 +20,7 @@ export default function Modal(props: any) {
                             </span>
                         </div>
 
-                        <div className="li li-settings">
+                        <div className="li li-settings" onClick={() => props.deleteNotification()}>
                             <span className="material-symbols-outlined">
                                 close
                             </span>

@@ -56,15 +56,15 @@ export default function Messages() {
 
 
                                 <div>
-                                    <span className="material-symbols-outlined more_vert" onClick={() => setMoreActions(!moreActions)} >
+                                    {/* <span className="material-symbols-outlined more_vert" onClick={() => setMoreActions(!moreActions)} >
                                         more_vert
-                                    </span>
+                                    </span> */}
 
-                                    <div className="modal-more">
+                                    {/* <div className="modal-more">
                                         {moreActions ?
                                             <Modal type="notification" /> : null
                                         }
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
 
@@ -76,7 +76,15 @@ export default function Messages() {
                             ) : (
                                 messages.length > 0 && messages[0] !== null ?
                                     (
-                                        messages.map((val: any, index: any) => {
+                                        messages.filter((val: any) => {
+                                            console.log(val);
+
+                                            if (search === "") {
+                                                return val;
+                                            } else if (val?.sender?.workerName.toLowerCase().includes(search.toLowerCase())) {
+                                                return val;
+                                            }
+                                        }).map((val: any, index: any) => {
                                             if (val !== null) {
                                                 if (index > 5 && messages.length - 1 === index) {
                                                     return (

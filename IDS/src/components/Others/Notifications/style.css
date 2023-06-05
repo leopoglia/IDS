@@ -2,12 +2,12 @@
     margin-bottom: 20px;
 }
 
-.notification{
+.notification {
     overflow-y: hidden;
     overflow-x: auto;
 }
 
-.notification .date-horary{
+.notification .date-horary {
     display: flex;
     margin-left: 20px;
 }
@@ -20,26 +20,30 @@
 
 }
 
-.notifications .header{
+.notifications .header,
+.messages .header {
     padding: 0 20px;
     background-color: var(--white);
     color: var(--grey59) !important;
     border-bottom: 1px solid var(--greyC4);
 }
 
-.notifications .header .selects{
+.notifications .header .selects,
+.messages .header .selects {
     width: 50%;
 }
 
-.notifications .header .input-background{
+.notifications .header .input-background,
+.messages .header .input-background {
     width: 300px;
 }
 
-.notifications .header .input-background input{
+.notifications .header .input-background input,
+.messages .header .input-background input {
     margin-left: 10px !important;
 }
 
-.more_vert{
+.more_vert {
     width: 45px;
     height: 45px;
     display: flex;
@@ -51,6 +55,10 @@
     cursor: pointer;
 }
 
-.more_vert:hover{
+.more_vert:hover {
     background-color: var(--greyF7);
+}
+
+.modal-more .modal {
+    margin-left: -138px !important;
 }

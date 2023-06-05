@@ -282,6 +282,7 @@ export default function Demands() {
                         <Search setSearch={setSearch} search={search} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1" />
                         <div className="container-background">
 
+
                             {
                                 demands
                                     .filter((val: any) => {

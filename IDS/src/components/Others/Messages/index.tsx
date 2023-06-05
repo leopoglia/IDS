@@ -8,12 +8,21 @@ import { useContext } from "react";
 import UserContext from "../../../context/userContext";
 import { useTranslation } from "react-i18next";
 import Load from "../../Fixed/Load";
+import Input from "../../Solicitation/Demands/CrateDemand/Others/Input";
+import Modal from "../../Fixed/User/Modal";
 
 export default function Messages() {
+
+    const { t } = useTranslation();
     const worker: any = useContext(UserContext).worker;
     let [messages, setMessages]: any = useState([]);
     const [loading, setLoading] = useState(true);
-    const { t } = useTranslation();
+
+
+    const [search, setSearch]: any = useState(""); // Retorno do campo de busca de demandas
+    const [moreActions, setMoreActions]: any = useState(false); // Abre modal de ações
+
+
 
     useEffect(() => {
         MessageService.findChatByDemand(worker.id).then((response: any) => {
@@ -33,6 +42,33 @@ export default function Messages() {
 
                 <div className="container-background">
                     <div className="boxNoPadding">
+
+                        <div className="header display-flex-space-between">
+
+
+                            <span className="selects">
+                            </span>
+
+
+
+                            <div className="display-flex">
+                                <Input background={"input-search"} setValue={setSearch} value={search} icon={"search"} type="text" placeholder={t("searchChat")} required={true} />
+
+
+                                <div>
+                                    <span className="material-symbols-outlined more_vert" onClick={() => setMoreActions(!moreActions)} >
+                                        more_vert
+                                    </span>
+
+                                    <div className="modal-more">
+                                        {moreActions ?
+                                            <Modal type="notification" /> : null
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
 
                         {
                             loading === true ? (
@@ -64,7 +100,7 @@ export default function Messages() {
                                             <h1>{t("noResults")}</h1>
                                         </div>
                                     )
-                            ) 
+                            )
                         }
 
 

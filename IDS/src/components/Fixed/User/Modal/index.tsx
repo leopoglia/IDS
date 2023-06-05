@@ -1,32 +1,71 @@
 import { t } from "i18next";
 import { Link } from "react-router-dom";
 
-export default function Modal() {
+export default function Modal(props: any) {
 
     return (
         <div className="modal">
 
-            <Link to="/configuration">
-                <div className="li li-settings">
-                    <span className="material-symbols-outlined">
-                        settings
-                    </span>
-                    <span>
-                        {t("configurations")}
-                    </span>
-                </div>
-            </Link>
+            {props.type === "notification" ?
 
-            <Link to="/">
-                <div className="li">
-                    <span className="material-symbols-outlined">
-                        logout
-                    </span>
-                    <span>
-                        {t("logout")}
-                    </span>
-                </div>
-            </Link>
+                (
+                    <>
+                        <div className="li li-settings">
+                            <span className="material-symbols-outlined">
+                                select_all
+                            </span>
+                            <span>
+                                {t("selectAll")}
+                            </span>
+                        </div>
+
+                        <div className="li li-settings">
+                            <span className="material-symbols-outlined">
+                                visibility
+                            </span>
+                            <span>
+                                {t("viewAll")}
+                            </span>
+                        </div>
+
+                        <div className="li li-settings">
+                            <span className="material-symbols-outlined">
+                                close
+                            </span>
+                            <span>
+                                {t("removed")}
+                            </span>
+                        </div>
+                    </>
+                ) :
+                (
+                    <>
+                        <Link to="/configuration">
+                            <div className="li li-settings">
+                                <span className="material-symbols-outlined">
+                                    settings
+                                </span>
+                                <span>
+                                    {t("configurations")}
+                                </span>
+                            </div>
+                        </Link>
+
+                        <Link to="/">
+                            <div className="li">
+                                <span className="material-symbols-outlined">
+                                    logout
+                                </span>
+                                <span>
+                                    {t("logout")}
+                                </span>
+                            </div>
+                        </Link>
+                    </>
+                )
+
+            }
+
 
         </div>
     )

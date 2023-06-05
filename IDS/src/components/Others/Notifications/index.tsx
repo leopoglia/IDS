@@ -10,6 +10,7 @@ import Load from "../../Fixed/Load";
 import "./style.css"
 import Search from "../../Fixed/Search";
 import Input from "../../Solicitation/Demands/CrateDemand/Others/Input";
+import Modal from "../../Fixed/User/Modal";
 
 export default function Notifications() {
 
@@ -20,6 +21,7 @@ export default function Notifications() {
     const { t } = useTranslation();
 
     const [search, setSearch]: any = useState(""); // Retorno do campo de busca de demandas
+    const [moreActions, setMoreActions]: any = useState(false); // Abre modal de ações
 
 
 
@@ -29,6 +31,9 @@ export default function Notifications() {
             setLoading(false);
         })
     }, [notifications])
+
+
+
 
 
 
@@ -56,14 +61,20 @@ export default function Notifications() {
                                 <Input background={"input-search"} setValue={setSearch} value={search} icon={"search"} type="text" placeholder={t("searchNotification")} required={true} />
 
 
-                                <span className="material-symbols-outlined more_vert">
-                                    more_vert
-                                </span>
+                                <div>
+                                    <span className="material-symbols-outlined more_vert" onClick={() => setMoreActions(!moreActions)} >
+                                        more_vert
+                                    </span>
+
+                                    <div className="modal-more">
+                                        {moreActions ?
+                                            <Modal type="notification" /> : null
+                                        }
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
-
-
 
                         {
                             loading === true ? (

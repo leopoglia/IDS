@@ -411,18 +411,8 @@ export default function ViewDemand() {
 
     // Gerar PDF
 
-    const generatePDF = () => {
-
-        ServicesDemand.savePDF(demandCode).then((response: any) => {
-
-            const file = new Blob(response, { type: 'application/pdf' });
-            const fileURL = URL.createObjectURL(file);
-            window.open(fileURL, "_blank");
-
-        }).catch((error) => {
-            console.log("error ===> ", error);
-        });
-
+    const generatePDF = async () => {
+        window.open("http://localhost:8443/api/demand/pdf/" + demandCode, "_blank");
     };
 
 

@@ -23,7 +23,7 @@ const ChatRoom = () => {
 
     const [demand, setDemand] = useState({});
 
-    const demandCode =  parseInt(useParams().id || "null");
+    const demandCode = parseInt(useParams().id || "null");
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
     const [subscribeMessage, setSubscribeMessage] = useState(null);
@@ -43,19 +43,7 @@ const ChatRoom = () => {
     let lastProcessedDate = '';
 
     useEffect(() => {
-
-        getUserOnline();
-
         divRef.current.scrollTop = divRef.current.scrollHeight;
-
-        const newMessage = (response) => {
-            const messageReceived = JSON.parse(response.body);
-            setMessages((previousMessages) => [...previousMessages, messageReceived]);
-        }
-
-        ServicesMessage.findChatByDemand(demandCode).then((response) => {
-            setChat(response);
-        })
 
         if (messages[messages.length - 1]?.sender?.workerCode !== worker.id && workerDemand.workerName === "Analista") {
             ServicesWorker.findById(messages[messages.length - 1]?.sender.workerCode).then((response) => {
@@ -64,9 +52,16 @@ const ChatRoom = () => {
                 console.log(error);
             })
 
-
             setWorkerDemand({ workerCode: messages[messages.length - 1]?.sender.workerCode });
         }
+
+        const newMessage = (response) => {
+            const messageReceived = JSON.parse(response.body);
+            setMessages((previousMessages) => [...previousMessages, messageReceived]);
+        }
+        ServicesMessage.findChatByDemand(demandCode).then((response) => {
+            setChat(response);
+        })
 
         if (stompClient && !subscribeMessage) {
             setSubscribeMessage(subscribe("/" + demandCode + "/chat", newMessage));
@@ -76,20 +71,22 @@ const ChatRoom = () => {
             setSender(response);
         })
 
-       
-    }, [messages, stompClient, sender]);
 
-    const getUserOnline = () => {
-        if (!messages.includes(workerDemand) && workerDemand.workerCode !== worker.id) {
+    }, [messages, stompClient]);
+
+    useEffect(() => {
+        if (stompClient) {
+          if (!messages.includes(workerDemand) && workerDemand.workerCode !== worker.id) {
             ServicesWorker.isUserOnline(workerDemand?.workerCode).then((response) => {
-                setIsUserOnline(response);
+              setIsUserOnline(response);
             });
-        } else {
+          } else {
             ServicesWorker.isUserOnline(sender.workerCode).then((response) => {
-                setIsUserOnline(response);
+              setIsUserOnline(response);
             });
+          }
         }
-    }
+      }, [messages, sender, workerDemand, stompClient]);
 
     useEffect(() => {
 
@@ -127,8 +124,6 @@ const ChatRoom = () => {
             setDefaultMessage();
         }
         loading();
-
-
     }, [demandCode, stompClient]);
 
 
@@ -162,7 +157,7 @@ const ChatRoom = () => {
     const setNotification = () => {
         return notification = {
             date: new Date(),
-            description: worker.name + " iniciou uma conversa com você, na demanda " + demandCode ,
+            description: worker.name + " iniciou uma conversa com você, na demanda " + demandCode,
             worker: { workerCode: JSON.parse(demand.requesterRegistration.workerCode) },
             icon: "chat_bubble",
             type: "chat",

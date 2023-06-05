@@ -42,11 +42,11 @@ export default function Demands() {
 
 
     const [demandsSize, setDemandsSize] = useState(0);
-
     const [loading, setLoading] = useState(true);
 
     // Entra na página e busca as demandas cadastradas
     useEffect(() => {
+        console.log(loading, table);
 
         setLoading(true);
 
@@ -90,7 +90,7 @@ export default function Demands() {
             localStorage.removeItem("route");
             Notification.success(t("demandCreateSuccess"));
         }
-    }, [url[3], page, search, typeFilter])
+    }, [url[3], page, search, typeFilter, table])
 
 
     // Buscar as demandas cadastradas
@@ -127,7 +127,6 @@ export default function Demands() {
                 let demandsContent = res.content; // Atualiza o estado das demandas
                 setPages(res.totalPages); // Atualiza o estado das páginas
 
-                console.log("demandsContent ---> ", demandsContent)
 
                 let totalDemands: any = 0;
 
@@ -280,7 +279,7 @@ export default function Demands() {
                     <div className="container">
 
                         <Search setSearch={setSearch} search={search} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1" />
-                        <div className="container-background">
+                        <div className={"container-background boxNoPadding-" + table}>
 
 
                             {
@@ -334,7 +333,7 @@ export default function Demands() {
 
                         </div>
 
-                        {othersUtil.footer(url, demands, proposals, agendas, minutes, search, typeFilter, pages, page, navigate, demandsSize)}
+                        {othersUtil.footer(url, demands, proposals, agendas, minutes, search, typeFilter, pages, page, navigate, demandsSize, table)}
 
                         <Footer />
 
@@ -390,7 +389,7 @@ export default function Demands() {
 
                             {proposals.length === 0 && loading === false && noResult()}
                         </div>
-                        {othersUtil.footer(url, demands, proposals, agendas, minutes, search, typeFilter, pages, page, navigate, demandsSize)}
+                        {othersUtil.footer(url, demands, proposals, agendas, minutes, search, typeFilter, pages, page, navigate, demandsSize, table)}
 
                         <Footer />
 
@@ -446,7 +445,7 @@ export default function Demands() {
 
                         </div>
 
-                        {othersUtil.footer(url, demands, proposals, agendas, minutes, search, typeFilter, pages, page, navigate, demandsSize)}
+                        {othersUtil.footer(url, demands, proposals, agendas, minutes, search, typeFilter, pages, page, navigate, demandsSize, table)}
 
                         <Footer />
 
@@ -510,7 +509,7 @@ export default function Demands() {
                             {minutes.length === 0 && loading === false && noResult()}
 
                         </div>
-                        {othersUtil.footer(url, demands, proposals, agendas, minutes, search, typeFilter, pages, page, navigate, demandsSize)}
+                        {othersUtil.footer(url, demands, proposals, agendas, minutes, search, typeFilter, pages, page, navigate, demandsSize, table)}
 
                         <Footer />
 

@@ -240,5 +240,6 @@
     "projectScope": "Alcance del proyecto",
     "notPartOfTheScope": "No forma parte del alcance del proyecto",
     "evaluatedAlternatives": "Alternativas evaluadas",
-    "pounds": "Libras"
+    "pounds": "Libras",
+    "searchChat": "Buscar chat"
 }

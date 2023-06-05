@@ -4,6 +4,10 @@
     align-items: center;
 }
 
+.navigator-table-true{
+    margin-top: 28px;
+}
+
 .navigator {
     height: var(--h);
     justify-content: flex-end;
@@ -96,6 +100,13 @@
     overflow: overlay;
     min-height: calc(100vh - 350px) !important;
     max-height: calc(100vh - 350px) !important;
+}
+
+.boxNoPadding-true {
+    border: 1px solid var(--greyC4);
+    border-radius: var(--r);
+    overflow: overlay;
+    min-height: calc(100vh - 428px) !important;
 }
 
 .h45 {

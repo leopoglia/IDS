@@ -29,7 +29,7 @@ export default function Filter(props: FilterProps) {
 
 
 
-        if ((type !== "status" && filter === true) && (type !== "size" && filter === true) && (type !== "date" && filter === true)) {
+        if ((type !== "status" && filter === true) && (type !== "size" && filter === true) && (type !== "date" && filter === true) && (type !== "forum" && filter === true)) {
             return (
                 <div className="send-filter">
                     <div className="hr" />
@@ -44,7 +44,7 @@ export default function Filter(props: FilterProps) {
 
                 </div>
             )
-        } else if (filter === true && (type === "status" || type === "size")) {
+        } else if (filter === true && (type === "status" || type === "size" || type === "forum")) {
 
             let arraySelect: string[] = [];
 
@@ -52,6 +52,16 @@ export default function Filter(props: FilterProps) {
                 arraySelect = ["Backlog", "BacklogRanked", "BacklogEdit", "BacklogRankApproved", "BacklogComplement", "Assesment"];
             } else if (type === "size") {
                 arraySelect = ["Muito pequeno", "Pequeno", "Médio", "Grande", "Muito grande"];
+            } else if (type === "forum") {
+                arraySelect = [
+                    "CPVM",
+                    "CPGCI",
+                    "CPGPR",
+                    "CGPN",
+                    "CTI",
+                    "CWBS",
+                    "DTI"
+                ];
             }
 
             return (

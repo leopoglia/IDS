@@ -311,8 +311,9 @@ export default function Demands() {
                                             return true;
                                         } else if (typeFilter === "department" && val?.requesterRegistration.department === nameFilter) {
                                             return true;
+                                        } else if(typeFilter === "forum"){
+                                            return false;
                                         }
-
                                         return false;
                                     })
                                     .map((val: any, index: number) => {

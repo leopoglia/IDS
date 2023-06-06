@@ -1,5 +1,15 @@
-.workflow .boxNoPadding{
+.workflow .container .boxNoPadding{
     padding: 30px;
+    margin-bottom: 50px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.workflow .h100{
+    height: 100% !important;
+    min-height: 100% !important;
+    max-height: 100% !important;
 }
 
 .workflow .ellipse{
@@ -38,4 +48,22 @@
     color: var(--grey3d);
     display: flex;
     justify-content: center;
+    text-align: center;
+}
+
+.workflow .background-line{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.workflow .line{
+    width: 2px;
+    height: 80px;
+    border-left: 4px dashed var(--greyC4);
+    margin: 20px 0;
+}
+
+.workflow .line-true{
+    border-left: 4px dashed var(--blue);
 }

@@ -35,7 +35,7 @@ export default function Demands() {
     const [agendas, setAgendas] = useState([]);
     const [minutes, setMinutes] = useState([]);
 
-    
+
     const [minute, setMinute] = useState(false); // Verifica se a página é de ata
     const [nameFilter, setName] = useState<string>(""); // Busca o que foi digitado no input do filtro
     const [typeFilter, setType] = useState<string>(""); // Busca qual filtro foi selecionado
@@ -317,11 +317,22 @@ export default function Demands() {
                                     })
                                     .map((val: any, index: number) => {
 
-                                        return (
-                                            <Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle}
-                                                requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus}
-                                                proposalCode={val.proposalCode} demandVersion={val.demandVersion} type="demand" />
-                                        )
+                                        //verificar ultimo
+                                        if (index === demands.length - 1 && index === 8) {
+                                            return (
+                                                <div className="demand-last">
+                                                    <Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle}
+                                                        requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus}
+                                                        proposalCode={val.proposalCode} demandVersion={val.demandVersion} type="demand" />
+                                                </div>
+                                            )
+                                        } else {
+                                            return (
+                                                <Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle}
+                                                    requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus}
+                                                    proposalCode={val.proposalCode} demandVersion={val.demandVersion} type="demand" />
+                                            )
+                                        }
                                     })
                             }
 
@@ -345,7 +356,7 @@ export default function Demands() {
 
                     <div className="container">
                         <Search setSearch={setSearch} search={search} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} nav={t("proposalViewProposal")} title="proposals" button="createProposal" link="/demands/1" />
-                        <div className="container-background">
+                        <div className={"container-background boxNoPadding-" + table}>
                             {
                                 proposals
                                     .filter((val: any) => {
@@ -400,7 +411,7 @@ export default function Demands() {
 
                     <div className="container">
                         <Search setSearch={setSearch} search={search} onClick={callback} name={nameFilter} type={typeFilter} setTipe={setType} setTable={setTable} nav={t("agendaViewAgenda")} title="agendas" button="createAgenda" link="/agenda/create" />
-                        <div className="container-background">
+                        <div className={"container-background boxNoPadding-" + table}>
                             {
                                 agendas
                                     .filter((val: any) => {
@@ -457,7 +468,7 @@ export default function Demands() {
 
                     <div className="container">
                         <Search onClick={callback} search={search} name={nameFilter} type={typeFilter} setType={setType} nav={t("minuteViewMinute")} title="minutes" button="createMinute" link="/agendas/1" setTable={setTable} />
-                        <div className="container-background">
+                        <div className={"container-background boxNoPadding-" + table}>
                             {
                                 minutes
                                     .filter((val: any) => {

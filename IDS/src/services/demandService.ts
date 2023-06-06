@@ -185,9 +185,9 @@ const Services = {
                 .catch(reject)
         })
     },
-    approve: function (id: Number) {
+    approve: function (id: Number, workerId: Number) {
         return new Promise((resolve, reject) => {
-            fetch(url + "/approve/" + id, {
+            fetch(url + "/approve/" + id + "/" + workerId, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); }).then(resolve).catch(reject)

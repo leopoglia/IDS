@@ -86,7 +86,7 @@ export default function HistoricalDemand() {
                                             ) : null
                                         }
 
-                                        <td className="table-find-in-page">
+                                        <td className="table-find-in-page activeVersion" onClick={() => viewDemand(val.demandCode, val.demandVersion)}>
                                             <span className="material-symbols-outlined">find_in_page</span>
                                         </td>
                                         <td className="activeVersion">

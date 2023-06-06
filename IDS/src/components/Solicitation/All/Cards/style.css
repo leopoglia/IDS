@@ -67,6 +67,10 @@
     width: 50px;
 }
 
+.messages .no-results{
+    height: calc(100vh - 420px);
+}
+
 .no-results {
     display: flex;
     flex-direction: column;

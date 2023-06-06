@@ -36,6 +36,16 @@
     background-color: var(--blue);
 }
 
+.workflow .worker{
+    white-space: nowrap;
+    font-size: var(--pp);
+    color: var(--grey59);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
 .workflow .step{
     width: 100px;
     display: block;
@@ -44,6 +54,7 @@
 }
 
 .workflow .ellipse-text{
+    white-space: nowrap;
     font-size: var(--p);
     color: var(--grey3d);
     display: flex;

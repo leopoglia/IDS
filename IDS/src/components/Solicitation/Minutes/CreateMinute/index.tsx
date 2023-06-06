@@ -49,7 +49,7 @@ export default function CreateMinute() {
             await DemandService.update(proposal.demand.demandCode, proposal.demand.demandTitle, proposal.demand.currentProblem, proposal.demand.demandObjective,
                 proposal.demand.costCenter, proposal.demand.executionPeriod, proposal.demand.realBenefit.realBenefitCode, proposal.demand.potentialBenefit.potentialBenefitCode, proposal.demand.qualitativeBenefit.qualitativeBenefitCode,
                 proposal.demand.demandAttachment, proposal.demand.demandDate, proposal.demand.demandStatus, proposal.demand.score, proposal.demand.requesterRegistration.workerCode,
-                proposal.demand.classification.classificationCode);
+                proposal.demand.classification.classificationCode, proposal.demand.approver);
 
 
             await ProposalService.update(proposal.proposalCode, proposal).catch((error: any) => {

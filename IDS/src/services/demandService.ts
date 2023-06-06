@@ -75,7 +75,7 @@ const Services = {
     },
     update: function (id: number, demandTitle: String, currentProblem: String, demandObjective: String, costCenter: any, executionPeriod: Number,
         realBenefit: Number, potentialBenefit: Number, qualitativeBenefit: Number, demandAttachment: any, demandDate: String, demandStatus: any,
-        demandScore: any, demandRequester: any, classificationCode: any) {
+        demandScore: any, demandRequester: any, classificationCode: any, approver: any) {
         var formData = new FormData();
 
         let costCenters = [];
@@ -115,7 +115,8 @@ const Services = {
                 "potentialBenefit": { "potentialBenefitCode": potentialBenefit },
                 "demandStatus": demandStatus,
                 "classification": { "classificationCode": classificationCode },
-                "score": demandScore
+                "score": demandScore,
+                "approver": { "workerCode": approver }
             }
         }
 
@@ -172,9 +173,9 @@ const Services = {
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(reject)
-        })  
+        })
     },
-    savePDF: function (demandCode:number) {
+    savePDF: function (demandCode: number) {
         return new Promise((resolve, reject) => {
             fetch(url + "/pdf/" + demandCode, {
                 method: 'GET',

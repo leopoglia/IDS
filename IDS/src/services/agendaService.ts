@@ -1,7 +1,7 @@
 const url = "http://localhost:8443/api/agenda";
 
 const Services = {
-    save: function (sequentialNumber: String, yearAgenda: String, commission: any, agendaDate: String, proposals: any) {
+    save: function (sequentialNumber: String, yearAgenda: String, commission: any, agendaDate: String, proposals: any, analistRegistry: any) {
 
 
         let proposalList: any = [];
@@ -21,8 +21,9 @@ const Services = {
                     yearAgenda: yearAgenda,
                     commission: commissionList,
                     agendaDate: agendaDate,
-                    proposals: proposalList
-                }), 
+                    proposals: proposalList,
+                    analistRegistry: { "workerCode": analistRegistry }
+                }),
                 headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); })
                 .then(resolve)
@@ -56,7 +57,7 @@ const Services = {
                 .catch(resolve)
         })
     },
-    findByPage: function(page: Number, size: Number) {
+    findByPage: function (page: Number, size: Number) {
         return new Promise((resolve, reject) => {
             fetch(url + "/page?page=" + page + "&size=" + size, {
                 method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include',

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Title from "../../../Fixed/Search/Title";
@@ -10,6 +10,7 @@ import SelectWorker from "../SelectWorker";
 import Servicescommission from "../../../../services/commissionService";
 import "./style.css";
 import Input from "../../Demands/CrateDemand/Others/Input";
+import UserContext from "../../../../context/userContext";
 
 export default function CreateAgenda() {
 
@@ -21,6 +22,9 @@ export default function CreateAgenda() {
     const [commissionList, setcommissionList]: any = useState([]);
     const [commission, setCommission] = useState("");
     const [date, setDate] = useState(`${data.getFullYear()}-${("0" + (data.getMonth() + 1)).slice(-2)}-${("0" + data.getDate()).slice(-2)}T${("0" + data.getHours()).slice(-2)}:${("0" + data.getMinutes()).slice(-2)}`);
+
+    const worker: any = useContext(UserContext).worker;
+
 
     let actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear();
 
@@ -74,7 +78,7 @@ export default function CreateAgenda() {
             }
 
 
-            Services.save("1", date, commissionArray, actualDate, proposals).then((response: any) => {
+            Services.save("1", date, commissionArray, actualDate, proposals, worker.id).then((response: any) => {
                 navigate("/agenda/view/" + response.agendaCode);
 
                 localStorage.removeItem("proposals");

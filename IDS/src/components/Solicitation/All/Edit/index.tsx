@@ -26,7 +26,7 @@ export default function Edit() {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
 
-	const [code, setCode] = useState( parseInt(useParams().id || "null")); // Código da proposta
+	const [code, setCode] = useState(parseInt(useParams().id || "null")); // Código da proposta
 
 
 	const [url, setUrl] = useState(window.location.href.split("/")[4]); // Url da página
@@ -39,7 +39,7 @@ export default function Edit() {
 	const [editType, setEditType]: any = useState(window.location.href.split("?")[2]); // Tipo de edição (Tabelas, classificação, complementos, despesas)
 	const [expenseType, setExpenseType]: any = useState(window.location.href.split("?")[1]); // Tipo de despesa (Custo, investimento, despesa)
 
-	const [demandCode, setDemandCode]:any = useState( parseInt(useParams().id || "null")); // Código da demanda
+	const [demandCode, setDemandCode]: any = useState(parseInt(useParams().id || "null")); // Código da demanda
 	let [demandVersion, setDemandVersion] = useState(); // Versão da demanda
 	const [demands, setDemands]: any = useState(); // Demanda
 
@@ -73,6 +73,7 @@ export default function Edit() {
 	const [demandClassification, setDemandClassification]: any = useState(""); // Classificação da demanda
 	const [demandRequester, setDemandRequester]: any = useState(""); // Solicitante da demanda
 	const [demandDate, setDemandDate]: any = useState(""); // Data da demanda
+	const [approver, setApprover]: any = useState(""); // Quem aprovou a demanda
 
 	function getDemand(demandCodeParam: number) {
 		ServicesDemand.findById(demandCodeParam).then((response: any) => {
@@ -101,6 +102,7 @@ export default function Edit() {
 			setDemandRequester(demand.requesterRegistration.workerCode);
 			setDemandDate(demand.demandDate);
 			setDemandClassification(demand?.classification?.classificationCode);
+			setApprover(demand.approver);
 
 
 			let costCenterArray = [];
@@ -304,7 +306,7 @@ export default function Edit() {
 
 				ServicesQualitativeBenefit.save(frequencyOfUse, qualitativeBenefitDescription, true).then((qualitativeBenefit: any) => {
 
-					ServicesDemand.update(demandCode, demandTitle, demandProblem, demandObjective, costsCentersId, frequencyOfUse, realBenefit.realBenefitCode, potentialBenefit.potentialBenefitCode, qualitativeBenefit.qualitativeBenefitCode, file, demandDate, demandStatus, demandScore, demandRequester, demandClassification).then((response: any) => {
+					ServicesDemand.update(demandCode, demandTitle, demandProblem, demandObjective, costsCentersId, frequencyOfUse, realBenefit.realBenefitCode, potentialBenefit.potentialBenefitCode, qualitativeBenefit.qualitativeBenefitCode, file, demandDate, demandStatus, demandScore, demandRequester, demandClassification, approver).then((response: any) => {
 
 						if (url === "edit" && type === "demand") {
 							ServicesDemand.updateStatus(demandCode, "Backlog").then((response: any) => {
@@ -348,11 +350,11 @@ export default function Edit() {
 							(
 								type === "proposal" ? (
 									<>
-									<Title nav="proposalEditProposal" title="createProposal" />
-									<ProgressBar atual="1" proposal={true} />
+										<Title nav="proposalEditProposal" title="createProposal" />
+										<ProgressBar atual="1" proposal={true} />
 									</>
 								) : (
-								<Title nav="demandEditDemand" title="editDemand" />
+									<Title nav="demandEditDemand" title="editDemand" />
 								)
 							) : (
 								<Title nav="proposalEditProposal" title="editProposal" />
@@ -377,7 +379,7 @@ export default function Edit() {
 
 
 								<div>
-								
+
 									<Input label="titleProposal" type="text" value={demandTitle} setValue={setDemandTitle} required="true" />
 
 									<div className="text-area">
@@ -526,7 +528,7 @@ export default function Edit() {
 								<Input label="frequencyUse" type="text" value={frequencyOfUse} setValue={setFrequencyOfUse} required={true} />
 
 
-								
+
 								<label className="mt10">{t("attachments")}</label>
 
 								<div className="attachments display-flex">

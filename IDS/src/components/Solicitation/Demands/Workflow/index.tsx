@@ -53,7 +53,7 @@ export default function Workerflow() {
                 {index !== 8 &&
                     < div className="background-line">
 
-                        <div className={"line line-" + (index === stepActual - 1 ? true : false)} />
+                        <div className={"line line-" + (index <= stepActual - 1 ? true : false)} />
                     </div>
                 }
             </div >

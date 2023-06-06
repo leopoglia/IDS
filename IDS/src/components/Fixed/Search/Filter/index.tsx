@@ -109,30 +109,35 @@ export default function Filter(props: FilterProps) {
                     <span className="font-p">{t("requester")}</span>
                 </div>
 
-                <div className="li" onClick={() => { setFilter(true); setType("manager") }}>
-                    <span className="material-symbols-outlined">manage_accounts</span>
-                    <span className="font-p">{t("manager")}</span>
-                </div>
 
-                <div className="li" onClick={() => { setFilter(true); setType("forum") }}>
-                    <span className="material-symbols-outlined">workspaces</span>
-                    <span className="font-p">{t("forum")}</span>
-                </div>
+                {worker?.office !== "requester" &&
+                    <>
+                        <div className="li" onClick={() => { setFilter(true); setType("manager") }}>
+                            <span className="material-symbols-outlined">manage_accounts</span>
+                            <span className="font-p">{t("manager")}</span>
+                        </div>
 
-                <div className="li" onClick={() => { setFilter(true); setType("department") }}>
-                    <span className="material-symbols-outlined">location_on</span>
-                    <span className="font-p">{t("departament")}</span>
-                </div>
+                        <div className="li" onClick={() => { setFilter(true); setType("forum") }}>
+                            <span className="material-symbols-outlined">workspaces</span>
+                            <span className="font-p">{t("forum")}</span>
+                        </div>
 
-                <div className="li" onClick={() => { setFilter(true); setType("size") }}>
-                    <span className="material-symbols-outlined">crop_free</span>
-                    <span className="font-p">{t("size")}</span>
-                </div>
+                        <div className="li" onClick={() => { setFilter(true); setType("department") }}>
+                            <span className="material-symbols-outlined">location_on</span>
+                            <span className="font-p">{t("departament")}</span>
+                        </div>
 
-                <div className="li" onClick={() => { setFilter(true); setType("ppm") }}>
-                    <span className="material-symbols-outlined">link</span>
-                    <span className="font-p">{t("ppmCode")}</span>
-                </div>
+                        <div className="li" onClick={() => { setFilter(true); setType("size") }}>
+                            <span className="material-symbols-outlined">crop_free</span>
+                            <span className="font-p">{t("size")}</span>
+                        </div>
+
+                        <div className="li" onClick={() => { setFilter(true); setType("ppm") }}>
+                            <span className="material-symbols-outlined">link</span>
+                            <span className="font-p">{t("ppmCode")}</span>
+                        </div>
+                    </>
+                }
 
                 <div className="li" onClick={() => { setFilter(true); setType("code-demand") }}>
                     <span className="material-symbols-outlined">draft</span>

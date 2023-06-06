@@ -21,18 +21,20 @@ export default function Workerflow() {
     useEffect(() => {
         ServicesDemand.findById(demandCode).then(async (demand: any) => {
             var proposal: any = {};
+            var agenda: any = {};
             let stepActualAux = 0;
 
 
             await ServicesProposal.findByDemandCode(demandCode).then((response: any) => {
                 proposal = response;
-            }).catch((error: any) => {
-                console.log(error);
+            })
+            await ServicesAgenda.findByProposals(proposal.proposalCode).then((response: any) => {
+                agenda = response;
+                console.log("response ==> ", response)
             })
 
-            
 
-            console.log("proposal", proposal)
+            console.log("agenda", agenda)
 
             if (demand?.demandStatus === "Backlog") {
                 setStepActual(0);
@@ -48,14 +50,20 @@ export default function Workerflow() {
                 stepActualAux = 3;
             } else if (demand?.demandStatus === "Assesment") {
 
-                console.log("proposal", proposal)
+
+
 
                 if (proposal.proposalStatus === "Pending") {
                     setStepActual(4);
                     stepActualAux = 4;
-                } else if(proposal.proposalStatus === "Approved"){
-                    setStepActual(5);
-                    stepActualAux = 5;
+
+                    if (agenda?.analistRegistry !== null) {
+                        setStepActual(5);
+                        stepActualAux = 5;
+                    }
+                } else if (proposal.proposalStatus === "Approved") {
+                    setStepActual(6);
+                    stepActualAux = 6;
                 }
             }
 
@@ -79,9 +87,22 @@ export default function Workerflow() {
             if (stepActualAux >= 4) {
                 worker.push(proposal.responsibleAnalyst.workerName);
                 setWorker(worker);
-            } 
-            if(stepActualAux >= 5){
-                worker.push(proposal.responsibleAnalyst.workerName);
+            }
+            if (stepActualAux >= 5) {
+                worker.push(agenda.analistRegistry.workerName);
+                setWorker(worker);
+            }
+            if(stepActualAux >= 6){
+                let comissions = "";
+                for(let i = 0; i < agenda.commission.length; i++){
+                    if(i === agenda.commission.length - 1){
+                        comissions += agenda.commission[i].commissionName;
+                        break;
+                    }
+                    comissions += agenda.commission[i].commissionName + ", ";
+                }
+
+                worker.push(comissions);
                 setWorker(worker);
             }
         })

@@ -66,9 +66,9 @@ const Services = {
                 .catch(reject)
         })
     },
-    findByProposals: function(proposals: Number) {
+    findByProposals: function(proposal: Number) {
         return new Promise((resolve, reject) => {
-            fetch(url + "/proposals/" + proposals, {
+            fetch(url + "/proposal/" + proposal, {
                 method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include',
                 }).then(function (result) { return result.json(); })
                 .then(resolve)

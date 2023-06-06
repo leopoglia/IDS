@@ -37,7 +37,6 @@
 }
 
 .workflow .worker{
-    white-space: nowrap;
     font-size: var(--pp);
     color: var(--grey59);
     display: flex;
@@ -47,7 +46,7 @@
 }
 
 .workflow .step{
-    width: 100px;
+    width: 250px;
     display: block;
     align-items: center;
     justify-content: center;

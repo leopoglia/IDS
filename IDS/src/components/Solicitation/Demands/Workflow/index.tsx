@@ -38,6 +38,7 @@ export default function Workerflow() {
     const step = (number: any, text: any, index: number) => {
         return (
             <div key={index}>
+
                 <div className="step">
                     <div className={"ellipse ellipse-" + number} >
                         {number !== "done" ? <span className="number">{number}</span> : <span className="material-symbols-outlined">done</span>
@@ -70,15 +71,18 @@ export default function Workerflow() {
 
 
                 <div className="boxNoPadding h100">
-                    {
-                        steps.map((steps, index) => {
-                            if (index <= stepActual) {
-                                return step("done", steps, index);
-                            } else {
-                                return step(index + 1, steps, index);
-                            }
-                        })
-                    }
+
+                    <div>
+                        {
+                            steps.map((steps, index) => {
+                                if (index <= stepActual) {
+                                    return step("done", steps, index);
+                                } else {
+                                    return step(index + 1, steps, index);
+                                }
+                            })
+                        }
+                    </div>
 
                 </div>
             </div>

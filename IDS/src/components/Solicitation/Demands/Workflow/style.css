@@ -1,0 +1,41 @@
+.workflow .boxNoPadding{
+    padding: 30px;
+}
+
+.workflow .ellipse{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.workflow .ellipse span {
+    width: 50px;
+    min-width: 50px;
+    height: 50px;
+    border-radius: var(--rr);
+    background-color: var(--greyC4);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.workflow .ellipse-done span{
+    background-color: var(--blue);
+}
+
+.workflow .step{
+    width: 100px;
+    display: block;
+    align-items: center;
+    justify-content: center;
+}
+
+.workflow .ellipse-text{
+    font-size: var(--p);
+    color: var(--grey3d);
+    display: flex;
+    justify-content: center;
+}

@@ -35,6 +35,7 @@ import Error from "./components/Others/Error";
 import Header from "./components/Fixed/Header";
 import Nav from "./components/Fixed/Nav";
 import VLibras from "@djpfs/react-vlibras"
+import Workflow from "./components/Solicitation/Demands/Workflow";
 
 export default function Router() {
 
@@ -151,6 +152,7 @@ function RouterContent(props: any) {
                 <Route path="/demand/complement/:id" element={<ComplementDemand />} />
                 <Route path="/demand/historical/:id" element={<HistoricalDemand />} />
                 <Route path="/demand/edit/:id" element={<EditDemand />} />
+                <Route path="/demand/workflow/:id" element={<Workflow />} />
 
                 <Route path="/proposals/:id" element={<Demands />} />
                 <Route path="/proposal/view/:id" element={<ViewDemand />} />

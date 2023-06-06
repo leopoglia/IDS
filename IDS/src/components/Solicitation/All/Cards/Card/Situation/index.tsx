@@ -3,24 +3,12 @@ import { useEffect } from "react";
 
 import Tooltip from '@mui/material/Tooltip';
 import "./style.css"
+import { Link } from "react-router-dom";
 
 
 export default function Situation(props: any) {
 
     const { t } = useTranslation();
-
-    useEffect(() => {
-
-        // if (props.situation) {
-        //     // dar espaço quando a letra for maiuscula no props.situation
-        //     setSituationSeparate(props.situation.replace(/([A-Z])/g, ' $1'));
-        // }
-
-
-
-
-    }, [props.situation])
-
 
     const situation = () => {
         if (props.situation === "Backlog" || props.situation === "BacklogEdit") {
@@ -58,13 +46,15 @@ export default function Situation(props: any) {
 
     if (props.type === "demand") {
         return (
-            <div className="display-flex">
-                <Tooltip title={t("situation-" + props.situation)} arrow>
-                    <div className="graphic">
-                        {situation()}
-                    </div>
-                </Tooltip>
-            </div>
+            <Link to={"/demand/workflow/" + props.demandCode}>
+                <div className="display-flex">
+                    <Tooltip title={t("situation-" + props.situation)} arrow>
+                        <div className="graphic">
+                            {situation()}
+                        </div>
+                    </Tooltip>
+                </div>
+            </Link>
         );
     } else if (props.type === "proposal") {
         return (

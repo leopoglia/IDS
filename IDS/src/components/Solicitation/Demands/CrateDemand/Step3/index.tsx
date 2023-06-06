@@ -97,18 +97,12 @@ export default function CreateDemands3() {
 
                 <div className="box">
 
-                    <p>{t("additionals")}</p>
-
-                    <div className="frequency">
-    
-
-                    </div>
+                    <p>{t("attachments")}</p>
 
 
                     <div className="attachments display-flex">
 
                         <div className='display-block'>
-                            <span>{t("attachments")}</span>
 
                             <input type="file" id="file" onChange={handleFileSelected} multiple />
                             <label htmlFor="file">

@@ -16,6 +16,7 @@ import "../Others/Input/style.css"
 import notifyUtil from "../../../../../utils/notifyUtil";
 import "./style.css"
 import Input from '../Others/Input';
+import { Tooltip } from '@mui/material';
 
 export default function CreateDemands2() {
 
@@ -116,6 +117,14 @@ export default function CreateDemands2() {
                 <div className="box">
                     <div className="display-flex">
                         <p>{t("benefitReal")}</p>
+
+                        <Tooltip title={t("Ganho que a empresa obtém com os resultados da demanda implantada.")} placement="right" arrow>
+                            <p className="obs">
+                                <span className='material-symbols-outlined info-benefit'>
+                                    info
+                                </span>
+                            </p>
+                        </Tooltip>
                     </div>
 
                     <div className="flex">
@@ -135,7 +144,17 @@ export default function CreateDemands2() {
                 </div>
 
                 <div className="box">
-                    <p>{t("benefitPotential")}</p>
+                    <div className='display-flex'>
+                        <p>{t("benefitPotential")}</p>
+
+                        <Tooltip title={t("Ganho que pode ser alcançado ou realizado no futuro.")} placement="right" arrow>
+                            <p className="obs">
+                                <span className='material-symbols-outlined info-benefit'>
+                                    info
+                                </span>
+                            </p>
+                        </Tooltip>
+                    </div>
 
                     <div className="flex-grid">
 
@@ -164,7 +183,17 @@ export default function CreateDemands2() {
                 </div>
 
                 <div className="box">
-                    <p>{t("benefitQualitative")}</p>
+                    <div className='display-flex'>
+                        <p>{t("benefitQualitative")}</p>
+
+                        <Tooltip title={t("Quando o ganho não pode ser mensuravel, mas tem valor significativo para a organização. Exemplo: Segurança, precisão da informação, agilidade, etc.")} placement="right" arrow>
+                            <p className="obs">
+                                <span className='material-symbols-outlined info-benefit'>
+                                    info
+                                </span>
+                            </p>
+                        </Tooltip>
+                    </div>
 
                     <Label title="description" />
 

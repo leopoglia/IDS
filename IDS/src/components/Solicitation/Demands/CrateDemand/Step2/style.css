@@ -33,6 +33,16 @@
     margin-left: 15px;
 }
 
+.box .obs{
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.box .info-benefit{
+    font-size: 16px !important;
+    font-variation-settings: 'FILL' 1, 'wght' 350, 'GRAD' -25, 'opsz' 50 !important;
+}
 
 @media(max-width: 768px) {
     .box .flex {

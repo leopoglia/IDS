@@ -145,8 +145,6 @@ function RouterContent(props: any) {
 
     useEffect(() => {
         const worker = workerContext;
-
-        console.log(worker.screenReader);
         if (worker.screenReader === true) {
             document.addEventListener('mouseup', handleTextSelection);
             return () => {

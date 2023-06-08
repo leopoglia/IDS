@@ -77,8 +77,6 @@ export default function Messages() {
                                 messages.length > 0 && messages[0] !== null ?
                                     (
                                         messages.filter((val: any) => {
-                                            console.log(val);
-
                                             if (search === "") {
                                                 return val;
                                             } else if (val?.sender?.workerName.toLowerCase().includes(search.toLowerCase())) {

@@ -811,7 +811,7 @@ export default function ViewDemand() {
                             ) : (null)}
 
 
-                            {demand?.demandAttachments ? (
+                            {demand?.demandAttachments?.length > 0 ? (
                                 <div className="attachments">
 
                                     <p className="title">{t("attachments")}</p>

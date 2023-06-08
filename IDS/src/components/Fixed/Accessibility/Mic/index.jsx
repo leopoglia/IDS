@@ -18,36 +18,25 @@ const Dictaphone = (props) => {
     return null;
   }
 
-  // useEffect(() => {
-
-  //   // if (props.handle === true) {
-  //   //   props.handle(transcript, props.label);
-  //   // } else {
-  //     props.setValue(transcript);
-  //   // }
-
-
-  // }, [props.value])
-
   function Run(props) {
     useEffect(() => {
-      // Função para lidar com a lógica condicional
-
 
       const handleTranscript = () => {
         if (transcript !== '' && transcript !== undefined) {
 
-          if (props?.handle !== undefined) {
-            props.handle(transcript, props.label);
-          } else {
-            props.setValue(transcript);
+          if (listening === true) {
+            if (props?.handle !== undefined) {
+              props.handle(transcript, props.label);
+            } else {
+              props.setValue(transcript);
+            }
           }
         }
       };
 
       handleTranscript();
 
-    }, [transcript, props]);
+    }, [transcript, props.value]);
 
   }
 

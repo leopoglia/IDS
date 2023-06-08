@@ -21,7 +21,8 @@
 }
 
 .notifications .header,
-.messages .header {
+.messages .header,
+.solicitation .header {
     padding: 0 20px;
     background-color: var(--white);
     color: var(--grey59) !important;
@@ -31,7 +32,8 @@
 }
 
 .notifications .header .input-background .material-symbols-outlined,
-.messages .header .input-background .material-symbols-outlined {
+.messages .header .input-background .material-symbols-outlined,
+.solicitation .header .input-background .material-symbols-outlined {
     color: var(--greyC4) !important;
 }
 

@@ -65,19 +65,21 @@ const othersUtil = {
 
 
     attatchmentType: (demand: { type: string; demandAttachment: { type: string; }; }) => {
-        if (demand.type === "image/png" || demand.type === "image/jpeg") {
+        if (demand?.type === "image/png" || demand?.type === "image/jpeg") {
             return "png";
-        } else if (demand.type === "application/pdf") {
+        } else if (demand?.type === "application/pdf") {
             return "pdf";
-        } else if (demand.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
+        } else if (demand?.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
             return "word";
-        } else if (demand.type === "application/msword" || demand.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||
-            demand.demandAttachment.type === "application/vnd.ms-excel") {
+        } else if (demand?.type === "application/msword" || demand?.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||
+            demand?.type === "application/vnd.ms-excel") {
             return "excel";
-        } else if (demand.type === "application/zip") {
+        } else if (demand?.type === "application/zip") {
             return "zip";
-        } else if (demand.type === "application/x-rar-compressed") {
+        } else if (demand?.type === "application/x-rar-compressed") {
             return "rar";
+        } else {
+            return "others";
         }
     },
 

@@ -431,6 +431,8 @@ export default function ViewDemand() {
                 return "zip";
             } else if (demandParam.type === "application/x-rar-compressed") {
                 return "rar";
+            } else{
+                return "others";
             }
         } else if (type === "classification") {
             if (classification.classificationAttachment.type === "image/png" || classification.classificationAttachment.type === "image/jpeg") {
@@ -446,6 +448,8 @@ export default function ViewDemand() {
                 return "zip";
             } else if (classification.classificationAttachment.type === "application/x-rar-compressed") {
                 return "rar";
+            } else {
+                return "others";
             }
         }
     }

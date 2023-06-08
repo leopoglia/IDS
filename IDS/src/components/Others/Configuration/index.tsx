@@ -20,10 +20,14 @@ export default function Configuration() {
 
     const [voiceCommand, setVoiceCommand] = useState(false);
     const [pounds, setPounds] = useState(false);
+    const [screenReading, setScreenReading] = useState(false);
+
     const [fontSize, setFontSize] = useState(0);
+    const [darkMode, setDarkMode] = useState(false);
+    const [squareStyleLayout, setSquareStyleLayout] = useState(false);
     const image = name.substring(0, 1);
 
-    const handleChange = (event: any) => {
+    const handleSquare = (event: any) => {
         if (event.target.checked === false) {
             document.documentElement.style.setProperty('--r', ".375rem");
             document.documentElement.style.setProperty('--rr', "50px");
@@ -33,19 +37,23 @@ export default function Configuration() {
         }
     }
 
-    const darkMode = () => {
+    const handleDarkMode = async (event:any) => {
+        await WorkerService.updateDarkMode(worker.id, event.target.checked).then((response: any) => {
+            setDarkMode(response.darkmode);
+            setWorker({ ...worker, darkmode: response.darkmode });
+        })
             document.body.classList.toggle('darkmode');
     }
 
 
-    const editVoiceCommand = async (event: any) => {
+    const handleVoiceCommand = async (event: any) => {
         await WorkerService.updateVoiceCommand(worker.id, event.target.checked).then((response: any) => {
             setVoiceCommand(response.voiceCommand);
             setWorker({ ...worker, voiceCommand: response.voiceCommand });
         })
     }
 
-    const editPounds = async (event: any) => {
+    const handlePounds = async (event: any) => {
         await WorkerService.updatePounds(worker.id, event.target.checked).then((response: any) => {
             setPounds(response.pounds);
             setWorker({ ...worker, pounds: response.pounds });
@@ -60,11 +68,13 @@ export default function Configuration() {
         document.documentElement.style.setProperty('--p', fontSize - 10 + "px");
         document.documentElement.style.setProperty('--pp', fontSize - 12 + "px");
 
+        console.log("worker ---> ", worker)
         setPounds(worker?.pounds);
         setVoiceCommand(worker?.voiceCommand);
-
-
-        // document.documentElement.style.setProperty('--z', JSON.stringify(1 + (fontSize / 100)));
+        setScreenReading(worker?.screenReader);
+        setDarkMode(worker?.darkmode);
+        setSquareStyleLayout(worker?.square);
+        setFontSize(worker?.fontSize);
 
     }, [fontSize, worker])
 
@@ -131,7 +141,7 @@ export default function Configuration() {
                                     <span className="subtitle-confuration">{t("darkmode")}</span>
 
                                     <div className="switch">
-                                        <input onChange={(e) => darkMode()} type="checkbox" id="darkMode" name="darkMode" />
+                                        <input onChange={(e) => handleDarkMode(e)} type="checkbox" id="darkMode" name="darkMode" checked={darkMode} />
                                         <label htmlFor="darkMode" />
                                     </div>
                                 </div>
@@ -141,7 +151,7 @@ export default function Configuration() {
                                     <span className="subtitle-confuration">{t("squareStyleLayout")}</span>
 
                                     <div className="switch">
-                                        <input onChange={(e) => handleChange(e)} type="checkbox" id="switch" name="switch" />
+                                        <input onChange={(e) => handleSquare(e)} type="checkbox" id="switch" name="switch" />
                                         <label htmlFor="switch" />
                                     </div>
                                 </div>
@@ -178,7 +188,7 @@ export default function Configuration() {
 
                                             <div className="switch-accessibility">
                                                 <div className="switch">
-                                                    <input type="checkbox" id="slider-voiceCommand" name="slider-voiceCommand" checked={voiceCommand} onChange={editVoiceCommand} />
+                                                    <input type="checkbox" id="slider-voiceCommand" name="slider-voiceCommand" checked={voiceCommand} onChange={handleVoiceCommand} />
                                                     <label htmlFor="slider-voiceCommand" />
                                                 </div>
                                             </div>
@@ -204,7 +214,7 @@ export default function Configuration() {
                                                 <span className="subtitle-confuration">{t("pounds")}</span>
                                                 <div className="switch-accessibility">
                                                     <div className="switch">
-                                                        <input type="checkbox" id="slider-pounds" name="slider-pounds" checked={pounds} onChange={editPounds} />
+                                                        <input type="checkbox" id="slider-pounds" name="slider-pounds" checked={pounds} onChange={handlePounds} />
                                                         <label htmlFor="slider-pounds" />
                                                     </div>
                                                 </div>

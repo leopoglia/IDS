@@ -35,7 +35,11 @@ export default function LoginForm() {
             email: response.corporateEmail,
             language: response.language,
             voiceCommand: response.voiceCommand,
-            pounds: response.pounds
+            pounds: response.pounds,
+            screenReader: response.screenReader,
+            darkmode: response.darkmode,
+            square: response.square,
+            fontSize: response.fontSize
           };
           setWorker(worker);
           navigate("/demands/1");

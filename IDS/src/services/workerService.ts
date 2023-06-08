@@ -99,6 +99,50 @@ const Services = {
                 .catch(resolve)
         })
     },
+    updateScreenReader: function (id: number, screenReader: any) {
+        return new Promise((resolve, reject) => {
+            fetch(url + '/screenReader/' + id, {
+                method: 'PUT', body: JSON.stringify({
+                    screenReader: screenReader
+                }), headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(resolve)
+        })
+    },
+    updateDarkMode: function (id: number, darkmode: any) {
+        return new Promise((resolve, reject) => {
+            fetch(url + '/darkmode/' + id, {
+                method: 'PUT', body: JSON.stringify({
+                    darkmode: darkmode
+                }), headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(resolve)
+        })
+    },
+    updateSquare: function (id: number, square: any) {
+        return new Promise((resolve, reject) => {
+            fetch(url + '/square/' + id, {
+                method: 'PUT', body: JSON.stringify({
+                    square: square
+                }), headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(resolve)
+        })
+    },
+    updateFontSize: function (id: number, fontSize: any) {
+        return new Promise((resolve, reject) => {
+            fetch(url + '/fontSize/' + id, {
+                method: 'PUT', body: JSON.stringify({
+                    fontSize: fontSize
+                }), headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(resolve)
+        })
+    },
     isUserOnline: function (workerCode: any){
         return new Promise((resolve, reject) => {
             fetch(url + '/user/' + workerCode + "/online", {

@@ -40,7 +40,7 @@ import Workflow from "./components/Solicitation/Demands/Workflow";
 export default function Router() {
 
     // Contexto do usuário
-    const [worker, setWorker]: any = useState({ id: "", office: "", name: "", email: "", language: "", voiceCommand: false, pounds: false });
+    const [worker, setWorker]: any = useState({ id: "", office: "", name: "", email: "", language: "", voiceCommand: false, pounds: false, screenReader: false, darkmode: false, square: false, fontSize: 24 });
 
     useEffect(() => {
 
@@ -49,6 +49,11 @@ export default function Router() {
             let workerCode; // Variável que armazena o código do usuário
 
             let cookieUser: any = Cookies?.get('user'); // Pega o cookie do usuário
+
+            if(JSON.parse(cookieUser).worker.darkmode === true){
+                document.body.classList.toggle('darkmode');
+            }
+
 
             // Verifica se o cookie existe
             if (cookieUser !== undefined) {
@@ -70,8 +75,17 @@ export default function Router() {
                             email: response.corporateEmail,
                             language: response.language,
                             voiceCommand: response.voiceCommand,
-                            pounds: response.pounds
+                            pounds: response.pounds,
+                            screenReader: response.screenReader,
+                            darkmode: response.darkmode,
+                            square: response.square,
+                            fontSize: response.fontSize
                         }
+
+                        if(response.darkmode === true){
+                            document.body.classList.toggle('darkmode');
+                        }
+
                         setWorker(worker); // Seta os dados do usuário no context
                     });
                 }

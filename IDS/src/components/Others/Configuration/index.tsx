@@ -72,6 +72,8 @@ export default function Configuration() {
             setFontSize(response.fontSize);
             setWorker({ ...worker, fontSize: response.fontSize });
 
+            console.log(response.fontSize);
+
             document.documentElement.style.setProperty('--gg', response.fontSize - 2 + "px");
             document.documentElement.style.setProperty('--g', response.fontSize - 4 + "px");
             document.documentElement.style.setProperty('--m', response.fontSize - 6 + "px");
@@ -87,7 +89,7 @@ export default function Configuration() {
         setDarkMode(worker?.darkmode);
         setSquareStyleLayout(worker?.square);
         setFontSize(worker?.fontSize);
-    }, [worker.square, worker.darkmode, worker])
+    }, [worker])
 
     return (
         <div className="configuration">

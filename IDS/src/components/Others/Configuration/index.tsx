@@ -27,22 +27,29 @@ export default function Configuration() {
     const [squareStyleLayout, setSquareStyleLayout] = useState(false);
     const image = name.substring(0, 1);
 
-    const handleSquare = (event: any) => {
-        if (event.target.checked === false) {
-            document.documentElement.style.setProperty('--r', ".375rem");
-            document.documentElement.style.setProperty('--rr', "50px");
-        } else {
-            document.documentElement.style.setProperty('--r', "2px");
-            document.documentElement.style.setProperty('--rr', "2px");
-        }
+    const handleSquare = async (event: any) => {
+        await WorkerService.updateSquare(worker.id, event.target.checked).then((response: any) => {
+            console.log(response);
+            setSquareStyleLayout(response.square);
+            setWorker({ ...worker, square: response.square });
+
+            if (response.square === false) {
+                document.documentElement.style.setProperty('--r', ".375rem");
+                document.documentElement.style.setProperty('--rr', "50px");
+            } else {
+                document.documentElement.style.setProperty('--r', "2px");
+                document.documentElement.style.setProperty('--rr', "2px");
+            }
+        })
+
     }
 
-    const handleDarkMode = async (event:any) => {
+    const handleDarkMode = async (event: any) => {
         await WorkerService.updateDarkMode(worker.id, event.target.checked).then((response: any) => {
             setDarkMode(response.darkmode);
             setWorker({ ...worker, darkmode: response.darkmode });
         })
-            document.body.classList.toggle('darkmode');
+        document.body.classList.toggle('darkmode');
     }
 
 
@@ -62,13 +69,6 @@ export default function Configuration() {
 
 
     useEffect(() => {
-        document.documentElement.style.setProperty('--gg', fontSize - 2 + "px");
-        document.documentElement.style.setProperty('--g', fontSize - 4 + "px");
-        document.documentElement.style.setProperty('--m', fontSize - 6 + "px");
-        document.documentElement.style.setProperty('--p', fontSize - 10 + "px");
-        document.documentElement.style.setProperty('--pp', fontSize - 12 + "px");
-
-        console.log("worker ---> ", worker)
         setPounds(worker?.pounds);
         setVoiceCommand(worker?.voiceCommand);
         setScreenReading(worker?.screenReader);
@@ -76,7 +76,7 @@ export default function Configuration() {
         setSquareStyleLayout(worker?.square);
         setFontSize(worker?.fontSize);
 
-    }, [fontSize, worker])
+    }, [worker])
 
     return (
         <div className="configuration">
@@ -137,24 +137,24 @@ export default function Configuration() {
                                 <span className="title-confuration">{t("style")}</span>
 
                                 <div className="display-flex">
-                                <div className="display-flex mr20">
-                                    <span className="subtitle-confuration">{t("darkmode")}</span>
+                                    <div className="display-flex mr20">
+                                        <span className="subtitle-confuration">{t("darkmode")}</span>
 
-                                    <div className="switch">
-                                        <input onChange={(e) => handleDarkMode(e)} type="checkbox" id="darkMode" name="darkMode" checked={darkMode} />
-                                        <label htmlFor="darkMode" />
+                                        <div className="switch">
+                                            <input onChange={handleDarkMode} type="checkbox" id="darkMode" name="darkMode" checked={darkMode} />
+                                            <label htmlFor="darkMode" />
+                                        </div>
                                     </div>
-                                </div>
 
 
-                                <div className="display-flex">
-                                    <span className="subtitle-confuration">{t("squareStyleLayout")}</span>
+                                    <div className="display-flex">
+                                        <span className="subtitle-confuration">{t("squareStyleLayout")}</span>
 
-                                    <div className="switch">
-                                        <input onChange={(e) => handleSquare(e)} type="checkbox" id="switch" name="switch" />
-                                        <label htmlFor="switch" />
+                                        <div className="switch">
+                                            <input onChange={handleSquare} type="checkbox" id="switch" name="switch" checked={squareStyleLayout} />
+                                            <label htmlFor="switch" />
+                                        </div>
                                     </div>
-                                </div>
                                 </div>
 
                             </div>

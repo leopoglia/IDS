@@ -41,6 +41,19 @@ export default function LoginForm() {
             square: response.square,
             fontSize: response.fontSize
           };
+
+          if (response.darkmode === true) {
+              document.body.classList.toggle('darkmode');
+          }
+
+          if (response.square === false) {
+              document.documentElement.style.setProperty('--r', ".375rem");
+              document.documentElement.style.setProperty('--rr', "50px");
+          } else {
+              document.documentElement.style.setProperty('--r', "2px");
+              document.documentElement.style.setProperty('--rr', "2px");
+          }
+
           setWorker(worker);
           navigate("/demands/1");
         } else {

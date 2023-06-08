@@ -50,11 +50,7 @@ export default function Router() {
 
             let cookieUser: any = Cookies?.get('user'); // Pega o cookie do usuário
 
-            if(JSON.parse(cookieUser).worker.darkmode === true){
-                document.body.classList.toggle('darkmode');
-            }
-
-
+    
             // Verifica se o cookie existe
             if (cookieUser !== undefined) {
                 // Pega o código do usuário
@@ -82,9 +78,18 @@ export default function Router() {
                             fontSize: response.fontSize
                         }
 
-                        if(response.darkmode === true){
+                        if (response.darkmode === true) {
                             document.body.classList.toggle('darkmode');
                         }
+
+                        if (response.square === false) {
+                            document.documentElement.style.setProperty('--r', ".375rem");
+                            document.documentElement.style.setProperty('--rr', "50px");
+                        } else {
+                            document.documentElement.style.setProperty('--r', "2px");
+                            document.documentElement.style.setProperty('--rr', "2px");
+                        }
+
 
                         setWorker(worker); // Seta os dados do usuário no context
                     });

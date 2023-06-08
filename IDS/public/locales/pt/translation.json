@@ -252,5 +252,9 @@
     "pounds": "Libras",
     "searchChat": "Pesquisar mensagem",
     "viewSelects": "Visualizar selecionados",
-    "removeSelects": "Remover selecionados"
+    "removeSelects": "Remover selecionados",
+    "darkmode": "Modo escuro",
+    "style": "Estilo",
+    "workFlow": "Fluxo de trabalho",
+    "demandWorkFlow": "Demanda > Fluxo de trabalho"
 }

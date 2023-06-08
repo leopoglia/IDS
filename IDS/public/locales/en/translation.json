@@ -244,5 +244,9 @@
     "pounds": "Pounds",
     "searchChat": "Search chat",
     "viewSelects": "View selects",
-    "removeSelects": "Remove selects"
+    "removeSelects": "Remove selects",
+    "darkmode": "Dark mode",
+    "style": "Style",
+    "workFlow": "Workflow",
+    "demandWorkFlow": "Demand > Workflow"
 }

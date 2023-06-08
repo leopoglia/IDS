@@ -243,5 +243,9 @@
     "pounds": "Libras",
     "searchChat": "Buscar chat",
     "viewSelects": "Ver selecciones",
-    "removeSelects": "Eliminar selecciones"
+    "removeSelects": "Eliminar selecciones",
+    "darkmode": "Modo oscuro",
+    "style": "Estilo",
+    "workFlow": "Flujo de trabajo",
+    "demandWorkFlow": "Demanda > Flujo de trabajo"
 }

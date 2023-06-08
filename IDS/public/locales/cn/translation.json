@@ -245,5 +245,9 @@
     "pounds": "磅",
     "searchChat": "搜索聊天",
     "viewSelects": "查看選擇",
-    "removeSelects": "刪除選擇"
+    "removeSelects": "刪除選擇",
+    "darkmode": "黑暗模式",
+    "style": "風格",
+    "workFlow": "工作流程",
+    "demandWorkFlow": "需求 > 工作流程"
 }

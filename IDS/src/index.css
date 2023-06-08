@@ -24,7 +24,7 @@
 }
 
 
-/* :root {
+.darkmode {
   --white: rgb(30, 30, 30);
   --white2: #d3d3d3;
   --greyF7: rgb(37, 37, 38);
@@ -34,7 +34,7 @@
   --grey59: rgb(201, 209, 217);
   --grey3d: rgb(255, 255, 255);
   --greyD9: rgb(48, 54, 61);
-} */
+}
 
 
 @font-face {
@@ -505,6 +505,10 @@ hr {
 
 .mb0{
   margin-bottom: 0px !important;
+}
+
+.mr20{
+  margin-right: 20px !important;
 }
 
 .checkbox span {

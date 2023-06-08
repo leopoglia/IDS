@@ -146,7 +146,7 @@ export default function Workerflow() {
             <div className="container">
 
                 <div className="backgroud-title">
-                    <Title nav={t("demand > workFlow")} title="workFlow" />
+                    <Title nav={t("demandWorkFlow")} title="workFlow" />
                 </div>
 
 

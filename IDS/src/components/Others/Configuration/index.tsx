@@ -33,6 +33,11 @@ export default function Configuration() {
         }
     }
 
+    const darkMode = () => {
+            document.body.classList.toggle('darkmode');
+    }
+
+
     const editVoiceCommand = async (event: any) => {
         await WorkerService.updateVoiceCommand(worker.id, event.target.checked).then((response: any) => {
             setVoiceCommand(response.voiceCommand);
@@ -119,7 +124,18 @@ export default function Configuration() {
                             </div>
 
                             <div className="change-configuration">
-                                <span className="title-confuration">{t("square")}</span>
+                                <span className="title-confuration">{t("style")}</span>
+
+                                <div className="display-flex">
+                                <div className="display-flex mr20">
+                                    <span className="subtitle-confuration">{t("darkmode")}</span>
+
+                                    <div className="switch">
+                                        <input onChange={(e) => darkMode()} type="checkbox" id="darkMode" name="darkMode" />
+                                        <label htmlFor="darkMode" />
+                                    </div>
+                                </div>
+
 
                                 <div className="display-flex">
                                     <span className="subtitle-confuration">{t("squareStyleLayout")}</span>
@@ -128,6 +144,7 @@ export default function Configuration() {
                                         <input onChange={(e) => handleChange(e)} type="checkbox" id="switch" name="switch" />
                                         <label htmlFor="switch" />
                                     </div>
+                                </div>
                                 </div>
 
                             </div>

@@ -67,6 +67,18 @@ export default function Configuration() {
         })
     }
 
+    const handleFontSize = async (fontSize:any) => {
+        await WorkerService.updateFontSize(worker.id, fontSize).then((response: any) => {
+            setFontSize(response.fontSize);
+            setWorker({ ...worker, fontSize: response.fontSize });
+
+            document.documentElement.style.setProperty('--gg', response.fontSize - 2 + "px");
+            document.documentElement.style.setProperty('--g', response.fontSize - 4 + "px");
+            document.documentElement.style.setProperty('--m', response.fontSize - 6 + "px");
+            document.documentElement.style.setProperty('--p', response.fontSize - 10 + "px");
+            document.documentElement.style.setProperty('--pp', response.fontSize - 12 + "px");
+        })
+    }
 
     useEffect(() => {
         setPounds(worker?.pounds);
@@ -75,8 +87,7 @@ export default function Configuration() {
         setDarkMode(worker?.darkmode);
         setSquareStyleLayout(worker?.square);
         setFontSize(worker?.fontSize);
-
-    }, [worker])
+    }, [worker.square, worker.darkmode, worker])
 
     return (
         <div className="configuration">
@@ -170,13 +181,13 @@ export default function Configuration() {
                                         <span className="title-confuration">{t("accessibility")}</span>
                                     </div>
 
-
+                            
                                     <div className="sliders-accessibility">
                                         <div className="display-space-between">
                                             <span className="subtitle-confuration">{t("fontSize")}</span>
 
                                             <div className="switch-slider-fontSize">
-                                                <Slider setValue={setFontSize} />
+                                                <Slider setValue={setFontSize} fontSize={fontSize} handleFontSize={handleFontSize} />
                                             </div>
 
                                         </div>

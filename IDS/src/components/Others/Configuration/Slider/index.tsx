@@ -2,6 +2,7 @@ import { useTheme } from '@mui/material';
 
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
+import { useEffect } from 'react';
 
 
 export default function DiscreteSlider(props: any) {
@@ -10,10 +11,15 @@ export default function DiscreteSlider(props: any) {
 
 
     function valuetext(value: number) {
-        props.setValue(value);
+        props.handleFontSize(value);
         return `${value}°C`;
     }
 
+    useEffect(() => {
+        if(props.fontSize !== 0){
+        valuetext(props.fontSize);
+        }
+    }, []);
 
 
     return (

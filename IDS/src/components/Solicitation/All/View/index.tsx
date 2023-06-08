@@ -101,12 +101,13 @@ export default function ViewDemand() {
         minuteCode: "", minuteDate: "", minuteDescription: "", minuteStatus: "", minuteName: ""
     }]);
 
+    useEffect(() => {
+        setLoad(true);
+    }, []);
+
     // Chama função ao entrar na página
     useEffect(() => {
         // Buscar dados da demanda
-
-        setLoad(true);
-
         localStorage.removeItem('expenseList'); // Limpa a lista de despesas da edição
 
         if (url === "demand") {

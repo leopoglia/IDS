@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import notifyUtil from "../../../../utils/notifyUtil";
 import UserContext from "../../../../context/userContext";
 import Services from "../../../../services/workerService";
+import othersUtil from "../../../../utils/othersUtil";
 import "./style.css";
 
 export default function LoginForm() {
@@ -76,7 +77,7 @@ export default function LoginForm() {
   return (
     <form onSubmit={handleSubmit} className="login-form">
       <header>
-        <h1>
+        <h1 onClick={() => othersUtil.synthesis(t('title') + 'Weg IDS')}>
           {t("title")}
           <b>WEG IDS</b>
         </h1>

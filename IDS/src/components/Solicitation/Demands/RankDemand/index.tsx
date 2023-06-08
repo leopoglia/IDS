@@ -74,8 +74,8 @@ export default function RankDemand() {
             // Salvando a classificação
 
             if (edit === undefined) {
-
-                ServicesClassification.save(classification.size, classification.ti, 0, "", classification.buReq, classification.buBenList, analysis.id, fileAttachment[0]).then((response: any) => {
+                console.log(fileAttachment);
+                ServicesClassification.save(classification.size, classification.ti, 0, "", classification.buReq, classification.buBenList, analysis.id, fileAttachment).then((response: any) => {
                     let classificationCode = response.classificationCode; // Pegando o código da classificação
 
                     // Atualizando a classificação da demanda
@@ -105,7 +105,7 @@ export default function RankDemand() {
                 if (classification.ppmCode === undefined || classification.epicJiraLink === "") {
                     notifyUtil.error(t("fillAllFields"))
                 } else {
-                    ServicesClassification.save(classification.size, classification.ti, classification.ppmCode, classification.epicJiraLink, classification.buReq, classification.buBenList, analysis.id, fileAttachment[0]).then((response: any) => {
+                    ServicesClassification.save(classification.size, classification.ti, classification.ppmCode, classification.epicJiraLink, classification.buReq, classification.buBenList, analysis.id, fileAttachment).then((response: any) => {
                         let classificationCode = response.classificationCode; // Pegando o código da classificação
 
                         ServicesDemand.updateClassification(demand.demandCode, classificationCode).then((response: any) => {
@@ -168,7 +168,7 @@ export default function RankDemand() {
         for (let i = 0; i < files.length; i++) {
             filesArray.push(files[i]);
         }
-
+        console.log(filesArray)
         setFileAttachment(filesArray);
     }
 
@@ -275,7 +275,7 @@ export default function RankDemand() {
                             <div className='display-block'>
                                 <span>{t("attachments")}</span>
 
-                                <input type="file" id="file" onChange={handleFileSelected} />
+                                <input type="file" id="file" onChange={handleFileSelected} multiple />
                                 <label htmlFor="file">
                                     <span className="material-symbols-outlined">
                                         upload_file

@@ -2,7 +2,7 @@
 const url = "http://localhost:8443/api/classification"
 
 const Services = {
-    save: function (classificationSize: Number, itSection: String, ppmcode: Number, epicJiraLink: String, requesterBu: any, beneficiaryBu: any, analistRegistry: any, classificationAttachment: any) {
+    save: function (classificationSize: Number, itSection: String, ppmcode: Number, epicJiraLink: String, requesterBu: any, beneficiaryBu: any, analistRegistry: any, classificationAttachments: any[]) {
         var formData = new FormData();
 
         let beneficiaryBuList: any = [];
@@ -21,7 +21,8 @@ const Services = {
         }
 
         formData.append('classification', JSON.stringify(classification));
-        formData.append('classificationAttachment', classificationAttachment);
+        classificationAttachments.forEach(classificationAttachment => formData.append('classificationAttachment', classificationAttachment));
+        console.log("classification attachments: " + formData.getAll('classificationAttachment'))
 
         return new Promise((resolve, reject) => {
             fetch(url, {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Route, Routes, BrowserRouter, useLocation } from "react-router-dom";
 import { WebSocketService } from "./services/webSocketService";
 
@@ -50,7 +50,7 @@ export default function Router() {
 
             let cookieUser: any = Cookies?.get('user'); // Pega o cookie do usuário
 
-    
+
             // Verifica se o cookie existe
             if (cookieUser !== undefined) {
                 // Pega o código do usuário
@@ -103,8 +103,6 @@ export default function Router() {
         }
     }, [worker.id]);
 
-
-
     return (
         <>
             <WebSocketService>
@@ -128,6 +126,35 @@ export default function Router() {
 
 function RouterContent(props: any) {
     const location = useLocation(); // get the current path
+
+    // Função para falar o texto selecionado
+    const synthesis = window.speechSynthesis;
+    const workerContext = useContext(UserContext).worker;
+
+    const speakText = (text: any) => {
+        const utterance = new SpeechSynthesisUtterance(text);
+        synthesis.speak(utterance);
+    }
+
+
+    const handleTextSelection = () => {
+        const selectedText = window.getSelection()?.toString();
+        speakText(selectedText);
+    }
+
+
+    useEffect(() => {
+        const worker = workerContext;
+
+        console.log(worker.screenReader);
+        if (worker.screenReader === true) {
+            document.addEventListener('mouseup', handleTextSelection);
+            return () => {
+                document.removeEventListener('mouseup', handleTextSelection);
+            };
+
+        }
+    }, [workerContext]);
 
 
     return (

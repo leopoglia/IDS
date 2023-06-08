@@ -79,6 +79,13 @@ export default function Configuration() {
         })
     }
 
+    const handleScreenReading = async (event: any) => {
+        await WorkerService.updateScreenReader(worker.id, event.target.checked).then((response: any) => {
+            setScreenReading(response.screenReader);
+            setWorker({ ...worker, screenReader: response.screenReader });
+        })
+    }
+
     useEffect(() => {
         setPounds(worker?.pounds);
         setVoiceCommand(worker?.voiceCommand);
@@ -211,7 +218,7 @@ export default function Configuration() {
 
                                             <div className="switch-accessibility">
                                                 <div className="switch">
-                                                    <input type="checkbox" id="slider-screenReading" name="slider-screenReading" />
+                                                    <input type="checkbox" id="slider-screenReading" name="slider-screenReading" onChange={handleScreenReading} checked={screenReading} />
                                                     <label htmlFor="slider-screenReading" />
                                                 </div>
                                             </div>

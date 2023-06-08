@@ -77,7 +77,7 @@ export default function LoginForm() {
   return (
     <form onSubmit={handleSubmit} className="login-form">
       <header>
-        <h1 onClick={() => othersUtil.synthesis(t('title') + 'Weg IDS')}>
+        <h1>
           {t("title")}
           <b>WEG IDS</b>
         </h1>
@@ -87,13 +87,13 @@ export default function LoginForm() {
       <main>
         <div>
           <span className="material-symbols-outlined">alternate_email</span>
-          <label htmlFor="email" onClick={() => othersUtil.synthesis(t('email'))}>{t("email")}</label>
+          <label htmlFor="email">{t("email")}</label>
           <input id="email" type="text" ref={emailRef} required />
         </div>
 
         <div className="password">
           <span className="material-symbols-outlined">key</span>
-          <label htmlFor="password" onClick={() => othersUtil.synthesis(t('password'))}>{t("password")}</label>
+          <label htmlFor="password">{t("password")}</label>
           <input id="password" type="password" ref={passwordRef} required />
         </div>
 

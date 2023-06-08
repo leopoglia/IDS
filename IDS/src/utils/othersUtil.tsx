@@ -3,10 +3,13 @@ const othersUtil = {
 
     // Função para mostrar o navigator
 
-    synthesis: (text: string) => {
-        const synth = window.speechSynthesis;
-        const utterThis = new SpeechSynthesisUtterance(text);
-        synth.speak(utterThis);
+    synthesis: (text: string, reader: boolean) => {
+
+        if (reader === true) {
+            const synth = window.speechSynthesis;
+            const utterThis = new SpeechSynthesisUtterance(text);
+            synth.speak(utterThis);
+        }
     },
     footer: (url: string[], demands: string | any[], proposals: string | any[], agendas: string | any[], minutes: string | any[], search: string, filter: string, pages: number, page: any, navigate: any, demandsSize: any, table: any) => {
 

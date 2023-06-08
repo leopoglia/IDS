@@ -18,8 +18,6 @@ export default function SelectLabels(props: any) {
 
     function getBu() {
 
-        console.log(props.edit)
-
         if (props.edit !== undefined) {
             ServicesProposal.findById(url).then((response: any) => {
 

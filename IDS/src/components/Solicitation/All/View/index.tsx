@@ -245,11 +245,8 @@ export default function ViewDemand() {
                 if (expenses.length > 0) {
 
                     for (let i = 0; i < expenses.length; i++) {
-                        console.log(demandCode, expenses[i].proposal.proposalCode)
+
                         if (expenses[i].proposal.proposalCode === demandCode) {
-
-                            console.log(expenses[i])
-
                             expense.push(expenses[i])
 
                             if (expenses[i].expensesType === "recurrent") {

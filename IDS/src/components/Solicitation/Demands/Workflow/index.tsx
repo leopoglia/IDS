@@ -24,17 +24,16 @@ export default function Workerflow() {
             var agenda: any = {};
             let stepActualAux = 0;
 
+            try {
+                await ServicesProposal.findByDemandCode(demandCode).then((response: any) => {
+                    proposal = response;
+                })
+                await ServicesAgenda.findByProposals(proposal.proposalCode).then((response: any) => {
+                    agenda = response;
+                })
+            } catch (error) {
+            }
 
-            await ServicesProposal.findByDemandCode(demandCode).then((response: any) => {
-                proposal = response;
-            })
-            await ServicesAgenda.findByProposals(proposal.proposalCode).then((response: any) => {
-                agenda = response;
-                console.log("response ==> ", response)
-            })
-
-
-            console.log("agenda", agenda)
 
             if (demand?.demandStatus === "Backlog") {
                 setStepActual(0);
@@ -70,7 +69,6 @@ export default function Workerflow() {
             if (stepActualAux >= 0) {
                 worker.push(demand.requesterRegistration.workerName);
                 setWorker(worker);
-                console.log("worker", worker)
             }
             if (stepActualAux >= 1) {
                 worker.push(demand.classification.analistRegistry.workerName);
@@ -92,10 +90,10 @@ export default function Workerflow() {
                 worker.push(agenda.analistRegistry.workerName);
                 setWorker(worker);
             }
-            if(stepActualAux >= 6){
+            if (stepActualAux >= 6) {
                 let comissions = "";
-                for(let i = 0; i < agenda.commission.length; i++){
-                    if(i === agenda.commission.length - 1){
+                for (let i = 0; i < agenda.commission.length; i++) {
+                    if (i === agenda.commission.length - 1) {
                         comissions += agenda.commission[i].commissionName;
                         break;
                     }

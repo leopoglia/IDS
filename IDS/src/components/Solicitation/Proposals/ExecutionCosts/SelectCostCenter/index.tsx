@@ -126,11 +126,7 @@ export default function SelectCostCenter(props: any) {
             value = 0;
         }
 
-        console.log(idCostCenter)
-
         const updatedCostCenters = idCostCenter.map((costCenter: any) => {
-
-            console.log(costCenter)
 
             if (costCenter.costCenterCode === costCenterActual.costCenterCode) {
 

@@ -12,11 +12,7 @@ const Services = {
                     expenses.push(expense[i]);
                 }
             }
-
-            console.log("expensesCostCenters ====> ",expensesCostCenters)
-
             for (let i = 0; i < expensesCostCenters.length; i++) {
-                console.log("expensesCostCenters[i].costCenterCode",expensesCostCenters[i])
                 expensesCostCentersNew.push({ "costCenter": { "costCenterCode": expensesCostCenters[i].costCenterCode }, "percent": expensesCostCenters[i].percent })
             }
 

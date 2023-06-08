@@ -46,8 +46,6 @@ export default function Demands() {
 
     // Entra na página e busca as demandas cadastradas
     useEffect(() => {
-        console.log(loading, table);
-
         setLoading(true);
 
         if (url[3] === "demands") {

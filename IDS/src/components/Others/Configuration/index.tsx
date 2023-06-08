@@ -29,7 +29,6 @@ export default function Configuration() {
 
     const handleSquare = async (event: any) => {
         await WorkerService.updateSquare(worker.id, event.target.checked).then((response: any) => {
-            console.log(response);
             setSquareStyleLayout(response.square);
             setWorker({ ...worker, square: response.square });
 
@@ -71,8 +70,6 @@ export default function Configuration() {
         await WorkerService.updateFontSize(worker.id, fontSize).then((response: any) => {
             setFontSize(response.fontSize);
             setWorker({ ...worker, fontSize: response.fontSize });
-
-            console.log(response.fontSize);
 
             document.documentElement.style.setProperty('--gg', response.fontSize - 2 + "px");
             document.documentElement.style.setProperty('--g', response.fontSize - 4 + "px");

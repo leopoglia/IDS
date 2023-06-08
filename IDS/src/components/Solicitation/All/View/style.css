@@ -436,6 +436,10 @@
     padding: 10px !important;
 }
 
+.h100vh{
+    height: 100vh;
+}
+
 .costCenter-td .display-flex-center {
     margin-bottom: 10px;
 }

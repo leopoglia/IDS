@@ -18,6 +18,7 @@ import Expenses from "./Others/Expenses";
 import Table from "./Others/Table";
 import ButtonsActions from "./Others/ButtonsActions";
 import notifyUtil from "../../../../utils/notifyUtil";
+import Load from "../../../Fixed/Load";
 
 import "./style.css";
 
@@ -28,11 +29,11 @@ export default function ViewDemand() {
 
     const worker: any = useContext(UserContext).worker; // Buscar dados do usuário
     const office = worker.office; // Buscar tipo de usuário
-    const workerName = worker.name; // Buscar nome do usuário
     const workerId = worker.id; // Buscar código do usuário
     const url = window.location.href.split("/")[3]; // Buscar tipo da demanda
     const demandCode: any = parseInt(useParams().id || "null"); // Buscar código da demanda
     const demandVersion = parseInt(window.location.href.split("?")[1]); // Buscar versão da demanda
+    const [load, setLoad] = useState(true); // Carregamento da página
 
     // Botões superiores
     // 0 - Sem botões  
@@ -104,7 +105,9 @@ export default function ViewDemand() {
     useEffect(() => {
         // Buscar dados da demanda
 
-        localStorage.removeItem('expenseList');
+        setLoad(true);
+
+        localStorage.removeItem('expenseList'); // Limpa a lista de despesas da edição
 
         if (url === "demand") {
             getDemand();
@@ -200,6 +203,7 @@ export default function ViewDemand() {
             } else if (response?.demandStatus === "BacklogComplement" || response?.demandStatus === "Assesment") {
                 setStepDemand(2);
             }
+            setLoad(false);
         })
     }
 
@@ -271,6 +275,8 @@ export default function ViewDemand() {
                         setFinalExecutionPeriod(dateFormat(expense[0].proposal.finalExecutionPeriod));
                         setPayBack(payback(expense[0].proposal.initialRunPeriod, expense[0].proposal.finalExecutionPeriod));
                     }
+
+                    setLoad(false);
                 }
 
             })
@@ -322,11 +328,9 @@ export default function ViewDemand() {
                 }
             }
             setMinute(minutes)
+            setLoad(false);
         })
     }
-
-
-
 
 
     // Buscar ata
@@ -386,26 +390,6 @@ export default function ViewDemand() {
         };
     }
 
-    function reprove() {
-        ServicesDemand.updateStatus(demandCode, "BacklogEdit").then((response: any) => {
-            send("/api/worker/" + demand.requesterRegistration.workerCode, setReproveNotification());
-            notifyUtil.success(t("demandReturn"));
-            getDemand();
-        }).catch((error: any) => {
-            notifyUtil.error(t("somethingWrong"));
-        })
-    }
-
-    const setReproveNotification = () => {
-        return notification = {
-            date: new Date(),
-            description: "Um analista devolveu a sua demanda de código " + demand.demandCode,
-            worker: { workerCode: JSON.parse(demand.requesterRegistration.workerCode) },
-            icon: "info",
-            type: "demand",
-        };
-    }
-
     // Gerar PDF
 
     const generatePDF = async () => {
@@ -414,9 +398,6 @@ export default function ViewDemand() {
 
 
     const attatchmentType = (type: string, demandParam: any) => {
-
-        console.log(demandParam)
-
         if (type === "demand") {
             if (demandParam.type === "image/png" || demandParam.type === "image/jpeg") {
                 return "png";
@@ -431,7 +412,7 @@ export default function ViewDemand() {
                 return "zip";
             } else if (demandParam.type === "application/x-rar-compressed") {
                 return "rar";
-            } else{
+            } else {
                 return "others";
             }
         } else if (type === "classification") {
@@ -524,15 +505,10 @@ export default function ViewDemand() {
     const [proposalScopeOpen, setProposalScopeOpen] = useState(false);
     const [complementOpen, setComplementOpen] = useState(false);
 
-
-    console.log(demand)
     return (
         <div className="view-demand">
-
-            { /* Verifica se é uma demanda ou uma proposta */  url === "demand" || url === "proposal" ? (
+            {load ?
                 <div>
-
-
                     <div className="container">
 
                         <div className="background-title">
@@ -544,575 +520,602 @@ export default function ViewDemand() {
 
                             )}
 
-                            {
-                                (demand?.activeVersion === true) ? (
-                                    (demand.demandStatus != "Cancelled") ? (
-                                        <ButtonsActions demand={demand} proposal={proposal} workerId={workerId} actionsDemand={actionsDemand} approveDemand={approveDemand} giveBack={giveBack} generatePDF={generatePDF} />
-                                    ) : (
-                                        <button className="btn-primary mw100">
-                                            <span className="material-symbols-outlined">
-                                                download
-                                            </span>
-                                            <span>{t("generatePDF")}</span>
-                                        </button>
-                                    )
-                                ) : demand?.demandCode !== 0 ? (
-                                    <button className="btn-primary mw100">
-                                        <span className="material-symbols-outlined">
-                                            download
-                                        </span>
-                                        <span>{t("generatePDF")}</span>
-                                    </button>
-                                ) : null
-                            }
-
                         </div>
 
-                        <div className="box" id="box">
-                            <div>
-                                <div className="display-flex-space-between display-solicitation-demand">
-                                    <p className="title">{demand.demandTitle}</p>
-                                    { /* Verifica se é uma demanda ou uma proposta */  url === "demand" ? (
-                                        <div className="code">{demand.demandCode}</div>
-                                    ) : (
-                                        <div className="code">{proposal.proposalCode}</div>
-                                    )}
-                                </div>
-
-                                <div className={"situation-current " + situationCorrentOpen}>
+                        <div className="box h100vh">
+                            <Load />
+                        </div>
+                    </div>
+                </div>
+                : (
+                    <>
+                        {
+                            url === "demand" || url === "proposal" ? (
+                                <div>
 
 
-                                    <div className="display-flex header-table">
-                                        <p className="title" >{t("requester")}:</p>
-                                        <div className="text-information workerName">{demand.requesterRegistration.workerName}</div>
+                                    <div className="container">
 
-                                        <span onClick={() => setSituationCorrentOpen(!situationCorrentOpen)} className="material-symbols-outlined arrow-expend">
-                                            expand_more
-                                        </span>
-                                    </div>
+                                        <div className="background-title">
 
-                                    {
-                                        proposal.responsibleAnalyst.workerName !== "" ? (
-                                            <div className="responsibleAnalyst">
-                                                <div className="display-flex">
-
-                                                    <p className="title">{t("responsibleAnalyst")}:</p>
-                                                    <div className="text-information workerName">{proposal.responsibleAnalyst.workerName}</div>
-                                                </div>
-                                            </div>
-                                        ) : (
-                                            null
-                                        )
-                                    }
-
-
-                                    <div className="display-grid">
-                                        <p className="title">{t("currentSituation")}:</p>
-                                        {demand.currentProblem ? (
-                                            <div className="text-information" >{HtmlReactParser(demand.currentProblem)}</div>
-                                        ) : (
-                                            null
-                                        )}
-                                    </div>
-
-                                    <div className="display-grid">
-                                        <p className="title objective">{t("objective")}:</p>
-                                        {demand.demandObjective ? (
-                                            <div className="text-information">{HtmlReactParser(demand.demandObjective)}</div>
-                                        ) : (
-                                            null
-                                        )}
-                                    </div>
-                                </div>
-
-                                {
-                                    (url === "proposal") ? (
-                                        <div className={"proposalScope " + proposalScopeOpen} >
-                                            <div className="display-flex-space-between header-table">
-
-                                                <p className="title">{t("proposalScope")}</p>
-                                                <span onClick={() => setProposalScopeOpen(!proposalScopeOpen)} className="material-symbols-outlined arrow-expend">
-                                                    expand_more
-                                                </span>
-                                            </div>
-
-
-                                            {proposal.descriptiveProposal ? (
-                                                <div className="descriptiveProposal text-information">
-                                                    {HtmlReactParser(proposal.descriptiveProposal)}
-                                                </div>
+                                            { /* Verifica se é uma demanda ou uma proposta */  url === "demand" ? (
+                                                <Title nav={t("demandViewDemand")} title="viewDemand" />
                                             ) : (
-                                                null
+                                                <Title nav={t("proposalViewProposal")} title="viewProposal" />
+
                                             )}
 
-                                        </div>
-                                    ) : (
-                                        null
-                                    )
-                                }
-
-                                <div className={"real-benefit " + benefitRealOpen}>
-
-                                    <div className="display-flex-space-between header-table">
-                                        <p className="title">{t("benefitReal")}</p>
-
-                                        <span onClick={() => setBenefitRealOpen(!benefitRealOpen)} className="material-symbols-outlined arrow-expend">
-                                            expand_more
-                                        </span>
-                                    </div>
-
-
-                                    <div className="infos">
-
-                                        <div className="display-flex-center">
-                                            <span className="bold-text">{t("monthlyValue")}:  </span>
-                                            {demand.realBenefit.realCurrency === "real" ? (
-                                                <span>R$</span>
-                                            ) : (demand.realBenefit.realCurrency === "dollar") ? (
-                                                <span>$</span>
-                                            ) : (
-                                                <span>€</span>
-                                            )}
-
-                                            <div className="text-information">{demand.realBenefit.realMonthlyValue.toLocaleString()}</div>
-                                        </div>
-                                    </div>
-
-                                    <div className="display-grid description">
-                                        <span className="desc">{t("description")}:</span>
-                                        <div className="text-information">{demand.realBenefit.realBenefitDescription}</div>
-
-                                    </div>
-                                </div>
-
-
-                                <div className={"potential-benefit " + benefitPotentialOpen}>
-                                    <div className="display-flex-space-between header-table">
-                                        <p className="title">{t("benefitPotential")}</p>
-
-                                        <span onClick={() => setBenefitPotentialOpen(!benefitPotentialOpen)} className="material-symbols-outlined arrow-expend">
-                                            expand_more
-                                        </span>
-                                    </div>
-
-                                    <div className="infos">
-
-                                        <div className="display-flex-center">
-                                            <span className="bold-text">{t("monthlyValue")}: </span>
-                                            {demand.potentialBenefit.potentialCurrency === "real" ? (
-                                                <span>R$</span>
-                                            ) : (demand.potentialBenefit.potentialCurrency === "dollar") ? (
-                                                <span>$</span>
-                                            ) : (
-                                                <span>€</span>
-                                            )}
-
-                                            <div className="text-information">{demand.potentialBenefit.potentialMonthlyValue.toLocaleString()}</div>
+                                            {
+                                                (demand?.activeVersion === true) ? (
+                                                    (demand.demandStatus != "Cancelled") ? (
+                                                        <ButtonsActions demand={demand} proposal={proposal} workerId={workerId} actionsDemand={actionsDemand} approveDemand={approveDemand} giveBack={giveBack} generatePDF={generatePDF} />
+                                                    ) : (
+                                                        <button className="btn-primary mw100">
+                                                            <span className="material-symbols-outlined">
+                                                                download
+                                                            </span>
+                                                            <span>{t("generatePDF")}</span>
+                                                        </button>
+                                                    )
+                                                ) : demand?.demandCode !== 0 ? (
+                                                    <button className="btn-primary mw100">
+                                                        <span className="material-symbols-outlined">
+                                                            download
+                                                        </span>
+                                                        <span>{t("generatePDF")}</span>
+                                                    </button>
+                                                ) : null
+                                            }
 
                                         </div>
-                                    </div>
 
-                                    <div className="infos">
-                                        <span>{t("legalObligation")}: {
-                                            (demand.potentialBenefit.legalObrigation === true) ? (<span>Sim</span>) : (<span>Não</span>)}</span>
-                                    </div>
-
-                                    <div className="display-grid description">
-
-                                        <span className="desc">{t("description")}:</span>
-
-                                        <div className="text-information">{demand.potentialBenefit.potentialBenefitDescription}</div>
-                                    </div>
-                                </div>
-
-                                <div className={"qualitative-benefit " + benefitQualitativeOpen}>
-
-                                    <div className="display-flex-space-between header-table">
-                                        <p className="title">{t("benefitQualitative")}</p>
-
-                                        <span onClick={() => setBenefitQualitativeOpen(!benefitQualitativeOpen)} className="material-symbols-outlined arrow-expend">
-                                            expand_more
-                                        </span>
-                                    </div>
-
-                                    <div className="infos">
-                                        <span>{t("internalControlRequirements")}: {(demand.qualitativeBenefit.interalControlsRequirements === true) ? (<span>Sim</span>) : <span>Não</span>}</span>
-                                    </div>
-
-                                    <div className="infos">
-                                        <span>{t("frequencyUse")}: {demand.qualitativeBenefit.frequencyOfUse}</span>
-                                    </div>
-
-                                    <div className="description display-grid">
-
-                                        <span className="desc">{t("description")}:</span>
-                                        {demand.qualitativeBenefit.qualitativeBenefitDescription ? (
-                                            <div className="text-information">{HtmlReactParser(demand.qualitativeBenefit.qualitativeBenefitDescription)}</div>
-                                        ) : (
-                                            null
-                                        )}
-
-                                    </div>
-                                </div>
-
-                                {centerCost && (
-                                    <Table title="costCenter" demandCode={demand?.demandCode} proposalCode={proposal?.proposalCode} headers={["costCenterCode", "costCenter"]} items={centerCost} />
-                                )
-                                }
-
-                            </div>
-
-
-                            {(stepDemand === 1 || stepDemand === 2) ? (
-
-                                (classification) ? (
-
-
-                                    (classification.epicJiraLink) ?
-                                        <Table title="classification" demandCode={demand?.demandCode} proposalCode={proposal?.proposalCode} headers={["size", "requesterBU", "buBenefited", "responsibleItSession", "ppmCode", "linkEpicJira"]} items={[classification.classificationSize, classification.requesterBu.bu, beneficiariesBu, classification.itSection, classification.ppmCode, classification.epicJiraLink]} />
-                                        :
-                                        <Table title="classification" demandCode={demand?.demandCode} proposalCode={proposal?.proposalCode} headers={["size", "requesterBU", "buBenefited", "responsibleItSession"]} items={[classification.classificationSize, classification.requesterBu.bu, beneficiariesBu, classification.itSection]} />
-                                ) : (null)
-                            ) : (null)
-                            }
-
-
-                            {proposalExpenseValue?.expensesCode > 0 ? (<Expenses type="expenses" proposalExpense={proposalExpenseValue} />) : (null)}
-
-                            {proposalExpenseRecurrent?.expensesCode > 0 ? (<Expenses type="recurrent" proposalExpense={proposalExpenseRecurrent} />) : (null)}
-
-                            {proposalExpenseInternal?.expensesCode > 0 ? (<Expenses type="internal" proposalExpense={proposalExpenseInternal} />) : (null)}
-
-
-
-                            {proposalExpense > 0 ? (
-                                <div className={"complement "} >
-                                    <div className="display-block">
-                                        <div className="display-flex-align-center">
-                                            <p className="title">{t("deadline")}:</p>
+                                        <div className="box" id="box">
                                             <div>
-                                                <span>{initialRunPeriod}</span>
-                                                <span>&nbsp; à &nbsp;</span>
-                                                <span>{finalExecutionPeriod}</span>
+                                                <div className="display-flex-space-between display-solicitation-demand">
+                                                    <p className="title">{demand.demandTitle}</p>
+                                                    { /* Verifica se é uma demanda ou uma proposta */  url === "demand" ? (
+                                                        <div className="code">{demand.demandCode}</div>
+                                                    ) : (
+                                                        <div className="code">{proposal.proposalCode}</div>
+                                                    )}
+                                                </div>
+
+                                                <div className={"situation-current " + situationCorrentOpen}>
+
+
+                                                    <div className="display-flex header-table">
+                                                        <p className="title" >{t("requester")}:</p>
+                                                        <div className="text-information workerName">{demand.requesterRegistration.workerName}</div>
+
+                                                        <span onClick={() => setSituationCorrentOpen(!situationCorrentOpen)} className="material-symbols-outlined arrow-expend">
+                                                            expand_more
+                                                        </span>
+                                                    </div>
+
+                                                    {
+                                                        proposal.responsibleAnalyst.workerName !== "" ? (
+                                                            <div className="responsibleAnalyst">
+                                                                <div className="display-flex">
+
+                                                                    <p className="title">{t("responsibleAnalyst")}:</p>
+                                                                    <div className="text-information workerName">{proposal.responsibleAnalyst.workerName}</div>
+                                                                </div>
+                                                            </div>
+                                                        ) : (
+                                                            null
+                                                        )
+                                                    }
+
+
+                                                    <div className="display-grid">
+                                                        <p className="title">{t("currentSituation")}:</p>
+                                                        {demand.currentProblem ? (
+                                                            <div className="text-information" >{HtmlReactParser(demand.currentProblem)}</div>
+                                                        ) : (
+                                                            null
+                                                        )}
+                                                    </div>
+
+                                                    <div className="display-grid">
+                                                        <p className="title objective">{t("objective")}:</p>
+                                                        {demand.demandObjective ? (
+                                                            <div className="text-information">{HtmlReactParser(demand.demandObjective)}</div>
+                                                        ) : (
+                                                            null
+                                                        )}
+                                                    </div>
+                                                </div>
+
+                                                {
+                                                    (url === "proposal") ? (
+                                                        <div className={"proposalScope " + proposalScopeOpen} >
+                                                            <div className="display-flex-space-between header-table">
+
+                                                                <p className="title">{t("proposalScope")}</p>
+                                                                <span onClick={() => setProposalScopeOpen(!proposalScopeOpen)} className="material-symbols-outlined arrow-expend">
+                                                                    expand_more
+                                                                </span>
+                                                            </div>
+
+
+                                                            {proposal.descriptiveProposal ? (
+                                                                <div className="descriptiveProposal text-information">
+                                                                    {HtmlReactParser(proposal.descriptiveProposal)}
+                                                                </div>
+                                                            ) : (
+                                                                null
+                                                            )}
+
+                                                        </div>
+                                                    ) : (
+                                                        null
+                                                    )
+                                                }
+
+                                                <div className={"real-benefit " + benefitRealOpen}>
+
+                                                    <div className="display-flex-space-between header-table">
+                                                        <p className="title">{t("benefitReal")}</p>
+
+                                                        <span onClick={() => setBenefitRealOpen(!benefitRealOpen)} className="material-symbols-outlined arrow-expend">
+                                                            expand_more
+                                                        </span>
+                                                    </div>
+
+
+                                                    <div className="infos">
+
+                                                        <div className="display-flex-center">
+                                                            <span className="bold-text">{t("monthlyValue")}:  </span>
+                                                            {demand.realBenefit.realCurrency === "real" ? (
+                                                                <span>R$</span>
+                                                            ) : (demand.realBenefit.realCurrency === "dollar") ? (
+                                                                <span>$</span>
+                                                            ) : (
+                                                                <span>€</span>
+                                                            )}
+
+                                                            <div className="text-information">{demand.realBenefit.realMonthlyValue.toLocaleString()}</div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="display-grid description">
+                                                        <span className="desc">{t("description")}:</span>
+                                                        <div className="text-information">{demand.realBenefit.realBenefitDescription}</div>
+
+                                                    </div>
+                                                </div>
+
+
+                                                <div className={"potential-benefit " + benefitPotentialOpen}>
+                                                    <div className="display-flex-space-between header-table">
+                                                        <p className="title">{t("benefitPotential")}</p>
+
+                                                        <span onClick={() => setBenefitPotentialOpen(!benefitPotentialOpen)} className="material-symbols-outlined arrow-expend">
+                                                            expand_more
+                                                        </span>
+                                                    </div>
+
+                                                    <div className="infos">
+
+                                                        <div className="display-flex-center">
+                                                            <span className="bold-text">{t("monthlyValue")}: </span>
+                                                            {demand.potentialBenefit.potentialCurrency === "real" ? (
+                                                                <span>R$</span>
+                                                            ) : (demand.potentialBenefit.potentialCurrency === "dollar") ? (
+                                                                <span>$</span>
+                                                            ) : (
+                                                                <span>€</span>
+                                                            )}
+
+                                                            <div className="text-information">{demand.potentialBenefit.potentialMonthlyValue.toLocaleString()}</div>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="infos">
+                                                        <span>{t("legalObligation")}: {
+                                                            (demand.potentialBenefit.legalObrigation === true) ? (<span>Sim</span>) : (<span>Não</span>)}</span>
+                                                    </div>
+
+                                                    <div className="display-grid description">
+
+                                                        <span className="desc">{t("description")}:</span>
+
+                                                        <div className="text-information">{demand.potentialBenefit.potentialBenefitDescription}</div>
+                                                    </div>
+                                                </div>
+
+                                                <div className={"qualitative-benefit " + benefitQualitativeOpen}>
+
+                                                    <div className="display-flex-space-between header-table">
+                                                        <p className="title">{t("benefitQualitative")}</p>
+
+                                                        <span onClick={() => setBenefitQualitativeOpen(!benefitQualitativeOpen)} className="material-symbols-outlined arrow-expend">
+                                                            expand_more
+                                                        </span>
+                                                    </div>
+
+                                                    <div className="infos">
+                                                        <span>{t("internalControlRequirements")}: {(demand.qualitativeBenefit.interalControlsRequirements === true) ? (<span>Sim</span>) : <span>Não</span>}</span>
+                                                    </div>
+
+                                                    <div className="infos">
+                                                        <span>{t("frequencyUse")}: {demand.qualitativeBenefit.frequencyOfUse}</span>
+                                                    </div>
+
+                                                    <div className="description display-grid">
+
+                                                        <span className="desc">{t("description")}:</span>
+                                                        {demand.qualitativeBenefit.qualitativeBenefitDescription ? (
+                                                            <div className="text-information">{HtmlReactParser(demand.qualitativeBenefit.qualitativeBenefitDescription)}</div>
+                                                        ) : (
+                                                            null
+                                                        )}
+
+                                                    </div>
+                                                </div>
+
+                                                {centerCost && (
+                                                    <Table title="costCenter" demandCode={demand?.demandCode} proposalCode={proposal?.proposalCode} headers={["costCenterCode", "costCenter"]} items={centerCost} />
+                                                )
+                                                }
+
                                             </div>
 
-                                        </div>
-                                        <div className="display-flex-align-center">
-                                            <p className="title">{t("Payback")}:</p>
-                                            <span> {payBack}</span>
-                                        </div>
 
-                                        <div className="display-flex-align-center">
-                                            <p className="title">{t("responsibleBussiness")}:</p>
-                                            <span> {responsibleBussiness}</span>
+                                            {(stepDemand === 1 || stepDemand === 2) ? (
+
+                                                (classification) ? (
+
+
+                                                    (classification.epicJiraLink) ?
+                                                        <Table title="classification" demandCode={demand?.demandCode} proposalCode={proposal?.proposalCode} headers={["size", "requesterBU", "buBenefited", "responsibleItSession", "ppmCode", "linkEpicJira"]} items={[classification.classificationSize, classification.requesterBu.bu, beneficiariesBu, classification.itSection, classification.ppmCode, classification.epicJiraLink]} />
+                                                        :
+                                                        <Table title="classification" demandCode={demand?.demandCode} proposalCode={proposal?.proposalCode} headers={["size", "requesterBU", "buBenefited", "responsibleItSession"]} items={[classification.classificationSize, classification.requesterBu.bu, beneficiariesBu, classification.itSection]} />
+                                                ) : (null)
+                                            ) : (null)
+                                            }
+
+
+                                            {proposalExpenseValue?.expensesCode > 0 ? (<Expenses type="expenses" proposalExpense={proposalExpenseValue} />) : (null)}
+
+                                            {proposalExpenseRecurrent?.expensesCode > 0 ? (<Expenses type="recurrent" proposalExpense={proposalExpenseRecurrent} />) : (null)}
+
+                                            {proposalExpenseInternal?.expensesCode > 0 ? (<Expenses type="internal" proposalExpense={proposalExpenseInternal} />) : (null)}
+
+
+
+                                            {proposalExpense > 0 ? (
+                                                <div className={"complement "} >
+                                                    <div className="display-block">
+                                                        <div className="display-flex-align-center">
+                                                            <p className="title">{t("deadline")}:</p>
+                                                            <div>
+                                                                <span>{initialRunPeriod}</span>
+                                                                <span>&nbsp; à &nbsp;</span>
+                                                                <span>{finalExecutionPeriod}</span>
+                                                            </div>
+
+                                                        </div>
+                                                        <div className="display-flex-align-center">
+                                                            <p className="title">{t("Payback")}:</p>
+                                                            <span> {payBack}</span>
+                                                        </div>
+
+                                                        <div className="display-flex-align-center">
+                                                            <p className="title">{t("responsibleBussiness")}:</p>
+                                                            <span> {responsibleBussiness}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ) : (null)}
+
+
+                                            {demand?.demandAttachments?.length > 0 ? (
+                                                <div className="attachments">
+
+                                                    <p className="title">{t("attachments")}</p>
+
+                                                    <div className="display-flex">
+
+                                                        {
+                                                            demand.demandAttachments.map((val: any, index: any) => (
+                                                                <Tooltip title={val.name} arrow>
+                                                                    <a onClick={() => donwloadAttachment(val.dice, val.type, val.name)} download={"teste.jpg"} target="_blank">
+                                                                        <div className="attachment">
+                                                                            <div className="attachment-image">
+                                                                                <img src={"/attachment/" + attatchmentType("demand", val) + ".png"} alt="" />
+                                                                            </div>
+                                                                            <span>{val.name}</span>
+                                                                        </div>
+                                                                    </a>
+                                                                </Tooltip>
+                                                            ))
+                                                        }
+
+
+
+                                                        {classification?.classificationAttachment ? (
+                                                            <Tooltip title={classification.classificationAttachment.name} arrow>
+                                                                <a onClick={() => donwloadAttachment(classification.classificationAttachment.dice, classification.classificationAttachment.type, classification.classificationAttachment.name)} download={"teste.jpg"} target="_blank">
+                                                                    <div className="attachment">
+                                                                        <div className="attachment-image">
+                                                                            <img src={"/attachment/" + attatchmentType("classification", classification) + ".png"} alt="" />
+                                                                        </div>
+                                                                        <span>{classification.classificationAttachment.name}</span>
+                                                                    </div>
+                                                                </a>
+                                                            </Tooltip>
+                                                        ) : (null)
+                                                        }
+
+
+                                                    </div>
+
+                                                </div>
+                                            ) : (null)
+                                            }
+
                                         </div>
                                     </div>
                                 </div>
-                            ) : (null)}
+                            ) : url === "agenda" ? (
+                                <div>
+
+                                    <div className="container">
 
 
-                            {demand?.demandAttachments?.length > 0 ? (
-                                <div className="attachments">
+                                        <div className="background-title">
 
-                                    <p className="title">{t("attachments")}</p>
+                                            <Title nav={t("agendaAgendaName")} title="viewAgenda" />
+                                        </div>
 
-                                    <div className="display-flex">
+                                        <div className="box">
 
-                                        {
-                                            demand.demandAttachments.map((val: any, index: any) => (
-                                                <Tooltip title={val.name} arrow>
-                                                    <a onClick={() => donwloadAttachment(val.dice, val.type, val.name)} download={"teste.jpg"} target="_blank">
-                                                        <div className="attachment">
-                                                            <div className="attachment-image">
-                                                                <img src={"/attachment/" + attatchmentType("demand", val) + ".png"} alt="" />
-                                                            </div>
-                                                            <span>{val.name}</span>
-                                                        </div>
-                                                    </a>
-                                                </Tooltip>
-                                            ))
-                                        }
-
-
-
-                                        {classification?.classificationAttachment ? (
-                                            <Tooltip title={classification.classificationAttachment.name} arrow>
-                                                <a onClick={() => donwloadAttachment(classification.classificationAttachment.dice, classification.classificationAttachment.type, classification.classificationAttachment.name)} download={"teste.jpg"} target="_blank">
-                                                    <div className="attachment">
-                                                        <div className="attachment-image">
-                                                            <img src={"/attachment/" + attatchmentType("classification", classification) + ".png"} alt="" />
-                                                        </div>
-                                                        <span>{classification.classificationAttachment.name}</span>
+                                            {agenda ? (
+                                                <>
+                                                    <div className="display-solicitation-demand">
+                                                        <p className="title">{t("meetingAgenda")} {agenda.agendaCode}</p>
                                                     </div>
-                                                </a>
-                                            </Tooltip>
+
+                                                    <div className="box">
+
+                                                        <div className="agendaDate">
+                                                            <p>{t("dateMeeting")}</p>
+                                                            <span>{agenda.agendaDate}</span>
+                                                        </div>
+                                                    </div>
+                                                </>
+                                            ) : (null)}
+
+
+
+                                            <div className={"complement " + complementOpen} >
+                                                <div className="display-flex-space-between">
+                                                    <p className="title">{t("comission")}</p>
+
+                                                    <span onClick={() => setComplementOpen(!complementOpen)} className="material-symbols-outlined arrow-expend">
+                                                        expand_more
+                                                    </span>
+                                                </div>
+
+                                                <table>
+                                                    <tbody>
+                                                        {comission.map((val: any, index: any) => (
+                                                            <tr key={index}>
+                                                                <td className="display-flex-start pl20">
+                                                                    {val.commissionName}
+                                                                </td>
+                                                            </tr>
+
+                                                        ))}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+
+                                            <div className={"proposals-view " + benefitQualitativeOpen} >
+                                                <div className="display-flex-space-between header-proposals-view">
+                                                    <p className="title">{t("proposals")}</p>
+
+                                                    <span onClick={() => setBenefitQualitativeOpen(!benefitQualitativeOpen)} className="material-symbols-outlined arrow-expend">
+                                                        expand_more
+                                                    </span>
+                                                </div>
+
+                                                <table>
+                                                    <tbody>
+                                                        {proposalSpecific.map((val: any, index: any) => {
+
+                                                            if (proposalSpecific.length !== index + 1) {
+
+
+                                                                return (
+                                                                    <div className="h50px display-flex tr" key={index}>
+                                                                        <div className="display-flex-start pl20 display-flex-center">
+                                                                            <div className="code">
+                                                                                {val.proposalCode}
+                                                                            </div>
+
+                                                                            <span>
+                                                                                {val.demand.demandTitle}
+                                                                            </span>
+                                                                        </div>
+
+                                                                        <div className="w20 display-flex-align-center">
+
+                                                                            <div className="proposal-view-buttons">
+                                                                                {val.proposalStatus === "Pending" ? (
+                                                                                    <Link to={"/proposal/comission-opinion/" + val.proposalCode + "?" + agenda.agendaCode}>
+                                                                                        <button className="btn-primary">{t("insertCommissionOpinion")}</button>
+                                                                                    </Link>
+                                                                                ) : (
+                                                                                    <div className="proposal-status">
+                                                                                        Status: {val.proposalStatus}
+                                                                                    </div>
+                                                                                )}
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                        <div className="w20px ml10 display-flex-align-center">
+                                                                            <Link to={"/proposal/view/" + val.proposalCode}>
+                                                                                <button className="btn-secondary btn-unique">
+                                                                                    <span className="material-symbols-outlined">
+                                                                                        open_in_new
+                                                                                    </span>
+                                                                                </button>
+                                                                            </Link>
+                                                                        </div>
+                                                                    </div>
+                                                                )
+                                                            } else {
+                                                                return (
+                                                                    <div className="h50px noBorder display-flex tr" key={index}>
+                                                                        <div className="display-flex-start pl20 display-flex-center">
+                                                                            <div className="code">
+                                                                                {val.proposalCode}
+                                                                            </div>
+
+                                                                            <span>
+                                                                                {val.demand.demandTitle}
+                                                                            </span>
+
+
+                                                                        </div>
+
+                                                                        <div className="w20 display-flex-align-center">
+
+                                                                            <div className="proposal-view-buttons">
+                                                                                {val.proposalStatus === "Pending" ? (
+                                                                                    <Link to={"/proposal/comission-opinion/" + val.proposalCode + "?" + agenda.agendaCode}>
+                                                                                        <button className="btn-primary">{t("insertCommissionOpinion")}</button>
+                                                                                    </Link>
+                                                                                ) : (
+                                                                                    <div className="proposal-status">
+                                                                                        Status: {val.proposalStatus}
+                                                                                    </div>
+                                                                                )}
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                        <div className="w20px ml10 display-flex-align-center">
+                                                                            <Link to={"/proposal/view/" + val.proposalCode}>
+                                                                                <button className="btn-secondary btn-unique">
+                                                                                    <span className="material-symbols-outlined">
+                                                                                        open_in_new
+                                                                                    </span>
+                                                                                </button>
+                                                                            </Link>
+                                                                        </div>
+                                                                    </div>
+                                                                )
+                                                            }
+
+                                                        })}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            {agenda?.minutePublished ? (
+
+                                                <div className={"complement " + situationCorrentOpen} >
+                                                    <div className="display-flex-space-between">
+                                                        <p className="title">{t("minutes")}</p>
+
+                                                        <span onClick={() => setSituationCorrentOpen(!situationCorrentOpen)} className="material-symbols-outlined arrow-expend">
+                                                            expand_more
+                                                        </span>
+                                                    </div>
+
+                                                    <table>
+                                                        <tbody>
+                                                            <tr className="h50px">
+                                                                <td className="display-flex-space-between pl20">
+                                                                    {agenda.minutePublished.minuteName}
+
+                                                                    <Link to={"/minute/view/" + agenda.minutePublished.minuteCode}>
+                                                                        <div className="btn-secondary btn-unique">
+                                                                            <span className="material-symbols-outlined">
+                                                                                open_in_new
+                                                                            </span>
+                                                                        </div>
+                                                                    </Link>
+                                                                </td>
+
+
+                                                            </tr>
+
+                                                            <tr className="h50px">
+                                                                <td className="display-flex-space-between pl20">
+                                                                    {agenda.minuteNotPublished.minuteName}
+
+                                                                    <Link to={"/minute/view/" + agenda.minuteNotPublished.minuteCode}>
+                                                                        <div className="btn-secondary btn-unique">
+                                                                            <span className="material-symbols-outlined">
+                                                                                open_in_new
+                                                                            </span>
+                                                                        </div>
+                                                                    </Link>
+                                                                </td>
+                                                            </tr>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            ) : (null)
+                                            }
+
+                                        </div>
+
+
+
+                                        {pendingMinute < proposalSpecific.length && minute.length === 0 ? (
+                                            <div className="display-flex-end">
+                                                <Link to={"/minutes/create/" + demandCode}>
+                                                    <button className="btn-primary">{t("finish")}</button>
+                                                </Link>
+                                            </div>
                                         ) : (null)
                                         }
 
-
+                                        < Footer />
                                     </div>
-
                                 </div>
-                            ) : (null)
-                            }
+                            ) : url === "minute" ? (
+                                <div>
 
-                        </div>
-                    </div>
-                </div>
-            ) : url === "agenda" ? (
-                <div>
+                                    <div className="container">
 
-                    <div className="container">
+                                        <div className="background-title">
 
+                                            <Title nav={t("minute")} title="viewMinute" />
 
-                        <div className="background-title">
-
-                            <Title nav={t("agendaAgendaName")} title="viewAgenda" />
-                        </div>
-
-                        <div className="box">
-
-                            {agenda ? (
-                                <>
-                                    <div className="display-solicitation-demand">
-                                        <p className="title">{t("meetingAgenda")} {agenda.agendaCode}</p>
-                                    </div>
-
-                                    <div className="box">
-
-                                        <div className="agendaDate">
-                                            <p>{t("dateMeeting")}</p>
-                                            <span>{agenda.agendaDate}</span>
                                         </div>
-                                    </div>
-                                </>
-                            ) : (null)}
 
+                                        <div className="box">
 
+                                            {minute ? (
 
-                            <div className={"complement " + complementOpen} >
-                                <div className="display-flex-space-between">
-                                    <p className="title">{t("comission")}</p>
-
-                                    <span onClick={() => setComplementOpen(!complementOpen)} className="material-symbols-outlined arrow-expend">
-                                        expand_more
-                                    </span>
-                                </div>
-
-                                <table>
-                                    <tbody>
-                                        {comission.map((val: any, index: any) => (
-                                            <tr key={index}>
-                                                <td className="display-flex-start pl20">
-                                                    {val.commissionName}
-                                                </td>
-                                            </tr>
-
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-
-
-                            <div className={"proposals-view " + benefitQualitativeOpen} >
-                                <div className="display-flex-space-between header-proposals-view">
-                                    <p className="title">{t("proposals")}</p>
-
-                                    <span onClick={() => setBenefitQualitativeOpen(!benefitQualitativeOpen)} className="material-symbols-outlined arrow-expend">
-                                        expand_more
-                                    </span>
-                                </div>
-
-                                <table>
-                                    <tbody>
-                                        {proposalSpecific.map((val: any, index: any) => {
-
-                                            if (proposalSpecific.length !== index + 1) {
-
-
-                                                return (
-                                                    <div className="h50px display-flex tr" key={index}>
-                                                        <div className="display-flex-start pl20 display-flex-center">
-                                                            <div className="code">
-                                                                {val.proposalCode}
-                                                            </div>
-
-                                                            <span>
-                                                                {val.demand.demandTitle}
-                                                            </span>
-                                                        </div>
-
-                                                        <div className="w20 display-flex-align-center">
-
-                                                            <div className="proposal-view-buttons">
-                                                                {val.proposalStatus === "Pending" ? (
-                                                                    <Link to={"/proposal/comission-opinion/" + val.proposalCode + "?" + agenda.agendaCode}>
-                                                                        <button className="btn-primary">{t("insertCommissionOpinion")}</button>
-                                                                    </Link>
-                                                                ) : (
-                                                                    <div className="proposal-status">
-                                                                        Status: {val.proposalStatus}
-                                                                    </div>
-                                                                )}
-                                                            </div>
-
-                                                        </div>
-
-                                                        <div className="w20px ml10 display-flex-align-center">
-                                                            <Link to={"/proposal/view/" + val.proposalCode}>
-                                                                <button className="btn-secondary btn-unique">
-                                                                    <span className="material-symbols-outlined">
-                                                                        open_in_new
-                                                                    </span>
-                                                                </button>
-                                                            </Link>
-                                                        </div>
-                                                    </div>
-                                                )
-                                            } else {
-                                                return (
-                                                    <div className="h50px noBorder display-flex tr" key={index}>
-                                                        <div className="display-flex-start pl20 display-flex-center">
-                                                            <div className="code">
-                                                                {val.proposalCode}
-                                                            </div>
-
-                                                            <span>
-                                                                {val.demand.demandTitle}
-                                                            </span>
-
-
-                                                        </div>
-
-                                                        <div className="w20 display-flex-align-center">
-
-                                                            <div className="proposal-view-buttons">
-                                                                {val.proposalStatus === "Pending" ? (
-                                                                    <Link to={"/proposal/comission-opinion/" + val.proposalCode + "?" + agenda.agendaCode}>
-                                                                        <button className="btn-primary">{t("insertCommissionOpinion")}</button>
-                                                                    </Link>
-                                                                ) : (
-                                                                    <div className="proposal-status">
-                                                                        Status: {val.proposalStatus}
-                                                                    </div>
-                                                                )}
-                                                            </div>
-
-                                                        </div>
-
-                                                        <div className="w20px ml10 display-flex-align-center">
-                                                            <Link to={"/proposal/view/" + val.proposalCode}>
-                                                                <button className="btn-secondary btn-unique">
-                                                                    <span className="material-symbols-outlined">
-                                                                        open_in_new
-                                                                    </span>
-                                                                </button>
-                                                            </Link>
-                                                        </div>
-                                                    </div>
-                                                )
+                                                <div className="display-solicitation-demand">
+                                                    <p className="title">{minute.minuteName}</p>
+                                                </div>
+                                            ) : (null)
                                             }
 
-                                        })}
-                                    </tbody>
-                                </table>
-                            </div>
+                                        </div>
 
-                            {agenda?.minutePublished ? (
-
-                                <div className={"complement " + situationCorrentOpen} >
-                                    <div className="display-flex-space-between">
-                                        <p className="title">{t("minutes")}</p>
-
-                                        <span onClick={() => setSituationCorrentOpen(!situationCorrentOpen)} className="material-symbols-outlined arrow-expend">
-                                            expand_more
-                                        </span>
                                     </div>
 
-                                    <table>
-                                        <tbody>
-                                            <tr className="h50px">
-                                                <td className="display-flex-space-between pl20">
-                                                    {agenda.minutePublished.minuteName}
-
-                                                    <Link to={"/minute/view/" + agenda.minutePublished.minuteCode}>
-                                                        <div className="btn-secondary btn-unique">
-                                                            <span className="material-symbols-outlined">
-                                                                open_in_new
-                                                            </span>
-                                                        </div>
-                                                    </Link>
-                                                </td>
-
-
-                                            </tr>
-
-                                            <tr className="h50px">
-                                                <td className="display-flex-space-between pl20">
-                                                    {agenda.minuteNotPublished.minuteName}
-
-                                                    <Link to={"/minute/view/" + agenda.minuteNotPublished.minuteCode}>
-                                                        <div className="btn-secondary btn-unique">
-                                                            <span className="material-symbols-outlined">
-                                                                open_in_new
-                                                            </span>
-                                                        </div>
-                                                    </Link>
-                                                </td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
                                 </div>
 
-                            ) : (null)
-                            }
-
-                        </div>
-
-
-
-                        {pendingMinute < proposalSpecific.length && minute.length === 0 ? (
-                            <div className="display-flex-end">
-                                <Link to={"/minutes/create/" + demandCode}>
-                                    <button className="btn-primary">{t("finish")}</button>
-                                </Link>
-                            </div>
-                        ) : (null)
+                            ) : null
                         }
-
-                        < Footer />
-                    </div>
-                </div>
-            ) : url === "minute" ? (
-                <div>
-
-                    <div className="container">
-
-                        <div className="background-title">
-
-                            <Title nav={t("minute")} title="viewMinute" />
-
-                        </div>
-
-                        <div className="box">
-
-                            {minute ? (
-
-                                <div className="display-solicitation-demand">
-                                    <p className="title">{minute.minuteName}</p>
-                                </div>
-                            ) : (null)
-                            }
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            ) : null
-            }
+                    </>
+                )}
 
             {url !== "agenda" ? (<Footer />) : null}
 

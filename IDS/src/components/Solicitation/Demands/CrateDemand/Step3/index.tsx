@@ -56,7 +56,7 @@ export default function CreateDemands3() {
             realBenefitCode,
             potentialBenefitCode,
             qualitativeBenefitCode,
-            fileAttachment[0]
+            fileAttachment
             ).then((response) => {
             // Salvando a rota para redirecionar para a página de demandas
             localStorage.setItem("route", "create-demand")

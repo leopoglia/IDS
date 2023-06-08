@@ -1,14 +1,13 @@
 const url = "http://localhost:8443/api/demand";
 
 const Services = {
-    save: function (demandTitle: String, currentProblem: String, demandObjective: String, costCenter: any, demandStatus: String, score: any, executionPeriod: Number, requesterRegistration: Number, realBenefit: Number, potentialBenefit: Number, qualitativeBenefit: Number, demandAttachment: any) {
+    save: function (demandTitle: String, currentProblem: String, demandObjective: String, costCenter: any, demandStatus: String, score: any, executionPeriod: Number, requesterRegistration: Number, realBenefit: Number, potentialBenefit: Number, qualitativeBenefit: Number, demandAttachments: any[]) {
         var formData = new FormData();
 
         let costCenters = [];
         for (let i = 0; i < costCenter.length; i++) {
             costCenters.push({ "costCenterCode": costCenter[i] });
         }
-
 
         let demand = {
             "demandTitle": demandTitle.toUpperCase(),
@@ -24,8 +23,7 @@ const Services = {
         }
 
         formData.append('demand', JSON.stringify(demand));
-        formData.append('demandAttachment', demandAttachment);
-
+        demandAttachments.forEach(demandAttachment => formData.append('demandAttachments', demandAttachment))
 
         return new Promise((resolve, reject) => {
             fetch(url, {

@@ -72,7 +72,7 @@ const Services = {
         })
     },
     update: function (id: number, demandTitle: String, currentProblem: String, demandObjective: String, costCenter: any, executionPeriod: Number,
-        realBenefit: Number, potentialBenefit: Number, qualitativeBenefit: Number, demandAttachment: any, demandDate: String, demandStatus: any,
+        realBenefit: Number, potentialBenefit: Number, qualitativeBenefit: Number, demandAttachments: any[], demandDate: String, demandStatus: any,
         demandScore: any, demandRequester: any, classificationCode: any, approver: any) {
         var formData = new FormData();
 
@@ -119,9 +119,8 @@ const Services = {
         }
 
         formData.append('demand', JSON.stringify(demand));
-        if (demandAttachment !== null) {
-            formData.append('demandAttachment', demandAttachment);
-        }
+        demandAttachments.forEach(demandAttachment => formData.append('demandAttachment', demandAttachment))
+
 
 
         return new Promise((resolve, reject) => {

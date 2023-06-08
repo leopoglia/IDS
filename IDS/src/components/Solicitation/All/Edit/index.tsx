@@ -288,12 +288,12 @@ export default function Edit() {
 	async function editDemand() {
 
 
-		let file: File | null;
-		if (fileAttachment[0] !== null) {
-			file = new File([fileAttachment[0]], fileAttachment[0].name, { type: fileAttachment[0].type });
-		} else {
-			file = null
-		}
+		// let file: File | null;
+		// if (fileAttachment[0] !== null) {
+		// 	file = new File([fileAttachment], fileAttachment[0].name, { type: fileAttachment[0].type });
+		// } else {
+		// 	file = null
+		// }
 
 
 
@@ -303,7 +303,7 @@ export default function Edit() {
 
 				ServicesQualitativeBenefit.save(frequencyOfUse, qualitativeBenefitDescription, true).then((qualitativeBenefit: any) => {
 
-					ServicesDemand.update(demandCode, demandTitle, demandProblem, demandObjective, costsCentersId, frequencyOfUse, realBenefit.realBenefitCode, potentialBenefit.potentialBenefitCode, qualitativeBenefit.qualitativeBenefitCode, file, demandDate, demandStatus, demandScore, demandRequester, demandClassification, approver).then((response: any) => {
+					ServicesDemand.update(demandCode, demandTitle, demandProblem, demandObjective, costsCentersId, frequencyOfUse, realBenefit.realBenefitCode, potentialBenefit.potentialBenefitCode, qualitativeBenefit.qualitativeBenefitCode, fileAttachment, demandDate, demandStatus, demandScore, demandRequester, demandClassification, approver).then((response: any) => {
 
 						if (url === "edit" && type === "demand") {
 							ServicesDemand.updateStatus(demandCode, "Backlog").then((response: any) => {

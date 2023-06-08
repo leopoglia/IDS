@@ -413,20 +413,23 @@ export default function ViewDemand() {
     };
 
 
-    const attatchmentType = (type: string) => {
+    const attatchmentType = (type: string, demandParam: any) => {
+
+        console.log(demandParam)
+
         if (type === "demand") {
-            if (demand.demandAttachment.type === "image/png" || demand.demandAttachment.type === "image/jpeg") {
+            if (demandParam.type === "image/png" || demandParam.type === "image/jpeg") {
                 return "png";
-            } else if (demand.demandAttachment.type === "application/pdf") {
+            } else if (demandParam.type === "application/pdf") {
                 return "pdf";
-            } else if (demand.demandAttachment.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
+            } else if (demandParam.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
                 return "word";
-            } else if (demand.demandAttachment.type === "application/msword" || demand.demandAttachment.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||
-                demand.demandAttachment.type === "application/vnd.ms-excel") {
+            } else if (demandParam.type === "application/msword" || demandParam.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||
+                demandParam.type === "application/vnd.ms-excel") {
                 return "excel";
-            } else if (demand.demandAttachment.type === "application/zip") {
+            } else if (demandParam.type === "application/zip") {
                 return "zip";
-            } else if (demand.demandAttachment.type === "application/x-rar-compressed") {
+            } else if (demandParam.type === "application/x-rar-compressed") {
                 return "rar";
             }
         } else if (type === "classification") {
@@ -518,6 +521,7 @@ export default function ViewDemand() {
     const [complementOpen, setComplementOpen] = useState(false);
 
 
+    console.log(demand)
     return (
         <div className="view-demand">
 
@@ -803,28 +807,36 @@ export default function ViewDemand() {
                             ) : (null)}
 
 
-                            {demand.demandAttachment ? (
+                            {demand?.demandAttachments ? (
                                 <div className="attachments">
 
                                     <p className="title">{t("attachments")}</p>
 
                                     <div className="display-flex">
-                                        <Tooltip title={demand.demandAttachment.name} arrow>
-                                            <a onClick={() => donwloadAttachment(demand.demandAttachment.dice, demand.demandAttachment.type, demand.demandAttachment.name)} download={"teste.jpg"} target="_blank">
-                                                <div className="attachment">
-                                                    <div className="attachment-image">
-                                                        <img src={"/attachment/" + attatchmentType("demand") + ".png"} alt="" />
-                                                    </div>
-                                                    <span>{demand.demandAttachment.name}</span>
-                                                </div>
-                                            </a>
-                                        </Tooltip>
+
+                                        {
+                                            demand.demandAttachments.map((val: any, index: any) => (
+                                                <Tooltip title={val.name} arrow>
+                                                    <a onClick={() => donwloadAttachment(val.dice, val.type, val.name)} download={"teste.jpg"} target="_blank">
+                                                        <div className="attachment">
+                                                            <div className="attachment-image">
+                                                                <img src={"/attachment/" + attatchmentType("demand", val) + ".png"} alt="" />
+                                                            </div>
+                                                            <span>{val.name}</span>
+                                                        </div>
+                                                    </a>
+                                                </Tooltip>
+                                            ))
+                                        }
+
+
+
                                         {classification?.classificationAttachment ? (
                                             <Tooltip title={classification.classificationAttachment.name} arrow>
                                                 <a onClick={() => donwloadAttachment(classification.classificationAttachment.dice, classification.classificationAttachment.type, classification.classificationAttachment.name)} download={"teste.jpg"} target="_blank">
                                                     <div className="attachment">
                                                         <div className="attachment-image">
-                                                            <img src={"/attachment/" + attatchmentType("classification") + ".png"} alt="" />
+                                                            <img src={"/attachment/" + attatchmentType("classification", classification) + ".png"} alt="" />
                                                         </div>
                                                         <span>{classification.classificationAttachment.name}</span>
                                                     </div>
@@ -832,6 +844,7 @@ export default function ViewDemand() {
                                             </Tooltip>
                                         ) : (null)
                                         }
+
 
                                     </div>
 

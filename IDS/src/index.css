@@ -25,8 +25,8 @@
 
 
 .darkmode {
-  --white: rgb(30, 30, 30);
-  --white2: #d3d3d3;
+  --white: #FFFFFF;
+  --white2: rgb(30,30,30);
   --greyF7: rgb(37, 37, 38);
   --greyE5: rgb(42, 45, 46);
   --greyC4: rgb(48, 54, 61);
@@ -84,8 +84,8 @@ body {
 
 
 #root {
-  min-height: 100vh;
-  background-color: var(--white);
+  min-height: 100vh !important;
+  background-color: var(--white2);
 }
 
 .container {
@@ -132,7 +132,7 @@ textarea,
 select,
 .input {
   outline: none !important;
-  background-color: var(--white);
+  background-color: var(--white2);
   font-size: var(--p) !important;
   color: var(--grey3d);
 }

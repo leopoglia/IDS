@@ -10,6 +10,7 @@ import Load from "../../Fixed/Load";
 import "./style.css"
 import Input from "../../Solicitation/Demands/CrateDemand/Others/Input";
 import Modal from "../../Fixed/User/Modal";
+import { WebSocketContext } from '../../../services/webSocketService';
 
 export default function Notifications() {
 
@@ -24,16 +25,27 @@ export default function Notifications() {
     const [checked, setChecked] = useState(false);
     const [updateCheckeds, setUpdateCheckeds] = useState(false); 
     const [alterate, setAlterate] = useState(false); // Atualiza as notificações atualizadas
+    const { send, subscribe, stompClient }:any = useContext(WebSocketContext);
 
+    const [subscribeId, setSubscribeId] = useState(null);
+    const [notifications2, setNotifications2]:any = useState([]); // Notificações do usuário
 
     useEffect(() => {
+
+        const newNotification = (response:any) => {
+            const notificationReceived = JSON.parse(response.body);
+            setNotifications2((previousNotifications:any) => [...previousNotifications, notificationReceived]);
+        }
+        if (stompClient && !subscribeId) {
+            setSubscribeId(subscribe("/notifications/" + worker.id, newNotification));
+        }
 
         Services.findAll().then((response: any) => {
             setNotifications(response.reverse());
             setLoading(false);
         })
 
-    }, [alterate])
+    }, [alterate, stompClient, notifications2])
 
     const selectAll = () => {
 

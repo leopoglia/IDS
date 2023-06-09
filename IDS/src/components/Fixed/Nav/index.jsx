@@ -58,8 +58,12 @@ export default function Nav() {
                 }
             }
 
+            const newNotification = (response) => {
+                const notificationReceived = JSON.parse(response.body);
+                setNotifications((previousNotifications) => [...previousNotifications, notificationReceived]);
+            };
             if (stompClient && !subscribeId) {
-                setSubscribeId(subscribe("/notifications/" + worker.id, notification));
+                setSubscribeId(subscribe("/notifications/" + worker.id, newNotification));
             }
 
             if (numberNotification === 0) {
@@ -75,11 +79,7 @@ export default function Nav() {
         }).catch((error) => {
             console.log(error);
         });
-    }, [numNotification, notifications.length, stompClient]);
-
-    ServicesNotification.findAll().then((response) => {
-        setNotifications(response);
-    });
+    }, [numNotification, notifications, stompClient]);
 
     function createNotification(event) {
         event.preventDefault();

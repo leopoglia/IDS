@@ -171,7 +171,7 @@ export default function SelectCostCenter(props: any) {
                         </button>
                     </div>
 
-                    {costsCenters.map((costCenter: any) => {
+                    {idCostCenter.map((costCenter: any) => {
                         return (
                             <div className="cost-center" key={costCenter.costCenterCode}>
                                 <span>{costCenter.costCenterCode}</span>

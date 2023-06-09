@@ -127,7 +127,7 @@ export default function SelectCostCenter(props: any) {
         }
 
 
-        const updatedCostCenters = costsCenters.map((costCenter: any) => {
+        const updatedCostCenters = idCostCenter.map((costCenter: any) => {
 
             if (costCenter.costCenterCode === costCenterActual.costCenterCode) {
                 return {

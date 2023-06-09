@@ -108,7 +108,7 @@ export default function ExecutionCosts() {
 
             const expensesCostCentersNew: any = [];
             for(let j = 0; j < JSON.parse(expensesCostCenter).length; j++){
-                expensesCostCentersNew.push({costCenter: JSON.parse(expensesCostCenter)[j].costCenterCode, percent: JSON.parse(expensesCostCenter)[j].percent});
+                expensesCostCentersNew.push({costCenterCode: JSON.parse(expensesCostCenter)[j].costCenterCode, percent: JSON.parse(expensesCostCenter)[j].percent});
             }
 
 

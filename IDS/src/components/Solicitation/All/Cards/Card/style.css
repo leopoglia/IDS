@@ -37,8 +37,7 @@
     right: 15px;
 }
 
-.demand .code,
-.demand-list .code {
+.code {
     background-color: var(--greyF7);
     padding: 4px;
     width: 100px;
@@ -259,4 +258,8 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 6px;
+}
+
+.ml0{
+    margin-left: 0px !important;
 }

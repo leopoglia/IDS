@@ -10,13 +10,14 @@ import notifyUtil from "../../../../utils/notifyUtil";
 import "./style.css";
 import Input from "../../Demands/CrateDemand/Others/Input";
 import ProgressBar from "../../Demands/CrateDemand/Others/ProgressBar";
+import ServicesWorker from "../../../../services/workerService";
 
 
 export default function ProposedInformation() {
     const { t } = useTranslation();
     const navigate = useNavigate();
 
-    const demandCode =  parseInt(useParams().id || "null");
+    const demandCode = parseInt(useParams().id || "null");
 
     const [responsibleBussiness, setResponsibleBussiness]: any = useState("");
     const [responsiblesBussiness, setResponsiblesBussiness]: any = useState([]);
@@ -31,10 +32,29 @@ export default function ProposedInformation() {
         setFileAttachment(files[0])
     }
 
-    const addResponsible = () => {
+    const addResponsible = async () => {
 
         if (responsibleBussiness !== "") {
-            responsiblesBussiness.push(responsibleBussiness);
+            // responsiblesBussiness.push(responsibleBussiness);
+
+            await ServicesWorker.findById(responsibleBussiness).then((response: any) => {
+                if (response?.workerName !== undefined) {
+                    responsiblesBussiness.push(response);
+                    setResponsiblesBussiness(responsiblesBussiness);
+                } else {
+                    notifyUtil.error("Não foi encontrado nenhum usuário.")
+                }
+
+            }).catch((error: any) => {
+                notifyUtil.error("Não foi encontrado nenhum usuário.")
+            });
+
+
+            if (responsibleBussiness === "") {
+                setResponsibleBussiness(" ");
+            } else {
+                setResponsibleBussiness("");
+            }
         } else {
             notifyResponsible();
         }
@@ -43,8 +63,8 @@ export default function ProposedInformation() {
         setResponsibleBussiness("");
     }
 
-    const deleteResponsible = (responsible: any): any => {
-        let index = responsiblesBussiness.indexOf(responsible);
+    const deleteResponsible = (responsible: any, index: any): any => {
+
         responsiblesBussiness.splice(index, 1);
         setResponsiblesBussiness(responsiblesBussiness);
 
@@ -57,7 +77,11 @@ export default function ProposedInformation() {
 
 
     const nextStep = () => {
-        let proposal = { responsiblesBussiness, start, end, fileAttachment }
+        const idResponsiblesBussiness = responsiblesBussiness.map((responsible: any) => {
+            return responsible.workerCode;
+        })
+
+        let proposal = { idResponsiblesBussiness, start, end, fileAttachment }
         localStorage.setItem('proposal', JSON.stringify(proposal));
 
         if (responsiblesBussiness === "" || responsiblesBussiness === "" || end === "" || start === "") {
@@ -100,8 +124,11 @@ export default function ProposedInformation() {
                             responsiblesBussiness.map((responsible: any, index: number) => {
                                 return (
                                     <div className="costCenter" key={index}>
-                                        <span>{responsible}</span>
-                                        <span className="material-symbols-outlined delete-cost-center" onClick={deleteResponsible}>
+                                        <div className="display-flex-align-center">
+                                            <div className="code mr20 ml0">{responsible.workerCode}</div>
+                                            <span>{responsible.workerName}</span>
+                                        </div>
+                                        <span className="material-symbols-outlined delete-cost-center" onClick={(e) => deleteResponsible(e, index)}>
                                             delete
                                         </span>
                                     </div>

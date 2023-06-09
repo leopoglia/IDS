@@ -12,6 +12,7 @@ import DemandService from "../../../../services/demandService";
 import UserContext from "../../../../context/userContext";
 import ExpensesService from "../../../../services/expensesService";
 import notifyUtil from "../../../../utils/notifyUtil";
+import ServicesCostCenter from "../../../../services/costCenterService";
 
 import "./style.css"
 import ProgressBar from "../../Demands/CrateDemand/Others/ProgressBar";
@@ -67,7 +68,7 @@ export default function ExecutionCosts() {
         } else {
 
             DemandService.findById(demandCode).then((demand: any) => {
-                ProposalServices.save(demandData.demandTitle, "Pending", 1, proposal.start, proposal.end, scope, worker.id, 0, proposal.responsiblesBussiness, totalsCosts, externalCosts, internalCosts, demandCode, demand.demandVersion, actualDate).then(async (proposal: any) => {
+                ProposalServices.save(demandData.demandTitle, "Pending", 1, proposal.start, proposal.end, scope, worker.id, 0, proposal.idResponsiblesBussiness , totalsCosts, externalCosts, internalCosts, demandCode, demand.demandVersion, actualDate).then(async (proposal: any) => {
                     DemandService.updateStatus(demandCode, "Assesment");
                     localStorage.removeItem('proposal');
                     saveExpenseFinal(proposal.proposalCode);
@@ -101,12 +102,21 @@ export default function ExecutionCosts() {
 
 
 
+
         for (let i = 0; i < typeExpenses.length; i++) {
             let expensesCostCenter = typeExpenses[i] === "internal" ? centerOfCustProposalInternal : typeExpenses[i] === "recurrent" ? centerOfCustProposalRecurrent : centerOfCustProposalExpenses;
 
+            console.log("expensesCostCenter, " + expensesCostCenter);
+
+            let costCenters = [];
+            for(let j = 0; j < JSON.parse(expensesCostCenter).length; j++){
+                let costCenter:any = await ServicesCostCenter.findByCostCenter(JSON.parse(expensesCostCenter)[j].costCenterCode);
+                costCenters.push({costCenterCode: costCenter.costCenterCode, percent: JSON.parse(expensesCostCenter)[j].percent});
+            }
+
     
             if (JSON.parse(expensesCostCenter).length > 0) {
-                ExpensesService.save(typeExpenses[i], proposalCode, expenseListStorage, JSON.parse(expensesCostCenter)).then((expenses: any) => {
+                ExpensesService.save(typeExpenses[i], proposalCode, expenseListStorage, costCenters).then((expenses: any) => {
                 })
             }
 

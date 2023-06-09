@@ -1,12 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from "react-i18next";
-import { useParams } from 'react-router';
 
 import SelectCostCenter from '../SelectCostCenter';
 import ServicesExpenses from '../../../../../services/expensesService';
 import "./style.css"
-
-
 
 export default function ConditionalValidationGrid(props: any) {
 
@@ -95,8 +92,7 @@ export default function ConditionalValidationGrid(props: any) {
                     </table>
                 </div>
 
-            </div >
-
+            </div>
 
             <SelectCostCenter type={props.title} />
         </div >

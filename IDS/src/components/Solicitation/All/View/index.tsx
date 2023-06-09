@@ -430,8 +430,6 @@ export default function ViewDemand() {
                 return "zip";
             } else if (classification.classificationAttachment.type === "application/x-rar-compressed") {
                 return "rar";
-            } else {
-                return "others";
             }
         }
     }

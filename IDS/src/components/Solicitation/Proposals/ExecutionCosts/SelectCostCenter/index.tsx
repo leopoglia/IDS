@@ -66,7 +66,7 @@ export default function SelectCostCenter(props: any) {
         if (igual === 0) {
             let service: any = await Services.save(costCenter);
 
-            setIdCostCenter(idCostCenter.concat({ costCenterCode: service.costCenterCode }));
+            setIdCostCenter(idCostCenter.concat({ costCenterCode: service.costCenterCode, costCenter: service.costCenter }));
 
             localStorage.setItem(
                 "centerOfCustProposal" + props.type,
@@ -75,7 +75,7 @@ export default function SelectCostCenter(props: any) {
         } else {
             for (let i = 0; i < costsCenterBd.length; i++) {
                 if (costsCenterBd[i].costCenter === costCenter) {
-                    id = { costCenterCode: costsCenterBd[i].costCenterCode };
+                    id = { costCenterCode: costsCenterBd[i].costCenterCode, costCenter: costsCenterBd[i].costCenter };
                 }
             }
             setIdCostCenter(idCostCenter.concat(id));
@@ -126,10 +126,10 @@ export default function SelectCostCenter(props: any) {
             value = 0;
         }
 
-        const updatedCostCenters = idCostCenter.map((costCenter: any) => {
+
+        const updatedCostCenters = costsCenters.map((costCenter: any) => {
 
             if (costCenter.costCenterCode === costCenterActual.costCenterCode) {
-
                 return {
                     ...costCenter,
                     percent: value,

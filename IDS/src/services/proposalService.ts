@@ -5,6 +5,8 @@ const Services = {
 
         let workersList: any = [];
 
+        console.log(workers)
+
         for (let i = 0; i < workers.length; i++) {
             workersList.push({ workerCode: workers[i] })
         }

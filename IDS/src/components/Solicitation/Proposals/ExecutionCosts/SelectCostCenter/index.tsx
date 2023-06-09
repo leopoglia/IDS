@@ -27,8 +27,9 @@ export default function SelectCostCenter(props: any) {
                             costCenter.costCenter = { "costCenterCode": costCenter.costCenter.costCenterCode, "percent": costCenter.percent, "edit": true };
 
                             costsCentersAux.push(costCenter.costCenter);
-                            idCostCenterAux.push(costCenter.costCenter.costCenterCode);
+                            idCostCenterAux.push(costCenter.costCenter);
                         });
+
 
                         setCostsCenters(costsCentersAux);
                         setIdCostCenter(idCostCenterAux);

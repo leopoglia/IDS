@@ -106,7 +106,6 @@ export default function ExecutionCosts() {
         for (let i = 0; i < typeExpenses.length; i++) {
             let expensesCostCenter = typeExpenses[i] === "internal" ? centerOfCustProposalInternal : typeExpenses[i] === "recurrent" ? centerOfCustProposalRecurrent : centerOfCustProposalExpenses;
 
-            console.log("expensesCostCenter, " + expensesCostCenter);
 
             let costCenters = [];
             for(let j = 0; j < JSON.parse(expensesCostCenter).length; j++){
@@ -114,7 +113,7 @@ export default function ExecutionCosts() {
                 costCenters.push({costCenterCode: costCenter.costCenterCode, percent: JSON.parse(expensesCostCenter)[j].percent});
             }
 
-    
+
             if (JSON.parse(expensesCostCenter).length > 0) {
                 ExpensesService.save(typeExpenses[i], proposalCode, expenseListStorage, costCenters).then((expenses: any) => {
                 })

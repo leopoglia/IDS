@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import SelectCostExecution from "../SelectCostExecution"
 import Services from "../../../../../services/costCenterService";
 import ServicesExpenses from "../../../../../services/expensesService";
+import notifyUtil from "../../../../../utils/notifyUtil";
 
 export default function SelectCostCenter(props: any) {
     const [costCenter, setCostCenter] = useState("");
@@ -44,7 +45,7 @@ export default function SelectCostCenter(props: any) {
 
     function addCostCenter(costCenterAdd: any) {
         if (costCenterAdd === "" || costCenterAdd === " ") {
-            alert("Digite um centro de custo");
+			notifyUtil.error(t("Digite um centro de custo"));
         } else {
             createCostCenter();
 

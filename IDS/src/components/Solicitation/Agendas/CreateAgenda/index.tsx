@@ -11,6 +11,7 @@ import Servicescommission from "../../../../services/commissionService";
 import "./style.css";
 import Input from "../../Demands/CrateDemand/Others/Input";
 import UserContext from "../../../../context/userContext";
+import notifyUtil from "../../../../utils/notifyUtil";
 
 export default function CreateAgenda() {
 
@@ -90,7 +91,7 @@ export default function CreateAgenda() {
 
     function addWorker(worker: any) {
         if (worker === "") {
-            alert("Digite um Worker");
+            notifyUtil.error(t("Digite um worker"));
         } else {
             commissionList.push(worker);
             setcommissionList(commissionList);

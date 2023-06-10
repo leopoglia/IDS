@@ -41,7 +41,7 @@ export default function CreateDemands1() {
 
     function addCostCenter(costCenterAdd: any) {
         if (costCenterAdd === "" || costCenterAdd === " ") {
-            alert("Digite um centro de custo");
+			notifyUtil.error(t("Digite um centro de custo"));
         } else {
             createCostCenter();
             costsCenters.push(costCenterAdd);

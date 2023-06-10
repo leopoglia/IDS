@@ -19,6 +19,7 @@ import ExpensesService from "../../../../services/expensesService";
 import "./style.css"
 import Input from "../../Demands/CrateDemand/Others/Input";
 import ProgressBar from "../../Demands/CrateDemand/Others/ProgressBar";
+import notifyUtil from "../../../../utils/notifyUtil";
 
 
 export default function Edit() {
@@ -151,7 +152,7 @@ export default function Edit() {
 
 	function addCostCenter(costCenterAdd: any) {
 		if (costCenterAdd === "" || costCenterAdd === " ") {
-			alert("Digite um centro de custo");
+			notifyUtil.error(t("Digite um centro de custo"));
 		} else {
 			createCostCenter(costCenterAdd);
 			let costCentersArray = costsCenters;
@@ -242,7 +243,6 @@ export default function Edit() {
 			})
 		} else if (expenseType === "recurrent" || expenseType === "internal" || expenseType === "expenses") {
 
-
 			let costCentersCode: any = [];
 			let expensesCostCenter: any = [];
 			let expenseListStorage = JSON.parse(localStorage.getItem('expenseList') || '[]');
@@ -255,7 +255,7 @@ export default function Edit() {
 			}
 
 			for (let j = 0; j < costCentersCode.length; j++) {
-				expensesCostCenter.push({ costCenter: { costCenterCode: costCentersCode[j] } });
+				expensesCostCenter.push({ costCenter: { costCenterCode: costCentersCode[j].costCenterCode } });
 			}
 
 			ExpensesService.findByProposal(demandCode).then((expenses: any) => {

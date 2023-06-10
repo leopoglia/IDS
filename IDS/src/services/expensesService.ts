@@ -43,15 +43,7 @@ const Services = {
             }
 
             for (let i = 0; i < costCenterLocalStorage.length; i++) {
-
-
-                if (costCenterLocalStorage[i].edit === true) {
-                    expensesCostCentersNew.push({ "costCenter": { "costCenterCode": parseInt(costCenterLocalStorage[i].costCenterCode) }, "percent": costCenterLocalStorage[i].percent })
-                } else {
-                    await ServicesCostCenter.findByCostCenter(costCenterLocalStorage[i].costCenterCode).then((costCenterFindByCostCenter: any) => {
-                        expensesCostCentersNew.push({ "costCenter": { "costCenterCode": costCenterFindByCostCenter.costCenterCode }, "percent": costCenterLocalStorage[i].percent })
-                    })
-                }
+                expensesCostCentersNew.push({ "costCenter": { "costCenterCode": parseInt(costCenterLocalStorage[i].costCenterCode) }, "percent": costCenterLocalStorage[i].percent })
             }
 
             fetch(url + "/" + expensesCode, {

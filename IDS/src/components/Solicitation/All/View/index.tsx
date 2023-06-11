@@ -108,8 +108,13 @@ export default function ViewDemand() {
     // Chama função ao entrar na página
     useEffect(() => {
         // Buscar dados da demanda
-        localStorage.removeItem('expenseList'); // Limpa a lista de despesas da edição
 
+        localStorage.removeItem('expenseList'); // Limpa a lista de despesas da edição
+        localStorage.removeItem('centerOfCustProposalrecurrent'); // Limpa a lista de centro de custo da edição
+        localStorage.removeItem('centerOfCustProposalinternal'); // Limpa a lista de centro de custo da edição
+        localStorage.removeItem('centerOfCustProposalexpenses'); // Limpa a lista de centro de custo da edição
+
+     
         if (url === "demand") {
             getDemand();
             setCenterCost(demand.costCenter)

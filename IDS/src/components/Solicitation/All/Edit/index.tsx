@@ -273,8 +273,11 @@ export default function Edit() {
 								} else {
 									navigate("/proposal/view/" + code);
 								}
+								localStorage.removeItem('expenseList'); // Limpa a lista de despesas da edição						
 								localStorage.removeItem("centerOfCustProposalexpenses");
-								localStorage.removeItem("expenseList");
+								localStorage.removeItem('centerOfCustProposalrecurrent'); // Limpa a lista de centro de custo da edição
+								localStorage.removeItem('centerOfCustProposalinternal'); // Limpa a lista de centro de custo da edição
+						
 							})
 						}
 					}

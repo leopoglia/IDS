@@ -84,13 +84,13 @@ export default function Search(props: any) {
 
     return (
         <div className="search">
-            <Title nav={props.title} title={props.title} />
+            <Title nav={props.nav} title={props.title} />
 
 
 
             <div className="section">
 
-                {props.name !== "" && props.type !== "" &&
+                {props.name !== "" && props.type !== "" && props.name !== undefined &&
                     <div className="display-flex filter-export">
                         <div className="filters-on" onClick={() => { callback("", ""); props.onClick("", "") }}>
                             <div className="display-flex"><span>{props.name} - {props.type}</span><span className="material-symbols-outlined size-20">close</span></div>
@@ -104,20 +104,28 @@ export default function Search(props: any) {
 
                 <Input background={"input-search"} setValue={props.setSearch} value={props.search} icon={"search"} type="text" placeholder={search()} required={true} />
 
+
                 <div className="display-flex">
-                    <Link to={props.link}>
-                        <button className="btn-primary btn-create-demand mw100">
-                            <span className="material-symbols-outlined">
-                                add
-                            </span>
-                            {t(props.button)}
-                        </button>
-                    </Link>
+
+                    {props.button !== undefined &&
+                        <Link to={props.link}>
+                            <button className="btn-primary btn-create-demand mw100">
+                                <span className="material-symbols-outlined">
+                                    add
+                                </span>
+                                {t(props.button)}
+                            </button>
+                        </Link>
+                    }
 
                     <div className="btn-search">
-                        <ButtonTableList icon="table_rows" sendData={sendData} />
+                        {props.setTable !== undefined &&
+                            <ButtonTableList icon="table_rows" sendData={sendData} />
+                        }
 
-                        <ButtonTableList icon="filter_alt" sendFilter={sendFilter} />
+                        {props.name !== undefined &&
+                            <ButtonTableList icon="filter_alt" sendFilter={sendFilter} />
+                        }
                     </div>
 
                     <div className="background-filter" onClick={onButtonPress}>

@@ -30,3 +30,7 @@
 .proposals .display-flex-end{
     margin-top: 20px;
 }
+
+.select-proposals .search .input-background{
+    margin-right: 0px !important;
+}

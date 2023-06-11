@@ -8,11 +8,14 @@ import Footer from "../../../Fixed/Footer";
 import Title from "../../../Fixed/Search/Title";
 import ServicesProposal from "../../../../services/proposalService";
 import "./style.css"
+import Search from "../../../Fixed/Search";
 
 
 export default function Proposals() {
 
     const [proposals, setProposals] = useState([]);
+    const [search, setSearch] = useState("");
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -31,20 +34,28 @@ export default function Proposals() {
     }
 
     return (
-        <div className="proposals">
+        <div className="proposals select-proposals">
 
 
             <div className="container">
                 <div className="backgroud-title">
-                    <Title nav={t("createProposalSelectProposal")} title={t("selectProposal")} />
+                    <Search setSearch={setSearch} search={search} nav={t("createProposalSelectProposal")} title="selectProposal" link="/demand/create/1" />
                 </div>
 
                 <div>
                     {proposals.map((proposal: any) => {
                         if (proposal.proposalStatus === "Pending") {
-                            return (
-                                <SelectProposal name={proposal.proposalName} requester={proposal.demand.requesterRegistration.workerName} date={proposal.demand.demandDate} status={proposal.proposalStatus} id={proposal.proposalCode} />
-                            )
+                            if (search !== "") {
+                                if (search?.toLocaleLowerCase() === proposal.proposalName.toLocaleLowerCase()) {
+                                    return (
+                                        <SelectProposal name={proposal.proposalName} requester={proposal.demand.requesterRegistration.workerName} date={proposal.demand.demandDate} status={proposal.proposalStatus} id={proposal.proposalCode} />
+                                    )
+                                }
+                            } else {
+                                return (
+                                    <SelectProposal name={proposal.proposalName} requester={proposal.demand.requesterRegistration.workerName} date={proposal.demand.demandDate} status={proposal.proposalStatus} id={proposal.proposalCode} />
+                                )
+                            }
                         }
                     })}
 

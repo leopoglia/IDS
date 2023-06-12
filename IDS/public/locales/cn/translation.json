@@ -250,5 +250,8 @@
     "darkmode": "黑暗模式",
     "style": "風格",
     "workFlow": "工作流程",
-    "demandWorkFlow": "需求 > 工作流程"
+    "demandWorkFlow": "需求 > 工作流程",
+    "decriptionRealBenefit": "公司通过植入需求的结果获得的收益。",
+    "decriptionPotentialBenefit": "将来可以实现或实现的收益。",
+    "decriptionQualitativeBenefit": "当收益无法衡量，但对组织具有重要价值时。示例：安全性、信息准确性、敏捷性等。"
 }

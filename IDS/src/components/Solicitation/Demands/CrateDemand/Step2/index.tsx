@@ -118,7 +118,7 @@ export default function CreateDemands2() {
                     <div className="display-flex">
                         <p>{t("benefitReal")}</p>
 
-                        <Tooltip title={t("Ganho que a empresa obtém com os resultados da demanda implantada.")} placement="right" arrow>
+                        <Tooltip title={t("decriptionRealBenefit")} placement="right" arrow>
                             <p className="obs">
                                 <span className='material-symbols-outlined info-benefit'>
                                     info
@@ -147,7 +147,7 @@ export default function CreateDemands2() {
                     <div className='display-flex'>
                         <p>{t("benefitPotential")}</p>
 
-                        <Tooltip title={t("Ganho que pode ser alcançado ou realizado no futuro.")} placement="right" arrow>
+                        <Tooltip title={t("decriptionPotentialBenefit")} placement="right" arrow>
                             <p className="obs">
                                 <span className='material-symbols-outlined info-benefit'>
                                     info
@@ -186,7 +186,7 @@ export default function CreateDemands2() {
                     <div className='display-flex'>
                         <p>{t("benefitQualitative")}</p>
 
-                        <Tooltip title={t("Quando o ganho não pode ser mensuravel, mas tem valor significativo para a organização. Exemplo: Segurança, precisão da informação, agilidade, etc.")} placement="right" arrow>
+                        <Tooltip title={t("decriptionQualitativeBenefit")} placement="right" arrow>
                             <p className="obs">
                                 <span className='material-symbols-outlined info-benefit'>
                                     info

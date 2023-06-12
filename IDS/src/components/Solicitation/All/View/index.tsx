@@ -941,8 +941,6 @@ export default function ViewDemand() {
                                                         {proposalSpecific.map((val: any, index: any) => {
 
                                                             if (proposalSpecific.length !== index + 1) {
-
-
                                                                 return (
                                                                     <div className="h50px display-flex tr" key={index}>
                                                                         <div className="display-flex-start pl20 display-flex-center">
@@ -1030,8 +1028,8 @@ export default function ViewDemand() {
                                                     </tbody>
                                                 </table>
                                             </div>
-
-                                            {agenda?.minutePublished ? (
+                                            {agenda?.minutePublished ||
+                                                agenda?.minuteNotPublished ? (
 
                                                 <div className={"complement " + situationCorrentOpen} >
                                                     <div className="display-flex-space-between">
@@ -1044,35 +1042,39 @@ export default function ViewDemand() {
 
                                                     <table>
                                                         <tbody>
-                                                            <tr className="h50px">
-                                                                <td className="display-flex-space-between pl20">
-                                                                    {agenda.minutePublished.minuteName}
+                                                            {agenda?.minutePublished ? (
+                                                                <tr className="h50px">
+                                                                    <td className="display-flex-space-between pl20">
+                                                                        {agenda.minutePublished.minuteName}
 
-                                                                    <Link to={"/minute/view/" + agenda.minutePublished.minuteCode}>
-                                                                        <div className="btn-secondary btn-unique">
-                                                                            <span className="material-symbols-outlined">
-                                                                                open_in_new
-                                                                            </span>
-                                                                        </div>
-                                                                    </Link>
-                                                                </td>
+                                                                        <Link to={"/minute/view/" + agenda.minutePublished.minuteCode}>
+                                                                            <div className="btn-secondary btn-unique">
+                                                                                <span className="material-symbols-outlined">
+                                                                                    open_in_new
+                                                                                </span>
+                                                                            </div>
+                                                                        </Link>
+                                                                    </td>
+                                                                </tr>
+                                                            ) : null
+                                                            }
 
+                                                            {agenda?.minuteNotPublished ? (
+                                                                <tr className="h50px">
+                                                                    <td className="display-flex-space-between pl20">
+                                                                        {agenda.minuteNotPublished.minuteName}
 
-                                                            </tr>
-
-                                                            <tr className="h50px">
-                                                                <td className="display-flex-space-between pl20">
-                                                                    {agenda.minuteNotPublished.minuteName}
-
-                                                                    <Link to={"/minute/view/" + agenda.minuteNotPublished.minuteCode}>
-                                                                        <div className="btn-secondary btn-unique">
-                                                                            <span className="material-symbols-outlined">
-                                                                                open_in_new
-                                                                            </span>
-                                                                        </div>
-                                                                    </Link>
-                                                                </td>
-                                                            </tr>
+                                                                        <Link to={"/minute/view/" + agenda.minuteNotPublished.minuteCode}>
+                                                                            <div className="btn-secondary btn-unique">
+                                                                                <span className="material-symbols-outlined">
+                                                                                    open_in_new
+                                                                                </span>
+                                                                            </div>
+                                                                        </Link>
+                                                                    </td>
+                                                                </tr>
+                                                            ) : null
+                                                            }
 
                                                         </tbody>
                                                     </table>

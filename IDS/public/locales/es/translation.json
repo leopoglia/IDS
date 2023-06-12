@@ -248,5 +248,8 @@
     "darkmode": "Modo oscuro",
     "style": "Estilo",
     "workFlow": "Flujo de trabajo",
-    "demandWorkFlow": "Demanda > Flujo de trabajo"
+    "demandWorkFlow": "Demanda > Flujo de trabajo",
+    "decriptionRealBenefit": "Ganancia que la empresa obtiene con los resultados de la demanda implantada.",
+    "decriptionPotentialBenefit": "Ganancias que se pueden lograr o realizar en el futuro.",
+    "decriptionQualitativeBenefit": "Cuando la ganancia no se puede medir, pero tiene un valor significativo para la organización. Ejemplo: Seguridad, exactitud de la información, agilidad, etc."
 }

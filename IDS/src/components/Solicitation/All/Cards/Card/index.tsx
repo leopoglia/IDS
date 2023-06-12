@@ -108,62 +108,123 @@ export default function Demand(props: any) {
     }
 
 
-    if (props.listDirection === false) {
-        return (
-            <div>
-                <Link to={"/" + props.type + "/view/" + props.demandCode + urlFinal}>
-                    <div className="demand">
-                        <div className="content-demand">
+    if (props.type !== "minute") {
+        if (props.listDirection === false) {
+            return (
+                <div>
+                    <Link to={"/" + props.type + "/view/" + props.demandCode + urlFinal}>
+                        <div className="demand">
+                            <div className="content-demand">
 
+                                <section>
+                                    <div className="name-code">
+                                        <h1>{t(props.name)}</h1>
+                                    </div>
+
+
+                                    <div className="display-grid">
+
+                                        {situation()}
+                                    </div>
+
+                                </section>
+
+
+                                <div className="display-flex">
+
+                                    {information()}
+
+                                    {btnGenerateProposal()}
+                                </div>
+                            </div>
+
+                        </div>
+                    </Link>
+                </div>
+            );
+        } else {
+            return (
+                <div>
+
+                    <Link to={"/" + props.type + "/view/" + props.demandCode + urlFinal}>
+                        <div className="demand-list">
                             <section>
-                                <div className="name-code">
-                                    <h1>{t(props.name)}</h1>
-                                </div>
-
-
-                                <div className="display-grid">
-
-                                    {situation()}
-                                </div>
-
+                                <h1>{props.name}</h1>
                             </section>
 
 
                             <div className="display-flex">
-
                                 {information()}
 
-                                {btnGenerateProposal()}
+                                {situation()}
+
+
                             </div>
+
                         </div>
 
-                    </div>
-                </Link>
-            </div>
-        );
+                    </Link>
+                </div>
+            );
+        }
     } else {
-        return (
-            <div>
+        if (props.listDirection === false) {
+            return (
+                <div>
+                    <Link to={"http://localhost:8443/api/minutes/pdf/" + props.demandCode}>
+                        <div className="demand">
+                            <div className="content-demand">
 
-                <Link to={"/" + props.type + "/view/" + props.demandCode + urlFinal}>
-                    <div className="demand-list">
-                        <section>
-                            <h1>{props.name}</h1>
-                        </section>
+                                <section>
+                                    <div className="name-code">
+                                        <h1>{t(props.name)}</h1>
+                                    </div>
 
 
-                        <div className="display-flex">
-                            {information()}
+                                    <div className="display-grid">
 
-                            {situation()}
+                                        {situation()}
+                                    </div>
 
+                                </section>
+
+
+                                <div className="display-flex">
+
+                                    {information()}
+
+                                    {btnGenerateProposal()}
+                                </div>
+                            </div>
+
+                        </div>
+                    </Link>
+                </div>
+            );
+        } else {
+            return (
+                <div>
+
+                    <Link to={"/" + props.type + "/view/" + props.demandCode + urlFinal}>
+                        <div className="demand-list">
+                            <section>
+                                <h1>{props.name}</h1>
+                            </section>
+
+
+                            <div className="display-flex">
+                                {information()}
+
+                                {situation()}
+
+
+                            </div>
 
                         </div>
 
-                    </div>
-
-                </Link>
-            </div>
-        );
+                    </Link>
+                </div>
+            );
+        }
     }
 }

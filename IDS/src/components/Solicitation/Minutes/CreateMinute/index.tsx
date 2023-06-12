@@ -69,12 +69,7 @@ export default function CreateMinute() {
         }
         if(publishedProposal.includes(null)){
             MinuteService.save(t("unpublishedMinutes") + "", code, actualDate, worker.id, "Not Published");
-        }if(publishedProposal.includes(true) && publishedProposal.includes(null)){
-            MinuteService.save(t("publiquedMinute") + "", code, actualDate, worker.id, "Published");
-            MinuteService.save(t("unpublishedMinutes") + "", code, actualDate, worker.id, "Not Published");
         }
-
-        
 
         navigate("/agenda/view/" + code);
     }

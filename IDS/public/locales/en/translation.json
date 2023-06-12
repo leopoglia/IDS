@@ -252,5 +252,9 @@
     "demandWorkFlow": "Demand > Workflow",
     "decriptionRealBenefit": "Gain that the company obtains with the results of the implanted demand.",
     "decriptionPotentialBenefit": "Earnings that can be achieved or realized in the future.",
-    "decriptionQualitativeBenefit": "When the gain cannot be measurable, but has significant value to the organization. Example: Security, accuracy of information, agility, etc."
+    "decriptionQualitativeBenefit": "When the gain cannot be measurable, but has significant value to the organization. Example: Security, accuracy of information, agility, etc.",
+    "Not Published": "Minute not published",
+    "Published": "Minute published",
+    "published": "Published",
+    "notPublished": "Not published"
 }

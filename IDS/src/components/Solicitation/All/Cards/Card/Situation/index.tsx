@@ -42,6 +42,13 @@ export default function Situation(props: any) {
         } else if (props.situation === "Pending") {
             return (<div className="graphic-proposal">{t("pending")}<div className="situation-pending"></div></div>);
         }
+
+        if(props.situation === "Published"){
+            return (<div className="graphic-proposal">{t("published")}<div className="situation-published"></div></div>);
+        } else{
+            return (<div className="graphic-proposal">{t("notPublished")}<div className="situation-notPublished"></div></div>);
+        }
+
     }
 
     if (props.type === "demand") {
@@ -57,6 +64,16 @@ export default function Situation(props: any) {
             </Link>
         );
     } else if (props.type === "proposal") {
+        return (
+            <div className="display-flex">
+                <Tooltip title={t(props.situation)} arrow>
+                    <div className="graphic-proposal">
+                        {situation()}
+                    </div>
+                </Tooltip>
+            </div>
+        );
+    } else if (props.type === "minute") {
         return (
             <div className="display-flex">
                 <Tooltip title={t(props.situation)} arrow>

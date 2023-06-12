@@ -18,11 +18,25 @@
 .demand .situation-rejected,
 .demand-list .situation-rejected,
 .demand .situation-pending,
-.demand-list .situation-pending {
+.demand-list .situation-pending,
+.demand .situation-published,
+.demand-list .situation-published,
+.demand .situation-notPublished,
+.demand-list .situation-notPublished {
     width: 15px;
     height: 15px;
     border-radius: var(--rr);
     margin-left: 10px;
+}
+
+.demand .situation-published,
+.demand-list .situation-published{
+    background-color: var(--blue);
+}
+
+.demand .situation-notPublished,
+.demand-list .situation-notPublished{
+    background-color: var(--greyC4);
 }
 
 .demand .situation-approved,

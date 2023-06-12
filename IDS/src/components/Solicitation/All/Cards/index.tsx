@@ -44,6 +44,8 @@ export default function Demands() {
     const [demandsSize, setDemandsSize] = useState(0);
     const [loading, setLoading] = useState(true);
 
+    const [comissions, setComissions] = useState(""); // Estado para armazenar as comissões
+
     // Entra na página e busca as demandas cadastradas
     useEffect(() => {
         setLoading(true);
@@ -182,6 +184,16 @@ export default function Demands() {
             setAgendas(res.content); // Atualiza o estado das demandas
             setPages(res.totalPages); // Atualiza o estado das páginas
 
+            for (let i = 0; i < res.content.length; i++) {
+                let comission = "";
+
+                for (let j = 0; j < res?.content[i]?.commission.length; j++) {
+                    comission += res.content[i].commission[j].commissionName.split("–")[1] + " "
+                }
+                res.content[i].minuteName = comission;
+            }
+
+
             if (res.content.length === 0) {
                 setLoading(false);
             }
@@ -194,6 +206,16 @@ export default function Demands() {
     //Buscar as atas cadastradas
     async function getMinutes() {
         findDemands = await ServicesMinute.findByPage(page, 5).then((res: any) => {
+
+            for (let i = 0; i < res.content.length; i++) {
+                let comission = "";
+
+                for (let j = 0; j < res?.content[i]?.agenda?.commission.length; j++) {
+                    comission += res.content[i].agenda.commission[j].commissionName.split("–")[1] + " "
+                }
+                res.content[i].minuteName = comission;
+            }
+
             setMinutes(res.content); // Atualiza o estado das demandas
             setPages(res.totalPages); // Atualiza o estado das páginas
 
@@ -446,7 +468,7 @@ export default function Demands() {
                                     .map((val: any) => (
                                         <Demand
                                             key={val.agendaCode} val={val.agendaCode} listDirection={table}
-                                            name={t("meetingAgenda") + " " + val.initialDate.split('T', 1)} demandCode={val.agendaCode} date={val.agendaDate}
+                                            name={t("meetingAgenda") + " – " + val.minuteName} demandCode={val.agendaCode} date={val.agendaDate}
                                             number={val.sequentialNumber} year={val.initialDate} type="agenda"
                                         />
                                     ))
@@ -475,6 +497,7 @@ export default function Demands() {
                             {
                                 minutes
                                     .filter((val: any) => {
+
                                         if (
                                             (nameFilter === "" || nameFilter === undefined) &&
                                             (typeFilter === "" || typeFilter === undefined) &&
@@ -501,18 +524,19 @@ export default function Demands() {
                                         }
 
 
-
                                         return false;
                                     })
                                     .map((val: any) => (
                                         <Demand
                                             key={val.minuteCode}
                                             listDirection={table}
-                                            name={val.minuteName}
+                                            name={t(val.minuteType) + " – " + val.minuteName}
                                             demandCode={val.minuteCode}
                                             director={val.director?.workerName}
                                             number={val.minuteCode}
                                             date={val.minuteStartDate}
+                                            comission={val.comission}
+                                            situation={val.minuteType}
                                             type="minute"
                                         />
                                     ))

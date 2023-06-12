@@ -10,19 +10,19 @@ import "./style.css";
 export default function HistoricalDemand() {
 
     const { t } = useTranslation();
-    const url: any =  parseInt(useParams().id || "null");
+    const url: any = JSON.parse(window.location.href.split("/")[5]);
     const [demand, setDemand]: any = useState();
     const [activeVersionUpdate, setActiveVersionUpdate]: any = useState(true);
     const navigate = useNavigate();
-    let proposalDemand = false;
+    const [proposalDemand, setProposalDemand] = useState(false);
 
     let version: any = null;
 
     ServiceProposal.findByDemandCode(url).then((response: any) => {
-        if (response.length > 0) {
-            proposalDemand = true;
+        if (response === url) {
+            setProposalDemand(true);
         }
-    })
+    });
 
     ServiceDemand.findById(url).then((response: any) => {
         version = response.demandVersion;
@@ -79,7 +79,7 @@ export default function HistoricalDemand() {
                                     <tr key={index}>
                                         <td className="activeVersion">{val.requesterRegistration.workerName}</td>
                                         {
-                                            proposalDemand ? (
+                                            proposalDemand === true ? (
                                                 <td className="table-restore-page, activeVersion">
                                                     <span className="material-symbols-outlined">restore_page</span>
                                                 </td>
@@ -103,7 +103,7 @@ export default function HistoricalDemand() {
                                     <tr key={index}>
                                         <td>{val?.requesterRegistration.workerName}</td>
                                         {
-                                            proposalDemand ? (
+                                            proposalDemand === true ? (
                                                 <td className="table-restore-page">
                                                     <span className="material-symbols-outlined" onClick={() => { setActiveVersion(val.demandCode, val.demandVersion); }}>restore_page</span>
                                                 </td>

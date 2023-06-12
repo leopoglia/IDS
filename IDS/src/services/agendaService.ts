@@ -1,7 +1,7 @@
 const url = "http://localhost:8443/api/agenda";
 
 const Services = {
-    save: function (sequentialNumber: String, yearAgenda: String, commission: any, agendaDate: String, proposals: any, analistRegistry: any) {
+    save: function (sequentialNumber: String, dateInitial: String, dateFinal: any, commission: any, agendaDate: String, proposals: any, analistRegistry: any) {
 
 
         let proposalList: any = [];
@@ -18,7 +18,8 @@ const Services = {
             fetch(url, {
                 method: 'POST', body: JSON.stringify({
                     sequentialNumber: sequentialNumber,
-                    yearAgenda: yearAgenda,
+                    initialDate: dateInitial,
+                    finalDate: dateFinal,
                     commission: commissionList,
                     agendaDate: agendaDate,
                     proposals: proposalList,

@@ -12,6 +12,7 @@ import "./style.css";
 import Input from "../../Demands/CrateDemand/Others/Input";
 import UserContext from "../../../../context/userContext";
 import notifyUtil from "../../../../utils/notifyUtil";
+import { ToastContainer } from "react-toastify";
 
 export default function CreateAgenda() {
 
@@ -22,7 +23,9 @@ export default function CreateAgenda() {
     const [proposals, setProposals]: any = useState([]);
     const [commissionList, setcommissionList]: any = useState([]);
     const [commission, setCommission] = useState("");
-    const [date, setDate] = useState(`${data.getFullYear()}-${("0" + (data.getMonth() + 1)).slice(-2)}-${("0" + data.getDate()).slice(-2)}T${("0" + data.getHours()).slice(-2)}:${("0" + data.getMinutes()).slice(-2)}`);
+    const [dateInitial, setDateInitial] = useState(`${data.getFullYear()}-${("0" + (data.getMonth() + 1)).slice(-2)}-${("0" + data.getDate()).slice(-2)}T${("0" + data.getHours()).slice(-2)}:${("0" + data.getMinutes()).slice(-2)}`);
+    const [dateFinal, setDateFinal] = useState(`${data.getFullYear()}-${("0" + (data.getMonth() + 1)).slice(-2)}-${("0" + data.getDate()).slice(-2)}T${("0" + data.getHours()).slice(-2)}:${("0" + data.getMinutes()).slice(-2)}`);
+
 
     const worker: any = useContext(UserContext).worker;
 
@@ -78,12 +81,15 @@ export default function CreateAgenda() {
                 ServicesProposals.updatePublish(proposals[i].proposalCode, proposals[i].publishedMinute);
             }
 
+            if (dateInitial !== dateFinal && proposals.length !== 0 && commissionArray.length !== 0) {
+                Services.save("1", dateInitial, dateFinal, commissionArray, actualDate, proposals, worker.id).then((response: any) => {
+                    navigate("/agenda/view/" + response.agendaCode);
 
-            Services.save("1", date, commissionArray, actualDate, proposals, worker.id).then((response: any) => {
-                navigate("/agenda/view/" + response.agendaCode);
-
-                localStorage.removeItem("proposals");
-            })
+                    localStorage.removeItem("proposals");
+                })
+            } else{
+                notifyUtil.error(t("fillAllFields"));
+            }
         })
 
 
@@ -91,7 +97,7 @@ export default function CreateAgenda() {
 
     function addWorker(worker: any) {
         if (worker === "") {
-            notifyUtil.error(t("Digite um worker"));
+            notifyUtil.error(t("fillAllFields"));
         } else {
             commissionList.push(worker);
             setcommissionList(commissionList);
@@ -184,7 +190,11 @@ export default function CreateAgenda() {
 
                     </div>
 
-                    <Input label="dateAgenda" type="datetime-local" setValue={setDate} value={date} />
+                    <Input label="dateStart" type="datetime-local" setValue={setDateInitial} value={dateInitial} />
+
+                    <div className="mt10">
+                        <Input label="dateEnd" type="datetime-local" setValue={setDateFinal} value={dateFinal} />
+                    </div>
 
                     <div className="display-grid mt20">
 
@@ -219,6 +229,8 @@ export default function CreateAgenda() {
                 </div>
 
             </div>
+
+            <ToastContainer />
         </div>
 
     )

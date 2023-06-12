@@ -446,8 +446,8 @@ export default function Demands() {
                                     .map((val: any) => (
                                         <Demand
                                             key={val.agendaCode} val={val.agendaCode} listDirection={table}
-                                            name={t("meetingAgenda") + " " + val.yearAgenda.split('T', 1)} demandCode={val.agendaCode} date={val.agendaDate}
-                                            number={val.sequentialNumber} year={val.yearAgenda} type="agenda"
+                                            name={t("meetingAgenda") + " " + val.initialDate.split('T', 1)} demandCode={val.agendaCode} date={val.agendaDate}
+                                            number={val.sequentialNumber} year={val.initialDate} type="agenda"
                                         />
                                     ))
                             }

@@ -114,7 +114,7 @@ export default function ViewDemand() {
         localStorage.removeItem('centerOfCustProposalinternal'); // Limpa a lista de centro de custo da edição
         localStorage.removeItem('centerOfCustProposalexpenses'); // Limpa a lista de centro de custo da edição
 
-     
+
         if (url === "demand") {
             getDemand();
             setCenterCost(demand.costCenter)
@@ -887,7 +887,15 @@ export default function ViewDemand() {
 
                                                         <div className="agendaDate">
                                                             <p>{t("dateMeeting")}</p>
-                                                            <span>{agenda.agendaDate}</span>
+                                                            <span>{agenda?.agendaDate}
+                                                                &nbsp;às&nbsp;
+                                                                {agenda?.initialDate?.split("T")[1]}
+                                                            </span>
+
+                                                            &nbsp;até&nbsp;
+
+                                                            <span>{agenda.finalDate?.split("T")[1]}</span>
+
                                                         </div>
                                                     </div>
                                                 </>

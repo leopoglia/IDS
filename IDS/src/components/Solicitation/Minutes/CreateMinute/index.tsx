@@ -66,7 +66,7 @@ export default function CreateMinute() {
 
         if(publishedProposal.includes(true)){  
             MinuteService.save(t("publiquedMinute") + "", code, actualDate, worker.id, "Published");
-        }else if(publishedProposal.includes(false)){
+        }else if(publishedProposal.includes(null)){
             MinuteService.save(t("unpublishedMinutes") + "", code, actualDate, worker.id, "Not Published");
         }else{
             MinuteService.save(t("publiquedMinute") + "", code, actualDate, worker.id, "Published");

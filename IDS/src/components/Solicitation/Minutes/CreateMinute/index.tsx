@@ -33,10 +33,15 @@ export default function CreateMinute() {
 
     }, [])
 
+    console.log(proposals);
 
     async function saveMinute() {
 
+        let publishedProposal:any = [];
+
         await proposals.forEach(async (proposal: any) => {
+
+            publishedProposal.push(proposal.published);
 
             await RealBenefitService.update(proposal.demand.realBenefit.realBenefitCode, proposal.demand.realBenefit.realMonthlyValue, proposal.demand.realBenefit.realBenefitDescription, proposal.demand.realBenefit.realCurrency);
             await PotentialBenefitService.update(proposal.demand.potentialBenefit.potentialBenefitCode, proposal.demand.potentialBenefit.potentialMonthlyValue, proposal.demand.potentialBenefit.potentialBenefitDescription, proposal.demand.potentialBenefit.legalObrigation, proposal.demand.potentialBenefit.potentialCurrency);
@@ -55,10 +60,20 @@ export default function CreateMinute() {
             await ProposalService.update(proposal.proposalCode, proposal).catch((error: any) => {
                 console.log(error)
             });
+
         });
 
-        MinuteService.save(t("unpublishedMinutes") + "", code, actualDate, worker.id, "Not Published");
-        MinuteService.save(t("publiquedMinute") + "", code, actualDate, worker.id, "Published");
+
+        if(publishedProposal.includes(true)){  
+            MinuteService.save(t("publiquedMinute") + "", code, actualDate, worker.id, "Published");
+        }else if(publishedProposal.includes(false)){
+            MinuteService.save(t("unpublishedMinutes") + "", code, actualDate, worker.id, "Not Published");
+        }else{
+            MinuteService.save(t("publiquedMinute") + "", code, actualDate, worker.id, "Published");
+            MinuteService.save(t("unpublishedMinutes") + "", code, actualDate, worker.id, "Not Published");
+        }
+
+        
 
         navigate("/agenda/view/" + code);
     }

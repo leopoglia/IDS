@@ -1163,7 +1163,7 @@ export default function ViewDemand() {
                                                             {(val.published === true && minute.minuteType === "Published"
                                                                 || val.published === null && minute.minuteType === "Not Published") &&
                                                                 <>
-                                                                    <p>{index + 1 + "."} {val.proposalName} - {val.proposalCode}</p>
+                                                                    <p>{val.proposalName} - {val.proposalCode}</p>
 
                                                                     <div className="text-information">
                                                                         <b> {t("objective")}:</b>
@@ -1205,9 +1205,7 @@ export default function ViewDemand() {
                                                                         <b className="label">{t("commissionOpinion")}: </b>
                                                                         {val.commissionOpinion}
                                                                     </div>
-
                                                                 </>
-
                                                             }
 
                                                         </>

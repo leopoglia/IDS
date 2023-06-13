@@ -402,11 +402,11 @@ export default function ViewDemand() {
 
     const generatePDF = async () => {
         console.log(url)
-        if(url ==="demand"){
-        window.open("http://localhost:8443/api/demand/pdf/" + demandCode, "_blank");
-        } else if(url ==="proposal"){
+        if (url === "demand") {
+            window.open("http://localhost:8443/api/demand/pdf/" + demandCode, "_blank");
+        } else if (url === "proposal") {
             window.open("http://localhost:8443/api/proposal/pdf/" + demandCode, "_blank");
-        } else if(url === "minute"){
+        } else if (url === "minute") {
             window.open("http://localhost:8443/api/minutes/pdf/" + demandCode, "_blank");
         }
     };
@@ -1160,9 +1160,8 @@ export default function ViewDemand() {
 
                                                     {minute.agenda.proposals.map((val: any, index: any) => (
                                                         <>
-                                                            {val.published === true && minute.minuteType === "Published"
-                                                                || val.published === null && minute.minuteType === "Not Published" &&
-
+                                                            {(val.published === true && minute.minuteType === "Published"
+                                                                || val.published === null && minute.minuteType === "Not Published") &&
                                                                 <>
                                                                     <p>{index + 1 + "."} {val.proposalName} - {val.proposalCode}</p>
 

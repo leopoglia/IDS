@@ -458,3 +458,11 @@
 .view-demand .proposal-status {
     white-space: nowrap;
 }
+
+.view-demand .logo-weg{
+    width: 70px;
+}
+
+.view-demand .minute-date{
+    margin-top: 10px;
+}

@@ -343,6 +343,7 @@ export default function ViewDemand() {
     function getMinute() {
         ServicesMinute.findById(demandCode).then((response: any) => {
             setMinute(response)
+            setLoad(false);
         })
     }
 
@@ -1114,8 +1115,39 @@ export default function ViewDemand() {
 
                                             {minute ? (
 
-                                                <div className="display-solicitation-demand">
-                                                    <p className="title">{minute.minuteName}</p>
+                                                <div className="display-block">
+
+
+                                                    <div className="display-flex-space-between w100">
+                                                        <p className="title">{(t("minute") + " REUNIÃO " + minute.agenda.commission[0].commissionName.split("–")[1]).toUpperCase()}</p>
+
+                                                        <img className="logo-weg" src="/images/weg-blue.png" alt="" />
+                                                    </div>
+
+
+                                                    <div className="display-grid display-flex-end minute-date">
+                                                        <div className="display-flex-space-between w100">
+                                                            <span>ATA Nº:&nbsp;</span>
+                                                            {minute.agenda.sequentialNumber + "/" + minute.agenda.agendaDate.split("/")[2]}
+                                                        </div>
+
+                                                        <div className="display-flex-space-between w100">
+                                                            <span>Data:&nbsp;</span>
+                                                            <span>{minute.agenda.agendaDate}</span>
+                                                        </div>
+
+                                                        <div className="display-flex-space-between w100">
+                                                            <span>Início:&nbsp;</span>
+                                                            <span>{minute.agenda.initialDate.split("T")[1]}</span>
+                                                        </div>
+
+                                                        <div className="display-flex-space-between w100">
+                                                            <span>Término:&nbsp;</span>
+                                                            <span>{minute.agenda.finalDate.split("T")[1]}</span>
+                                                        </div>
+                                                    </div>
+
+                                                    5434
                                                 </div>
                                             ) : (null)
                                             }

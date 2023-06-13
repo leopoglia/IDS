@@ -27,7 +27,7 @@
 }
 
 .dashboard .gg {
-    font-size: var(--gg) !important;
+    font-size: calc(var(--gg) + 28px);
     color: var(--grey3d) !important;
     transition: color 0.5s ease-in-out;
     animation: aumentar 1s linear;

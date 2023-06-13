@@ -27,6 +27,10 @@
     margin-bottom: 20px;
 }
 
+.modalChangeStatus .modal .modal-header {
+    margin-top: 20px;
+}
+
 .modal-header .closeModal {
     cursor: pointer;
     border-radius: var(--r);

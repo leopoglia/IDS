@@ -923,7 +923,7 @@ export default function ViewDemand() {
 
                                                 <table>
                                                     <tbody>
-                                                        {comission.map((val: any, index: any) => (
+                                                        {comission?.map((val: any, index: any) => (
                                                             <tr key={index}>
                                                                 <td className="display-flex-start pl20">
                                                                     {val.commissionName}
@@ -1124,7 +1124,7 @@ export default function ViewDemand() {
 
                                         <div className="box">
 
-                                            {minute ? (
+                                            {minute.agenda ? (
 
                                                 <div className="display-block">
 

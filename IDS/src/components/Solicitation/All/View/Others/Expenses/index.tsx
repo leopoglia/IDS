@@ -13,7 +13,7 @@ export default function Expenses(props: any) {
     const [totalHourValue, setTotalHourValue] = useState("");
     const [totalValue, setTotalValue] = useState("");
     const [expense, setExpense] = useState([] as any);
-    const demandCode =  parseInt(useParams().id || "null");
+    const demandCode = parseInt(useParams().id || "null");
 
     useEffect(() => {
 
@@ -65,15 +65,17 @@ export default function Expenses(props: any) {
 
                     <p className="title">{t(props.type)}</p>
 
-                    <div className="display-flex">
-                        <span onClick={() => { click() }} className="material-symbols-outlined arrow-expend mr5">
-                            edit
-                        </span>
+                    {props.edit !== false &&
+                        <div className="display-flex">
+                            <span onClick={() => { click() }} className="material-symbols-outlined arrow-expend mr5">
+                                edit
+                            </span>
 
-                        <span onClick={() => setOpen(!open)} className="material-symbols-outlined arrow-expend">
-                            expand_more
-                        </span>
-                    </div>
+                            <span onClick={() => setOpen(!open)} className="material-symbols-outlined arrow-expend">
+                                expand_more
+                            </span>
+                        </div>
+                    }
                 </div>
 
                 <div className="display-flex">

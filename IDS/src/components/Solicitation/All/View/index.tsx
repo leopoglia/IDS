@@ -342,8 +342,8 @@ export default function ViewDemand() {
     // Buscar ata
     function getMinute() {
         ServicesMinute.findById(demandCode).then((response: any) => {
-            setMinute(response)
-            setLoad(false);
+            setMinute(response);
+            getProposal();
         })
     }
 
@@ -1101,7 +1101,7 @@ export default function ViewDemand() {
                                     </div>
                                 </div>
                             ) : url === "minute" ? (
-                                <div>
+                                <div className="minute-box">
 
                                     <div className="container">
 
@@ -1147,7 +1147,63 @@ export default function ViewDemand() {
                                                         </div>
                                                     </div>
 
-                                                    
+                                                    {minute.agenda.proposals.map((val: any, index: any) => (
+                                                        <>
+                                                            {val.published === true && minute.minuteType === "Published"
+                                                                || val.published === null && minute.minuteType === "Not Published" &&
+
+                                                                <>
+                                                                    <p>{index + 1 + "."} {val.proposalName} - {val.proposalCode}</p>
+
+                                                                    <div className="text-information">
+                                                                        <b> {t("objective")}:</b>
+                                                                        {HtmlReactParser(val.demand.demandObjective)}
+                                                                    </div>
+
+                                                                    <div className="text-information">
+                                                                        <b> {t("proposalScope")}:</b>
+                                                                        {HtmlReactParser(val.descriptiveProposal)}
+                                                                    </div>
+
+                                                                    <div className="text-informatio">
+                                                                        <b>{t("totalsCosts")}:</b>
+                                                                        {"R$" + val.totalCosts.toLocaleString()}
+                                                                    </div>
+
+                                                                    {proposalExpenseValue?.expensesCode > 0 ? (<Expenses type="expenses" proposalExpense={proposalExpenseValue} minute={true} minuteCode={demandCode} edit={false} />) : (null)}
+
+                                                                    {proposalExpenseRecurrent?.expensesCode > 0 ? (<Expenses type="recurrent" proposalExpense={proposalExpenseRecurrent} minute={true} minuteCode={demandCode} edit={false} />) : (null)}
+
+                                                                    {proposalExpenseInternal?.expensesCode > 0 ? (<Expenses type="internal" proposalExpense={proposalExpenseInternal} minute={true} minuteCode={demandCode} edit={false} />) : (null)}
+
+                                                                    <div className="text-information">
+                                                                        <b>{t("periodOfExecution")}: </b> 
+                                                                        {val.initialRunPeriod.split("T")[0] + " à " + val.finalExecutionPeriod.split("T")[0]}
+                                                                    </div>
+
+                                                                    <div className="text-information">
+                                                                        <b>{t("Payback")}: </b>
+                                                                        {payback(val.initialRunPeriod, val.finalExecutionPeriod)}
+                                                                    </div>
+
+                                                                    <div className="text-information">
+                                                                        <b>{t("responsibleBussiness")}: </b>
+                                                                        {val.workers[0].workerName}
+                                                                    </div>
+
+                                                                    <div className="text-information">
+                                                                        <b>{t("commissionOpinion")}: </b>
+                                                                        {val.commissionOpinion}
+                                                                    </div>
+                                                            
+                                                                </>
+
+                                                            }
+
+                                                        </>
+                                                    ))}
+
+
                                                 </div>
                                             ) : (null)
                                             }

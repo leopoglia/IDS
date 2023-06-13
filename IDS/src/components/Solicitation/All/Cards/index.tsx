@@ -56,8 +56,11 @@ export default function Demands() {
             } else {
                 ServicesDemand.findAll().then((res: any) => {
                     setDemands(res);
+
                 });
             }
+
+
         } else if (url[3] === "proposals") {
             if (search === "" && typeFilter === "") {
                 getProposals(); // Busca as demandas cadastradas
@@ -71,6 +74,7 @@ export default function Demands() {
                 getAgendas(); // Busca as demandas cadastradas
             } else {
                 ServicesAgenda.findAll().then((res: any) => {
+                    putNameAgenda(res);
                     setAgendas(res);
                 });
             }
@@ -79,6 +83,7 @@ export default function Demands() {
                 getMinutes(); // Busca as demandas cadastradas
             } else {
                 ServicesMinute.findAll().then((res: any) => {
+                    putNameMinute(res);
                     setMinutes(res);
                 });
             }
@@ -183,16 +188,22 @@ export default function Demands() {
         findDemands = await ServicesAgenda.findByPage(page, 5).then((res: any) => {
             setAgendas(res.content); // Atualiza o estado das demandas
             setPages(res.totalPages); // Atualiza o estado das páginas
-
-            for (let i = 0; i < res.content.length; i++) {
-                let comission = "";
-
-                for (let j = 0; j < res?.content[i]?.commission.length; j++) {
-                    comission += res.content[i].commission[j].commissionName.split("–")[1] + " "
-                }
-                res.content[i].minuteName = comission;
+            putNameAgenda(res);
+            if (res.content.length === 0) {
+                setLoading(false);
             }
+        });
 
+        return findDemands;
+    }
+
+
+    //Buscar as atas cadastradas
+    async function getMinutes() {
+        findDemands = await ServicesMinute.findByPage(page, 5).then((res: any) => {
+            setMinutes(res.content); // Atualiza o estado das demandas
+            setPages(res.totalPages); // Atualiza o estado das páginas
+            putNameMinute(res);
 
             if (res.content.length === 0) {
                 setLoading(false);
@@ -203,29 +214,29 @@ export default function Demands() {
         return findDemands;
     }
 
-    //Buscar as atas cadastradas
-    async function getMinutes() {
-        findDemands = await ServicesMinute.findByPage(page, 5).then((res: any) => {
+    // Altera o nome da agenda para o nome com comissão
+    function putNameAgenda(res: any) {
+        for (let i = 0; i < res.content.length; i++) {
+            let comission = "";
 
-            for (let i = 0; i < res.content.length; i++) {
-                let comission = "";
-
-                for (let j = 0; j < res?.content[i]?.agenda?.commission.length; j++) {
-                    comission += res.content[i].agenda.commission[j].commissionName.split("–")[1] + " "
-                }
-                res.content[i].minuteName = comission;
+            for (let j = 0; j < res?.content[i]?.commission.length; j++) {
+                comission += res.content[i].commission[j].commissionName.split("–")[1] + " "
             }
+            res.content[i].minuteName = comission;
+        }
+    }
 
-            setMinutes(res.content); // Atualiza o estado das demandas
-            setPages(res.totalPages); // Atualiza o estado das páginas
+    // Altera o nome da ata para o nome com comissão
+    function putNameMinute(res: any) {
+        for (let i = 0; i < res.content.length; i++) {
+            let comission = "";
 
-            if (res.content.length === 0) {
-                setLoading(false);
+            for (let j = 0; j < res?.content[i]?.agenda?.commission.length; j++) {
+                comission += res.content[i].agenda.commission[j].commissionName.split("–")[1] + " "
             }
-        });
+            res.content[i].minuteName = comission;
+        }
 
-
-        return findDemands;
     }
 
 
@@ -492,7 +503,8 @@ export default function Demands() {
                 <div className="minutes">
 
                     <div className="container">
-                        <Search onClick={callback} search={search} name={nameFilter} type={typeFilter} setType={setType} nav={t("minuteViewMinute")} title="minutes" button="createMinute" link="/agendas/1" setTable={setTable} />
+
+                        <Search onClick={callback} setSearch={setSearch} search={search} name={nameFilter} type={typeFilter} setType={setType} nav={t("minuteViewMinute")} title="minutes" button="createMinute" link="/agendas/1" setTable={setTable} />
                         <div className={"container-background boxNoPadding-" + table}>
                             {
                                 minutes
@@ -506,7 +518,7 @@ export default function Demands() {
                                             return true;
                                         }
 
-                                        if (search !== "" && val.minuteCode.toString().includes(search)) {
+                                        if (search !== "" && ((t(val.minuteType) + " – " + val.minuteName).toUpperCase()).includes(search.toUpperCase())) {
                                             return true;
                                         }
 

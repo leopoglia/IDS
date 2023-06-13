@@ -343,6 +343,7 @@ export default function ViewDemand() {
     function getMinute() {
         ServicesMinute.findById(demandCode).then((response: any) => {
             setMinute(response);
+            setActionsDemand(1)
             getProposal();
         })
     }
@@ -400,7 +401,14 @@ export default function ViewDemand() {
     // Gerar PDF
 
     const generatePDF = async () => {
+        console.log(url)
+        if(url ==="demand"){
         window.open("http://localhost:8443/api/demand/pdf/" + demandCode, "_blank");
+        } else if(url ==="proposal"){
+            window.open("http://localhost:8443/api/proposal/pdf/" + demandCode, "_blank");
+        } else if(url === "minute"){
+            window.open("http://localhost:8443/api/minutes/pdf/" + demandCode, "_blank");
+        }
     };
 
 
@@ -1108,6 +1116,9 @@ export default function ViewDemand() {
                                         <div className="background-title">
 
                                             <Title nav={t("minute")} title="viewMinute" />
+
+                                            <ButtonsActions demand={demand} proposal={proposal} minute={minute} workerId={workerId} actionsDemand={actionsDemand} approveDemand={approveDemand} giveBack={giveBack} generatePDF={generatePDF} />
+
 
                                         </div>
 

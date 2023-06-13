@@ -101,7 +101,12 @@ export default function ButtonsActions(props: any) {
                     <ButtonActionAnalyst codeDemand={props.demand.demandCode} />
                 </>
             ) : (
-                <></>
+                <button className="btn-primary" onClick={props.generatePDF}>
+                    <span className="material-symbols-outlined">
+                        download
+                    </span>
+                    <span>{t("generatePDF")}</span>
+                </button>
             )
             }
         </div >

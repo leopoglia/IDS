@@ -472,14 +472,23 @@
 }
 
 .view-demand .minute-box .text-information{
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
-.view-demand .minute-box .title{
+.view-demand .minute-box .complement .title{
     font-size: var(--p) !important;
     color: var(--black) !important;
 }
 
-.view-demand .minute-box .complement{
-    border-radius: 0px !important;
+.view-demand .minute-box .text-information h1{
+    color: var(--grey3d)
+}
+
+.view-demand .minute-box{
+    font-size: var(--m) !important;
+    color: var(--grey3d) !important;
+}
+
+.view-demand .minute-box .workers{
+    text-align: center;
 }

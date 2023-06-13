@@ -1165,7 +1165,7 @@ export default function ViewDemand() {
                                                                         {HtmlReactParser(val.descriptiveProposal)}
                                                                     </div>
 
-                                                                    <div className="text-informatio">
+                                                                    <div className="text-information">
                                                                         <b>{t("totalsCosts")}:</b>
                                                                         {"R$" + val.totalCosts.toLocaleString()}
                                                                     </div>
@@ -1177,7 +1177,7 @@ export default function ViewDemand() {
                                                                     {proposalExpenseInternal?.expensesCode > 0 ? (<Expenses type="internal" proposalExpense={proposalExpenseInternal} minute={true} minuteCode={demandCode} edit={false} />) : (null)}
 
                                                                     <div className="text-information">
-                                                                        <b>{t("periodOfExecution")}: </b> 
+                                                                        <b>{t("periodOfExecution")}: </b>
                                                                         {val.initialRunPeriod.split("T")[0] + " à " + val.finalExecutionPeriod.split("T")[0]}
                                                                     </div>
 
@@ -1192,10 +1192,10 @@ export default function ViewDemand() {
                                                                     </div>
 
                                                                     <div className="text-information">
-                                                                        <b>{t("commissionOpinion")}: </b>
+                                                                        <b className="label">{t("commissionOpinion")}: </b>
                                                                         {val.commissionOpinion}
                                                                     </div>
-                                                            
+
                                                                 </>
 
                                                             }
@@ -1203,6 +1203,24 @@ export default function ViewDemand() {
                                                         </>
                                                     ))}
 
+                                                    <div className="hr" />
+
+                                                    <div className="text-information display-grid workers">
+                                                        <b className="label">{t("Participantes")}</b>
+                                                        {minute.agenda.commission[0].commissionName}
+                                                    </div>
+
+                                                    <div className="text-information display-flex-center workers">
+                                                        <div className="display-grid mr20">
+                                                            Joaozinho da Silva
+                                                            <b>Coordenador</b>
+                                                        </div>
+
+                                                        <div className="display-grid">
+                                                            Cicrano Padilha
+                                                            <b>Diretor Responsável</b>
+                                                        </div>
+                                                    </div>
 
                                                 </div>
                                             ) : (null)

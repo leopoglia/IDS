@@ -114,7 +114,7 @@ const Services = {
                 "demandStatus": demandStatus,
                 "classification": { "classificationCode": classificationCode },
                 "score": demandScore,
-                "approver": { "workerCode": approver }
+                "approver": { "workerCode": approver.workerCode }
             }
         }
 

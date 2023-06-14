@@ -132,6 +132,8 @@ export default function Nav() {
 
         if(worker.darkmode === true){
             window.location.replace("https://manualdeusuarioids.vercel.app?darkmode")
+        } else{
+            window.location.replace("https://manualdeusuarioids.vercel.app")
         }
 
     }

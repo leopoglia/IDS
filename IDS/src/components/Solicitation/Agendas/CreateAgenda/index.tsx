@@ -21,7 +21,6 @@ export default function CreateAgenda() {
     let data = new Date();
 
     const [proposals, setProposals]: any = useState([]);
-    const [commissionList, setcommissionList]: any = useState([]);
     const [commission, setCommission] = useState("");
     const [dateInitial, setDateInitial] = useState(`${data.getFullYear()}-${("0" + (data.getMonth() + 1)).slice(-2)}-${("0" + data.getDate()).slice(-2)}T${("0" + data.getHours()).slice(-2)}:${("0" + data.getMinutes()).slice(-2)}`);
     const [dateFinal, setDateFinal] = useState(`${data.getFullYear()}-${("0" + (data.getMonth() + 1)).slice(-2)}-${("0" + data.getDate()).slice(-2)}T${("0" + data.getHours()).slice(-2)}:${("0" + data.getMinutes()).slice(-2)}`);
@@ -69,24 +68,20 @@ export default function CreateAgenda() {
     const saveAgenda = () => {
 
         Servicescommission.findAll().then((response: any) => {
-            let commissionArray: any = [];
+            let commissionCode: any = 0;
 
-            response.map((commission: any) => {
-                commissionList.map((commissionSelected: any) => {
-                    if (commission.commissionName === commissionSelected) {
-                        commissionArray.push(commission.commissionCode);
+            response.map((val: any) => {
+                    if (val.commissionName === commission) {
+                        commissionCode = val.commissionCode;
                     }
-                })
             })
-
-
 
             for (let i = 0; i < proposals.length; i++) {
                 ServicesProposals.updatePublish(proposals[i].proposalCode, proposals[i].publishedMinute);
             }
 
-            if (dateInitial !== dateFinal && proposals.length !== 0 && commissionArray.length !== 0) {
-                Services.save("1", dateInitial, dateFinal, commissionArray, actualDate, proposals, worker.id).then((response: any) => {
+            if (dateInitial !== dateFinal && proposals.length !== 0 && commissionCode !== 0) {
+                Services.save("1", dateInitial, dateFinal, commissionCode, actualDate, proposals, worker.id).then((response: any) => {
                     navigate("/agenda/view/" + response.agendaCode);
 
                     localStorage.removeItem("proposals");

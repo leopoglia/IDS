@@ -217,12 +217,7 @@ export default function Demands() {
     // Altera o nome da agenda para o nome com comissão
     function putNameAgenda(res: any) {
         for (let i = 0; i < res.content.length; i++) {
-            let comission = "";
-
-            for (let j = 0; j < res?.content[i]?.commission.length; j++) {
-                comission += res.content[i].commission[j].commissionName.split("–")[1] + " "
-            }
-            res.content[i].minuteName = comission;
+            res.content[i].minuteName = res.content[i].commission.commissionName;
         }
     }
 

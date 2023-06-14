@@ -54,7 +54,7 @@ export default function ViewDemand() {
     const [centerCost, setCenterCost]: any = useState([]); // Dados do centro de custo
     const [classification, setClassification]: any = useState({}); // Dados da classificação
     const [beneficiariesBu, setBeneficiariesBu]: any = useState([]); // Dados dos beneficiários da BU
-    const [comission, setComission] = useState([]); // Dados da comissão
+    const [comission, setComission]: any = useState([]); // Dados da comissão
     const [subscribeId, setSubscribeId] = useState(null);
     let notification = {}; // Notificações do usuário
     const [pendingMinute, setPendingMinute]: any = useState(0); // Quantidade de propostas pendentes
@@ -890,7 +890,7 @@ export default function ViewDemand() {
                                                 <>
                                                     <div className="display-solicitation-demand">
 
-                                                        <p className="title">{agenda?.commission[0]?.commissionName?.toUpperCase() + " – " + agenda?.agendaDate}</p>
+                                                        <p className="title">{agenda?.commission?.commissionName?.toUpperCase() + " – " + agenda?.agendaDate}</p>
 
                                                     </div>
 
@@ -925,14 +925,12 @@ export default function ViewDemand() {
 
                                                 <table>
                                                     <tbody>
-                                                        {comission?.map((val: any, index: any) => (
-                                                            <tr key={index}>
-                                                                <td className="display-flex-start pl20">
-                                                                    {val.commissionName}
-                                                                </td>
-                                                            </tr>
 
-                                                        ))}
+                                                        <tr>
+                                                            <td className="display-flex-start pl20">
+                                                                {comission.commissionName}
+                                                            </td>
+                                                        </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -1132,7 +1130,7 @@ export default function ViewDemand() {
 
 
                                                     <div className="display-flex-space-between w100">
-                                                   
+
                                                         <p className="title">{(t("minute") + " REUNIÃO " + minute.agenda.commission[0].commissionName.split("–")[1]).toUpperCase()}</p>
 
                                                         <img className="logo-weg" src="/images/weg-blue.png" alt="" />
@@ -1218,7 +1216,7 @@ export default function ViewDemand() {
 
                                                     <div className="text-information display-grid workers">
                                                         <b className="label">{t("Participantes")}</b>
-                                                        {minute.agenda.commission[0].commissionName}
+                                                        {minute.agenda.commission.commissionName}
                                                     </div>
 
                                                     <div className="text-information display-flex-center workers">

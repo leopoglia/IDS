@@ -58,12 +58,14 @@ export default function Nav() {
                 }
             }
 
-            if (numberNotification === 0) {
-                if (numNotification === 0) {
-                    send("/api/worker/" + worker.id, notification);
-                    setDefaultNotification();
-                    numberNotification++;
-                    numNotificationVisualized++;
+            if (subscribeId !== null) {
+                if (numberNotification === 0) {
+                    if (numNotification === 0) {
+                        send("/api/worker/" + worker.id, notification);
+                        setDefaultNotification();
+                        numberNotification++;
+                        numNotificationVisualized++;
+                    }
                 }
             }
 
@@ -72,9 +74,7 @@ export default function Nav() {
             console.log(error);
         });
 
-        console.log(numNotification)
-
-    }, [numNotification, notifications]);
+    }, [numNotification, notifications, subscribeId]);
 
     useEffect(() => {
         const newNotification = (response) => {
@@ -84,7 +84,7 @@ export default function Nav() {
         if (stompClient && !subscribeId) {
             setSubscribeId(subscribe("/notifications/" + worker.id, newNotification));
         }
-    }, [stompClient, subscribeId, worker.id]);
+    }, [stompClient, worker.id]);
 
     function createNotification(event) {
         event.preventDefault();
@@ -128,12 +128,12 @@ export default function Nav() {
         window.location.reload();
     }
 
-    function manual(){
+    function manual() {
 
-        if(worker.darkmode === true){
-            window.location.replace("https://manualdeusuarioids.vercel.app?darkmode")
-        } else{
-            window.location.replace("https://manualdeusuarioids.vercel.app")
+        if (worker.darkmode === true) {
+            window.location.href = "https://manualdeusuarioids.vercel.app?darkmode"
+        } else {
+            window.location.href = "https://manualdeusuarioids.vercel.app"
         }
 
     }

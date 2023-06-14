@@ -58,7 +58,7 @@ export default function Search(props: any) {
     const search = () => {
         if (props.title === "demands") {
             return t("searchSoliciation");
-        } else if (props.title === "proposals") {
+        } else if (props.title === "proposals" || props.title === "selectProposal") {
             return t("searchProposal");
         } else if (props.title === "agendas") {
             return t("searchAgenda");

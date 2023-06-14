@@ -1176,7 +1176,7 @@ export default function ViewDemand() {
                                                                         {HtmlReactParser(val.descriptiveProposal)}
                                                                     </div>
 
-                                                                    <div className="text-information">
+                                                                    <div className="text-information display-flex">
                                                                         <b>{t("totalsCosts")}:</b>
                                                                         {"R$" + val.totalCosts.toLocaleString()}
                                                                     </div>
@@ -1187,22 +1187,22 @@ export default function ViewDemand() {
 
                                                                     {proposalExpenseInternal?.expensesCode > 0 ? (<Expenses type="internal" proposalExpense={proposalExpenseInternal} minute={true} minuteCode={demandCode} edit={false} />) : (null)}
 
-                                                                    <div className="text-information">
+                                                                    <div className="text-information display-flex">
                                                                         <b>{t("periodOfExecution")}: </b>
                                                                         {val.initialRunPeriod.split("T")[0] + " à " + val.finalExecutionPeriod.split("T")[0]}
                                                                     </div>
 
-                                                                    <div className="text-information">
+                                                                    <div className="text-information display-flex">
                                                                         <b>{t("Payback")}: </b>
                                                                         {payback(val.initialRunPeriod, val.finalExecutionPeriod)}
                                                                     </div>
 
-                                                                    <div className="text-information">
+                                                                    <div className="text-information display-flex">
                                                                         <b>{t("responsibleBussiness")}: </b>
                                                                         {val.workers[0].workerName}
                                                                     </div>
 
-                                                                    <div className="text-information">
+                                                                    <div className="text-information display-flex">
                                                                         <b className="label">{t("commissionOpinion")}: </b>
                                                                         {val.commissionOpinion}
                                                                     </div>

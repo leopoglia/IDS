@@ -27,11 +27,11 @@ export default function RankDemand() {
     const [linkEpicJira, setLinkEpicJira] = useState(""); // Link do epic jira
     const [demand, setDemand]: any = useState({}); // Demanda
     const [fileAttachment, setFileAttachment]: any = useState([]);
+    const { send, subscribe, stompClient }: any = useContext(WebSocketContext);
+    const [subscribeId, setSubscribeId] = useState(null);
     const url: any = parseInt(useParams().id || "null"); // Pegando o id da demanda
     const edit = window.location.href.split("?")[1]
     let notification = {}; // Notificações do usuário
-    const { send, subscribe, stompClient }: any = useContext(WebSocketContext);
-    const [subscribeId, setSubscribeId] = useState(null);
 
     useEffect(() => {
         // Pegando a demanda inicial
@@ -125,8 +125,6 @@ export default function RankDemand() {
             }
         }
 
-
-
     }
 
     const setRankNotification = () => {
@@ -159,7 +157,6 @@ export default function RankDemand() {
                 setBuBenefited(" ");
             }
         }
-
     }
 
     const handleFileSelected = (e: any): void => {
@@ -172,23 +169,7 @@ export default function RankDemand() {
         setFileAttachment(filesArray);
     }
 
-
-    // const attatchmentType = (demand: any) => {
-    //     if (demand.type === "image/png" || demand.type === "image/jpeg") {
-    //         return "png";
-    //     } else if (demand.type === "application/pdf") {
-    //         return "pdf";
-    //     } else if (demand.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
-    //         return "word";
-    //     } else if (demand.type === "application/msword" || demand.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||
-    //         demand.demandAttachment.type === "application/vnd.ms-excel") {
-    //         return "excel";
-    //     } else if (demand.type === "application/zip") {
-    //         return "zip";
-    //     } else if (demand.type === "application/x-rar-compressed") {
-    //         return "rar";
-    //     }
-    // }
+    console.log(demand.activeVersion)
 
     return (
         <div className="rank-demand">
@@ -199,6 +180,14 @@ export default function RankDemand() {
                 <div className="background-title">
 
                     <Title nav="demandViewDemandClassify" title="classifyDemand" />
+
+                    <Link to={"/demand/view/" + demand.demandCode + "?" + demand.demandVersion + "?view"}>
+                        <div className="visibility-demand">
+                            <span className="material-symbols-outlined">
+                                visibility
+                            </span>
+                        </div>
+                    </Link>
 
                 </div>
 
@@ -303,9 +292,9 @@ export default function RankDemand() {
                 </div>
 
 
-                <div className="demands-footer">
+                <div className="display-flex-end">
 
-                    {edit ?
+                    {/* {edit ?
                         <Link to={"/proposal/view/" + edit}>
                             <button className="btn-secondary">
                                 <span>{t("return")}</span>
@@ -318,7 +307,7 @@ export default function RankDemand() {
                             </button>
                         </Link>
                     }
-
+ */}
 
                     <button onClick={() => saveToRank()} className="btn-primary">
                         <span>{t("toRank")}</span>

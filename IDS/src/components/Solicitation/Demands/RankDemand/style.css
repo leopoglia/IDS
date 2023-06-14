@@ -1,33 +1,50 @@
-.rank-demand .box div{
+.rank-demand .box div {
     margin-right: 2px;
     margin-left: 0px;
 }
 
-.rank-demand .attachments label{
+.rank-demand .attachments label {
     margin-right: 20px
 }
 
-.select-bu{
+.select-bu {
     width: 100%;
 }
 
-.select-bu .SelectLabels{
+.select-bu .SelectLabels {
     width: 100%;
 }
 
-.mt10{
+.mt10 {
     margin-top: 10px;
 }
 
-.mt20{
+.mt20 {
     margin-top: 20px;
 }
 
-.mr20{
+.mr20 {
     margin-right: 20px;
 }
 
 
-.mb10{
+.mb10 {
     margin-bottom: 10px;
+}
+
+.visibility-demand {
+    width: 45px;
+    height: 45px;
+    border: 1px solid var(--greyC4);
+    background-color: var(--greyF7);
+    color: var(--grey59) !important;
+    border-radius: var(--r);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.visibility-demand:hover {
+    background-color: var(--greyE5);
 }

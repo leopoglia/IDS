@@ -33,6 +33,7 @@ export default function ViewDemand() {
     const url = window.location.href.split("/")[3]; // Buscar tipo da demanda
     const demandCode: any = parseInt(useParams().id || "null"); // Buscar código da demanda
     const demandVersion = parseInt(window.location.href.split("?")[1]); // Buscar versão da demanda
+    const viewDemand: string = window.location.href.split("?")[2]; // Verificar se é uma demanda para visualização
     const [load, setLoad] = useState(true); // Carregamento da página
 
     // Botões superiores
@@ -558,7 +559,15 @@ export default function ViewDemand() {
 
                                             )}
 
-                                            {
+
+                                            {viewDemand === "view" ? (
+                                                <Link to={"/demand/rank/" + demand.demandCode + "?" + demand.demandVersion + "?view"}>
+                                                    <div className="visibility-demand">
+                                                        <span className="material-symbols-outlined">
+                                                            visibility_off
+                                                        </span>
+                                                    </div>
+                                                </Link>) :
                                                 (demand?.activeVersion === true) ? (
                                                     (demand.demandStatus != "Cancelled") ? (
                                                         <ButtonsActions demand={demand} proposal={proposal} workerId={workerId} actionsDemand={actionsDemand} approveDemand={approveDemand} giveBack={giveBack} generatePDF={generatePDF} />
@@ -579,6 +588,7 @@ export default function ViewDemand() {
                                                     </button>
                                                 ) : null
                                             }
+
 
                                         </div>
 

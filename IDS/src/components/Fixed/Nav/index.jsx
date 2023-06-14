@@ -128,6 +128,14 @@ export default function Nav() {
         window.location.reload();
     }
 
+    function manual(){
+
+        if(worker.darkmode === true){
+            window.location.replace("https://manualdeusuarioids.vercel.app?darkmode")
+        }
+
+    }
+
     return (
         <nav className={nav}>
             <div id={nav} />
@@ -252,19 +260,19 @@ export default function Nav() {
                 </Tooltip>
 
 
-                <Link to="https://manualdeusuarioids.vercel.app/" target="_blank">
-                    <Tooltip title={nav !== "nav-open" ? t("help") : ""} placement="right">
 
-                        <li className="help">
-                            <div>
-                                <span className="material-symbols-outlined">
-                                    help
-                                </span>
-                                <span className="title-li">{t("help")}</span>
-                            </div>
-                        </li>
-                    </Tooltip>
-                </Link>
+                <Tooltip onClick={() => { manual() }} title={nav !== "nav-open" ? t("help") : ""} placement="right">
+
+                    <li className="help">
+                        <div>
+                            <span className="material-symbols-outlined">
+                                help
+                            </span>
+                            <span className="title-li">{t("help")}</span>
+                        </div>
+                    </li>
+                </Tooltip>
+
 
                 <Tooltip onClick={() => { logout() }} title={nav !== "nav-open" ? t("logout") : ""} placement="right">
                     <li className="logout">

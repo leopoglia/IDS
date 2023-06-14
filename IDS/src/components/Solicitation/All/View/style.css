@@ -481,7 +481,8 @@
 }
 
 .view-demand .minute-box .text-information h1{
-    color: var(--grey3d)
+    color: var(--grey3d);
+    font-size: var(--p);
 }
 
 .view-demand .minute-box{
@@ -491,4 +492,11 @@
 
 .view-demand .minute-box .workers{
     text-align: center;
+}
+
+.view-demand .minute-box .text-information b{
+    margin-bottom: 10px !important;
+    display: block;
+    float: left;
+    margin-right: 5px;
 }

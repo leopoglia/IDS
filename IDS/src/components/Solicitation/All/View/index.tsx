@@ -1131,7 +1131,7 @@ export default function ViewDemand() {
 
                                                     <div className="display-flex-space-between w100">
 
-                                                        <p className="title">{(t("minute") + " REUNIÃO " + minute.agenda.commission[0].commissionName.split("–")[1]).toUpperCase()}</p>
+                                                        <p className="title">{(t("minute") + " REUNIÃO " + minute.agenda.commission.commissionName.split("–")[1]).toUpperCase()}</p>
 
                                                         <img className="logo-weg" src="/images/weg-blue.png" alt="" />
                                                     </div>

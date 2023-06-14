@@ -74,7 +74,6 @@ export default function Demands() {
                 getAgendas(); // Busca as demandas cadastradas
             } else {
                 ServicesAgenda.findAll().then((res: any) => {
-                    putNameAgenda(res);
                     setAgendas(res);
                 });
             }
@@ -83,7 +82,6 @@ export default function Demands() {
                 getMinutes(); // Busca as demandas cadastradas
             } else {
                 ServicesMinute.findAll().then((res: any) => {
-                    putNameMinute(res);
                     setMinutes(res);
                 });
             }
@@ -188,7 +186,6 @@ export default function Demands() {
         findDemands = await ServicesAgenda.findByPage(page, 5).then((res: any) => {
             setAgendas(res.content); // Atualiza o estado das demandas
             setPages(res.totalPages); // Atualiza o estado das páginas
-            putNameAgenda(res);
             if (res.content.length === 0) {
                 setLoading(false);
             }
@@ -203,7 +200,6 @@ export default function Demands() {
         findDemands = await ServicesMinute.findByPage(page, 5).then((res: any) => {
             setMinutes(res.content); // Atualiza o estado das demandas
             setPages(res.totalPages); // Atualiza o estado das páginas
-            putNameMinute(res);
 
             if (res.content.length === 0) {
                 setLoading(false);
@@ -212,26 +208,6 @@ export default function Demands() {
 
 
         return findDemands;
-    }
-
-    // Altera o nome da agenda para o nome com comissão
-    function putNameAgenda(res: any) {
-        for (let i = 0; i < res.content.length; i++) {
-            res.content[i].minuteName = res.content[i].commission.commissionName;
-        }
-    }
-
-    // Altera o nome da ata para o nome com comissão
-    function putNameMinute(res: any) {
-        for (let i = 0; i < res.content.length; i++) {
-            let comission = "";
-
-            for (let j = 0; j < res?.content[i]?.agenda?.commission.length; j++) {
-                comission += res.content[i].agenda.commission[j].commissionName.split("–")[1] + " "
-            }
-            res.content[i].minuteName = comission;
-        }
-
     }
 
 
@@ -454,7 +430,7 @@ export default function Demands() {
                                             return true;
                                         }
 
-                                        if (search !== "" && (val.minuteName.toUpperCase() + " – " + val.agendaDate).includes(search)) {
+                                        if (search !== "" && ((val?.commission?.commissionName?.split("–")[1]).toUpperCase() + " – " + val.agendaDate).includes(search)) {
                                             return true;
                                         }
 
@@ -474,7 +450,7 @@ export default function Demands() {
                                     .map((val: any) => (
                                         <Demand
                                             key={val.agendaCode} val={val.agendaCode} listDirection={table}
-                                            name={val.minuteName.toUpperCase() + " – " + val.agendaDate} demandCode={val.agendaCode} date={val.agendaDate}
+                                            name={(val.commission.commissionName.split("–")[1]).toUpperCase() + " – " + val.agendaDate} demandCode={val.agendaCode} date={val.agendaDate}
                                             number={val.sequentialNumber} year={val.initialDate} type="agenda"
                                         />
                                     ))
@@ -513,7 +489,7 @@ export default function Demands() {
                                             return true;
                                         }
 
-                                        if (search !== "" && ((t(val.minuteType) + " – " + val.minuteName).toUpperCase()).includes(search.toUpperCase())) {
+                                        if (search !== "" && ((t(val.minuteType) + " – " + val.agenda.commission.commissionName.split("–")[1]).toUpperCase()).includes(search.toUpperCase())) {
                                             return true;
                                         }
 
@@ -537,7 +513,7 @@ export default function Demands() {
                                         <Demand
                                             key={val.minuteCode}
                                             listDirection={table}
-                                            name={(t(val.minuteType) + " – " + val.minuteName).toUpperCase()}
+                                            name={(t(val.minuteType) + " – " + val.agenda.commission.commissionName.split("–")[1]).toUpperCase()}
                                             demandCode={val.minuteCode}
                                             director={val.director?.workerName}
                                             number={val.minuteCode}

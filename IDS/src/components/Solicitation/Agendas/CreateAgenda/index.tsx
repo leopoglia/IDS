@@ -28,6 +28,10 @@ export default function CreateAgenda() {
 
 
     const worker: any = useContext(UserContext).worker;
+    
+    useEffect(() => {
+        console.log(commission)
+    }, [commission])
 
 
     let actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear();
@@ -87,38 +91,10 @@ export default function CreateAgenda() {
 
                     localStorage.removeItem("proposals");
                 })
-            } else{
+            } else {
                 notifyUtil.error(t("fillAllFields"));
             }
         })
-
-
-    }
-
-    function addWorker(worker: any) {
-        if (worker === "") {
-            notifyUtil.error(t("fillAllFields"));
-        } else {
-            commissionList.push(worker);
-            setcommissionList(commissionList);
-            setCommission("");
-        }
-    }
-
-    function deleteWorker(woker: any) {
-        return () => {
-            const index = commissionList.indexOf(woker);
-            if (index > -1) {
-                commissionList.splice(index, 1);
-            }
-            setcommissionList(commissionList);
-
-            if (commission === " ") {
-                setCommission("");
-            } else {
-                setCommission(" ");
-            }
-        }
     }
 
 
@@ -196,29 +172,10 @@ export default function CreateAgenda() {
                         <Input label="dateEnd" type="datetime-local" setValue={setDateFinal} value={dateFinal} />
                     </div>
 
-                    <div className="display-grid mt20">
-
-                        <div className="commission-flex">
-                            <div className="w100">
-                                <span>{t("comission")}</span>
-                                <SelectWorker setCommission={setCommission} worker={commission} />
-                            </div>
-
-                            <div className="btn-primary w45" onClick={() => { addWorker(commission) }}>
-                                <span className="material-symbols-outlined">add</span>
-                            </div>
-                        </div>
+                    <div className="mt10">
+                        <span>{t("comission")}</span>
+                        <SelectWorker setCommission={setCommission} worker={commission} />
                     </div>
-
-                    {commissionList.map((worker: any) => {
-                        return <div className="costCenter">
-                            <span>{worker}</span>
-                            <span className="material-symbols-outlined delete-cost-center" onClick={deleteWorker(worker)} >
-                                delete
-                            </span>
-                        </div>
-                    })
-                    }
 
 
                 </div>

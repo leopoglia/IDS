@@ -459,7 +459,7 @@ export default function Demands() {
                                             return true;
                                         }
 
-                                        if (search !== "" && val.agendaCode.toString().includes(search)) {
+                                        if (search !== "" && (val.minuteName.toUpperCase() + " – " + val.agendaDate).includes(search)) {
                                             return true;
                                         }
 
@@ -479,7 +479,7 @@ export default function Demands() {
                                     .map((val: any) => (
                                         <Demand
                                             key={val.agendaCode} val={val.agendaCode} listDirection={table}
-                                            name={(t("meetingAgenda") + " – " + val.minuteName).toUpperCase()} demandCode={val.agendaCode} date={val.agendaDate}
+                                            name={val.minuteName.toUpperCase() + " – " + val.agendaDate} demandCode={val.agendaCode} date={val.agendaDate}
                                             number={val.sequentialNumber} year={val.initialDate} type="agenda"
                                         />
                                     ))

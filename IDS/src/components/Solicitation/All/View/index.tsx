@@ -889,7 +889,9 @@ export default function ViewDemand() {
                                             {agenda ? (
                                                 <>
                                                     <div className="display-solicitation-demand">
-                                                        <p className="title">{t("meetingAgenda")} {agenda.agendaCode}</p>
+
+                                                        <p className="title">{agenda?.commission[0]?.commissionName?.toUpperCase() + " – " + agenda?.agendaDate}</p>
+
                                                     </div>
 
                                                     <div className="box">
@@ -1130,6 +1132,7 @@ export default function ViewDemand() {
 
 
                                                     <div className="display-flex-space-between w100">
+                                                   
                                                         <p className="title">{(t("minute") + " REUNIÃO " + minute.agenda.commission[0].commissionName.split("–")[1]).toUpperCase()}</p>
 
                                                         <img className="logo-weg" src="/images/weg-blue.png" alt="" />

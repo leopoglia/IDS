@@ -9,18 +9,13 @@ const Services = {
             proposalList.push({ proposalCode: proposals[i].proposalCode })
         }
 
-        let commissionList: any = [];
-        for (let i = 0; i < commission.length; i++) {
-            commissionList.push({ commissionCode: commission[i] })
-        }
-
         return new Promise((resolve, reject) => {
             fetch(url, {
                 method: 'POST', body: JSON.stringify({
                     sequentialNumber: sequentialNumber,
                     initialDate: dateInitial,
                     finalDate: dateFinal,
-                    commission: commissionList,
+                    commission: { "commissionCode": commission },
                     agendaDate: agendaDate,
                     proposals: proposalList,
                     analistRegistry: { "workerCode": analistRegistry }

@@ -11,6 +11,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden !important;
+    z-index: 100;
 }
 
 .modalChangeStatus .modal {
@@ -77,4 +78,9 @@
 
 .modal .display-flex-center {
     margin-bottom: 20px;
+}
+
+.modalChangeStatus .MuiSelect-select{
+    position: relative !important;
+    z-index: 100;
 }

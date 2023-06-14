@@ -14,6 +14,7 @@ import othersUtil from "../../../../utils/othersUtil";
 import notifyUtil from "../../../../utils/notifyUtil";
 import "./style.css"
 import Input from "../CrateDemand/Others/Input";
+import { Tooltip } from "@mui/material";
 
 
 export default function RankDemand() {
@@ -181,13 +182,15 @@ export default function RankDemand() {
 
                     <Title nav="demandViewDemandClassify" title="classifyDemand" />
 
-                    <Link to={"/demand/view/" + demand.demandCode + "?" + demand.demandVersion + "?view"}>
-                        <div className="visibility-demand">
-                            <span className="material-symbols-outlined">
-                                visibility
-                            </span>
-                        </div>
-                    </Link>
+                    <Tooltip title={t("viewDemand")} placement="bottom" arrow>
+                        <Link to={"/demand/view/" + demand.demandCode + "?" + demand.demandVersion + "?view"}>
+                            <div className="visibility-demand">
+                                <span className="material-symbols-outlined">
+                                    visibility
+                                </span>
+                            </div>
+                        </Link>
+                    </Tooltip>
 
                 </div>
 

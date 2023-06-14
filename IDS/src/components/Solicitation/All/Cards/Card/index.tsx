@@ -72,15 +72,15 @@ export default function Demand(props: any) {
 
     const btnGenerateProposal = () => {
 
-        if (props.situation === "Backlog") {
-            if (worker.office === "analyst" || worker.office === "ti") {
-                return (
-                    <Link to={"/demand/rank/" + props.demandCode}>
-                        <button className="btn-primary">{t("toRank")}</button>
-                    </Link>
-                );
-            }
-        }
+        // if (props.situation === "Backlog") {
+        //     if (worker.office === "analyst" || worker.office === "ti") {
+        //         return (
+        //             <Link to={"/demand/rank/" + props.demandCode}>
+        //                 <button className="btn-primary">{t("toRank")}</button>
+        //             </Link>
+        //         );
+        //     }
+        // }
 
         if (props.situation === "BacklogComplement") {
             if (worker.office === "analyst" || worker.office === "ti") {

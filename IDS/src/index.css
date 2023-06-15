@@ -319,7 +319,7 @@ textarea:focus {
   left: 0;
   height: 22px;
   width: 22px;
-  border-radius: calc(var(--r) - 2px);
+  border-radius: calc(var(--r) - 3px);
   border: 1px solid var(--greyC4);
 }
 
@@ -327,6 +327,11 @@ textarea:focus {
 .container input:checked ~ .checkmark {
   background-color: var(--blue);
   border: var(--blue);
+}
+
+.container input:checked:hover ~ .checkmark{
+  background-color: var(--blue19);
+  border: var(--blue19);
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */

@@ -87,16 +87,13 @@ export default function RankDemand() {
         classification.ppmCode = ppmCode;
         classification.epicJiraLink = linkEpicJira;
 
-        console.log(classification)
 
         if (classification.size === "" || classification.ti === "" || classification.buReq === "" || classification.buBenList === undefined) {
             notifyUtil.error(t("fillAllFields"))
             console.log("entrou 1")
             return;
         } else {
-            // Salvando a classificação
-
-            if (view === "edit") {
+            if (view !== "edit") {
                 ServicesClassification.save(classification.size, classification.ti, 0, "", classification.buReq, classification.buBenList, analysis.id, fileAttachment).then((response: any) => {
                     let classificationCode = response.classificationCode; // Pegando o código da classificação
 
@@ -125,7 +122,6 @@ export default function RankDemand() {
                 })
             } else {
                 if (classification.ppmCode === "" || classification.epicJiraLink === "") {
-                    console.log("entrou 2")
                     notifyUtil.error(t("fillAllFields"))
                 } else {
                     ServicesClassification.save(classification.size, classification.ti, classification.ppmCode, classification.epicJiraLink, classification.buReq, classification.buBenList, analysis.id, fileAttachment).then((response: any) => {

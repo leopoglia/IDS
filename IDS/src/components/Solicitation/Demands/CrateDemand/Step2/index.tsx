@@ -181,7 +181,7 @@ export default function CreateDemands2() {
                                     </label>
 
 
-                                    <label htmlFor="legalObrigation" className="pl10">{t("yes")}</label>
+                                    <label htmlFor="legalObrigation" className="pl10 mt3">{t("yes")}</label>
                                 </div>
                             </div>
                         </div>

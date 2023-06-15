@@ -56,6 +56,8 @@ export default function Edit() {
 	const [potentialCurrency, setPotentialCurrency]: any = useState(""); // Moeda potencial
 	const [potentialBenefitDescription, setPotentialBenefitDescription]: any = useState(""); // Descrição do beneficio potencial
 	const [potentialBenefitValue, setPotentialBenefitValue]: any = useState(""); // Valor do beneficio potencial
+	const [legalObrigation, setLegalObrigation] = useState(false);
+
 
 	const [realBenefitCode, setRealBenefitCode]: any = useState(""); // Código do beneficio real
 	const [realCurrency, setrealCurrency]: any = useState(""); // Moeda real
@@ -64,6 +66,8 @@ export default function Edit() {
 
 	const [qualitativeBenefitCode, setQualitativeBenefitCode]: any = useState(""); // Código do beneficio qualitativo
 	const [qualitativeBenefitDescription, setQualitativeBenefitDescription]: any = useState(""); // Descrição do beneficio qualitativo
+	const [interalControlsRequirements, setInteralControlsRequirements]: any = useState(""); // Requisitos de controles internos
+
 	const [frequencyOfUse, setFrequencyOfUse]: any = useState(""); // Frequencia de uso
 
 	const [demandStatus, setDemandStatus]: any = useState(""); // Status da demanda
@@ -86,6 +90,7 @@ export default function Edit() {
 			setPotentialBenefitCode(demand.potentialBenefit.potentialBenefitCode);
 			setPotentialBenefitValue(demand.potentialBenefit.potentialMonthlyValue);
 			setPotentialBenefitDescription(demand.potentialBenefit.potentialBenefitDescription);
+			setLegalObrigation(demand.potentialBenefit.legalObrigation);
 
 			setrealCurrency(demand.realBenefit.realCurrency);
 			setRealBenefitValue(response.realBenefit.realMonthlyValue);
@@ -94,6 +99,7 @@ export default function Edit() {
 
 			setQualitativeBenefitCode(demand.qualitativeBenefit.qualitativeBenefitCode);
 			setQualitativeBenefitDescription(demand.qualitativeBenefit.qualitativeBenefitDescription);
+			setInteralControlsRequirements(demand.qualitativeBenefit.interalControlsRequirements);
 
 			setDemandStatus(demand.demandStatus);
 			setDemandScore(demand.score);
@@ -277,7 +283,7 @@ export default function Edit() {
 								localStorage.removeItem("centerOfCustProposalexpenses");
 								localStorage.removeItem('centerOfCustProposalrecurrent'); // Limpa a lista de centro de custo da edição
 								localStorage.removeItem('centerOfCustProposalinternal'); // Limpa a lista de centro de custo da edição
-						
+
 							})
 						}
 					}
@@ -341,7 +347,7 @@ export default function Edit() {
 	const [situationAdicional, setAdicionalOpen] = useState(true);
 
 	return (
-		<div className="create-demands-1 execution-costs">
+		<div className="create-demands-1 create-demands-2 execution-costs">
 
 			{demands &&
 				<div className="container">
@@ -479,8 +485,15 @@ export default function Edit() {
 
 										<div className="input-checkbox">
 											<label>{t("legalObligation")}</label>
-											<div className="checkbox">
-												<CheckBox />
+											<div className="display-flex-start mt10">
+
+												<label className="checkbox">
+													<input type="checkbox" id="legalObrigation" name="legalObrigation" checked={legalObrigation} onChange={(e) => { setLegalObrigation(e.target.checked) }} />
+													<span className="checkmark"></span>
+												</label>
+
+
+												<label htmlFor="legalObrigation" className="pl10 mt3">{t("yes")}</label>
 											</div>
 										</div>
 									</div>
@@ -505,10 +518,22 @@ export default function Edit() {
 
 								<Editor setContent={setQualitativeBenefitDescription} content={qualitativeBenefitDescription} />
 
-								<div className="input-checkbox requirements">
-									<label>{t("internalControlRequirements")}</label>
-									<div className="checkbox">
-										<CheckBox />
+								<div className="display-flex">
+									<Input label="frequencyUse" type="text" value={frequencyOfUse} setValue={setFrequencyOfUse} required={true} />
+
+
+									<div className="input-checkbox">
+										<label className="requirements">{t("internalControlRequirements")}</label>
+										<div className="display-flex-start mt10">
+											<label className='checkbox'>
+												<input type="checkbox" id="interalControlsRequirements" name="interalControlsRequirements" checked={interalControlsRequirements} onChange={(e) => { setInteralControlsRequirements(e.target.checked) }} />
+												<span className="checkmark"></span>
+
+											</label>
+											<label htmlFor="interalControlsRequirements" className="pl10 mt3">{t("yes")}</label>
+
+
+										</div>
 									</div>
 								</div>
 
@@ -524,10 +549,6 @@ export default function Edit() {
 										expand_more
 									</span>
 								</div>
-
-								<Input label="frequencyUse" type="text" value={frequencyOfUse} setValue={setFrequencyOfUse} required={true} />
-
-
 
 								<label className="mt10">{t("attachments")}</label>
 

@@ -4,6 +4,7 @@
 
 .Title span {
     font-size: 11px;
+    font-size: calc(var(--pp) - 1px);
 }
 
 .Title span:hover {
@@ -14,7 +15,7 @@
 
 .Title h1 {
     margin: 2px 0px 2px 49px;
-    font-size: 22px;
+    font-size: var(--g);
     white-space: nowrap;
 }
 

@@ -11,7 +11,7 @@
 }
 
 .footer span {
-    font-size: 13px;
+    font-size: var(--pp);
     color: var(--grey3d);
 }
 

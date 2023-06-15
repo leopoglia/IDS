@@ -27,7 +27,7 @@ export default function CreateAgenda() {
 
 
     const worker: any = useContext(UserContext).worker;
-    
+
     useEffect(() => {
         console.log(commission)
     }, [commission])
@@ -71,9 +71,9 @@ export default function CreateAgenda() {
             let commissionCode: any = 0;
 
             response.map((val: any) => {
-                    if (val.commissionName === commission) {
-                        commissionCode = val.commissionCode;
-                    }
+                if (val.commissionName === commission) {
+                    commissionCode = val.commissionCode;
+                }
             })
 
             for (let i = 0; i < proposals.length; i++) {
@@ -129,9 +129,12 @@ export default function CreateAgenda() {
 
 
                                         <div className="check-box">
-                                            <input onChange={(e) => {
-                                                proposal.publishedMinute = e.target.checked;
-                                            }} type="checkbox" />
+                                            <label className="checkbox">
+                                                <input onChange={(e) => {
+                                                    proposal.publishedMinute = e.target.checked;
+                                                }} type="checkbox" />
+                                                <span className="checkmark"></span>
+                                            </label>
 
                                             <label>{t("publiquedMinute")}</label>
 
@@ -183,7 +186,7 @@ export default function CreateAgenda() {
             </div>
 
             <ToastContainer />
-        </div>
+        </div >
 
     )
 }

@@ -83,7 +83,10 @@ export default function Notification(props: any) {
     return (
         <div className={"display-flex-center notification-background-" + props.view}>
             <div className="notification-checkbox">
-                <input type="checkbox" onClick={() => {props.onClick(); setChecked(!checked)}} checked={checked} />
+                <label className="checkbox checkbox-message">
+                    <input type="checkbox" onClick={() => { props.onClick(); setChecked(!checked) }} checked={checked} />
+                    <span className="checkmark"></span>
+                </label>
             </div>
 
 
@@ -107,6 +110,6 @@ export default function Notification(props: any) {
                 </div>
 
             </div>
-        </div>
+        </div >
     );
 }

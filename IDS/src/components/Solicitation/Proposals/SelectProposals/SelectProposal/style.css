@@ -132,3 +132,17 @@
     margin-right: 15px;
     width: 150px;
 }
+
+.select-proposal .checkmark{
+    width: 30px;
+    height: 30px;
+}
+
+.select-proposal .checkmark{
+    margin-top: -13px;
+}
+
+.select-proposal .checkbox .checkmark:after{
+    top: 7px;
+    left: 11px;
+}

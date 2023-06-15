@@ -44,6 +44,10 @@
     font-variation-settings: 'FILL' 1, 'wght' 350, 'GRAD' -25, 'opsz' 50 !important;
 }
 
+.create-demands-2 .checkbox{
+    margin-bottom: -14px !important;
+}
+
 @media(max-width: 768px) {
     .box .flex {
         display: block;

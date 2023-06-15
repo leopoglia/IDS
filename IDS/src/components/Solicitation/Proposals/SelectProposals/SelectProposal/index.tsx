@@ -63,8 +63,11 @@ export default function SelectProposal(props: any) {
 
             </div>
 
-            <div className="checkbox">
-                <input onChange={(event) => handleCheckbox(event)} type="checkbox" name="" id="" checked={cheacked} />
+            <div className="display-flex-center">
+                <label className="checkbox">
+                    <input onChange={(event) => handleCheckbox(event)} type="checkbox" name="" id="" checked={cheacked} />
+                    <span className="checkmark"></span>
+                </label>
             </div>
         </div>
     );

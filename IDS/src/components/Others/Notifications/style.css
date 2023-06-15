@@ -78,3 +78,8 @@
     margin-right: 20px;
     height: 60px !important;
 }
+
+.notifications .header .checkbox{
+    margin-top: -25px;
+    margin-right: 10px;
+}

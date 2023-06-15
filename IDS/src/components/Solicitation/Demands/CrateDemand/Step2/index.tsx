@@ -173,9 +173,15 @@ export default function CreateDemands2() {
 
                             <div className="input-checkbox">
                                 <label>{t("legalObligation")}</label>
-                                <div className="checkbox">
-                                    <input type="checkbox" id="legalObrigation" name="legalObrigation" checked={legalObrigation} onChange={(e) => { setLegalObrigation(e.target.checked) }} />
-                                    <label htmlFor="legalObrigation" className="pl10 mb0">{t("yes")}</label>
+                                <div className="display-flex mt10">
+
+                                    <label className="checkbox">
+                                        <input type="checkbox" id="legalObrigation" name="legalObrigation" checked={legalObrigation} onChange={(e) => { setLegalObrigation(e.target.checked) }} />
+                                        <span className="checkmark"></span>
+                                    </label>
+
+
+                                    <label htmlFor="legalObrigation" className="pl10">{t("yes")}</label>
                                 </div>
                             </div>
                         </div>
@@ -206,9 +212,14 @@ export default function CreateDemands2() {
 
                         <div className="input-checkbox">
                             <label className="requirements">{t("internalControlRequirements")}</label>
-                            <div className="checkbox">
-                                <input type="checkbox" id="interalControlsRequirements" name="interalControlsRequirements" checked={interalControlsRequirements} onChange={(e) => { setInteralControlsRequirements(e.target.checked) }} />
-                                <label htmlFor="interalControlsRequirements" className="pl10 mb0">{t("yes")}</label>
+                            <div className="display-flex mt10">
+                                <label className='checkbox'>
+                                    <input type="checkbox" id="interalControlsRequirements" name="interalControlsRequirements" checked={interalControlsRequirements} onChange={(e) => { setInteralControlsRequirements(e.target.checked) }} />
+                                    <span className="checkmark"></span>
+
+                                </label>
+                                <label htmlFor="interalControlsRequirements" className="pl10 mt5">{t("yes")}</label>
+
 
                             </div>
                         </div>
@@ -227,6 +238,6 @@ export default function CreateDemands2() {
 
             <ToastContainer position="bottom-right" newestOnTop />
 
-        </div>
+        </div >
     );
 }

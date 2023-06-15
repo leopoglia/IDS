@@ -23,18 +23,18 @@ export default function Notifications() {
     const [search, setSearch]: any = useState(""); // Retorno do campo de busca de demandas
     const [moreActions, setMoreActions]: any = useState(false); // Abre modal de ações
     const [checked, setChecked] = useState(false);
-    const [updateCheckeds, setUpdateCheckeds] = useState(false); 
+    const [updateCheckeds, setUpdateCheckeds] = useState(false);
     const [alterate, setAlterate] = useState(false); // Atualiza as notificações atualizadas
-    const { send, subscribe, stompClient }:any = useContext(WebSocketContext);
+    const { send, subscribe, stompClient }: any = useContext(WebSocketContext);
 
     const [subscribeId, setSubscribeId] = useState(null);
-    const [notifications2, setNotifications2]:any = useState([]); // Notificações do usuário
+    const [notifications2, setNotifications2]: any = useState([]); // Notificações do usuário
 
     useEffect(() => {
 
-        const newNotification = (response:any) => {
+        const newNotification = (response: any) => {
             const notificationReceived = JSON.parse(response.body);
-            setNotifications2((previousNotifications:any) => [...previousNotifications, notificationReceived]);
+            setNotifications2((previousNotifications: any) => [...previousNotifications, notificationReceived]);
         }
         if (stompClient && !subscribeId) {
             setSubscribeId(subscribe("/notifications/" + worker.id, newNotification));
@@ -77,8 +77,8 @@ export default function Notifications() {
     }
 
     const deleteNotification = async () => {
-        for(let i = 0; i < notifications.length; i++){
-            if(notifications[i].checked === true){
+        for (let i = 0; i < notifications.length; i++) {
+            if (notifications[i].checked === true) {
                 await Services.delete(notifications[i].notificationCode)
             }
         }
@@ -86,35 +86,35 @@ export default function Notifications() {
     }
 
     const updateNotificationVisualized = async () => {
-        for(let i = 0; i < notifications.length; i++){
-            if(notifications[i].checked === true){
+        for (let i = 0; i < notifications.length; i++) {
+            if (notifications[i].checked === true) {
                 await Services.updateNotificationVisualized(notifications[i].notificationCode)
                 setAlterate(!alterate)
             }
         }
-        
+
         setAlterate(!alterate)
     }
 
     const [textSelect, setTextSelect] = useState("Nenhum selecionado");
-    
+
     useEffect(() => {
         console.log(notifications)
 
         let count = 0;
-        for(let i = 0; i < notifications.length; i++){
-            if(notifications[i].checked === true){
+        for (let i = 0; i < notifications.length; i++) {
+            if (notifications[i].checked === true) {
                 count++
             }
         }
 
-        if(count === 0){
+        if (count === 0) {
             setTextSelect("Nenhum selecionado")
-        }else if(count === 1){
+        } else if (count === 1) {
             setTextSelect("1 selecionado")
-        } else if(count === notifications.length){
+        } else if (count === notifications.length) {
             setTextSelect("Todos selecionados")
-        }else{
+        } else {
             setTextSelect(count + " selecionados")
         }
     }, [checked, updateCheckeds])
@@ -137,7 +137,10 @@ export default function Notifications() {
 
                             <span className="selects display-flex-align-center">
 
-                                <input type="checkbox" onClick={selectAll} />
+                                <label className="checkbox">
+                                    <input type="checkbox" onClick={selectAll} />
+                                    <span className="checkmark"></span>
+                                </label>
 
                                 {textSelect}
                             </span>

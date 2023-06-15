@@ -561,13 +561,16 @@ export default function ViewDemand() {
 
 
                                             {viewDemand === "view" ? (
-                                                <Link to={"/demand/rank/" + demand.demandCode + "?" + demand.demandVersion + "?view"}>
-                                                    <div className="visibility-demand">
-                                                        <span className="material-symbols-outlined">
-                                                            visibility_off
-                                                        </span>
-                                                    </div>
-                                                </Link>) :
+                                                <Tooltip title={t("devisualizeDemand")} placement="bottom" arrow>
+
+                                                    <Link to={"/demand/rank/" + demand.demandCode + "?" + demand.demandVersion + "?view"}>
+                                                        <div className="visibility-demand">
+                                                            <span className="material-symbols-outlined">
+                                                                visibility_off
+                                                            </span>
+                                                        </div>
+                                                    </Link>
+                                                </Tooltip>) :
                                                 (demand?.activeVersion === true) ? (
                                                     (demand.demandStatus != "Cancelled") ? (
                                                         <ButtonsActions demand={demand} proposal={proposal} workerId={workerId} actionsDemand={actionsDemand} approveDemand={approveDemand} giveBack={giveBack} generatePDF={generatePDF} />

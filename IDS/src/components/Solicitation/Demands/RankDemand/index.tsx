@@ -53,7 +53,18 @@ export default function RankDemand() {
                 setSubscribeId(subscribe("/notifications/" + demand?.requesterRegistration?.workerCode, notification));
             }
         }
+
+        console.log(demand)
     }, [buBenefiteds, stompClient])
+
+    useEffect(() => {
+
+        const classification = JSON.parse(localStorage.getItem("classification") || "{}"); // Pegando os dados da classificação
+
+        if (classification.buBenList) {
+            setBuBenefiteds(classification.buBenList);
+        }
+    }, [])
 
     async function getDemand() {
         setDemand(await ServicesDemand.findById(url));
@@ -170,8 +181,6 @@ export default function RankDemand() {
         console.log(filesArray)
         setFileAttachment(filesArray);
     }
-
-    console.log(demand.activeVersion)
 
     return (
         <div className="rank-demand">

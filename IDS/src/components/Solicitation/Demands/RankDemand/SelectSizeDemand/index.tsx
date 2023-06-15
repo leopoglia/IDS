@@ -102,9 +102,6 @@ export default function SelectLabels(props: any) {
             case "buReq":
                 classification.buReq = event.target.value;
                 break;
-            case "buBen":
-                // classification.buBen = event.target.value;
-                break;
             case "ti":
                 classification.ti = event.target.value;
                 break;
@@ -114,6 +111,27 @@ export default function SelectLabels(props: any) {
 
         localStorage.setItem("classification", JSON.stringify(classification));
     };
+
+    useEffect(() => {
+        const classification = JSON.parse(localStorage.getItem("classification") || "{}");
+
+        if (classification !== null) {
+            switch (type) {
+                case "size":
+                    setSelect(classification.size);
+                    break;
+                case "buReq":
+                    setSelect(classification.buReq);
+                    break;
+                case "buBen":
+                    setSelect(classification.buBenList);
+                    break;
+                case "ti":
+                    setSelect(classification.ti);
+                    break;
+            }
+        }
+    }, [])
 
     return (
         <div className='SelectLabels'>

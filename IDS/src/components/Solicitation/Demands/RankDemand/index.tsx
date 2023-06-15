@@ -31,6 +31,8 @@ export default function RankDemand() {
     const { send, subscribe, stompClient }: any = useContext(WebSocketContext);
     const [subscribeId, setSubscribeId] = useState(null);
     const url: any = parseInt(useParams().id || "null"); // Pegando o id da demanda
+    const view: any = window.location.href.split("?")[2] // Verificando se está em modo visualização
+
     const edit = window.location.href.split("?")[1]
     let notification = {}; // Notificações do usuário
 
@@ -75,7 +77,6 @@ export default function RankDemand() {
             // Salvando a classificação
 
             if (edit === undefined) {
-                console.log(fileAttachment);
                 ServicesClassification.save(classification.size, classification.ti, 0, "", classification.buReq, classification.buBenList, analysis.id, fileAttachment).then((response: any) => {
                     let classificationCode = response.classificationCode; // Pegando o código da classificação
 
@@ -240,8 +241,7 @@ export default function RankDemand() {
                         }
                     </div>
 
-                    {edit ?
-
+                    {edit && view !== "view" ?
                         <>
                             <div className="hr" />
 

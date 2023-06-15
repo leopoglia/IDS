@@ -32,7 +32,7 @@ export default function ViewDemand() {
     const workerId = worker.id; // Buscar código do usuário
     const url = window.location.href.split("/")[3]; // Buscar tipo da demanda
     const demandCode: any = parseInt(useParams().id || "null"); // Buscar código da demanda
-    const demandVersion = parseInt(window.location.href.split("?")[1]); // Buscar versão da demanda
+    const demandVersion: any = window.location.href.split("?")[1]; // Buscar versão da demanda
     const viewDemand: string = window.location.href.split("?")[2]; // Verificar se é uma demanda para visualização
     const [load, setLoad] = useState(true); // Carregamento da página
 
@@ -154,7 +154,7 @@ export default function ViewDemand() {
     }, [url, demand.demandStatus, proposal.proposalStatus, proposalSpecific[0].proposalStatus, stompClient]);
 
     function getDemand() {
-        ServicesDemand.findByDemandCodeAndDemandVersion(demandCode, demandVersion).then((response: any) => {
+        ServicesDemand.findByDemandCodeAndDemandVersion(demandCode, parseInt(demandVersion)).then((response: any) => {
 
             setDemand(response);
 
@@ -560,10 +560,10 @@ export default function ViewDemand() {
                                             )}
 
 
-                                            {viewDemand === "view" ? (
-                                                <Tooltip title={t("devisualizeDemand")} placement="bottom" arrow>
+                                            {viewDemand === "view" || demandVersion === "view" ? (
+                                                <Tooltip className="display-flex-end" title={t("devisualizeDemand")} placement="bottom" arrow>
 
-                                                    <Link to={"/demand/rank/" + demand.demandCode + "?" + demand.demandVersion + "?view"}>
+                                                    <Link to={url === "demand" ? "/demand/rank/" + demand.demandCode + "?" + demand.demandVersion + "?view" : "/demand/rank/" + demand.demandCode + "?" + demand.demandVersion + "?edit" }>
                                                         <div className="visibility-demand">
                                                             <span className="material-symbols-outlined">
                                                                 visibility_off

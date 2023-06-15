@@ -31,9 +31,9 @@ export default function RankDemand() {
     const { send, subscribe, stompClient }: any = useContext(WebSocketContext);
     const [subscribeId, setSubscribeId] = useState(null);
     const url: any = parseInt(useParams().id || "null"); // Pegando o id da demanda
+    const editProposalCode = window.location.href.split("?")[1] // Número da proposta para edição
     const view: any = window.location.href.split("?")[2] // Verificando se está em modo visualização
 
-    const edit = window.location.href.split("?")[1]
     let notification = {}; // Notificações do usuário
 
     useEffect(() => {
@@ -54,16 +54,23 @@ export default function RankDemand() {
             }
         }
 
-        console.log(demand)
     }, [buBenefiteds, stompClient])
 
     useEffect(() => {
 
         const classification = JSON.parse(localStorage.getItem("classification") || "{}"); // Pegando os dados da classificação
+        const busAux: any[] = []
 
         if (classification.buBenList) {
-            setBuBenefiteds(classification.buBenList);
+            for (let i = 0; i < classification.buBenList.length; i++)
+                ServicesBu.findById(classification.buBenList[i]).then((response: any) => {
+                    busAux.push(response)
+                }).catch((error: any) => {
+                    console.log(error)
+                })
         }
+
+        setBuBenefitedsList(busAux);
     }, [])
 
     async function getDemand() {
@@ -80,14 +87,16 @@ export default function RankDemand() {
         classification.ppmCode = ppmCode;
         classification.epicJiraLink = linkEpicJira;
 
+        console.log(classification)
 
         if (classification.size === "" || classification.ti === "" || classification.buReq === "" || classification.buBenList === undefined) {
             notifyUtil.error(t("fillAllFields"))
+            console.log("entrou 1")
             return;
         } else {
             // Salvando a classificação
 
-            if (edit === undefined) {
+            if (view === "edit") {
                 ServicesClassification.save(classification.size, classification.ti, 0, "", classification.buReq, classification.buBenList, analysis.id, fileAttachment).then((response: any) => {
                     let classificationCode = response.classificationCode; // Pegando o código da classificação
 
@@ -115,7 +124,8 @@ export default function RankDemand() {
                     console.log(error)
                 })
             } else {
-                if (classification.ppmCode === undefined || classification.epicJiraLink === "") {
+                if (classification.ppmCode === "" || classification.epicJiraLink === "") {
+                    console.log("entrou 2")
                     notifyUtil.error(t("fillAllFields"))
                 } else {
                     ServicesClassification.save(classification.size, classification.ti, classification.ppmCode, classification.epicJiraLink, classification.buReq, classification.buBenList, analysis.id, fileAttachment).then((response: any) => {
@@ -124,7 +134,7 @@ export default function RankDemand() {
                         ServicesDemand.updateClassification(demand.demandCode, classificationCode).then((response: any) => {
 
 
-                            navigate("/proposal/view/" + edit)
+                            navigate("/proposal/view/" + editProposalCode)
 
                         }).catch((error: any) => {
                             console.log(error)
@@ -151,9 +161,8 @@ export default function RankDemand() {
     }
 
     // Deletando a unidade de negócio beneficiada
-    function deleteBuBenefited(bu: any) {
+    function deleteBuBenefited(index: any) {
         return () => {
-            const index = buBenefiteds.indexOf(bu.buCode);
             if (index > -1) {
                 buBenefiteds.splice(index, 1);
                 buBenefitedsList.splice(index, 1);
@@ -192,8 +201,8 @@ export default function RankDemand() {
 
                     <Title nav="demandViewDemandClassify" title="classifyDemand" />
 
-                    <Tooltip title={t("viewDemand")} placement="bottom" arrow>
-                        <Link to={"/demand/view/" + demand.demandCode + "?" + demand.demandVersion + "?view"}>
+                    <Tooltip className="display-flex-end" title={t("viewDemand")} placement="bottom" arrow>
+                        <Link to={view === "edit" ? "/proposal/view/" + editProposalCode + "?view" : "/demand/view/" + demand.demandCode + "?" + demand.demandVersion + "?view"}>
                             <div className="visibility-demand">
                                 <span className="material-symbols-outlined">
                                     visibility
@@ -242,7 +251,7 @@ export default function RankDemand() {
                         {buBenefitedsList.map((bu: any, index: any) => {
                             return <div className="costCenter" key={index}>
                                 <span>{bu?.bu}</span>
-                                <span className="material-symbols-outlined delete-cost-center" onClick={deleteBuBenefited(bu)}>
+                                <span className="material-symbols-outlined delete-cost-center" onClick={deleteBuBenefited(index)}>
                                     delete
                                 </span>
                             </div>
@@ -250,10 +259,9 @@ export default function RankDemand() {
                         }
                     </div>
 
-                    {edit && view !== "view" ?
+                    {editProposalCode && view === "edit" ?
                         <>
                             <div className="hr" />
-
 
                             <div className="display-grid">
                                 <Input type="text" label="ppmCode" value={linkEpicJira} SetValue={setPpmCode} />
@@ -264,9 +272,6 @@ export default function RankDemand() {
                         </>
                         : null
                     }
-
-
-
 
                     <div>
 
@@ -305,21 +310,6 @@ export default function RankDemand() {
 
 
                 <div className="display-flex-end">
-
-                    {/* {edit ?
-                        <Link to={"/proposal/view/" + edit}>
-                            <button className="btn-secondary">
-                                <span>{t("return")}</span>
-                            </button>
-                        </Link>
-                        :
-                        <Link to={"/demand/view/" + url}>
-                            <button className="btn-secondary">
-                                <span>{t("return")}</span>
-                            </button>
-                        </Link>
-                    }
- */}
 
                     <button onClick={() => saveToRank()} className="btn-primary">
                         <span>{t("toRank")}</span>

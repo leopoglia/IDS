@@ -4,14 +4,17 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Services from '../../../../../services/buService';
+import ServicesDemand from '../../../../../services/demandService';
 
 export default function SelectLabels(props: any) {
     const [select, setSelect] = useState('');
     const [type, setType] = useState(props.type);
     const [bu, setBu]: any = useState([]);
 
-    const size = ["Muito Pequeno", "Pequeno", "Médio", "Grande", "Muito Grande"]
+    const size = ["Muito Pequeno", "Pequeno", "Médio", "Grande", "Muito Grande"];
 
+    const codeDemand = parseInt(window.location.href.split("/")[5]);
+    const edit = window.location.href.split("?")[2];
 
     useEffect(() => {
         Services.findAll().then((response: any) => {
@@ -105,17 +108,38 @@ export default function SelectLabels(props: any) {
             case "ti":
                 classification.ti = event.target.value;
                 break;
-            default:
-                classification.size = event.target.value;
         }
 
         localStorage.setItem("classification", JSON.stringify(classification));
     };
 
     useEffect(() => {
-        const classification = JSON.parse(localStorage.getItem("classification") || "{}");
+        let classification = {};
+        if (edit !== "edit") {
+            classification = JSON.parse(localStorage.getItem("classification") || "{}");
+            setTypes(classification);
+        } else {
+            classification = getDemand();
+        }
+    }, [])
 
-        if (classification !== null) {
+    const getDemand = async () => {
+        ServicesDemand.findById(codeDemand).then((response: any) => {
+            let classification = {
+                size: response.classification.classificationSize,
+                buReq: response.classification.requesterBu.buCode,
+                buBenList: response.classification.beneficiaryBu.buCode,
+                ti: response.classification.itSection
+            };
+
+            setTypes(classification)
+
+        })
+    }
+
+    const setTypes = async (classification: any) => {
+
+        if (classification !== null && classification !== undefined) {
             switch (type) {
                 case "size":
                     setSelect(classification.size);
@@ -131,7 +155,7 @@ export default function SelectLabels(props: any) {
                     break;
             }
         }
-    }, [])
+    }
 
     return (
         <div className='SelectLabels'>

@@ -53,9 +53,4 @@
     .rank-demand .Title{
         margin-bottom: 20px;
     }
-
-    .background-title a{
-        display: flex;
-        justify-content: end;
-    }
 }

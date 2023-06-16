@@ -2,17 +2,18 @@ import React, { useEffect } from 'react';
 
 const Accessibility: React.FC = () => {
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://vlibras.gov.br/app/vlibras-plugin.js';
-    script.async = true;
-    document.body.appendChild(script);
+
+    const script = document.createElement('script'); // Cria o elemento script
+    script.src = 'https://vlibras.gov.br/app/vlibras-plugin.js'; // Seta o src do script
+    script.async = true; // Seta o async do script
+    document.body.appendChild(script); // Adiciona o script no body
 
     script.onload = () => {
-      new (window as any).VLibras.Widget('https://vlibras.gov.br/app');
+      new (window as any).VLibras.Widget('https://vlibras.gov.br/app'); // Inicializa o vlibras
     };
 
     return () => {
-      document.body.removeChild(script);
+      document.body.removeChild(script); // Remove o script do body
     };
   }, []);
 

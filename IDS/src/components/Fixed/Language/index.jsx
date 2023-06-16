@@ -9,28 +9,27 @@ import './style.css'
 
 
 function Language() {
-    const [language, setLanguage] = useState();
-    const [showDropdown, setShowDropdown] = useState(false);
-    let worker = useContext(UserContext).worker;
+    const [language, setLanguage] = useState(); // Linguagem do usuário
+    const [showDropdown, setShowDropdown] = useState(false); // Mostrar ou não a aba de linguagens
+    let worker = useContext(UserContext).worker; // Dados do usuário
 
-    // Drop down
+    // Ao clicar fora da aba de linguagens, fechar a aba
     Language.handleClickOutside = () => {
         setShowDropdown(false);
     };
 
+    // Atualizar linguagem do usuário no banco de dados
     const handleClick = (event) => {
         setLanguage(event);
         worker.language = event;
-        ServicesWorker.updateLanguage(worker.id, worker);
-
+        ServicesWorker.updateLanguage(worker.id, worker); 
     };
 
     useEffect(() => {
-
         if (worker.language) {
-            setLanguage(worker.language);
-            i18n.changeLanguage(worker.language);
-            localStorage.setItem('i18nextLng', worker.language);
+            setLanguage(worker.language); // Seta a bandeira da linguagem do usuário
+            i18n.changeLanguage(worker.language); // Seta a linguagem do site
+            localStorage.setItem('i18nextLng', worker.language); // Seta a linguagem do site no local storage
         }
 
     }, [worker])

@@ -10,23 +10,35 @@ import "./style.css"
 
 
 export default function Configuration() {
+
     const { t } = useTranslation();
 
-    const worker: any = useContext(UserContext).worker;
-    const setWorker: any = useContext(UserContext).setWorker;
-    const name: any = worker.name;
-    const email = worker.email;
+    const worker: any = useContext(UserContext).worker; // Contexto do utilizador
+    const setWorker: any = useContext(UserContext).setWorker; // Set para o contexto do utilizador
+    const name: any = worker.name; // Nome do utilizador
+    const image = name.substring(0, 1); // Primeira letra do nome do utilizador
+    const email = worker.email; // Email do utilizador
 
 
-    const [voiceCommand, setVoiceCommand] = useState(false);
-    const [pounds, setPounds] = useState(false);
-    const [screenReading, setScreenReading] = useState(false);
+    const [voiceCommand, setVoiceCommand] = useState(false); // Estado do comando de voz
+    const [pounds, setPounds] = useState(false); // Estado do pounds
+    const [screenReading, setScreenReading] = useState(false); // Estado do leitor de tela
 
-    const [fontSize, setFontSize] = useState(0);
-    const [darkMode, setDarkMode] = useState(false);
-    const [squareStyleLayout, setSquareStyleLayout] = useState(false);
-    const image = name.substring(0, 1);
+    const [fontSize, setFontSize] = useState(0); // Tamanho da fonte
+    const [darkMode, setDarkMode] = useState(false); // Estado do darkMode
+    const [squareStyleLayout, setSquareStyleLayout] = useState(false); // Estado do layout quadrado
 
+    // Atualiza o estado do utilizador
+    useEffect(() => {
+        setPounds(worker?.pounds);
+        setVoiceCommand(worker?.voiceCommand);
+        setScreenReading(worker?.screenReader);
+        setDarkMode(worker?.darkmode);
+        setSquareStyleLayout(worker?.square);
+        setFontSize(worker?.fontSize);
+    }, [worker])
+
+    // Atualiza o estado do layout quadrado
     const handleSquare = async (event: any) => {
         await WorkerService.updateSquare(worker.id, event.target.checked).then((response: any) => {
             setSquareStyleLayout(response.square);
@@ -40,9 +52,9 @@ export default function Configuration() {
                 document.documentElement.style.setProperty('--rr', "2px");
             }
         })
-
     }
 
+    // Atualiza o estado do darkMode
     const handleDarkMode = async (event: any) => {
         await WorkerService.updateDarkMode(worker.id, event.target.checked).then((response: any) => {
             setDarkMode(response.darkmode);
@@ -51,7 +63,7 @@ export default function Configuration() {
         document.body.classList.toggle('darkmode');
     }
 
-
+    // Atualiza o estado do comando de voz
     const handleVoiceCommand = async (event: any) => {
         await WorkerService.updateVoiceCommand(worker.id, event.target.checked).then((response: any) => {
             setVoiceCommand(response.voiceCommand);
@@ -59,6 +71,7 @@ export default function Configuration() {
         })
     }
 
+    // Atualiza o estado das libras
     const handlePounds = async (event: any) => {
         await WorkerService.updatePounds(worker.id, event.target.checked).then((response: any) => {
             setPounds(response.pounds);
@@ -66,7 +79,8 @@ export default function Configuration() {
         })
     }
 
-    const handleFontSize = async (fontSize:any) => {
+    // Atualiza o estado do tamanho da fonte
+    const handleFontSize = async (fontSize: any) => {
         await WorkerService.updateFontSize(worker.id, fontSize).then((response: any) => {
             setFontSize(response.fontSize);
             setWorker({ ...worker, fontSize: response.fontSize });
@@ -79,6 +93,7 @@ export default function Configuration() {
         })
     }
 
+    // Atualiza o estado do leitor de tela
     const handleScreenReading = async (event: any) => {
         await WorkerService.updateScreenReader(worker.id, event.target.checked).then((response: any) => {
             setScreenReading(response.screenReader);
@@ -86,19 +101,9 @@ export default function Configuration() {
         })
     }
 
-    useEffect(() => {
-        setPounds(worker?.pounds);
-        setVoiceCommand(worker?.voiceCommand);
-        setScreenReading(worker?.screenReader);
-        setDarkMode(worker?.darkmode);
-        setSquareStyleLayout(worker?.square);
-        setFontSize(worker?.fontSize);
-    }, [worker])
 
     return (
         <div className="configuration">
-
-
             <div className="container">
                 <div className="background-title">
                     <Title nav="configurations" title="configurations" />
@@ -187,7 +192,7 @@ export default function Configuration() {
                                         <span className="title-confuration">{t("accessibility")}</span>
                                     </div>
 
-                            
+
                                     <div className="sliders-accessibility">
                                         <div className="display-space-between">
                                             <span className="subtitle-confuration">{t("fontSize")}</span>
@@ -225,7 +230,6 @@ export default function Configuration() {
 
                                         </div>
 
-
                                         {worker?.language === "pt" ?
                                             <div className="display-space-between">
                                                 <span className="subtitle-confuration">{t("pounds")}</span>
@@ -239,27 +243,14 @@ export default function Configuration() {
                                             : null
                                         }
                                     </div>
-
-
                                 </div>
-
-
-
                                 <div className="title-confuration text-background">
                                     <span>{t("accessibility")}
                                     </span>
                                 </div>
-
                             </div>
-
-
-
-
                         </div>
-
                     </div>
-
-
                 </div>
 
                 <div className="h45"></div>
@@ -267,8 +258,6 @@ export default function Configuration() {
                 <Footer />
 
             </div>
-
-
         </div >
     );
 }

@@ -9,12 +9,12 @@ import './style.css'
 function User() {
     const [modal, setModal] = useState(false)
 
-    const worker = useContext(UserContext).worker;
-    
-    const name = (worker?.name).split(' ')[0]
-    const image = name.substring(0, 1)
+    const worker = useContext(UserContext).worker; // Dados do usuário
 
-    // Drop down
+    const name = (worker?.name).split(' ')[0]; // Nome do usuário
+    const image = name.substring(0, 1); // Primeira letra do nome do usuário
+
+    // Ao clicar fora da aba de usuário, fechar a aba
     User.handleClickOutside = () => {
         setModal(false);
     };

@@ -13,12 +13,11 @@ export default function Filter(props: FilterProps) {
 
     const { t } = useTranslation();
 
-    let worker: any = useContext(UserContext).worker;
+    let worker: any = useContext(UserContext).worker; // Contexto do usuário
 
-    const url = window.location.pathname.split("/")[1];
-    const [filter, setFilter] = useState(false);
-    const [type, setType] = useState<string>("");
-
+    const url = window.location.pathname.split("/")[1]; // Pega a url para verificar se é demanda, proposta, pauta ou ata
+    const [filter, setFilter] = useState(false); // Estado do filtro
+    const [type, setType] = useState<string>(""); 
     const [status, setStatus] = useState<string>("");
 
     useEffect(() => {
@@ -27,82 +26,65 @@ export default function Filter(props: FilterProps) {
 
     const sendFilter = () => {
 
-
-
-        if ((type !== "status" && filter === true) && (type !== "size" && filter === true) && (type !== "date" && filter === true) && (type !== "forum" && filter === true)) {
+        // Se o tipo for diferente de status, size, date, forum ou home, retorna o input normal de pesquisa
+        if (!(type === "status" || type === "size" || type === "date" || type === "forum" || type !== "home") && filter === true) {
             return (
                 <div className="send-filter">
                     <div className="hr" />
-
-                    {type !== "home" &&
-
                         <input className="input" onChange={onButtonPress} type="text" ref={inputName} placeholder="Insira o parametro aqui" />
-
-                    }
-
                     <button onClick={onButtonPress} className="btn-primary">Filtrar</button>
-
                 </div>
             )
-        } else if (filter === true && (type === "status" || type === "size" || type === "forum")) {
 
-            let arraySelect: string[] = [];
+        // Se o tipo for status, size ou forum, retorna o select com os valores
+        } else if ((type === "status" || type === "size" || type === "forum") && filter === true) {
+
+            let arraySelect: string[] = []; // Array que vai receber os valores do select
 
             if (type === "status") {
-                arraySelect = ["Backlog", "BacklogRanked", "BacklogEdit", "BacklogRankApproved", "BacklogComplement", "Assesment"];
+                arraySelect = ["Backlog", "BacklogRanked", "BacklogEdit", "BacklogRankApproved", "BacklogComplement", "Assesment"]; // Status das demandas
             } else if (type === "size") {
-                arraySelect = ["Muito pequeno", "Pequeno", "Médio", "Grande", "Muito grande"];
+                arraySelect = ["Muito pequeno", "Pequeno", "Médio", "Grande", "Muito grande"]; // Tamanhos das demandas
             } else if (type === "forum") {
-                arraySelect = [
-                    "CPVM",
-                    "CPGCI",
-                    "CPGPR",
-                    "CGPN",
-                    "CTI",
-                    "CWBS",
-                    "DTI"
-                ];
+                arraySelect = ["CPVM", "CPGCI", "CPGPR", "CGPN", "CTI", "CWBS", "DTI" ]; // Siglas dos fóruns
             }
 
             return (
                 <div className="send-filter">
                     <div className="hr" />
-
                     <SelectStatus status={status} setStatus={setStatus} array={arraySelect} />
-
                     <button onClick={onButtonPressSelect} className="btn-primary">Filtrar</button>
-
                 </div>
             )
-        } else if (filter === true && type === "date") {
 
+        // Se o tipo for date, retorna o input de data
+        } else if (filter === true && type === "date") {
             return (
                 <div className="send-filter">
                     <div className="hr" />
-
-
                     <input className="input" onChange={onButtonPress} type="date" ref={inputName} placeholder="Insira o parametro aqui" />
-
-
                     <button onClick={onButtonPress} className="btn-primary">Filtrar</button>
-
                 </div>
             )
         }
     }
 
-    const inputName = useRef<HTMLInputElement>(null)
+    const inputName = useRef<HTMLInputElement>(null) // Referência do input de pesquisa
+
+    // Envia o valor do input e o tipo para o componente pai
     const onButtonPress = () => {
-        props.onClick(inputName?.current?.value, type)
+        props.onClick(inputName?.current?.value, type); 
     }
 
+     // Envia o valor do select e o tipo para o componente pai
     const onButtonPressSelect = () => {
         props.onClick(status, type);
 
     }
 
+    // Envia o valor do select e o tipo para o componente pai
     const onButtonPressHome = () => {
-        props.onClick(worker.name, "home")
+        props.onClick(worker.name, "home"); 
     }
 
     if (url === 'demands') {

@@ -24,7 +24,7 @@
 .messages .header,
 .solicitation .header {
     padding: 0 20px;
-    background-color: var(--white);
+    background-color: var(--white2);
     color: var(--grey59) !important;
     border-bottom: 1px solid var(--greyC4);
     position: sticky;

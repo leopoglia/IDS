@@ -6,8 +6,7 @@ import TextField from '@mui/material/TextField';
 import ServicesDemand from '../../../../../services/demandService';
 
 export default function SelectLabels(props: any) {
-    // const [age, setAge] = React.useState('');
-
+    
     const [status, SetStatus] = useState([]);
 
     useEffect(() => {

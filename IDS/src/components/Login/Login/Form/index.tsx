@@ -6,15 +6,15 @@ import { ToastContainer } from "react-toastify";
 import notifyUtil from "../../../../utils/notifyUtil";
 import UserContext from "../../../../context/userContext";
 import Services from "../../../../services/workerService";
-import othersUtil from "../../../../utils/othersUtil";
 import "./style.css";
 
 export default function LoginForm() {
+
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const emailRef = useRef<HTMLInputElement>(null);
-  const passwordRef = useRef<HTMLInputElement>(null);
-  const { setWorker } = useContext(UserContext);
+  const emailRef = useRef<HTMLInputElement>(null); // Referência para o input de email
+  const passwordRef = useRef<HTMLInputElement>(null); // Referência para o input de senha
+  const { setWorker } = useContext(UserContext); // Contexto do usuário
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -43,26 +43,10 @@ export default function LoginForm() {
             fontSize: response.fontSize
           };
 
-          if (response.darkmode === true) {
-              document.body.classList.toggle('darkmode');
-          }
 
-          if (response.square === false) {
-              document.documentElement.style.setProperty('--r', ".375rem");
-              document.documentElement.style.setProperty('--rr', "50px");
-          } else {
-              document.documentElement.style.setProperty('--r', "2px");
-              document.documentElement.style.setProperty('--rr', "2px");
-          }
-
-          document.documentElement.style.setProperty('--gg', response.fontSize - 2 + "px");
-          document.documentElement.style.setProperty('--g', response.fontSize - 4 + "px");
-          document.documentElement.style.setProperty('--m', response.fontSize - 6 + "px");
-          document.documentElement.style.setProperty('--p', response.fontSize - 10 + "px");
-          document.documentElement.style.setProperty('--pp', response.fontSize - 12 + "px");
-
-          setWorker(worker);
-          navigate("/demands/1");
+          setDefaultValues(response); // Seta os valores padrões do usuário
+          setWorker(worker); // Seta o usuário no contexto
+          navigate("/demands/1"); // Redireciona para a página inicial
         } else {
           notifyUtil.error(t("wrongEmailOrPassword"));
         }
@@ -72,6 +56,28 @@ export default function LoginForm() {
     } else {
       notifyUtil.error(t("wrongEmailOrPassword"));
     }
+  }
+
+
+  const setDefaultValues = (response: any) => {
+
+    if (response.darkmode === true) {
+      document.body.classList.toggle('darkmode');
+    }
+
+    if (response.square === false) {
+      document.documentElement.style.setProperty('--r', ".375rem");
+      document.documentElement.style.setProperty('--rr', "50px");
+    } else {
+      document.documentElement.style.setProperty('--r', "2px");
+      document.documentElement.style.setProperty('--rr', "2px");
+    }
+
+    document.documentElement.style.setProperty('--gg', response.fontSize - 2 + "px");
+    document.documentElement.style.setProperty('--g', response.fontSize - 4 + "px");
+    document.documentElement.style.setProperty('--m', response.fontSize - 6 + "px");
+    document.documentElement.style.setProperty('--p', response.fontSize - 10 + "px");
+    document.documentElement.style.setProperty('--pp', response.fontSize - 12 + "px");
   }
 
   return (

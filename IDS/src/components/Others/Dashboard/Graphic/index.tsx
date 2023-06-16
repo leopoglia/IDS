@@ -97,7 +97,7 @@ export default function Graphic(props: any) {
         // Array com os nomes dos últimos sete meses
         const monthNames7 = [];
         for (let i = 7; i >= 1; i--) {
-            const date = new Date(currenDate.getFullYear(), currenDate.getMonth() - i, 1);
+            const date = new Date(currenDate.getFullYear(), currenDate.getMonth()  - i, 1);
             const monthName = monthNames[date.getMonth()].month;
             const monthNumber = monthNames[date.getMonth()].numbers;
 
@@ -145,6 +145,7 @@ export default function Graphic(props: any) {
     return (
         <div className='chart'>
             <Line options={options} data={data} />
+            
         </div>
     );
 }

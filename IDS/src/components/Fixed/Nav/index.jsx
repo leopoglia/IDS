@@ -21,24 +21,9 @@ export default function Nav() {
     let [notification, setNotification] = useState([]); // Notificações do usuário
     const [nav, setNav] = useState(localStorage.getItem("nav") || "nav");  // Estado do menu
     const [messagesOn, setMessagesOn] = useState(false); // Se tiver true, mostra as mensagens para o solicitante
-    const [subscribeId, setSubscribeId] = useState(null);
+    const [subscribeId, setSubscribeId] = useState(null); // Id do subscribe
     const [notifications, setNotifications] = useState([]); // Notificações do usuário
-    const { send, subscribe, stompClient } = useContext(WebSocketContext);
-
-    // Verifica qual página está sendo acessada e retorna a classe "current" para o item do menu
-    function hover(li) {
-        if (url === li || url === li.substring(0, li.length - 1)) {
-            return "current";
-        } else {
-            return "";
-        }
-    }
-
-    function toggleNav() {
-        const newNav = nav === "nav" ? "nav-open" : "nav"; // Verifica se o menu está aberto ou fechado
-        setNav(newNav); // Atualiza o estado do menu
-        localStorage.setItem("nav", newNav);
-    }
+    const { send, subscribe, stompClient } = useContext(WebSocketContext); // WebSocket
 
     useEffect(() => {
         const navState = localStorage.getItem("nav") === "nav-open" ? "nav-open" : "nav"; // Verifica se o menu está aberto ou fechado
@@ -115,6 +100,7 @@ export default function Nav() {
     }, [worker.office]);
 
 
+    // Função para fazer o logout do usuário
     function logout() {
         WorkerService.logout();
         localStorage.clear();
@@ -128,14 +114,20 @@ export default function Nav() {
         window.location.reload();
     }
 
-    function manual() {
 
-        if (worker.darkmode === true) {
-            window.location.href = "https://manualdeusuarioids.vercel.app?darkmode"
+    // Verifica qual página está sendo acessada e retorna a classe "current" para o item do menu
+    function hover(li) {
+        if (url === li || url === li.substring(0, li.length - 1)) {
+            return "current";
         } else {
-            window.location.href = "https://manualdeusuarioids.vercel.app"
+            return "";
         }
+    }
 
+    function toggleNav() {
+        const newNav = nav === "nav" ? "nav-open" : "nav"; // Verifica se o menu está aberto ou fechado
+        setNav(newNav); // Atualiza o estado do menu
+        localStorage.setItem("nav", newNav);
     }
 
     return (
@@ -262,18 +254,19 @@ export default function Nav() {
                 </Tooltip>
 
 
+                <Link to="https://manualdeusuarioids.vercel.app">
+                    <Tooltip title={nav !== "nav-open" ? t("help") : ""} placement="right">
 
-                <Tooltip onClick={() => { manual() }} title={nav !== "nav-open" ? t("help") : ""} placement="right">
-
-                    <li className="help">
-                        <div>
-                            <span className="material-symbols-outlined">
-                                help
-                            </span>
-                            <span className="title-li">{t("help")}</span>
-                        </div>
-                    </li>
-                </Tooltip>
+                        <li className="help">
+                            <div>
+                                <span className="material-symbols-outlined">
+                                    help
+                                </span>
+                                <span className="title-li">{t("help")}</span>
+                            </div>
+                        </li>
+                    </Tooltip>
+                </Link>
 
 
                 <Tooltip onClick={() => { logout() }} title={nav !== "nav-open" ? t("logout") : ""} placement="right">

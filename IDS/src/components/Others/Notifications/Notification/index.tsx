@@ -8,19 +8,19 @@ import { useEffect, useState } from "react"
 
 export default function Notification(props: any) {
 
+    const navigate = useNavigate();
     const [checked, setChecked] = useState(false)
 
     useEffect(() => {
         setChecked(props?.checked)
     }, [props.checked])
 
-    const navigate = useNavigate();
-    function arrumarData() {
 
+    // Arruma a data para o formato dd/mm/yyyy hh:mm
+    function arrangeDate() {
         let data = props.date.split("T")
         let dataArrumada = data[0].split("-")
         let dataFinal = dataArrumada[2] + "/" + dataArrumada[1] + "/" + dataArrumada[0]
-
 
         if (localStorage.getItem("i18nextLng") === "en") {
             dataFinal = dataArrumada[1] + "/" + dataArrumada[2] + "/" + dataArrumada[0]
@@ -56,7 +56,7 @@ export default function Notification(props: any) {
         return dataFinal
     }
 
-
+    // Quando o usuário clica na notificação, ela é marcada como visualizada e ele é redirecionado para a página da notificação
     function viewNotification() {
         Services.updateNotificationVisualized(props.id).then((response: any) => {
             if (props.type !== "presentation" && props.type !== "chat") {
@@ -91,9 +91,6 @@ export default function Notification(props: any) {
 
 
             <div className={"notification-" + props.view} onClick={() => viewNotification()}>
-
-
-
                 <div className="display-flex-center">
 
                     <div className="informations"  >
@@ -105,7 +102,7 @@ export default function Notification(props: any) {
                 </div>
 
                 <div className="date-horary" >
-                    <span className="date">{arrumarData()}</span>
+                    <span className="date">{arrangeDate()}</span>
 
                 </div>
 

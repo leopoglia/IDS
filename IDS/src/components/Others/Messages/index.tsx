@@ -14,9 +14,10 @@ import Modal from "../../Fixed/User/Modal";
 export default function Messages() {
 
     const { t } = useTranslation();
-    const worker: any = useContext(UserContext).worker;
-    let [messages, setMessages]: any = useState([]);
-    const [loading, setLoading] = useState(true);
+
+    const [loading, setLoading] = useState(true); // Carregamento da página
+    const worker: any = useContext(UserContext).worker; // Usuário logado
+    let [messages, setMessages]: any = useState([]); // Retorna de todas as mensagens
 
 
     const [search, setSearch]: any = useState(""); // Retorno do campo de busca de demandas
@@ -45,27 +46,8 @@ export default function Messages() {
 
                         <div className="header display-flex-space-between">
 
-
-                            <span className="selects">
-                            </span>
-
-
-
                             <div className="display-flex">
                                 <Input background={"input-search"} setValue={setSearch} value={search} icon={"search"} type="text" placeholder={t("searchChat")} required={true} />
-
-
-                                <div>
-                                    {/* <span className="material-symbols-outlined more_vert" onClick={() => setMoreActions(!moreActions)} >
-                                        more_vert
-                                    </span> */}
-
-                                    {/* <div className="modal-more">
-                                        {moreActions ?
-                                            <Modal type="notification" /> : null
-                                        }
-                                    </div> */}
-                                </div>
                             </div>
 
                         </div>

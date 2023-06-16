@@ -19,18 +19,19 @@ export default function Search(props: any) {
 
     const { t } = useTranslation();
     const navigate = useNavigate();
-    const url = window.location.href.split("/");
+
+    const url = window.location.href.split("/"); // Pega a url atual e divide em um array
 
     const [data, setData] = useState(false); // Estado da tabela (demanda, proposta, agenda, minuta)
     const [filter, setFilter] = useState(false); // Estado do filtro
 
     useEffect(() => {
-        callback(props.name, props.type)
+        callback(props.name, props.type);
     }, [props.name, props.type])
 
 
     function excel() {
-        DemandService.saveExcel(props.name, props.type)
+        DemandService.saveExcel(props.name, props.type);
     }
 
     // Se a tabela estiver aberta, fecha, se estiver fechada, abre

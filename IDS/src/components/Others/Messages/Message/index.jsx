@@ -4,10 +4,10 @@ import { useTranslation } from "react-i18next";
 import { useParams } from 'react-router';
 import { WebSocketContext } from '../../../../services/webSocketService';
 
-
 import Title from "../../../Fixed/Search/Title";
 import ServicesMessage from '../../../../services/messageService'
 import ServicesDemand from '../../../../services/demandService';
+import ServicesAttachment from '../../../../services/attachmentService';
 import UserContext from '../../../../context/userContext';
 import ServicesWorker from '../../../../services/workerService';
 import EmojiPicker from "emoji-picker-react";
@@ -20,7 +20,7 @@ const ChatRoom = () => {
     const [emoji, setEmoji] = useState(false);
     const [selectedEmoji, setSelectedEmoji] = useState("");
     const [workerDemand, setWorkerDemand] = useState({});
-
+    const [fileAttachment, setFileAttachment] = useState([]);
     const [demand, setDemand] = useState({});
 
     const demandCode = parseInt(useParams().id || "null");
@@ -126,6 +126,16 @@ const ChatRoom = () => {
         loading();
     }, [demandCode, stompClient]);
 
+    const handleFileSelected = (e) => {
+        const files = Array.from(e.target.files)
+        let filesArray = [];
+        for (let i = 0; i < files.length; i++) {
+            filesArray.push(files[i]);
+        }
+        ServicesAttachment.save(filesArray[0]).then((response) => {
+            setFileAttachment(response);
+        })
+    }
 
     const setDefaultMessage = () => {
 
@@ -134,6 +144,7 @@ const ChatRoom = () => {
             sender: { workerCode: worker.id || parseInt(localStorage.getItem("id")) },
             message: "",
             dateMessage: null,
+            messageAttachment: { attachmentCode: fileAttachment.attachmentCode }
         })
     }
 
@@ -393,7 +404,7 @@ const ChatRoom = () => {
                                                         </span>
                                                     </label>
 
-                                                    <input type="file" id='file' />
+                                                    <input type="file" id='file' onChange={handleFileSelected} />
                                                 </div>
 
 

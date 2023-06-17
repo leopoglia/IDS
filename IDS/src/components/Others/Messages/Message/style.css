@@ -415,6 +415,22 @@
     display: none;
 }
 
+.messages .attachment{
+    width: 40px !important;
+    height: 40px;
+    margin-top: -65px;
+    margin-left: 20px !important;
+    position: absolute;
+}
+
+.messages .attachment:hover{
+    background-color: var(--greyE5);
+}
+
+.messages .attachment img{
+    width: 30px;
+}
+
 
 @media(max-width: 1140px) {
     .messages .box-message .message-user {

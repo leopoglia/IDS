@@ -138,13 +138,13 @@ const ChatRoom = () => {
     }
 
     const setDefaultMessage = () => {
-
+        console.log("attachmentCode: " + fileAttachment.attachmentCode)
         setMessage({
             demandCode: demandCode,
             sender: { workerCode: worker.id || parseInt(localStorage.getItem("id")) },
             message: "",
             dateMessage: null,
-            messageAttachment: { attachmentCode: fileAttachment.attachmentCode }
+            attachment: { attachmentCode: fileAttachment.attachmentCode }
         })
     }
 

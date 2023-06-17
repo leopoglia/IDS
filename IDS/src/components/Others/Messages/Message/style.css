@@ -415,6 +415,10 @@
     display: none;
 }
 
+.messages .chat-messages .attachment{
+    position: relative !important;
+}
+
 .messages .attachment{
     width: 40px !important;
     height: 40px;

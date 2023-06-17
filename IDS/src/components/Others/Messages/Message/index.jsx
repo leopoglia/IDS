@@ -21,7 +21,7 @@ const ChatRoom = () => {
     const [emoji, setEmoji] = useState(false);
     const [selectedEmoji, setSelectedEmoji] = useState("");
     const [workerDemand, setWorkerDemand] = useState({});
-    const [fileAttachment, setFileAttachment] = useState([]);
+    const [fileAttachment, setFileAttachment] = useState();
     const [demand, setDemand] = useState({});
 
     const demandCode = parseInt(useParams().id || "null");
@@ -139,14 +139,25 @@ const ChatRoom = () => {
     }
 
     const setDefaultMessage = () => {
-        console.log("attachmentCode: " + fileAttachment.attachmentCode)
-        setMessage({
-            demandCode: demandCode,
-            sender: { workerCode: worker.id || parseInt(localStorage.getItem("id")) },
-            message: "",
-            dateMessage: null,
-            attachment: { attachmentCode: fileAttachment.attachmentCode }
-        })
+
+        if (fileAttachment !== null) {
+            console.log("fileAttachment ==> ", fileAttachment)
+
+            setMessage({
+                demandCode: demandCode,
+                sender: { workerCode: worker.id || parseInt(localStorage.getItem("id")) },
+                message: "",
+                dateMessage: null,
+                attachment: { attachmentCode: fileAttachment.attachmentCode }
+            })
+        } else {
+            setMessage({
+                demandCode: demandCode,
+                sender: { workerCode: worker.id || parseInt(localStorage.getItem("id")) },
+                message: "",
+                dateMessage: null
+            })
+        }
     }
 
     const reloadMessage = (event) => {
@@ -344,6 +355,8 @@ const ChatRoom = () => {
                                         // Atualizar a última data processada com a data atual da mensagem
                                         lastProcessedDate = displayDate;
 
+                                        console.log(message)
+
                                         return (
                                             <React.Fragment key={message.id}>
                                                 {isDifferentDate && (
@@ -372,6 +385,19 @@ const ChatRoom = () => {
                                                             ) : null}
                                                         </div>
                                                     </div>
+
+
+                                                    {message.attachment &&
+                                                        <div className="attachments">
+
+                                                            <div className="attachment">
+                                                                <div className="attachment-image">
+                                                                    <img src={"/attachment/" + othersUtil.attatchmentType(message.attachment) + ".png"} alt="" />
+                                                                </div>
+                                                                <span>{message.attachment.name}</span>
+                                                            </div>
+                                                        </div>
+                                                    }
                                                 </li>
                                             </React.Fragment>
                                         );

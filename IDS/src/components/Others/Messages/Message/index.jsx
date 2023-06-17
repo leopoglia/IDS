@@ -11,6 +11,7 @@ import ServicesAttachment from '../../../../services/attachmentService';
 import UserContext from '../../../../context/userContext';
 import ServicesWorker from '../../../../services/workerService';
 import EmojiPicker from "emoji-picker-react";
+import othersUtil from '../../../../utils/othersUtil';
 import "./style.css"
 
 
@@ -76,17 +77,17 @@ const ChatRoom = () => {
 
     useEffect(() => {
         if (stompClient) {
-          if (!messages.includes(workerDemand) && workerDemand.workerCode !== worker.id) {
-            ServicesWorker.isUserOnline(workerDemand?.workerCode).then((response) => {
-              setIsUserOnline(response);
-            });
-          } else {
-            ServicesWorker.isUserOnline(sender.workerCode).then((response) => {
-              setIsUserOnline(response);
-            });
-          }
+            if (!messages.includes(workerDemand) && workerDemand.workerCode !== worker.id) {
+                ServicesWorker.isUserOnline(workerDemand?.workerCode).then((response) => {
+                    setIsUserOnline(response);
+                });
+            } else {
+                ServicesWorker.isUserOnline(sender.workerCode).then((response) => {
+                    setIsUserOnline(response);
+                });
+            }
         }
-      }, [messages, sender, workerDemand, stompClient]);
+    }, [messages, sender, workerDemand, stompClient]);
 
     useEffect(() => {
 
@@ -163,6 +164,8 @@ const ChatRoom = () => {
             setNotification();
             send("/api/worker/" + demand.requesterRegistration.workerCode, setNotification());
         }
+
+        setFileAttachment(null);
     }
 
     const setNotification = () => {
@@ -387,6 +390,19 @@ const ChatRoom = () => {
                                     <div className="display-flex">
 
                                         <div className="input-message">
+
+                                            {fileAttachment &&
+                                                <div className="attachments">
+
+                                                    <div className="attachment">
+                                                        <div className="attachment-image">
+                                                            <img src={"/attachment/" + othersUtil.attatchmentType(fileAttachment) + ".png"} alt="" />
+                                                        </div>
+                                                        <span>{fileAttachment.name}</span>
+                                                    </div>
+                                                </div>
+                                            }
+
                                             <input
                                                 type="text"
                                                 placeholder={t("sendYourMessage")}

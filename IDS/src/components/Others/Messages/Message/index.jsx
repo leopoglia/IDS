@@ -140,30 +140,25 @@ const ChatRoom = () => {
 
     const setDefaultMessage = () => {
 
-        if (fileAttachment !== null) {
-            console.log("fileAttachment ==> ", fileAttachment)
+        console.log("fileAttachment ==> ", fileAttachment)
 
-            setMessage({
-                demandCode: demandCode,
-                sender: { workerCode: worker.id || parseInt(localStorage.getItem("id")) },
-                message: "",
-                dateMessage: null,
-                attachment: { attachmentCode: fileAttachment.attachmentCode }
-            })
-        } else {
-            setMessage({
-                demandCode: demandCode,
-                sender: { workerCode: worker.id || parseInt(localStorage.getItem("id")) },
-                message: "",
-                dateMessage: null
-            })
-        }
+        setMessage({
+            demandCode: demandCode,
+            sender: { workerCode: worker.id || parseInt(localStorage.getItem("id")) },
+            message: "",
+            dateMessage: null,
+            attachment: null
+        })
     }
 
     const reloadMessage = (event) => {
         event.preventDefault();
         const { value } = event.target;
-        setMessage({ ...message, message: value, dateMessage: new Date().toLocaleString() });
+        if (fileAttachment !== null) {
+            setMessage({ ...message, message: value, dateMessage: new Date().toLocaleString(), sender: { workerCode: worker.id || parseInt(localStorage.getItem("id")) }, demandCode: demandCode, attachment: { attachmentCode: fileAttachment?.attachmentCode } });
+        } else{
+            setMessage({ ...message, message: value, dateMessage: new Date().toLocaleString(), sender: { workerCode: worker.id || parseInt(localStorage.getItem("id")) }, demandCode: demandCode });
+        }
     }
 
     const submit = (event) => {

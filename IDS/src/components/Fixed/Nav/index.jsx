@@ -6,6 +6,8 @@ import { Tooltip } from "@mui/material";
 import WorkerService from "../../../services/workerService";
 import ServicesNotification from "../../../services/notificationService";
 import ServicesMessages from "../../../services/messageService";
+import notifyUtil from "../../../utils/notifyUtil";
+import { ToastContainer } from 'react-toastify';
 import UserContext from "../../../context/userContext";
 import "./style.css"
 
@@ -58,12 +60,12 @@ export default function Nav() {
         }).catch((error) => {
             console.log(error);
         });
-
     }, [numNotification, notifications, subscribeId]);
 
     useEffect(() => {
         const newNotification = (response) => {
             const notificationReceived = JSON.parse(response.body);
+            notifyUtil.info(notificationReceived.body.description);
             setNotifications((previousNotifications) => [...previousNotifications, notificationReceived]);
         };
         if (stompClient && !subscribeId) {
@@ -282,7 +284,10 @@ export default function Nav() {
 
             </ul>
 
+            <ToastContainer position="bottom-right" newestOnTop />
+
         </nav >
+
     );
 
 }

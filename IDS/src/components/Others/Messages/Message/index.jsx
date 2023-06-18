@@ -154,10 +154,10 @@ const ChatRoom = () => {
     const reloadMessage = (event) => {
         event.preventDefault();
         const { value } = event.target;
-        if (fileAttachment !== null) {
-            setMessage({ ...message, message: value, dateMessage: new Date().toLocaleString(), sender: { workerCode: worker.id || parseInt(localStorage.getItem("id")) }, demandCode: demandCode, attachment: { attachmentCode: fileAttachment?.attachmentCode } });
-        } else{
+        if (fileAttachment === null || fileAttachment === undefined) {
             setMessage({ ...message, message: value, dateMessage: new Date().toLocaleString(), sender: { workerCode: worker.id || parseInt(localStorage.getItem("id")) }, demandCode: demandCode });
+        } else{
+            setMessage({ ...message, message: value, dateMessage: new Date().toLocaleString(), sender: { workerCode: worker.id || parseInt(localStorage.getItem("id")) }, demandCode: demandCode, attachment: { attachmentCode: fileAttachment?.attachmentCode } });
         }
     }
 

@@ -889,6 +889,16 @@ export default function ViewDemand() {
                                         <div className="background-title">
 
                                             <Title nav={t("agendaAgendaName")} title="viewAgenda" />
+
+
+                                            {pendingMinute < proposalSpecific.length && minute.length === 0 ? (
+                                                <div className="display-flex-end">
+                                                    <Link to={"/minutes/create/" + demandCode}>
+                                                        <button className="btn-primary">{t("finish")}</button>
+                                                    </Link>
+                                                </div>
+                                            ) : (null)
+                                            }
                                         </div>
 
                                         <div className="box">
@@ -1100,18 +1110,6 @@ export default function ViewDemand() {
                                             }
 
                                         </div>
-
-
-
-                                        {pendingMinute < proposalSpecific.length && minute.length === 0 ? (
-                                            <div className="display-flex-end">
-                                                <Link to={"/minutes/create/" + demandCode}>
-                                                    <button className="btn-primary">{t("finish")}</button>
-                                                </Link>
-                                            </div>
-                                        ) : (null)
-                                        }
-
                                         < Footer />
                                     </div>
                                 </div>

@@ -44,7 +44,7 @@ export default function Messages() {
                 <div className="container-background">
                     <div className="boxNoPadding">
 
-                        <div className="header display-flex-space-between">
+                        <div className="header display-flex-end">
 
                             <div className="display-flex">
                                 <Input background={"input-search"} setValue={setSearch} value={search} icon={"search"} type="text" placeholder={t("searchChat")} required={true} />

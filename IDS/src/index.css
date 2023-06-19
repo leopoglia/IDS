@@ -177,7 +177,7 @@ input[type=checkbox]:checked {
 }
 
 .display-flex-end {
-  justify-content: flex-end;
+  justify-content: flex-end !important;
 }
 
 .display-block {

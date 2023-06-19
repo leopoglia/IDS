@@ -99,10 +99,10 @@ export default function Demand(props: any) {
     }
 
     const situation = () => {
-        if (props.type === "demand" || props.type === "proposal" || props.type === "minute") {
+        if (props.type === "demand" || props.type === "proposal" || props.type === "minute" || props.type === "agenda") {
             return (
                 <div className="situation-demand">
-                    <Situation type={props.type} situation={props.situation} demandCode={props.demandCode} />
+                    <Situation type={props.type} situation={props.situation} demandCode={props.demandCode} agenda={props.agenda} />
                 </div>
             );
         }

@@ -65,7 +65,10 @@ export default function Nav() {
     useEffect(() => {
         const newNotification = (response) => {
             const notificationReceived = JSON.parse(response.body);
-            notifyUtil.info(notificationReceived.body.description);
+            console.log(notificationReceived.body.type);
+            if(notificationReceived.body.type !== "presentation"){
+                notifyUtil.info(notificationReceived.body.description);
+            }
             setNotifications((previousNotifications) => [...previousNotifications, notificationReceived]);
         };
         if (stompClient && !subscribeId) {

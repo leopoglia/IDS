@@ -338,7 +338,7 @@
 
 * {
     scrollbar-width: auto;
-    scrollbar-color: var(--greyD9) white;
+    scrollbar-color: var(--greyD9) var(--white);
 }
 
 .chat-messages::-webkit-scrollbar {
@@ -346,18 +346,18 @@
 }
 
 .chat-messages::-webkit-scrollbar-track {
-    background: white;
+    background: var(--white2);
 }
 
 .chat-messages::-webkit-scrollbar-thumb {
     background-color: var(--greyD9);
     border-radius: 10px;
-    border: 3px solid white;
+    border: 3px solid var(--white2);
 }
 
 .chat-messages::-webkit-scrollbar-thumb:hover {
     background-color: var(--greyC4);
-    border: 2px solid white;
+    border: 2px solid var(--white2);
 }
 
 

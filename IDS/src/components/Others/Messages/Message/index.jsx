@@ -259,7 +259,7 @@ const ChatRoom = () => {
 
                     <div className="chat-box display-flex">
 
-                        {worker.office !== "requester" ?
+                        {/* {worker.office !== "requester" ?
                             (
                                 <div className={'chats chats-' + chatsOpen}>
 
@@ -280,11 +280,6 @@ const ChatRoom = () => {
                                                         <div className="message-name-chats">
                                                             <span className="username">{workerDemand.workerName}</span>
                                                         </div>
-
-                                                        <span className='time-chat'>
-                                                            {item.dateMessage.split(",")[1]}
-                                                        </span>
-
 
                                                     </div>
                                                     {
@@ -311,12 +306,12 @@ const ChatRoom = () => {
 
                                 </div>
                             ) : null
-                        }
+                        } */}
 
 
                         <div className="chat-content ">
 
-                            {worker.office !== "requester" ?
+                            {/* {worker.office !== "requester" ?
                                 (
 
                                     <div className={'arrow-chat arrow-chat-' + chatsOpen} onClick={() => setChatsOpen(!chatsOpen)}>
@@ -326,7 +321,7 @@ const ChatRoom = () => {
                                     </div>
 
                                 ) : null
-                            }
+                            } */}
 
 
                             <ul className="chat-messages" ref={divRef}>

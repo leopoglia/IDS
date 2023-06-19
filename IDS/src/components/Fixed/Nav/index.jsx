@@ -218,7 +218,7 @@ export default function Nav() {
                     )
                 }
 
-                {(worker.office === "analyst" || worker.office === "ti" || messagesOn) &&
+                {(worker.office === "analyst" || worker.office === "ti" || (worker.office === "business" && messagesOn) || messagesOn) &&
                     (
                         <Tooltip title={nav !== "nav-open" ? t("messages") : ""} placement="right">
                             <Link to="/messages">

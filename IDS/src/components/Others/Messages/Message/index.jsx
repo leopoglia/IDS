@@ -372,27 +372,28 @@ const ChatRoom = () => {
                                                 >
 
                                                     <div className='box-message-attachment'>
+                                                        {message.message &&
+                                                            <div className='content-message'>
+                                                                <div className="message-user">
+                                                                    <span>{message.message}</span>
+                                                                    <div className="display-flex-end message-content-date">
 
-                                                        <div className='content-message'>
-                                                            <div className="message-user">
-                                                                <span>{message.message}</span>
-                                                                <div className="display-flex-end message-content-date">
+                                                                        <div className='display-block w100'>
+                                                                            <div className='display-flex-end'>
+                                                                                <div className="message-data">
+                                                                                    <span>{message.dateMessage.split(",")[1]}</span>
+                                                                                </div>
 
-                                                                    <div className='display-block w100'>
-                                                                        <div className='display-flex-end'>
-                                                                            <div className="message-data">
-                                                                                <span>{message.dateMessage.split(",")[1]}</span>
+                                                                                {message.sender?.workerCode === worker.id ||
+                                                                                    message.sender?.workerCode === parseInt(localStorage.getItem("id")) ? (
+                                                                                    <span className="material-symbols-outlined check-done">done</span>
+                                                                                ) : null}
                                                                             </div>
-
-                                                                            {message.sender?.workerCode === worker.id ||
-                                                                                message.sender?.workerCode === parseInt(localStorage.getItem("id")) ? (
-                                                                                <span className="material-symbols-outlined check-done">done</span>
-                                                                            ) : null}
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        }
                                                         {message.attachment &&
                                                             <div className="attachments-message">
 

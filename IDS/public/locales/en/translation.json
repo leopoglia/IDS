@@ -263,5 +263,7 @@
     "AnalystReproveDemand": "An analyst has reproved the demand ",
     "BusinessManagerReproveDemand": "A Business Manager has reproved the demand ",
     "ITReproveDemand": "An IT Manager has reproved the demand ",
-    "AnalystRankDemand": "An analyst has ranked the demand "
+    "AnalystRankDemand": "An analyst has ranked the demand ",
+    "waiting": "Waiting",
+    "finished": "Finished"
 }

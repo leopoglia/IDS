@@ -32,9 +32,9 @@ export default function Situation(props: any) {
             console.log(props.agenda.proposals.length);
 
             if(finish === props.agenda.proposals.length){
-                return (<div className="graphic-proposal">{t("finished")}<div className="situation-finished"></div></div>);
+                return (<div className="graphic-proposal">{t("finished")}<div className="situation-notPublished"></div></div>);
             } else if (initialDate > actualDate) {
-                return (<div className="graphic-proposal">{t("notPublished")}<div className="situation-published"></div></div>);
+                return (<div className="graphic-proposal">{t("waiting")}<div className="situation-pending"></div></div>);
             } else {
                 return (<div className="graphic-proposal">{t("aguardando")}<div className="situation-pending"></div></div>);
             }

@@ -264,5 +264,7 @@
     "AnalystReproveDemand": "分析師拒絕需求 ",
     "BusinessManagerReproveDemand": "商務經理拒絕需求 ",
     "ITReproveDemand": "IT拒絕需求 ",
-    "AnalystRankDemand": "分析師排名需求 "
+    "AnalystRankDemand": "分析師排名需求 ",
+    "waiting": "等候",
+    "finished": "完成"
 }

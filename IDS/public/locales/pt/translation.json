@@ -271,5 +271,7 @@
     "AnalystReproveDemand": "Um Analista reprovou a demanda ",
     "BusinessManagerReproveDemand": "Um Gerente de Negócio reprovou a demanda ",
     "ITReproveDemand": "Um Analista de TI reprovou a demanda ",
-    "AnalystRankDemand": "Um Analista classificou a demanda "
+    "AnalystRankDemand": "Um Analista classificou a demanda ",
+    "waiting": "Aguardando",
+    "finished": "Finalizada"
 }

@@ -265,5 +265,6 @@
     "ITReproveDemand": "An IT Manager has reproved the demand ",
     "AnalystRankDemand": "An analyst has ranked the demand ",
     "waiting": "Waiting",
-    "finished": "Finished"
+    "finished": "Finished",
+    "startedConversation": "Started a chat in demand "
 }

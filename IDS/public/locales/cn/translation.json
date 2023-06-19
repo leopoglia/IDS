@@ -266,5 +266,6 @@
     "ITReproveDemand": "IT拒絕需求 ",
     "AnalystRankDemand": "分析師排名需求 ",
     "waiting": "等候",
-    "finished": "完成"
+    "finished": "完成",
+    "startedConversation": "按需開始對話 "
 }

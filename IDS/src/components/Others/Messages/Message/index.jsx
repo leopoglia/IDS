@@ -179,7 +179,7 @@ const ChatRoom = () => {
     const setNotification = () => {
         return notification = {
             date: new Date(),
-            description: worker.name + " iniciou uma conversa com você, na demanda " + demandCode,
+            description: worker.name + " startedConversation " + demandCode,
             worker: { workerCode: JSON.parse(demand.requesterRegistration.workerCode) },
             icon: "chat_bubble",
             type: "chat",

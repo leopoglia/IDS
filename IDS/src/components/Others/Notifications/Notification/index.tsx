@@ -100,6 +100,8 @@ export default function Notification(props: any) {
                         {
                             props.description.split(" ")[1] !== undefined ? (
                                 <span>{t(props.description.split(" ", 1)) + props.description.split(" ")[1]}</span>
+                            ) : props.description.split(" ")[2] !== undefined ? (
+                                <span>{props.description.split(" ")[0] + t(props.description.split(" ")[1]) + props.description.split(" ")[2]}</span>
                             ) : (
                                 <span>{t(props.description)}</span>
                             )

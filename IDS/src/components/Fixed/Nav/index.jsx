@@ -69,6 +69,8 @@ export default function Nav() {
             if(notificationReceived.body.type !== "presentation"){
                     if(notificationReceived.body.description.split(" ")[1] !== undefined) {
                         notifyUtil.info(t(notificationReceived.body.description.split(" ")[0]) + notificationReceived.body.description.split(" ")[1]);
+                    }else if(notificationReceived.body.description.split(" ")[2] !== undefined){
+                        <span>{notificationReceived.body.description.split(" ")[0] + t(notificationReceived.body.description.split(" ")[1]) + notificationReceived.body.description.split(" ")[2]}</span>
                     }else{
                         notifyUtil.info(t(notificationReceived.body.description));
                     }

@@ -273,5 +273,6 @@
     "ITReproveDemand": "Um Analista de TI reprovou a demanda ",
     "AnalystRankDemand": "Um Analista classificou a demanda ",
     "waiting": "Aguardando",
-    "finished": "Finalizada"
+    "finished": "Finalizada",
+    "startedConversation": "Iniciou uma conversa na demanda "
 }

@@ -192,6 +192,8 @@ const ChatRoom = () => {
         setMessage({ ...message, message: message.message + emojiData.emoji, dateMessage: new Date().toLocaleString() });
     }
 
+    console.log(messages)
+
     return (
         <div className="messages">
 
@@ -393,7 +395,7 @@ const ChatRoom = () => {
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        }
+                                                        } 
                                                         {message.attachment &&
                                                             <div className="attachments-message">
 

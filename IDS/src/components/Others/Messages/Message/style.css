@@ -441,7 +441,7 @@
 
 
 @media(max-width: 1140px) {
-    .messages .box-message .message-user {
+    .box-message-attachment {
         max-width: 40%;
     }
 }

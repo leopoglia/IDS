@@ -363,10 +363,9 @@ export default function ViewDemand() {
     }
 
     const setDefaultNotification = () => {
-        console.log("ENTROU");
         return notification = {
             date: new Date(),
-            description: "Um Gerente de Negócio aprovou a sua demanda de código  " + demand.demandCode,
+            description: "BusinesManagerApprove " + demand.demandCode,
             worker: { workerCode: JSON.parse(demand.requesterRegistration.workerCode) },
             icon: "done",
             type: "demand",
@@ -387,7 +386,7 @@ export default function ViewDemand() {
     const setGiveBackNotification = () => {
         return notification = {
             date: new Date(),
-            description: "Um analista devolveu a sua demanda de código " + demand.demandCode,
+            description: "AnalystGiveBack " + demand.demandCode,
             worker: { workerCode: JSON.parse(demand.requesterRegistration.workerCode) },
             icon: "info",
             type: "demand",

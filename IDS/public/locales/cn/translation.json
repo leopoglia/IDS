@@ -258,5 +258,11 @@
     "Not Published": "未發布",
     "Published": "發布",
     "published": "發布",
-    "notPublished": "未發布"
+    "notPublished": "未發布",
+    "BusinesManagerApprove ": "商務經理已批准需求 ",
+    "AnalystGiveBack": "分析師退回需求 ",
+    "AnalystReproveDemand": "分析師拒絕需求 ",
+    "BusinessManagerReproveDemand": "商務經理拒絕需求 ",
+    "ITReproveDemand": "IT拒絕需求 ",
+    "AnalystRankDemand": "分析師排名需求 "
 }

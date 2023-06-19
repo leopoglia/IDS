@@ -257,5 +257,11 @@
     "Not Published": "Minute not published",
     "Published": "Minute published",
     "published": "Published",
-    "notPublished": "Not published"
+    "notPublished": "Not published",
+    "BusinesManagerApprove ": "A Business Manager has approved the demand ",
+    "AnalystGiveBack": "An analyst has given back the demand ",
+    "AnalystReproveDemand": "An analyst has reproved the demand ",
+    "BusinessManagerReproveDemand": "A Business Manager has reproved the demand ",
+    "ITReproveDemand": "An IT Manager has reproved the demand ",
+    "AnalystRankDemand": "An analyst has ranked the demand "
 }

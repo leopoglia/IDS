@@ -55,7 +55,7 @@ export default function DisapproveDemand() {
         if (workerOffice === "Analyst") {
             return notification = {
                 date: new Date(),
-                description: "Um analista reprovou a sua demanda de código " + demand.demandCode,
+                description: "AnalystReproveDemand " + demand.demandCode,
                 worker: { workerCode: JSON.parse(demand.requesterRegistration.workerCode) },
                 icon: "info",
                 type: "demand",
@@ -63,7 +63,7 @@ export default function DisapproveDemand() {
         } else if (workerOffice == "business") {
             return notification = {
                 date: new Date(),
-                description: "Um gerente de negócio reprovou a sua demanda de código " + demand.demandCode,
+                description: "BusinessManagerReproveDemand " + demand.demandCode,
                 worker: { workerCode: JSON.parse(demand.requesterRegistration.workerCode) },
                 icon: "info",
                 type: "demand",
@@ -71,7 +71,7 @@ export default function DisapproveDemand() {
         } else {
             return notification = {
                 date: new Date(),
-                description: "Um gerente de ti reprovou a sua demanda de código " + demand.demandCode,
+                description: "ITReproveDemand " + demand.demandCode,
                 worker: { workerCode: JSON.parse(demand.requesterRegistration.workerCode) },
                 icon: "info",
                 type: "demand",

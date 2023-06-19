@@ -97,7 +97,13 @@ export default function Notification(props: any) {
                         <span className="material-symbols-outlined">
                             {props.icon}
                         </span>
-                        <span>{t(props.description)}</span>
+                        {
+                            props.description.split(" ")[1] !== undefined ? (
+                                <span>{t(props.description.split(" ", 1)) + props.description.split(" ")[1]}</span>
+                            ) : (
+                                <span>{t(props.description)}</span>
+                            )
+                        }
                     </div>
                 </div>
 

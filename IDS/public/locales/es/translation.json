@@ -256,5 +256,11 @@
     "Not Published": "Acta no publicada",
     "Published": "Acta publicada",
     "published": "Publicada",
-    "notPublished": "No publicada"
+    "notPublished": "No publicada",
+    "BusinesManagerApprove ": "Un Gerente Comercial ha aprobado la demanda ",
+    "AnalystGiveBack": "Un Analista ha devuelto la demanda ",
+    "AnalystReproveDemand": "Un Analista ha reprobado la demanda ",
+    "BusinessManagerReproveDemand": "Un Gerente Comercial ha reprobado la demanda ",
+    "ITReproveDemand": "Un Analista de TI ha reprobado la demanda ",
+    "AnalystRankDemand": "Un Analista ha clasificado la demanda "
 }

@@ -149,7 +149,7 @@ export default function RankDemand() {
     const setRankNotification = () => {
         return notification = {
             date: new Date(),
-            description: "Um analista classificou a sua demanda de código " + demand.demandCode,
+            description: "AnalystRankDemand " + demand.demandCode,
             worker: { workerCode: JSON.parse(demand.requesterRegistration.workerCode) },
             icon: "done",
             type: "demand",

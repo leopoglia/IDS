@@ -67,8 +67,13 @@ export default function Nav() {
             const notificationReceived = JSON.parse(response.body);
             console.log(notificationReceived.body.type);
             if(notificationReceived.body.type !== "presentation"){
-                notifyUtil.info(notificationReceived.body.description);
-            }
+                    if(notificationReceived.body.description.split(" ")[1] !== undefined) {
+                        notifyUtil.info(t(notificationReceived.body.description.split(" ")[0]) + notificationReceived.body.description.split(" ")[1]);
+                    }else{
+                        notifyUtil.info(t(notificationReceived.body.description));
+                    }
+                }
+            
             setNotifications((previousNotifications) => [...previousNotifications, notificationReceived]);
         };
         if (stompClient && !subscribeId) {

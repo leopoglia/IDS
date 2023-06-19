@@ -259,7 +259,7 @@ const ChatRoom = () => {
 
                     <div className="chat-box display-flex">
 
-                        {worker.office !== "requester" && worker.office !== "analyst" ?
+                        {worker.office !== "requester" ?
                             (
                                 <div className={'chats chats-' + chatsOpen}>
 
@@ -330,8 +330,6 @@ const ChatRoom = () => {
 
 
                             <ul className="chat-messages" ref={divRef}>
-
-
 
                                 {messages.length > 0 &&
                                     messages.map((message, index) => {

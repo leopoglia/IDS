@@ -48,7 +48,7 @@ export default function Presentation() {
                 </div>
 
 
-                <img className="bia" src="https://i.imgur.com/r004kLD.png" />
+                <img className="bia" src="/images/wids.png" />
             </div>
 
 

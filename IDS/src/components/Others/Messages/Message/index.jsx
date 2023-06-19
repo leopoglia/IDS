@@ -156,7 +156,7 @@ const ChatRoom = () => {
         const { value } = event.target;
         if (fileAttachment === null || fileAttachment === undefined) {
             setMessage({ ...message, message: value, dateMessage: new Date().toLocaleString(), sender: { workerCode: worker.id || parseInt(localStorage.getItem("id")) }, demandCode: demandCode });
-        } else{
+        } else {
             setMessage({ ...message, message: value, dateMessage: new Date().toLocaleString(), sender: { workerCode: worker.id || parseInt(localStorage.getItem("id")) }, demandCode: demandCode, attachment: { attachmentCode: fileAttachment?.attachmentCode } });
         }
     }
@@ -368,31 +368,46 @@ const ChatRoom = () => {
                                                             : null
                                                     }
                                                 >
-                                                    <div className="message-user">
-                                                        <span>{message.message}</span>
-                                                        <div className="display-flex-end">
-                                                            <div className="message-data">
-                                                                <span>{message.dateMessage.split(",")[1]}</span>
+
+                                                    <div className='box-message-attachment'>
+
+                                                        <div className='content-message'>
+                                                            <div className="message-user">
+                                                                <span>{message.message}</span>
+                                                                <div className="display-flex-end message-content-date">
+
+                                                                    <div className='display-block w100'>
+                                                                        <div className='display-flex-end'>
+                                                                            <div className="message-data">
+                                                                                <span>{message.dateMessage.split(",")[1]}</span>
+                                                                            </div>
+
+                                                                            {message.sender?.workerCode === worker.id ||
+                                                                                message.sender?.workerCode === parseInt(localStorage.getItem("id")) ? (
+                                                                                <span className="material-symbols-outlined check-done">done</span>
+                                                                            ) : null}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                            {message.sender?.workerCode === worker.id ||
-                                                                message.sender?.workerCode === parseInt(localStorage.getItem("id")) ? (
-                                                                <span className="material-symbols-outlined check-done">done</span>
-                                                            ) : null}
                                                         </div>
+                                                        {message.attachment &&
+                                                            <div className="attachments-message">
+
+                                                                <div className='attachment-message display-flex-align-center display-flex-end'>
+                                                                    <span>{message.attachment.name}</span>
+
+                                                                    <div className="attachment">
+                                                                        <div className="attachment-image">
+                                                                            <img src={"/attachment/" + othersUtil.attatchmentType(message.attachment) + ".png"} alt="" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        }
                                                     </div>
 
-
-                                                    {message.attachment &&
-                                                        <div className="attachments">
-
-                                                            <div className="attachment">
-                                                                <div className="attachment-image">
-                                                                    <img src={"/attachment/" + othersUtil.attatchmentType(message.attachment) + ".png"} alt="" />
-                                                                </div>
-                                                                <span>{message.attachment.name}</span>
-                                                            </div>
-                                                        </div>
-                                                    }
                                                 </li>
                                             </React.Fragment>
                                         );

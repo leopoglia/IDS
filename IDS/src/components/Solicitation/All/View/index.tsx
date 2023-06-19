@@ -352,29 +352,24 @@ export default function ViewDemand() {
     // Aprovar demanda (Gerente de Negócios)
     function approveDemand() {
         ServicesDemand.updateStatus(demandCode, "BacklogRankApproved").then((response: any) => {
-            // Notificação para o solicitante
-            // ServicesNotification.save("Um gerente de Negócio aprovou a sua demanda de código  " + demand.demandCode, demand.requesterRegistration.workerCode, "done", "demand");
             ServicesDemand.approve(demandCode, worker.id);
             send("/api/worker/" + demand.requesterRegistration.workerCode, setDefaultNotification());
             notifyUtil.success(t("demandApproved"));
             getDemand();
             setActionsDemand(0);
-
-
         }).catch((error: any) => {
             notifyUtil.error(t("somethingWrong"));
         })
     }
 
     const setDefaultNotification = () => {
-        if (worker.office === "business") {
-            return notification = {
-                date: new Date(),
-                description: "Um gerente de Negócio aprovou a sua demanda de código  " + demand.demandCode,
-                worker: { workerCode: JSON.parse(demand.requesterRegistration.workerCode) },
-                icon: "done",
-                type: "demand",
-            }
+        console.log("ENTROU");
+        return notification = {
+            date: new Date(),
+            description: "Um Gerente de Negócio aprovou a sua demanda de código  " + demand.demandCode,
+            worker: { workerCode: JSON.parse(demand.requesterRegistration.workerCode) },
+            icon: "done",
+            type: "demand",
         }
     }
 
@@ -563,7 +558,7 @@ export default function ViewDemand() {
                                             {viewDemand === "view" || demandVersion === "view" ? (
                                                 <Tooltip className="display-flex-end" title={t("devisualizeDemand")} placement="bottom" arrow>
 
-                                                    <Link to={url === "demand" ? "/demand/rank/" + demand.demandCode + "?" + demand.demandVersion + "?view" : "/demand/rank/" + demand.demandCode + "?" + demand.demandVersion + "?edit" }>
+                                                    <Link to={url === "demand" ? "/demand/rank/" + demand.demandCode + "?" + demand.demandVersion + "?view" : "/demand/rank/" + demand.demandCode + "?" + demand.demandVersion + "?edit"}>
                                                         <div className="visibility-demand">
                                                             <span className="material-symbols-outlined">
                                                                 visibility_off

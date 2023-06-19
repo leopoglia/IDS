@@ -135,7 +135,9 @@ const ChatRoom = () => {
         }
         ServicesAttachment.save(filesArray[0]).then((response) => {
             setFileAttachment(response);
+            setMessage({ message: message.message, dateMessage: new Date().toLocaleString(), sender: { workerCode: worker.id || parseInt(localStorage.getItem("id")) }, demandCode: demandCode, attachment: { attachmentCode: response?.attachmentCode } });
         })
+        reloadMessage();
     }
 
     const setDefaultMessage = () => {

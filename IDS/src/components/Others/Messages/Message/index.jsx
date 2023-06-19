@@ -192,6 +192,8 @@ const ChatRoom = () => {
         setMessage({ ...message, message: message.message + emojiData.emoji, dateMessage: new Date().toLocaleString() });
     }
 
+    console.log(messages)
+
     return (
         <div className="messages">
 
@@ -257,7 +259,7 @@ const ChatRoom = () => {
 
                     <div className="chat-box display-flex">
 
-                        {worker.office !== "requester" && worker.office !== "analyst" ?
+                        {/* {worker.office !== "requester" ?
                             (
                                 <div className={'chats chats-' + chatsOpen}>
 
@@ -278,11 +280,6 @@ const ChatRoom = () => {
                                                         <div className="message-name-chats">
                                                             <span className="username">{workerDemand.workerName}</span>
                                                         </div>
-
-                                                        <span className='time-chat'>
-                                                            {item.dateMessage.split(",")[1]}
-                                                        </span>
-
 
                                                     </div>
                                                     {
@@ -309,12 +306,12 @@ const ChatRoom = () => {
 
                                 </div>
                             ) : null
-                        }
+                        } */}
 
 
                         <div className="chat-content ">
 
-                            {worker.office !== "requester" ?
+                            {/* {worker.office !== "requester" ?
                                 (
 
                                     <div className={'arrow-chat arrow-chat-' + chatsOpen} onClick={() => setChatsOpen(!chatsOpen)}>
@@ -324,12 +321,10 @@ const ChatRoom = () => {
                                     </div>
 
                                 ) : null
-                            }
+                            } */}
 
 
                             <ul className="chat-messages" ref={divRef}>
-
-
 
                                 {messages.length > 0 &&
                                     messages.map((message, index) => {
@@ -393,7 +388,7 @@ const ChatRoom = () => {
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        }
+                                                        } 
                                                         {message.attachment &&
                                                             <div className="attachments-message">
 

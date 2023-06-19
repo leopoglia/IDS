@@ -41,6 +41,13 @@
     width: 100%;
 }
 
+.messages .box-message .message-name-chats .username{
+    font-size: var(--p) !important;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .messages .box-message .chat-time-chats {
     margin-bottom: 4px;
 }
@@ -167,6 +174,7 @@
 }
 
 .messages .chat-box .chats {
+    max-width: 250px;
     margin-right: 15px;
     height: 100%;
     height: calc(50vh + 55px);
@@ -193,6 +201,9 @@
 .messages .chat-box .arrow-chat {
     position: absolute;
     transform: rotate(90deg);
+    background-color: var(--greyF7);
+    border-radius: var(--r);
+    z-index: 1;
 }
 
 .messages .chat-box .chats-true {
@@ -441,7 +452,7 @@
 
 
 @media(max-width: 1140px) {
-    .messages .box-message .message-user {
+    .box-message-attachment {
         max-width: 40%;
     }
 }

@@ -447,7 +447,7 @@ hr {
 
 .w130 {
   width: 135px !important;
-  margin-top: 25px;
+  margin-top: 19.5px;
 }
 
 .attachments label {
@@ -604,6 +604,9 @@ hr {
   border-radius: var(--r) !important;
 }
 
+.css-e363es-MuiFormControl-root{
+  margin: 0px !important;
+}
 
 @media(max-width: 1280px) {
 

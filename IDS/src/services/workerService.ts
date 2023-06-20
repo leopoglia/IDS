@@ -160,6 +160,15 @@ const Services = {
                 .then(resolve)
                 .catch(resolve)
         })
+    },
+    updatePhoto: function (id: number, photo: any) {
+        return new Promise((resolve, reject) => {
+            fetch(url + '/photo/' + id, {
+                method: 'PUT', body: JSON.stringify({
+                    photo: photo
+                }), headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); }).then(resolve).catch(resolve)
+        })
     }
 }
 

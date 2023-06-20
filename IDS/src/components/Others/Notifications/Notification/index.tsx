@@ -15,6 +15,7 @@ export default function Notification(props: any) {
         setChecked(props?.checked)
     }, [props.checked])
 
+    console.log("linhas: " + props.description.split(" ").length)
 
     // Arruma a data para o formato dd/mm/yyyy hh:mm
     function arrangeDate() {
@@ -98,9 +99,9 @@ export default function Notification(props: any) {
                             {props.icon}
                         </span>
                         {
-                            props.description.split(" ")[1] !== undefined ? (
+                            props.description.split(" ")[1] !== undefined && props.description.split(" ").length !== 3 ? (
                                 <span>{t(props.description.split(" ", 1)) + props.description.split(" ")[1]}</span>
-                            ) : props.description.split(" ")[2] !== undefined ? (
+                            ) : props.description.split(" ").length === 3 ? (
                                 <span>{props.description.split(" ")[0] + t(props.description.split(" ")[1]) + props.description.split(" ")[2]}</span>
                             ) : (
                                 <span>{t(props.description)}</span>

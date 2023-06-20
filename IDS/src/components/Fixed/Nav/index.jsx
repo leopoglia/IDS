@@ -27,6 +27,7 @@ export default function Nav() {
     const [notifications, setNotifications] = useState([]); // Notificações do usuário
     const { send, subscribe, stompClient } = useContext(WebSocketContext); // WebSocket
 
+
     useEffect(() => {
         const navState = localStorage.getItem("nav") === "nav-open" ? "nav-open" : "nav"; // Verifica se o menu está aberto ou fechado
         setNav(navState); // Atualiza o estado do menu
@@ -67,15 +68,14 @@ export default function Nav() {
             const notificationReceived = JSON.parse(response.body);
             console.log(notificationReceived.body.type);
             if(notificationReceived.body.type !== "presentation"){
-                    if(notificationReceived.body.description.split(" ")[1] !== undefined) {
+                    if(notificationReceived.body.description.split(" ").length === 2) {
                         notifyUtil.info(t(notificationReceived.body.description.split(" ")[0]) + notificationReceived.body.description.split(" ")[1]);
-                    }else if(notificationReceived.body.description.split(" ")[2] !== undefined){
-                        <span>{notificationReceived.body.description.split(" ")[0] + t(notificationReceived.body.description.split(" ")[1]) + notificationReceived.body.description.split(" ")[2]}</span>
+                    }else if(notificationReceived.body.description.split(" ").length === 3){
+                        notifyUtil.info(notificationReceived.body.description.split(" ")[0] + t(notificationReceived.body.description.split(" ")[1]) + notificationReceived.body.description.split(" ")[2]);
                     }else{
                         notifyUtil.info(t(notificationReceived.body.description));
                     }
                 }
-            
             setNotifications((previousNotifications) => [...previousNotifications, notificationReceived]);
         };
         if (stompClient && !subscribeId) {

@@ -16,7 +16,7 @@ export default function Configuration() {
     const worker: any = useContext(UserContext).worker; // Contexto do utilizador
     const setWorker: any = useContext(UserContext).setWorker; // Set para o contexto do utilizador
     const name: any = worker.name; // Nome do utilizador
-    const image = name.substring(0, 1); // Primeira letra do nome do utilizador
+    const [image, setImage] = useState(name.substring(0, 1)); // Primeira letra do nome do utilizador
     const email = worker.email; // Email do utilizador
 
 
@@ -30,6 +30,7 @@ export default function Configuration() {
 
     // Atualiza o estado do utilizador
     useEffect(() => {
+        setImage(worker?.name?.substring(0, 1));
         setPounds(worker?.pounds);
         setVoiceCommand(worker?.voiceCommand);
         setScreenReading(worker?.screenReader);
@@ -37,6 +38,18 @@ export default function Configuration() {
         setSquareStyleLayout(worker?.square);
         setFontSize(worker?.fontSize);
     }, [worker])
+
+    useEffect(() => {
+        var test: any = document.getElementById("image-profile");
+
+        test.addEventListener("mouseenter", function (event: any) {
+            setImage("edit");
+        }, false);
+
+        test.addEventListener("mouseleave", function (event: any) {
+            setImage(worker?.name?.substring(0, 1));
+        }, false);
+    }, []);
 
     // Atualiza o estado do layout quadrado
     const handleSquare = async (event: any) => {
@@ -101,6 +114,14 @@ export default function Configuration() {
         })
     }
 
+    const handleProfileImage = (event: any) => {
+        const file = event.target.files[0];
+        const imageUrl = URL.createObjectURL(file);
+
+        console.log(imageUrl)
+        setImage(imageUrl);
+    }
+
 
     return (
         <div className="configuration">
@@ -111,7 +132,16 @@ export default function Configuration() {
 
                 <div className="box">
                     <div className="profile">
-                        <div className="picture-profile">{image}</div>
+                        <input className="input-image" type="file" id="image-profile" onChange={handleProfileImage} />
+                        <label htmlFor="image-profile" className={image === "edit" ? "material-symbols-outlined" : ""} id="image-profile">
+
+                            {image.substring(0, 4) !== "blob" ?
+                                (
+                                    image
+                                ) :
+                                <img src={image} alt="" />
+                            }
+                        </label>
                         <div className="email-name">
                             <div className="flex">
                                 <span className="name">{name}</span>

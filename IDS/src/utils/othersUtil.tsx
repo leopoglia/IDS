@@ -1,8 +1,8 @@
 
 const othersUtil = {
 
-    // Função para mostrar o navigator
 
+    // Função para mostrar o navigator
     synthesis: (text: string, reader: boolean) => {
 
         if (reader === true) {

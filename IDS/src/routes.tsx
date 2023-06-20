@@ -40,7 +40,7 @@ import Workflow from "./components/Solicitation/Demands/Workflow";
 export default function Router() {
 
     // Contexto do usuário
-    const [worker, setWorker]: any = useState({ id: "", office: "", name: "", email: "", language: "", voiceCommand: false, pounds: false, screenReader: false, darkmode: false, square: false, fontSize: 24 });
+    const [worker, setWorker]: any = useState({ id: "", office: "", name: "", email: "", language: "", voiceCommand: false, pounds: false, screenReader: false, darkmode: false, square: false, fontSize: 24, workerPhoto: null });
 
     useEffect(() => {
 
@@ -74,7 +74,8 @@ export default function Router() {
                             screenReader: response.screenReader,
                             darkmode: response.darkmode,
                             square: response.square,
-                            fontSize: response.fontSize
+                            fontSize: response.fontSize,
+                            workerPhoto: response.workerPhoto
                         }
 
                         if (response.darkmode === true) {

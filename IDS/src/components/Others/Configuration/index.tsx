@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import othersUtil from "../../../utils/othersUtil";
 import Title from "../../Fixed/Search/Title";
 import Footer from "../../Fixed/Footer";
 import UserContext from "../../../context/userContext";
@@ -28,9 +29,18 @@ export default function Configuration() {
     const [darkMode, setDarkMode] = useState(false); // Estado do darkMode
     const [squareStyleLayout, setSquareStyleLayout] = useState(false); // Estado do layout quadrado
 
+
+
     // Atualiza o estado do utilizador
     useEffect(() => {
-        setImage(worker?.name?.substring(0, 1));
+
+        console.log("worker", worker);
+
+        if (worker?.workerPhoto !== null) {
+            setImage(byteToImage(worker?.workerPhoto));
+        } else {
+            setImage(worker?.name?.substring(0, 1));
+        }
         setPounds(worker?.pounds);
         setVoiceCommand(worker?.voiceCommand);
         setScreenReading(worker?.screenReader);
@@ -115,17 +125,31 @@ export default function Configuration() {
     }
 
     const handleProfileImage = async (event: any) => {
-        const file = event.target.files[0];
 
+        console.log("entrou")
 
-        await WorkerService.updatePhoto(worker.id, file).then((response: any) => {
-            setWorker({ ...worker, photo: response.photo });
+        await WorkerService.updatePhoto(worker.id, event.target.files[0]).then((response: any) => {
+
+            setWorker({ ...worker, workerPhoto: response.workerPhoto });
+
+            setImage(byteToImage(response.workerPhoto));
         })
-
-        const imageUrl = URL.createObjectURL(file);
-        setImage(imageUrl);
     }
 
+    function byteToImage(e: any): any {
+        console.log(e)
+        const fileReader = new FileReader();
+
+        if (e?.target === false) {
+            fileReader.readAsDataURL(e.target.files[0]);
+        } else {
+            const imageUrl: any = URL.createObjectURL(e);
+            fileReader.readAsDataURL(imageUrl);
+        }
+        fileReader.onload = (e) => {
+            return fileReader.result;
+        }
+    }
 
     return (
         <div className="configuration">
@@ -139,7 +163,7 @@ export default function Configuration() {
                         <input className="input-image" type="file" id="image-profile" onChange={handleProfileImage} />
                         <label htmlFor="image-profile" className={image === "edit" ? "material-symbols-outlined" : ""} id="image-profile">
 
-                            {image.substring(0, 4) !== "blob" ?
+                            {image.substring(0, 4) !== "data" ?
                                 (
                                     image
                                 ) :

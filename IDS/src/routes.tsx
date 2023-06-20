@@ -36,6 +36,7 @@ import Header from "./components/Fixed/Header";
 import Nav from "./components/Fixed/Nav";
 import VLibras from "@djpfs/react-vlibras"
 import Workflow from "./components/Solicitation/Demands/Workflow";
+import Profile from "./components/Others/Profile";
 
 export default function Router() {
 
@@ -191,6 +192,7 @@ function RouterContent(props: any) {
                 <Route path="/notifications/:id" element={<Notifications />} />
                 <Route path="/configuration" element={<Configuration />} />
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/profile/:id" element={<Profile />} />
 
                 <Route path="/demands/:page" element={<Demands />} />
                 <Route path="/demand/create/1" element={<CreateDemands1 />} />

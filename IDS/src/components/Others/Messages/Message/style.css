@@ -476,6 +476,11 @@
     margin-right: 175px;
 }
 
+.EmojiPickerReact{
+    border-radius: var(--r) !important;
+    border: 1px solid var(--greyC4) !important;
+}
+
 .messages .attachments-message {
     display: flex;
     position: relative;

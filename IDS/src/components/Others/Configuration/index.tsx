@@ -114,11 +114,15 @@ export default function Configuration() {
         })
     }
 
-    const handleProfileImage = (event: any) => {
+    const handleProfileImage = async (event: any) => {
         const file = event.target.files[0];
-        const imageUrl = URL.createObjectURL(file);
 
-        console.log(imageUrl)
+
+        await WorkerService.updatePhoto(worker.id, file).then((response: any) => {
+            setWorker({ ...worker, photo: response.photo });
+        })
+
+        const imageUrl = URL.createObjectURL(file);
         setImage(imageUrl);
     }
 

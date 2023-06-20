@@ -162,12 +162,17 @@ const Services = {
         })
     },
     updatePhoto: function (id: number, photo: any) {
+        var formData = new FormData();
+        formData.append('file', photo);
+
         return new Promise((resolve, reject) => {
             fetch(url + '/photo/' + id, {
-                method: 'PUT', body: JSON.stringify({
-                    photo: photo
-                }), headers: { 'Content-Type': 'application/json' }, credentials: 'include'
-            }).then(function (result) { return result.json(); }).then(resolve).catch(resolve)
+                method: 'PUT',
+                body: formData,
+                credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(reject)
         })
     }
 }

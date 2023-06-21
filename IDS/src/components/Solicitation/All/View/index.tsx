@@ -900,14 +900,14 @@ export default function ViewDemand() {
                                             ) : (null)
                                             }
 
-                                            {pendingMinute < proposalSpecific.length && minute.length === 0 ? (
+                                            {/* {minute.length === 0 ? (
                                                 <div className="display-flex-end">
                                                     <Link to={"/minutes/create/" + demandCode}>
                                                         <button className="btn-primary">{t("generateMinuteDG")}</button>
                                                     </Link>
                                                 </div>
                                             ) : (null)
-                                            }
+                                            } */}
 
                                         </div>
 

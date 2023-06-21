@@ -13,8 +13,8 @@ export default function CommissionOpinion() {
 
     const navigate = useNavigate();
     const proposalCode: any =  parseInt(useParams().id || "null");
+    const typeMinute: any = window.location.href.split("/")[4];
     const agendaCode = parseInt(window.location.href.split("?")[1]);
-
 
     const [commissionOpinion, setCommissionOpinion] = useState("");
     const [proposalStatus, setProposalStatus] = useState("");
@@ -22,7 +22,8 @@ export default function CommissionOpinion() {
     const { t } = useTranslation();
 
     async function addOpinion() {
-        await ProposalService.addOpinion(proposalCode, proposalStatus, commissionOpinion).then((response: any) => {
+
+        await ProposalService.addOpinion(proposalCode, proposalStatus, commissionOpinion, typeMinute).then((response: any) => {
             navigate("/agenda/view/" + agendaCode);
         }
         )
@@ -49,13 +50,13 @@ export default function CommissionOpinion() {
                     <div className="display-flex">
                         <div className="display-grid">
                             <label htmlFor="yes">{t("approve")}</label>
-                            <input type="radio" id="yes" name="parecer" onChange={(e) => { setProposalStatus("Approved") }} />
+                            <input type="radio" id="yes" name="parecer" onChange={(e) => {  typeMinute === "dg-opinion" ?  setProposalStatus("ApprovedDG") : setProposalStatus("Approved") }} />
                         </div>
 
                         <div className="display-grid">
 
                             <label htmlFor="no">{t("fail")}</label>
-                            <input type="radio" id="no" name="parecer" onChange={(e) => { setProposalStatus("Rejected") }} />
+                            <input type="radio" id="no" name="parecer" onChange={(e) => { typeMinute === "dg-opinion" ? setProposalStatus("RejectedDG") : setProposalStatus("Rejected") }} />
                         </div>
                     </div>
 

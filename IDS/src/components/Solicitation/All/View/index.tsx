@@ -59,6 +59,7 @@ export default function ViewDemand() {
     const [subscribeId, setSubscribeId] = useState(null);
     let notification = {}; // Notificações do usuário
     const [pendingMinute, setPendingMinute]: any = useState(0); // Quantidade de propostas pendentes
+    const [approvedDG, setApprovedDG]: any = useState(0); // Quantidade de propostas aprovadas pelo DG
 
 
     const { send, subscribe, stompClient }: any = useContext(WebSocketContext);
@@ -318,6 +319,15 @@ export default function ViewDemand() {
             proposals.map((val: any) => (
                 val.proposalStatus === "Pending" ? (
                     setPendingMinute(pendingMinute + 1)
+                ) : (
+                    null
+                )
+            ))
+
+
+            proposals.map((val: any) => (
+                val.proposalStatus === "ApprovedDG" ? (
+                    setApprovedDG(approvedDG + 1)
                 ) : (
                     null
                 )
@@ -900,7 +910,7 @@ export default function ViewDemand() {
                                             ) : (null)
                                             }
 
-                                            {minute.length !== 0 && (minute[0]?.minuteType === "Published" || minute[1]?.minuteType === "Published") ? (
+                                            {proposalSpecific.length < approvedDG && minute.length !== 0 ? (
                                                 <div className="display-flex-end">
                                                     <Link to={"/minutes/create/" + demandCode}>
                                                         <button className="btn-primary">{t("generateMinuteDG")}</button>
@@ -992,13 +1002,23 @@ export default function ViewDemand() {
                                                                         <div className="w20 display-flex-align-center">
 
                                                                             <div className="proposal-view-buttons">
-                                                                                {val.proposalStatus === "Pending" ? (
+                                                                                {val?.proposalStatus === "Pending" ? (
                                                                                     <Link to={"/proposal/comission-opinion/" + val.proposalCode + "?" + agenda.agendaCode}>
                                                                                         <button className="btn-primary">{t("insertCommissionOpinion")}</button>
                                                                                     </Link>
+                                                                                ) : val?.proposalStatus === "Approved" ? (
+                                                                                    <div className="display-flex-align-center">
+
+                                                                                        <div className="proposal-status mr20">
+                                                                                            {t("status")}: {t(val?.proposalStatus?.toLowerCase())} {t("comission")}
+                                                                                        </div>
+                                                                                        <Link to={"/proposal/dg-opinion/" + val.proposalCode + "?" + agenda.agendaCode}>
+                                                                                            <button className="btn-primary">{t("insertDGOpnion")}</button>
+                                                                                        </Link>
+                                                                                    </div>
                                                                                 ) : (
                                                                                     <div className="proposal-status">
-                                                                                        {t("status")} : {t(val?.proposalStatus?.toLowerCase())}
+                                                                                        {t("status")}: {t(val?.proposalStatus?.toLowerCase())} {t("comission")}
                                                                                     </div>
                                                                                 )}
                                                                             </div>
@@ -1034,13 +1054,23 @@ export default function ViewDemand() {
                                                                         <div className="w20 display-flex-align-center">
 
                                                                             <div className="proposal-view-buttons">
-                                                                                {val.proposalStatus === "Pending" ? (
+                                                                                {val?.proposalStatus === "Pending" ? (
                                                                                     <Link to={"/proposal/comission-opinion/" + val.proposalCode + "?" + agenda.agendaCode}>
                                                                                         <button className="btn-primary">{t("insertCommissionOpinion")}</button>
                                                                                     </Link>
+                                                                                ) : val?.proposalStatus === "Approved" ? (
+                                                                                    <div className="display-flex-align-center">
+
+                                                                                        <div className="proposal-status mr20">
+                                                                                            {t("status")}: {t(val?.proposalStatus?.toLowerCase())} {t("comission")}
+                                                                                        </div>
+                                                                                        <Link to={"/proposal/dg-opinion/" + val.proposalCode + "?" + agenda.agendaCode}>
+                                                                                            <button className="btn-primary">{t("insertDGOpnion")}</button>
+                                                                                        </Link>
+                                                                                    </div>
                                                                                 ) : (
                                                                                     <div className="proposal-status">
-                                                                                        Status: {t(val?.proposalStatus?.toLowerCase())}
+                                                                                        {t("status")}: {t(val?.proposalStatus?.toLowerCase())} {t("comission")}
                                                                                     </div>
                                                                                 )}
                                                                             </div>

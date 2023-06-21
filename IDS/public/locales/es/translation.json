@@ -268,5 +268,9 @@
     "AnalystRankDemand": "Un Analista ha clasificado la demanda ",
     "waiting": "Esperando",
     "finished": "Finalizado",
-    "startedConversation": "Inició la conversación en la demanda "
+    "startedConversation": "Inició la conversación en la demanda ",
+    "ApprovedComission": "Aprobado comisión",
+    "RejectedComission": "Rechazado comisión",
+    "ApprovedDG": "Aprobado DG",
+    "RejectedDG": "Rechazado DG"
 }

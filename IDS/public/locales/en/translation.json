@@ -269,5 +269,9 @@
     "AnalystRankDemand": "An analyst has ranked the demand ",
     "waiting": "Waiting",
     "finished": "Finished",
-    "startedConversation": "Started a chat in demand "
+    "startedConversation": "Started a chat in demand ",
+    "ApprovedComission": "Approved comission",
+    "RejectedComission": "Rejected comission",
+    "ApprovedDG": "Approved DG",
+    "RejectedDG": "Rejected DG"
 }

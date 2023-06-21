@@ -50,13 +50,13 @@ export default function CommissionOpinion() {
                     <div className="display-flex">
                         <div className="display-grid">
                             <label htmlFor="yes">{t("approve")}</label>
-                            <input type="radio" id="yes" name="parecer" onChange={(e) => {  typeMinute === "dg-opinion" ?  setProposalStatus("ApprovedDG") : setProposalStatus("Approved") }} />
+                            <input type="radio" id="yes" name="parecer" onChange={(e) => {  typeMinute === "dg-opinion" ?  setProposalStatus("ApprovedDG") : setProposalStatus("ApprovedComission") }} />
                         </div>
 
                         <div className="display-grid">
 
                             <label htmlFor="no">{t("fail")}</label>
-                            <input type="radio" id="no" name="parecer" onChange={(e) => { typeMinute === "dg-opinion" ? setProposalStatus("RejectedDG") : setProposalStatus("Rejected") }} />
+                            <input type="radio" id="no" name="parecer" onChange={(e) => { typeMinute === "dg-opinion" ? setProposalStatus("RejectedDG") : setProposalStatus("RejectedComission") }} />
                         </div>
                     </div>
 

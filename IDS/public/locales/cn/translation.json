@@ -270,5 +270,9 @@
     "AnalystRankDemand": "分析師排名需求 ",
     "waiting": "等候",
     "finished": "完成",
-    "startedConversation": "按需開始對話 "
+    "startedConversation": "按需開始對話 ",
+    "ApprovedComission": "委員會批准",
+    "RejectedComission": "委員會拒絕",
+    "ApprovedDG": "批准DG",
+    "RejectedDG": "拒絕DG"
 }

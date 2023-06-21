@@ -910,7 +910,7 @@ export default function ViewDemand() {
                                             ) : (null)
                                             }
 
-                                            {proposalSpecific.length < approvedDG && minute.length !== 0 ? (
+                                            {proposalSpecific.length < approvedDG && minute.length !== 0 && (minute[0]?.minuteType === "Published" || minute[1]?.minuteType === "Published") ? (
                                                 <div className="display-flex-end">
                                                     <Link to={"/minutes/create/" + demandCode}>
                                                         <button className="btn-primary">{t("generateMinuteDG")}</button>
@@ -1006,11 +1006,11 @@ export default function ViewDemand() {
                                                                                     <Link to={"/proposal/comission-opinion/" + val.proposalCode + "?" + agenda.agendaCode}>
                                                                                         <button className="btn-primary">{t("insertCommissionOpinion")}</button>
                                                                                     </Link>
-                                                                                ) : val?.proposalStatus === "Approved" ? (
+                                                                                ) : val?.proposalStatus === "Approved" && minute.length !== 0 ? (
                                                                                     <div className="display-flex-align-center">
 
                                                                                         <div className="proposal-status mr20">
-                                                                                            {t("status")}: {t(val?.proposalStatus?.toLowerCase())} {t("comission")}
+                                                                                            {t("status")}: {t(val?.proposalStatus)}
                                                                                         </div>
                                                                                         <Link to={"/proposal/dg-opinion/" + val.proposalCode + "?" + agenda.agendaCode}>
                                                                                             <button className="btn-primary">{t("insertDGOpnion")}</button>
@@ -1018,7 +1018,7 @@ export default function ViewDemand() {
                                                                                     </div>
                                                                                 ) : (
                                                                                     <div className="proposal-status">
-                                                                                        {t("status")}: {t(val?.proposalStatus?.toLowerCase())} {t("comission")}
+                                                                                        {t("status")}: {t(val?.proposalStatus)}
                                                                                     </div>
                                                                                 )}
                                                                             </div>
@@ -1058,11 +1058,11 @@ export default function ViewDemand() {
                                                                                     <Link to={"/proposal/comission-opinion/" + val.proposalCode + "?" + agenda.agendaCode}>
                                                                                         <button className="btn-primary">{t("insertCommissionOpinion")}</button>
                                                                                     </Link>
-                                                                                ) : val?.proposalStatus === "Approved" ? (
+                                                                                ) : val?.proposalStatus === "Approved" && minute.length !== 0 ? (
                                                                                     <div className="display-flex-align-center">
 
                                                                                         <div className="proposal-status mr20">
-                                                                                            {t("status")}: {t(val?.proposalStatus?.toLowerCase())} {t("comission")}
+                                                                                            {t("status")}: {t(val?.proposalStatus)}
                                                                                         </div>
                                                                                         <Link to={"/proposal/dg-opinion/" + val.proposalCode + "?" + agenda.agendaCode}>
                                                                                             <button className="btn-primary">{t("insertDGOpnion")}</button>
@@ -1070,7 +1070,7 @@ export default function ViewDemand() {
                                                                                     </div>
                                                                                 ) : (
                                                                                     <div className="proposal-status">
-                                                                                        {t("status")}: {t(val?.proposalStatus?.toLowerCase())} {t("comission")}
+                                                                                        {t("status")}: {t(val?.proposalStatus)}
                                                                                     </div>
                                                                                 )}
                                                                             </div>
@@ -1249,7 +1249,7 @@ export default function ViewDemand() {
 
                                                                     <div className="text-information display-flex">
                                                                         <b className="label">{t("commissionOpinion")}: </b>
-                                                                        {t(val.proposalStatus.toLowerCase())}
+                                                                        {t(val.proposalStatus)}
                                                                     </div>
 
                                                                     {val.commissionOpnion &&

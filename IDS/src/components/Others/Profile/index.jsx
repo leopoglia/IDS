@@ -4,8 +4,9 @@ import ServicesDemand from "../../../services/demandService";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import "./style.css";
-import Input from "../../Solicitation/Demands/CrateDemand/Others/Input"; 
+import Input from "../../Solicitation/Demands/CrateDemand/Others/Input";
 import Profile from "../../Fixed/Profile";
+import Card from "../../Solicitation/All/Cards/Card";
 
 export default function Profiles() {
 
@@ -15,13 +16,41 @@ export default function Profiles() {
     const [search, setSearch] = useState(""); // Retorno do campo de busca de demandas
 
     const [worker, setWorker] = useState({});
+    const [demands, setDemands] = useState([]);
+
+    const optionsDemands = ["Demandas criadas", "Demandas classificadas", "Demandas aprovadas", "Demandas complementadas", "Propostas criadas"];
 
     useEffect(() => {
         ServicesWorker.findById(workerCode).then((res) => {
             setWorker(res);
+            handleDemands(0);
         });
     }, [])
 
+    const handleDemands = (index) => {
+        switch (index) {
+            case 0:
+                ServicesDemand.findByRequester(workerCode).then((res) => {
+                    setDemands(res);
+                });
+                break;
+            case 1:
+                ServicesDemand.findByAnalyst(workerCode).then((res) => {
+                    setDemands(res);
+                });
+                break;
+            case 2:
+                ServicesDemand.findByApprover(workerCode).then((res) => {
+                    setDemands(res);
+                });
+                break;
+            case 3:
+                ServicesDemand.findByAnalyst(workerCode).then((res) => {
+                    setDemands(res);
+                });
+                break;
+        }
+    }
 
     return (
         <div className="profile">
@@ -41,32 +70,34 @@ export default function Profiles() {
                         <div className="header">
 
                             <div className="display-flex h65px">
-                                <div className="profile-select">
-                                    <p>Demandas criadas</p>
-                                </div>
-
-                                <div className="profile-select">
-                                    <p>Demandas classificadas</p>
-                                </div>
-
-                                <div className="profile-select">
-                                    <p>Demandas aprovadas</p>
-                                </div>
-
-                                <div className="profile-select">
-                                    <p>Demandas complementadas</p>
-                                </div>
-
-                                <div className="profile-select">
-                                    <p>Propostas criadas</p>
-                                </div>
+                                {
+                                    optionsDemands.map((option, index) => {
+                                        return (
+                                            <div className="profile-select" onClick={() => handleDemands(index)}>
+                                                <p>{option}</p>
+                                            </div>
+                                        )
+                                    })
+                                }
                             </div>
 
                             <div className="display-flex">
                                 <Input background={"input-search"} setValue={setSearch} value={search} icon={"search"} type="text" placeholder={t("searchSoliciation")} required={true} />
                             </div>
                         </div>
+
+                        {demands.map((val) => {
+                            return (
+                                <Card
+                                    key={val.demandCode} demandCode={val.demandCode} listDirection={true} name={val.demandTitle}
+                                    requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus}
+                                    proposalCode={val.proposalCode} demandVersion={val.demandVersion} type="demand"
+                                />
+                            )
+                        })}
+
                     </div>
+
                 </div>
             </div>
 

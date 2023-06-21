@@ -64,3 +64,9 @@
     background-color: var(--greyF7);
     border-bottom: 1px solid var(--greyC4);
 }
+
+.profile p{
+    margin: 0px !important;
+    font-size: var(--p);
+    color: var(--grey59);
+}

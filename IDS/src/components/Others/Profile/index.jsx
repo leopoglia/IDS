@@ -28,6 +28,9 @@ export default function Profiles() {
     }, [])
 
     const handleDemands = (index) => {
+
+        console.log(index)
+
         switch (index) {
             case 0:
                 ServicesDemand.findByRequester(workerCode).then((res) => {

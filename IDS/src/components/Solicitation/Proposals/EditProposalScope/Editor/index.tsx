@@ -19,7 +19,6 @@ const RichTextEditor = (props: any) => {
     if (props.content === undefined) {
       if (url !== "demand" && url !== "minutes") {
         setContent(
-          "<h1>" + t("projectScope") + ": </h1></br>" +
           "<h1>" + t("notPartOfTheScope") + ": </h1></br>" +
           "<h1>" + t("evaluatedAlternatives") + ": </h1></br>" +
           "<h1>" + "Abrangência do Projeto" + ": </h1></br>" +  /// TERMINAR 

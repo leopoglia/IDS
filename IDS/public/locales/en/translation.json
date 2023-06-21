@@ -14,6 +14,7 @@
     "requester": "Requester",
     "date": "Request date",
     "generateProposal": "Generate proposal",
+    "generateMinuteDG": "Generate minute DG",
     "situation": "Situation",
     "currentSituation": "Current situation",
     "analyst": "Analyst",

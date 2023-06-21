@@ -14,6 +14,7 @@
     "requester": "Solicitante",
     "date": "Data da solicitación",
     "generateProposal": "Generar propuesta",
+    "generateMinuteDG": "Generar acta DG",
     "situation": "Situación",
     "currentSituation": "Situación actual",
     "analyst": "Analista",

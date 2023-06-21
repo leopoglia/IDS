@@ -1,8 +1,8 @@
-.profile .person{
+.profile .person {
     padding: 5px;
 }
 
-.profile .image-profile{
+.profile .image-profile {
     width: 40px;
     height: 40px;
     min-width: 40px;
@@ -19,12 +19,12 @@
     overflow: hidden;
 }
 
-.profile .workerName{
+.profile .workerName {
     margin: 0 !important;
     margin-left: 10px !important;
 }
 
-.profile .person .material-symbols-outlined{
+.profile .person .material-symbols-outlined {
     width: 40px;
     height: 40px;
     background-color: var(--greyF7);
@@ -35,6 +35,32 @@
     cursor: pointer;
 }
 
-.profile .person .material-symbols-outlined:hover{
+.profile .person .material-symbols-outlined:hover {
     background-color: var(--greyE5);
+}
+
+.profile .profile-select {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    cursor: pointer;
+    border-bottom: 1px solid transparent;
+}
+
+.profile .profile-select p{
+    padding-top: 4px;
+    margin: 0px !important;
+    font-size: var(--p);
+    color: var(--grey59);
+}
+
+.profile .h65px{
+    height: 65px;
+}
+
+.profile .profile-select:hover {
+    background-color: var(--greyF7);
+    border-bottom: 1px solid var(--greyC4);
 }

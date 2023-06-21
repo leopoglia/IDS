@@ -900,14 +900,14 @@ export default function ViewDemand() {
                                             ) : (null)
                                             }
 
-                                            {/* {minute.length === 0 ? (
+                                            {minute.length !== 0 && (minute[0]?.minuteType === "Published" || minute[1]?.minuteType === "Published") ? (
                                                 <div className="display-flex-end">
                                                     <Link to={"/minutes/create/" + demandCode}>
                                                         <button className="btn-primary">{t("generateMinuteDG")}</button>
                                                     </Link>
                                                 </div>
                                             ) : (null)
-                                            } */}
+                                            }
 
                                         </div>
 
@@ -998,7 +998,7 @@ export default function ViewDemand() {
                                                                                     </Link>
                                                                                 ) : (
                                                                                     <div className="proposal-status">
-                                                                                        Status: {val.proposalStatus}
+                                                                                        {t("status")} : {t(val?.proposalStatus?.toLowerCase())}
                                                                                     </div>
                                                                                 )}
                                                                             </div>
@@ -1040,7 +1040,7 @@ export default function ViewDemand() {
                                                                                     </Link>
                                                                                 ) : (
                                                                                     <div className="proposal-status">
-                                                                                        Status: {val.proposalStatus}
+                                                                                        Status: {t(val?.proposalStatus?.toLowerCase())}
                                                                                     </div>
                                                                                 )}
                                                                             </div>
@@ -1219,8 +1219,17 @@ export default function ViewDemand() {
 
                                                                     <div className="text-information display-flex">
                                                                         <b className="label">{t("commissionOpinion")}: </b>
-                                                                        {val.commissionOpinion}
+                                                                        {t(val.proposalStatus.toLowerCase())}
                                                                     </div>
+
+                                                                    {val.commissionOpnion &&
+                                                                        <div className="text-information display-flex">
+                                                                            <b>Obs:</b>
+                                                                            {val.commissionOpnion}
+                                                                        </div>
+                                                                    }
+
+
                                                                 </>
                                                             }
 

@@ -189,9 +189,7 @@ const ChatRoom = () => {
                 <div className="box-message">
                     {
                         !messages.includes(workerDemand) && workerDemand.workerCode !== worker.id ? (
-                            <Link className="profile" to={"/profile/" + workerDemand.workerCode}>
-                                <Profile workerCode={workerDemand.workerCode} image={workerDemand.workerName?.slice(0, 1)} workerName={workerDemand.workerName} />
-                            </Link>
+                            <Profile workerCode={workerDemand.workerCode} image={workerDemand.workerName?.slice(0, 1)} workerName={workerDemand.workerName} />
                         ) : (
                             <Profile workerCode={sender.workerCode} image={sender.workerName?.slice(0, 1)} workerName={sender.workerName} />
                         )

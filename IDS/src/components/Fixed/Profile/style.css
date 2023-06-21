@@ -1,6 +1,7 @@
 .profile-view{
     display: flex;
     align-items: center;
+    width: min-content !important;
 }
 
 .profile-view .person {

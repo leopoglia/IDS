@@ -41,13 +41,16 @@ export default function CreateMinute() {
 
         await proposals.forEach(async (proposal: any) => {
 
+            publishedProposal.push(proposal.published);
+
             await RealBenefitService.update(proposal.demand.realBenefit.realBenefitCode, proposal.demand.realBenefit.realMonthlyValue, proposal.demand.realBenefit.realBenefitDescription, proposal.demand.realBenefit.realCurrency);
             await PotentialBenefitService.update(proposal.demand.potentialBenefit.potentialBenefitCode, proposal.demand.potentialBenefit.potentialMonthlyValue, proposal.demand.potentialBenefit.potentialBenefitDescription, proposal.demand.potentialBenefit.legalObrigation, proposal.demand.potentialBenefit.potentialCurrency);
             await QualitativeService.update(proposal.demand.qualitativeBenefit.qualitativeBenefitCode, proposal.demand.qualitativeBenefit.qualitativeBenefitDescription, proposal.demand.qualitativeBenefit.frequencyOfUse === "1" ? true : false, proposal.demand.qualitativeBenefit.interalControlsRequirements);
 
             await DemandService.findById(proposal.demand.demandCode).then((response: any) => {
-                proposal.demand = response[0];
+                proposal.demand = response;
             });
+
 
             await DemandService.update(proposal.demand.demandCode, proposal.demand.demandTitle, proposal.demand.currentProblem, proposal.demand.demandObjective,
                 proposal.demand.costCenter, proposal.demand.executionPeriod, proposal.demand.realBenefit.realBenefitCode, proposal.demand.potentialBenefit.potentialBenefitCode, proposal.demand.qualitativeBenefit.qualitativeBenefitCode,
@@ -62,16 +65,25 @@ export default function CreateMinute() {
         });
 
 
+        console.log("aqui")
+
         if (minuteDG !== "dg") {
+            console.log("aqui2")
+
             if (publishedProposal.includes(true)) {
-                MinuteService.save(t("publiquedMinute") + "", code, actualDate, worker.id, "Published");
+                console.log("aqui3")
+
+                await MinuteService.save(t("publiquedMinute") + "", code, actualDate, worker.id, "Published");
             }
             if (publishedProposal.includes(null)) {
-                MinuteService.save(t("unpublishedMinutes") + "", code, actualDate, worker.id, "Not Published");
-            }
-        } else{
-            MinuteService.save(t("dgMinute") + "", code, actualDate, worker.id, "DG");
+                console.log("aqui4")
 
+                await MinuteService.save(t("unpublishedMinutes") + "", code, actualDate, worker.id, "Not Published");
+            }
+        } else {
+            console.log("aqui5")
+
+            await MinuteService.save(t("dgMinute") + "", code, actualDate, worker.id, "DG");
         }
 
         navigate("/agenda/view/" + code);

@@ -324,6 +324,8 @@ export default function ViewDemand() {
                 )
             ))
 
+            console.log(pendingMinute)
+
 
             proposals.map((val: any) => (
                 val.proposalStatus === "ApprovedDG" ? (

@@ -113,13 +113,12 @@ const Services = {
                 "potentialBenefit": { "potentialBenefitCode": potentialBenefit },
                 "demandStatus": demandStatus,
                 "classification": { "classificationCode": classificationCode },
-                "score": demandScore,
-                "approver": { "workerCode": approver.workerCode }
+                "score": demandScore
             }
         }
 
         formData.append('demand', JSON.stringify(demand));
-        demandAttachments.forEach(demandAttachment => formData.append('demandAttachment', demandAttachment))
+        demandAttachments?.forEach(demandAttachment => formData.append('demandAttachment', demandAttachment))
 
 
 

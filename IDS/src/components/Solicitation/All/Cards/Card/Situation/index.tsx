@@ -21,19 +21,15 @@ export default function Situation(props: any) {
             //verificar se a data inicial é maior que a data atual
             let finish = 0;
 
-            for(let i = 0; i < props.agenda.proposals.length; i++){
-                console.log("proposalStatus -->" + props.agenda.proposals[i].proposalStatus)
-                if(props.agenda.proposals[i].proposalStatus === "Approved" || props.agenda.proposals[i].proposalStatus === "Rejected"){
+            for (let i = 0; i < props.agenda.proposals.length; i++) {
+                if (props.agenda.proposals[i].proposalStatus === "ApprovedComission" || props.agenda.proposals[i].proposalStatus === "RejectedComission") {
                     finish++;
                 }
             }
 
-            console.log(finish);
-            console.log(props.agenda.proposals.length);
-
-            if(finish === props.agenda.proposals.length){
+            if (finish === props.agenda.proposals.length) {
                 return (<div className="graphic-proposal">{t("finished")}<div className="situation-notPublished"></div></div>);
-            } else{
+            } else {
                 return (<div className="graphic-proposal">{t("waiting")}<div className="situation-pending"></div></div>);
             }
 
@@ -62,18 +58,24 @@ export default function Situation(props: any) {
         } else if (props.situation === "Done") {
             return (<div className="situation-done">100%</div>);
         }
+        
+        console.log(props.situation)
 
-        if (props.situation === "Approved") {
-            return (<div className="graphic-proposal">{t("approved")}<div className="situation-approved"></div></div>);
-        } else if (props.situation === "Rejected") {
-            return (<div className="graphic-proposal">{t("rejected")}<div className="situation-rejected"></div></div>);
+        if (props.situation === "ApprovedComission") {
+            return (<div className="graphic-proposal">{t("ApprovedComission")}<div className="situation-approved"></div></div>);
+        } else if (props.situation === "RejectedComission") {
+            return (<div className="graphic-proposal">{t("RejectedComission")}<div className="situation-rejected"></div></div>);
+        } else if (props.situation === "ApprovedDG") {
+            return (<div className="graphic-proposal">{t("ApprovedDG")}<div className="situation-rejected"></div></div>);
+        } else if(props.situation === "RejectedDG") {
+            return (<div className="graphic-proposal">{t("RejectedDG")}<div className="situation-rejected"></div></div>);
         } else if (props.situation === "Pending") {
             return (<div className="graphic-proposal">{t("pending")}<div className="situation-pending"></div></div>);
         }
 
         if (props.situation === "Published") {
             return (<div className="graphic-proposal">{t("published")}<div className="situation-published"></div></div>);
-        } else {
+        } else if(props.situation === "Not Published") {
             return (<div className="graphic-proposal">{t("notPublished")}<div className="situation-notPublished"></div></div>);
         }
     }

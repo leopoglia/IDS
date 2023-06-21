@@ -20,13 +20,13 @@ export default function CreateMinute() {
     const navigate = useNavigate();
     const code = parseInt(window.location.pathname.split("/")[3]);
     const actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear();
+    const minuteDG = window.location.href.split("?")[1];
     const worker = useContext(UserContext).worker;
     const [proposals, setProposals]: any = useState([]);
 
 
 
     useEffect(() => {
-
         AgendaService.findById(code).then((response: any) => {
             setProposals(response[0].proposals);
         })
@@ -37,11 +37,9 @@ export default function CreateMinute() {
 
     async function saveMinute() {
 
-        let publishedProposal:any = [];
+        let publishedProposal: any = [];
 
         await proposals.forEach(async (proposal: any) => {
-
-            publishedProposal.push(proposal.published);
 
             await RealBenefitService.update(proposal.demand.realBenefit.realBenefitCode, proposal.demand.realBenefit.realMonthlyValue, proposal.demand.realBenefit.realBenefitDescription, proposal.demand.realBenefit.realCurrency);
             await PotentialBenefitService.update(proposal.demand.potentialBenefit.potentialBenefitCode, proposal.demand.potentialBenefit.potentialMonthlyValue, proposal.demand.potentialBenefit.potentialBenefitDescription, proposal.demand.potentialBenefit.legalObrigation, proposal.demand.potentialBenefit.potentialCurrency);
@@ -64,11 +62,16 @@ export default function CreateMinute() {
         });
 
 
-        if(publishedProposal.includes(true)){  
-            MinuteService.save(t("publiquedMinute") + "", code, actualDate, worker.id, "Published");
-        }
-        if(publishedProposal.includes(null)){
-            MinuteService.save(t("unpublishedMinutes") + "", code, actualDate, worker.id, "Not Published");
+        if (minuteDG !== "dg") {
+            if (publishedProposal.includes(true)) {
+                MinuteService.save(t("publiquedMinute") + "", code, actualDate, worker.id, "Published");
+            }
+            if (publishedProposal.includes(null)) {
+                MinuteService.save(t("unpublishedMinutes") + "", code, actualDate, worker.id, "Not Published");
+            }
+        } else{
+            MinuteService.save(t("dgMinute") + "", code, actualDate, worker.id, "DG");
+
         }
 
         navigate("/agenda/view/" + code);

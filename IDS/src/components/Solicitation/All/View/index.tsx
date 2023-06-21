@@ -912,7 +912,7 @@ export default function ViewDemand() {
 
                                             {proposalSpecific.length < approvedDG && minute.length !== 0 && (minute[0]?.minuteType === "Published" || minute[1]?.minuteType === "Published") ? (
                                                 <div className="display-flex-end">
-                                                    <Link to={"/minutes/create/" + demandCode}>
+                                                    <Link to={"/minutes/create/" + demandCode + "?dg"}>
                                                         <button className="btn-primary">{t("generateMinuteDG")}</button>
                                                     </Link>
                                                 </div>

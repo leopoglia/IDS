@@ -224,6 +224,15 @@ const Services = {
                 headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); }).then(resolve).catch(reject)
         })
+    },
+    findByRequester: function (workerCode: Number) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/requester/" + workerCode, {
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(reject)
+        })
     }
 }
 

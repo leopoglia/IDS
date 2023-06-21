@@ -4,16 +4,17 @@ import ServicesDemand from "../../../services/demandService";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import "./style.css";
-import Input from "../../Solicitation/Demands/CrateDemand/Others/Input";
+import Input from "../../Solicitation/Demands/CrateDemand/Others/Input"; 
+import Profile from "../../Fixed/Profile";
 
-export default function Profile() {
+export default function Profiles() {
 
     const { t } = useTranslation();
 
-    const [workerCode, setWorkerCode]: any = useState(parseInt(window.location.href.split("/")[4]));
-    const [search, setSearch]: any = useState(""); // Retorno do campo de busca de demandas
+    const [workerCode, setWorkerCode] = useState(parseInt(window.location.href.split("/")[4]));
+    const [search, setSearch] = useState(""); // Retorno do campo de busca de demandas
 
-    const [worker, setWorker] = useState<any>({});
+    const [worker, setWorker] = useState({});
 
     useEffect(() => {
         ServicesWorker.findById(workerCode).then((res) => {
@@ -33,13 +34,8 @@ export default function Profile() {
 
                 <div className="box">
 
-                    <div className="person display-flex-space-between">
-                        <div className="display-flex-align-center">
-                            <div className="image-profile">{worker?.workerName?.substring(0, 1)}</div>
+                    <Profile workerCode={worker.workerCode} image={worker.workerName?.slice(0, 1)} workerName={worker.workerName} />
 
-                            <p className="workerName">{worker.workerName}</p>
-                        </div>
-                    </div>
 
                     <div className="boxNoPadding mt20">
                         <div className="header">

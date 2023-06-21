@@ -1,0 +1,83 @@
+.profile-view{
+    display: flex;
+    align-items: center;
+}
+
+.profile-view .person {
+    background-color: var(--blue);
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    border-radius: var(--rr) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-view .person span {
+    color: var(--white);
+    font-size: var(--g);
+}
+
+.profile-view .user-picture {
+    max-width: 60px;
+    min-width: 60px;
+    width: 60px;
+    max-height: 60px;
+    height: 60px;
+    background-color: var(--blue);
+    border-radius: var(--rr);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--gg) !important;
+    color: var(--white);
+}
+
+
+.profile-view .message-name {
+    margin-left: 20px;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--grey59);
+}
+
+.profile-view .message-name .username {
+    width: 100%;
+}
+
+
+.profile-view .online span {
+    font-size: var(--p);
+}
+
+.profile-view .online span::after {
+    content: "";
+
+    margin-top: 5px;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: var(--blue);
+    margin-left: 5px;
+}
+
+.profile-view .offline span {
+    font-size: var(--p);
+}
+
+.profile-view .offline span::after {
+    content: "";
+
+    margin-top: 5px;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: var(--greyD9);
+    margin-left: 5px;
+}

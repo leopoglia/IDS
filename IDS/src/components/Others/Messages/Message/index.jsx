@@ -3,6 +3,7 @@ import { useContext, useEffect, useState, useRef } from 'react'
 import { useTranslation } from "react-i18next";
 import { useParams } from 'react-router';
 import { WebSocketContext } from '../../../../services/webSocketService';
+import { Link } from 'react-router-dom';
 
 import Title from "../../../Fixed/Search/Title";
 import ServicesMessage from '../../../../services/messageService'
@@ -13,10 +14,10 @@ import ServicesWorker from '../../../../services/workerService';
 import EmojiPicker from "emoji-picker-react";
 import othersUtil from '../../../../utils/othersUtil';
 import "./style.css"
+import Profile from '../../../Fixed/Profile';
 
 
 const ChatRoom = () => {
-    const [isUserOnline, setIsUserOnline] = useState(false);
     const { t } = useTranslation();
     const [emoji, setEmoji] = useState(false);
     const [selectedEmoji, setSelectedEmoji] = useState("");
@@ -36,7 +37,6 @@ const ChatRoom = () => {
     const { worker } = useContext(UserContext);
     const divRef = useRef(null);
 
-    const [chatsOpen, setChatsOpen] = useState(true);
     const [sender, setSender] = useState({});
 
     let [chat, setChat] = useState([]);
@@ -74,20 +74,6 @@ const ChatRoom = () => {
 
 
     }, [messages, stompClient]);
-
-    useEffect(() => {
-        if (stompClient) {
-            if (!messages.includes(workerDemand) && workerDemand.workerCode !== worker.id) {
-                ServicesWorker.isUserOnline(workerDemand?.workerCode).then((response) => {
-                    setIsUserOnline(response);
-                });
-            } else {
-                ServicesWorker.isUserOnline(sender.workerCode).then((response) => {
-                    setIsUserOnline(response);
-                });
-            }
-        }
-    }, [messages, sender, workerDemand, stompClient]);
 
     useEffect(() => {
 
@@ -192,137 +178,29 @@ const ChatRoom = () => {
         setMessage({ ...message, message: message.message + emojiData.emoji, dateMessage: new Date().toLocaleString() });
     }
 
-    console.log(messages)
 
     return (
         <div className="messages">
-
-
-
             <div className="container">
-
                 <div className="backgroud-title">
                     <Title nav="chatMessages" title="message" />
                 </div>
 
-
                 <div className="box-message">
                     {
                         !messages.includes(workerDemand) && workerDemand.workerCode !== worker.id ? (
-                            <div className="profile">
-                                <div className='person'>
-                                    <span>
-                                        {workerDemand.workerName?.slice(0, 1)}
-                                    </span>
-                                </div>
-
-                                <div className="message-name">
-                                    <span className="username">{workerDemand.workerName}</span>
-                                    {isUserOnline ? (
-                                        <div className="online">
-                                            <span>online</span>
-                                        </div>
-                                    ) : (
-                                        <div className="offline">
-                                            <span>offline</span>
-                                        </div>
-                                    )
-                                    }
-
-                                </div>
-                            </div>
+                            <Link className="profile" to={"/profile/" + workerDemand.workerCode}>
+                                <Profile workerCode={workerDemand.workerCode} image={workerDemand.workerName?.slice(0, 1)} workerName={workerDemand.workerName} />
+                            </Link>
                         ) : (
-                            <div className="profile">
-                                <div className='person'>
-                                    <span>
-                                        {sender.workerName?.slice(0, 1)}
-                                    </span>
-                                </div>
-
-                                <div className="message-name">
-                                    <span className="username">{sender.workerName}</span>
-                                    {isUserOnline ? (
-                                        <div className="online">
-                                            <span>online</span>
-                                        </div>
-                                    ) : (
-                                        <div className="offline">
-                                            <span>offline</span>
-                                        </div>
-                                    )
-                                    }
-                                </div>
-                            </div>
+                            <Profile workerCode={sender.workerCode} image={sender.workerName?.slice(0, 1)} workerName={sender.workerName} />
                         )
 
                     }
 
                     <div className="chat-box display-flex">
 
-                        {/* {worker.office !== "requester" ?
-                            (
-                                <div className={'chats chats-' + chatsOpen}>
-
-                                    {
-                                        chat?.length > 0 &&
-                                        chat.map((item) => (
-                                            <div className="chats-profile">
-
-                                                <div className="person">
-                                                    <span>
-                                                        {workerDemand.workerName?.slice(0, 1)}
-                                                    </span>
-                                                </div>
-
-                                                <div className='text-person-chats w100'>
-
-                                                    <div className='display-flex-space-between w100 chat-time-chats'>
-                                                        <div className="message-name-chats">
-                                                            <span className="username">{workerDemand.workerName}</span>
-                                                        </div>
-
-                                                    </div>
-                                                    {
-                                                        worker.id === item.sender.workerCode ? (
-                                                            <div className='display-flex span-message-chat'>
-                                                                <span className='message-chat'>
-                                                                    Você: {item.message}
-                                                                </span>
-                                                            </div>
-                                                        ) : (
-                                                            <div className='display-flex span-message-chat'>
-                                                                <span className='message-chat'>
-                                                                    {sender.workerName}: {item.message}
-                                                                </span>
-                                                            </div>
-                                                        )
-                                                    }
-
-                                                </div>
-
-                                            </div>
-                                        ))
-                                    }
-
-                                </div>
-                            ) : null
-                        } */}
-
-
                         <div className="chat-content ">
-
-                            {/* {worker.office !== "requester" ?
-                                (
-
-                                    <div className={'arrow-chat arrow-chat-' + chatsOpen} onClick={() => setChatsOpen(!chatsOpen)}>
-                                        <span className='material-symbols-outlined arrow-expend'>
-                                            expand_more
-                                        </span>
-                                    </div>
-
-                                ) : null
-                            } */}
-
 
                             <ul className="chat-messages" ref={divRef}>
 
@@ -388,7 +266,7 @@ const ChatRoom = () => {
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        } 
+                                                        }
                                                         {message.attachment &&
                                                             <div className="attachments-message">
 

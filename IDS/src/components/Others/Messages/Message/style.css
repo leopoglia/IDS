@@ -4,11 +4,10 @@
     color: var(--grey59);
 }
 
-.messages .box-message .profile {
+.message .profile {
     display: flex;
     align-items: center;
     padding-bottom: 20px;
-    border-bottom: 1px solid var(--greyC4);
     margin-bottom: 20px;
 }
 
@@ -28,64 +27,33 @@
     color: var(--white);
 }
 
-.messages .box-message .message-name {
+.messages .message-name {
     margin-left: 20px;
     width: 100%;
     overflow: hidden;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: var(--grey59);
 }
 
-.messages .box-message .message-name .username {
+.messages .message-name .username {
     width: 100%;
 }
 
-.messages .box-message .message-name-chats .username {
+.messages .message-name-chats .username {
     font-size: var(--p) !important;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
-.messages .box-message .chat-time-chats {
+.messages .chat-time-chats {
     margin-bottom: 4px;
 }
 
 .messages .box-message span {
     font-size: var(--m);
-}
-
-.messages .box-message .online span {
-    font-size: var(--p);
-}
-
-.messages .box-message .online span::after {
-    content: "";
-
-    margin-top: 5px;
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    border-radius: 10px;
-    background-color: var(--blue);
-    margin-left: 5px;
-}
-
-.messages .box-message .offline span {
-    font-size: var(--p);
-}
-
-.messages .box-message .offline span::after {
-    content: "";
-
-    margin-top: 5px;
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    border-radius: 10px;
-    background-color: var(--greyD9);
-    margin-left: 5px;
 }
 
 .messages .box-message .input-message {
@@ -372,7 +340,7 @@
 }
 
 
-.box-message .profile .person {
+.messages .profile .person {
     background-color: var(--blue);
     width: 50px;
     height: 50px;
@@ -388,7 +356,7 @@
     overflow: hidden;
 }
 
-.box-message .profile .person span {
+.messages .profile .person span {
     color: var(--white);
     font-size: var(--g);
 }

@@ -233,6 +233,24 @@ const Services = {
                 .then(resolve)
                 .catch(reject)
         })
+    },
+    findByApprover: function (workerCode: Number) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/approver/" + workerCode, {
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(reject)
+        })
+    },
+    findByAnalyst: function (workerCode: Number) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/analyst/" + workerCode, {
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(reject)
+        })
     }
 }
 

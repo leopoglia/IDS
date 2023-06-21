@@ -38,10 +38,6 @@ export default function Profile() {
                             <p className="workerName">{worker.workerName}</p>
                         </div>
 
-                        <span className="material-symbols-outlined">
-                            message
-                        </span>
-
                     </div>
 
                 </div>

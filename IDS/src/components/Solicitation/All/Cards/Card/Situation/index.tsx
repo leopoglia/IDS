@@ -62,11 +62,11 @@ export default function Situation(props: any) {
         console.log(props.situation)
 
         if (props.situation === "ApprovedComission") {
-            return (<div className="graphic-proposal">{t("ApprovedComission")}<div className="situation-approved"></div></div>);
+            return (<div className="graphic-proposal">{t("ApprovedComission")}<div className="situation-published"></div></div>);
         } else if (props.situation === "RejectedComission") {
             return (<div className="graphic-proposal">{t("RejectedComission")}<div className="situation-rejected"></div></div>);
         } else if (props.situation === "ApprovedDG") {
-            return (<div className="graphic-proposal">{t("ApprovedDG")}<div className="situation-rejected"></div></div>);
+            return (<div className="graphic-proposal">{t("ApprovedDG")}<div className="situation-approved"></div></div>);
         } else if(props.situation === "RejectedDG") {
             return (<div className="graphic-proposal">{t("RejectedDG")}<div className="situation-rejected"></div></div>);
         } else if (props.situation === "Pending") {
@@ -77,6 +77,8 @@ export default function Situation(props: any) {
             return (<div className="graphic-proposal">{t("published")}<div className="situation-published"></div></div>);
         } else if(props.situation === "Not Published") {
             return (<div className="graphic-proposal">{t("notPublished")}<div className="situation-notPublished"></div></div>);
+        } else if(props.situation === "DG"){
+            return (<div className="graphic-proposal">{t("DG")}<div className="situation-approved"></div></div>);
         }
     }
 

@@ -60,9 +60,12 @@ export default function Workerflow() {
                         setStepActual(5);
                         stepActualAux = 5;
                     }
-                } else if (proposal.proposalStatus === "Approved") {
+                } else if (proposal.proposalStatus === "ApprovedComission") {
                     setStepActual(6);
                     stepActualAux = 6;
+                } else if(proposal.proposalStatus === "ApprovedDG"){
+                    setStepActual(7);
+                    stepActualAux = 7;
                 }
             }
 

@@ -912,7 +912,8 @@ export default function ViewDemand() {
                                             ) : (null)
                                             }
 
-                                            {proposalSpecific.length < approvedDG && minute.length !== 0 && (minute[0]?.minuteType === "Published" || minute[1]?.minuteType === "Published") ? (
+                                            {proposalSpecific.length < approvedDG && (minute.length !== 0 && (minute[0]?.minuteType === "Published" || minute[1]?.minuteType === "Published")) && !(minute[0]?.minuteType === "DG" || minute[1]?.minuteType === "DG" || minute[2]?.minuteType === "DG") ? (
+                                                
                                                 <div className="display-flex-end">
                                                     <Link to={"/minutes/create/" + demandCode + "?dg"}>
                                                         <button className="btn-primary">{t("generateMinuteDG")}</button>
@@ -1008,7 +1009,7 @@ export default function ViewDemand() {
                                                                                     <Link to={"/proposal/comission-opinion/" + val.proposalCode + "?" + agenda.agendaCode}>
                                                                                         <button className="btn-primary">{t("insertCommissionOpinion")}</button>
                                                                                     </Link>
-                                                                                ) : val?.proposalStatus === "Approved" && minute.length !== 0 ? (
+                                                                                ) : val?.proposalStatus === "ApprovedComission" && minute.length !== 0 ? (
                                                                                     <div className="display-flex-align-center">
 
                                                                                         <div className="proposal-status mr20">
@@ -1060,7 +1061,7 @@ export default function ViewDemand() {
                                                                                     <Link to={"/proposal/comission-opinion/" + val.proposalCode + "?" + agenda.agendaCode}>
                                                                                         <button className="btn-primary">{t("insertCommissionOpinion")}</button>
                                                                                     </Link>
-                                                                                ) : val?.proposalStatus === "Approved" && minute.length !== 0 ? (
+                                                                                ) : val?.proposalStatus === "ApprovedComission" && minute.length !== 0 ? (
                                                                                     <div className="display-flex-align-center">
 
                                                                                         <div className="proposal-status mr20">

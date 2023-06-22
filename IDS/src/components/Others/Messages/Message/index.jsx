@@ -43,6 +43,29 @@ const ChatRoom = () => {
 
     let lastProcessedDate = '';
 
+    function donwloadAttachment(base64, type, name) {
+        const buffer = base64ToArrayBuffer(base64);
+        const blob = new Blob([buffer], { type: type });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        document.body.appendChild(a);
+        a.href = url;
+        a.download = name;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
+
+    function base64ToArrayBuffer(base64) {
+        const binaryString = window.atob(base64);
+        const len = binaryString.length;
+        const bytes = new Uint8Array(len);
+        for (let i = 0; i < len; i++) {
+            bytes[i] = binaryString.charCodeAt(i);
+        }
+        return bytes.buffer;
+    }
+
     useEffect(() => {
         divRef.current.scrollTop = divRef.current.scrollHeight;
 
@@ -163,7 +186,7 @@ const ChatRoom = () => {
         }
 
         setFileAttachment(null);
-        
+
     }
 
     const setNotification = () => {
@@ -270,19 +293,19 @@ const ChatRoom = () => {
                                                             </div>
                                                         }
                                                         {message.attachment &&
-                                                            <div className="attachments-message">
+                                                            <a onClick={() => donwloadAttachment(message.attachment.dice, message.attachment.type, message.attachment.name)}>
+                                                                <div className="attachments-message">
+                                                                    <div className='attachment-message display-flex-align-center display-flex-end'>
+                                                                        <span>{message.attachment.name}</span>
 
-                                                                <div className='attachment-message display-flex-align-center display-flex-end'>
-                                                                    <span>{message.attachment.name}</span>
-
-                                                                    <div className="attachment">
-                                                                        <div className="attachment-image">
-                                                                            <img src={"/attachment/" + othersUtil.attatchmentType(message.attachment) + ".png"} alt="" />
+                                                                        <div className="attachment">
+                                                                            <div className="attachment-image">
+                                                                                <img src={"/attachment/" + othersUtil.attatchmentType(message.attachment) + ".png"} alt="" />
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
-                                                            </div>
+                                                            </a>
                                                         }
                                                     </div>
 

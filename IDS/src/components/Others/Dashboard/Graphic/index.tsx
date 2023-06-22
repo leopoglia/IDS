@@ -41,6 +41,7 @@ export const options = {
 export default function Graphic(props: any) {
 
     let [labels, setLabels]: any = useState([]);
+    const [prev, setPrev] = useState(false);
 
     useEffect(() => {
         getMonthName();
@@ -143,6 +144,7 @@ export default function Graphic(props: any) {
 
             const month = { month: nameCurrentMonth, numbers: monthNumber };
             monthNames7.push(month);
+            setPrev(true);
         }
 
         let totalNumbersPrefix = 0;
@@ -175,6 +177,7 @@ export default function Graphic(props: any) {
         <div className='chart'>
             <Line options={options} data={data} />
 
+            {prev && <div className="prev" />}
         </div>
     );
 }

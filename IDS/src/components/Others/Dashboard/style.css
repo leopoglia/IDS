@@ -96,6 +96,17 @@
     margin-left: 20px;
 }
 
+.dashboard .prev{
+    width: 36px;
+    height: 112px;
+    margin-bottom: 20px;
+    margin-left: 230px;
+    background-color: var(--grey3d);
+    opacity: 0.1;
+    position: absolute;
+    z-index: 1;
+}
+
 @media(max-width: 1024px) {
     .dashboard .box {
         width: 100% !important;

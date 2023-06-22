@@ -73,7 +73,7 @@ const ChatRoom = () => {
         })
 
 
-    }, [messages, stompClient]);
+    }, [messages, stompClient]);        
 
     useEffect(() => {
 
@@ -103,7 +103,6 @@ const ChatRoom = () => {
         async function loading() {
             await ServicesMessage.findById(demandCode)
                 .then((response) => {
-
                     setMessages(response);
                 }).catch((error) => {
                     console.log(error);
@@ -111,7 +110,7 @@ const ChatRoom = () => {
             setDefaultMessage();
         }
         loading();
-    }, [demandCode, stompClient]);
+    }, [demandCode, stompClient, fileAttachment?.attachmentCode]);
 
     const handleFileSelected = (e) => {
         const files = Array.from(e.target.files)
@@ -121,15 +120,11 @@ const ChatRoom = () => {
         }
         ServicesAttachment.save(filesArray[0]).then((response) => {
             setFileAttachment(response);
-            setMessage({ message: message.message, dateMessage: new Date().toLocaleString(), sender: { workerCode: worker.id || parseInt(localStorage.getItem("id")) }, demandCode: demandCode, attachment: { attachmentCode: response?.attachmentCode } });
+            reloadMessage();
         })
-        reloadMessage();
     }
 
     const setDefaultMessage = () => {
-
-        console.log("fileAttachment ==> ", fileAttachment)
-
         setMessage({
             demandCode: demandCode,
             sender: { workerCode: worker.id || parseInt(localStorage.getItem("id")) },
@@ -178,7 +173,6 @@ const ChatRoom = () => {
         setMessage({ ...message, message: message.message + emojiData.emoji, dateMessage: new Date().toLocaleString() });
     }
 
-
     return (
         <div className="messages">
             <div className="container">
@@ -222,8 +216,6 @@ const ChatRoom = () => {
 
                                         // Atualizar a última data processada com a data atual da mensagem
                                         lastProcessedDate = displayDate;
-
-                                        console.log(message)
 
                                         return (
                                             <React.Fragment key={message.id}>

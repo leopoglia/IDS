@@ -82,3 +82,7 @@
     font-size: var(--p);
     color: var(--grey59);
 }
+
+.profile .header{
+    z-index: 2;
+}

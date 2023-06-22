@@ -48,7 +48,7 @@ export default function ButtonsActions(props: any) {
                     </Link>
 
 
-                    <ButtonActionAnalyst codeDemand={props.demand.demandCode} />
+                    <ButtonActionAnalyst codeDemand={props.demand.demandCode}  proposal={props.proposal}  />
                 </>
 
             ) : /* Botões superiores 3 - Reprovar e Aprovar */ (props.actionsDemand === 3) ? (
@@ -65,7 +65,7 @@ export default function ButtonsActions(props: any) {
                     </button>
 
 
-                    <ButtonActionAnalyst codeDemand={props.demand.demandCode} />
+                    <ButtonActionAnalyst codeDemand={props.demand.demandCode}  proposal={props.proposal}  />
                 </>
 
             ) : /* Botões superiores 4 - Complementar*/ (props.actionsDemand === 4) ? (
@@ -76,7 +76,7 @@ export default function ButtonsActions(props: any) {
                         </button>
                     </Link>
 
-                    <ButtonActionAnalyst codeDemand={props.demand.demandCode} />
+                    <ButtonActionAnalyst codeDemand={props.demand.demandCode} proposal={props.proposal} />
                 </>
             ) : /* Botões superiores 5 - Gerar Proposta */ (props.actionsDemand === 5) ? (
                 <>
@@ -86,10 +86,10 @@ export default function ButtonsActions(props: any) {
                         </button>
                     </Link>
 
-                    <ButtonActionAnalyst />
+                    <ButtonActionAnalyst  codeDemand={props.demand.demandCode} proposal={props.proposal} />
                 </>
             ) : /* Botões superiores 6 - Histórico, Editar... */(props.actionsDemand === 6) ? (
-                <ButtonActionAnalyst codeDemand={props.demand.demandCode} />
+                <ButtonActionAnalyst codeDemand={props.demand.demandCode} proposal={props.proposal} />
             ) : /* Botões superiores 7 - Editar... */(props.actionsDemand === 7) ? (
                 <>
                     <button onClick={() => { navigate("/proposal/edit/" + props.proposal.proposalCode) }} className="btn-primary btn-download btn-mini">
@@ -98,7 +98,7 @@ export default function ButtonsActions(props: any) {
                         </span>
                     </button>
 
-                    <ButtonActionAnalyst codeDemand={props.demand.demandCode} />
+                    <ButtonActionAnalyst codeDemand={props.demand.demandCode}  proposal={props.proposal}  />
                 </>
             ) : (
                 <button className="btn-primary" onClick={props.generatePDF}>

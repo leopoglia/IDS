@@ -232,7 +232,7 @@ export default function ViewDemand() {
         ServicesProposal.findById(demandCode).then((response: any) => {
             setProposal(response)
 
-            setResponsibleBussiness(response?.responsibleAnalyst.workerName) // Seta o responsável de negócios da proposta
+            setResponsibleBussiness(response?.workers) // Seta o responsável de negócios da proposta
 
 
             ServicesDemand.findById(response.demand.demandCode).then((demand: any) => {
@@ -848,10 +848,19 @@ export default function ViewDemand() {
                                                             <span> {payBack}</span>
                                                         </div>
 
-                                                        <div className="display-flex-align-center">
-                                                            <p className="title">{t("responsibleBussiness")}:</p>
-                                                            <span> {responsibleBussiness}</span>
-                                                        </div>
+                                                        {responsibleBussiness.map((val: any, index: any) => (
+                                                            <div className="display-flex-align-center">
+                                                                <p className="title">{t("responsibleBussiness")}:</p>
+
+                                                                <Link to={"/profile/" + val.workerCode} className="text-information workerName">
+                                                                    <div className="profile-worker">
+                                                                        {val.workerName.split(" ")[0].charAt(0)}
+                                                                    </div>
+                                                                    {val.workerName}
+                                                                </Link>
+
+                                                            </div>
+                                                        ))}
                                                     </div>
                                                 </div>
                                             ) : (null)}

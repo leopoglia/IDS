@@ -97,15 +97,15 @@
 }
 
 .configuration .colors-configuration .color-7 {
-    background-color: #36802d;
+    background-color: var(--green);
 }
 
 .configuration .colors-configuration .color-8 {
-    background-color: #d33649;
+    background-color: var(--red);
 }
 
 .configuration .colors-configuration .color-9 {
-    background-color: #f6921d;
+    background-color: var(--orange);
 }
 
 

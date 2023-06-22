@@ -42,17 +42,17 @@
 
 .demand .situation-approved,
 .demand-list .situation-approved {
-    background-color: #36802d
+    background-color: var(--green)
 }
 
 .demand .situation-rejected,
 .demand-list .situation-rejected {
-    background-color: #d33649
+    background-color: var(--red)
 }
 
 .demand .situation-pending,
 .demand-list .situation-pending {
-    background-color: #f6921d
+    background-color: var(--orange)
 }
 
 .demand .graphic-proposal,

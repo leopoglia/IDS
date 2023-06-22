@@ -100,6 +100,8 @@ export default function Router() {
 
                         setWorker(worker); // Seta os dados do usuário no context
                     });
+                } else{
+                    window.location.href = "/";
                 }
             }
         }

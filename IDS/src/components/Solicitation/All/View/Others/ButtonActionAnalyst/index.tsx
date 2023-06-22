@@ -17,7 +17,7 @@ export default function ButtonActionAnalyst(props:any) {
 
             {modal && (
                 <div className="modal-action-analyst">
-                    <ModalActionAnalyst codeDemand={props.codeDemand} />
+                    <ModalActionAnalyst codeDemand={props.codeDemand} proposal={props.proposal} />
                 </div>
             )}
         </div>

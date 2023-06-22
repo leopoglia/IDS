@@ -13,7 +13,6 @@ export default function Situation(props: any) {
     const situation = () => {
 
         if (props.agenda !== undefined) {
-            console.log(props.agenda);
 
             const actualDate = new Date();
             const initialDate = new Date(props.agenda.initialDate);
@@ -59,8 +58,6 @@ export default function Situation(props: any) {
             return (<div className="situation-done">100%</div>);
         }
         
-        console.log(props.situation)
-
         if (props.situation === "ApprovedComission") {
             return (<div className="graphic-proposal">{t("ApprovedComission")}<div className="situation-published"></div></div>);
         } else if (props.situation === "RejectedComission") {

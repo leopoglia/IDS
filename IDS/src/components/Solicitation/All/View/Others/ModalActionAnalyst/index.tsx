@@ -11,9 +11,6 @@ export default function InsetList(props: any) {
     const [modalChangeStatus, setModalChangeStatus] = useState(false);
 
     const generatePDF = async () => {
-        console.log(props?.proposal?.proposalCode === undefined)
-
-        console.log(props.proposal)
 
         if (props?.proposal?.proposalCode === undefined) {
             window.open("http://localhost:8443/api/demand/pdf/" + props?.codeDemand, "_blank");

@@ -15,8 +15,6 @@ export default function Notification(props: any) {
         setChecked(props?.checked)
     }, [props.checked])
 
-    console.log("linhas: " + props.description.split(" ").length)
-
     // Arruma a data para o formato dd/mm/yyyy hh:mm
     function arrangeDate() {
         let data = props.date.split("T")

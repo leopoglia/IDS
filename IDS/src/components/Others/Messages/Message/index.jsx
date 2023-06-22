@@ -154,8 +154,6 @@ const ChatRoom = () => {
 
     const setDefaultMessage = () => {
 
-        console.log("fileAttachment ==> ", fileAttachment)
-
         setMessage({
             demandCode: demandCode,
             sender: { workerCode: worker.id || parseInt(localStorage.getItem("id")) },
@@ -249,8 +247,6 @@ const ChatRoom = () => {
 
                                         // Atualizar a última data processada com a data atual da mensagem
                                         lastProcessedDate = displayDate;
-
-                                        console.log(message)
 
                                         return (
                                             <React.Fragment key={message.id}>

@@ -34,8 +34,6 @@ export default function Configuration() {
     // Atualiza o estado do utilizador
     useEffect(() => {
 
-        console.log("worker", worker);
-
         if (worker?.workerPhoto !== null) {
             setImage(byteToImage(worker?.workerPhoto));
         } else {
@@ -126,8 +124,6 @@ export default function Configuration() {
 
     const handleProfileImage = async (event: any) => {
 
-        console.log("entrou")
-
         await WorkerService.updatePhoto(worker.id, event.target.files[0]).then((response: any) => {
 
             setWorker({ ...worker, workerPhoto: response.workerPhoto });
@@ -137,7 +133,6 @@ export default function Configuration() {
     }
 
     function byteToImage(e: any): any {
-        console.log(e)
         const fileReader = new FileReader();
 
         if (e?.target === false) {

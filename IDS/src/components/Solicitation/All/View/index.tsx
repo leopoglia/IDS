@@ -324,8 +324,6 @@ export default function ViewDemand() {
                 )
             ))
 
-            console.log(pendingMinute)
-
 
             proposals.map((val: any) => (
                 val.proposalStatus === "ApprovedDG" ? (
@@ -408,7 +406,6 @@ export default function ViewDemand() {
     // Gerar PDF
 
     const generatePDF = async () => {
-        console.log(url)
         if (url === "demand") {
             window.open("http://localhost:8443/api/demand/pdf/" + demandCode, "_blank");
         } else if (url === "proposal") {

@@ -65,23 +65,16 @@ export default function CreateMinute() {
         });
 
 
-        console.log("aqui")
 
         if (minuteDG !== "dg") {
-            console.log("aqui2")
-
             if (publishedProposal.includes(true)) {
-                console.log("aqui3")
-
                 await MinuteService.save(t("publiquedMinute") + "", code, actualDate, worker.id, "Published");
             }
             if (publishedProposal.includes(null)) {
-                console.log("aqui4")
 
                 await MinuteService.save(t("unpublishedMinutes") + "", code, actualDate, worker.id, "Not Published");
             }
         } else {
-            console.log("aqui5")
 
             await MinuteService.save(t("dgMinute") + "", code, actualDate, worker.id, "DG");
         }

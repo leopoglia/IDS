@@ -65,7 +65,6 @@ export default function Graphic(props: any) {
             { i: 12, month: "Dec", numbers: 0 }
         ];
 
-        console.log(props.dates)
 
         if (props.dates.length > 0) {
             for (let i = 0; i < props.dates.length; i++) {
@@ -137,7 +136,6 @@ export default function Graphic(props: any) {
             let monthNumber: any = [];
             await ServicesWorker.graphic(monthNames10).then((res: any) => {
                 monthNumber = res.forecast;
-                console.log(res.forecast)
             });
 
             // const monthNumber = monthNames[currenDate.getMonth() + 1].numbers;
@@ -153,7 +151,9 @@ export default function Graphic(props: any) {
             totalNumbersPrefix += monthNames7[i].numbers;
         }
 
-        setLabels(monthNames7);
+        if (totalNumbersPrefix > 0) {
+            setLabels(monthNames7);
+        }
     }
 
 

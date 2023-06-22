@@ -22,7 +22,6 @@ const Services = {
 
         formData.append('classification', JSON.stringify(classification));
         classificationAttachments.forEach(classificationAttachment => formData.append('classificationAttachment', classificationAttachment));
-        console.log("classification attachments: " + formData.getAll('classificationAttachment'))
 
         return new Promise((resolve, reject) => {
             fetch(url, {

@@ -66,7 +66,8 @@ export default function Nav() {
     useEffect(() => {
         const newNotification = (response) => {
             const notificationReceived = JSON.parse(response.body);
-            console.log(notificationReceived.body.type);
+
+
             if(notificationReceived.body.type !== "presentation"){
                     if(notificationReceived.body.description.split(" ").length === 2) {
                         notifyUtil.info(t(notificationReceived.body.description.split(" ")[0]) + notificationReceived.body.description.split(" ")[1]);

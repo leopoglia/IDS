@@ -12,8 +12,8 @@
     align-items: center;
 }
 
-.configuration .box .profile img{
-    height: 100%;    
+.configuration .box .profile img {
+    height: 100%;
 }
 
 .configuration .box .profile .material-symbols-outlined {
@@ -30,7 +30,7 @@
     font-size: var(--gg) !important;
 }
 
-.configuration .box .profile .email-name  .material-symbols-outlined:hover,
+.configuration .box .profile .email-name .material-symbols-outlined:hover,
 .configuration .box .change-configuration .material-symbols-outlined:hover {
     background-color: var(--greyD9) !important;
 }
@@ -39,7 +39,7 @@
     display: none !important;
 }
 
-.configuration .box #image-profile{
+.configuration .box #image-profile {
     width: 90px;
     height: 90px;
     min-width: 90px;
@@ -55,6 +55,59 @@
     margin-left: 0px !important;
     overflow: hidden;
 }
+
+.configuration .colors-configuration {
+    width: 220px;
+    height: 30px;
+    border-radius: var(--r);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.configuration .colors-configuration .color {
+    width: 20px;
+    height: 20px;
+    border-radius: calc(var(--r) - 2px);
+}
+
+.configuration .colors-configuration .color-1 {
+    background-color: var(--blue);
+}
+
+.configuration .colors-configuration .color-2 {
+    background-color: var(--blue19);
+}
+
+.configuration .colors-configuration .color-3 {
+    background-color: var(--blue00);
+}
+
+.configuration .colors-configuration .color-4 {
+    background-color: var(--blue44);
+}
+
+.configuration .colors-configuration .color-5 {
+    background-color: var(--blue64);
+}
+
+.configuration .colors-configuration .color-6 {
+    background-color: var(--greyC4);
+}
+
+.configuration .colors-configuration .color-7 {
+    background-color: #36802d;
+}
+
+.configuration .colors-configuration .color-8 {
+    background-color: #d33649;
+}
+
+.configuration .colors-configuration .color-9 {
+    background-color: #f6921d;
+}
+
 
 .configuration .box #image-profile:hover {
     background-color: var(--blue);
@@ -87,7 +140,7 @@
     margin-top: 10px;
 }
 
-.configuration .box .profile .material-symbols-outlined{
+.configuration .box .profile .material-symbols-outlined {
     font-size: 30px !important;
 }
 
@@ -250,7 +303,7 @@
     align-items: flex-end;
 }
 
-.text-background span{
+.text-background span {
     font-size: calc(var(--gg) + 35px);
 }
 

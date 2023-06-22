@@ -273,5 +273,6 @@
     "ApprovedComission": "Approved comission",
     "RejectedComission": "Rejected comission",
     "ApprovedDG": "Approved DG",
-    "RejectedDG": "Rejected DG"
+    "RejectedDG": "Rejected DG",
+    "colors": "Colors"
 }

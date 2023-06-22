@@ -227,12 +227,30 @@ export default function Configuration() {
                                     </div>
 
 
-                                    <div className="display-flex">
+                                    <div className="display-flex mr20">
                                         <span className="subtitle-confuration">{t("squareStyleLayout")}</span>
 
                                         <div className="switch">
                                             <input onChange={handleSquare} type="checkbox" id="switch" name="switch" checked={squareStyleLayout} />
                                             <label htmlFor="switch" />
+                                        </div>
+                                    </div>
+
+                                    <div className="display-flex">
+                                        <span className="subtitle-confuration">{t("colors")}</span>
+
+                                        <div className="colors-configuration ml10">
+                                            <div className="color color-1"></div>
+                                            <div className="color color-2"></div>
+                                            <div className="color color-3"></div>
+                                            <div className="color color-4"></div>
+                                            <div className="color color-5"></div>
+                                            <div className="color color-6"></div>
+                                            <div className="color color-7"></div>
+                                            <div className="color color-8"></div>
+                                            <div className="color color-9"></div>
+
+
                                         </div>
                                     </div>
                                 </div>

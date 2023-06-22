@@ -17,6 +17,7 @@ export default function Profiles() {
 
     const [worker, setWorker] = useState({});
     const [demands, setDemands] = useState([]);
+    const [typeDemand, setTypeDemand] = useState(0);
 
     const optionsDemands = ["Demandas criadas", "Demandas classificadas", "Demandas aprovadas", "Demandas complementadas", "Propostas criadas"];
 
@@ -29,8 +30,7 @@ export default function Profiles() {
 
     const handleDemands = (index) => {
 
-        console.log(index)
-
+        setTypeDemand(index);
         switch (index) {
             case 0:
                 ServicesDemand.findByRequester(workerCode).then((res) => {
@@ -76,7 +76,7 @@ export default function Profiles() {
                                 {
                                     optionsDemands.map((option, index) => {
                                         return (
-                                            <div className="profile-select" onClick={() => handleDemands(index)}>
+                                            <div className={typeDemand === index ? "profile-selected" : "profile-select"} onClick={() => handleDemands(index)}>
                                                 <p>{option}</p>
                                             </div>
                                         )
@@ -90,6 +90,7 @@ export default function Profiles() {
                         </div>
 
                         {demands.map((val) => {
+
                             return (
                                 <Card
                                     key={val.demandCode} demandCode={val.demandCode} listDirection={true} name={val.demandTitle}
@@ -98,6 +99,13 @@ export default function Profiles() {
                                 />
                             )
                         })}
+
+                        {demands.length === 0 &&
+                            <div className="no-results">
+                                <span className="material-symbols-outlined">draft</span>
+                                <h1>{t("noResults")}</h1>
+                            </div>
+                        }
 
                     </div>
 

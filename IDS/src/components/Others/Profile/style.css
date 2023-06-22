@@ -49,14 +49,15 @@
     border-bottom: 1px solid transparent;
 }
 
-.profile .profile-select p{
+.profile .profile-select p,
+.profile .profile-selected p {
     padding-top: 4px;
     margin: 0px !important;
     font-size: var(--p);
     color: var(--grey59);
 }
 
-.profile .h65px{
+.profile .h65px {
     height: 65px;
 }
 
@@ -65,7 +66,18 @@
     border-bottom: 1px solid var(--greyC4);
 }
 
-.profile p{
+.profile .profile-selected {
+    background-color: var(--greyF7);
+    border-bottom: 1px solid var(--greyC4);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.profile p {
     margin: 0px !important;
     font-size: var(--p);
     color: var(--grey59);

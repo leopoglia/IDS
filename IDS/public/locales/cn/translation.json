@@ -274,5 +274,6 @@
     "ApprovedComission": "委員會批准",
     "RejectedComission": "委員會拒絕",
     "ApprovedDG": "批准DG",
-    "RejectedDG": "拒絕DG"
+    "RejectedDG": "拒絕DG",
+    "colors": "顏色"
 }

@@ -228,7 +228,6 @@ export default function Demands() {
     }
 
     const noResult = () => {
-
         if (url[3] === "demands") {
             return (
                 <div className="no-results">

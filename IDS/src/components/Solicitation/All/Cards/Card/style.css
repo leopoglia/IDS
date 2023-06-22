@@ -165,7 +165,9 @@
 }
 
 .demand .infos .requester,
-.demand-list .infos .requester {
+.demand-list .infos .requester,
+.demand .infos .date,
+.demand-list .infos .date {
     min-width: 260px;
     max-width: 260px;
     display: flex;

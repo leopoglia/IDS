@@ -235,7 +235,7 @@ export default function Configuration() {
                                             <label htmlFor="switch" />
                                         </div>
                                     </div>
-
+{/* 
                                     <div className="display-flex">
                                         <span className="subtitle-confuration">{t("colors")}</span>
 
@@ -252,7 +252,7 @@ export default function Configuration() {
 
 
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
 
                             </div>

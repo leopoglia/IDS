@@ -142,7 +142,7 @@
 }
 
 .messages .chat-box{
-    padding-top: 0px;
+    padding-top: user-picture0px;
     margin-top: 30px;
     border-top: 1px solid var(--greyC4);
 }

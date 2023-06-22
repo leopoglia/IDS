@@ -615,9 +615,16 @@ export default function ViewDemand() {
                                                 <div className={"situation-current " + situationCorrentOpen}>
 
 
-                                                    <div className="display-flex header-table">
-                                                        <p className="title" >{t("requester")}:</p>
-                                                        <div className="text-information workerName">{demand.requesterRegistration.workerName}</div>
+                                                    <div className="display-flex-space-between header-table">
+                                                        <div className="display-flex-align-center">
+                                                            <p className="title" >{t("requester")}:</p>
+                                                            <Link to={"/profile/" + demand.requesterRegistration.workerCode} className="text-information workerName">
+                                                                <div className="profile-worker">
+                                                                    {demand.requesterRegistration.workerName.split(" ")[0].charAt(0)}
+                                                                </div>
+                                                                {demand.requesterRegistration.workerName}
+                                                            </Link>
+                                                        </div>
 
                                                         <span onClick={() => setSituationCorrentOpen(!situationCorrentOpen)} className="material-symbols-outlined arrow-expend">
                                                             expand_more
@@ -630,7 +637,13 @@ export default function ViewDemand() {
                                                                 <div className="display-flex">
 
                                                                     <p className="title">{t("responsibleAnalyst")}:</p>
-                                                                    <div className="text-information workerName">{proposal.responsibleAnalyst.workerName}</div>
+                                                                    <Link to={"/profile/" + proposal.responsibleAnalyst.workerCode} className="text-information workerName">
+                                                                        <div className="profile-worker">
+                                                                            {proposal.responsibleAnalyst.workerName.split(" ")[0].charAt(0)}
+                                                                        </div>
+                                                                        {proposal.responsibleAnalyst.workerName}
+                                                                    </Link>
+
                                                                 </div>
                                                             </div>
                                                         ) : (
@@ -913,7 +926,7 @@ export default function ViewDemand() {
                                             }
 
                                             {proposalSpecific.length < approvedDG && (minute.length !== 0 && (minute[0]?.minuteType === "Published" || minute[1]?.minuteType === "Published")) && !(minute[0]?.minuteType === "DG" || minute[1]?.minuteType === "DG" || minute[2]?.minuteType === "DG") ? (
-                                                
+
                                                 <div className="display-flex-end">
                                                     <Link to={"/minutes/create/" + demandCode + "?dg"}>
                                                         <button className="btn-primary">{t("generateMinuteDG")}</button>

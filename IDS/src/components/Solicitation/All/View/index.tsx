@@ -563,7 +563,7 @@ export default function ViewDemand() {
                                             {viewDemand === "view" || demandVersion === "view" ? (
                                                 <Tooltip className="display-flex-end" title={t("devisualizeDemand")} placement="bottom" arrow>
 
-                                                    <Link to={url === "demand" ? "/demand/rank/" + demand.demandCode + "?" + demand.demandVersion + "?view" : "/demand/rank/" + demand.demandCode + "?" + demand.demandVersion + "?edit" }>
+                                                    <Link to={url === "demand" ? "/demand/rank/" + demand.demandCode + "?" + demand.demandVersion + "?view" : "/demand/rank/" + demand.demandCode + "?" + demand.demandVersion + "?edit"}>
                                                         <div className="visibility-demand">
                                                             <span className="material-symbols-outlined">
                                                                 visibility_off
@@ -726,13 +726,7 @@ export default function ViewDemand() {
 
                                                         <div className="display-flex-center">
                                                             <span className="bold-text">{t("monthlyValue")}: </span>
-                                                            {demand.potentialBenefit.potentialCurrency === "real" ? (
-                                                                <span>R$</span>
-                                                            ) : (demand.potentialBenefit.potentialCurrency === "dollar") ? (
-                                                                <span>$</span>
-                                                            ) : (
-                                                                <span>€</span>
-                                                            )}
+                                                            {demand.potentialBenefit.potentialCurrency}
 
                                                             <div className="text-information">{demand.potentialBenefit.potentialMonthlyValue.toLocaleString()}</div>
 

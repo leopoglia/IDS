@@ -42,6 +42,7 @@ export default function Graphic(props: any) {
 
     let [labels, setLabels]: any = useState([]);
     const [prev, setPrev] = useState(false);
+    const [totalNumbersPrefix, setTotalNumbersPrefix] = useState(0);
 
     useEffect(() => {
         getMonthName();
@@ -145,10 +146,9 @@ export default function Graphic(props: any) {
             setPrev(true);
         }
 
-        let totalNumbersPrefix = 0;
 
         for (let i = 0; i < monthNames7.length; i++) {
-            totalNumbersPrefix += monthNames7[i].numbers;
+            setTotalNumbersPrefix(totalNumbersPrefix + monthNames7[i].numbers)
         }
 
         if (totalNumbersPrefix > 0) {
@@ -175,9 +175,18 @@ export default function Graphic(props: any) {
 
     return (
         <div className='chart'>
-            <Line options={options} data={data} />
+
+            {totalNumbersPrefix !== 0 ?
+                <Line options={options} data={data} />
+                :
+                <div className="no-data">
+                    <span>No data</span>
+                </div>
+            }
 
             {prev && <div className="prev" />}
+
+
         </div>
     );
 }

@@ -74,12 +74,15 @@
 }
 
 .dashboard .chart {
-    height: 150px;
+    width: 100%;
+    min-height: 150px;
     margin-left: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
+
 
 .dashboard .h190 .display-block {
     display: flex;
@@ -96,7 +99,7 @@
     margin-left: 20px;
 }
 
-.dashboard .prev{
+.dashboard .prev {
     width: 36px;
     height: 112px;
     margin-bottom: 20px;
@@ -108,6 +111,16 @@
 }
 
 @media(max-width: 1024px) {
+
+    .box .display-flex .display-grid {
+        justify-content: center;
+        margin-right: 0px;
+    }
+
+    .dashboard .chart {
+        margin-left: 0px;
+    }
+
     .dashboard .box {
         width: 100% !important;
     }

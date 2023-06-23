@@ -206,7 +206,7 @@ function RouterContent(props: any) {
                     <Header />
                     <Nav />
                     <Steps
-                        enabled={true}
+                        enabled={false}
                         steps={steps}
                         initialStep={0}
                         onExit={onExit}

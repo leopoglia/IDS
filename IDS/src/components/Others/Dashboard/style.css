@@ -100,10 +100,10 @@
 }
 
 .dashboard .prev {
-    width: 36px;
-    height: 112px;
+    width: 38px;
+    height: 115px;
     margin-bottom: 20px;
-    margin-left: 230px;
+    margin-left: 236px;
     background-color: var(--grey3d);
     opacity: 0.1;
     position: absolute;

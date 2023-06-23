@@ -11,6 +11,7 @@ import {
 } from 'chart.js';
 import { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
+import ServicesWorker from '../../../../services/workerService';
 
 ChartJS.register(
     CategoryScale,
@@ -40,13 +41,15 @@ export const options = {
 export default function Graphic(props: any) {
 
     let [labels, setLabels]: any = useState([]);
+    const [prev, setPrev] = useState(false);
+    const [totalNumbersPrefix, setTotalNumbersPrefix] = useState(0);
 
-    useEffect(() => { 
+    useEffect(() => {
         getMonthName();
 
     }, [props]);
 
-    function getMonthName() {
+    async function getMonthName() {
 
         let monthNames = [
             { i: 1, month: "Jan", numbers: 0 },
@@ -63,6 +66,7 @@ export default function Graphic(props: any) {
             { i: 12, month: "Dec", numbers: 0 }
         ];
 
+
         if (props.dates.length > 0) {
             for (let i = 0; i < props.dates.length; i++) {
                 let mes = JSON.parse(props.dates[i].split("/")[1]);
@@ -70,6 +74,7 @@ export default function Graphic(props: any) {
                 let anoAtual = new Date().getFullYear();
 
                 // eu quero mostrar somente os meses do ano atual e os 6 meses anteriores
+
                 if (ano === anoAtual) {
                     for (let j = 0; j < monthNames.length; j++) {
                         if (monthNames[j].i === mes) {
@@ -88,6 +93,7 @@ export default function Graphic(props: any) {
                     }
                 }
 
+
             }
         }
 
@@ -97,7 +103,7 @@ export default function Graphic(props: any) {
         // Array com os nomes dos últimos sete meses
         const monthNames7 = [];
         for (let i = 7; i >= 1; i--) {
-            const date = new Date(currenDate.getFullYear(), currenDate.getMonth()  - i, 1);
+            const date = new Date(currenDate.getFullYear(), currenDate.getMonth() - i + 1, 1);
             const monthName = monthNames[date.getMonth()].month;
             const monthNumber = monthNames[date.getMonth()].numbers;
 
@@ -105,22 +111,47 @@ export default function Graphic(props: any) {
             monthNames7.push(month);
         }
 
-        // Adiciona o nome do mês atual ao array
-        const nameCurrentMonth = monthNames[currenDate.getMonth()].month;
-        const monthNumber = monthNames[currenDate.getMonth()].numbers;
 
-        const month = { month: nameCurrentMonth, numbers: monthNumber };
-        monthNames7.push(month);
+        const monthNames10 = [];
+        for (let i = 10; i >= 1; i--) {
+            const date = new Date(currenDate.getFullYear(), currenDate.getMonth() - i + 1, 1);
+            const monthName = monthNames[date.getMonth()].month;
+            const monthNumber = monthNames[date.getMonth()].numbers;
 
+            const month = { month: monthName, numbers: monthNumber };
+            monthNames10.push(month);
+        }
 
-        let totalNumbersPrefix = 0;
+        //visualizar se todos os meses do ultimos 10 meses tem alguma data
+        let totalMonths = 0;
+        for (let i = 0; i < monthNames10.length; i++) {
+            if (monthNames10[i].numbers !== 0) {
+                totalMonths++;
+            }
+        }
 
-        for (let i = 0; i < monthNames7.length; i++) {
-            totalNumbersPrefix += monthNames7[i].numbers;
+        if (totalMonths >= 10) {
+            // Adiciona o nome do mês atual ao array
+            const nameCurrentMonth = "Prev";
+
+            let monthNumber: any = [];
+            await ServicesWorker.graphic(monthNames10).then((res: any) => {
+                monthNumber = res.forecast;
+            });
+
+            // const monthNumber = monthNames[currenDate.getMonth() + 1].numbers;
+
+            const month = { month: nameCurrentMonth, numbers: monthNumber };
+            monthNames7.push(month);
+            setPrev(true);
         }
 
 
-        if (props.number === totalNumbersPrefix) {
+        for (let i = 0; i < monthNames7.length; i++) {
+            setTotalNumbersPrefix(totalNumbersPrefix + monthNames7[i].numbers)
+        }
+
+        if (totalNumbersPrefix > 0) {
             setLabels(monthNames7);
         }
     }
@@ -144,8 +175,18 @@ export default function Graphic(props: any) {
 
     return (
         <div className='chart'>
-            <Line options={options} data={data} />
-            
+
+            {totalNumbersPrefix !== 0 ?
+                <Line options={options} data={data} />
+                :
+                <div className="no-data">
+                    <span>No data</span>
+                </div>
+            }
+
+            {prev && <div className="prev" />}
+
+
         </div>
     );
 }

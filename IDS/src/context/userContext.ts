@@ -12,7 +12,8 @@ type MyContextType = {
     screenReader: boolean,
     darkmode: boolean,
     square: boolean,
-    fontSize: number
+    fontSize: number,
+    workerPhoto: any
   },
   setWorker: any
 };

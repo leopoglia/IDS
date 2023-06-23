@@ -113,13 +113,12 @@ const Services = {
                 "potentialBenefit": { "potentialBenefitCode": potentialBenefit },
                 "demandStatus": demandStatus,
                 "classification": { "classificationCode": classificationCode },
-                "score": demandScore,
-                "approver": { "workerCode": approver.workerCode }
+                "score": demandScore
             }
         }
 
         formData.append('demand', JSON.stringify(demand));
-        demandAttachments.forEach(demandAttachment => formData.append('demandAttachment', demandAttachment))
+        demandAttachments?.forEach(demandAttachment => formData.append('demandAttachment', demandAttachment))
 
 
 
@@ -160,14 +159,13 @@ const Services = {
                 .catch(reject)
         })
     },
-    saveExcel: function (type: any, value: any) {
+    saveExcel: function (demands: any) {
         return new Promise((resolve, reject) => {
-
-            fetch(url + "/filter/" + value + "/" + type, {
-                method: 'GET',
-                headers: { 'Content-Type': 'application/json' },
-                credentials: 'include'
-            }).then(function (result) { return result.json(); })
+            fetch(url + "/filter", {
+                method: 'POST',
+                body: JSON.stringify(demands),
+                headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result; })
                 .then(resolve)
                 .catch(reject)
         })
@@ -223,6 +221,42 @@ const Services = {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); }).then(resolve).catch(reject)
+        })
+    },
+    findByRequester: function (workerCode: Number) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/requester/" + workerCode, {
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(reject)
+        })
+    },
+    findByApprover: function (workerCode: Number) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/approver/" + workerCode, {
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(reject)
+        })
+    },
+    findByAnalyst: function (workerCode: Number) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/analyst/" + workerCode, {
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(reject)
+        })
+    },
+    findAllByVersion: function () {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/version", {
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(reject)
         })
     }
 }

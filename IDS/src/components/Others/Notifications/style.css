@@ -22,7 +22,8 @@
 
 .notifications .header,
 .messages .header,
-.solicitation .header {
+.solicitation .header,
+.profile .header {
     padding: 0 20px;
     background-color: var(--white2);
     color: var(--grey59) !important;
@@ -33,7 +34,8 @@
 
 .notifications .header .input-background .material-symbols-outlined,
 .messages .header .input-background .material-symbols-outlined,
-.solicitation .header .input-background .material-symbols-outlined {
+.solicitation .header .input-background .material-symbols-outlined,
+.profile .header .input-background .material-symbols-outlined {
     color: var(--greyC4) !important;
 }
 
@@ -43,12 +45,14 @@
 }
 
 .notifications .header .input-background,
-.messages .header .input-background {
+.messages .header .input-background,
+.profile .header .input-background {
     width: 300px;
 }
 
 .notifications .header .input-background input,
-.messages .header .input-background input {
+.messages .header .input-background input,
+.profile .header .input-background input {
     margin-left: 10px !important;
 }
 

@@ -31,7 +31,7 @@ export default function Dashboard() {
     const [minutes, setMinutes] = useState(0);
 
     async function getDemands() {
-        await ServicesDemand.findAll().then((response: any) => {
+        await ServicesDemand.findAllByVersion().then((response: any) => {
             setDemands(response?.length);
             let dates: any = [];
 

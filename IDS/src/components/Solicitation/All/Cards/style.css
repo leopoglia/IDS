@@ -67,7 +67,9 @@
     width: 50px;
 }
 
-.messages .no-results{
+.profile .no-results,
+.messages .no-results,
+.notifications .no-results{
     height: calc(100vh - 420px);
 }
 

@@ -34,7 +34,7 @@ export default function Demand(props: any) {
                 (<div className="infos">
                     <div className="code">{props.demandCode}</div>
                     <div className="requester"><p>{t("requester")}: {props.requester}</p></div>
-                    <div><p>{t("date")}: {props.date}</p></div>
+                    <div className="date"><p>{t("date")}: {props.date}</p></div>
                     <div className="situation"><p>{t("situation")}: {t(props.situation)}</p></div>
 
                 </div>)
@@ -99,10 +99,10 @@ export default function Demand(props: any) {
     }
 
     const situation = () => {
-        if (props.type === "demand" || props.type === "proposal" || props.type === "minute") {
+        if (props.type === "demand" || props.type === "proposal" || props.type === "minute" || props.type === "agenda") {
             return (
                 <div className="situation-demand">
-                    <Situation type={props.type} situation={props.situation} demandCode={props.demandCode} />
+                    <Situation type={props.type} situation={props.situation} demandCode={props.demandCode} agenda={props.agenda} />
                 </div>
             );
         }
@@ -111,7 +111,7 @@ export default function Demand(props: any) {
 
     if (props.listDirection === false) {
         return (
-            <div>
+            <div className={"demand-" + props.id}>
                 <Link to={"/" + props.type + "/view/" + props.demandCode + urlFinal}>
                     <div className="demand">
                         <div className="content-demand">

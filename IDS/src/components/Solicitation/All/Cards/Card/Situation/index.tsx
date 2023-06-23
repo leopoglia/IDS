@@ -11,6 +11,29 @@ export default function Situation(props: any) {
     const { t } = useTranslation();
 
     const situation = () => {
+
+        if (props.agenda !== undefined) {
+
+            const actualDate = new Date();
+            const initialDate = new Date(props.agenda.initialDate);
+
+            //verificar se a data inicial é maior que a data atual
+            let finish = 0;
+
+            for (let i = 0; i < props.agenda.proposals.length; i++) {
+                if (props.agenda.proposals[i].proposalStatus === "ApprovedComission" || props.agenda.proposals[i].proposalStatus === "RejectedComission") {
+                    finish++;
+                }
+            }
+
+            if (finish === props.agenda.proposals.length) {
+                return (<div className="graphic-proposal">{t("finished")}<div className="situation-notPublished"></div></div>);
+            } else {
+                return (<div className="graphic-proposal">{t("waiting")}<div className="situation-pending"></div></div>);
+            }
+
+        }
+
         if (props.situation === "Backlog" || props.situation === "BacklogEdit") {
             return (<div className="situation-backlog">10%</div>);
         } else if (props.situation === "BacklogRanked") {
@@ -34,21 +57,26 @@ export default function Situation(props: any) {
         } else if (props.situation === "Done") {
             return (<div className="situation-done">100%</div>);
         }
-
-        if (props.situation === "Approved") {
-            return (<div className="graphic-proposal">{t("approved")}<div className="situation-approved"></div></div>);
-        } else if (props.situation === "Rejected") {
-            return (<div className="graphic-proposal">{t("rejected")}<div className="situation-rejected"></div></div>);
+        
+        if (props.situation === "ApprovedComission") {
+            return (<div className="graphic-proposal">{t("ApprovedComission")}<div className="situation-published"></div></div>);
+        } else if (props.situation === "RejectedComission") {
+            return (<div className="graphic-proposal">{t("RejectedComission")}<div className="situation-rejected"></div></div>);
+        } else if (props.situation === "ApprovedDG") {
+            return (<div className="graphic-proposal">{t("ApprovedDG")}<div className="situation-approved"></div></div>);
+        } else if(props.situation === "RejectedDG") {
+            return (<div className="graphic-proposal">{t("RejectedDG")}<div className="situation-rejected"></div></div>);
         } else if (props.situation === "Pending") {
             return (<div className="graphic-proposal">{t("pending")}<div className="situation-pending"></div></div>);
         }
 
-        if(props.situation === "Published"){
+        if (props.situation === "Published") {
             return (<div className="graphic-proposal">{t("published")}<div className="situation-published"></div></div>);
-        } else{
+        } else if(props.situation === "Not Published") {
             return (<div className="graphic-proposal">{t("notPublished")}<div className="situation-notPublished"></div></div>);
+        } else if(props.situation === "DG"){
+            return (<div className="graphic-proposal">{t("DG")}<div className="situation-approved"></div></div>);
         }
-
     }
 
     if (props.type === "demand") {
@@ -74,6 +102,16 @@ export default function Situation(props: any) {
             </div>
         );
     } else if (props.type === "minute") {
+        return (
+            <div className="display-flex">
+                <Tooltip title={t(props.situation)} arrow>
+                    <div className="graphic-proposal">
+                        {situation()}
+                    </div>
+                </Tooltip>
+            </div>
+        );
+    } else if (props.type === "agenda") {
         return (
             <div className="display-flex">
                 <Tooltip title={t(props.situation)} arrow>

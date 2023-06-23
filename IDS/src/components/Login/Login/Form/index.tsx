@@ -40,7 +40,8 @@ export default function LoginForm() {
             screenReader: response.screenReader,
             darkmode: response.darkmode,
             square: response.square,
-            fontSize: response.fontSize
+            fontSize: response.fontSize,
+            workerPhoto: response.workerPhoto
           };
 
 

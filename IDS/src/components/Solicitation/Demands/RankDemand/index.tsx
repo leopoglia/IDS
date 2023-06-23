@@ -90,7 +90,6 @@ export default function RankDemand() {
 
         if (classification.size === "" || classification.ti === "" || classification.buReq === "" || classification.buBenList === undefined) {
             notifyUtil.error(t("fillAllFields"))
-            console.log("entrou 1")
             return;
         } else {
             if (view !== "edit") {
@@ -149,7 +148,7 @@ export default function RankDemand() {
     const setRankNotification = () => {
         return notification = {
             date: new Date(),
-            description: "Um analista classificou a sua demanda de código " + demand.demandCode,
+            description: "AnalystRankDemand " + demand.demandCode,
             worker: { workerCode: JSON.parse(demand.requesterRegistration.workerCode) },
             icon: "done",
             type: "demand",
@@ -183,7 +182,6 @@ export default function RankDemand() {
         for (let i = 0; i < files.length; i++) {
             filesArray.push(files[i]);
         }
-        console.log(filesArray)
         setFileAttachment(filesArray);
     }
 

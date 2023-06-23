@@ -27,7 +27,7 @@ export default function Filter(props: FilterProps) {
     const sendFilter = () => {
 
         // Se o tipo for diferente de status, size, date, forum ou home, retorna o input normal de pesquisa
-        if (!(type === "status" || type === "size" || type === "date" || type === "forum" || type !== "home") && filter === true) {
+        if (!(type === "status" || type === "size" || type === "date" || type === "forum" || type === "home") && filter === true) {
             return (
                 <div className="send-filter">
                     <div className="hr" />

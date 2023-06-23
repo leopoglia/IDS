@@ -3,7 +3,6 @@ const url = "http://localhost:8443/api/minutes";
 const Services = {
 
     save: function (minuteName: String, agenda: any, minuteStartDate: any, director: any, minuteType: String) {
-
         return new Promise((resolve, reject) => {
             fetch(url, {
                 method: 'POST', body: JSON.stringify({

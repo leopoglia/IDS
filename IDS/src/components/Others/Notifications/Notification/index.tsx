@@ -15,7 +15,6 @@ export default function Notification(props: any) {
         setChecked(props?.checked)
     }, [props.checked])
 
-
     // Arruma a data para o formato dd/mm/yyyy hh:mm
     function arrangeDate() {
         let data = props.date.split("T")
@@ -97,7 +96,15 @@ export default function Notification(props: any) {
                         <span className="material-symbols-outlined">
                             {props.icon}
                         </span>
-                        <span>{t(props.description)}</span>
+                        {
+                            props.description.split(" ")[1] !== undefined && props.description.split(" ").length !== 3 ? (
+                                <span>{t(props.description.split(" ", 1)) + props.description.split(" ")[1]}</span>
+                            ) : props.description.split(" ").length === 3 ? (
+                                <span>{props.description.split(" ")[0] + t(props.description.split(" ")[1]) + props.description.split(" ")[2]}</span>
+                            ) : (
+                                <span>{t(props.description)}</span>
+                            )
+                        }
                     </div>
                 </div>
 

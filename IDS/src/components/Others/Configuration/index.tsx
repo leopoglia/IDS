@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import othersUtil from "../../../utils/othersUtil";
 import Title from "../../Fixed/Search/Title";
 import Footer from "../../Fixed/Footer";
 import UserContext from "../../../context/userContext";
@@ -16,7 +17,7 @@ export default function Configuration() {
     const worker: any = useContext(UserContext).worker; // Contexto do utilizador
     const setWorker: any = useContext(UserContext).setWorker; // Set para o contexto do utilizador
     const name: any = worker.name; // Nome do utilizador
-    const image = name.substring(0, 1); // Primeira letra do nome do utilizador
+    const [image, setImage] = useState(name.substring(0, 1)); // Primeira letra do nome do utilizador
     const email = worker.email; // Email do utilizador
 
 
@@ -28,8 +29,16 @@ export default function Configuration() {
     const [darkMode, setDarkMode] = useState(false); // Estado do darkMode
     const [squareStyleLayout, setSquareStyleLayout] = useState(false); // Estado do layout quadrado
 
+
+
     // Atualiza o estado do utilizador
     useEffect(() => {
+
+        if (worker?.workerPhoto !== null) {
+            setImage(byteToImage(worker?.workerPhoto));
+        } else {
+            setImage(worker?.name?.substring(0, 1));
+        }
         setPounds(worker?.pounds);
         setVoiceCommand(worker?.voiceCommand);
         setScreenReading(worker?.screenReader);
@@ -37,6 +46,18 @@ export default function Configuration() {
         setSquareStyleLayout(worker?.square);
         setFontSize(worker?.fontSize);
     }, [worker])
+
+    useEffect(() => {
+        var test: any = document.getElementById("image-profile");
+
+        test.addEventListener("mouseenter", function (event: any) {
+            setImage("edit");
+        }, false);
+
+        test.addEventListener("mouseleave", function (event: any) {
+            setImage(worker?.name?.substring(0, 1));
+        }, false);
+    }, []);
 
     // Atualiza o estado do layout quadrado
     const handleSquare = async (event: any) => {
@@ -101,6 +122,29 @@ export default function Configuration() {
         })
     }
 
+    const handleProfileImage = async (event: any) => {
+
+        await WorkerService.updatePhoto(worker.id, event.target.files[0]).then((response: any) => {
+
+            setWorker({ ...worker, workerPhoto: response.workerPhoto });
+
+            setImage(byteToImage(response.workerPhoto));
+        })
+    }
+
+    function byteToImage(e: any): any {
+        const fileReader = new FileReader();
+
+        if (e?.target === false) {
+            fileReader.readAsDataURL(e.target.files[0]);
+        } else {
+            const imageUrl: any = URL.createObjectURL(e);
+            fileReader.readAsDataURL(imageUrl);
+        }
+        fileReader.onload = (e) => {
+            return fileReader.result;
+        }
+    }
 
     return (
         <div className="configuration">
@@ -111,7 +155,16 @@ export default function Configuration() {
 
                 <div className="box">
                     <div className="profile">
-                        <div className="picture-profile">{image}</div>
+                        <input className="input-image" type="file" id="image-profile" onChange={handleProfileImage} />
+                        <label htmlFor="image-profile" className={image === "edit" ? "material-symbols-outlined" : ""} id="image-profile">
+
+                            {image.substring(0, 4) !== "data" ?
+                                (
+                                    image
+                                ) :
+                                <img src={image} alt="" />
+                            }
+                        </label>
                         <div className="email-name">
                             <div className="flex">
                                 <span className="name">{name}</span>
@@ -169,7 +222,7 @@ export default function Configuration() {
                                     </div>
 
 
-                                    <div className="display-flex">
+                                    <div className="display-flex mr20">
                                         <span className="subtitle-confuration">{t("squareStyleLayout")}</span>
 
                                         <div className="switch">
@@ -177,6 +230,24 @@ export default function Configuration() {
                                             <label htmlFor="switch" />
                                         </div>
                                     </div>
+{/* 
+                                    <div className="display-flex">
+                                        <span className="subtitle-confuration">{t("colors")}</span>
+
+                                        <div className="colors-configuration ml10">
+                                            <div className="color color-1"></div>
+                                            <div className="color color-2"></div>
+                                            <div className="color color-3"></div>
+                                            <div className="color color-4"></div>
+                                            <div className="color color-5"></div>
+                                            <div className="color color-6"></div>
+                                            <div className="color color-7"></div>
+                                            <div className="color color-8"></div>
+                                            <div className="color color-9"></div>
+
+
+                                        </div>
+                                    </div> */}
                                 </div>
 
                             </div>

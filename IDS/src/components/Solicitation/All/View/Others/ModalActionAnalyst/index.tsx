@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { t } from "i18next";
 
 import ModalChangeStatus from "../ModalChangeStatus";
@@ -11,11 +11,13 @@ export default function InsetList(props: any) {
     const [modalChangeStatus, setModalChangeStatus] = useState(false);
 
     const generatePDF = async () => {
-        window.open("http://localhost:8443/api/demand/pdf/" + props.codeDemand, "_blank");
+
+        if (props?.proposal?.proposalCode === undefined) {
+            window.open("http://localhost:8443/api/demand/pdf/" + props?.codeDemand, "_blank");
+        } else {
+            window.open("http://localhost:8443/api/proposal/pdf/" + props?.proposal?.proposalCode, "_blank");
+        }
     };
-
-
-
 
     return (
         <div className="inset-list">

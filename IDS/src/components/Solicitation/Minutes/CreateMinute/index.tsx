@@ -20,13 +20,13 @@ export default function CreateMinute() {
     const navigate = useNavigate();
     const code = parseInt(window.location.pathname.split("/")[3]);
     const actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear();
+    const minuteDG = window.location.href.split("?")[1];
     const worker = useContext(UserContext).worker;
     const [proposals, setProposals]: any = useState([]);
 
 
 
     useEffect(() => {
-
         AgendaService.findById(code).then((response: any) => {
             setProposals(response[0].proposals);
         })
@@ -37,7 +37,7 @@ export default function CreateMinute() {
 
     async function saveMinute() {
 
-        let publishedProposal:any = [];
+        let publishedProposal: any = [];
 
         await proposals.forEach(async (proposal: any) => {
 
@@ -48,8 +48,9 @@ export default function CreateMinute() {
             await QualitativeService.update(proposal.demand.qualitativeBenefit.qualitativeBenefitCode, proposal.demand.qualitativeBenefit.qualitativeBenefitDescription, proposal.demand.qualitativeBenefit.frequencyOfUse === "1" ? true : false, proposal.demand.qualitativeBenefit.interalControlsRequirements);
 
             await DemandService.findById(proposal.demand.demandCode).then((response: any) => {
-                proposal.demand = response[0];
+                proposal.demand = response;
             });
+
 
             await DemandService.update(proposal.demand.demandCode, proposal.demand.demandTitle, proposal.demand.currentProblem, proposal.demand.demandObjective,
                 proposal.demand.costCenter, proposal.demand.executionPeriod, proposal.demand.realBenefit.realBenefitCode, proposal.demand.potentialBenefit.potentialBenefitCode, proposal.demand.qualitativeBenefit.qualitativeBenefitCode,
@@ -64,11 +65,18 @@ export default function CreateMinute() {
         });
 
 
-        if(publishedProposal.includes(true)){  
-            MinuteService.save(t("publiquedMinute") + "", code, actualDate, worker.id, "Published");
-        }
-        if(publishedProposal.includes(null)){
-            MinuteService.save(t("unpublishedMinutes") + "", code, actualDate, worker.id, "Not Published");
+
+        if (minuteDG !== "dg") {
+            if (publishedProposal.includes(true)) {
+                await MinuteService.save(t("publiquedMinute") + "", code, actualDate, worker.id, "Published");
+            }
+            if (publishedProposal.includes(null)) {
+
+                await MinuteService.save(t("unpublishedMinutes") + "", code, actualDate, worker.id, "Not Published");
+            }
+        } else {
+
+            await MinuteService.save(t("dgMinute") + "", code, actualDate, worker.id, "DG");
         }
 
         navigate("/agenda/view/" + code);

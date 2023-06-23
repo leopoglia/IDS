@@ -28,11 +28,6 @@ export default function CreateAgenda() {
 
     const worker: any = useContext(UserContext).worker;
 
-    useEffect(() => {
-        console.log(commission)
-    }, [commission])
-
-
     let actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear();
 
     useEffect(() => {

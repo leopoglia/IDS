@@ -6,6 +6,8 @@ import { Tooltip } from "@mui/material";
 import WorkerService from "../../../services/workerService";
 import ServicesNotification from "../../../services/notificationService";
 import ServicesMessages from "../../../services/messageService";
+import notifyUtil from "../../../utils/notifyUtil";
+import { ToastContainer } from 'react-toastify';
 import UserContext from "../../../context/userContext";
 import "./style.css"
 
@@ -24,6 +26,7 @@ export default function Nav() {
     const [subscribeId, setSubscribeId] = useState(null); // Id do subscribe
     const [notifications, setNotifications] = useState([]); // Notificações do usuário
     const { send, subscribe, stompClient } = useContext(WebSocketContext); // WebSocket
+
 
     useEffect(() => {
         const navState = localStorage.getItem("nav") === "nav-open" ? "nav-open" : "nav"; // Verifica se o menu está aberto ou fechado
@@ -58,12 +61,22 @@ export default function Nav() {
         }).catch((error) => {
             console.log(error);
         });
-
     }, [numNotification, notifications, subscribeId]);
 
     useEffect(() => {
         const newNotification = (response) => {
             const notificationReceived = JSON.parse(response.body);
+
+
+            if(notificationReceived.body.type !== "presentation"){
+                    if(notificationReceived.body.description.split(" ").length === 2) {
+                        notifyUtil.info(t(notificationReceived.body.description.split(" ")[0]) + notificationReceived.body.description.split(" ")[1]);
+                    }else if(notificationReceived.body.description.split(" ").length === 3){
+                        notifyUtil.info(notificationReceived.body.description.split(" ")[0] + t(notificationReceived.body.description.split(" ")[1]) + notificationReceived.body.description.split(" ")[2]);
+                    }else{
+                        notifyUtil.info(t(notificationReceived.body.description));
+                    }
+                }
             setNotifications((previousNotifications) => [...previousNotifications, notificationReceived]);
         };
         if (stompClient && !subscribeId) {
@@ -213,7 +226,7 @@ export default function Nav() {
                     )
                 }
 
-                {(worker.office === "analyst" || worker.office === "ti" || messagesOn) &&
+                {(worker.office === "analyst" || worker.office === "ti" || (worker.office === "business" && messagesOn) || messagesOn) &&
                     (
                         <Tooltip title={nav !== "nav-open" ? t("messages") : ""} placement="right">
                             <Link to="/messages">
@@ -282,7 +295,10 @@ export default function Nav() {
 
             </ul>
 
+            <ToastContainer position="bottom-right" newestOnTop />
+
         </nav >
+
     );
 
 }

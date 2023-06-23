@@ -5,8 +5,6 @@ const Services = {
 
         let workersList: any = [];
 
-        console.log(workers)
-
         for (let i = 0; i < workers.length; i++) {
             workersList.push({ workerCode: workers[i] })
         }
@@ -84,17 +82,31 @@ const Services = {
             }).then(function (result) { return result.json(); }).then(resolve).catch(reject)
         })
     },
-    addOpinion: function (id: Number, status: String, comissionOpinion: String) {
-        return new Promise((resolve, reject) => {
-            fetch(url + "/status/" + id, {
-                method: 'PUT',
-                body: JSON.stringify({
-                    "proposalStatus": status,
-                    "commissionOpinion": comissionOpinion
-                }),
-                headers: { 'Content-Type': 'application/json' }, credentials: 'include'
-            }).then(function (result) { return result.json(); }).then(resolve).catch(reject)
-        })
+    addOpinion: function (id: Number, status: String, comissionOpinion: String, typeMinute: String) {
+
+        if (typeMinute === "dg-opinion") {
+            return new Promise((resolve, reject) => {
+                fetch(url + "/status/" + id, {
+                    method: 'PUT',
+                    body: JSON.stringify({
+                        "proposalStatus": status,
+                        "dgOpinion": comissionOpinion
+                    }),
+                    headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+                }).then(function (result) { return result.json(); }).then(resolve).catch(reject)
+            })
+        } else {
+            return new Promise((resolve, reject) => {
+                fetch(url + "/status/" + id, {
+                    method: 'PUT',
+                    body: JSON.stringify({
+                        "proposalStatus": status,
+                        "commissionOpinion": comissionOpinion
+                    }),
+                    headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+                }).then(function (result) { return result.json(); }).then(resolve).catch(reject)
+            })
+        }
     },
     findByPage: function (page: Number, size: Number) {
         return new Promise((resolve, reject) => {
@@ -117,6 +129,15 @@ const Services = {
     findByDemandCode: function (demandCode: Number) {
         return new Promise((resolve, reject) => {
             fetch(url + "/demand/" + demandCode, {
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(reject)
+        })
+    },
+    findByResponsibleAnalyst: function (workerCode: Number) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/analyst/" + workerCode, {
                 method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); })
                 .then(resolve)

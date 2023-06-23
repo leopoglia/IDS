@@ -22,9 +22,10 @@ export default function Demands() {
     let findDemands: any;
     let page: any = url[4]
 
+
     let navigate = useNavigate();
     const { t } = useTranslation();
-
+    const [filteredDemands, setFilteredDemands] = useState([]);
     const [presentation, setPresentation] = useState(localStorage.getItem("presentation") === "true" ? true : false); // Estado para mostrar a apresentação
     const [table, setTableList] = useState(false); // Estado para mostrar a tabela de demandas
     const [search, setSearch]: any = useState(""); // Retorno do campo de busca de demandas
@@ -228,7 +229,6 @@ export default function Demands() {
     }
 
     const noResult = () => {
-
         if (url[3] === "demands") {
             return (
                 <div className="no-results">
@@ -280,13 +280,9 @@ export default function Demands() {
 
                     <div className="container">
 
-                        <Search setSearch={setSearch} search={search} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1" />
+                        <Search setSearch={setSearch} search={search} onClick={callback} name={nameFilter} demands={demands} type={typeFilter} setTable={setTable} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1" />
                         <div className={"container-background boxNoPadding-" + table}>
 
-                            {/* {table === true &&
-                                <div className="header">
-                                </div>
-                            } */}
 
                             {
                                 demands
@@ -323,19 +319,18 @@ export default function Demands() {
                                         return false;
                                     })
                                     .map((val: any, index: number) => {
-
                                         //verificar ultimo
                                         if (index === demands.length - 1 && index === 8) {
                                             return (
                                                 <div className="demand-last">
-                                                    <Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle}
+                                                    <Demand key={index} id={index} demandCode={val.demandCode} listDirection={table} name={val.demandTitle}
                                                         requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus}
                                                         proposalCode={val.proposalCode} demandVersion={val.demandVersion} type="demand" />
                                                 </div>
                                             )
                                         } else {
                                             return (
-                                                <Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle}
+                                                <Demand key={index} id={index} demandCode={val.demandCode} listDirection={table} name={val.demandTitle}
                                                     requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus}
                                                     proposalCode={val.proposalCode} demandVersion={val.demandVersion} type="demand" />
                                             )
@@ -393,9 +388,9 @@ export default function Demands() {
 
                                         return false;
                                     })
-                                    .map((val: any) => (
+                                    .map((val: any, index: any) => (
                                         <Demand
-                                            key={val.proposalCode} listDirection={table} demandCode={val.proposalCode}
+                                            key={index} listDirection={table} demandCode={val.proposalCode}
                                             name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName}
                                             date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal"
                                         />
@@ -447,9 +442,9 @@ export default function Demands() {
 
                                         return false;
                                     })
-                                    .map((val: any) => (
+                                    .map((val: any, index: any) => (
                                         <Demand
-                                            key={val.agendaCode} val={val.agendaCode} listDirection={table}
+                                            key={index} val={val.agendaCode} agenda={val} listDirection={table}
                                             name={(val.commission.commissionName.split("–")[1]).toUpperCase() + " – " + val.agendaDate} demandCode={val.agendaCode} date={val.agendaDate}
                                             number={val.sequentialNumber} year={val.initialDate} type="agenda"
                                         />
@@ -509,9 +504,9 @@ export default function Demands() {
 
                                         return false;
                                     })
-                                    .map((val: any) => (
+                                    .map((val: any, index: any) => (
                                         <Demand
-                                            key={val.minuteCode}
+                                            key={index}
                                             listDirection={table}
                                             name={(t(val.minuteType) + " – " + val.agenda.commission.commissionName.split("–")[1]).toUpperCase()}
                                             demandCode={val.minuteCode}

@@ -43,9 +43,17 @@ export default function Message(props: any) {
                                     {requester?.workerName} - {demandTitle}</p>
                                 {
                                     props.message?.sender?.workerCode === worker.id ? (
-                                        <p className="last-message">Você: {props.message?.message}</p>
+                                        props.message?.message === "" || props.message?.message === null ? (
+                                            <p className="last-message">Você: {props.message?.attachment?.name}</p>
+                                        ) : (
+                                            <p className="last-message">Você: {props.message?.message}</p>
+                                        )
                                     ) : (
-                                        <p className="last-message">{sender?.workerName}: {props.message?.message}</p>
+                                        props.message?.message === "" || props.message?.message === null ? (
+                                            <p className="last-message">{sender?.workerName}: {props.message?.attachment?.name}</p>
+                                        ) : (
+                                            <p className="last-message">{sender?.workerName}: {props.message?.message}</p>
+                                        )
                                     )
                                 }
 
@@ -56,9 +64,17 @@ export default function Message(props: any) {
                                     {sender?.workerName} - {demandTitle}</p>
                                 {
                                     props.message?.sender?.workerCode === worker.id ? (
-                                        <p className="last-message">Você: {props.message?.message}</p>
+                                        props.message?.message === "" || props.message?.message === null ? (
+                                            <p className="last-message">Você: {props.message?.attachment?.name}</p>
+                                        ) : (
+                                            <p className="last-message">Você: {props.message?.message}</p>
+                                        )
                                     ) : (
-                                        <p className="last-message">{sender?.workerName}: {props.message?.message}</p>
+                                        props.message?.message === "" || props.message?.message === null ? (
+                                            <p className="last-message">{sender?.workerName}: {props.message?.attachment?.name}</p>
+                                        ) : (
+                                            <p className="last-message">{sender?.workerName}: {props.message?.message}</p>
+                                        )
                                     )
                                 }
                             </div>

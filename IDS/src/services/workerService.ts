@@ -3,12 +3,6 @@ const url = "http://localhost:8443/api/worker";
 
 const Services = {
 
-    // cadastrarCliente: function (nome: String, cnpj: String) {
-    //     return new Promise((resolve, reject) => {
-    //         fetch(url + '/cliente', { method: 'POST', body: JSON.stringify({ nome: nome, cnpj: cnpj }), headers: { 'Content-Type': 'application/json' }, credentials: 'include' }).then(function (result) { return result.json(); }).then(resolve).catch(resolve)
-    //     })
-    // },
-
     save: function (workerCode: Number, workerName: String, corporateEmail: String, workerPassword: String, workerOffice: String) {
         return new Promise((resolve, reject) => {
             fetch(url, {
@@ -143,7 +137,7 @@ const Services = {
                 .catch(resolve)
         })
     },
-    isUserOnline: function (workerCode: any){
+    isUserOnline: function (workerCode: any) {
         return new Promise((resolve, reject) => {
             fetch(url + '/user/' + workerCode + "/online", {
                 method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
@@ -152,13 +146,45 @@ const Services = {
                 .catch(resolve)
         })
     },
-    logout: function (){
+    logout: function () {
         return new Promise((resolve, reject) => {
             fetch(url + '/login/logout', {
                 method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(resolve)
+        })
+    },
+    updatePhoto: function (id: number, photo: any) {
+        var formData = new FormData();
+        formData.append('file', photo);
+
+        return new Promise((resolve, reject) => {
+            fetch(url + '/photo/' + id, {
+                method: 'PUT',
+                body: formData,
+                credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(reject)
+        })
+    },
+
+    graphic: function (array: any) {
+
+        var numbersArray = array.map((obj: { numbers: any; }) => obj.numbers);
+
+        return new Promise((resolve, reject) => {
+            fetch(url + '/user/graphic', {
+                method: 'POST',
+                body: JSON.stringify(numbersArray),
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(reject)
         })
     }
 }

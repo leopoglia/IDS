@@ -59,6 +59,7 @@ export default function ViewDemand() {
     const [subscribeId, setSubscribeId] = useState(null);
     let notification = {}; // Notificações do usuário
     const [pendingMinute, setPendingMinute]: any = useState(0); // Quantidade de propostas pendentes
+    const [approvedDG, setApprovedDG]: any = useState(0); // Quantidade de propostas aprovadas pelo DG
 
 
     const { send, subscribe, stompClient }: any = useContext(WebSocketContext);
@@ -231,7 +232,7 @@ export default function ViewDemand() {
         ServicesProposal.findById(demandCode).then((response: any) => {
             setProposal(response)
 
-            setResponsibleBussiness(response?.responsibleAnalyst.workerName) // Seta o responsável de negócios da proposta
+            setResponsibleBussiness(response?.workers) // Seta o responsável de negócios da proposta
 
 
             ServicesDemand.findById(response.demand.demandCode).then((demand: any) => {
@@ -324,6 +325,15 @@ export default function ViewDemand() {
             ))
 
 
+            proposals.map((val: any) => (
+                val.proposalStatus === "ApprovedDG" ? (
+                    setApprovedDG(approvedDG + 1)
+                ) : (
+                    null
+                )
+            ))
+
+
         })
 
 
@@ -352,29 +362,23 @@ export default function ViewDemand() {
     // Aprovar demanda (Gerente de Negócios)
     function approveDemand() {
         ServicesDemand.updateStatus(demandCode, "BacklogRankApproved").then((response: any) => {
-            // Notificação para o solicitante
-            // ServicesNotification.save("Um gerente de Negócio aprovou a sua demanda de código  " + demand.demandCode, demand.requesterRegistration.workerCode, "done", "demand");
             ServicesDemand.approve(demandCode, worker.id);
             send("/api/worker/" + demand.requesterRegistration.workerCode, setDefaultNotification());
             notifyUtil.success(t("demandApproved"));
             getDemand();
             setActionsDemand(0);
-
-
         }).catch((error: any) => {
             notifyUtil.error(t("somethingWrong"));
         })
     }
 
     const setDefaultNotification = () => {
-        if (worker.office === "business") {
-            return notification = {
-                date: new Date(),
-                description: "Um gerente de Negócio aprovou a sua demanda de código  " + demand.demandCode,
-                worker: { workerCode: JSON.parse(demand.requesterRegistration.workerCode) },
-                icon: "done",
-                type: "demand",
-            }
+        return notification = {
+            date: new Date(),
+            description: "BusinesManagerApprove " + demand.demandCode,
+            worker: { workerCode: JSON.parse(demand.requesterRegistration.workerCode) },
+            icon: "done",
+            type: "demand",
         }
     }
 
@@ -392,7 +396,7 @@ export default function ViewDemand() {
     const setGiveBackNotification = () => {
         return notification = {
             date: new Date(),
-            description: "Um analista devolveu a sua demanda de código " + demand.demandCode,
+            description: "AnalystGiveBack " + demand.demandCode,
             worker: { workerCode: JSON.parse(demand.requesterRegistration.workerCode) },
             icon: "info",
             type: "demand",
@@ -402,7 +406,6 @@ export default function ViewDemand() {
     // Gerar PDF
 
     const generatePDF = async () => {
-        console.log(url)
         if (url === "demand") {
             window.open("http://localhost:8443/api/demand/pdf/" + demandCode, "_blank");
         } else if (url === "proposal") {
@@ -609,9 +612,16 @@ export default function ViewDemand() {
                                                 <div className={"situation-current " + situationCorrentOpen}>
 
 
-                                                    <div className="display-flex header-table">
-                                                        <p className="title" >{t("requester")}:</p>
-                                                        <div className="text-information workerName">{demand.requesterRegistration.workerName}</div>
+                                                    <div className="display-flex-space-between header-table">
+                                                        <div className="display-flex-align-center">
+                                                            <p className="title" >{t("requester")}:</p>
+                                                            <Link to={"/profile/" + demand.requesterRegistration.workerCode} className="text-information workerName">
+                                                                <div className="profile-worker">
+                                                                    {demand.requesterRegistration.workerName.split(" ")[0].charAt(0)}
+                                                                </div>
+                                                                {demand.requesterRegistration.workerName}
+                                                            </Link>
+                                                        </div>
 
                                                         <span onClick={() => setSituationCorrentOpen(!situationCorrentOpen)} className="material-symbols-outlined arrow-expend">
                                                             expand_more
@@ -624,7 +634,13 @@ export default function ViewDemand() {
                                                                 <div className="display-flex">
 
                                                                     <p className="title">{t("responsibleAnalyst")}:</p>
-                                                                    <div className="text-information workerName">{proposal.responsibleAnalyst.workerName}</div>
+                                                                    <Link to={"/profile/" + proposal.responsibleAnalyst.workerCode} className="text-information workerName">
+                                                                        <div className="profile-worker">
+                                                                            {proposal.responsibleAnalyst.workerName.split(" ")[0].charAt(0)}
+                                                                        </div>
+                                                                        {proposal.responsibleAnalyst.workerName}
+                                                                    </Link>
+
                                                                 </div>
                                                             </div>
                                                         ) : (
@@ -822,11 +838,21 @@ export default function ViewDemand() {
                                                             <p className="title">{t("Payback")}:</p>
                                                             <span> {payBack}</span>
                                                         </div>
-
                                                         <div className="display-flex-align-center">
                                                             <p className="title">{t("responsibleBussiness")}:</p>
-                                                            <span> {responsibleBussiness}</span>
+                                                            {responsibleBussiness.map((val: any, index: any) => (
+
+
+                                                                <Link to={"/profile/" + val.workerCode} className="text-information workerName">
+                                                                    <div className="profile-worker">
+                                                                        {val.workerName.split(" ")[0].charAt(0)}
+                                                                    </div>
+                                                                    {val.workerName}
+                                                                </Link>
+
+                                                            ))}
                                                         </div>
+
                                                     </div>
                                                 </div>
                                             ) : (null)}
@@ -889,6 +915,27 @@ export default function ViewDemand() {
                                         <div className="background-title">
 
                                             <Title nav={t("agendaAgendaName")} title="viewAgenda" />
+
+
+                                            {pendingMinute < proposalSpecific.length && minute.length === 0 ? (
+                                                <div className="display-flex-end">
+                                                    <Link to={"/minutes/create/" + demandCode}>
+                                                        <button className="btn-primary">{t("finish")}</button>
+                                                    </Link>
+                                                </div>
+                                            ) : (null)
+                                            }
+
+                                            {proposalSpecific.length < approvedDG && (minute.length !== 0 && (minute[0]?.minuteType === "Published" || minute[1]?.minuteType === "Published")) && !(minute[0]?.minuteType === "DG" || minute[1]?.minuteType === "DG" || minute[2]?.minuteType === "DG") ? (
+
+                                                <div className="display-flex-end">
+                                                    <Link to={"/minutes/create/" + demandCode + "?dg"}>
+                                                        <button className="btn-primary">{t("generateMinuteDG")}</button>
+                                                    </Link>
+                                                </div>
+                                            ) : (null)
+                                            }
+
                                         </div>
 
                                         <div className="box">
@@ -972,13 +1019,23 @@ export default function ViewDemand() {
                                                                         <div className="w20 display-flex-align-center">
 
                                                                             <div className="proposal-view-buttons">
-                                                                                {val.proposalStatus === "Pending" ? (
+                                                                                {val?.proposalStatus === "Pending" ? (
                                                                                     <Link to={"/proposal/comission-opinion/" + val.proposalCode + "?" + agenda.agendaCode}>
                                                                                         <button className="btn-primary">{t("insertCommissionOpinion")}</button>
                                                                                     </Link>
+                                                                                ) : val?.proposalStatus === "ApprovedComission" && minute.length !== 0 ? (
+                                                                                    <div className="display-flex-align-center">
+
+                                                                                        <div className="proposal-status mr20">
+                                                                                            {t("status")}: {t(val?.proposalStatus)}
+                                                                                        </div>
+                                                                                        <Link to={"/proposal/dg-opinion/" + val.proposalCode + "?" + agenda.agendaCode}>
+                                                                                            <button className="btn-primary">{t("insertDGOpnion")}</button>
+                                                                                        </Link>
+                                                                                    </div>
                                                                                 ) : (
                                                                                     <div className="proposal-status">
-                                                                                        Status: {val.proposalStatus}
+                                                                                        {t("status")}: {t(val?.proposalStatus)}
                                                                                     </div>
                                                                                 )}
                                                                             </div>
@@ -1014,13 +1071,23 @@ export default function ViewDemand() {
                                                                         <div className="w20 display-flex-align-center">
 
                                                                             <div className="proposal-view-buttons">
-                                                                                {val.proposalStatus === "Pending" ? (
+                                                                                {val?.proposalStatus === "Pending" ? (
                                                                                     <Link to={"/proposal/comission-opinion/" + val.proposalCode + "?" + agenda.agendaCode}>
                                                                                         <button className="btn-primary">{t("insertCommissionOpinion")}</button>
                                                                                     </Link>
+                                                                                ) : val?.proposalStatus === "ApprovedComission" && minute.length !== 0 ? (
+                                                                                    <div className="display-flex-align-center">
+
+                                                                                        <div className="proposal-status mr20">
+                                                                                            {t("status")}: {t(val?.proposalStatus)}
+                                                                                        </div>
+                                                                                        <Link to={"/proposal/dg-opinion/" + val.proposalCode + "?" + agenda.agendaCode}>
+                                                                                            <button className="btn-primary">{t("insertDGOpnion")}</button>
+                                                                                        </Link>
+                                                                                    </div>
                                                                                 ) : (
                                                                                     <div className="proposal-status">
-                                                                                        Status: {val.proposalStatus}
+                                                                                        {t("status")}: {t(val?.proposalStatus)}
                                                                                     </div>
                                                                                 )}
                                                                             </div>
@@ -1061,7 +1128,7 @@ export default function ViewDemand() {
                                                             {agenda?.minutePublished ? (
                                                                 <tr className="h50px">
                                                                     <td className="display-flex-space-between pl20">
-                                                                        {agenda.minutePublished.minuteName}
+                                                                        {t(agenda.minutePublished.minuteName)}
 
                                                                         <Link to={"/minute/view/" + agenda.minutePublished.minuteCode}>
                                                                             <div className="btn-secondary btn-unique">
@@ -1078,7 +1145,7 @@ export default function ViewDemand() {
                                                             {agenda?.minuteNotPublished ? (
                                                                 <tr className="h50px">
                                                                     <td className="display-flex-space-between pl20">
-                                                                        {agenda.minuteNotPublished.minuteName}
+                                                                        {t(agenda.minuteNotPublished.minuteName)}
 
                                                                         <Link to={"/minute/view/" + agenda.minuteNotPublished.minuteCode}>
                                                                             <div className="btn-secondary btn-unique">
@@ -1100,18 +1167,6 @@ export default function ViewDemand() {
                                             }
 
                                         </div>
-
-
-
-                                        {pendingMinute < proposalSpecific.length && minute.length === 0 ? (
-                                            <div className="display-flex-end">
-                                                <Link to={"/minutes/create/" + demandCode}>
-                                                    <button className="btn-primary">{t("finish")}</button>
-                                                </Link>
-                                            </div>
-                                        ) : (null)
-                                        }
-
                                         < Footer />
                                     </div>
                                 </div>
@@ -1211,8 +1266,17 @@ export default function ViewDemand() {
 
                                                                     <div className="text-information display-flex">
                                                                         <b className="label">{t("commissionOpinion")}: </b>
-                                                                        {val.commissionOpinion}
+                                                                        {t(val.proposalStatus)}
                                                                     </div>
+
+                                                                    {val.commissionOpnion &&
+                                                                        <div className="text-information display-flex">
+                                                                            <b>Obs:</b>
+                                                                            {val.commissionOpnion}
+                                                                        </div>
+                                                                    }
+
+
                                                                 </>
                                                             }
 

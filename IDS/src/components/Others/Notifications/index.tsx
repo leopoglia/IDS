@@ -99,7 +99,6 @@ export default function Notifications() {
     const [textSelect, setTextSelect] = useState("Nenhum selecionado");
 
     useEffect(() => {
-        console.log(notifications)
 
         let count = 0;
         for (let i = 0; i < notifications.length; i++) {

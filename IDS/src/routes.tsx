@@ -36,11 +36,13 @@ import Header from "./components/Fixed/Header";
 import Nav from "./components/Fixed/Nav";
 import VLibras from "@djpfs/react-vlibras"
 import Workflow from "./components/Solicitation/Demands/Workflow";
+import Profile from "./components/Others/Profile";
+import { Steps } from "intro.js-react";
 
 export default function Router() {
 
     // Contexto do usuário
-    const [worker, setWorker]: any = useState({ id: "", office: "", name: "", email: "", language: "", voiceCommand: false, pounds: false, screenReader: false, darkmode: false, square: false, fontSize: 24 });
+    const [worker, setWorker]: any = useState({ id: "", office: "", name: "", email: "", language: "", voiceCommand: false, pounds: false, screenReader: false, darkmode: false, square: false, fontSize: 24, workerPhoto: null });
 
     useEffect(() => {
 
@@ -74,7 +76,8 @@ export default function Router() {
                             screenReader: response.screenReader,
                             darkmode: response.darkmode,
                             square: response.square,
-                            fontSize: response.fontSize
+                            fontSize: response.fontSize,
+                            workerPhoto: response.workerPhoto
                         }
 
                         if (response.darkmode === true) {
@@ -98,6 +101,8 @@ export default function Router() {
 
                         setWorker(worker); // Seta os dados do usuário no context
                     });
+                } else {
+                    window.location.href = "/";
                 }
             }
         }
@@ -154,6 +159,30 @@ function RouterContent(props: any) {
         }
     }, [workerContext]);
 
+    const steps = [
+        {
+            element: '.demand-1',
+            intro: 'test 1',
+            position: 'right',
+            tooltipClass: 'myTooltipClass',
+            highlightClass: 'myHighlightClass',
+        },
+        {
+            element: '.selector2',
+            intro: 'test 2',
+        },
+        {
+            element: '.selector3',
+            intro: 'test 3',
+        },
+    ];
+
+
+    const onExit = () => {
+        console.log('exit');
+    }
+
+
 
     return (
 
@@ -176,6 +205,12 @@ function RouterContent(props: any) {
                 <>
                     <Header />
                     <Nav />
+                    <Steps
+                        enabled={false}
+                        steps={steps}
+                        initialStep={0}
+                        onExit={onExit}
+                    />
                 </>
             )}
 
@@ -190,6 +225,7 @@ function RouterContent(props: any) {
                 <Route path="/notifications/:id" element={<Notifications />} />
                 <Route path="/configuration" element={<Configuration />} />
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/profile/:id" element={<Profile />} />
 
                 <Route path="/demands/:page" element={<Demands />} />
                 <Route path="/demand/create/1" element={<CreateDemands1 />} />
@@ -210,9 +246,9 @@ function RouterContent(props: any) {
                 <Route path="/proposal/demand/:id" element={<EditDemand />} />
                 <Route path="/proposal/edit-scope/:id" element={<EditProposalScope />} />
                 <Route path="/proposal/comission-opinion/:id" element={<CommissionOpinion />} />
+                <Route path="/proposal/dg-opinion/:id" element={<CommissionOpinion />} />
                 <Route path="/proposal/informations/:id" element={<ProposedInformation />} />
                 <Route path="/proposal/edit/:id" element={<EditDemand />} />
-
 
                 <Route path="/agendas/:id" element={<Demands />} />
                 <Route path="/agenda/create" element={<CreateAgenda />} />

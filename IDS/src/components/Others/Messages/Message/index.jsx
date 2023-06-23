@@ -3,6 +3,7 @@ import { useContext, useEffect, useState, useRef } from 'react'
 import { useTranslation } from "react-i18next";
 import { useParams } from 'react-router';
 import { WebSocketContext } from '../../../../services/webSocketService';
+import { Link } from 'react-router-dom';
 
 import Title from "../../../Fixed/Search/Title";
 import ServicesMessage from '../../../../services/messageService'
@@ -13,10 +14,10 @@ import ServicesWorker from '../../../../services/workerService';
 import EmojiPicker from "emoji-picker-react";
 import othersUtil from '../../../../utils/othersUtil';
 import "./style.css"
+import Profile from '../../../Fixed/Profile';
 
 
 const ChatRoom = () => {
-    const [isUserOnline, setIsUserOnline] = useState(false);
     const { t } = useTranslation();
     const [emoji, setEmoji] = useState(false);
     const [selectedEmoji, setSelectedEmoji] = useState("");
@@ -36,12 +37,34 @@ const ChatRoom = () => {
     const { worker } = useContext(UserContext);
     const divRef = useRef(null);
 
-    const [chatsOpen, setChatsOpen] = useState(true);
     const [sender, setSender] = useState({});
 
     let [chat, setChat] = useState([]);
 
     let lastProcessedDate = '';
+
+    function donwloadAttachment(base64, type, name) {
+        const buffer = base64ToArrayBuffer(base64);
+        const blob = new Blob([buffer], { type: type });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        document.body.appendChild(a);
+        a.href = url;
+        a.download = name;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
+
+    function base64ToArrayBuffer(base64) {
+        const binaryString = window.atob(base64);
+        const len = binaryString.length;
+        const bytes = new Uint8Array(len);
+        for (let i = 0; i < len; i++) {
+            bytes[i] = binaryString.charCodeAt(i);
+        }
+        return bytes.buffer;
+    }
 
     useEffect(() => {
         divRef.current.scrollTop = divRef.current.scrollHeight;
@@ -76,20 +99,6 @@ const ChatRoom = () => {
     }, [messages, stompClient]);
 
     useEffect(() => {
-        if (stompClient) {
-            if (!messages.includes(workerDemand) && workerDemand.workerCode !== worker.id) {
-                ServicesWorker.isUserOnline(workerDemand?.workerCode).then((response) => {
-                    setIsUserOnline(response);
-                });
-            } else {
-                ServicesWorker.isUserOnline(sender.workerCode).then((response) => {
-                    setIsUserOnline(response);
-                });
-            }
-        }
-    }, [messages, sender, workerDemand, stompClient]);
-
-    useEffect(() => {
 
         async function getDemand() {
             await ServicesDemand.findById(demandCode)
@@ -114,6 +123,10 @@ const ChatRoom = () => {
             setSubscribeNotification(subscribe("/notifications/" + demand?.requesterRegistration?.workerCode, notification));
         }
 
+
+    }, [stompClient]);
+
+    useEffect(() => {
         async function loading() {
             await ServicesMessage.findById(demandCode)
                 .then((response) => {
@@ -122,10 +135,9 @@ const ChatRoom = () => {
                 }).catch((error) => {
                     console.log(error);
                 })
-            setDefaultMessage();
         }
         loading();
-    }, [demandCode, stompClient]);
+    }, [demandCode, fileAttachment]);
 
     const handleFileSelected = (e) => {
         const files = Array.from(e.target.files)
@@ -135,35 +147,30 @@ const ChatRoom = () => {
         }
         ServicesAttachment.save(filesArray[0]).then((response) => {
             setFileAttachment(response);
+            setMessage({ message: message.message, dateMessage: new Date().toLocaleString(), sender: { workerCode: worker.id || parseInt(localStorage.getItem("id")) }, demandCode: demandCode, attachment: { attachmentCode: response?.attachmentCode } });
         })
+        reloadMessage();
     }
 
     const setDefaultMessage = () => {
 
-        if (fileAttachment !== null) {
-            console.log("fileAttachment ==> ", fileAttachment)
-
-            setMessage({
-                demandCode: demandCode,
-                sender: { workerCode: worker.id || parseInt(localStorage.getItem("id")) },
-                message: "",
-                dateMessage: null,
-                attachment: { attachmentCode: fileAttachment.attachmentCode }
-            })
-        } else {
-            setMessage({
-                demandCode: demandCode,
-                sender: { workerCode: worker.id || parseInt(localStorage.getItem("id")) },
-                message: "",
-                dateMessage: null
-            })
-        }
+        setMessage({
+            demandCode: demandCode,
+            sender: { workerCode: worker.id || parseInt(localStorage.getItem("id")) },
+            message: "",
+            dateMessage: null,
+            attachment: null
+        })
     }
 
     const reloadMessage = (event) => {
         event.preventDefault();
         const { value } = event.target;
-        setMessage({ ...message, message: value, dateMessage: new Date().toLocaleString() });
+        if (fileAttachment === null || fileAttachment === undefined) {
+            setMessage({ ...message, message: value, dateMessage: new Date().toLocaleString(), sender: { workerCode: worker.id || parseInt(localStorage.getItem("id")) }, demandCode: demandCode });
+        } else {
+            setMessage({ ...message, message: value, dateMessage: new Date().toLocaleString(), sender: { workerCode: worker.id || parseInt(localStorage.getItem("id")) }, demandCode: demandCode, attachment: { attachmentCode: fileAttachment?.attachmentCode } });
+        }
     }
 
     const submit = (event) => {
@@ -177,12 +184,13 @@ const ChatRoom = () => {
         }
 
         setFileAttachment(null);
+
     }
 
     const setNotification = () => {
         return notification = {
             date: new Date(),
-            description: worker.name + " iniciou uma conversa com você, na demanda " + demandCode,
+            description: worker.name.split(" ")[0] + " startedConversation " + demandCode,
             worker: { workerCode: JSON.parse(demand.requesterRegistration.workerCode) },
             icon: "chat_bubble",
             type: "chat",
@@ -195,144 +203,29 @@ const ChatRoom = () => {
         setMessage({ ...message, message: message.message + emojiData.emoji, dateMessage: new Date().toLocaleString() });
     }
 
+
     return (
         <div className="messages">
-
-
-
             <div className="container">
-
                 <div className="backgroud-title">
                     <Title nav="chatMessages" title="message" />
                 </div>
 
-
                 <div className="box-message">
                     {
                         !messages.includes(workerDemand) && workerDemand.workerCode !== worker.id ? (
-                            <div className="profile">
-                                <div className='person'>
-                                    <span>
-                                        {workerDemand.workerName?.slice(0, 1)}
-                                    </span>
-                                </div>
-
-                                <div className="message-name">
-                                    <span className="username">{workerDemand.workerName}</span>
-                                    {isUserOnline ? (
-                                        <div className="online">
-                                            <span>online</span>
-                                        </div>
-                                    ) : (
-                                        <div className="offline">
-                                            <span>offline</span>
-                                        </div>
-                                    )
-                                    }
-
-                                </div>
-                            </div>
+                            <Profile workerCode={workerDemand.workerCode} image={workerDemand.workerName?.slice(0, 1)} workerName={workerDemand.workerName} />
                         ) : (
-                            <div className="profile">
-                                <div className='person'>
-                                    <span>
-                                        {sender.workerName?.slice(0, 1)}
-                                    </span>
-                                </div>
-
-                                <div className="message-name">
-                                    <span className="username">{sender.workerName}</span>
-                                    {isUserOnline ? (
-                                        <div className="online">
-                                            <span>online</span>
-                                        </div>
-                                    ) : (
-                                        <div className="offline">
-                                            <span>offline</span>
-                                        </div>
-                                    )
-                                    }
-                                </div>
-                            </div>
+                            <Profile workerCode={sender.workerCode} image={sender.workerName?.slice(0, 1)} workerName={sender.workerName} />
                         )
 
                     }
 
                     <div className="chat-box display-flex">
 
-                        {worker.office !== "requester" && worker.office !== "analyst" ?
-                            (
-                                <div className={'chats chats-' + chatsOpen}>
-
-                                    {
-                                        chat?.length > 0 &&
-                                        chat.map((item) => (
-                                            <div className="chats-profile">
-
-                                                <div className="person">
-                                                    <span>
-                                                        {workerDemand.workerName?.slice(0, 1)}
-                                                    </span>
-                                                </div>
-
-                                                <div className='text-person-chats w100'>
-
-                                                    <div className='display-flex-space-between w100 chat-time-chats'>
-                                                        <div className="message-name-chats">
-                                                            <span className="username">{workerDemand.workerName}</span>
-                                                        </div>
-
-                                                        <span className='time-chat'>
-                                                            {item.dateMessage.split(",")[1]}
-                                                        </span>
-
-
-                                                    </div>
-                                                    {
-                                                        worker.id === item.sender.workerCode ? (
-                                                            <div className='display-flex span-message-chat'>
-                                                                <span className='message-chat'>
-                                                                    Você: {item.message}
-                                                                </span>
-                                                            </div>
-                                                        ) : (
-                                                            <div className='display-flex span-message-chat'>
-                                                                <span className='message-chat'>
-                                                                    {sender.workerName}: {item.message}
-                                                                </span>
-                                                            </div>
-                                                        )
-                                                    }
-
-                                                </div>
-
-                                            </div>
-                                        ))
-                                    }
-
-                                </div>
-                            ) : null
-                        }
-
-
                         <div className="chat-content ">
 
-                            {worker.office !== "requester" ?
-                                (
-
-                                    <div className={'arrow-chat arrow-chat-' + chatsOpen} onClick={() => setChatsOpen(!chatsOpen)}>
-                                        <span className='material-symbols-outlined arrow-expend'>
-                                            expand_more
-                                        </span>
-                                    </div>
-
-                                ) : null
-                            }
-
-
                             <ul className="chat-messages" ref={divRef}>
-
-
 
                                 {messages.length > 0 &&
                                     messages.map((message, index) => {
@@ -355,8 +248,6 @@ const ChatRoom = () => {
                                         // Atualizar a última data processada com a data atual da mensagem
                                         lastProcessedDate = displayDate;
 
-                                        console.log(message)
-
                                         return (
                                             <React.Fragment key={message.id}>
                                                 {isDifferentDate && (
@@ -373,31 +264,47 @@ const ChatRoom = () => {
                                                             : null
                                                     }
                                                 >
-                                                    <div className="message-user">
-                                                        <span>{message.message}</span>
-                                                        <div className="display-flex-end">
-                                                            <div className="message-data">
-                                                                <span>{message.dateMessage.split(",")[1]}</span>
+
+                                                    <div className='box-message-attachment'>
+                                                        {message.message &&
+                                                            <div className='content-message'>
+                                                                <div className="message-user">
+                                                                    <span>{message.message}</span>
+                                                                    <div className="display-flex-end message-content-date">
+
+                                                                        <div className='display-block w100'>
+                                                                            <div className='display-flex-end'>
+                                                                                <div className="message-data">
+                                                                                    <span>{message.dateMessage.split(",")[1]}</span>
+                                                                                </div>
+
+                                                                                {message.sender?.workerCode === worker.id ||
+                                                                                    message.sender?.workerCode === parseInt(localStorage.getItem("id")) ? (
+                                                                                    <span className="material-symbols-outlined check-done">done</span>
+                                                                                ) : null}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                            {message.sender?.workerCode === worker.id ||
-                                                                message.sender?.workerCode === parseInt(localStorage.getItem("id")) ? (
-                                                                <span className="material-symbols-outlined check-done">done</span>
-                                                            ) : null}
-                                                        </div>
+                                                        }
+                                                        {message.attachment &&
+                                                            <a onClick={() => donwloadAttachment(message.attachment.dice, message.attachment.type, message.attachment.name)}>
+                                                                <div className="attachments-message">
+                                                                    <div className='attachment-message display-flex-align-center display-flex-end'>
+                                                                        <span>{message.attachment.name}</span>
+
+                                                                        <div className="attachment">
+                                                                            <div className="attachment-image">
+                                                                                <img src={"/attachment/" + othersUtil.attatchmentType(message.attachment) + ".png"} alt="" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        }
                                                     </div>
 
-
-                                                    {message.attachment &&
-                                                        <div className="attachments">
-
-                                                            <div className="attachment">
-                                                                <div className="attachment-image">
-                                                                    <img src={"/attachment/" + othersUtil.attatchmentType(message.attachment) + ".png"} alt="" />
-                                                                </div>
-                                                                <span>{message.attachment.name}</span>
-                                                            </div>
-                                                        </div>
-                                                    }
                                                 </li>
                                             </React.Fragment>
                                         );

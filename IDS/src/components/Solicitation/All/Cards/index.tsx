@@ -283,7 +283,7 @@ export default function Demands() {
                         <Search setSearch={setSearch} search={search} onClick={callback} name={nameFilter} demands={demands} type={typeFilter} setTable={setTable} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1" />
                         <div className={"container-background boxNoPadding-" + table}>
 
-            
+
                             {
                                 demands
                                     .filter((val: any) => {
@@ -323,14 +323,14 @@ export default function Demands() {
                                         if (index === demands.length - 1 && index === 8) {
                                             return (
                                                 <div className="demand-last">
-                                                    <Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle}
+                                                    <Demand key={index} id={index} demandCode={val.demandCode} listDirection={table} name={val.demandTitle}
                                                         requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus}
                                                         proposalCode={val.proposalCode} demandVersion={val.demandVersion} type="demand" />
                                                 </div>
                                             )
                                         } else {
                                             return (
-                                                <Demand key={val.demandCode} demandCode={val.demandCode} listDirection={table} name={val.demandTitle}
+                                                <Demand key={index} id={index} demandCode={val.demandCode} listDirection={table} name={val.demandTitle}
                                                     requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus}
                                                     proposalCode={val.proposalCode} demandVersion={val.demandVersion} type="demand" />
                                             )
@@ -388,9 +388,9 @@ export default function Demands() {
 
                                         return false;
                                     })
-                                    .map((val: any) => (
+                                    .map((val: any, index: any) => (
                                         <Demand
-                                            key={val.proposalCode} listDirection={table} demandCode={val.proposalCode}
+                                            key={index} listDirection={table} demandCode={val.proposalCode}
                                             name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName}
                                             date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal"
                                         />
@@ -442,9 +442,9 @@ export default function Demands() {
 
                                         return false;
                                     })
-                                    .map((val: any) => (
+                                    .map((val: any, index: any) => (
                                         <Demand
-                                            key={val.agendaCode} val={val.agendaCode} agenda={val} listDirection={table}
+                                            key={index} val={val.agendaCode} agenda={val} listDirection={table}
                                             name={(val.commission.commissionName.split("–")[1]).toUpperCase() + " – " + val.agendaDate} demandCode={val.agendaCode} date={val.agendaDate}
                                             number={val.sequentialNumber} year={val.initialDate} type="agenda"
                                         />
@@ -504,9 +504,9 @@ export default function Demands() {
 
                                         return false;
                                     })
-                                    .map((val: any) => (
+                                    .map((val: any, index: any) => (
                                         <Demand
-                                            key={val.minuteCode}
+                                            key={index}
                                             listDirection={table}
                                             name={(t(val.minuteType) + " – " + val.agenda.commission.commissionName.split("–")[1]).toUpperCase()}
                                             demandCode={val.minuteCode}

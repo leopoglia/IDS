@@ -111,7 +111,7 @@ export default function Demand(props: any) {
 
     if (props.listDirection === false) {
         return (
-            <div>
+            <div className={"demand-" + props.id}>
                 <Link to={"/" + props.type + "/view/" + props.demandCode + urlFinal}>
                     <div className="demand">
                         <div className="content-demand">

@@ -1,5 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import { Steps, Hints } from 'intro.js-react';
+import 'intro.js/introjs.css';
 
 import "./style.css"
 
@@ -7,7 +9,7 @@ export default function Presentation() {
 
     const { t } = useTranslation();
 
-    const [stepPresentation, setStepPresentation]: any = useState(0);
+    const [stepPresentation, setStepPresentation] = useState(0);
 
     const linesPresentation = [
         { title: "widsPresentation", description: "introduceSystem" },
@@ -15,6 +17,7 @@ export default function Presentation() {
         { title: "viewCard", description: "viewCardHere" },
         { title: "createDemand", description: "createDemandHere" }
     ]
+
 
     return (
         <div className={"presentation presentation-" + stepPresentation} >
@@ -50,6 +53,8 @@ export default function Presentation() {
 
 
                 <img className="bia" src="/images/wids.png" />
+
+             
             </div>
 
 

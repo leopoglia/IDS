@@ -37,6 +37,7 @@ import Nav from "./components/Fixed/Nav";
 import VLibras from "@djpfs/react-vlibras"
 import Workflow from "./components/Solicitation/Demands/Workflow";
 import Profile from "./components/Others/Profile";
+import { Steps } from "intro.js-react";
 
 export default function Router() {
 
@@ -100,7 +101,7 @@ export default function Router() {
 
                         setWorker(worker); // Seta os dados do usuário no context
                     });
-                } else{
+                } else {
                     window.location.href = "/";
                 }
             }
@@ -158,6 +159,30 @@ function RouterContent(props: any) {
         }
     }, [workerContext]);
 
+    const steps = [
+        {
+            element: '.demand-1',
+            intro: 'test 1',
+            position: 'right',
+            tooltipClass: 'myTooltipClass',
+            highlightClass: 'myHighlightClass',
+        },
+        {
+            element: '.selector2',
+            intro: 'test 2',
+        },
+        {
+            element: '.selector3',
+            intro: 'test 3',
+        },
+    ];
+
+
+    const onExit = () => {
+        console.log('exit');
+    }
+
+
 
     return (
 
@@ -180,6 +205,12 @@ function RouterContent(props: any) {
                 <>
                     <Header />
                     <Nav />
+                    <Steps
+                        enabled={true}
+                        steps={steps}
+                        initialStep={0}
+                        onExit={onExit}
+                    />
                 </>
             )}
 

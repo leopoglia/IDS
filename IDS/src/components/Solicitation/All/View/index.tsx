@@ -1134,7 +1134,7 @@ export default function ViewDemand() {
                                                             {agenda?.minutePublished ? (
                                                                 <tr className="h50px">
                                                                     <td className="display-flex-space-between pl20">
-                                                                        {agenda.minutePublished.minuteName}
+                                                                        {t(agenda.minutePublished.minuteName)}
 
                                                                         <Link to={"/minute/view/" + agenda.minutePublished.minuteCode}>
                                                                             <div className="btn-secondary btn-unique">
@@ -1151,7 +1151,7 @@ export default function ViewDemand() {
                                                             {agenda?.minuteNotPublished ? (
                                                                 <tr className="h50px">
                                                                     <td className="display-flex-space-between pl20">
-                                                                        {agenda.minuteNotPublished.minuteName}
+                                                                        {t(agenda.minuteNotPublished.minuteName)}
 
                                                                         <Link to={"/minute/view/" + agenda.minuteNotPublished.minuteCode}>
                                                                             <div className="btn-secondary btn-unique">

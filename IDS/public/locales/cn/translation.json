@@ -275,5 +275,6 @@
     "RejectedComission": "委員會拒絕",
     "ApprovedDG": "批准DG",
     "RejectedDG": "拒絕DG",
-    "colors": "顏色"
+    "colors": "顏色",
+    "dgMinute": "DG分鐘"
 }

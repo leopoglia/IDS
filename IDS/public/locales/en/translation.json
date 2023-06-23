@@ -274,5 +274,6 @@
     "RejectedComission": "Rejected comission",
     "ApprovedDG": "Approved DG",
     "RejectedDG": "Rejected DG",
-    "colors": "Colors"
+    "colors": "Colors",
+    "dgMinute": "DG Minute"
 }

@@ -159,14 +159,13 @@ const Services = {
                 .catch(reject)
         })
     },
-    saveExcel: function (type: any, value: any) {
+    saveExcel: function (demands: any) {
         return new Promise((resolve, reject) => {
-
-            fetch(url + "/filter/" + value + "/" + type, {
-                method: 'GET',
-                headers: { 'Content-Type': 'application/json' },
-                credentials: 'include'
-            }).then(function (result) { return result.json(); })
+            fetch(url + "/filter", {
+                method: 'POST',
+                body: JSON.stringify(demands),
+                headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result; })
                 .then(resolve)
                 .catch(reject)
         })

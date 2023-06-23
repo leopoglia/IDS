@@ -30,8 +30,29 @@ export default function Search(props: any) {
     }, [props.name, props.type])
 
 
-    function excel() {
-        DemandService.saveExcel(props.name, props.type);
+    const excel = (demands: any, nameFilter: any, typeFilter: any) => {
+        let filteredDemands:any = [];
+        for(let i = 0; i < demands.length; i++) {
+            console.log("tipo: " + typeFilter + " nome: " + nameFilter)
+            if (typeFilter === "requester" && demands[i].requesterRegistration.workerName.toUpperCase().includes(nameFilter.toUpperCase())) {
+                filteredDemands.push(demands[i]);
+            } else if (typeFilter === "status" && demands[i]?.demandStatus.toUpperCase() === nameFilter.toUpperCase()) {
+                console.log("entrou");
+                filteredDemands.push(demands[i]);
+            } else if (typeFilter === "size" && demands[i]?.classification?.classificationSize.toUpperCase() === nameFilter.toUpperCase()) {
+                filteredDemands.push(demands[i]);
+            } else if (typeFilter === "ppm" && demands[i]?.classification?.ppmCode.toUpperCase() === nameFilter.toUpperCase()) {
+                filteredDemands.push(demands[i]);
+            } else if (typeFilter === "code-demand" && demands[i]?.demandCode === parseInt(nameFilter)) {
+                filteredDemands.push(demands[i]);
+            } else if (typeFilter === "home" && demands[i]?.requesterRegistration.workerName === nameFilter) {
+                filteredDemands.push(demands[i]);
+            } else if (typeFilter === "department" && demands[i]?.requesterRegistration.department === nameFilter) {
+                filteredDemands.push(demands[i]);
+            }
+        }
+        console.log(filteredDemands);
+        DemandService.saveExcel(filteredDemands);
     }
 
     // Se a tabela estiver aberta, fecha, se estiver fechada, abre
@@ -97,7 +118,7 @@ export default function Search(props: any) {
                             <div className="display-flex"><span>{props.name} - {props.type}</span><span className="material-symbols-outlined size-20">close</span></div>
                         </div>
 
-                        <button onClick={excel} className="btn-secondary export-spreadsheet">
+                        <button onClick={() => excel(props.demands, props.name, props.type)} className="btn-secondary export-spreadsheet">
                             <img src="/attachment/excel.png" alt="" />
                         </button>
                     </div>

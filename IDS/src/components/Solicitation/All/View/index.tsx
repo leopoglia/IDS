@@ -1,7 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ToastContainer } from 'react-toastify';
 import { WebSocketContext } from '../../../../services/webSocketService';
 
 import Title from "../../../Fixed/Search/Title";
@@ -1318,8 +1317,6 @@ export default function ViewDemand() {
                 )}
 
             {url !== "agenda" ? (<Footer />) : null}
-
-            <ToastContainer position="bottom-right" newestOnTop />
 
         </div >
     );

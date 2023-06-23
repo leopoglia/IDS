@@ -13,7 +13,8 @@ type MyContextType = {
     darkmode: boolean,
     square: boolean,
     fontSize: number,
-    workerPhoto: any
+    workerPhoto: any,
+    presentation: boolean
   },
   setWorker: any
 };

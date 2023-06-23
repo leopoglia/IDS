@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ToastContainer } from 'react-toastify';
-
 import Title from "../../../Fixed/Search/Title";
 import Editor from "./Editor";
 import "./style.css"
@@ -54,8 +52,6 @@ export default function EditProposalScope() {
         </div>
 
       </div>
-      <ToastContainer position="bottom-right" newestOnTop />
-
     </div>
   );
 

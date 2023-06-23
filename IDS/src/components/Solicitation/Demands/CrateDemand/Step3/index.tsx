@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from 'react';
-import { ToastContainer } from 'react-toastify';
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 
@@ -142,7 +141,6 @@ export default function CreateDemands3() {
                 </div>
             </div>
 
-            <ToastContainer position="bottom-right" newestOnTop />
 
         </div>
     );

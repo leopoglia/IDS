@@ -65,8 +65,6 @@ export default function ModalChangeStatus(props: any) {
 
                 </div>
             </div>
-            <ToastContainer position="bottom-right" newestOnTop />
-
         </div>
     )
 }

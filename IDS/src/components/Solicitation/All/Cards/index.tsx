@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { ToastContainer } from 'react-toastify';
+import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -15,6 +14,8 @@ import Presentation from "./Presentation";
 import Notification from "../../../../utils/notifyUtil";
 import othersUtil from "../../../../utils/othersUtil";
 import "./style.css"
+import { Steps } from "intro.js-react";
+import UserContext from "../../../../context/userContext";
 
 
 export default function Demands() {
@@ -25,7 +26,7 @@ export default function Demands() {
 
     let navigate = useNavigate();
     const { t } = useTranslation();
-    const [filteredDemands, setFilteredDemands] = useState([]);
+    const { worker } = useContext(UserContext);
     const [presentation, setPresentation] = useState(localStorage.getItem("presentation") === "true" ? true : false); // Estado para mostrar a apresentação
     const [table, setTableList] = useState(false); // Estado para mostrar a tabela de demandas
     const [search, setSearch]: any = useState(""); // Retorno do campo de busca de demandas
@@ -45,7 +46,6 @@ export default function Demands() {
     const [demandsSize, setDemandsSize] = useState(0);
     const [loading, setLoading] = useState(true);
 
-    const [comissions, setComissions] = useState(""); // Estado para armazenar as comissões
 
     // Entra na página e busca as demandas cadastradas
     useEffect(() => {
@@ -261,6 +261,36 @@ export default function Demands() {
     }
 
 
+    const steps = [
+        {
+            element: '.demand-0',
+            title: "Card",
+            intro: 'No card você consegue visualizar as informações da demanda.',
+            position: 'left',
+            tooltipClass: 'myTooltipClass',
+            highlightClass: 'myHighlightClass',
+        },
+        {
+            element: '.input-search',
+            title: "Campo de busca",
+            intro: 'No campo de busca você consegue buscar pelo nome da demanda.',
+            position: 'left',
+            tooltipClass: 'myTooltipClass',
+            highlightClass: 'myHighlightClass',
+        },
+        {
+            element: '.selector3',
+            intro: 'test 3',
+        },
+    ];
+
+
+    const onExit = () => {
+        console.log('exit');
+    }
+
+
+
     return (
         <div className="solicitation">
 
@@ -268,14 +298,8 @@ export default function Demands() {
 
                 <div className="demands">
                     {presentation && (
-                        <div>
-                            <Presentation />
-                            <button onClick={() => { closePresentation() }} className="btn-secondary btn-presentation">
-                                <div className="material-symbols-outlined">
-                                    close
-                                </div>
-                            </button>
-                        </div>)}
+                        <Presentation setPresentation={setPresentation} />
+                    )}
 
 
                     <div className="container">
@@ -544,7 +568,12 @@ export default function Demands() {
                 </div>
             )}
 
-            <ToastContainer position="bottom-right" newestOnTop />
+            <Steps
+                enabled={worker.presentation}
+                steps={steps}
+                initialStep={0}
+                onExit={onExit}
+            />
         </div>
     )
 }

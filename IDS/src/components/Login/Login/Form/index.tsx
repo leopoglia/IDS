@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useRef, useContext } from "react";
-import { ToastContainer } from "react-toastify";
+  
 
 import notifyUtil from "../../../../utils/notifyUtil";
 import UserContext from "../../../../context/userContext";
@@ -113,7 +113,6 @@ export default function LoginForm() {
         <button>{t("login")}</button>
       </footer>
 
-      <ToastContainer position="bottom-right" newestOnTop />
     </form>
   );
 }

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer } from 'react-toastify';
 import { useTranslation } from "react-i18next";
 
 import Title from "../../../Fixed/Search/Title";
@@ -114,8 +113,6 @@ export default function AddExpense() {
 
                 </div>
             </div>
-
-            <ToastContainer position="bottom-right" newestOnTop />
 
         </div>
     );

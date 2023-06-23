@@ -233,34 +233,38 @@ input[type=checkbox]:checked {
 
 .btn-primary,
 .btn-secondary,
-.btn-primary-unique {
-  background-color: var(--blue);
+.btn-primary-unique,
+.introjs-button {
+  background-color: var(--blue) !important;
   width: 200px;
   height: var(--h);
-  border-radius: var(--r);
+  border-radius: var(--r) !important;
   font-size: var(--p) !important;
-  border: none;
-  color: var(--white);
-  cursor: pointer;
+  border: none !important;
+  color: var(--white) !important;
+  cursor: pointer !important;
   display: flex;
   align-items: center;
   justify-content: center;
   outline: none !important;
 }
 
-.btn-secondary {
-  background-color: var(--greyF7);
-  color: var(--grey59);
-  border: 1px solid var(--greyC4);
+.btn-secondary,
+.introjs-prevbutton {
+  background-color: var(--greyF7) !important;
+  color: var(--grey59) !important;
+  border: 1px solid var(--greyC4) !important;
 }
 
-.btn-secondary:hover {
-  background-color: var(--greyE5);
+.btn-secondary:hover,
+.introjs-prevbutton:hover {
+  background-color: var(--greyE5) !important;
 }
 
 
-.btn-primary:hover {
-  background-color: var(--blue19);
+.btn-primary:hover,
+.introjs-nextbutton:hover {
+  background-color: var(--blue19) !important;
 }
 
 .btn-primary .material-symbols-outlined {
@@ -609,6 +613,69 @@ hr {
 
 .css-e363es-MuiFormControl-root {
   margin: 0px !important;
+}
+
+/* INTRO JS */
+
+.introjs-helperLayer{
+  box-shadow: rgba(33, 33, 33, 0.1) 0px 0px 1px 2px, rgba(33, 33, 33, 0.5) 0px 0px 0px 5000px !important;
+}
+
+.introjs-arrow.top{
+  top: -9px !important;
+}
+
+.introjs-tooltip-title{
+  color: var(--blue);
+  font-weight: 500 !important;
+}
+
+.introjs-button{
+  text-shadow: none !important;
+  width: 40px !important;
+  height: 40px !important;
+  text-align: center;
+  box-shadow: none !important;
+  padding: 0px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.introjs-prevbutton{
+  color: var(--greyC4) !important;
+}
+
+.introjs-prevbutton:before{
+  content: '<';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  color: var(--grey3d);
+}
+
+.introjs-nextbutton:before{
+  content: '>';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  color: var(--white);
+}
+
+.introjs-prevbutton{
+  color: var(--greyF7) !important;
+}
+
+.introjs-prevbutton:hover{
+  color: var(--greyE5) !important;
+}
+
+.introjs-nextbutton{
+  color: var(--blue) !important;
+}
+
+.introjs-nextbutton:hover{
+  color: var(--blue19) !important;
 }
 
 @media(max-width: 1280px) {

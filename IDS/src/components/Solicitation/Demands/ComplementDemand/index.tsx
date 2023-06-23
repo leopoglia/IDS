@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { t } from "i18next"
-import { ToastContainer } from 'react-toastify';
 import { useParams } from "react-router-dom";
 
 import Title from "../../../Fixed/Search/Title"
@@ -74,8 +73,6 @@ export default function ComplementDemand() {
                     <button onClick={() => complementary()} className="btn-primary">{t("complementary")}</button>
                 </div>
             </div>
-
-            <ToastContainer position="bottom-right" newestOnTop />
 
         </div>
     )

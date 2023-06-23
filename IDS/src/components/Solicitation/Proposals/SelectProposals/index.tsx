@@ -84,8 +84,6 @@ export default function Proposals() {
 
             </div>
 
-            <ToastContainer position="bottom-right" newestOnTop />
-
         </div>
     );
 }

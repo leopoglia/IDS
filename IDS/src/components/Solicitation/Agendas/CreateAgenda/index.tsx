@@ -12,7 +12,6 @@ import "./style.css";
 import Input from "../../Demands/CrateDemand/Others/Input";
 import UserContext from "../../../../context/userContext";
 import notifyUtil from "../../../../utils/notifyUtil";
-import { ToastContainer } from "react-toastify";
 
 export default function CreateAgenda() {
 
@@ -180,7 +179,6 @@ export default function CreateAgenda() {
 
             </div>
 
-            <ToastContainer />
         </div >
 
     )

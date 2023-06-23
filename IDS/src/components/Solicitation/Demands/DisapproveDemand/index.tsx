@@ -1,7 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { t } from "i18next";
 import { Link, useParams } from "react-router-dom";
-import { ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { WebSocketContext } from '../../../../services/webSocketService';
 
@@ -135,7 +134,6 @@ export default function DisapproveDemand() {
                 <Footer />
 
             </div>
-            <ToastContainer position="bottom-right" newestOnTop />
 
         </div>
     );

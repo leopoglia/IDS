@@ -169,8 +169,6 @@ export default function ProposedInformation() {
                     </div>
                 </div>
             </div>
-            <ToastContainer position="bottom-right" newestOnTop />
-
         </div >
     );
 }

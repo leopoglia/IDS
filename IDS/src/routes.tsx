@@ -38,6 +38,8 @@ import VLibras from "@djpfs/react-vlibras"
 import Workflow from "./components/Solicitation/Demands/Workflow";
 import Profile from "./components/Others/Profile";
 import { Steps } from "intro.js-react";
+import { ToastContainer } from "react-toastify";
+
 
 export default function Router() {
 
@@ -150,6 +152,7 @@ function RouterContent(props: any) {
 
     useEffect(() => {
         const worker = workerContext;
+
         if (worker.screenReader === true) {
             document.addEventListener('mouseup', handleTextSelection);
             return () => {
@@ -159,29 +162,9 @@ function RouterContent(props: any) {
         }
     }, [workerContext]);
 
-    const steps = [
-        {
-            element: '.demand-1',
-            intro: 'test 1',
-            position: 'right',
-            tooltipClass: 'myTooltipClass',
-            highlightClass: 'myHighlightClass',
-        },
-        {
-            element: '.selector2',
-            intro: 'test 2',
-        },
-        {
-            element: '.selector3',
-            intro: 'test 3',
-        },
-    ];
-
-
-    const onExit = () => {
-        console.log('exit');
-    }
-
+    useEffect(() => {
+        console.log(workerContext);
+    }, [workerContext])
 
 
     return (
@@ -205,14 +188,10 @@ function RouterContent(props: any) {
                 <>
                     <Header />
                     <Nav />
-                    <Steps
-                        enabled={false}
-                        steps={steps}
-                        initialStep={0}
-                        onExit={onExit}
-                    />
                 </>
             )}
+
+            <ToastContainer position="bottom-right" newestOnTop />
 
 
             <Routes>

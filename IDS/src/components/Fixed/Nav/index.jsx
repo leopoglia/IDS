@@ -7,7 +7,6 @@ import WorkerService from "../../../services/workerService";
 import ServicesNotification from "../../../services/notificationService";
 import ServicesMessages from "../../../services/messageService";
 import notifyUtil from "../../../utils/notifyUtil";
-import { ToastContainer } from 'react-toastify';
 import UserContext from "../../../context/userContext";
 import "./style.css"
 
@@ -294,8 +293,6 @@ export default function Nav() {
                 </Tooltip>
 
             </ul>
-
-            <ToastContainer position="bottom-right" newestOnTop />
 
         </nav >
 

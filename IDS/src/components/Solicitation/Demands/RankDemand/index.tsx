@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { ToastContainer } from 'react-toastify';
 import { useTranslation } from "react-i18next";
 import { WebSocketContext } from '../../../../services/webSocketService';
 
@@ -314,8 +313,6 @@ export default function RankDemand() {
                 </div>
 
             </div>
-
-            <ToastContainer position="bottom-right" newestOnTop />
 
         </div>
 

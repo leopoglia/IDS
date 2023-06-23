@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer } from 'react-toastify';
 import { useState, useContext, useEffect } from "react";
 import { Tooltip } from "@mui/material";
 
@@ -223,8 +222,6 @@ export default function ExecutionCosts() {
                     </div>
                 </div>
             </div>
-
-            <ToastContainer position="bottom-right" newestOnTop />
 
         </div>
     );

@@ -39,14 +39,8 @@ export default function Presentation(props) {
 
                     </div>
                 </div>
-
-
                 <img className="bia" src="/images/wids.png" />
-
-
             </div>
-
-
         </div>
     )
 

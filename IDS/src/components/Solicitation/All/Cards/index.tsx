@@ -26,7 +26,7 @@ export default function Demands() {
 
     let navigate = useNavigate();
     const { t } = useTranslation();
-    const { worker } = useContext(UserContext);
+    const { worker, setWorker } = useContext(UserContext);
     const [presentation, setPresentation] = useState(localStorage.getItem("presentation") === "true" ? true : false); // Estado para mostrar a apresentação
     const [table, setTableList] = useState(false); // Estado para mostrar a tabela de demandas
     const [search, setSearch]: any = useState(""); // Retorno do campo de busca de demandas
@@ -263,33 +263,29 @@ export default function Demands() {
 
     const steps = [
         {
-            element: '.demand-0',
-            title: "Card",
-            intro: 'No card você consegue visualizar as informações da demanda.',
-            position: 'left',
-            tooltipClass: 'myTooltipClass',
-            highlightClass: 'myHighlightClass',
-        },
-        {
             element: '.input-search',
             title: "Campo de busca",
             intro: 'No campo de busca você consegue buscar pelo nome da demanda.',
-            position: 'left',
-            tooltipClass: 'myTooltipClass',
-            highlightClass: 'myHighlightClass',
+            position: 'left'
         },
         {
-            element: '.selector3',
-            intro: 'test 3',
+            element: '.btn-create-demand',
+            title: "Criar demanda",
+            intro: 'Para criar uma nova demanda você deve clicar em criar demanda.',
+            position: 'left'
         },
+        {
+            element: '.demand-0',
+            title: "Card",
+            intro: 'No card você consegue visualizar as informações da demanda.',
+            position: 'left'
+        }
     ];
 
-
     const onExit = () => {
-        console.log('exit');
+        worker.presentation = false;
+        setWorker(worker);
     }
-
-
 
     return (
         <div className="solicitation">

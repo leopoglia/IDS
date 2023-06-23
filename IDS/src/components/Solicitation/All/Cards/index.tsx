@@ -22,9 +22,10 @@ export default function Demands() {
     let findDemands: any;
     let page: any = url[4]
 
+
     let navigate = useNavigate();
     const { t } = useTranslation();
-
+    const [filteredDemands, setFilteredDemands] = useState([]);
     const [presentation, setPresentation] = useState(localStorage.getItem("presentation") === "true" ? true : false); // Estado para mostrar a apresentação
     const [table, setTableList] = useState(false); // Estado para mostrar a tabela de demandas
     const [search, setSearch]: any = useState(""); // Retorno do campo de busca de demandas
@@ -279,7 +280,7 @@ export default function Demands() {
 
                     <div className="container">
 
-                        <Search setSearch={setSearch} search={search} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1" />
+                        <Search setSearch={setSearch} search={search} onClick={callback} name={nameFilter} demands={demands} type={typeFilter} setTable={setTable} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1" />
                         <div className={"container-background boxNoPadding-" + table}>
 
             
@@ -318,7 +319,6 @@ export default function Demands() {
                                         return false;
                                     })
                                     .map((val: any, index: number) => {
-
                                         //verificar ultimo
                                         if (index === demands.length - 1 && index === 8) {
                                             return (

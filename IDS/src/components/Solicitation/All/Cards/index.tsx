@@ -16,6 +16,7 @@ import othersUtil from "../../../../utils/othersUtil";
 import "./style.css"
 import { Steps } from "intro.js-react";
 import UserContext from "../../../../context/userContext";
+import presentationUtil from "../../../../utils/presentationUtil";
 
 
 export default function Demands() {
@@ -258,33 +259,6 @@ export default function Demands() {
                 </div>
             )
         }
-    }
-
-
-    const steps = [
-        {
-            element: '.input-search',
-            title: "Campo de busca",
-            intro: 'No campo de busca você consegue buscar pelo nome da demanda.',
-            position: 'left'
-        },
-        {
-            element: '.btn-create-demand',
-            title: "Criar demanda",
-            intro: 'Para criar uma nova demanda você deve clicar em criar demanda.',
-            position: 'left'
-        },
-        {
-            element: '.demand-0',
-            title: "Card",
-            intro: 'No card você consegue visualizar as informações da demanda.',
-            position: 'left'
-        }
-    ];
-
-    const onExit = () => {
-        worker.presentation = false;
-        setWorker(worker);
     }
 
     return (
@@ -564,12 +538,15 @@ export default function Demands() {
                 </div>
             )}
 
-            <Steps
-                enabled={worker.presentation}
-                steps={steps}
-                initialStep={0}
-                onExit={onExit}
-            />
+            {url[3] === "demands" &&
+                < Steps
+                    enabled={worker.presentation}
+                    steps={presentationUtil?.steps()}
+                    initialStep={0}
+                    onExit={presentationUtil?.onExit(worker, setWorker)}
+                    onAfterChange={(e) => presentationUtil?.complete(e, navigate)}
+                />
+            }
         </div>
     )
 }

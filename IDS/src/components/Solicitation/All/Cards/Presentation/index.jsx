@@ -14,6 +14,7 @@ export default function Presentation(props) {
     const handleWorker = () => {
         worker.presentation = true;
         setWorker(worker);
+        localStorage.removeItem("presentation");
         props.setPresentation(false);
     }
 

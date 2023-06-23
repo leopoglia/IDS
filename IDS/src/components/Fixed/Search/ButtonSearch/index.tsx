@@ -14,7 +14,7 @@ export default function ButtonTableList(props: any) {
     }
 
     return (
-        <button className="button-table-list" onClick={onClick}>
+        <button className={"button-table-list " + props.icon}  onClick={onClick}>
             <span className="material-symbols-outlined">
                 {props.icon}
             </span>

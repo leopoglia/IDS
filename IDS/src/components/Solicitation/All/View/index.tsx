@@ -844,10 +844,10 @@ export default function ViewDemand() {
                                                             <p className="title">{t("Payback")}:</p>
                                                             <span> {payBack}</span>
                                                         </div>
+                                                        <div className="display-flex-align-center">
+                                                            <p className="title">{t("responsibleBussiness")}:</p>
+                                                            {responsibleBussiness.map((val: any, index: any) => (
 
-                                                        {responsibleBussiness.map((val: any, index: any) => (
-                                                            <div className="display-flex-align-center">
-                                                                <p className="title">{t("responsibleBussiness")}:</p>
 
                                                                 <Link to={"/profile/" + val.workerCode} className="text-information workerName">
                                                                     <div className="profile-worker">
@@ -856,8 +856,9 @@ export default function ViewDemand() {
                                                                     {val.workerName}
                                                                 </Link>
 
-                                                            </div>
-                                                        ))}
+                                                            ))}
+                                                        </div>
+
                                                     </div>
                                                 </div>
                                             ) : (null)}

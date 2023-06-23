@@ -459,7 +459,9 @@
     display: flex;
     position: relative;
     margin-bottom: 15px;
+    color: var(--grey59) !important;
 }
+
 
 .messages .message-two .attachments-message {
     display: flex;

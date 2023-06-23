@@ -12,11 +12,12 @@ export default function Presentation() {
     const linesPresentation = [
         { title: "widsPresentation", description: "introduceSystem" },
         { title: "demandPage", description: "thisIsDemandPage" },
+        { title: "viewCard", description: "viewCardHere" },
         { title: "createDemand", description: "createDemandHere" }
     ]
-    
+
     return (
-        <div className={"presentation presentation-" +  stepPresentation} >
+        <div className={"presentation presentation-" + stepPresentation} >
 
             <div className="barrier">
                 <div className="bubble">

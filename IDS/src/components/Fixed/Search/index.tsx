@@ -52,7 +52,9 @@ export default function Search(props: any) {
             }
         }
         console.log(filteredDemands);
-        DemandService.saveExcel(filteredDemands);
+        DemandService.saveExcel(filteredDemands).then((response) => {
+            console.log(response);
+        })
     }
 
     // Se a tabela estiver aberta, fecha, se estiver fechada, abre

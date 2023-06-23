@@ -249,6 +249,15 @@ const Services = {
                 .then(resolve)
                 .catch(reject)
         })
+    },
+    findAllByVersion: function () {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/version", {
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(reject)
+        })
     }
 }
 

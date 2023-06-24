@@ -52,9 +52,28 @@ export default function Search(props: any) {
             }
         }
         console.log(filteredDemands);
-        DemandService.saveExcel(filteredDemands).then((response) => {
-            console.log(response);
-        })
+
+        DemandService.saveExcel(filteredDemands).then((response: any) => {
+            response.arrayBuffer().then((buffer: ArrayBuffer) => {
+              const blob = new Blob([buffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+              const url = URL.createObjectURL(blob);
+              const link = document.createElement("a");
+              const data = new Date();
+              const dataFormatada =
+                data.getDate() +
+                "-" +
+                (data.getMonth() + 1) +
+                "-" +
+                data.getFullYear();
+              link.href = url;
+              link.download = "demandas-backlog " + dataFormatada + ".xlsx";
+              link.click();
+            });
+          });
+          
+          
+          
+          
     }
 
     // Se a tabela estiver aberta, fecha, se estiver fechada, abre

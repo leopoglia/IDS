@@ -48,7 +48,7 @@ const presentationUtil = {
                     position: ''
                 }
             ];
-        }
+        } 
     },
     onExit: (worker: any, setWorker: any): any => {
         worker.presentation = false;
@@ -58,13 +58,12 @@ const presentationUtil = {
     complete: (e: any, navigate: any): any => {
         const type = window.location.href.split("/")[3];
 
-        console.log(e)
-
         if (type === "demands") {
             if (e === 6) {
-                navigate("/demand/workflow/1")
+                navigate("/demand/workflow/1");
+                localStorage.setItem("presentantion", "true");
             }
-        }
+        } 
     }
 }
 

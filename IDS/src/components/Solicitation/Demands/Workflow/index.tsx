@@ -5,8 +5,8 @@ import ServicesDemand from "../../../../services/demandService";
 import ServicesProposal from "../../../../services/proposalService";
 import ServicesAgenda from "../../../../services/agendaService";
 import './style.css';
-import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useContext, useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router";
 
 export default function Workerflow() {
 
@@ -14,7 +14,8 @@ export default function Workerflow() {
 
     const demandCode: number = parseInt(useParams().id as string);
     const [stepActual, setStepActual] = useState(-1);
-    const [worker, setWorker] = useState<any>([]);
+    const [workerState, setWorkerState] = useState<any>([]);
+
     const steps = ["Criação da demanda", "Classificação pelo analista", "Aprovação do gerente", "Complemento do analista", "Criação da proposta", "Inserção em uma pauta de reunião", "Aprovação da comissão", "Aprovação da DG", "Desenvolvimento"];
 
 
@@ -63,35 +64,35 @@ export default function Workerflow() {
                 } else if (proposal.proposalStatus === "ApprovedComission") {
                     setStepActual(6);
                     stepActualAux = 6;
-                } else if(proposal.proposalStatus === "ApprovedDG"){
+                } else if (proposal.proposalStatus === "ApprovedDG") {
                     setStepActual(7);
                     stepActualAux = 7;
                 }
             }
 
             if (stepActualAux >= 0) {
-                worker.push(demand.requesterRegistration.workerName);
-                setWorker(worker);
+                workerState.push(demand.requesterRegistration.workerName);
+                setWorkerState(workerState);
             }
             if (stepActualAux >= 1) {
-                worker.push(demand.classification.analistRegistry.workerName);
-                setWorker(worker);
+                workerState.push(demand.classification.analistRegistry.workerName);
+                setWorkerState(workerState);
             }
             if (stepActualAux >= 2) {
-                worker.push(demand.approver.workerName);
-                setWorker(worker);
+                workerState.push(demand.approver.workerName);
+                setWorkerState(workerState);
             }
             if (stepActualAux >= 3) {
-                worker.push(demand.classification.analistRegistry.workerName);
-                setWorker(worker);
+                workerState.push(demand.classification.analistRegistry.workerName);
+                setWorkerState(workerState);
             }
             if (stepActualAux >= 4) {
-                worker.push(proposal.responsibleAnalyst.workerName);
-                setWorker(worker);
+                workerState.push(proposal.responsibleAnalyst.workerName);
+                setWorkerState(workerState);
             }
             if (stepActualAux >= 5) {
-                worker.push(agenda.analistRegistry.workerName);
-                setWorker(worker);
+                workerState.push(agenda.analistRegistry.workerName);
+                setWorkerState(workerState);
             }
             if (stepActualAux >= 6) {
                 let comissions = "";
@@ -103,8 +104,8 @@ export default function Workerflow() {
                     comissions += agenda.commission[i].commissionName + ", ";
                 }
 
-                worker.push(comissions);
-                setWorker(worker);
+                workerState.push(comissions);
+                setWorkerState(workerState);
             }
         })
     }, [setStepActual])
@@ -115,7 +116,7 @@ export default function Workerflow() {
         return (
             <div key={index}>
 
-                <div className="step">
+                <div className={"step step-" + index}>
                     <div className={"ellipse ellipse-" + number} >
                         {number !== "done" ? <span className="number">{number}</span> : <span className="material-symbols-outlined">done</span>
                         }
@@ -127,7 +128,7 @@ export default function Workerflow() {
 
                     <span className="worker">
 
-                        {worker[index]}
+                        {workerState[index]}
                     </span>
                 </div>
 
@@ -167,7 +168,6 @@ export default function Workerflow() {
 
                 </div>
             </div>
-
         </div>
     )
 }

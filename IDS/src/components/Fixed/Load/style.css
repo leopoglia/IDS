@@ -23,3 +23,100 @@
         transform: rotate(359deg);
     }
 }
+
+/* 
+@-webkit-keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spinnerTail {
+    0% {
+        stroke-dasharray: 1, 150;
+        stroke-dashoffset: 0;
+    }
+
+    50% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -35;
+    }
+
+    100% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -124;
+    }
+}
+
+@keyframes spinnerTail {
+    0% {
+        stroke-dasharray: 1, 150;
+        stroke-dashoffset: 0;
+    }
+
+    50% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -35;
+    }
+
+    100% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -124;
+    }
+}
+
+.load {
+    display: flex;
+    justify-content: center;
+}
+
+.loading-spinner {
+    -webkit-animation-name: spinner;
+    animation-name: spinner;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-duration: 5s;
+    animation-duration: 5s;
+    background: transparent;
+    width: 50%;
+    height: 50%;
+}
+
+.loading-track {
+    stroke: var(--greyE5);
+    stroke-width: 1px;
+    fill: none;
+}
+
+.loading-tail {
+    stroke: var(--blue);
+    stroke-width: 1px;
+    fill: none;
+    transform-origin: 50% 50%;
+    transform: rotate(-90deg);
+    stroke-linecap: round;
+    -webkit-animation-timing-function: cubic-bezier(0.33, 0, 0.67, 1);
+    animation-timing-function: cubic-bezier(0.33, 0, 0.67, 1);
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-duration: 3s;
+    animation-duration: 3s;
+    -webkit-animation-name: spinnerTail;
+    animation-name: spinnerTail;
+} */

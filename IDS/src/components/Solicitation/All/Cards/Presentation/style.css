@@ -33,13 +33,17 @@
     padding: 15px 10px;
     border-radius: var(--r);
     word-break: keep-all;
-    background-color: var(--white);
+    background-color: var(--white2);
 }
 
 .bubble p {
     color: var(--blue);
     margin-top: 0px;
     margin-bottom: 5px;
+}
+
+.darkmode .bubble p{
+    color: var(--blue19);
 }
 
 .bubble .description {

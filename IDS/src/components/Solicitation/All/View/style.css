@@ -401,8 +401,12 @@
 }
 
 .view-demand .descriptiveProposal h1 {
-    font-size: var(--m) !important;
+    font-size: var(--p) !important;
     color: var(--blue) !important;
+}
+
+.darkmode .view-demand .descriptiveProposal h1 {
+    color: var(--white) !important;
 }
 
 .view-demand .descriptiveProposal p,

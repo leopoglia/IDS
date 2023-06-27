@@ -5,6 +5,12 @@
     margin-top: 0px;
 }
 
+.darkmode .box p{
+    color: var(--grey59);
+}
+
+
+
 .box .flex {
     display: flex;
     justify-content: space-between;

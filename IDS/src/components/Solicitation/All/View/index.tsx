@@ -363,13 +363,11 @@ export default function ViewDemand() {
 
             for (let i = 0; i < response?.agenda?.proposals.length; i++) {
 
-                console.log(response?.agenda?.proposals)
 
                 await ServicesExpenses.findByProposal(response?.agenda?.proposals[i]?.proposalCode).then((expenses: any) => {
 
                     if (expenses.length > 0) {
                         for (let i = 0; i < expenses.length; i++) {
-                            console.log("expenses ==> ", expenses[i])
 
                             if (expenses[i].expensesType === "recurrent") {
                                 response.agenda.proposals[i].expenseRecurrent = expenses[i];
@@ -387,7 +385,6 @@ export default function ViewDemand() {
             setActionsDemand(1)
             setLoad(false);
 
-            console.log(response)
         })
     }
 

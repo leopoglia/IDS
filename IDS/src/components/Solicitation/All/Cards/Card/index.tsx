@@ -100,7 +100,7 @@ export default function Demand(props: any) {
         if (props.type === "demand" || props.type === "proposal" || props.type === "minute" || props.type === "agenda") {
             return (
                 <div className="situation-demand">
-                    <Situation type={props.type} situation={props.situation} demandCode={props.demandCode} agenda={props.agenda} />
+                    <Situation id={props.id} type={props.type} situation={props.situation} demandCode={props.demandCode} agenda={props.agenda} score={props.score} />
                 </div>
             );
         }

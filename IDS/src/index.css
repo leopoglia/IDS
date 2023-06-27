@@ -29,12 +29,12 @@
 
 .darkmode {
   --white: #FFFFFF;
-  --white2: rgb(26, 26, 26);
-  --greyF7: rgb(22, 22, 22);
+  --white2: #222222;
+  --greyF7: rgb(43, 43, 43);
   --greyE5: rgb(42, 45, 46);
-  --greyC4: rgb(49, 49, 49);
+  --greyC4: rgb(56, 56, 56);
   --blueF4: rgb(35, 35, 35);
-  --grey59: rgb(125, 133, 144);
+  --grey59: rgb(199, 199, 199);
   --grey3d: rgb(255, 255, 255);
   --greyD9: rgb(48, 54, 61);
 }
@@ -292,6 +292,10 @@ textarea:hover, */
   border: 1px solid var(--grey3d) !important;
 }
 
+.darkmode .input:hover{
+  border: 1px solid var(--greyC4) !important;
+}
+
 /* 
 input[type="text"]:focus,
 input[type="password"]:focus,
@@ -398,6 +402,18 @@ textarea {
 /** Espaço em branco em cima do input MUI CORE **/
 .css-ihdtdm {
   width: 0px !important;
+}
+
+.darkmode .css-1qqsdnr-MuiAutocomplete-root .MuiOutlinedInput-root .MuiAutocomplete-input,
+.darkmode .css-17o42pk-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root,
+.darkmode .css-6hp17o-MuiList-root-MuiMenu-list,
+.darkmode .css-b7k0tb-MuiAutocomplete-listbox {
+  color: var(--white) !important;
+}
+
+.darkmode .css-6hp17o-MuiList-root-MuiMenu-list,
+.darkmode .css-b7k0tb-MuiAutocomplete-listbox  {
+  background-color: var(--greyC4) !important;
 }
 
 

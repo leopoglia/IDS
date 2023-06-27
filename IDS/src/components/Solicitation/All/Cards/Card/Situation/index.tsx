@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 export default function Situation(props: any) {
 
     const { t } = useTranslation();
+    const pagePagination = window.location.href.split("/")[4];
+
 
     const situation = () => {
 
@@ -57,14 +59,14 @@ export default function Situation(props: any) {
         } else if (props.situation === "Done") {
             return (<div className="situation-done">100%</div>);
         }
-        
+
         if (props.situation === "ApprovedComission") {
             return (<div className="graphic-proposal">{t("ApprovedComission")}<div className="situation-published"></div></div>);
         } else if (props.situation === "RejectedComission") {
             return (<div className="graphic-proposal">{t("RejectedComission")}<div className="situation-rejected"></div></div>);
         } else if (props.situation === "ApprovedDG") {
             return (<div className="graphic-proposal">{t("ApprovedDG")}<div className="situation-approved"></div></div>);
-        } else if(props.situation === "RejectedDG") {
+        } else if (props.situation === "RejectedDG") {
             return (<div className="graphic-proposal">{t("RejectedDG")}<div className="situation-rejected"></div></div>);
         } else if (props.situation === "Pending") {
             return (<div className="graphic-proposal">{t("pending")}<div className="situation-pending"></div></div>);
@@ -72,24 +74,38 @@ export default function Situation(props: any) {
 
         if (props.situation === "Published") {
             return (<div className="graphic-proposal">{t("published")}<div className="situation-published"></div></div>);
-        } else if(props.situation === "Not Published") {
+        } else if (props.situation === "Not Published") {
             return (<div className="graphic-proposal">{t("notPublished")}<div className="situation-notPublished"></div></div>);
-        } else if(props.situation === "DG"){
+        } else if (props.situation === "DG") {
             return (<div className="graphic-proposal">{t("DG")}<div className="situation-approved"></div></div>);
         }
     }
 
     if (props.type === "demand") {
         return (
-            <Link to={"/demand/workflow/" + props.demandCode}>
-                <div className="display-flex">
-                    <Tooltip title={t("situation-" + props.situation)} arrow>
-                        <div className="graphic">
-                            {situation()}
-                        </div>
-                    </Tooltip>
-                </div>
-            </Link>
+
+            <div className="display-flex">
+
+                {parseInt(props.id) < 3 && pagePagination === "1" && props.score !== null &&
+                    <div className="score">
+                        <Tooltip title={props?.score.toFixed(5)} arrow>
+                            <div className="graphic-proposal"><div className="situation-published-score"></div>
+                                <span className="mr20 ml10">Score: {props?.score.toFixed(2)}</span>
+                            </div>
+                        </Tooltip>
+                    </div>
+                }
+
+                <Link to={"/demand/workflow/" + props.demandCode}>
+                    <div className="display-flex">
+                        <Tooltip title={t("situation-" + props.situation)} arrow>
+                            <div className="graphic">
+                                {situation()}
+                            </div>
+                        </Tooltip>
+                    </div>
+                </Link>
+            </div>
         );
     } else if (props.type === "proposal") {
         return (

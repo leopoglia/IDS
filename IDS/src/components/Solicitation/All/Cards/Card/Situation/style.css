@@ -31,10 +31,33 @@
     margin-left: 10px;
 }
 
+.demand-list .score{
+    display: none !important;
+}
+
+.demand .situation-published-score {
+    width: 10px;
+    min-width: 10px;
+    height: 10px;
+    border-radius: var(--rr);
+    margin-left: 10px;
+    margin-right: 5px;
+    background-color: var(--blue);
+}
+
 .demand .situation-published,
 .demand-list .situation-published{
     background-color: var(--blue);
 }
+
+.demand .score span,
+.demand-list .score span{
+    width: 105px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden !important;
+}
+
 
 .demand .situation-notPublished,
 .demand-list .situation-notPublished{

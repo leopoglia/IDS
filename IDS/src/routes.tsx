@@ -191,7 +191,7 @@ function RouterContent(props: any) {
                 </>
             )}
 
-            <ToastContainer position="bottom-right" newestOnTop />
+            <ToastContainer position="bottom-right" theme="dark" newestOnTop />
 
 
             <Routes>

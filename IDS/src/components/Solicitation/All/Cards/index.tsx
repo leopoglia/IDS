@@ -314,19 +314,20 @@ export default function Demands() {
                                     })
                                     .map((val: any, index: number) => {
                                         //verificar ultimo
+                                        
                                         if (index === demands.length - 1 && index === 8) {
                                             return (
                                                 <div className="demand-last">
                                                     <Demand key={index} id={index} demandCode={val.demandCode} listDirection={table} name={val.demandTitle}
                                                         requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus}
-                                                        proposalCode={val.proposalCode} demandVersion={val.demandVersion} type="demand" />
+                                                        proposalCode={val.proposalCode} demandVersion={val.demandVersion} score={val?.score} type="demand" />
                                                 </div>
                                             )
                                         } else {
                                             return (
                                                 <Demand key={index} id={index} demandCode={val.demandCode} listDirection={table} name={val.demandTitle}
                                                     requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus}
-                                                    proposalCode={val.proposalCode} demandVersion={val.demandVersion} type="demand" />
+                                                    proposalCode={val.proposalCode} demandVersion={val.demandVersion} score={val?.score} type="demand" />
                                             )
                                         }
                                     })

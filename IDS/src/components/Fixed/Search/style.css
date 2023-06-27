@@ -98,6 +98,15 @@
 
     .search .filter-export {
         margin-top: 20px;
+        width: 100%;
+        flex-direction: row-reverse;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+    }
+
+    .search .filter-export .export-spreadsheet{
+        margin-left: 0px;
     }
 
     .search .section {
@@ -127,6 +136,10 @@
 }
 
 @media(max-width: 768px) {
+
+    .search .modal{
+        margin-top: 500px;
+    }
 
     .search {
         display: block !important;

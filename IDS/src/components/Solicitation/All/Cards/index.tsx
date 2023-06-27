@@ -406,7 +406,7 @@ export default function Demands() {
                 <div className="agendas">
 
                     <div className="container">
-                        <Search setSearch={setSearch} search={search} onClick={callback} name={nameFilter} type={typeFilter} setTipe={setType} setTable={setTable} nav={t("agendaViewAgenda")} title="agendas" button="createAgenda" link="/agenda/create" />
+                        <Search setSearch={setSearch} search={search} solicitation={agendas} solicitationType="agenda" onClick={callback} name={nameFilter} type={typeFilter} setTipe={setType} setTable={setTable} nav={t("agendaViewAgenda")} title="agendas" button="createAgenda" link="/agenda/create" />
                         <div className={"container-background boxNoPadding-" + table}>
                             {
                                 agendas

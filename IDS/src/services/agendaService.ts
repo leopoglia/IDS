@@ -70,7 +70,18 @@ const Services = {
                 .then(resolve)
                 .catch(reject)
         })
-    }
+    },
+    saveExcel: function (agendas: any) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/filter", {
+                method: 'POST',
+                body: JSON.stringify(agendas),
+                headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result; })
+                .then(resolve)
+                .catch(reject)
+        })
+    },
 }
 
 export default Services;

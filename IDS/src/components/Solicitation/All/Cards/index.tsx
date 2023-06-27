@@ -440,6 +440,7 @@ export default function Demands() {
                                         <Demand
                                             key={index} val={val.agendaCode} agenda={val} listDirection={table}
                                             name={(val.commission.commissionName.split("–")[1]).toUpperCase() + " – " + val.agendaDate} demandCode={val.agendaCode} date={val.agendaDate}
+                                            requester={val.analistRegistry?.workerName}
                                             number={val.sequentialNumber} year={val.initialDate} type="agenda"
                                         />
                                     ))

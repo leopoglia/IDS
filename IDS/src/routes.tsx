@@ -97,7 +97,7 @@ export default function Router() {
                         document.documentElement.style.setProperty('--gg', response.fontSize - 2 + "px");
                         document.documentElement.style.setProperty('--g', response.fontSize - 4 + "px");
                         document.documentElement.style.setProperty('--m', response.fontSize - 6 + "px");
-                        document.documentElement.style.setProperty('--p', response.fontSize - 10 + "px");
+                        document.documentElement.style.setProperty('--p', response.fontSize - 11 + "px");
                         document.documentElement.style.setProperty('--pp', response.fontSize - 12 + "px");
 
 

@@ -53,8 +53,7 @@ export default function Demand(props: any) {
             return (
                 (<div className="infos">
                     <div className="code">{props.demandCode}</div>
-                    <div className="requester"><p>{t("sequentialNumber")}: {props.number}</p></div>
-                    <div><p>{t("date")}: {props.date}</p></div>
+                    <div className="requester"><p>{t("analyst")}: {props.requester}</p></div>
                     <div className="analyst"><p>{t("dateAgenda")}: {formatDate}</p></div>
                 </div>)
             )
@@ -62,7 +61,7 @@ export default function Demand(props: any) {
             return (
                 (<div className="infos">
                     <div className="code">{props.demandCode}</div>
-                    <div className="requester"><p>{t("sequentialNumber")}: {props.number}</p></div>
+                    <div className="number-sequential"><p>{t("sequentialNumber")}: {props.number}</p></div>
                     <div><p>{t("date")}: {props.date}</p></div>
                     <div className="analyst"><p>{t("Director")}: {props.director}</p></div>
                 </div>)

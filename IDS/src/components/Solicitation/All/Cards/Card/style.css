@@ -181,8 +181,16 @@
 .demand-list .infos .requester,
 .demand .infos .date,
 .demand-list .infos .date {
-    min-width: 260px;
-    max-width: 260px;
+    min-width: 230px;
+    max-width: 230px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.demand .infos .number-sequential {
+    min-width: 190px;
+    max-width: 190px;
     display: flex;
     align-items: center;
     justify-content: center;

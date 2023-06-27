@@ -274,7 +274,7 @@ export default function Demands() {
 
                     <div className="container">
 
-                        <Search setSearch={setSearch} search={search} onClick={callback} name={nameFilter} demands={demands} type={typeFilter} setTable={setTable} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1" />
+                        <Search setSearch={setSearch} search={search} solicitationType="demand" onClick={callback} name={nameFilter} solicitation={demands} type={typeFilter} setTable={setTable} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1" />
                         <div className={"container-background boxNoPadding-" + table}>
 
 
@@ -351,7 +351,7 @@ export default function Demands() {
                 <div className="proposals">
 
                     <div className="container">
-                        <Search setSearch={setSearch} search={search} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} nav={t("proposalViewProposal")} title="proposals" button="createProposal" link="/demands/1" />
+                        <Search setSearch={setSearch} solicitation={proposals} solicitationType="proposal" search={search} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} nav={t("proposalViewProposal")} title="proposals" button="createProposal" link="/demands/1" />
                         <div className={"container-background boxNoPadding-" + table}>
                             {
                                 proposals

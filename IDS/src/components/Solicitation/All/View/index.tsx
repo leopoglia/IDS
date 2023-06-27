@@ -351,12 +351,39 @@ export default function ViewDemand() {
 
     // Buscar ata
     function getMinute() {
-        ServicesMinute.findById(demandCode).then((response: any) => {
+        ServicesMinute.findById(demandCode).then(async (response: any) => {
+
+            for (let i = 0; i < response?.agenda?.proposals.length; i++) {
+
+                console.log(response?.agenda?.proposals)
+
+                await ServicesExpenses.findByProposal(response?.agenda?.proposals[i]?.proposalCode).then((expenses: any) => {
+
+                    if (expenses.length > 0) {
+                        for (let i = 0; i < expenses.length; i++) {
+                            console.log("expenses ==> ", expenses[i])
+
+                            if (expenses[i].expensesType === "recurrent") {
+                                response.agenda.proposals[i].expenseRecurrent = expenses[i];
+                            } else if (expenses[i].expensesType === "internal") {
+                                response.agenda.proposals[i].expenseInternal = expenses[i];
+                            } else if (expenses[i].expensesType === "expenses") {
+                                response.agenda.proposals[i].expenseValue = expenses[i];
+                            }
+                        }
+                    }
+                })
+            }
+
             setMinute(response);
             setActionsDemand(1)
-            getProposal();
+            setLoad(false);
+
+            console.log(response)
         })
     }
+
+
 
     // Aprovar demanda (Gerente de Negócios)
     function approveDemand() {
@@ -812,13 +839,11 @@ export default function ViewDemand() {
                                             ) : (null)
                                             }
 
-
                                             {proposalExpenseValue?.expensesCode > 0 ? (<Expenses type="expenses" proposalExpense={proposalExpenseValue} />) : (null)}
 
                                             {proposalExpenseRecurrent?.expensesCode > 0 ? (<Expenses type="recurrent" proposalExpense={proposalExpenseRecurrent} />) : (null)}
 
                                             {proposalExpenseInternal?.expensesCode > 0 ? (<Expenses type="internal" proposalExpense={proposalExpenseInternal} />) : (null)}
-
 
 
                                             {proposalExpense > 0 ? (
@@ -907,7 +932,6 @@ export default function ViewDemand() {
                                 </div>
                             ) : url === "agenda" ? (
                                 <div>
-
                                     <div className="container">
 
 
@@ -1185,7 +1209,8 @@ export default function ViewDemand() {
 
                                         <div className="box">
 
-                                            {minute.agenda ? (
+
+                                            {minute?.agenda ? (
 
                                                 <div className="display-block">
 
@@ -1220,9 +1245,9 @@ export default function ViewDemand() {
                                                         </div>
                                                     </div>
 
-                                                    {minute.agenda.proposals.map((val: any, index: any) => (
+                                                    {minute?.agenda?.proposals.map((val: any, index: any) => (
                                                         <>
-                                                            {(val.published === true && minute.minuteType === "Published"
+                                                            {(val.published === true && minute.minuteType === "Published" || val.published === true && minute.minuteType === "DG"
                                                                 || val.published === null && minute.minuteType === "Not Published") &&
                                                                 <>
                                                                     <p>{val.proposalName} - {val.proposalCode}</p>
@@ -1242,11 +1267,14 @@ export default function ViewDemand() {
                                                                         {"R$" + val.totalCosts.toLocaleString()}
                                                                     </div>
 
-                                                                    {proposalExpenseValue?.expensesCode > 0 ? (<Expenses type="expenses" proposalExpense={proposalExpenseValue} minute={true} minuteCode={demandCode} edit={false} />) : (null)}
+                                                                    {val?.expenseRecurrent?.expensesCode > 0 ? (<Expenses type="recurrent" proposalExpense={val?.expenseRecurrent} />) : (null)}
 
-                                                                    {proposalExpenseRecurrent?.expensesCode > 0 ? (<Expenses type="recurrent" proposalExpense={proposalExpenseRecurrent} minute={true} minuteCode={demandCode} edit={false} />) : (null)}
+                                                                    {val?.expenseValue?.expensesCode > 0 ? (<Expenses type="expenses" proposalExpense={val?.expenseValue} />) : (null)}
 
-                                                                    {proposalExpenseInternal?.expensesCode > 0 ? (<Expenses type="internal" proposalExpense={proposalExpenseInternal} minute={true} minuteCode={demandCode} edit={false} />) : (null)}
+                                                                    {val?.expenseRecurrent?.expensesCode > 0 ? (<Expenses type="internal" proposalExpense={val?.expenseRecurrent} />) : (null)}
+
+
+
 
                                                                     <div className="text-information display-flex">
                                                                         <b>{t("periodOfExecution")}: </b>

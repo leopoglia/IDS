@@ -52,6 +52,19 @@
     color: var(--grey59) !important;
 }
 
+.code-date {
+    font-size: var(--pp) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--grey59) !important;
+    border: 1px solid var(--greyC4);
+    border-radius: var(--r);
+    padding: 7px;
+    margin-left: 15px;
+    width: max-content;
+}
+
 .demand-list {
     height: 60px;
     border: 0px;
@@ -157,7 +170,7 @@
 .demand-list .infos div {
     display: flex;
     align-items: center;
-    font-size: var(--p);
+    font-size: var(--pp) !important;
     border: 1px solid var(--greyC4);
     border-radius: var(--r);
     padding: 7px;
@@ -185,6 +198,7 @@
     text-overflow: ellipsis;
     direction: ltr;
     max-width: 250px;
+    font-size: var(--pp);
 }
 
 .demand-list .infos {
@@ -262,6 +276,6 @@
     margin-bottom: 6px;
 }
 
-.ml0{
+.ml0 {
     margin-left: 0px !important;
 }

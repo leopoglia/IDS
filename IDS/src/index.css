@@ -19,7 +19,7 @@
   --gg: 55px;
   --g: 22px;
   --m: 18px;
-  --p: 14px;
+  --p: 13px;
   --pp: 11px;
   --h: 45px;
   --r: .375rem;
@@ -29,12 +29,12 @@
 
 .darkmode {
   --white: #FFFFFF;
-  --white2: rgb(30, 30, 30);
-  --greyF7: rgb(37, 37, 38);
+  --white2: rgb(26, 26, 26);
+  --greyF7: rgb(22, 22, 22);
   --greyE5: rgb(42, 45, 46);
   --greyC4: rgb(49, 49, 49);
   --blueF4: rgb(35, 35, 35);
-  --grey59: rgb(201, 209, 217);
+  --grey59: rgb(125, 133, 144);
   --grey3d: rgb(255, 255, 255);
   --greyD9: rgb(48, 54, 61);
 }

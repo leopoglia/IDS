@@ -185,6 +185,10 @@
     height: 60px !important;
 }
 
+.view-demand .h50{
+    height: 50px !important;
+}
+
 .view-demand .noBorder {
     border: none !important;
 }
@@ -522,4 +526,20 @@
     margin-bottom: 10px !important;
     display: block;
     margin-right: 5px;
+}
+
+.view-demand .box-pre-infos{
+    border: 1px solid var(--greyC4);
+    border-radius: var(--r);
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    padding: 0 20px;
+
+}
+
+.view-demand .box-pre-infos *{
+    margin: 0px;
 }

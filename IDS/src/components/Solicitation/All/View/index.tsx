@@ -20,6 +20,7 @@ import notifyUtil from "../../../../utils/notifyUtil";
 import Load from "../../../Fixed/Load";
 
 import "./style.css";
+import Situation from "../Cards/Card/Situation";
 
 
 export default function ViewDemand() {
@@ -627,11 +628,23 @@ export default function ViewDemand() {
                                         <div className="box" id="box">
                                             <div>
                                                 <div className="display-flex-space-between display-solicitation-demand">
+
+
+
                                                     <p className="title">{demand.demandTitle}</p>
+
+
                                                     { /* Verifica se é uma demanda ou uma proposta */  url === "demand" ? (
-                                                        <div className="code">{demand.demandCode}</div>
+                                                        <div className="display-flex-align-center h50">
+                                                            {/* <Situation type="demand" situation={demand.demandStatus} demandCode={demand.demandCode} /> */}
+                                                            <div className="code-date">{t("date")}: {demand.demandDate}</div>
+                                                            <div className="code">{demand.demandCode}</div>
+                                                        </div>
                                                     ) : (
-                                                        <div className="code">{proposal.proposalCode}</div>
+                                                        <div className="display-flex-align-center h50">
+                                                            <div className="code-date">{t("date")}: {proposal.proposalDate}</div>
+                                                            <div className="code">{proposal.proposalCode}</div>
+                                                        </div>
                                                     )}
                                                 </div>
 

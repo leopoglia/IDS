@@ -1,5 +1,6 @@
 .demand .graphic,
-.demand-list .graphic {
+.demand-list .graphic,
+.view-demand .graphic {
     width: 150px;
     height: 15px;
     border-radius: var(--rr);

@@ -210,6 +210,13 @@ export default function ViewDemand() {
                 setStepDemand(1);
             } else if (response?.demandStatus === "BacklogComplement" || response?.demandStatus === "Assesment") {
                 setStepDemand(2);
+
+                if (response?.demandStatus === "Assesment") {
+                    ServicesProposal.findByDemandCode(demandCode).then((response: any) => {
+                        setProposal(response)
+                    })
+                }
+
             }
             setLoad(false);
         })
@@ -589,39 +596,54 @@ export default function ViewDemand() {
 
                                             )}
 
+                                            <div className="display-flex">
+                                                {url === "demand" && (proposal?.demand?.demandCode !== undefined && proposal?.demand?.demandCode !== null && proposal?.demand?.demandCode !== "") && (
+                                                    <div className="openProposal">
+                                                        <Link to={"/proposal/view/" + proposal?.demand?.demandCode}>
+                                                            <Tooltip title={t("openProposal")} placement="left" arrow>
+                                                                <button className="btn-secondary btn-unique">
+                                                                    <span className="material-symbols-outlined">
+                                                                        open_in_new
+                                                                    </span>
+                                                                </button>
+                                                            </Tooltip>
+                                                        </Link>
+                                                    </div>
+                                                )
+                                                }
 
-                                            {viewDemand === "view" || demandVersion === "view" ? (
-                                                <Tooltip className="display-flex-end" title={t("devisualizeDemand")} placement="bottom" arrow>
+                                                {viewDemand === "view" || demandVersion === "view" ? (
+                                                    <Tooltip className="display-flex-end" title={t("devisualizeDemand")} placement="bottom" arrow>
 
-                                                    <Link to={url === "demand" ? "/demand/rank/" + demand.demandCode + "?" + demand.demandVersion + "?view" : "/demand/rank/" + demand.demandCode + "?" + demand.demandVersion + "?edit"}>
-                                                        <div className="visibility-demand">
-                                                            <span className="material-symbols-outlined">
-                                                                visibility_off
-                                                            </span>
-                                                        </div>
-                                                    </Link>
-                                                </Tooltip>) :
-                                                (demand?.activeVersion === true) ? (
-                                                    (demand.demandStatus != "Cancelled") ? (
-                                                        <ButtonsActions demand={demand} proposal={proposal} workerId={workerId} actionsDemand={actionsDemand} approveDemand={approveDemand} giveBack={giveBack} generatePDF={generatePDF} />
-                                                    ) : (
+                                                        <Link to={url === "demand" ? "/demand/rank/" + demand.demandCode + "?" + demand.demandVersion + "?view" : "/demand/rank/" + demand.demandCode + "?" + demand.demandVersion + "?edit"}>
+                                                            <div className="visibility-demand">
+                                                                <span className="material-symbols-outlined">
+                                                                    visibility_off
+                                                                </span>
+                                                            </div>
+                                                        </Link>
+                                                    </Tooltip>) :
+                                                    (demand?.activeVersion === true) ? (
+                                                        (demand.demandStatus != "Cancelled") ? (
+                                                            <ButtonsActions demand={demand} proposal={proposal} workerId={workerId} actionsDemand={actionsDemand} approveDemand={approveDemand} giveBack={giveBack} generatePDF={generatePDF} />
+                                                        ) : (
+                                                            <button className="btn-primary mw100">
+                                                                <span className="material-symbols-outlined">
+                                                                    download
+                                                                </span>
+                                                                <span>{t("generatePDF")}</span>
+                                                            </button>
+                                                        )
+                                                    ) : demand?.demandCode !== 0 ? (
                                                         <button className="btn-primary mw100">
                                                             <span className="material-symbols-outlined">
                                                                 download
                                                             </span>
                                                             <span>{t("generatePDF")}</span>
                                                         </button>
-                                                    )
-                                                ) : demand?.demandCode !== 0 ? (
-                                                    <button className="btn-primary mw100">
-                                                        <span className="material-symbols-outlined">
-                                                            download
-                                                        </span>
-                                                        <span>{t("generatePDF")}</span>
-                                                    </button>
-                                                ) : null
-                                            }
-
+                                                    ) : null
+                                                }
+                                            </div>
 
                                         </div>
 

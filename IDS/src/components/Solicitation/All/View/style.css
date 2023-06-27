@@ -543,3 +543,7 @@
 .view-demand .box-pre-infos *{
     margin: 0px;
 }
+
+.view-demand .openProposal, .view-demand .openProposal .btn-secondary{
+    margin: 0px !important;
+}

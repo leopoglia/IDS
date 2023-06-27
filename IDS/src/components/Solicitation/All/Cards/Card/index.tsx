@@ -93,7 +93,6 @@ export default function Demand(props: any) {
                         </Tooltip>
                     </Link>
                 </div>
-
             );
         }
     }

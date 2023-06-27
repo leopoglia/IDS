@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-
 import ButtonTableList from "./ButtonSearch";
 import Title from "./Title";
 import Filter from "./Filter";
+import AgendaService from "../../../services/agendaService";
 import DemandService from "../../../services/demandService";
 import ProposalService from "../../../services/proposalService";
 import "./style.css";
@@ -83,8 +83,36 @@ export default function Search(props: any) {
                     filteredSolicitations.push(solicitations[i]);
                 }
             }
-
             ProposalService.saveExcel(filteredSolicitations).then((response: any) => {
+                response.arrayBuffer().then((buffer: ArrayBuffer) => {
+                    const blob = new Blob([buffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement("a");
+                    const data = new Date();
+                    const dataFormatada =
+                        data.getDate() +
+                        "-" +
+                        (data.getMonth() + 1) +
+                        "-" +
+                        data.getFullYear();
+                    link.href = url;
+                    link.download = "propostas - " + dataFormatada + ".xlsx";
+                    link.click();
+                });
+            });
+        } else if (solicitationType === "agenda") {
+            for (let i = 0; i < solicitations.length; i++) {
+                if (typeFilter === "code-agendas") {
+                    for (let j = 0; j < solicitations[i]?.proposals.length; j++) {
+                        console.log(solicitations[i]?.proposals[j]?.proposalCode, "name: " + nameFilter)
+                        if (solicitations[i].proposals[j]?.proposalCode == parseInt(nameFilter)) {
+                            filteredSolicitations.push(solicitations[i]);
+                        }
+                    }
+                }
+            }
+            console.log(filteredSolicitations);
+            AgendaService.saveExcel(filteredSolicitations).then((response: any) => {
                 response.arrayBuffer().then((buffer: ArrayBuffer) => {
                     const blob = new Blob([buffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
                     const url = URL.createObjectURL(blob);

@@ -442,7 +442,7 @@ export default function Demands() {
 
                     <div className="container">
 
-                        <Search onClick={callback} setSearch={setSearch} search={search} name={nameFilter} type={typeFilter} setType={setType} nav={t("minuteViewMinute")} title="minutes" button="createMinute" link="/agendas/1" setTable={setTable} />
+                        <Search onClick={callback} setSearch={setSearch} solicitation={minutes} solicitationType="minute" search={search} name={nameFilter} type={typeFilter} setType={setType} nav={t("minuteViewMinute")} title="minutes" button="createMinute" link="/agendas/1" setTable={setTable} />
                         <div className={"container-background boxNoPadding-" + table}>
                             {
                                 minutes

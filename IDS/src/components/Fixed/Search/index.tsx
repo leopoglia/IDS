@@ -8,6 +8,7 @@ import Filter from "./Filter";
 import AgendaService from "../../../services/agendaService";
 import DemandService from "../../../services/demandService";
 import ProposalService from "../../../services/proposalService";
+import MinuteService from "../../../services/minuteService";
 import "./style.css";
 import Mic from "../Accessibility/Mic";
 import Input from "../../Solicitation/Demands/CrateDemand/Others/Input";
@@ -111,7 +112,6 @@ export default function Search(props: any) {
                     }
                 }
             }
-            console.log(filteredSolicitations);
             AgendaService.saveExcel(filteredSolicitations).then((response: any) => {
                 response.arrayBuffer().then((buffer: ArrayBuffer) => {
                     const blob = new Blob([buffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
@@ -125,7 +125,39 @@ export default function Search(props: any) {
                         "-" +
                         data.getFullYear();
                     link.href = url;
-                    link.download = "propostas - " + dataFormatada + ".xlsx";
+                    link.download = "pautas - " + dataFormatada + ".xlsx";
+                    link.click();
+                });
+            });
+        } else if (solicitationType === "minute") {
+            for(let i = 0; i < solicitations.length; i++) {
+                let dateFormat: any;
+
+                // se for menos de 9 colocar 0 na frente
+                if (solicitations[i].minuteStartDate?.split("/")[1].length === 1) {
+                    dateFormat = solicitations[i].minuteStartDate.split("/")[0] + "0" + solicitations[i].minuteStartDate.split("/")[1] + solicitations[i].minuteStartDate.split("/")[2]
+                }
+    
+                if (typeFilter === "code-minutes" && solicitations[i].minuteCode === parseInt(nameFilter)) {
+                    filteredSolicitations.push(solicitations[i]);
+                } else if (typeFilter === "date" && dateFormat.includes(nameFilter.split("-").reverse().join(""))) {
+                    filteredSolicitations.push(solicitations[i]);
+                }
+            }
+            MinuteService.saveExcel(filteredSolicitations).then((response: any) => {
+                response.arrayBuffer().then((buffer: ArrayBuffer) => {
+                    const blob = new Blob([buffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement("a");
+                    const data = new Date();
+                    const dataFormatada =
+                        data.getDate() +
+                        "-" +
+                        (data.getMonth() + 1) +
+                        "-" +
+                        data.getFullYear();
+                    link.href = url;
+                    link.download = "atas - " + dataFormatada + ".xlsx";
                     link.click();
                 });
             });

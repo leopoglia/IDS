@@ -10,8 +10,7 @@ const notifyUtil = {
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
-            progress: undefined,
-            theme: "light",
+            progress: undefined
         });
     },
 
@@ -23,8 +22,7 @@ const notifyUtil = {
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
-            progress: undefined,
-            theme: "light",
+            progress: undefined
         });
     },
 
@@ -36,8 +34,7 @@ const notifyUtil = {
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
-            progress: undefined,
-            theme: "light",
+            progress: undefined
         });
     },
 
@@ -49,8 +46,7 @@ const notifyUtil = {
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
-            progress: undefined,
-            theme: "light",
+            progress: undefined
         });
     }
 }

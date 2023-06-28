@@ -29,13 +29,13 @@
 
 .darkmode {
   --white: #FFFFFF;
-  --white2: #222222;
-  --greyF7: rgb(43, 43, 43);
+  --white2: #131313;
+  --greyF7: rgb(29, 29, 29);
   --greyE5: rgb(42, 45, 46);
-  --greyC4: rgb(56, 56, 56);
-  --blueF4: rgb(35, 35, 35);
-  --grey59: rgb(199, 199, 199);
-  --grey3d: rgb(255, 255, 255);
+  --greyC4: rgb(34, 34, 34);
+  --blueF4: rgb(17, 17, 17);
+  --grey59: rgb(179, 179, 179);
+  --grey3d: rgb(212, 212, 212);
   --greyD9: rgb(48, 54, 61);
 }
 

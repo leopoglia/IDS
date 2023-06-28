@@ -191,7 +191,7 @@ function RouterContent(props: any) {
                 </>
             )}
 
-            <ToastContainer position="bottom-right" theme="dark" newestOnTop />
+            <ToastContainer position="bottom-right" theme={workerContext.darkmode === true ? "dark" : "light"} newestOnTop />
 
 
             <Routes>

@@ -86,7 +86,7 @@ export default function Situation(props: any) {
 
             <div className="display-flex">
 
-                {parseInt(props.id) < 3 && pagePagination === "1" && props.score !== null &&
+                {props.score !== null &&
                     <div className="score">
                         <Tooltip title={props?.score.toFixed(5)} arrow>
                             <div className="graphic-proposal"><div className="situation-published-score"></div>

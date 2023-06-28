@@ -278,8 +278,6 @@ export default function Demands() {
                                 })
                             }
 
-
-
                             {demands.length === 0 && loading === true && <Load />}
 
                             {demands.length === 0 && loading === false && noResult()}

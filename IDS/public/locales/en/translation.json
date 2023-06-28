@@ -275,5 +275,6 @@
     "ApprovedDG": "Approved DG",
     "RejectedDG": "Rejected DG",
     "colors": "Colors",
-    "dgMinute": "DG Minute"
+    "dgMinute": "DG Minute",
+    "totaPercentage100": "The total percentage must be 100%"
 }

@@ -86,11 +86,11 @@ export default function Situation(props: any) {
 
             <div className="display-flex">
 
-                {props.score !== null &&
+                {props?.score !== null &&
                     <div className="score">
-                        <Tooltip title={props?.score.toFixed(5)} arrow>
+                        <Tooltip title={props?.score?.toFixed(5)} arrow>
                             <div className="graphic-proposal"><div className="situation-published-score"></div>
-                                <span className="mr20 ml10">Score: {props?.score.toFixed(2)}</span>
+                                <span className="mr20 ml10">Score: {props?.score?.toFixed(2)}</span>
                             </div>
                         </Tooltip>
                     </div>

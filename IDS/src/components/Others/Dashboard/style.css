@@ -75,7 +75,9 @@
 
 .dashboard .chart {
     width: 100%;
+    max-width: 300px;;
     min-height: 150px;
+    max-height: 150px;
     margin-left: 20px;
     display: flex;
     align-items: center;

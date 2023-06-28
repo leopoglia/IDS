@@ -58,7 +58,6 @@ export default function Demands() {
             } else {
                 ServicesDemand.findAll().then((res: any) => {
                     setDemands(res);
-
                 });
             }
 
@@ -89,7 +88,6 @@ export default function Demands() {
             }
         }
 
-
         // Verifica se a rota da página anterior é a de cadastro de demanda
         if (localStorage.getItem("route") === "create-demand") {
             localStorage.removeItem("route");
@@ -104,28 +102,12 @@ export default function Demands() {
             findDemands = await ServicesDemand.findByPage(page, 5).then(async (res: any) => {
                 let demandsContent = res.content; // Atualiza o estado das demandas
                 setPages(res.totalPages); // Atualiza o estado das páginas
+                
 
-                let proposalsContent: any = await ServicesProposal.findAll();
-
-
-                demandsContent.map((demand: any) => {
-                    if (demand.demandStatus === "Assesment") {
-                        proposalsContent.map((proposal: any) => {
-
-                            if (proposal.demand.demandCode === demand.demandCode) {
-                                demand.proposalCode = proposal.proposalCode;
-                            }
-                        })
-                    }
-
-                    return demand;
-                })
-
-                if (res.content.length === 0) {
-                    setLoading(false);
-                }
-
-                setDemands(demandsContent);
+                let proposalsContent: any = await ServicesProposal.findAll(); // Busca as propostas cadastradas
+                addProposal(demandsContent, proposalsContent); // Adiciona as propostas nas demandas
+                setDemands(demandsContent); // Atualiza o estado das demandas
+                setLoadingFalse(res); // Desativa o loading
             });
         } else {
             findDemands = await ServicesDemand.findByPage(page, 9).then(async (res: any) => {
@@ -146,20 +128,7 @@ export default function Demands() {
                 }
 
                 let proposalsContent: any = await ServicesProposal.findAll();
-
-                demandsContent?.map((demand: any) => {
-                    if (demand.demandStatus === "Assesment") {
-                        proposalsContent.map((proposal: any) => {
-
-                            if (proposal.demand.demandCode === demand.demandCode) {
-                                demand.proposalCode = proposal.proposalCode;
-                            }
-                        })
-                    }
-                    return demand;
-                })
-
-
+                addProposal(demandsContent, proposalsContent);
                 setDemands(demandsContent);
             });
         }
@@ -173,12 +142,8 @@ export default function Demands() {
         findDemands = await ServicesProposal.findByPage(page, 5).then((res: any) => {
             setProposals(res.content); // Atualiza o estado das demandas
             setPages(res.totalPages); // Atualiza o estado das páginas
-
-            if (res.content.length === 0) {
-                setLoading(false);
-            }
+            setLoadingFalse(res);
         });
-
 
         return findDemands;
     }
@@ -188,28 +153,44 @@ export default function Demands() {
         findDemands = await ServicesAgenda.findByPage(page, 5).then((res: any) => {
             setAgendas(res.content); // Atualiza o estado das demandas
             setPages(res.totalPages); // Atualiza o estado das páginas
-            if (res.content.length === 0) {
-                setLoading(false);
-            }
+            setLoadingFalse(res);
         });
 
         return findDemands;
     }
 
 
-    //Buscar as atas cadastradas
+    // Buscar as atas cadastradas
     async function getMinutes() {
         findDemands = await ServicesMinute.findByPage(page, 5).then((res: any) => {
             setMinutes(res.content); // Atualiza o estado das demandas
             setPages(res.totalPages); // Atualiza o estado das páginas
-
-            if (res.content.length === 0) {
-                setLoading(false);
-            }
+            setLoadingFalse(res)
         });
 
-
         return findDemands;
+    }
+
+    // Função para deixar o loading falso quando tiver carregado
+    async function setLoadingFalse(res:any) {
+        if (res.content.length === 0) {
+            setLoading(false);
+        }
+    }
+
+    // Função para adicionar o código da proposta na demanda
+    const addProposal = (demandsContent: any, proposalsContent: any) => {
+        demandsContent?.map((demand: any) => {
+            if (demand.demandStatus === "Assesment") {
+                proposalsContent.map((proposal: any) => {
+
+                    if (proposal.demand.demandCode === demand.demandCode) {
+                        demand.proposalCode = proposal.proposalCode;
+                    }
+                })
+            }
+            return demand;
+        })
     }
 
 
@@ -218,16 +199,11 @@ export default function Demands() {
         setTableList(!table);
     }
 
-
     const callback = (name: string, type: string) => {
         setName(name)
         setType(type)
     }
 
-    const closePresentation = () => {
-        setPresentation(false);
-        localStorage.removeItem("presentation");
-    }
 
     const noResult = () => {
         if (url[3] === "demands") {
@@ -314,7 +290,7 @@ export default function Demands() {
                                     })
                                     .map((val: any, index: number) => {
                                         //verificar ultimo
-                                        
+
                                         if (index === demands.length - 1 && index === 8) {
                                             return (
                                                 <div className="demand-last">

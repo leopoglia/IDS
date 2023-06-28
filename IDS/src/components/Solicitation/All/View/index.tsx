@@ -767,9 +767,9 @@ export default function ViewDemand() {
 
                                                         <div className="display-flex-center">
                                                             <span className="bold-text">{t("monthlyValue")}:  </span>
-                                                            {demand.realBenefit.realCurrency === "real" ? (
+                                                            {demand.realBenefit.realCurrency === "R$" ? (
                                                                 <span>R$</span>
-                                                            ) : (demand.realBenefit.realCurrency === "dollar") ? (
+                                                            ) : (demand.realBenefit.realCurrency === "$") ? (
                                                                 <span>$</span>
                                                             ) : (
                                                                 <span>€</span>

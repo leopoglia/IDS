@@ -143,6 +143,7 @@ export default function ProposedInformation() {
                             <Input label={"dateStart"} type="date" value={start} setValue={setStart} required="true" />
                         </div>
                         <Input label={"dateEnd"} type="date" value={end} setValue={setEnd} required="true" />
+
                     </div>
 
                     <div className="display-btn-anexo">

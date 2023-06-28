@@ -41,6 +41,28 @@
     color: var(--grey59) !important;
 }
 
+.input .mic .modal-mic,
+.mic-absolute .mic .modal-mic{
+    position: absolute !important;
+    z-index: 10000000;
+    margin-left: -50px !important;
+    margin-right: 0px !important;
+    margin-bottom: 0px !important;
+    margin-top: 10px !important;
+    padding: 8px;
+    width: 90px !important;
+    height: 48px;
+}
+
+.modal-mic .material-symbols-outlined{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    color: var(--grey3d) !important;
+}
+
 @keyframes pulse {
     0% {
         box-shadow: 0 0 0 0 var(--greyD9);

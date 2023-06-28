@@ -11,7 +11,6 @@ export default function Input(props: any) {
 
     const [outlined, setOutlined]: any = useState(false);
     const [voiceCommand, setVoiceCommand] = useState(false);
-    const [active, setActive] = useState(false);
 
 
     useEffect(() => {
@@ -20,14 +19,14 @@ export default function Input(props: any) {
 
     const onChange = (e: any) => {
 
-        if (active === true) {
-            if (props?.handle !== undefined) {
-                props?.handle(e, props.label);
-            } else {
-                if (props.setValue !== undefined) {
-                }
+        if (props?.handle !== undefined) {
+            props?.handle(e.target.value, props.label);
+        } else {
+            if (props.setValue !== undefined) {
+                props.setValue(e.target.value);
             }
         }
+
     }
 
     return (

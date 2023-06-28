@@ -94,7 +94,7 @@ export default function CreateDemands1() {
     }
 
     const handleChange = (event: any, type: String) => {
-
+  
         if (titleDemand === undefined) {
             localStorage.setItem("demand", JSON.stringify({ titleInput: '', currentSituation: '', objective: '' }))
         }
@@ -106,22 +106,27 @@ export default function CreateDemands1() {
             costCenter: []
         }
 
+
+        if(event?.target?.value !== undefined){
+            event = event.target.value;
+        }
+
         switch (type) {
             case "titleInput":
-                setTitleDemand(event.target.value);
+                setTitleDemand(event);
                 break;
             case "currentSituation":
-                setCurrentSituation(event.target.value);
+                setCurrentSituation(event);
                 break;
             case "objective":
-                setObjective(event.target.value);
+                setObjective(event);
                 break;
             case "costCenter":
                 setCostCenter("");
                 demand.costCenter = costsCenters;
                 break;
             default:
-                setTitleDemand(event.target.value);
+                setTitleDemand(event);
         }
 
         demand = {

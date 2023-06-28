@@ -11,7 +11,7 @@ const Dictaphone = (props) => {
   } = useSpeechRecognition();
 
   const [micSelect, setMicSelect] = useState(false);
-
+  const [active, setActive] = useState(false);
 
 
   if (!browserSupportsSpeechRecognition) {
@@ -21,45 +21,82 @@ const Dictaphone = (props) => {
   function Run(props) {
     useEffect(() => {
 
-      const handleTranscript = () => {
-        if (transcript !== '' && transcript !== undefined) {
+      if (active === true && micSelect === true) {
+        const handleTranscript = () => {
+          if (transcript !== '' && transcript !== undefined) {
+            if (listening === true) {
+              if (props?.handle !== undefined) {
 
-          if (listening === true) {
-            if (props?.handle !== undefined) {
-              props.handle(transcript, props.label);
-            } else {
-              props.setValue(transcript);
+                let event = { target: { value: transcript } };
+
+                props.handle(event, props.label);
+              } else {
+                let event = { target: { value: transcript } };
+
+                props.setValue(transcript);
+              }
             }
           }
-        }
-      };
+        };
 
-      handleTranscript();
-
-    }, [transcript, props.value]);
+        handleTranscript();
+      }
+    }, [transcript, props?.value]);
 
   }
 
   Run(props)
 
 
-  const handleClick = () => {
+  const handleClick = (type) => {
 
-    if (micSelect === true) {
+    if (type === true) {
       SpeechRecognition.startListening()
+    } else {
+      SpeechRecognition.stopListening()
     }
     setMicSelect(false);
+
   }
 
   return (
-    <button className={'microphone mic-' + listening} onClick={() => { handleClick(); setMicSelect(true) }}>
+    <div className='mic'>
+      <button className={'microphone mic-' + (active === true ? listening : "false")} onClick={() => { setActive(true); }}>
+        <span className='material-symbols-outlined'>
+          mic
+        </span>
+      </button>
 
 
-      <span className='material-symbols-outlined'>
-        mic
-      </span>
+      {active === true &&
+        <div className="modal modal-mic">
+          <div className="modal-header">
 
-    </button>
+            {listening === false ?
+              <button className="closeModal" onClick={() => { handleClick(true); setMicSelect(true) }} >
+                <span className="material-symbols-outlined">
+                  play_arrow
+                </span>
+              </button>
+              :
+              <button className="closeModal" onClick={() => { handleClick(false); setMicSelect(false) }} >
+                <span className="material-symbols-outlined">
+                  pause
+                </span>
+              </button>
+            }
+
+            <button className="closeModal" onClick={() => setActive(false)} >
+              <span className="material-symbols-outlined">
+                close
+              </span>
+            </button>
+          </div>
+
+
+        </div>
+      }
+    </div>
   );
 };
 export default Dictaphone;

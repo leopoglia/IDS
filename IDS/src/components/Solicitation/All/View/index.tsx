@@ -594,7 +594,7 @@ export default function ViewDemand() {
                                             )}
 
                                             <div className="display-flex">
-                                                {url === "demand" && (proposal?.demand?.demandCode !== undefined && proposal?.demand?.demandCode !== null && proposal?.demand?.demandCode !== "") && (
+                                                {url === "demand" && (proposal?.demand?.demandCode !== undefined && proposal?.demand?.demandCode !== null && proposal?.demand?.demandCode !== "") && (worker.office !== "requester") && (
                                                     <div className="openProposal">
                                                         <Link to={"/proposal/view/" + proposal?.demand?.demandCode}>
                                                             <Tooltip title={t("openProposal")} placement="left" arrow>
@@ -621,7 +621,7 @@ export default function ViewDemand() {
                                                         </Link>
                                                     </Tooltip>) :
                                                     (demand?.activeVersion === true) ? (
-                                                        (demand.demandStatus != "Cancelled") ? (
+                                                        (demand.demandStatus !== "Cancelled") ? (
                                                             <ButtonsActions demand={demand} proposal={proposal} workerId={workerId} actionsDemand={actionsDemand} approveDemand={approveDemand} giveBack={giveBack} generatePDF={generatePDF} />
                                                         ) : (
                                                             <button className="btn-primary mw100">

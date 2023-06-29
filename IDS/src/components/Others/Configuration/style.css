@@ -2,6 +2,10 @@
     margin-bottom: 20px;
 }
 
+.background-title .display-flex{
+    justify-content: flex-end;
+}
+
 .configuration {
     color: var(--grey3d);
 }

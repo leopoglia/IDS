@@ -276,11 +276,13 @@ export default function Demands() {
                                         )
                                     }
                                 })
+
                             }
+
+                            {(demands.filter((val: any) => { if (filtersUtil.demand(nameFilter, typeFilter, search, val)) { return true } else { return false } }).length === 0 ? noResult() : null)}
 
                             {demands.length === 0 && loading === true && <Load />}
 
-                            {demands.length === 0 && loading === false && noResult()}
 
                         </div>
 
@@ -309,10 +311,11 @@ export default function Demands() {
                                 ))
                             }
 
+                            {(proposals.filter((val: any) => { if (filtersUtil.proposal(nameFilter, typeFilter, search, val)) { return true } else { return false } }).length === 0 ? noResult() : null)}
+
 
                             {proposals.length === 0 && loading === true && <Load />}
 
-                            {proposals.length === 0 && loading === false && noResult()}
                         </div>
                         {othersUtil.footer(url, demands, proposals, agendas, minutes, search, typeFilter, pages, page, navigate, demandsSize, table)}
 
@@ -341,10 +344,9 @@ export default function Demands() {
                                     ))
                             }
 
+                            {(agendas.filter((val: any) => { if (filtersUtil.agenda(nameFilter, typeFilter, search, val)) { return true } else { return false } }).length === 0 ? noResult() : null)}
 
                             {agendas.length === 0 && loading === true && <Load />}
-
-                            {agendas.length === 0 && loading === false && noResult()}
 
                         </div>
 
@@ -385,7 +387,7 @@ export default function Demands() {
 
                             {minutes.length === 0 && loading === true && <Load />}
 
-                            {minutes.length === 0 && loading === false && noResult()}
+                            {(minutes.filter((val: any) => { if (filtersUtil.minutes(nameFilter, typeFilter, search, val, t)) { return true } else { return false } }).length === 0 ? noResult() : null)}
 
                         </div>
                         {othersUtil.footer(url, demands, proposals, agendas, minutes, search, typeFilter, pages, page, navigate, demandsSize, table)}

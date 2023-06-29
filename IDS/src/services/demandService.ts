@@ -101,6 +101,21 @@ const Services = {
                 "demandStatus": demandStatus,
                 "score": demandScore
             }
+        } else if (approver !== null) {
+            demand = {
+                "demandTitle": demandTitle.toUpperCase(),
+                "currentProblem": currentProblem,
+                "demandObjective": demandObjective,
+                "costCenter": costCenters,
+                "requesterRegistration": { "workerCode": demandRequester },
+                "realBenefit": { "realBenefitCode": realBenefit },
+                "qualitativeBenefit": { "qualitativeBenefitCode": qualitativeBenefit },
+                "potentialBenefit": { "potentialBenefitCode": potentialBenefit },
+                "demandStatus": demandStatus,
+                "classification": { "classificationCode": classificationCode },
+                "score": demandScore,
+                "approver": { "workerCode": approver.workerCode }
+            }
         } else {
             demand = {
                 "demandTitle": demandTitle.toUpperCase(),

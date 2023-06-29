@@ -137,15 +137,15 @@ export default function ExecutionCosts() {
     async function saveExpenseFinal(proposalCode: any) {
         let typeExpenses: any = [];
         let centerOfCustProposalInternal: any = localStorage.getItem('centerOfCustProposalinternal') || [];
-        if (centerOfCustProposalInternal[0] != null) {
+        if (centerOfCustProposalInternal[0] !== null) {
             typeExpenses.push("internal");
         }
         let centerOfCustProposalExpenses: any = localStorage.getItem('centerOfCustProposalexpenses') || [];
-        if (centerOfCustProposalExpenses[0] != null) {
+        if (centerOfCustProposalExpenses[0] !== null) {
             typeExpenses.push("expenses");
         }
         let centerOfCustProposalRecurrent: any = localStorage.getItem('centerOfCustProposalrecurrent') || [];
-        if (centerOfCustProposalRecurrent[0] != null) {
+        if (centerOfCustProposalRecurrent[0] !== null) {
             typeExpenses.push("recurrent");
         }
 

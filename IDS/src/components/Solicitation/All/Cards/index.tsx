@@ -71,7 +71,7 @@ export default function Demands() {
                             }
                         });
                     });
-
+                    
                     setDemands(demands);
                     setLoading(false);
                 });
@@ -107,7 +107,7 @@ export default function Demands() {
             localStorage.removeItem("route");
             Notification.success(t("demandCreateSuccess"));
         }
-    }, [url[3], page, search, typeFilter, table])
+    }, [url[3], page, search, table])
 
 
     // Buscar as demandas cadastradas
@@ -116,18 +116,15 @@ export default function Demands() {
         if (table === false) {
             findDemands = await ServicesDemand.findByPage(page, 5).then(async (res: any) => {
                 let demandsContent = res.content; // Atualiza o estado das demandas
-                setPages(res.totalPages); // Atualiza o estado das páginas
-
+           
                 let proposalsContent: any = await ServicesProposal.findAll(); // Busca as propostas cadastradas
                 addProposal(demandsContent, proposalsContent); // Adiciona as propostas nas demandas
                 setLoadingFalse(res); // Desativa o loading
+                setPages(res.totalPages); // Atualiza o estado das páginas
             });
         } else {
             findDemands = await ServicesDemand.findByPage(page, 9).then(async (res: any) => {
                 let demandsContent = res.content; // Atualiza o estado das demandas
-                setPages(res.totalPages); // Atualiza o estado das páginas
-
-
                 let totalDemands: any = 0;
 
                 await ServicesProposal.findAll().then((res: any) => {
@@ -142,6 +139,7 @@ export default function Demands() {
 
                 let proposalsContent: any = await ServicesProposal.findAll();
                 addProposal(demandsContent, proposalsContent);
+                setPages(res.totalPages); // Atualiza o estado das páginas
             });
         }
 
@@ -192,15 +190,15 @@ export default function Demands() {
 
     // Função para adicionar o código da proposta na demanda
     const addProposal = async (demandsContent: any, proposalsContent: any) => {
-        await demandsContent?.map((demand: any) => {
+        await demandsContent.map((demand: any) => {
             if (demand.demandStatus === "Assesment") {
                 proposalsContent.map(async (proposal: any) => {
 
                     if (proposal.demand.demandCode === demand.demandCode) {
                         demand.proposalCode = proposal.proposalCode;
 
-                        await ServicesAgenda.findByProposals(proposal.proposalCode).then((res: any) => {
-                            demand.forum = res.commission;
+                        await ServicesAgenda.findByProposals(proposal.proposalCode).then((agenda: any) => {
+                            demand.forum = agenda.commission;
                         })
                     }
                 })

@@ -57,8 +57,16 @@ export default function Demands() {
             if (search === "" && typeFilter === "") {
                 getDemands(); // Busca as demandas cadastradas
             } else {
-                ServicesDemand.findAll().then((res: any) => {
-                    setDemands(res);
+                ServicesDemand.findAll().then((demands: any) => {
+                    demands.map((demand: any) => {
+                        ServicesProposal.findByDemandCode(demand.demandCode).then((proposal: any) => {
+                            ServicesAgenda.findByProposals(proposal.proposalCode).then((agenda: any) => {
+                                return demand.forum = agenda.commission;
+                            });
+                        });
+                    });
+                    console.log(demands);
+                    setDemands(demands);
                 });
             }
 
@@ -67,24 +75,24 @@ export default function Demands() {
             if (search === "" && typeFilter === "") {
                 getProposals(); // Busca as demandas cadastradas
             } else {
-                ServicesProposal.findAll().then((res: any) => {
-                    setProposals(res);
+                ServicesProposal.findAll().then((proposals: any) => {
+                    setProposals(proposals);
                 });
             }
         } else if (url[3] === "agendas") {
             if (search === "" && typeFilter === "") {
                 getAgendas(); // Busca as demandas cadastradas
             } else {
-                ServicesAgenda.findAll().then((res: any) => {
-                    setAgendas(res);
+                ServicesAgenda.findAll().then((agendas: any) => {
+                    setAgendas(agendas);
                 });
             }
         } else if (url[3] === "minutes") {
             if (search === "" && typeFilter === "") {
                 getMinutes(); // Busca as demandas cadastradas
             } else {
-                ServicesMinute.findAll().then((res: any) => {
-                    setMinutes(res);
+                ServicesMinute.findAll().then((minutes: any) => {
+                    setMinutes(minutes);
                 });
             }
         }
@@ -99,13 +107,14 @@ export default function Demands() {
 
     // Buscar as demandas cadastradas
     async function getDemands() {
+
         if (table === false) {
             findDemands = await ServicesDemand.findByPage(page, 5).then(async (res: any) => {
                 let demandsContent = res.content; // Atualiza o estado das demandas
                 setPages(res.totalPages); // Atualiza o estado das páginas
 
-
                 let proposalsContent: any = await ServicesProposal.findAll(); // Busca as propostas cadastradas
+                addForum(demandsContent, proposalsContent); // Adiciona os fóruns nas demandas
                 addProposal(demandsContent, proposalsContent); // Adiciona as propostas nas demandas
                 setDemands(demandsContent); // Atualiza o estado das demandas
                 setLoadingFalse(res); // Desativa o loading
@@ -129,6 +138,7 @@ export default function Demands() {
                 }
 
                 let proposalsContent: any = await ServicesProposal.findAll();
+                addForum(demandsContent, proposalsContent); // Adiciona os fóruns nas demandas
                 addProposal(demandsContent, proposalsContent);
                 setDemands(demandsContent);
             });
@@ -187,6 +197,23 @@ export default function Demands() {
 
                     if (proposal.demand.demandCode === demand.demandCode) {
                         demand.proposalCode = proposal.proposalCode;
+                    }
+                })
+            }
+            return demand;
+        })
+    }
+
+    // Função para adicionar o código do código na demanda
+    const addForum = (demandsContent: any, proposalsContent: any) => {
+        demandsContent?.map((demand: any) => {
+            if (demand.demandStatus === "Assesment") {
+                proposalsContent.map((proposal: any) => {
+
+                    if (proposal.demand.demandCode === demand.demandCode) {
+                        ServicesAgenda.findByProposals(proposal.proposalCode).then((res: any) => {
+                            demand.forum = res.commission;
+                        })
                     }
                 })
             }
@@ -256,7 +283,6 @@ export default function Demands() {
 
 
                             {
-
                                 demands.filter((val: any) => {
                                     if (filtersUtil.demand(nameFilter, typeFilter, search, val)) { return true } else { return false }
                                 }).map((val: any, index: number) => {

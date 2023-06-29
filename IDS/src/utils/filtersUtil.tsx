@@ -4,6 +4,8 @@ const filtersUtil = {
 
     demand: (nameFilter: any, typeFilter: any, search: any, val: any): any => {
 
+        console.log(nameFilter, val)
+
         if (
             (nameFilter === "" || nameFilter === undefined) &&
             (typeFilter === "" || typeFilter === undefined) &&
@@ -30,8 +32,8 @@ const filtersUtil = {
             return true;
         } else if (typeFilter === "department" && val?.requesterRegistration.department === nameFilter) {
             return true;
-        } else if (typeFilter === "forum") {
-            return false;
+        } else if (typeFilter === "forum" && val?.forum?.commissionAcronym === nameFilter) {
+            return true;
         }
         return null;
     },

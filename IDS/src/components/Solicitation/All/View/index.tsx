@@ -88,6 +88,13 @@ export default function ViewDemand() {
         demand: { demandCode: "", demandDescription: "", demandObjective: "" }
     }]);
 
+    // Dados da proposta específica
+    const [proposalPublished, setProposalPublished]: any = useState([{
+        proposalName: "", proposalCode: "", proposalStatus: "",
+        proposalDate: "", proposalDescription: "",
+        demand: { demandCode: "", demandDescription: "", demandObjective: "" }
+    }]);
+
     const [agenda, setAgenda]: any = useState([{
         agendaCode: "", agendaDate: "", agendaDescription: "", agendaStatus: "",
         minutePublished: { minuteCode: "", minuteDate: "", minuteDescription: "", minuteStatus: "" },
@@ -303,6 +310,7 @@ export default function ViewDemand() {
 
         ServicesAgenda.findById(demandCode).then(async (response: any) => {
             let proposals: any = [];
+            let proposalsPublished: any = []
             setComission(response[0].commission)
 
             for (let i = 0; i < response[0].proposals.length; i++) {
@@ -310,9 +318,16 @@ export default function ViewDemand() {
                     response[0].proposals[i].demand = demand;
                 })
 
+                if(response[0].proposals[i].published === true){
+                    proposalsPublished.push(response[0].proposals[i])
+                }
+
                 proposals.push(response[0].proposals[i])
             }
             setProposalSpecific(proposals)
+            setProposalPublished(proposalsPublished)
+
+
 
 
             ServicesMinute.findByAgenda(response[0].agendaCode).then((minute: any) => {
@@ -981,7 +996,7 @@ export default function ViewDemand() {
                                             ) : (null)
                                             }
 
-                                            {proposalSpecific.length < approvedDG && (minute.length !== 0 && (minute[0]?.minuteType === "Published" || minute[1]?.minuteType === "Published")) && !(minute[0]?.minuteType === "DG" || minute[1]?.minuteType === "DG" || minute[2]?.minuteType === "DG") ? (
+                                            {proposalPublished.length < approvedDG && (minute.length !== 0 && (minute[0]?.minuteType === "Published" || minute[1]?.minuteType === "Published")) && !(minute[0]?.minuteType === "DG" || minute[1]?.minuteType === "DG" || minute[2]?.minuteType === "DG") ? (
 
                                                 <div className="display-flex-end">
                                                     <Link to={"/minutes/create/" + demandCode + "?dg"}>
@@ -1130,7 +1145,7 @@ export default function ViewDemand() {
                                                                                     <Link to={"/proposal/comission-opinion/" + val.proposalCode + "?" + agenda.agendaCode}>
                                                                                         <button className="btn-primary">{t("insertCommissionOpinion")}</button>
                                                                                     </Link>
-                                                                                ) : val?.proposalStatus === "ApprovedComission" && minute.length !== 0 ? (
+                                                                                ) : val?.proposalStatus === "ApprovedComission" && val?.published === true && minute.length !== 0 ? (
                                                                                     <div className="display-flex-align-center">
 
                                                                                         <div className="proposal-status mr20">

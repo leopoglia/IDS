@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { WebSocketContext } from '../../../../services/webSocketService';
-
+import ButtonActionAnalyst from "./Others/ButtonActionAnalyst"; 
 import Title from "../../../Fixed/Search/Title";
 import ServicesDemand from "../../../../services/demandService";
 import ServicesProposal from "../../../../services/proposalService";
@@ -318,7 +318,7 @@ export default function ViewDemand() {
                     response[0].proposals[i].demand = demand;
                 })
 
-                if(response[0].proposals[i].published === true){
+                if (response[0].proposals[i].published === true) {
                     proposalsPublished.push(response[0].proposals[i])
                 }
 
@@ -996,7 +996,7 @@ export default function ViewDemand() {
                                             ) : (null)
                                             }
 
-                                            {proposalPublished.length < approvedDG && proposalPublished.length !== 0 && !(minute[0]?.minuteType === "DG" || minute[1]?.minuteType === "DG" || minute[2]?.minuteType === "DG")   ? (
+                                            {proposalPublished.length < approvedDG && proposalPublished.length !== 0 && !(minute[0]?.minuteType === "DG" || minute[1]?.minuteType === "DG" || minute[2]?.minuteType === "DG") ? (
 
                                                 <div className="display-flex-end">
                                                     <Link to={"/minutes/create/" + demandCode + "?dg"}>
@@ -1006,6 +1006,7 @@ export default function ViewDemand() {
                                             ) : (null)
                                             }
 
+                                            <ButtonActionAnalyst agenda={agenda} />
                                         </div>
 
                                         <div className="box">

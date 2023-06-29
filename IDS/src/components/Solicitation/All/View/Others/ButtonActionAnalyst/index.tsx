@@ -3,7 +3,7 @@ import { useState } from "react";
 import ModalActionAnalyst from "../ModalActionAnalyst";
 import "./style.css";
 
-export default function ButtonActionAnalyst(props:any) {
+export default function ButtonActionAnalyst(props: any) {
 
     const [modal, setModal]: any = useState(false);
 
@@ -15,11 +15,19 @@ export default function ButtonActionAnalyst(props:any) {
                 </span>
             </button>
 
-            {modal && (
-                <div className="modal-action-analyst">
-                    <ModalActionAnalyst codeDemand={props.codeDemand} proposal={props.proposal} />
-                </div>
-            )}
+            {props.agenda === undefined ?
+                modal && (
+                    <div className="modal-action-analyst">
+                        <ModalActionAnalyst codeDemand={props.codeDemand} proposal={props.proposal} />
+                    </div>
+                )
+                :
+                modal && (
+                    <div className="modal-action-analyst">
+                        <ModalActionAnalyst agenda={props.agenda} />
+                    </div>
+                )
+            }
         </div>
     );
 }

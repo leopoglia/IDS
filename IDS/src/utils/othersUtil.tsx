@@ -188,14 +188,14 @@ const othersUtil = {
                 });
             });
         } else if (solicitationType === "minute") {
-            for(let i = 0; i < solicitations.length; i++) {
+            for (let i = 0; i < solicitations.length; i++) {
                 let dateFormat: any;
 
                 // se for menos de 9 colocar 0 na frente
                 if (solicitations[i].minuteStartDate?.split("/")[1].length === 1) {
                     dateFormat = solicitations[i].minuteStartDate.split("/")[0] + "0" + solicitations[i].minuteStartDate.split("/")[1] + solicitations[i].minuteStartDate.split("/")[2]
                 }
-    
+
                 if (typeFilter === "code-minutes" && solicitations[i].minuteCode === parseInt(nameFilter)) {
                     filteredSolicitations.push(solicitations[i]);
                 } else if (typeFilter === "date" && dateFormat.includes(nameFilter.split("-").reverse().join(""))) {
@@ -220,6 +220,12 @@ const othersUtil = {
                 });
             });
         }
+    },
+
+    deleteAgenda: (agenda: any, navigate: any) => {
+        AgendaService.delete(agenda.agendaCode).then((response: any) => {
+            navigate("/agendas/1");
+        })
     }
 
 }

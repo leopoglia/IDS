@@ -54,3 +54,7 @@
 .modal .flag:hover {
     background-color: var(--greyE5);
 }
+
+.search .modal{
+    margin-left: -35px !important; 
+}

@@ -58,14 +58,20 @@ export default function Demands() {
                 getDemands(); // Busca as demandas cadastradas
             } else {
                 ServicesDemand.findAll().then((demands: any) => {
-                    demands.map((demand: any) => {
-                        ServicesProposal.findByDemandCode(demand.demandCode).then((proposal: any) => {
-                            ServicesAgenda.findByProposals(proposal.proposalCode).then((agenda: any) => {
-                                return demand.forum = agenda.commission;
-                            });
+                    demands.map(async (demand: any) => {
+                        await ServicesProposal.findByDemandCode(demand.demandCode).then(async (proposal: any) => {
+                            if (proposal.demand.demandCode === demand.demandCode) {
+                                demand.proposal = proposal;
+                                await ServicesAgenda.findByProposals(proposal.proposalCode).then((agenda: any) => {
+                                    if (demand.demandCode === proposal.demand.demandCode) {
+                                        demand.forum = agenda.commission;
+                                    }
+                                });
+                                return demand;
+                            }
                         });
                     });
-                    console.log(demands);
+
                     setDemands(demands);
                 });
             }
@@ -114,7 +120,6 @@ export default function Demands() {
                 setPages(res.totalPages); // Atualiza o estado das páginas
 
                 let proposalsContent: any = await ServicesProposal.findAll(); // Busca as propostas cadastradas
-                addForum(demandsContent, proposalsContent); // Adiciona os fóruns nas demandas
                 addProposal(demandsContent, proposalsContent); // Adiciona as propostas nas demandas
                 setDemands(demandsContent); // Atualiza o estado das demandas
                 setLoadingFalse(res); // Desativa o loading
@@ -138,7 +143,6 @@ export default function Demands() {
                 }
 
                 let proposalsContent: any = await ServicesProposal.findAll();
-                addForum(demandsContent, proposalsContent); // Adiciona os fóruns nas demandas
                 addProposal(demandsContent, proposalsContent);
                 setDemands(demandsContent);
             });
@@ -197,20 +201,7 @@ export default function Demands() {
 
                     if (proposal.demand.demandCode === demand.demandCode) {
                         demand.proposalCode = proposal.proposalCode;
-                    }
-                })
-            }
-            return demand;
-        })
-    }
 
-    // Função para adicionar o código do código na demanda
-    const addForum = (demandsContent: any, proposalsContent: any) => {
-        demandsContent?.map((demand: any) => {
-            if (demand.demandStatus === "Assesment") {
-                proposalsContent.map((proposal: any) => {
-
-                    if (proposal.demand.demandCode === demand.demandCode) {
                         ServicesAgenda.findByProposals(proposal.proposalCode).then((res: any) => {
                             demand.forum = res.commission;
                         })
@@ -220,7 +211,6 @@ export default function Demands() {
             return demand;
         })
     }
-
 
     // Função para setar o estado da tabela
     const setTable = () => {

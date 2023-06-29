@@ -4,8 +4,6 @@ const filtersUtil = {
 
     demand: (nameFilter: any, typeFilter: any, search: any, val: any): any => {
 
-        console.log(nameFilter, val)
-
         if (
             (nameFilter === "" || nameFilter === undefined) &&
             (typeFilter === "" || typeFilter === undefined) &&
@@ -35,7 +33,7 @@ const filtersUtil = {
         } else if (typeFilter === "forum" && val?.forum?.commissionAcronym === nameFilter) {
             return true;
         }
-        return null;
+        return false;
     },
 
     proposal: (nameFilter: any, typeFilter: any, search: any, val: any): any => {

@@ -121,8 +121,13 @@ export default function Search(props: any) {
                         }
 
                         {props.name !== undefined &&
-                            <ButtonTableList icon="filter_alt" sendFilter={sendFilter} />
+                            <>
+                                <ButtonTableList icon="swap_vert" sendFilter={sendFilter} />
+
+                                <ButtonTableList icon="filter_alt" sendFilter={sendFilter} />
+                            </>
                         }
+
                     </div>
 
                     <div className="background-filter" onClick={onButtonPress}>

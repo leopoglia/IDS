@@ -996,7 +996,7 @@ export default function ViewDemand() {
                                             ) : (null)
                                             }
 
-                                            {proposalPublished.length < approvedDG && (minute.length !== 0 && (minute[0]?.minuteType === "Published" || minute[1]?.minuteType === "Published")) && !(minute[0]?.minuteType === "DG" || minute[1]?.minuteType === "DG" || minute[2]?.minuteType === "DG") ? (
+                                            {proposalPublished.length < approvedDG ? (
 
                                                 <div className="display-flex-end">
                                                     <Link to={"/minutes/create/" + demandCode + "?dg"}>

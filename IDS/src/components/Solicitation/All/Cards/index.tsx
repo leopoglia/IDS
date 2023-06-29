@@ -57,8 +57,8 @@ export default function Demands() {
             if (search === "" && typeFilter === "") {
                 getDemands(); // Busca as demandas cadastradas
             } else {
-                ServicesDemand.findAll().then((demands: any) => {
-                    demands.map(async (demand: any) => {
+                ServicesDemand.findAll().then(async (demands: any) => {
+                    await demands.map(async (demand: any) => {
                         await ServicesProposal.findByDemandCode(demand.demandCode).then(async (proposal: any) => {
                             if (proposal.demand.demandCode === demand.demandCode) {
                                 demand.proposal = proposal;
@@ -73,10 +73,9 @@ export default function Demands() {
                     });
 
                     setDemands(demands);
+                    setLoading(false);
                 });
             }
-
-
         } else if (url[3] === "proposals") {
             if (search === "" && typeFilter === "") {
                 getProposals(); // Busca as demandas cadastradas
@@ -121,7 +120,6 @@ export default function Demands() {
 
                 let proposalsContent: any = await ServicesProposal.findAll(); // Busca as propostas cadastradas
                 addProposal(demandsContent, proposalsContent); // Adiciona as propostas nas demandas
-                setDemands(demandsContent); // Atualiza o estado das demandas
                 setLoadingFalse(res); // Desativa o loading
             });
         } else {
@@ -144,7 +142,6 @@ export default function Demands() {
 
                 let proposalsContent: any = await ServicesProposal.findAll();
                 addProposal(demandsContent, proposalsContent);
-                setDemands(demandsContent);
             });
         }
 
@@ -194,15 +191,15 @@ export default function Demands() {
     }
 
     // Função para adicionar o código da proposta na demanda
-    const addProposal = (demandsContent: any, proposalsContent: any) => {
-        demandsContent?.map((demand: any) => {
+    const addProposal = async (demandsContent: any, proposalsContent: any) => {
+        await demandsContent?.map((demand: any) => {
             if (demand.demandStatus === "Assesment") {
-                proposalsContent.map((proposal: any) => {
+                proposalsContent.map(async (proposal: any) => {
 
                     if (proposal.demand.demandCode === demand.demandCode) {
                         demand.proposalCode = proposal.proposalCode;
 
-                        ServicesAgenda.findByProposals(proposal.proposalCode).then((res: any) => {
+                        await ServicesAgenda.findByProposals(proposal.proposalCode).then((res: any) => {
                             demand.forum = res.commission;
                         })
                     }
@@ -210,6 +207,8 @@ export default function Demands() {
             }
             return demand;
         })
+        setDemands(demandsContent); // Atualiza o estado das demandas
+        setLoading(false); // Desativa o loading
     }
 
     // Função para setar o estado da tabela

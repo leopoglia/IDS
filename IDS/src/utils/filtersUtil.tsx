@@ -4,6 +4,8 @@ const filtersUtil = {
 
     demand: (nameFilter: any, typeFilter: any, search: any, val: any): any => {
 
+        console.log(val?.forum?.commissionAcronym)
+
         if (
             (nameFilter === "" || nameFilter === undefined) &&
             (typeFilter === "" || typeFilter === undefined) &&

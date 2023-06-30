@@ -17,6 +17,7 @@ export default function CreateAgenda() {
 
     const { t } = useTranslation();
     const navigate = useNavigate();
+    const edit = window.location.href.split("?")[1];
     let data = new Date();
 
     const [proposals, setProposals]: any = useState([]);
@@ -31,6 +32,29 @@ export default function CreateAgenda() {
 
     useEffect(() => {
         getProposal();
+
+        console.log(edit)
+
+
+        if (edit !== undefined) {
+            Services.findById(parseInt(edit)).then((agendas: any) => {
+                let agenda = agendas[0];
+
+                setCommission(agenda.commission.commissionName);
+                setDateInitial(agenda.initialDate);
+                setDateFinal(agenda.finalDate);
+
+                let proposals: any = [];
+
+                agenda.proposals.map((val: any) => {
+                    proposals.push(val.proposalCode);
+                }
+                )
+
+                localStorage.setItem("proposals", JSON.stringify(proposals));
+                getProposal();
+            })
+        }
     }, [])
 
     function getProposal() {
@@ -166,16 +190,21 @@ export default function CreateAgenda() {
 
                     <div className="mt10">
                         <span>{t("comission")}</span>
-                        <SelectWorker setCommission={setCommission} worker={commission} />
+                        <SelectWorker setCommission={setCommission} commission={commission} worker={commission} />
                     </div>
 
 
                 </div>
 
-
-                <div className="display-flex-end">
-                    <button onClick={saveAgenda} className="btn-primary">{t("save")}</button>
-                </div>
+                {edit === undefined ?
+                    <div className="display-flex-end">
+                        <button onClick={saveAgenda} className="btn-primary">{t("save")}</button>
+                    </div>
+                    :
+                    <div className="display-flex-end">
+                        <button onClick={saveAgenda} className="btn-primary">{t("edit")}</button>
+                    </div>
+                }
 
             </div>
 

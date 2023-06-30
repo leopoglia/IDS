@@ -275,7 +275,8 @@
     background-color: var(--white2);
 }
 
-.demand:hover .situation-demand{
+.demand:hover .situation-demand,
+.demand-list:hover .situation-demand {
     background-color: var(--blueF4);
 }
 

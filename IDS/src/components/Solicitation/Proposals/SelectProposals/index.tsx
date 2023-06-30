@@ -15,6 +15,7 @@ export default function Proposals() {
 
     const [proposals, setProposals] = useState([]);
     const [search, setSearch] = useState("");
+    const edit = window.location.href.split("?")[1];
 
     const navigate = useNavigate();
 
@@ -29,7 +30,11 @@ export default function Proposals() {
         if (proposals.length === 0) {
             notifyError()
         } else {
-            navigate("/agenda/create")
+            if (edit === undefined) {
+                navigate("/agenda/create")
+            } else {
+                navigate("/agenda/create?" + edit)
+            }
         }
     }
 

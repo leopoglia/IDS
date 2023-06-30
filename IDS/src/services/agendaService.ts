@@ -77,17 +77,6 @@ const Services = {
             proposalList.push({ proposalCode: proposals[i].proposalCode })
         }
 
-        console.log("sequentialNumber: " + sequentialNumber)
-        console.log("dateInitial: " + dateInitial)
-        console.log("dateFinal: " + dateFinal)
-        console.log("commission: " + commission)
-        console.log("agendaDate: " + agendaDate)
-        console.log("proposals: " + proposalList)
-        console.log("analistRegistry: " + analistRegistry)
-        console.log("id: " + id)
-        
-
-
         return new Promise((resolve, reject) => {
             fetch(url + "/" + id, {
                 method: 'PUT', body: JSON.stringify({

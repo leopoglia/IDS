@@ -201,7 +201,7 @@ export default function CreateAgenda() {
 
 
                         <div className="display-flex addProposal">
-                            <Link to="/agenda/select-proposals">
+                            <Link to={edit === undefined ? "/agenda/select-proposals" : "/agenda/select-proposals?" + edit}>
                                 <button className="btn-secondary">{t("addProposal")}</button>
                             </Link>
                         </div>

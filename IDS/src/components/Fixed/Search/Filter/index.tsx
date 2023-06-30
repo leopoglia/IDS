@@ -68,7 +68,7 @@ export default function Filter(props: any) {
             if (type === "score") {
                 setType("score-true");
                 props.setName("score")
-                props.setType("false")
+                props.setType("down")
             } else if (type === "score-true" && filter === true) {
                 setType("score-false");
                 props.setName("")
@@ -76,7 +76,7 @@ export default function Filter(props: any) {
             } else {
                 setType("score");
                 props.setName("score")
-                props.setType("true")
+                props.setType("up")
             }
 
             setFilter(true);
@@ -85,7 +85,7 @@ export default function Filter(props: any) {
             if (type === "dates") {
                 setType("dates-true");
                 props.setName("dates")
-                props.setType("false")
+                props.setType("down")
             } else if (type === "dates-true" && filter === true) {
                 setType("dates-false");
                 props.setName("")
@@ -93,7 +93,7 @@ export default function Filter(props: any) {
             } else {
                 setType("dates");
                 props.setName("dates")
-                props.setType("true")
+                props.setType("up")
             }
 
             setFilter(true);
@@ -102,7 +102,7 @@ export default function Filter(props: any) {
             if (type === "code") {
                 setType("code-true");
                 props.setName("code")
-                props.setType("false")
+                props.setType("down")
             } else if (type === "code-true" && filter === true) {
                 setType("code-false");
                 props.setName("")
@@ -110,7 +110,7 @@ export default function Filter(props: any) {
             } else {
                 setType("code");
                 props.setName("code")
-                props.setType("true")
+                props.setType("up")
             }
 
             setFilter(true);

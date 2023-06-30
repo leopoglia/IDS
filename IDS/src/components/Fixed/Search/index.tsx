@@ -25,6 +25,7 @@ export default function Search(props: any) {
 
     const [data, setData] = useState(false); // Estado da tabela (demanda, proposta, agenda, minuta)
     const [filter, setFilter] = useState(false); // Estado do filtro
+    const [typeFilter, setTypeFilter] = useState(""); // Estado do tipo de filtro (filtro ou ordenar)
 
     useEffect(() => {
         callback(props.name, props.type);
@@ -42,9 +43,10 @@ export default function Search(props: any) {
     }
 
     // Se o filtro estiver aberto, fecha, se estiver fechado, abre
-    const sendFilter = () => {
+    const sendFilter = (type: string) => {
         const newFilter = !filter;
         setFilter(newFilter);
+        setTypeFilter(type);
 
         if (props.setFilter) {
             props.setFilter(newFilter);
@@ -122,16 +124,16 @@ export default function Search(props: any) {
 
                         {props.name !== undefined &&
                             <>
-                                <ButtonTableList icon="swap_vert" sendFilter={sendFilter} />
+                                <ButtonTableList icon="swap_vert" sendFilter={() => sendFilter("order")} />
 
-                                <ButtonTableList icon="filter_alt" sendFilter={sendFilter} />
+                                <ButtonTableList icon="filter_alt" sendFilter={() => sendFilter("filter")} />
                             </>
                         }
 
                     </div>
 
                     <div className="background-filter" onClick={onButtonPress}>
-                        {filter && <Filter onClick={callback} />}
+                        {filter && <Filter onClick={callback} type={typeFilter} />}
                     </div>
                 </div>
             </div>

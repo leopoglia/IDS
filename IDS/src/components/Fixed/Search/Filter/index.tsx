@@ -6,7 +6,8 @@ import UserContext from "../../../../context/userContext";
 import "./style.css";
 
 export interface FilterProps {
-    onClick: (name: string | undefined, type: string) => void
+    onClick: (name: string | undefined, type: string) => void,
+    type: string
 }
 
 export default function Filter(props: FilterProps) {
@@ -17,7 +18,7 @@ export default function Filter(props: FilterProps) {
 
     const url = window.location.pathname.split("/")[1]; // Pega a url para verificar se é demanda, proposta, pauta ou ata
     const [filter, setFilter] = useState(false); // Estado do filtro
-    const [type, setType] = useState<string>(""); 
+    const [type, setType] = useState<string>("");
     const [status, setStatus] = useState<string>("");
 
     useEffect(() => {
@@ -31,12 +32,12 @@ export default function Filter(props: FilterProps) {
             return (
                 <div className="send-filter">
                     <div className="hr" />
-                        <input className="input" onChange={onButtonPress} type="text" ref={inputName} placeholder="Insira o parametro aqui" />
+                    <input className="input" onChange={onButtonPress} type="text" ref={inputName} placeholder="Insira o parametro aqui" />
                     <button onClick={onButtonPress} className="btn-primary">Filtrar</button>
                 </div>
             )
 
-        // Se o tipo for status, size ou forum, retorna o select com os valores
+            // Se o tipo for status, size ou forum, retorna o select com os valores
         } else if ((type === "status" || type === "size" || type === "forum") && filter === true) {
 
             let arraySelect: string[] = []; // Array que vai receber os valores do select
@@ -46,7 +47,7 @@ export default function Filter(props: FilterProps) {
             } else if (type === "size") {
                 arraySelect = ["Muito pequeno", "Pequeno", "Médio", "Grande", "Muito grande"]; // Tamanhos das demandas
             } else if (type === "forum") {
-                arraySelect = ["CPVM", "CPGCI", "CPGPR", "CGPN", "CTI", "CWBS", "DTI" ]; // Siglas dos fóruns
+                arraySelect = ["CPVM", "CPGCI", "CPGPR", "CGPN", "CTI", "CWBS", "DTI"]; // Siglas dos fóruns
             }
 
             return (
@@ -57,7 +58,7 @@ export default function Filter(props: FilterProps) {
                 </div>
             )
 
-        // Se o tipo for date, retorna o input de data
+            // Se o tipo for date, retorna o input de data
         } else if (filter === true && type === "date") {
             return (
                 <div className="send-filter">
@@ -73,10 +74,10 @@ export default function Filter(props: FilterProps) {
 
     // Envia o valor do input e o tipo para o componente pai
     const onButtonPress = () => {
-        props.onClick(inputName?.current?.value, type); 
+        props.onClick(inputName?.current?.value, type);
     }
 
-     // Envia o valor do select e o tipo para o componente pai
+    // Envia o valor do select e o tipo para o componente pai
     const onButtonPressSelect = () => {
         props.onClick(status, type);
 
@@ -84,135 +85,161 @@ export default function Filter(props: FilterProps) {
 
     // Envia o valor do select e o tipo para o componente pai
     const onButtonPressHome = () => {
-        props.onClick(worker.name, "home"); 
+        props.onClick(worker.name, "home");
     }
 
-    if (url === 'demands') {
-        return (
-            <div className="filter-modal modal">
 
-                <div className="li" onClick={() => { setFilter(true); setType("home"); onButtonPressHome() }}>
-                    <span className="material-symbols-outlined" >home</span>
-                    <span className="font-p">{t("myDemands")}</span>
+    if (props.type === "filter") {
+        if (url === 'demands') {
+            return (
+                <div className="filter-modal modal">
+
+                    <div className="li" onClick={() => { setFilter(true); setType("home"); onButtonPressHome() }}>
+                        <span className="material-symbols-outlined" >home</span>
+                        <span className="font-p">{t("myDemands")}</span>
+                    </div>
+
+                    <div className="li" onClick={() => { setFilter(true); setType("requester") }}>
+                        <span className="material-symbols-outlined">person</span>
+                        <span className="font-p">{t("requester")}</span>
+                    </div>
+
+
+                    {worker?.office !== "requester" &&
+                        <>
+                            <div className="li" onClick={() => { setFilter(true); setType("manager") }}>
+                                <span className="material-symbols-outlined">manage_accounts</span>
+                                <span className="font-p">{t("manager")}</span>
+                            </div>
+
+                            <div className="li" onClick={() => { setFilter(true); setType("forum") }}>
+                                <span className="material-symbols-outlined">workspaces</span>
+                                <span className="font-p">{t("forum")}</span>
+                            </div>
+
+                            <div className="li" onClick={() => { setFilter(true); setType("department") }}>
+                                <span className="material-symbols-outlined">location_on</span>
+                                <span className="font-p">{t("departament")}</span>
+                            </div>
+
+                            <div className="li" onClick={() => { setFilter(true); setType("size") }}>
+                                <span className="material-symbols-outlined">crop_free</span>
+                                <span className="font-p">{t("size")}</span>
+                            </div>
+
+                            <div className="li" onClick={() => { setFilter(true); setType("ppm") }}>
+                                <span className="material-symbols-outlined">link</span>
+                                <span className="font-p">{t("ppmCode")}</span>
+                            </div>
+                        </>
+                    }
+
+                    <div className="li" onClick={() => { setFilter(true); setType("code-demand") }}>
+                        <span className="material-symbols-outlined">draft</span>
+                        <span className="font-p">{t("demandCode")}</span>
+                    </div>
+
+                    <div className="li" onClick={() => { setFilter(true); setType("status") }}>
+                        <span className="material-symbols-outlined">schedule</span>
+                        <span className="font-p">{t("status")}</span>
+                    </div>
+
+                    {sendFilter()}
+
                 </div>
+            )
+        } else if (url === 'proposals') {
+            return (
+                <div className="filter-modal modal">
 
-                <div className="li" onClick={() => { setFilter(true); setType("requester") }}>
-                    <span className="material-symbols-outlined">person</span>
-                    <span className="font-p">{t("requester")}</span>
+                    <div className="li" onClick={() => { setFilter(true); setType("requester") }}>
+                        <span className="material-symbols-outlined">person</span>
+                        <span className="font-p">{t("requester")}</span>
+                    </div>
+
+                    <div className="li" onClick={() => { setFilter(true); setType("manager") }}>
+                        <span className="material-symbols-outlined">manage_accounts</span>
+                        <span className="font-p">{t("manager")}</span>
+                    </div>
+
+                    <div className="li" onClick={() => { setFilter(true); setType("forum") }}>
+                        <span className="material-symbols-outlined">workspaces</span>
+                        <span className="font-p">{t("forum")}</span>
+                    </div>
+
+                    <div className="li" onClick={() => { setFilter(true); setType("department") }}>
+                        <span className="material-symbols-outlined">location_on</span>
+                        <span className="font-p">{t("departament")}</span>
+                    </div>
+
+                    <div className="li" onClick={() => { setFilter(true); setType("size") }}>
+                        <span className="material-symbols-outlined">crop_free</span>
+                        <span className="font-p">{t("size")}</span>
+                    </div>
+
+                    <div className="li" onClick={() => { setFilter(true); setType("ppm") }}>
+                        <span className="material-symbols-outlined">link</span>
+                        <span className="font-p">{t("ppmCode")}</span>
+                    </div>
+
+                    <div className="li" onClick={() => { setFilter(true); setType("code-proposal") }}>
+                        <span className="material-symbols-outlined">draft</span>
+                        <span className="font-p">{t("codeProposal")}</span>
+                    </div>
+
+                    {sendFilter()}
+
                 </div>
+            )
+        } else if (url === 'agendas') {
+            return (
+                <div className="filter-modal modal">
 
+                    <div className="li" onClick={() => { setFilter(true); setType("forum") }}>
+                        <span className="material-symbols-outlined">workspaces</span>
+                        <span className="font-p">{t("forum")}</span>
+                    </div>
 
-                {worker?.office !== "requester" &&
-                    <>
-                        <div className="li" onClick={() => { setFilter(true); setType("manager") }}>
-                            <span className="material-symbols-outlined">manage_accounts</span>
-                            <span className="font-p">{t("manager")}</span>
-                        </div>
+                    <div className="li" onClick={() => { setFilter(true); setType("code-agendas") }}>
+                        <span className="material-symbols-outlined">draft</span>
+                        <span className="font-p">{t("codeProposal")}</span>
+                    </div>
 
-                        <div className="li" onClick={() => { setFilter(true); setType("forum") }}>
-                            <span className="material-symbols-outlined">workspaces</span>
-                            <span className="font-p">{t("forum")}</span>
-                        </div>
+                    {sendFilter()}
 
-                        <div className="li" onClick={() => { setFilter(true); setType("department") }}>
-                            <span className="material-symbols-outlined">location_on</span>
-                            <span className="font-p">{t("departament")}</span>
-                        </div>
-
-                        <div className="li" onClick={() => { setFilter(true); setType("size") }}>
-                            <span className="material-symbols-outlined">crop_free</span>
-                            <span className="font-p">{t("size")}</span>
-                        </div>
-
-                        <div className="li" onClick={() => { setFilter(true); setType("ppm") }}>
-                            <span className="material-symbols-outlined">link</span>
-                            <span className="font-p">{t("ppmCode")}</span>
-                        </div>
-                    </>
-                }
-
-                <div className="li" onClick={() => { setFilter(true); setType("code-demand") }}>
-                    <span className="material-symbols-outlined">draft</span>
-                    <span className="font-p">{t("demandCode")}</span>
                 </div>
+            )
+        } else {
+            return (
+                <div className="filter-modal modal">
 
-                <div className="li" onClick={() => { setFilter(true); setType("status") }}>
-                    <span className="material-symbols-outlined">schedule</span>
-                    <span className="font-p">{t("status")}</span>
+                    <div className="li" onClick={() => { setFilter(true); setType("number-minutes") }}>
+                        <span className="material-symbols-outlined">workspaces</span>
+                        <span className="font-p">{t("numberMinutes")}</span>
+                    </div>
+
+                    <div className="li" onClick={() => { setFilter(true); setType("date") }}>
+                        <span className="material-symbols-outlined">calendar_month</span>
+                        <span className="font-p">{t("date")}</span>
+                    </div>
+
+                    <div className="li" onClick={() => { setFilter(true); setType("code-minutes") }}>
+                        <span className="material-symbols-outlined">draft</span>
+                        <span className="font-p">{t("codeMinutes")}</span>
+                    </div>
+
+                    {sendFilter()}
+
                 </div>
-
-                {sendFilter()}
-
-            </div>
-        )
-    } else if (url === 'proposals') {
-        return (
-            <div className="filter-modal modal">
-
-                <div className="li" onClick={() => { setFilter(true); setType("requester") }}>
-                    <span className="material-symbols-outlined">person</span>
-                    <span className="font-p">{t("requester")}</span>
-                </div>
-
-                <div className="li" onClick={() => { setFilter(true); setType("manager") }}>
-                    <span className="material-symbols-outlined">manage_accounts</span>
-                    <span className="font-p">{t("manager")}</span>
-                </div>
-
-                <div className="li" onClick={() => { setFilter(true); setType("forum") }}>
-                    <span className="material-symbols-outlined">workspaces</span>
-                    <span className="font-p">{t("forum")}</span>
-                </div>
-
-                <div className="li" onClick={() => { setFilter(true); setType("department") }}>
-                    <span className="material-symbols-outlined">location_on</span>
-                    <span className="font-p">{t("departament")}</span>
-                </div>
-
-                <div className="li" onClick={() => { setFilter(true); setType("size") }}>
-                    <span className="material-symbols-outlined">crop_free</span>
-                    <span className="font-p">{t("size")}</span>
-                </div>
-
-                <div className="li" onClick={() => { setFilter(true); setType("ppm") }}>
-                    <span className="material-symbols-outlined">link</span>
-                    <span className="font-p">{t("ppmCode")}</span>
-                </div>
-
-                <div className="li" onClick={() => { setFilter(true); setType("code-proposal") }}>
-                    <span className="material-symbols-outlined">draft</span>
-                    <span className="font-p">{t("codeProposal")}</span>
-                </div>
-
-                {sendFilter()}
-
-            </div>
-        )
-    } else if (url === 'agendas') {
-        return (
-            <div className="filter-modal modal">
-
-                <div className="li" onClick={() => { setFilter(true); setType("forum") }}>
-                    <span className="material-symbols-outlined">workspaces</span>
-                    <span className="font-p">{t("forum")}</span>
-                </div>
-
-                <div className="li" onClick={() => { setFilter(true); setType("code-agendas") }}>
-                    <span className="material-symbols-outlined">draft</span>
-                    <span className="font-p">{t("codeProposal")}</span>
-                </div>
-
-                {sendFilter()}
-
-            </div>
-        )
+            )
+        }
     } else {
         return (
             <div className="filter-modal modal">
 
                 <div className="li" onClick={() => { setFilter(true); setType("number-minutes") }}>
                     <span className="material-symbols-outlined">workspaces</span>
-                    <span className="font-p">{t("numberMinutes")}</span>
+                    <span className="font-p">{t("score")}</span>
                 </div>
 
                 <div className="li" onClick={() => { setFilter(true); setType("date") }}>

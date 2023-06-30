@@ -276,5 +276,6 @@
     "RejectedDG": "Rejected DG",
     "colors": "Colors",
     "dgMinute": "DG Minute",
-    "totaPercentage100": "The total percentage must be 100%"
+    "totaPercentage100": "The total percentage must be 100%",
+    "score": "Score"
 }

@@ -277,5 +277,6 @@
     "RejectedDG": "拒絕DG",
     "colors": "顏色",
     "dgMinute": "DG分鐘",
-    "totaPercentage100": "總百分比必須為100％" 
+    "totaPercentage100": "總百分比必須為100％",
+    "score": "得分"
 }

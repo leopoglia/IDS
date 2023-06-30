@@ -68,7 +68,7 @@ export default function InsetList(props: any) {
                     :
 
                     <>
-                        <Link to={"/agenda/create/" + props.agenda.agendaCode} >
+                        <Link to={"/agenda/create?" + props.agenda.agendaCode} >
                             <div className="li li-settings">
                                 <span className="material-symbols-outlined">
                                     edit

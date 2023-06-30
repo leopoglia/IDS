@@ -1,7 +1,7 @@
 const url = "http://localhost:8443/api/agenda";
 
 const Services = {
-    save: function (sequentialNumber: String, dateInitial: String, dateFinal: any, commission: any, agendaDate: String, proposals: any, analistRegistry: any) {
+    save: function (sequentialNumber: number, dateInitial: String, dateFinal: any, commission: any, agendaDate: String, proposals: any, analistRegistry: any) {
 
 
         let proposalList: any = [];
@@ -71,11 +71,22 @@ const Services = {
                 .catch(reject)
         })
     },
-    update: function (sequentialNumber: String, dateInitial: String, dateFinal: any, commission: any, agendaDate: String, proposals: any, analistRegistry: any, id: number) {
+    update: function (sequentialNumber: number, dateInitial: String, dateFinal: any, commission: any, agendaDate: String, proposals: any, analistRegistry: any, id: number) {
         let proposalList: any = [];
         for (let i = 0; i < proposals.length; i++) {
             proposalList.push({ proposalCode: proposals[i].proposalCode })
         }
+
+        console.log("sequentialNumber: " + sequentialNumber)
+        console.log("dateInitial: " + dateInitial)
+        console.log("dateFinal: " + dateFinal)
+        console.log("commission: " + commission)
+        console.log("agendaDate: " + agendaDate)
+        console.log("proposals: " + proposalList)
+        console.log("analistRegistry: " + analistRegistry)
+        console.log("id: " + id)
+        
+
 
         return new Promise((resolve, reject) => {
             fetch(url + "/" + id, {

@@ -24,7 +24,7 @@ export default function CreateAgenda() {
     const [commission, setCommission] = useState("");
     const [dateInitial, setDateInitial] = useState(`${data.getFullYear()}-${("0" + (data.getMonth() + 1)).slice(-2)}-${("0" + data.getDate()).slice(-2)}T${("0" + data.getHours()).slice(-2)}:${("0" + data.getMinutes()).slice(-2)}`);
     const [dateFinal, setDateFinal] = useState(`${data.getFullYear()}-${("0" + (data.getMonth() + 1)).slice(-2)}-${("0" + data.getDate()).slice(-2)}T${("0" + data.getHours()).slice(-2)}:${("0" + data.getMinutes()).slice(-2)}`);
-
+    const [sequentialNumber, setSequentialNumber] = useState(0);
 
     const worker: any = useContext(UserContext).worker;
 
@@ -43,6 +43,7 @@ export default function CreateAgenda() {
                 setCommission(agenda.commission.commissionName);
                 setDateInitial(agenda.initialDate);
                 setDateFinal(agenda.finalDate);
+                setSequentialNumber(agenda.sequentialNumber);
 
                 let proposals: any = [];
 
@@ -99,7 +100,33 @@ export default function CreateAgenda() {
             }
 
             if (dateInitial !== dateFinal && proposals.length !== 0 && commissionCode !== 0) {
-                Services.save("1", dateInitial, dateFinal, commissionCode, actualDate, proposals, worker.id).then((response: any) => {
+                Services.save(sequentialNumber, dateInitial, dateFinal, commissionCode, actualDate, proposals, worker.id).then((response: any) => {
+                    navigate("/agenda/view/" + response.agendaCode);
+
+                    localStorage.removeItem("proposals");
+                })
+            } else {
+                notifyUtil.error(t("fillAllFields"));
+            }
+        })
+    }
+
+
+    const editAgenda = () => {
+
+        Servicescommission.findAll().then((response: any) => {
+            let commissionCode: any = 0;
+
+            response.map((val: any) => {
+                if (val.commissionName === commission) {
+                    commissionCode = val.commissionCode;
+                }
+            })
+
+            console.log(parseInt(edit))
+
+            if (dateInitial !== dateFinal && proposals.length !== 0 && commissionCode !== 0) {
+                Services.update(sequentialNumber, dateInitial, dateFinal, commissionCode, actualDate, proposals, worker.id, parseInt(edit)).then((response: any) => {
                     navigate("/agenda/view/" + response.agendaCode);
 
                     localStorage.removeItem("proposals");
@@ -182,7 +209,11 @@ export default function CreateAgenda() {
 
                     </div>
 
-                    <Input label="dateStart" type="datetime-local" setValue={setDateInitial} value={dateInitial} />
+                    <Input label="sequentialNumber" type="number" setValue={setSequentialNumber} value={sequentialNumber} />
+
+                    <div className="mt10">
+                        <Input label="dateStart" type="datetime-local" setValue={setDateInitial} value={dateInitial} />
+                    </div>
 
                     <div className="mt10">
                         <Input label="dateEnd" type="datetime-local" setValue={setDateFinal} value={dateFinal} />
@@ -202,7 +233,7 @@ export default function CreateAgenda() {
                     </div>
                     :
                     <div className="display-flex-end">
-                        <button onClick={saveAgenda} className="btn-primary">{t("edit")}</button>
+                        <button onClick={editAgenda} className="btn-primary">{t("edit")}</button>
                     </div>
                 }
 

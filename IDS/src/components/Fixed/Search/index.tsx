@@ -52,10 +52,6 @@ export default function Search(props: any) {
         const newFilter = !filter;
         setFilter(newFilter);
         setTypeFilter(type);
-
-        if (props.setFilter) {
-            props.setFilter(newFilter);
-        }
     }
 
     // Verifica qual o título da página e retorna o placeholder do input de pesquisa

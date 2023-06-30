@@ -238,7 +238,7 @@ export default function Filter(props: FilterProps) {
             <div className="filter-modal modal">
 
                 <div className="li" onClick={() => { setFilter(true); setType("number-minutes") }}>
-                    <span className="material-symbols-outlined">workspaces</span>
+                    <span className="material-symbols-outlined">grade</span>
                     <span className="font-p">{t("score")}</span>
                 </div>
 

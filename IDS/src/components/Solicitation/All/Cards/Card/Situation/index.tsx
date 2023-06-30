@@ -89,7 +89,8 @@ export default function Situation(props: any) {
                 {props?.score !== null &&
                     <div className="score">
                         <Tooltip title={props?.score?.toFixed(5)} arrow>
-                            <div className="graphic-proposal"><div className="situation-published-score"></div>
+                            <div className="graphic-proposal">
+                                <span className="material-symbols-outlined">grade</span>
                                 <span className="mr20 ml10">Score: {props?.score?.toFixed(2)}</span>
                             </div>
                         </Tooltip>

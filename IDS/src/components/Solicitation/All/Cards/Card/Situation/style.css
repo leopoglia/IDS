@@ -52,7 +52,7 @@
 
 .demand .score span,
 .demand-list .score span{
-    width: 40px;
+    width: 50px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden !important;

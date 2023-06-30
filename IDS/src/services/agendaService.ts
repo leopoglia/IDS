@@ -62,13 +62,36 @@ const Services = {
                 .catch(reject)
         })
     },
-    findByProposals: function(proposal: Number) {
+    findByProposals: function (proposal: Number) {
         return new Promise((resolve, reject) => {
             fetch(url + "/proposal/" + proposal, {
                 method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include',
-                }).then(function (result) { return result.json(); })
+            }).then(function (result) { return result.json(); })
                 .then(resolve)
                 .catch(reject)
+        })
+    },
+    update: function (sequentialNumber: String, dateInitial: String, dateFinal: any, commission: any, agendaDate: String, proposals: any, analistRegistry: any, id: number) {
+        let proposalList: any = [];
+        for (let i = 0; i < proposals.length; i++) {
+            proposalList.push({ proposalCode: proposals[i].proposalCode })
+        }
+
+        return new Promise((resolve, reject) => {
+            fetch(url + "/" + id, {
+                method: 'PUT', body: JSON.stringify({
+                    sequentialNumber: sequentialNumber,
+                    initialDate: dateInitial,
+                    finalDate: dateFinal,
+                    commission: { "commissionCode": commission },
+                    agendaDate: agendaDate,
+                    proposals: proposalList,
+                    analistRegistry: { "workerCode": analistRegistry }
+                }),
+                headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(resolve)
         })
     },
     saveExcel: function (agendas: any) {

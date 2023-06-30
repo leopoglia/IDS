@@ -61,12 +61,17 @@ const filtersUtil = {
             return true;
         } else if (typeFilter === "department" && val.demand?.requesterRegistration.department === nameFilter) {
             return true;
+        } else if (typeFilter === "forum" && val?.forum?.commissionAcronym === nameFilter) {
+            return true;
         }
 
         return false;
     },
 
     agenda: (nameFilter: any, typeFilter: any, search: any, val: any): any => {
+
+        console.log(val)
+
         if (
             (nameFilter === "" || nameFilter === undefined) &&
             (typeFilter === "" || typeFilter === undefined) &&
@@ -76,6 +81,10 @@ const filtersUtil = {
         }
 
         if (search !== "" && ((val?.commission?.commissionName?.split("–")[1]).toUpperCase() + " – " + val.agendaDate).includes(search)) {
+            return true;
+        }
+
+        if (typeFilter === "forum" && val?.commission?.commissionAcronym === nameFilter) {
             return true;
         }
 

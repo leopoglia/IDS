@@ -33,6 +33,11 @@
     z-index: 10;
 }
 
+.profile .header {
+    padding: 0px;
+    padding-right: 20px !important;
+}
+
 .notifications .header .input-background .material-symbols-outlined,
 .messages .header .input-background .material-symbols-outlined,
 .solicitation .header .input-background .material-symbols-outlined,

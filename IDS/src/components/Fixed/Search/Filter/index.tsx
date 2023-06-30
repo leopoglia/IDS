@@ -123,12 +123,12 @@ export default function Filter(props: FilterProps) {
                             </div>
 
                             <div className="li" onClick={() => { setFilter(true); setType("size") }}>
-                                <span className="material-symbols-outlined">crop_free</span>
+                                <span className="material-symbols-outlined">straighten</span>
                                 <span className="font-p">{t("size")}</span>
                             </div>
 
                             <div className="li" onClick={() => { setFilter(true); setType("ppm") }}>
-                                <span className="material-symbols-outlined">link</span>
+                                <span className="material-symbols-outlined">vpn_key</span>
                                 <span className="font-p">{t("ppmCode")}</span>
                             </div>
                         </>
@@ -173,12 +173,12 @@ export default function Filter(props: FilterProps) {
                     </div>
 
                     <div className="li" onClick={() => { setFilter(true); setType("size") }}>
-                        <span className="material-symbols-outlined">crop_free</span>
+                        <span className="material-symbols-outlined">straighten</span>
                         <span className="font-p">{t("size")}</span>
                     </div>
 
                     <div className="li" onClick={() => { setFilter(true); setType("ppm") }}>
-                        <span className="material-symbols-outlined">link</span>
+                        <span className="material-symbols-outlined">vpn_key</span>
                         <span className="font-p">{t("ppmCode")}</span>
                     </div>
 
@@ -237,19 +237,34 @@ export default function Filter(props: FilterProps) {
         return (
             <div className="filter-modal modal">
 
-                <div className="li" onClick={() => { setFilter(true); setType("number-minutes") }}>
-                    <span className="material-symbols-outlined">grade</span>
-                    <span className="font-p">{t("score")}</span>
+                <div className="li display-flex-space-between" onClick={() => { setFilter(true); setType("number-minutes") }}>
+                    <div className="display-flex-align-center">
+                        <span className="material-symbols-outlined">grade</span>
+                        <span className="font-p">{t("score")}</span>
+                    </div>
+                    <span className="material-symbols-outlined mr5">
+                        keyboard_double_arrow_up
+                    </span>
                 </div>
 
-                <div className="li" onClick={() => { setFilter(true); setType("date") }}>
-                    <span className="material-symbols-outlined">calendar_month</span>
-                    <span className="font-p">{t("date")}</span>
+                <div className="li display-flex-space-between" onClick={() => { setFilter(true); setType("date") }}>
+                    <div className="display-flex-align-center">
+                        <span className="material-symbols-outlined">calendar_month</span>
+                        <span className="font-p">{t("dates")}</span>
+                    </div>
+                    <span className="material-symbols-outlined mr5">
+                        keyboard_double_arrow_up
+                    </span>
                 </div>
 
-                <div className="li" onClick={() => { setFilter(true); setType("code-minutes") }}>
-                    <span className="material-symbols-outlined">draft</span>
-                    <span className="font-p">{t("codeMinutes")}</span>
+                <div className="li display-flex-space-between" onClick={() => { setFilter(true); setType("code-minutes") }}>
+                    <div className="display-flex-align-center">
+                        <span className="material-symbols-outlined">draft</span>
+                        <span className="font-p">{t("codeMinutes")}</span>
+                    </div>
+                    <span className="material-symbols-outlined mr5">
+                        keyboard_double_arrow_up
+                    </span>
                 </div>
 
                 {sendFilter()}

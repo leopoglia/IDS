@@ -197,8 +197,8 @@ input[type=checkbox]:checked {
 }
 
 .display-flex-space-between {
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-between !important;
+  align-items: center !important;
 }
 
 .display-flex-start {

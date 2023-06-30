@@ -278,5 +278,6 @@
     "dgMinute": "DG Minute",
     "totaPercentage100": "The total percentage must be 100%",
     "score": "Score",
-    "dates": "Date"
+    "dates": "Date",
+    "code": "Code"
 }

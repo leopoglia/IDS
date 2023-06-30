@@ -277,5 +277,6 @@
     "dgMinute": "Acta DG",
     "totaPercentage100": "El total de los porcentajes debe ser 100",
     "score": "Score",
-    "dates": "Fecha"
+    "dates": "Fecha",
+    "code": "Código"
 }

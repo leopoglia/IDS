@@ -71,14 +71,44 @@ export default function Filter(props: FilterProps) {
     }
 
 
-    const sendOrder = (type: any) => {
+    const sendOrder = (option: any) => {
 
-        if (type === "score") {
-            console.log("score")
-        } else if (type === "date") {
-            console.log("date")
-        } else if (type === "code") {
-            console.log("code")
+        if (option === "score") {
+
+
+            if (type === "score" && filter === true) {
+                setType("score-true");
+                props.onClick("true", "score");
+            } else if (type === "score-true" && filter === true) {
+                setType("score-false");
+                props.onClick("false", "score");
+            } else {
+                setType("score");
+            }
+
+            setFilter(true);
+        } else if (option === "date") {
+
+            if (type === "date" && filter === true) {
+                setType("date-true");
+            } else if (type === "date-true" && filter === true) {
+                setType("date-false");
+            } else {
+                setType("date");
+            }
+
+            setFilter(true);
+        } else if (option === "code") {
+
+            if (type === "code" && filter === true) {
+                setType("code-true");
+            } else if (type === "code-true" && filter === true) {
+                setType("code-false");
+            } else {
+                setType("code");
+            }
+
+            setFilter(true);
         }
 
 
@@ -264,6 +294,12 @@ export default function Filter(props: FilterProps) {
                             keyboard_double_arrow_up
                         </span>
                     }
+
+                    {filter === true && type === "score-true" &&
+                        <span className="material-symbols-outlined mr5">
+                            keyboard_double_arrow_down
+                        </span>
+                    }
                 </div>
 
                 <div className="li display-flex-space-between" onClick={() => sendOrder("date")}>
@@ -277,6 +313,12 @@ export default function Filter(props: FilterProps) {
                             keyboard_double_arrow_up
                         </span>
                     }
+
+                    {filter === true && type === "date-true" &&
+                        <span className="material-symbols-outlined mr5">
+                            keyboard_double_arrow_down
+                        </span>
+                    }
                 </div>
 
                 <div className="li display-flex-space-between" onClick={() => sendOrder("code")}>
@@ -288,6 +330,12 @@ export default function Filter(props: FilterProps) {
                     {filter === true && type === "code" &&
                         <span className="material-symbols-outlined mr5">
                             keyboard_double_arrow_up
+                        </span>
+                    }
+
+                    {filter === true && type === "code-true" &&
+                        <span className="material-symbols-outlined mr5">
+                            keyboard_double_arrow_down
                         </span>
                     }
                 </div>

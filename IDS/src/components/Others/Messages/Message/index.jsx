@@ -75,7 +75,6 @@ const ChatRoom = () => {
             }).catch((error) => {
                 console.log(error);
             })
-
             setWorkerDemand({ workerCode: messages[messages.length - 1]?.sender.workerCode });
         }
 
@@ -91,11 +90,9 @@ const ChatRoom = () => {
             setSubscribeMessage(subscribe("/" + demandCode + "/chat", newMessage));
         }
 
-        ServicesMessage.findSender(worker.id, message.demandCode).then((response) => {
+        ServicesMessage.findSender(worker.id, demandCode).then((response) => {
             setSender(response);
         })
-
-
     }, [messages, stompClient]);
 
     useEffect(() => {
@@ -203,7 +200,6 @@ const ChatRoom = () => {
         setMessage({ ...message, message: message.message + emojiData.emoji, dateMessage: new Date().toLocaleString() });
     }
 
-
     return (
         <div className="messages">
             <div className="container">
@@ -310,9 +306,6 @@ const ChatRoom = () => {
                                         );
                                     })}
 
-
-
-
                             </ul>
 
                             <div className="send-message">
@@ -343,7 +336,6 @@ const ChatRoom = () => {
                                                 value={message?.message}
                                             />
 
-
                                             <div className="actions-message">
 
                                                 <div className='file-message'>
@@ -365,8 +357,6 @@ const ChatRoom = () => {
 
                                             </div>
                                         </div>
-
-
 
                                         <button type="submit" className="send send-ubtton">
                                             <span className="material-symbols-outlined">

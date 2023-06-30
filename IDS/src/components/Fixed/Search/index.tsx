@@ -7,9 +7,7 @@ import Title from "./Title";
 import Filter from "./Filter";
 
 import "./style.css";
-import Mic from "../Accessibility/Mic";
 import Input from "../../Solicitation/Demands/CrateDemand/Others/Input";
-import Demand from "../../Solicitation/All/Cards/Card";
 import othersUtil from "../../../utils/othersUtil";
 
 export interface FilterProps {
@@ -26,10 +24,17 @@ export default function Search(props: any) {
     const [data, setData] = useState(false); // Estado da tabela (demanda, proposta, agenda, minuta)
     const [filter, setFilter] = useState(false); // Estado do filtro
     const [typeFilter, setTypeFilter] = useState(""); // Estado do tipo de filtro (filtro ou ordenar)
+    const [name, setName] = useState<string | undefined>("")
+    const [type, setType] = useState<string>("")
 
     useEffect(() => {
         callback(props.name, props.type);
     }, [props.name, props.type])
+
+    useEffect(() => {
+        props.setName(name);
+        props.setType(type);
+    }, [name, type])
 
     // Se a tabela estiver aberta, fecha, se estiver fechada, abre
     const sendData = () => {
@@ -65,9 +70,6 @@ export default function Search(props: any) {
             return t("searchMinute");
         }
     }
-
-    const [name, setName] = useState<string | undefined>("")
-    const [type, setType] = useState<string>("")
 
     // Função que recebe os dados do filtro
     const callback = (name: string | undefined, type: string) => {
@@ -133,7 +135,7 @@ export default function Search(props: any) {
                     </div>
 
                     <div className="background-filter" onClick={onButtonPress}>
-                        {filter && <Filter onClick={callback} type={typeFilter} />}
+                        {filter && <Filter onClick={callback} type={typeFilter} setName={setName} setType={setType} />}
                     </div>
                 </div>
             </div>

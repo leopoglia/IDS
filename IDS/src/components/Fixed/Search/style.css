@@ -140,7 +140,7 @@
 @media(max-width: 768px) {
 
     .search .modal{
-        margin-top: 500px;
+        top: 0;
     }
 
     .search {

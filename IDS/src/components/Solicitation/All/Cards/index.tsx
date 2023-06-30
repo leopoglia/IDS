@@ -237,7 +237,6 @@ export default function Demands() {
         setType(type)
     }
 
-
     const noResult = () => {
         if (url[3] === "demands") {
             return (
@@ -283,7 +282,7 @@ export default function Demands() {
 
                     <div className="container">
 
-                        <Search setSearch={setSearch} search={search} solicitationType="demand" onClick={callback} name={nameFilter} solicitation={demands} type={typeFilter} setTable={setTable} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1" />
+                        <Search setSearch={setSearch} search={search} solicitationType="demand" onClick={callback} name={nameFilter} solicitation={demands} type={typeFilter} setTable={setTable} setName={setName} setType={setType} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1" />
                         <div className={"container-background boxNoPadding-" + table}>
 
 
@@ -328,7 +327,7 @@ export default function Demands() {
                 <div className="proposals">
 
                     <div className="container">
-                        <Search setSearch={setSearch} solicitation={proposals} solicitationType="proposal" search={search} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} nav={t("proposalViewProposal")} title="proposals" button="createProposal" link="/demands/1" />
+                        <Search setSearch={setSearch} solicitation={proposals} solicitationType="proposal" search={search} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} setName={setName} setFilter={setType} nav={t("proposalViewProposal")} title="proposals" button="createProposal" link="/demands/1" />
                         <div className={"container-background boxNoPadding-" + table}>
                             {
                                 proposals.filter((val: any) => {
@@ -358,7 +357,7 @@ export default function Demands() {
                 <div className="agendas">
 
                     <div className="container">
-                        <Search setSearch={setSearch} search={search} solicitation={agendas} solicitationType="agenda" onClick={callback} name={nameFilter} type={typeFilter} setTipe={setType} setTable={setTable} nav={t("agendaViewAgenda")} title="agendas" button="createAgenda" link="/agenda/create" />
+                        <Search setSearch={setSearch} search={search} solicitation={agendas} solicitationType="agenda" onClick={callback} name={nameFilter} type={typeFilter} setTipe={setType} setTable={setTable} setName={setName} setFilter={setType} nav={t("agendaViewAgenda")} title="agendas" button="createAgenda" link="/agenda/create" />
                         <div className={"container-background boxNoPadding-" + table}>
                             {
                                 agendas
@@ -393,7 +392,7 @@ export default function Demands() {
 
                     <div className="container">
 
-                        <Search onClick={callback} setSearch={setSearch} solicitation={minutes} solicitationType="minute" search={search} name={nameFilter} type={typeFilter} setType={setType} nav={t("minuteViewMinute")} title="minutes" button="createMinute" link="/agendas/1" setTable={setTable} />
+                        <Search onClick={callback} setSearch={setSearch} solicitation={minutes} solicitationType="minute" search={search} name={nameFilter} type={typeFilter} setType={setType} nav={t("minuteViewMinute")} title="minutes" button="createMinute" link="/agendas/1" setTable={setTable} setName={setName} />
                         <div className={"container-background boxNoPadding-" + table}>
                             {
                                 minutes

@@ -33,9 +33,6 @@ export default function CreateAgenda() {
     useEffect(() => {
         getProposal();
 
-        console.log(edit)
-
-
         if (edit !== undefined) {
             Services.findById(parseInt(edit)).then((agendas: any) => {
                 let agenda = agendas[0];
@@ -122,8 +119,6 @@ export default function CreateAgenda() {
                     commissionCode = val.commissionCode;
                 }
             })
-
-            console.log(parseInt(edit))
 
             if (dateInitial !== dateFinal && proposals.length !== 0 && commissionCode !== 0) {
                 Services.update(sequentialNumber, dateInitial, dateFinal, commissionCode, actualDate, proposals, worker.id, parseInt(edit)).then((response: any) => {

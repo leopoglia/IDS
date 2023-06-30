@@ -5,12 +5,7 @@ import SelectStatus from "./SelectStatus";
 import UserContext from "../../../../context/userContext";
 import "./style.css";
 
-export interface FilterProps {
-    onClick: (name: string | undefined, type: string) => void,
-    type: string
-}
-
-export default function Filter(props: FilterProps) {
+export default function Filter(props: any) {
 
     const { t } = useTranslation();
 
@@ -21,9 +16,6 @@ export default function Filter(props: FilterProps) {
     const [type, setType] = useState<string>("");
     const [status, setStatus] = useState<string>("");
 
-    useEffect(() => {
-        onButtonPressSelect();
-    }, [status])
 
     const sendFilter = () => {
 
@@ -33,7 +25,6 @@ export default function Filter(props: FilterProps) {
                 <div className="send-filter">
                     <div className="hr" />
                     <input className="input" onChange={onButtonPress} type="text" ref={inputName} placeholder="Insira o parametro aqui" />
-                    <button onClick={onButtonPress} className="btn-primary">Filtrar</button>
                 </div>
             )
 
@@ -54,7 +45,6 @@ export default function Filter(props: FilterProps) {
                 <div className="send-filter">
                     <div className="hr" />
                     <SelectStatus status={status} setStatus={setStatus} array={arraySelect} />
-                    <button onClick={onButtonPressSelect} className="btn-primary">Filtrar</button>
                 </div>
             )
 
@@ -64,7 +54,6 @@ export default function Filter(props: FilterProps) {
                 <div className="send-filter">
                     <div className="hr" />
                     <input className="input" onChange={onButtonPress} type="date" ref={inputName} placeholder="Insira o parametro aqui" />
-                    <button onClick={onButtonPress} className="btn-primary">Filtrar</button>
                 </div>
             )
         }
@@ -73,39 +62,55 @@ export default function Filter(props: FilterProps) {
 
     const sendOrder = (option: any) => {
 
+
+
         if (option === "score") {
-
-
-            if (type === "score" && filter === true) {
+            if (type === "score") {
                 setType("score-true");
-                props.onClick("true", "score");
+                props.setName("score")
+                props.setType("false")
             } else if (type === "score-true" && filter === true) {
                 setType("score-false");
-                props.onClick("false", "score");
+                props.setName("")
+                props.setType("")
             } else {
                 setType("score");
+                props.setName("score")
+                props.setType("true")
             }
 
             setFilter(true);
-        } else if (option === "date") {
+        } else if (option === "dates") {
 
-            if (type === "date" && filter === true) {
-                setType("date-true");
-            } else if (type === "date-true" && filter === true) {
-                setType("date-false");
+            if (type === "dates") {
+                setType("dates-true");
+                props.setName("dates")
+                props.setType("false")
+            } else if (type === "dates-true" && filter === true) {
+                setType("dates-false");
+                props.setName("")
+                props.setType("")
             } else {
-                setType("date");
+                setType("dates");
+                props.setName("dates")
+                props.setType("true")
             }
 
             setFilter(true);
         } else if (option === "code") {
 
-            if (type === "code" && filter === true) {
+            if (type === "code") {
                 setType("code-true");
+                props.setName("code")
+                props.setType("false")
             } else if (type === "code-true" && filter === true) {
                 setType("code-false");
+                props.setName("")
+                props.setType("")
             } else {
                 setType("code");
+                props.setName("code")
+                props.setType("true")
             }
 
             setFilter(true);
@@ -302,19 +307,19 @@ export default function Filter(props: FilterProps) {
                     }
                 </div>
 
-                <div className="li display-flex-space-between" onClick={() => sendOrder("date")}>
+                <div className="li display-flex-space-between" onClick={() => sendOrder("dates")}>
                     <div className="display-flex-align-center">
                         <span className="material-symbols-outlined">calendar_month</span>
                         <span className="font-p">{t("dates")}</span>
                     </div>
 
-                    {filter === true && type === "date" &&
+                    {filter === true && type === "dates" &&
                         <span className="material-symbols-outlined mr5">
                             keyboard_double_arrow_up
                         </span>
                     }
 
-                    {filter === true && type === "date-true" &&
+                    {filter === true && type === "dates-true" &&
                         <span className="material-symbols-outlined mr5">
                             keyboard_double_arrow_down
                         </span>

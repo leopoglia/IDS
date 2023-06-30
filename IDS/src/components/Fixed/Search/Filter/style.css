@@ -39,6 +39,10 @@
     font-size: var(--p);
 }
 
+.send-filter{
+    padding-bottom: 15px;
+}
+
 .send-filter .select-cost-center {
     border: 1px solid var(--greyC4);
     margin: 10px;

@@ -162,10 +162,6 @@ function RouterContent(props: any) {
         }
     }, [workerContext]);
 
-    useEffect(() => {
-        console.log(workerContext);
-    }, [workerContext])
-
 
     return (
 

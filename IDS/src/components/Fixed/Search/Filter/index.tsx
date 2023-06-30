@@ -70,6 +70,20 @@ export default function Filter(props: FilterProps) {
         }
     }
 
+
+    const sendOrder = (type: any) => {
+
+        if (type === "score") {
+            console.log("score")
+        } else if (type === "date") {
+            console.log("date")
+        } else if (type === "code") {
+            console.log("code")
+        }
+
+
+    }
+
     const inputName = useRef<HTMLInputElement>(null) // Referência do input de pesquisa
 
     // Envia o valor do input e o tipo para o componente pai
@@ -237,7 +251,7 @@ export default function Filter(props: FilterProps) {
         return (
             <div className="filter-modal modal">
 
-                <div className="li display-flex-space-between" onClick={() => { setFilter(true); setType("score") }}>
+                <div className="li display-flex-space-between" onClick={() => sendOrder("score")}>
                     <div className="display-flex-align-center">
                         <span className="material-symbols-outlined">grade</span>
                         <span className="font-p">{t("score")}</span>
@@ -252,7 +266,7 @@ export default function Filter(props: FilterProps) {
                     }
                 </div>
 
-                <div className="li display-flex-space-between" onClick={() => { setFilter(true); setType("date") }}>
+                <div className="li display-flex-space-between" onClick={() => sendOrder("date")}>
                     <div className="display-flex-align-center">
                         <span className="material-symbols-outlined">calendar_month</span>
                         <span className="font-p">{t("dates")}</span>
@@ -265,7 +279,7 @@ export default function Filter(props: FilterProps) {
                     }
                 </div>
 
-                <div className="li display-flex-space-between" onClick={() => { setFilter(true); setType("code") }}>
+                <div className="li display-flex-space-between" onClick={() => sendOrder("code")}>
                     <div className="display-flex-align-center">
                         <span className="material-symbols-outlined">draft</span>
                         <span className="font-p">{t("code")}</span>

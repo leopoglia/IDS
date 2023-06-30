@@ -17,7 +17,7 @@ export default function Filter(props: FilterProps) {
     let worker: any = useContext(UserContext).worker; // Contexto do usuário
 
     const url = window.location.pathname.split("/")[1]; // Pega a url para verificar se é demanda, proposta, pauta ou ata
-    const [filter, setFilter] = useState(false); // Estado do filtro
+    const [filter, setFilter]: any = useState(false); // Estado do filtro
     const [type, setType] = useState<string>("");
     const [status, setStatus] = useState<string>("");
 
@@ -237,14 +237,19 @@ export default function Filter(props: FilterProps) {
         return (
             <div className="filter-modal modal">
 
-                <div className="li display-flex-space-between" onClick={() => { setFilter(true); setType("number-minutes") }}>
+                <div className="li display-flex-space-between" onClick={() => { setFilter(true); setType("score") }}>
                     <div className="display-flex-align-center">
                         <span className="material-symbols-outlined">grade</span>
                         <span className="font-p">{t("score")}</span>
                     </div>
-                    <span className="material-symbols-outlined mr5">
-                        keyboard_double_arrow_up
-                    </span>
+
+
+
+                    {filter === true && type === "score" &&
+                        <span className="material-symbols-outlined mr5">
+                            keyboard_double_arrow_up
+                        </span>
+                    }
                 </div>
 
                 <div className="li display-flex-space-between" onClick={() => { setFilter(true); setType("date") }}>
@@ -252,22 +257,26 @@ export default function Filter(props: FilterProps) {
                         <span className="material-symbols-outlined">calendar_month</span>
                         <span className="font-p">{t("dates")}</span>
                     </div>
-                    <span className="material-symbols-outlined mr5">
-                        keyboard_double_arrow_up
-                    </span>
+
+                    {filter === true && type === "date" &&
+                        <span className="material-symbols-outlined mr5">
+                            keyboard_double_arrow_up
+                        </span>
+                    }
                 </div>
 
-                <div className="li display-flex-space-between" onClick={() => { setFilter(true); setType("code-minutes") }}>
+                <div className="li display-flex-space-between" onClick={() => { setFilter(true); setType("code") }}>
                     <div className="display-flex-align-center">
                         <span className="material-symbols-outlined">draft</span>
-                        <span className="font-p">{t("codeMinutes")}</span>
+                        <span className="font-p">{t("code")}</span>
                     </div>
-                    <span className="material-symbols-outlined mr5">
-                        keyboard_double_arrow_up
-                    </span>
-                </div>
 
-                {sendFilter()}
+                    {filter === true && type === "code" &&
+                        <span className="material-symbols-outlined mr5">
+                            keyboard_double_arrow_up
+                        </span>
+                    }
+                </div>
 
             </div>
         )

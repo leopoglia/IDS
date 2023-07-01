@@ -42,6 +42,7 @@ export default function Demands() {
 
     const [nameFilter, setName] = useState<string>(""); // Busca o que foi digitado no input do filtro
     const [typeFilter, setType] = useState<string>(""); // Busca qual filtro foi selecionado
+    const [filterOn, setFilterOn] = useState(false);
 
 
     const [demandsSize, setDemandsSize] = useState(0);
@@ -53,27 +54,53 @@ export default function Demands() {
         setLoading(true);
 
         if (url[3] === "demands") {
-            if (search === "" && typeFilter === "") {
+
+            console.log("filterOn ==> ", filterOn)
+
+            if (search === "" && filterOn === false) {
+                console.log("1")
+
                 getDemands(); // Busca as demandas cadastradas
             } else {
-                ServicesDemand.findAll().then(async (demands: any) => {
-                    await demands.map(async (demand: any) => {
-                        await ServicesProposal.findByDemandCode(demand.demandCode).then(async (proposal: any) => {
-                            if (proposal.demand.demandCode === demand.demandCode) {
-                                demand.proposal = proposal;
-                                await ServicesAgenda.findByProposals(proposal.proposalCode).then((agenda: any) => {
-                                    if (demand.demandCode === proposal.demand.demandCode) {
-                                        demand.forum = agenda.commission;
-                                    }
-                                });
-                                return demand;
-                            }
+                console.log("2")
+                console.log(typeFilter)
+                if (typeFilter !== "score" && typeFilter !== "dates" && typeFilter !== "code") {
+                    ServicesDemand.findAll().then(async (demands: any) => {
+                        await demands.map(async (demand: any) => {
+                            await ServicesProposal.findByDemandCode(demand.demandCode).then(async (proposal: any) => {
+                                if (proposal.demand.demandCode === demand.demandCode) {
+                                    demand.proposal = proposal;
+                                    await ServicesAgenda.findByProposals(proposal.proposalCode).then((agenda: any) => {
+                                        if (demand.demandCode === proposal.demand.demandCode) {
+                                            demand.forum = agenda.commission;
+                                        }
+                                    });
+                                    return demand;
+                                }
+                            });
                         });
-                    });
 
-                    setDemands(demands);
-                    setLoading(false);
-                });
+                        setDemands(demands);
+                        setLoading(false);
+                    });
+                } else {
+                    console.log("3")
+                    ServicesDemand.findAll().then((demands: any) => {
+                        demands.sort(function (a: any, b: any) {
+                            if(a.score > b.score){
+                                return 1;
+                            }
+                            if(a.score < b.score){
+                                return -1;
+                            }
+
+                            return 0;
+                        });
+
+                        console.log(demands)
+                        setDemands(demands);
+                    })
+                }
             }
         } else if (url[3] === "proposals") {
             if (search === "" && typeFilter === "") {
@@ -115,7 +142,7 @@ export default function Demands() {
             localStorage.removeItem("route");
             Notification.success(t("demandCreateSuccess"));
         }
-    }, [url[3], page, search, table])
+    }, [url[3], page, search, table, nameFilter])
 
 
     // Buscar as demandas cadastradas
@@ -235,6 +262,7 @@ export default function Demands() {
     const callback = (name: string, type: string) => {
         setName(name)
         setType(type)
+        console.log(name)
     }
 
     const noResult = () => {
@@ -282,7 +310,7 @@ export default function Demands() {
 
                     <div className="container">
 
-                        <Search setSearch={setSearch} search={search} solicitationType="demand" onClick={callback} name={nameFilter} solicitation={demands} type={typeFilter} setTable={setTable} setName={setName} setType={setType} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1" />
+                        <Search setSearch={setSearch} search={search} solicitationType="demand" onClick={callback} name={nameFilter} solicitation={demands} type={typeFilter} setTable={setTable} setName={setName} setType={setType} setFilterOn={setFilterOn} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1" />
                         <div className={"container-background boxNoPadding-" + table}>
 
 

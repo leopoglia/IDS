@@ -17,8 +17,10 @@ export default function SelectLabels(props: any) {
     const handleChange = (event: any, type: string) => {
         if (type === 'text') {
             props.setStatus(event.target.value);
+            props.onChange();
         } else {
             props.setStatus(event.target.textContent);
+            props.onChange();
         }
     };
 

@@ -44,7 +44,7 @@ export default function Filter(props: any) {
             return (
                 <div className="send-filter">
                     <div className="hr" />
-                    <SelectStatus status={status} setStatus={setStatus} array={arraySelect} />
+                    <SelectStatus status={status} setStatus={setStatus} onChange={onButtonPressSelect} array={arraySelect} />
                 </div>
             )
 
@@ -129,7 +129,6 @@ export default function Filter(props: any) {
     // Envia o valor do select e o tipo para o componente pai
     const onButtonPressSelect = () => {
         props.onClick(status, type);
-
     }
 
     // Envia o valor do select e o tipo para o componente pai

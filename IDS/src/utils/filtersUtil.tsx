@@ -3,9 +3,6 @@
 const filtersUtil = {
 
     demand: (nameFilter: any, typeFilter: any, search: any, val: any): any => {
-
-        console.log(val?.forum?.commissionAcronym)
-
         if (
             (nameFilter === "" || nameFilter === undefined) &&
             (typeFilter === "" || typeFilter === undefined) &&
@@ -69,8 +66,6 @@ const filtersUtil = {
     },
 
     agenda: (nameFilter: any, typeFilter: any, search: any, val: any): any => {
-
-        console.log(val)
 
         if (
             (nameFilter === "" || nameFilter === undefined) &&

@@ -69,6 +69,16 @@ const ChatRoom = () => {
     useEffect(() => {
         divRef.current.scrollTop = divRef.current.scrollHeight;
 
+        for(let i = 0; i < messages.length; i++) {
+            if(messages[i].sender.workerCode !== worker.id && (messages[i].viewed === null)) {
+                ServicesMessage.setViewed(messages[i].messageCode).then((response) => {
+                    console.log(response);
+                }).catch((error) => {
+                    console.log(error);
+                })
+            }
+        }
+
         if (messages[messages.length - 1]?.sender?.workerCode !== worker.id && workerDemand.workerName === "Analista") {
             ServicesWorker.findById(messages[messages.length - 1]?.sender.workerCode).then((response) => {
                 setWorkerDemand({ workerCode: response.workerCode, workerName: response.workerName });

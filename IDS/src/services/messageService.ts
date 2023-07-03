@@ -70,6 +70,24 @@ const Services = {
                 .then(resolve)
                 .catch(resolve)
         })
+    },
+    setViewed: function(messageCode: Number){
+        return new Promise((resolve, reject) => {
+            fetch(url + "/viewed/" + messageCode, {
+                method: 'PUT', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(resolve)
+        })
+    },
+    notViewed: function(workerCode: Number, demandCode: Number){
+        return new Promise((resolve, reject) => {
+            fetch(url + "/notviewed/" + workerCode + "/" + demandCode, {
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(resolve)
+        })
     }
 }
 

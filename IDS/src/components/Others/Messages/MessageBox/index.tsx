@@ -14,22 +14,34 @@ export default function Message(props: any) {
     const [requester, setRequester]: any = useState({});
     const [demandTitle, setDemandTitle]: any = useState("")
     const [imageRequester, setImageRequester]: any = useState("");
+    const [demandCode, setDemandCode]: any = useState(0);
     const [sender, setSender]: any = useState({});
+    const [numViewed, setNumViewed]: any = useState(0);
     const worker: any = useContext(UserContext).worker;
 
     useEffect(() => {
+
+        console.log("codigo demanda: " + demandCode);
+        console.log("codigo trabaiador: " + worker.id);
 
         ServicesDemand.findById(props.message?.demandCode).then((response: any) => {
             setRequester(response?.requesterRegistration);
             setImageRequester(response?.requesterRegistration?.workerName.substring(0, 1));
             setDemandTitle(response.demandTitle);
+            setDemandCode(response.demandCode);
         })
 
         ServicesMessage.findSender(worker.id, props.message?.demandCode).then((response: any) => {
             setSender(response);
+
         })
 
-    }, [props.message]);
+        ServicesMessage.notViewed(worker.id, demandCode).then((response: any) => {
+            console.log(response)
+            setNumViewed(response.length);
+        })
+    }, [props, numViewed]);
+
 
     return (
         <Link to={"message/" + props.message?.demandCode}>
@@ -83,7 +95,17 @@ export default function Message(props: any) {
                 </div>
 
                 <div className="date-horary">
-                    <span className="date">{props.message?.dateMessage}</span>
+                    {
+                        props.message?.viewed === null && props.message.sender.workerCode !== worker.id ? (
+                            <div className="new-message-info">
+                                <span className="date">{props.message?.dateMessage}</span>
+                                <div className="new-message">{numViewed}</div>
+                            </div>
+                        ) : (
+                            <span className="date">{props.message?.dateMessage}</span>
+
+                        )
+                    }
 
                 </div>
             </div>

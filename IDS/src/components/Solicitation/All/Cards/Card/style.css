@@ -269,7 +269,7 @@
 .situation-demand {
     z-index: 1;
     position: relative;
-    height: 45px;
+    height: 44px;
     display: flex;
     align-items: center;
     background-color: var(--white2);

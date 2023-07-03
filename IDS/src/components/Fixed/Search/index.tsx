@@ -32,8 +32,10 @@ export default function Search(props: any) {
     }, [props.name, props.type])
 
     useEffect(() => {
-        props.setName(name);
-        props.setType(type);
+        if (props.setName !== undefined && props.setType !== undefined) {
+            props.setName(name);
+            props.setType(type);
+        }
     }, [name, type])
 
     // Se a tabela estiver aberta, fecha, se estiver fechada, abre
@@ -53,7 +55,7 @@ export default function Search(props: any) {
         setFilter(newFilter);
         setTypeFilter(type);
 
-        if(props?.setFilterOn !== undefined){
+        if (props?.setFilterOn !== undefined) {
             props.setFilterOn(type)
         }
     }

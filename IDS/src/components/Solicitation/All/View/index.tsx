@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { WebSocketContext } from '../../../../services/webSocketService';
-import ButtonActionAnalyst from "./Others/ButtonActionAnalyst"; 
+import ButtonActionAnalyst from "./Others/ButtonActionAnalyst";
 import Title from "../../../Fixed/Search/Title";
 import ServicesDemand from "../../../../services/demandService";
 import ServicesProposal from "../../../../services/proposalService";
@@ -987,26 +987,30 @@ export default function ViewDemand() {
                                             <Title nav={t("agendaAgendaName")} title="viewAgenda" />
 
 
-                                            {pendingMinute < proposalSpecific.length && minute.length === 0 ? (
-                                                <div className="display-flex-end">
-                                                    <Link to={"/minutes/create/" + demandCode}>
-                                                        <button className="btn-primary">{t("finish")}</button>
-                                                    </Link>
-                                                </div>
-                                            ) : (null)
-                                            }
+                                            <div className="display-flex-end">
+                                                {pendingMinute < proposalSpecific.length && minute.length === 0 ? (
+                                                    <div className="display-flex-end">
+                                                        <Link to={"/minutes/create/" + demandCode}>
+                                                            <button className="btn-primary">{t("finish")}</button>
+                                                        </Link>
+                                                    </div>
+                                                ) : (null)
+                                                }
 
-                                            {proposalPublished.length < approvedDG && proposalPublished.length !== 0 && !(minute[0]?.minuteType === "DG" || minute[1]?.minuteType === "DG" || minute[2]?.minuteType === "DG") ? (
+                                                {proposalPublished.length < approvedDG && proposalPublished.length !== 0 && !(minute[0]?.minuteType === "DG" || minute[1]?.minuteType === "DG" || minute[2]?.minuteType === "DG") ? (
 
-                                                <div className="display-flex-end">
-                                                    <Link to={"/minutes/create/" + demandCode + "?dg"}>
-                                                        <button className="btn-primary">{t("generateMinuteDG")}</button>
-                                                    </Link>
-                                                </div>
-                                            ) : (null)
-                                            }
+                                                    <div className="display-flex-end">
+                                                        <Link to={"/minutes/create/" + demandCode + "?dg"}>
+                                                            <button className="btn-primary">{t("generateMinuteDG")}</button>
+                                                        </Link>
 
-                                            <ButtonActionAnalyst agenda={agenda} />
+                                                    </div>
+                                                ) : (null)
+                                                }
+
+                                                <ButtonActionAnalyst agenda={agenda} />
+                                            </div>
+
                                         </div>
 
                                         <div className="box">

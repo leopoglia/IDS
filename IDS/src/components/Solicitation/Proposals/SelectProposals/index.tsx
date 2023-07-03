@@ -16,6 +16,8 @@ export default function Proposals() {
     const [proposals, setProposals] = useState([]);
     const [search, setSearch] = useState("");
     const edit = window.location.href.split("?")[1];
+    const [name, setName] = useState("");
+    const [type, setType] = useState("");
 
     const navigate = useNavigate();
 
@@ -44,7 +46,7 @@ export default function Proposals() {
 
             <div className="container">
                 <div className="backgroud-title">
-                    <Search setSearch={setSearch} search={search} nav={t("createProposalSelectProposal")} title="selectProposal" link="/demand/create/1" />
+                    <Search setSearch={setSearch} search={search} setName={setName} nav={t("createProposalSelectProposal")} title="selectProposal" link="/demand/create/1" />
                 </div>
 
                 <div>
@@ -53,7 +55,7 @@ export default function Proposals() {
                             if (search !== "") {
                                 if (search?.toLocaleLowerCase() === proposal.proposalName.toLocaleLowerCase()) {
                                     return (
-                                        <SelectProposal name={proposal.proposalName} requester={proposal.demand.requesterRegistration.workerName} date={proposal.demand.demandDate} status={proposal.proposalStatus} id={proposal.proposalCode} />
+                                        <SelectProposal name={proposal.proposalName} setName={setName} setType={setType} requester={proposal.demand.requesterRegistration.workerName} date={proposal.demand.demandDate} status={proposal.proposalStatus} id={proposal.proposalCode} />
                                     )
                                 }
                             } else {

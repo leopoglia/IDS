@@ -287,5 +287,6 @@
     "totaPercentage100": "A soma das porcentagens deve ser 100%",
     "score": "Score",
     "dates": "Data",
-    "code": "Código"
+    "code": "Código",
+    "Director":"Diretor"
 }

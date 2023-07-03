@@ -278,5 +278,6 @@
     "totaPercentage100": "El total de los porcentajes debe ser 100",
     "score": "Score",
     "dates": "Fecha",
-    "code": "Código"
+    "code": "Código",
+    "Director":"Director"
 }

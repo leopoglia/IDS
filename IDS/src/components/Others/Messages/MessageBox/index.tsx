@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useContext } from "react";
 import UserContext from "../../../../context/userContext";
 import ServicesMessage from "../../../../services/messageService";
+import { WebSocketContext } from '../../../../services/webSocketService';
 
 
 export default function Message(props: any) {
@@ -16,14 +17,10 @@ export default function Message(props: any) {
     const [imageRequester, setImageRequester]: any = useState("");
     const [demandCode, setDemandCode]: any = useState(0);
     const [sender, setSender]: any = useState({});
-    const [numViewed, setNumViewed]: any = useState(0);
+    const [numViewed, setNumViewed]: any = useState();
     const worker: any = useContext(UserContext).worker;
 
     useEffect(() => {
-
-        console.log("codigo demanda: " + demandCode);
-        console.log("codigo trabaiador: " + worker.id);
-
         ServicesDemand.findById(props.message?.demandCode).then((response: any) => {
             setRequester(response?.requesterRegistration);
             setImageRequester(response?.requesterRegistration?.workerName.substring(0, 1));
@@ -33,15 +30,15 @@ export default function Message(props: any) {
 
         ServicesMessage.findSender(worker.id, props.message?.demandCode).then((response: any) => {
             setSender(response);
-
-        })
-
-        ServicesMessage.notViewed(worker.id, demandCode).then((response: any) => {
-            console.log(response)
-            setNumViewed(response.length);
         })
     }, [props, numViewed]);
 
+    useEffect(() => {
+
+        ServicesMessage.notViewed(worker.id, demandCode).then((response: any) => {
+            setNumViewed(response.length);
+        })
+    }, [props, demandCode]);
 
     return (
         <Link to={"message/" + props.message?.demandCode}>
@@ -98,8 +95,8 @@ export default function Message(props: any) {
                     {
                         props.message?.viewed === null && props.message.sender.workerCode !== worker.id ? (
                             <div className="new-message-info">
-                                <span className="date">{props.message?.dateMessage}</span>
                                 <div className="new-message">{numViewed}</div>
+                                <span className="date">{props.message?.dateMessage}</span>
                             </div>
                         ) : (
                             <span className="date">{props.message?.dateMessage}</span>

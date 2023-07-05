@@ -606,6 +606,10 @@ hr {
   margin-right: 20px !important;
 }
 
+.w320px{
+  width: 320px !important;
+}
+
 .checkbox span {
   font-size: var(--p) !important;
 }

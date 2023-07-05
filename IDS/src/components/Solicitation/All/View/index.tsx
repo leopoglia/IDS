@@ -331,8 +331,12 @@ export default function ViewDemand() {
 
 
             ServicesMinute.findByAgenda(response[0].agendaCode).then((minute: any) => {
+
+                console.log(minute)
+
                 response[0].minutePublished = minute[1];
                 response[0].minuteNotPublished = minute[0];
+                response[0].minuteDG = minute[2];
 
                 setAgenda(response[0])
 
@@ -567,6 +571,8 @@ export default function ViewDemand() {
     const [benefitQualitativeOpen, setBenefitQualitativeOpen] = useState(false);
     const [proposalScopeOpen, setProposalScopeOpen] = useState(false);
     const [complementOpen, setComplementOpen] = useState(false);
+
+
 
     return (
         <div className="view-demand">
@@ -1089,6 +1095,8 @@ export default function ViewDemand() {
                                                                             <span>
                                                                                 {val.demand.demandTitle}
                                                                             </span>
+
+
                                                                         </div>
 
                                                                         <div className="w20 display-flex-align-center">
@@ -1098,8 +1106,12 @@ export default function ViewDemand() {
                                                                                     <Link to={"/proposal/comission-opinion/" + val.proposalCode + "?" + agenda.agendaCode}>
                                                                                         <button className="btn-primary">{t("insertCommissionOpinion")}</button>
                                                                                     </Link>
-                                                                                ) : val?.proposalStatus === "ApprovedComission" && minute.length !== 0 ? (
+                                                                                ) : val?.proposalStatus === "ApprovedComission" && val?.published === true && minute.length !== 0 ? (
                                                                                     <div className="display-flex-align-center">
+
+                                                                                        <div className="proposal-status mr20">
+                                                                                            {t("published")}: {val?.published === true ? t("yes") : t("no")}
+                                                                                        </div>
 
                                                                                         <div className="proposal-status mr20">
                                                                                             {t("status")}: {t(val?.proposalStatus)}
@@ -1107,10 +1119,18 @@ export default function ViewDemand() {
                                                                                         <Link to={"/proposal/dg-opinion/" + val.proposalCode + "?" + agenda.agendaCode}>
                                                                                             <button className="btn-primary">{t("insertDGOpnion")}</button>
                                                                                         </Link>
+
                                                                                     </div>
                                                                                 ) : (
-                                                                                    <div className="proposal-status">
-                                                                                        {t("status")}: {t(val?.proposalStatus)}
+                                                                                    <div className="display-flex-space-between w320px">
+
+                                                                                        <div className="proposal-status">
+                                                                                            {t("status")}: {t(val?.proposalStatus)}
+                                                                                        </div>
+
+                                                                                        <div className="proposal-status ml20 mr20">
+                                                                                            {t("published")}: {val?.published === true ? t("yes") : t("no")}
+                                                                                        </div>
                                                                                     </div>
                                                                                 )}
                                                                             </div>
@@ -1154,15 +1174,27 @@ export default function ViewDemand() {
                                                                                     <div className="display-flex-align-center">
 
                                                                                         <div className="proposal-status mr20">
+                                                                                            {t("published")}: {val?.published === true ? t("yes") : t("no")}
+                                                                                        </div>
+
+                                                                                        <div className="proposal-status mr20">
                                                                                             {t("status")}: {t(val?.proposalStatus)}
                                                                                         </div>
                                                                                         <Link to={"/proposal/dg-opinion/" + val.proposalCode + "?" + agenda.agendaCode}>
                                                                                             <button className="btn-primary">{t("insertDGOpnion")}</button>
                                                                                         </Link>
+
                                                                                     </div>
                                                                                 ) : (
-                                                                                    <div className="proposal-status">
-                                                                                        {t("status")}: {t(val?.proposalStatus)}
+                                                                                    <div className="display-flex-space-between w320px">
+
+                                                                                        <div className="proposal-status">
+                                                                                            {t("status")}: {t(val?.proposalStatus)}
+                                                                                        </div>
+
+                                                                                        <div className="proposal-status ml20 mr20">
+                                                                                            {t("published")}: {val?.published === true ? t("yes") : t("no")}
+                                                                                        </div>
                                                                                     </div>
                                                                                 )}
                                                                             </div>
@@ -1223,6 +1255,23 @@ export default function ViewDemand() {
                                                                         {t(agenda.minuteNotPublished.minuteName)}
 
                                                                         <Link to={"/minute/view/" + agenda.minuteNotPublished.minuteCode}>
+                                                                            <div className="btn-secondary btn-unique">
+                                                                                <span className="material-symbols-outlined">
+                                                                                    open_in_new
+                                                                                </span>
+                                                                            </div>
+                                                                        </Link>
+                                                                    </td>
+                                                                </tr>
+                                                            ) : null
+                                                            }
+
+                                                            {agenda?.minuteDG ? (
+                                                                <tr className="h50px">
+                                                                    <td className="display-flex-space-between pl20">
+                                                                        {t(agenda.minuteDG.minuteName)}
+
+                                                                        <Link to={"/minute/view/" + agenda.minuteDG.minuteCode}>
                                                                             <div className="btn-secondary btn-unique">
                                                                                 <span className="material-symbols-outlined">
                                                                                     open_in_new

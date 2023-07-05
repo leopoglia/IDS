@@ -1,0 +1,115 @@
+.compare-demands{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(61, 61, 61, 0.26);
+    z-index: 100;
+    padding: 100px 220px;
+    padding-left: 280px !important;
+}
+
+.compare-demands .box{
+    width: 40%;
+    height: 100%;
+    min-height: 75vh;
+    max-height: 75vh;
+    background-color: var(--white);
+    border-radius: calc(var(--r) * 2);
+    padding: 20px;
+    overflow: auto !important;
+    box-shadow: rgba(0, 0, 0, 0.11) 0px 0px 4.475px 0px, rgba(0, 0, 0, 0.13) 0px 4.4px 9.9px 0px;
+}
+
+.compare-demands .box::-webkit-scrollbar{
+    width: 5px !important; 
+}
+
+.compare-demands .box::-webkit-scrollbar-thumb{
+    background-color: var(--greyD9);
+    border-radius: var(--r);
+}
+
+.compare-demands .box::-webkit-scrollbar-thumb:hover{
+    background-color: var(--greyC4);
+    border-radius: var(--r);
+}
+
+.compare-demands .compare-arrrow{
+    font-size: 50px !important;
+    color: var(--grey59);
+}
+
+.compare-demands .bia{
+    position: absolute;
+    bottom: 0 !important;
+    right: 0 !important; 
+    height: 40%;
+}
+
+.compare-demands .box:nth-child(1){
+    margin-left: 50px;
+}
+
+.compare-demands .box:nth-child(3){
+    margin-right: 50px !important;
+}
+
+
+.compare-demands .question{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+
+.view-demand .compare-demands .btn-secondary,
+.view-demand .compare-demands .btn-primary{
+    width: 115px;
+}
+
+.view-demand .compare-demands .btn-secondary{
+    margin-right: 50px !important;
+}
+
+.compare-demands .modal-question{
+    background-color: var(--white2);
+    padding: 10px;
+    border-radius: var(--r);
+    text-align: center;
+    margin-right: 50px;
+    box-shadow: rgba(0, 0, 0, 0.11) 0px 0px 4.475px 0px, rgba(0, 0, 0, 0.13) 0px 4.4px 9.9px 0px;
+}
+
+.compare-demands .modal-question .display-flex{
+    margin-top: 15px;
+}
+
+
+@media (max-width: 1300px){
+
+    .compare-demands{
+        padding: 100px 100px !important;
+    }
+
+    .compare-demands .bia{
+        height: 40% !important;
+        margin-right: 0px !important;
+    }
+}   
+
+
+@media (max-width: 800px){
+
+    .compare-demands{
+        padding: 100px 0px !important;
+    }
+
+    .bia{
+        display: none !important;
+    }
+}   

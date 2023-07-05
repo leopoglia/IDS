@@ -18,9 +18,10 @@ import Table from "./Others/Table";
 import ButtonsActions from "./Others/ButtonsActions";
 import notifyUtil from "../../../../utils/notifyUtil";
 import Load from "../../../Fixed/Load";
+import CompareDemands from "./Others/CompareDemands";
 
 import "./style.css";
-import Situation from "../Cards/Card/Situation";
+
 
 
 export default function ViewDemand() {
@@ -300,7 +301,6 @@ export default function ViewDemand() {
 
                     setLoad(false);
                 }
-
             })
         })
     }
@@ -669,8 +669,6 @@ export default function ViewDemand() {
                                             <div>
                                                 <div className="display-flex-space-between display-solicitation-demand">
 
-
-
                                                     <p className="title">{demand.demandTitle}</p>
 
 
@@ -837,7 +835,7 @@ export default function ViewDemand() {
 
                                                         <span className="desc">{t("description")}:</span>
 
-                                                        <div className="text-information">{demand.potentialBenefit.potentialBenefitDescription}</div>
+                                                        <div className="text-information">{HtmlReactParser(demand.potentialBenefit.potentialBenefitDescription)}</div>
                                                     </div>
                                                 </div>
 
@@ -1446,6 +1444,11 @@ export default function ViewDemand() {
                 )}
 
             {url !== "agenda" ? (<Footer />) : null}
+
+            {false &&
+                <CompareDemands />
+            }
+
 
         </div >
     );

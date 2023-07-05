@@ -282,70 +282,117 @@ export default function Filter(props: any) {
             )
         }
     } else {
-        return (
-            <div className="filter-modal modal">
 
-                <div className="li display-flex-space-between" onClick={() => sendOrder("score")}>
-                    <div className="display-flex-align-center">
-                        <span className="material-symbols-outlined">grade</span>
-                        <span className="font-p">{t("score")}</span>
+        if (url === "demands" || url === "proposals") {
+            return (
+                <div className="filter-modal modal">
+
+                    <div className="li display-flex-space-between" onClick={() => sendOrder("score")}>
+                        <div className="display-flex-align-center">
+                            <span className="material-symbols-outlined">grade</span>
+                            <span className="font-p">{t("score")}</span>
+                        </div>
+
+
+
+                        {filter === true && type === "score" &&
+                            <span className="material-symbols-outlined mr5">
+                                keyboard_double_arrow_up
+                            </span>
+                        }
+
+                        {filter === true && type === "score-true" &&
+                            <span className="material-symbols-outlined mr5">
+                                keyboard_double_arrow_down
+                            </span>
+                        }
                     </div>
 
+                    <div className="li display-flex-space-between" onClick={() => sendOrder("dates")}>
+                        <div className="display-flex-align-center">
+                            <span className="material-symbols-outlined">calendar_month</span>
+                            <span className="font-p">{t("dates")}</span>
+                        </div>
 
+                        {filter === true && type === "dates" &&
+                            <span className="material-symbols-outlined mr5">
+                                keyboard_double_arrow_up
+                            </span>
+                        }
 
-                    {filter === true && type === "score" &&
-                        <span className="material-symbols-outlined mr5">
-                            keyboard_double_arrow_up
-                        </span>
-                    }
-
-                    {filter === true && type === "score-true" &&
-                        <span className="material-symbols-outlined mr5">
-                            keyboard_double_arrow_down
-                        </span>
-                    }
-                </div>
-
-                <div className="li display-flex-space-between" onClick={() => sendOrder("dates")}>
-                    <div className="display-flex-align-center">
-                        <span className="material-symbols-outlined">calendar_month</span>
-                        <span className="font-p">{t("dates")}</span>
+                        {filter === true && type === "dates-true" &&
+                            <span className="material-symbols-outlined mr5">
+                                keyboard_double_arrow_down
+                            </span>
+                        }
                     </div>
 
-                    {filter === true && type === "dates" &&
-                        <span className="material-symbols-outlined mr5">
-                            keyboard_double_arrow_up
-                        </span>
-                    }
+                    <div className="li display-flex-space-between" onClick={() => sendOrder("code")}>
+                        <div className="display-flex-align-center">
+                            <span className="material-symbols-outlined">draft</span>
+                            <span className="font-p">{t("code")}</span>
+                        </div>
 
-                    {filter === true && type === "dates-true" &&
-                        <span className="material-symbols-outlined mr5">
-                            keyboard_double_arrow_down
-                        </span>
-                    }
-                </div>
+                        {filter === true && type === "code" &&
+                            <span className="material-symbols-outlined mr5">
+                                keyboard_double_arrow_up
+                            </span>
+                        }
 
-                <div className="li display-flex-space-between" onClick={() => sendOrder("code")}>
-                    <div className="display-flex-align-center">
-                        <span className="material-symbols-outlined">draft</span>
-                        <span className="font-p">{t("code")}</span>
+                        {filter === true && type === "code-true" &&
+                            <span className="material-symbols-outlined mr5">
+                                keyboard_double_arrow_down
+                            </span>
+                        }
                     </div>
 
-                    {filter === true && type === "code" &&
-                        <span className="material-symbols-outlined mr5">
-                            keyboard_double_arrow_up
-                        </span>
-                    }
-
-                    {filter === true && type === "code-true" &&
-                        <span className="material-symbols-outlined mr5">
-                            keyboard_double_arrow_down
-                        </span>
-                    }
                 </div>
+            )
+        } else{
+            return (
+                <div className="filter-modal modal">
 
-            </div>
-        )
+                    <div className="li display-flex-space-between" onClick={() => sendOrder("dates")}>
+                        <div className="display-flex-align-center">
+                            <span className="material-symbols-outlined">calendar_month</span>
+                            <span className="font-p">{t("dates")}</span>
+                        </div>
+
+                        {filter === true && type === "dates" &&
+                            <span className="material-symbols-outlined mr5">
+                                keyboard_double_arrow_up
+                            </span>
+                        }
+
+                        {filter === true && type === "dates-true" &&
+                            <span className="material-symbols-outlined mr5">
+                                keyboard_double_arrow_down
+                            </span>
+                        }
+                    </div>
+
+                    <div className="li display-flex-space-between" onClick={() => sendOrder("code")}>
+                        <div className="display-flex-align-center">
+                            <span className="material-symbols-outlined">draft</span>
+                            <span className="font-p">{t("code")}</span>
+                        </div>
+
+                        {filter === true && type === "code" &&
+                            <span className="material-symbols-outlined mr5">
+                                keyboard_double_arrow_up
+                            </span>
+                        }
+
+                        {filter === true && type === "code-true" &&
+                            <span className="material-symbols-outlined mr5">
+                                keyboard_double_arrow_down
+                            </span>
+                        }
+                    </div>
+
+                </div>
+            )
+        }
     }
 
 }   

@@ -78,10 +78,10 @@
 
 .new-message{
     background-color: var(--blue);
-    width: 18px;
-    height: 18px;
-    font-size: small;
-    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: smaller;
+    border-radius: 100%;
     color: var(--white2);
     display: flex;
     justify-content: center;

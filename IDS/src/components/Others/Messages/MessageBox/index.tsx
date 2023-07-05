@@ -19,6 +19,7 @@ export default function Message(props: any) {
     const [sender, setSender]: any = useState({});
     const [numViewed, setNumViewed]: any = useState();
     const worker: any = useContext(UserContext).worker;
+    const { send, subscribe, stompClient }:any = useContext(WebSocketContext);
 
     useEffect(() => {
         ServicesDemand.findById(props.message?.demandCode).then((response: any) => {
@@ -34,7 +35,6 @@ export default function Message(props: any) {
     }, [props, numViewed]);
 
     useEffect(() => {
-
         ServicesMessage.notViewed(worker.id, demandCode).then((response: any) => {
             setNumViewed(response.length);
         })

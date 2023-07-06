@@ -15,17 +15,26 @@ export default function Demand(props: any) {
     const [formatDate, setFormatDate] = useState("");
 
     useEffect(() => {
-        const date = new Date(props.year);
+        if (props.type === "agenda") {
+            const date = new Date(props.year);
 
-        let year = date.getFullYear();
-        let month = String(date.getMonth() + 1).padStart(2, '0');
-        let day = String(date.getDate()).padStart(2, '0');
-        let hour = String(date.getHours()).padStart(2, '0');
-        let minute = String(date.getMinutes()).padStart(2, '0');
+            let year = date.getFullYear();
+            let month = String(date.getMonth() + 1).padStart(2, '0');
+            let day = String(date.getDate()).padStart(2, '0');
+            let hour = String(date.getHours()).padStart(2, '0');
+            let minute = String(date.getMinutes()).padStart(2, '0');
 
-        setFormatDate(`${day}/${month}/${year} ${hour}:${minute}`);
+            setFormatDate(`${day}/${month}/${year} ${hour}:${minute}`);
+        } else if (props.type === "demand") {
+            const date = new Date(props.date);
 
-    }, [props.year])
+            let year = date.getFullYear();
+            let month = String(date.getMonth() + 1).padStart(2, '0');
+            let day = String(date.getDate()).padStart(2, '0');
+
+            setFormatDate(`${day}/${month}/${year}`);
+        }
+    }, [props.year, props.date])
 
 
     const information = () => {
@@ -34,7 +43,7 @@ export default function Demand(props: any) {
                 (<div className="infos">
                     <div className="code">{props.demandCode}</div>
                     <div className="requester"><p>{t("requester")}: {props.requester}</p></div>
-                    <div className="date"><p>{t("date")}: {props.date}</p></div>
+                    <div className="date"><p>{t("date")}: {formatDate}</p></div>
                     <div className="situation"><p>{t("situation")}: {t(props.situation)}</p></div>
 
                 </div>)

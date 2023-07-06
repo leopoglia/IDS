@@ -152,7 +152,9 @@ export default function ExecutionCosts() {
 
 
         for (let i = 0; i < typeExpenses.length; i++) {
-            let expensesCostCenter = typeExpenses[i] === "internal" ? centerOfCustProposalInternal : typeExpenses[i] === "recurrent" ? centerOfCustProposalRecurrent : centerOfCustProposalExpenses;
+            let expensesCostCenter = typeExpenses[i] === "internl" ? centerOfCustProposalInternal : typeExpenses[i] === "recurrent" ? centerOfCustProposalRecurrent : centerOfCustProposalExpenses;
+            
+            console.log(expensesCostCenter)
 
             const expensesCostCentersNew: any = [];
             for (let j = 0; j < JSON.parse(expensesCostCenter).length; j++) {
@@ -164,7 +166,6 @@ export default function ExecutionCosts() {
                 ExpensesService.save(typeExpenses[i], proposalCode, expenseListStorage, expensesCostCentersNew).then((expenses: any) => {
                 })
             }
-
         }
 
         localStorage.removeItem('centerOfCustProposalexpenses')

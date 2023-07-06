@@ -25,7 +25,7 @@ export default function Demand(props: any) {
             let minute = String(date.getMinutes()).padStart(2, '0');
 
             setFormatDate(`${day}/${month}/${year} ${hour}:${minute}`);
-        } else if (props.type === "demand") {
+        } else {
             const date = new Date(props.date);
 
             let year = date.getFullYear();
@@ -54,7 +54,7 @@ export default function Demand(props: any) {
                 (<div className="infos">
                     <div className="code">{props.demandCode}</div>
                     <div className="requester"><p>{t("requester")}: {props.requester}</p></div>
-                    <div><p>{t("date")}: {props.date}</p></div>
+                    <div><p>{t("date")}: {formatDate}</p></div>
                     <div className="analyst"><p>{t("analyst")}: {props.analyst}</p></div>
                 </div>)
             )
@@ -71,7 +71,7 @@ export default function Demand(props: any) {
                 (<div className="infos">
                     <div className="code">{props.demandCode}</div>
                     <div className="number-sequential"><p>{t("sequentialNumber")}: {props.number}</p></div>
-                    <div><p>{t("date")}: {props.date}</p></div>
+                    <div><p>{t("date")}: {formatDate}</p></div>
                     <div className="analyst"><p>{t("Director")}: {props.director}</p></div>
                 </div>)
             )
@@ -119,7 +119,7 @@ export default function Demand(props: any) {
     if (props.listDirection === false) {
         return (
             <div className={"demand-" + props.id}>
-                <Link to={"/" + props.type + "/view/" + props.demandCode + urlFinal}>
+                <Link to={"/" + props.type + "/view/" + props.demandCode + "?" + props.demandVersion}>
                     <div className="demand">
                         <div className="content-demand">
 
@@ -153,7 +153,7 @@ export default function Demand(props: any) {
         return (
             <div>
 
-                <Link to={"/" + props.type + "/view/" + props.demandCode + urlFinal}>
+                <Link to={"/" + props.type + "/view/" + props.demandCode + "?" + props.demandVersion}>
                     <div className="demand-list">
                         <section>
                             <h1>{props.name}</h1>

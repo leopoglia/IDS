@@ -63,7 +63,6 @@
 * {
   box-sizing: border-box;
   letter-spacing: 0.55px;
-  font-size: var(--p);
 }
 
 h1,
@@ -496,6 +495,10 @@ hr {
   margin-bottom: 2px !important;
 }
 
+label, span{
+  font-size: var(--p);
+}
+
 .false::-webkit-scrollbar {
   width: 12px;
   height: 6px;
@@ -760,9 +763,11 @@ hr {
 }
 
 [vp] .vpw-settings-btn,
-[vp] .vpw-settings .vpw-content {
-  background-color: var(--blue);
+[vp] .vpw-settings .vpw-content,
+[vp] .vpw-settings-btn div button {
+  background-color: var(--blue) !important;
 }
+
 
 [vp] .vpw-controls.vpw-playing .vpw-controls-play .vpw-component-pause {
   filter: grayscale(10);

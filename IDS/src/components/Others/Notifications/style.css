@@ -48,6 +48,7 @@
 .notifications .header .selects,
 .messages .header .selects {
     width: 50%;
+    font-size: var(--p);
 }
 
 .notifications .header .input-background,

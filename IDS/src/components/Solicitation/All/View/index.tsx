@@ -21,6 +21,7 @@ import Load from "../../../Fixed/Load";
 import CompareDemands from "./Others/CompareDemands";
 
 import "./style.css";
+import othersUtil from "../../../../utils/othersUtil";
 
 
 
@@ -675,12 +676,12 @@ export default function ViewDemand() {
                                                     { /* Verifica se é uma demanda ou uma proposta */  url === "demand" ? (
                                                         <div className="display-flex-align-center h50">
                                                             {/* <Situation type="demand" situation={demand.demandStatus} demandCode={demand.demandCode} /> */}
-                                                            <div className="code-date">{t("date")}: {demand.demandDate}</div>
+                                                            <div className="code-date">{t("date")}: {othersUtil.formatDate(demand?.demandDate)}</div>
                                                             <div className="code">{demand.demandCode}</div>
                                                         </div>
                                                     ) : (
                                                         <div className="display-flex-align-center h50">
-                                                            <div className="code-date">{t("date")}: {proposal.proposalDate}</div>
+                                                            <div className="code-date">{t("date")}:  {othersUtil.formatDate(proposal?.proposalDate)}</div>
                                                             <div className="code">{proposal.proposalCode}</div>
                                                         </div>
                                                     )}

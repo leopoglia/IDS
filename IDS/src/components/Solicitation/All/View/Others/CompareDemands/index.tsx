@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import HtmlReactParser from 'html-react-parser';
 import Table from '../Table';
 import { Link } from 'react-router-dom';
+import othersUtil from '../../../../../../utils/othersUtil';
 
 
 export default function CompareDemands() {
@@ -56,7 +57,7 @@ export default function CompareDemands() {
                             <div className="display-flex-space-between display-solicitation-demand">
                                 <p className="title">{demand.demandTitle}</p>
                                 <div className="display-flex-align-center h50">
-                                    <div className="code-date">{t("date")}: {demand.demandDate}</div>
+                                    <div className="code-date">{t("date")}:  {othersUtil.formatDate(demand?.demandDate)}</div>
                                     <div className="code">{demand.demandCode}</div>
                                 </div>
                             </div>
@@ -213,7 +214,7 @@ export default function CompareDemands() {
                             <div className="display-flex-space-between display-solicitation-demand">
                                 <p className="title">{demand.demandTitle}</p>
                                 <div className="display-flex-align-center h50">
-                                    <div className="code-date">{t("date")}: {demand.demandDate}</div>
+                                    <div className="code-date">{t("date")}:  {othersUtil.formatDate(demand?.demandDate)}</div>
                                     <div className="code">{demand.demandCode}</div>
                                 </div>
                             </div>

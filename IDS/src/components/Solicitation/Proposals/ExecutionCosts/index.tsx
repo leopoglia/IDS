@@ -24,9 +24,12 @@ export default function ExecutionCosts() {
 
     const [demandCode, setDemandCode] = useState(parseInt(window.location.href.split("/")[5]));
     const [expenseListStorage, setExpenseListStorage] = useState<any>(JSON.parse(localStorage.getItem('expenseList') || '[]'));
+    const [realCurrency, setRealCurrency] = useState();
+
     const demandData: any = JSON.parse(localStorage.getItem('demand') || '{}');
     const proposal = JSON.parse(localStorage.getItem('proposal') || '{}');
     const scope: any = localStorage.getItem('proposalScope');
+
     let actualDate = new Date().getUTCDate() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCFullYear(); // Data atual
     // let [costCenter, setCostCenter]: any = useState([]);
     // let [percent, setPercent]: any = useState(0);
@@ -37,11 +40,13 @@ export default function ExecutionCosts() {
     let [externalCosts, setExternalCosts]: any = useState(0);
     let [totalsCosts, setTotalsCosts]: any = useState(0);
 
-    DemandService.findById(demandCode).then((demand: any) => {
-        localStorage.setItem('demand', JSON.stringify(demand));
-    });
-
     useEffect(() => {
+        DemandService.findById(demandCode).then((demand: any) => {
+            localStorage.setItem('demand', JSON.stringify(demand));
+            setRealCurrency(demand.realBenefit.realCurrency)
+        });
+
+
         for (let i = 0; i < expenseListStorage.length; i++) {
             if (expenseListStorage[i].expenseType === "internal") {
                 internalCosts += expenseListStorage[i].totalValue;
@@ -122,12 +127,7 @@ export default function ExecutionCosts() {
             }
         }
 
-        console.log(JSON.parse(centerOfCustProposalInternal)?.length)
-        console.log(JSON.parse(centerOfCustProposalExpenses)?.length)
-        console.log(JSON.parse(centerOfCustProposalRecurrent)?.length)
-
-    
-        if ((JSON.parse(centerOfCustProposalInternal)?.length >= 0 && (percentInternal !== 100  || percentInternal < 100)) || (JSON.parse(centerOfCustProposalExpenses)?.length >= 0 && (percentExpenses !== 100 || percentExpenses < 100)) || (JSON.parse(centerOfCustProposalRecurrent)?.length >= 0 && (percentRecurrent !== 100  || percentRecurrent < 100))) {
+        if ((JSON.parse(centerOfCustProposalInternal)?.length >= 0 && (percentInternal !== 100 || percentInternal < 100)) || (JSON.parse(centerOfCustProposalExpenses)?.length >= 0 && (percentExpenses !== 100 || percentExpenses < 100)) || (JSON.parse(centerOfCustProposalRecurrent)?.length >= 0 && (percentRecurrent !== 100 || percentRecurrent < 100))) {
             return 0;
         }
 
@@ -203,21 +203,21 @@ export default function ExecutionCosts() {
 
                             <div>
                                 <Tooltip title={totalsCosts} arrow>
-                                    <span>{t("totalsCosts")}: R$ {totalsCosts}</span>
+                                    <span>{t("totalsCosts")}: {realCurrency} {totalsCosts}</span>
                                 </Tooltip>
 
                                 <Tooltip title={externalCosts} arrow>
-                                    <span>{t("expenses")}: R$ {externalCosts}</span>
+                                    <span>{t("expenses")}: {realCurrency} {externalCosts}</span>
                                 </Tooltip>
                             </div>
 
                             <div>
                                 <Tooltip title={externalCosts} arrow>
-                                    <span>{t("recurrent")}: R$ {externalCosts}</span>
+                                    <span>{t("recurrent")}: {realCurrency} {externalCosts}</span>
                                 </Tooltip>
 
                                 <Tooltip title={internalCosts} arrow>
-                                    <span>{t("internal")}: R$ {internalCosts}</span>
+                                    <span>{t("internal")}: {realCurrency} {internalCosts}</span>
                                 </Tooltip>
                             </div>
 
@@ -228,19 +228,19 @@ export default function ExecutionCosts() {
 
                     <div className="block">
                         {externalCosts !== 0 ?
-                            <GridCostExecution title="expenses" />
+                            <GridCostExecution title="expenses" realCurrency={realCurrency} />
                             : null
                         }
 
 
 
                         {recurrentCosts !== 0 ?
-                            <GridCostExecution title="recurrent" />
+                            <GridCostExecution title="recurrent" realCurrency={realCurrency}  />
                             : null
                         }
 
                         {internalCosts !== 0 ?
-                            <GridCostExecution title="internal" />
+                            <GridCostExecution title="internal" realCurrency={realCurrency}  />
                             : null
                         }
 

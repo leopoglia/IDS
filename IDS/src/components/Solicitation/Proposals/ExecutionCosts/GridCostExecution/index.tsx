@@ -76,8 +76,8 @@ export default function ConditionalValidationGrid(props: any) {
                                         <tr>
                                             <td>{val.expenseProfile}</td>
                                             <td>{val.amountOfHours}</td>
-                                            <td>R$ {val.hourValue}</td>
-                                            <td>R$ {val.totalValue}</td>
+                                            <td>{props.realCurrency} {val.hourValue}</td>
+                                            <td>{props.realCurrency} {val.totalValue}</td>
                                             <td className='w40' onClick={() => deleteRow(index)}>
                                                 <span className="material-symbols-outlined">
                                                     delete

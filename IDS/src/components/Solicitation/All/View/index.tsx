@@ -890,11 +890,11 @@ export default function ViewDemand() {
                                             ) : (null)
                                             }
 
-                                            {proposalExpenseValue?.expensesCode > 0 ? (<Expenses type="expenses" proposalExpense={proposalExpenseValue} />) : (null)}
+                                            {proposalExpenseValue?.expensesCode > 0 ? (<Expenses type="expenses" proposalExpense={proposalExpenseValue} realCurrency={demand.realBenefit.realCurrency} />) : (null)}
 
-                                            {proposalExpenseRecurrent?.expensesCode > 0 ? (<Expenses type="recurrent" proposalExpense={proposalExpenseRecurrent} />) : (null)}
+                                            {proposalExpenseRecurrent?.expensesCode > 0 ? (<Expenses type="recurrent" proposalExpense={proposalExpenseRecurrent} realCurrency={demand.realBenefit.realCurrency} />) : (null)}
 
-                                            {proposalExpenseInternal?.expensesCode > 0 ? (<Expenses type="internal" proposalExpense={proposalExpenseInternal} />) : (null)}
+                                            {proposalExpenseInternal?.expensesCode > 0 ? (<Expenses type="internal" proposalExpense={proposalExpenseInternal} realCurrency={demand.realBenefit.realCurrency} />) : (null)}
 
 
                                             {proposalExpense > 0 ? (

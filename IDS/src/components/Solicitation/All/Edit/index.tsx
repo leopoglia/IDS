@@ -657,7 +657,7 @@ export default function Edit() {
 
 								</div>
 
-								<GridCostExecution title={expenseType} />
+								<GridCostExecution title={expenseType} realCurrency={demands.realBenefit.realCurrency} />
 
 							</div>
 

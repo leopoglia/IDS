@@ -31,7 +31,14 @@ const filtersUtil = {
             return true;
         } else if (typeFilter === "forum" && val?.forum?.commissionAcronym === nameFilter) {
             return true;
+        } else if(nameFilter === "dates" || nameFilter === "score" || nameFilter === "code"){
+            return true;
         }
+
+
+        console.log("typeFilter", typeFilter)
+
+
         return false;
     },
 

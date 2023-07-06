@@ -54,17 +54,10 @@ export default function Demands() {
         setLoading(true);
 
         if (url[3] === "demands") {
-
-            console.log("filterOn ==> ", filterOn)
-
             if (search === "" && filterOn === false) {
-                console.log("1")
-
                 getDemands(); // Busca as demandas cadastradas
             } else {
-                console.log("2")
-                console.log(typeFilter)
-                if (typeFilter !== "score" && typeFilter !== "dates" && typeFilter !== "code") {
+                if (nameFilter !== "score" && nameFilter !== "dates" && nameFilter !== "code") {
                     ServicesDemand.findAll().then(async (demands: any) => {
                         await demands.map(async (demand: any) => {
                             await ServicesProposal.findByDemandCode(demand.demandCode).then(async (proposal: any) => {
@@ -84,22 +77,12 @@ export default function Demands() {
                         setLoading(false);
                     });
                 } else {
-                    console.log("3")
-                    ServicesDemand.findAll().then((demands: any) => {
-                        demands.sort(function (a: any, b: any) {
-                            if(a.score > b.score){
-                                return 1;
-                            }
-                            if(a.score < b.score){
-                                return -1;
-                            }
-
-                            return 0;
-                        });
-
-                        console.log(demands)
+                
+                    ServicesDemand.order(nameFilter, typeFilter).then(async (demands: any) => {
                         setDemands(demands);
-                    })
+                        setLoading(false);
+                        console.log('demands', demands)
+                    });
                 }
             }
         } else if (url[3] === "proposals") {
@@ -142,7 +125,7 @@ export default function Demands() {
             localStorage.removeItem("route");
             Notification.success(t("demandCreateSuccess"));
         }
-    }, [url[3], page, search, table, nameFilter])
+    }, [url[3], page, search, table, nameFilter, typeFilter])
 
 
     // Buscar as demandas cadastradas

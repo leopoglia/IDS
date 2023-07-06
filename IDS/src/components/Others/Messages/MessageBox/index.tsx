@@ -20,8 +20,19 @@ export default function Message(props: any) {
     const [numViewed, setNumViewed]: any = useState();
     const worker: any = useContext(UserContext).worker;
     const { send, subscribe, stompClient }:any = useContext(WebSocketContext);
+    const [subscribeMessage, setSubscribeMessage]:any = useState();
+    const [messages, setMessages]:any = useState([]);
 
     useEffect(() => {
+        const newMessage = (response:any) => {
+            const messageReceived = JSON.parse(response.body);
+            setMessages((previousMessages:any) => [...previousMessages, messageReceived]);
+        }
+
+        if (stompClient && !subscribeMessage) {
+            setSubscribeMessage(subscribe("/" + demandCode + "/chat", newMessage));
+        }
+
         ServicesDemand.findById(props.message?.demandCode).then((response: any) => {
             setRequester(response?.requesterRegistration);
             setImageRequester(response?.requesterRegistration?.workerName.substring(0, 1));
@@ -32,7 +43,7 @@ export default function Message(props: any) {
         ServicesMessage.findSender(worker.id, props.message?.demandCode).then((response: any) => {
             setSender(response);
         })
-    }, [props, numViewed]);
+    }, [props, numViewed, messages]);
 
     useEffect(() => {
         ServicesMessage.notViewed(worker.id, demandCode).then((response: any) => {

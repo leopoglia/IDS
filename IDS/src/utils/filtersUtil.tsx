@@ -11,6 +11,10 @@ const filtersUtil = {
             return true;
         }
 
+        if(val === undefined) return false
+        if(nameFilter === undefined) return false
+
+
         if (search !== "" && val.demandTitle.toUpperCase().includes(search.toUpperCase())) {
             return true;
         }
@@ -34,10 +38,6 @@ const filtersUtil = {
         } else if(nameFilter === "dates" || nameFilter === "score" || nameFilter === "code"){
             return true;
         }
-
-
-        console.log("typeFilter", typeFilter)
-
 
         return false;
     },

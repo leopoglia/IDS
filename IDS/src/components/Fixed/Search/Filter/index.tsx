@@ -62,8 +62,6 @@ export default function Filter(props: any) {
 
     const sendOrder = (option: any) => {
 
-
-
         if (option === "score") {
             if (type === "score") {
                 setType("score-true");
@@ -127,7 +125,7 @@ export default function Filter(props: any) {
     }
 
     // Envia o valor do select e o tipo para o componente pai
-    const onButtonPressSelect = () => {
+    const onButtonPressSelect = (status: any) => {
         props.onClick(status, type);
     }
 
@@ -348,7 +346,7 @@ export default function Filter(props: any) {
 
                 </div>
             )
-        } else{
+        } else {
             return (
                 <div className="filter-modal modal">
 

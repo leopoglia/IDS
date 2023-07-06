@@ -33,12 +33,7 @@ export default function Configuration() {
 
     // Atualiza o estado do utilizador
     useEffect(() => {
-
-        if (worker?.workerPhoto !== null) {
-            setImage(byteToImage(worker?.workerPhoto));
-        } else {
-            setImage(worker?.name?.substring(0, 1));
-        }
+        setImage(worker?.name?.substring(0, 1));
         setPounds(worker?.pounds);
         setVoiceCommand(worker?.voiceCommand);
         setScreenReading(worker?.screenReader);
@@ -122,29 +117,6 @@ export default function Configuration() {
         })
     }
 
-    const handleProfileImage = async (event: any) => {
-
-        await WorkerService.updatePhoto(worker.id, event.target.files[0]).then((response: any) => {
-
-            setWorker({ ...worker, workerPhoto: response.workerPhoto });
-
-            setImage(byteToImage(response.workerPhoto));
-        })
-    }
-
-    function byteToImage(e: any): any {
-        const fileReader = new FileReader();
-
-        if (e?.target === false) {
-            fileReader.readAsDataURL(e.target.files[0]);
-        } else {
-            const imageUrl: any = URL.createObjectURL(e);
-            fileReader.readAsDataURL(imageUrl);
-        }
-        fileReader.onload = (e) => {
-            return fileReader.result;
-        }
-    }
 
     return (
         <div className="configuration">
@@ -155,7 +127,7 @@ export default function Configuration() {
 
                 <div className="box">
                     <div className="profile">
-                        <input className="input-image" type="file" id="image-profile" onChange={handleProfileImage} />
+                        {/* <input className="input-image" type="file" id="image-profile" /> */}
                         <label htmlFor="image-profile" className={image === "edit" ? "material-symbols-outlined" : ""} id="image-profile">
 
                             {image.substring(0, 4) !== "data" ?
@@ -230,7 +202,7 @@ export default function Configuration() {
                                             <label htmlFor="switch" />
                                         </div>
                                     </div>
-{/* 
+                                    {/* 
                                     <div className="display-flex">
                                         <span className="subtitle-confuration">{t("colors")}</span>
 

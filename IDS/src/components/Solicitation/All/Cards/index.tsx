@@ -61,7 +61,7 @@ export default function Demands() {
                     ServicesDemand.findAll().then(async (demands: any) => {
                         await demands.map(async (demand: any) => {
                             await ServicesProposal.findByDemandCode(demand.demandCode).then(async (proposal: any) => {
-                                if (proposal.demand.demandCode === demand.demandCode) {
+                                if (proposal?.demand?.demandCode === demand?.demandCode) {
                                     demand.proposal = proposal;
                                     await ServicesAgenda.findByProposals(proposal.proposalCode).then((agenda: any) => {
                                         if (demand.demandCode === proposal.demand.demandCode) {
@@ -81,7 +81,6 @@ export default function Demands() {
                     ServicesDemand.order(nameFilter, typeFilter).then(async (demands: any) => {
                         setDemands(demands);
                         setLoading(false);
-                        console.log('demands', demands)
                     });
                 }
             }
@@ -210,7 +209,7 @@ export default function Demands() {
             if (demand.demandStatus === "Assesment") {
                 proposalsContent.map(async (proposal: any) => {
 
-                    if (proposal.demand.demandCode === demand.demandCode) {
+                    if (proposal?.demand?.demandCode === demand?.demandCode) {
                         demand.proposalCode = proposal.proposalCode;
 
                         await ServicesAgenda.findByProposals(proposal.proposalCode).then((agenda: any) => {

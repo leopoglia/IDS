@@ -15,12 +15,17 @@ export default function SelectLabels(props: any) {
 
 
     const handleChange = (event: any, type: string) => {
+
+        console.log(event.target.value)
+        console.log("event ===> ", event.target.textContent)
+        console.log("type ===> ", type)
+
         if (type === 'text') {
             props.setStatus(event.target.value);
             props.onChange();
         } else {
             props.setStatus(event.target.textContent);
-            props.onChange();
+            props.onChange(event.target.textContent);
         }
     };
 

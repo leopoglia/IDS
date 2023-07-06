@@ -137,24 +137,27 @@ export default function ExecutionCosts() {
     async function saveExpenseFinal(proposalCode: any) {
         let typeExpenses: any = [];
         let centerOfCustProposalInternal: any = localStorage.getItem('centerOfCustProposalinternal') || [];
-        if (centerOfCustProposalInternal[0] !== null) {
+
+
+
+        if (centerOfCustProposalInternal !== undefined && centerOfCustProposalInternal !== null) {
             typeExpenses.push("internal");
         }
         let centerOfCustProposalExpenses: any = localStorage.getItem('centerOfCustProposalexpenses') || [];
-        if (centerOfCustProposalExpenses[0] !== null) {
+
+        if (centerOfCustProposalExpenses !== undefined && centerOfCustProposalInternal !== null) {
             typeExpenses.push("expenses");
         }
         let centerOfCustProposalRecurrent: any = localStorage.getItem('centerOfCustProposalrecurrent') || [];
-        if (centerOfCustProposalRecurrent[0] !== null) {
+        if (centerOfCustProposalRecurrent !== undefined && centerOfCustProposalInternal !== null) {
             typeExpenses.push("recurrent");
         }
 
-
-
         for (let i = 0; i < typeExpenses.length; i++) {
+
             let expensesCostCenter = typeExpenses[i] === "internal" ? centerOfCustProposalInternal : typeExpenses[i] === "recurrent" ? centerOfCustProposalRecurrent : typeExpenses[i] === "expenses" ? centerOfCustProposalExpenses : null;
 
-            if (expensesCostCenter !== null) {
+            if (expensesCostCenter !== null && expensesCostCenter.length > 0) {
                 const expensesCostCentersNew: any = [];
                 for (let j = 0; j < JSON.parse(expensesCostCenter).length; j++) {
                     expensesCostCentersNew.push({ costCenterCode: JSON.parse(expensesCostCenter)[j].costCenterCode, percent: JSON.parse(expensesCostCenter)[j].percent });

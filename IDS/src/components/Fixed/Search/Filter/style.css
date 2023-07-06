@@ -41,6 +41,7 @@
 
 .send-filter{
     padding-bottom: 15px;
+    height: 80px !important;
 }
 
 .send-filter .select-cost-center {

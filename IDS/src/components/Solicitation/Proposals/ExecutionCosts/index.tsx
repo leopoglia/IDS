@@ -152,19 +152,19 @@ export default function ExecutionCosts() {
 
 
         for (let i = 0; i < typeExpenses.length; i++) {
-            let expensesCostCenter = typeExpenses[i] === "internl" ? centerOfCustProposalInternal : typeExpenses[i] === "recurrent" ? centerOfCustProposalRecurrent : centerOfCustProposalExpenses;
-            
-            console.log(expensesCostCenter)
+            let expensesCostCenter = typeExpenses[i] === "internal" ? centerOfCustProposalInternal : typeExpenses[i] === "recurrent" ? centerOfCustProposalRecurrent : typeExpenses[i] === "expenses" ? centerOfCustProposalExpenses : null;
 
-            const expensesCostCentersNew: any = [];
-            for (let j = 0; j < JSON.parse(expensesCostCenter).length; j++) {
-                expensesCostCentersNew.push({ costCenterCode: JSON.parse(expensesCostCenter)[j].costCenterCode, percent: JSON.parse(expensesCostCenter)[j].percent });
-            }
+            if (expensesCostCenter !== null) {
+                const expensesCostCentersNew: any = [];
+                for (let j = 0; j < JSON.parse(expensesCostCenter).length; j++) {
+                    expensesCostCentersNew.push({ costCenterCode: JSON.parse(expensesCostCenter)[j].costCenterCode, percent: JSON.parse(expensesCostCenter)[j].percent });
+                }
 
 
-            if (JSON.parse(expensesCostCenter).length > 0) {
-                ExpensesService.save(typeExpenses[i], proposalCode, expenseListStorage, expensesCostCentersNew).then((expenses: any) => {
-                })
+                if (JSON.parse(expensesCostCenter).length > 0) {
+                    ExpensesService.save(typeExpenses[i], proposalCode, expenseListStorage, expensesCostCentersNew).then((expenses: any) => {
+                    })
+                }
             }
         }
 
@@ -236,12 +236,12 @@ export default function ExecutionCosts() {
 
 
                         {recurrentCosts !== 0 ?
-                            <GridCostExecution title="recurrent" realCurrency={realCurrency}  />
+                            <GridCostExecution title="recurrent" realCurrency={realCurrency} />
                             : null
                         }
 
                         {internalCosts !== 0 ?
-                            <GridCostExecution title="internal" realCurrency={realCurrency}  />
+                            <GridCostExecution title="internal" realCurrency={realCurrency} />
                             : null
                         }
 

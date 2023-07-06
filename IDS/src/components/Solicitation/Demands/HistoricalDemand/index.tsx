@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router";
 import Title from "../../../Fixed/Search/Title";
 import ServiceDemand from "../../../../services/demandService";
 import ServiceProposal from "../../../../services/proposalService";
+import othersUtil from "../../../../utils/othersUtil";
 import "./style.css";
 
 export default function HistoricalDemand() {
@@ -90,7 +91,7 @@ export default function HistoricalDemand() {
                                             <span className="material-symbols-outlined">find_in_page</span>
                                         </td>
                                         <td className="activeVersion">
-                                            {val.demandDate}
+                                            {othersUtil.formatDate(val.demandDate)}
                                         </td>
                                         <td className="activeVersion">
                                             {val.demandHour}
@@ -115,7 +116,7 @@ export default function HistoricalDemand() {
                                             <span className="material-symbols-outlined">find_in_page</span>
                                         </td>
                                         <td>
-                                            {val.demandDate}
+                                            {othersUtil.formatDate(val.demandDate)}
                                         </td>
                                         <td>
                                             {val.demandHour}

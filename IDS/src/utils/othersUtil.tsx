@@ -238,6 +238,23 @@ const othersUtil = {
         return `${day}/${month}/${year}`;
     },
 
+    removeZeroDate: (date: any) => {
+        let dateSplit = date.split("/");
+        let day = dateSplit[0];
+        let month = dateSplit[1];
+        let year = dateSplit[2];
+
+        if (day[0] === "0") {
+            day = day[1];
+        }
+        if (month[0] === "0") {
+            month = month[1];
+        }
+
+        return day + "/" + month + "/" + year;
+    }
+
+
 }
 
 export default othersUtil;

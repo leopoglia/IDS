@@ -9,6 +9,7 @@ import ServicesProposal from '../../../services/proposalService';
 import ServicesAgenda from '../../../services/agendaService';
 import ServicesMinutes from "../../../services/minuteService";
 import Footer from "../../Fixed/Footer";
+import othersUtil from "../../../utils/othersUtil";
 import "./style.css";
 
 export default function Dashboard() {
@@ -49,8 +50,8 @@ export default function Dashboard() {
                 if (response[i].demandStatus === "Cancelled") {
                     setDemandsCanceled(demandsCanceled + 1);
                 }
-
-                dates.push(response[i].demandDate);
+                
+                dates.push(othersUtil.removeZeroDate(othersUtil.formatDate(response[i].demandDate)));
             }
 
             setDemandsDates(dates);
@@ -68,6 +69,7 @@ export default function Dashboard() {
                 dates.push(response[i].proposalDate);
             }
 
+            console.log(dates)
             setProposalDates(dates);
 
         }).catch((error) => {
@@ -98,7 +100,7 @@ export default function Dashboard() {
         });
     }
 
-    useEffect(() => { 
+    useEffect(() => {
         getDemands();
         getProposal();
         getAgendas();
@@ -117,7 +119,7 @@ export default function Dashboard() {
             icon: "check",
         },
         {
-            title:t("demandsApprovedByManager"),
+            title: t("demandsApprovedByManager"),
             number: demandsApproved,
             icon: "check",
         },

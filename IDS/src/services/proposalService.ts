@@ -155,6 +155,15 @@ const Services = {
                 .catch(reject)
         })
     },
+    order: function(name: String, type: String) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/order/" + name + "/" + type, {
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(reject)
+        })
+    },
 }
 
 export default Services;

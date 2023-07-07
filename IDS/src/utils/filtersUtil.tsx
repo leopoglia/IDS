@@ -67,6 +67,8 @@ const filtersUtil = {
             return true;
         } else if (typeFilter === "forum" && val?.forum?.commissionAcronym === nameFilter) {
             return true;
+        } else if(nameFilter === "dates" || nameFilter === "score" || nameFilter === "code"){
+            return true;
         }
 
         return false;
@@ -87,6 +89,9 @@ const filtersUtil = {
         }
 
         if (typeFilter === "forum" && val?.commission?.commissionAcronym === nameFilter) {
+            return true;
+        }
+        if(nameFilter === "dates" || nameFilter === "score" || nameFilter === "code"){
             return true;
         }
 
@@ -127,6 +132,8 @@ const filtersUtil = {
         if (typeFilter === "code-minutes" && val.minuteCode === parseInt(nameFilter)) {
             return true;
         } else if (typeFilter === "date" && dateFormat.includes(nameFilter.split("-").reverse().join(""))) {
+            return true;
+        } else if(nameFilter === "dates" || nameFilter === "score" || nameFilter === "code"){
             return true;
         }
 

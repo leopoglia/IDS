@@ -104,7 +104,6 @@ export default function Demands() {
                 } else {
                     ServicesProposal.order(nameFilter, typeFilter).then(async (proposals: any) => {
                         setProposals(proposals);
-                        setLoading(false);
                     });
                 }
             }
@@ -118,6 +117,7 @@ export default function Demands() {
                     });
                 } else {
                     ServicesAgenda.order(nameFilter, typeFilter).then((agendas: any) => {
+                        console.log(agendas)
                         setAgendas(agendas);
                     });
                 }

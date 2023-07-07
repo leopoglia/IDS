@@ -77,7 +77,7 @@ export default function Demands() {
                         setLoading(false);
                     });
                 } else {
-                
+
                     ServicesDemand.order(nameFilter, typeFilter).then(async (demands: any) => {
                         setDemands(demands);
                         setLoading(false);
@@ -88,37 +88,55 @@ export default function Demands() {
             if (search === "" && typeFilter === "") {
                 getProposals(); // Busca as demandas cadastradas
             } else {
-                ServicesProposal.findAll().then(async (proposals: any) => {
-                    await proposals.map(async (proposal: any) => {
+                if (nameFilter !== "score" && nameFilter !== "dates" && nameFilter !== "code") {
+                    ServicesProposal.findAll().then(async (proposals: any) => {
+                        await proposals.map(async (proposal: any) => {
 
-                        await ServicesAgenda.findByProposals(proposal.proposalCode).then((agenda: any) => {
-                            proposal.forum = agenda.commission;
+                            await ServicesAgenda.findByProposals(proposal.proposalCode).then((agenda: any) => {
+                                proposal.forum = agenda.commission;
+                            });
+                            return proposals;
                         });
-                        return proposals;
-                    });
 
-                    setProposals(proposals);
-                    setLoading(false);
-                });
+                        setProposals(proposals);
+                        setLoading(false);
+                    });
+                } else {
+                    ServicesProposal.order(nameFilter, typeFilter).then(async (proposals: any) => {
+                        setProposals(proposals);
+                        setLoading(false);
+                    });
+                }
             }
         } else if (url[3] === "agendas") {
             if (search === "" && typeFilter === "") {
                 getAgendas(); // Busca as demandas cadastradas
             } else {
-                ServicesAgenda.findAll().then((agendas: any) => {
-                    setAgendas(agendas);
-                });
+                if (nameFilter !== "dates" && nameFilter !== "code") {
+                    ServicesAgenda.findAll().then((agendas: any) => {
+                        setAgendas(agendas);
+                    });
+                } else {
+                    ServicesAgenda.order(nameFilter, typeFilter).then((agendas: any) => {
+                        setAgendas(agendas);
+                    });
+                }
             }
         } else if (url[3] === "minutes") {
             if (search === "" && typeFilter === "") {
                 getMinutes(); // Busca as demandas cadastradas
             } else {
-                ServicesMinute.findAll().then((minutes: any) => {
-                    setMinutes(minutes);
-                });
+                if (nameFilter !== "dates" && nameFilter !== "code") {
+                    ServicesMinute.findAll().then((minutes: any) => {
+                        setMinutes(minutes);
+                    });
+                } else {
+                    ServicesMinute.order(nameFilter, typeFilter).then((minutes: any) => {
+                        setMinutes(minutes);
+                    });
+                }
             }
         }
-
         // Verifica se a rota da página anterior é a de cadastro de demanda
         if (localStorage.getItem("route") === "create-demand") {
             localStorage.removeItem("route");

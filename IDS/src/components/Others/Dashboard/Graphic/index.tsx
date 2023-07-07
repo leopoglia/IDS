@@ -151,7 +151,7 @@ export default function Graphic(props: any) {
             setTotalNumbersPrefix(totalNumbersPrefix + monthNames7[i].numbers)
         }
 
-        if (totalNumbersPrefix > 0) {
+        if (totalNumbersPrefix >= 0) {
             setLabels(monthNames7);
         }
     }
@@ -176,13 +176,8 @@ export default function Graphic(props: any) {
     return (
         <div className='chart'>
 
-            {totalNumbersPrefix !== 0 ?
-                <Line options={options} data={data} />
-                :
-                <div className="no-data">
-                    <span>No data</span>
-                </div>
-            }
+            <Line options={options} data={data} />
+
 
             {prev && <div className="prev" />}
 

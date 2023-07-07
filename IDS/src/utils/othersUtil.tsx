@@ -251,7 +251,16 @@ const othersUtil = {
         }
 
         return day + "/" + month + "/" + year;
-    }
+    },
+
+    invertMonthWithDay: (date: any) => {
+        let dateSplit = date.split("/");
+        let day = dateSplit[0];
+        let month = dateSplit[1];
+        let year = dateSplit[2];
+
+        return month + "/" + day + "/" + year;
+    },
 }
 
 export default othersUtil;

@@ -437,7 +437,7 @@ export default function ViewDemand() {
     function giveBack() {
         ServicesDemand.updateStatus(demandCode, "BacklogEdit").then((response: any) => {
             send("/api/worker/" + demand.requesterRegistration.workerCode, setGiveBackNotification());
-            notifyUtil.success(t("demandReturn"));
+            notifyUtil.success(t("demandReturned"));
             getDemand();
         }).catch((error: any) => {
             notifyUtil.error(t("somethingWrong"));

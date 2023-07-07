@@ -1,19 +1,32 @@
 import { useNavigate } from "react-router"
 import { t } from "i18next"
-
 import Services from "../../../../services/notificationService"
 import DemandServices from "../../../../services/demandService"
 import "./style.css"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react";
+import { WebSocketContext } from '../../../../services/webSocketService';
+import UserContext from "../../../../context/userContext";
 
 export default function Notification(props: any) {
 
+    const { send, subscribe, stompClient }: any = useContext(WebSocketContext);
     const navigate = useNavigate();
     const [checked, setChecked] = useState(false)
+    const worker = useContext(UserContext).worker;
+    const [subscribeId, setSubscribeId] = useState(null);
+    const [notifications, setNotifications]: any = useState([]); // Notificações do usuário
 
     useEffect(() => {
         setChecked(props?.checked)
-    }, [props.checked])
+
+        const newNotification = (response: any) => {
+            const notificationReceived = JSON.parse(response.body);
+            setNotifications((previousNotifications: any) => [...previousNotifications, notificationReceived]);
+        }
+        if (stompClient && !subscribeId) {
+            setSubscribeId(subscribe("/notifications/" + worker.id, newNotification));
+        }
+    }, [props.checked, stompClient, notifications])
 
     // Arruma a data para o formato dd/mm/yyyy hh:mm
     function arrangeDate() {
@@ -57,26 +70,23 @@ export default function Notification(props: any) {
 
     // Quando o usuário clica na notificação, ela é marcada como visualizada e ele é redirecionado para a página da notificação
     function viewNotification() {
-        Services.updateNotificationVisualized(props.id).then((response: any) => {
-            if (props.type !== "presentation" && props.type !== "chat") {
-                if (props.type === "demand") {
-                    DemandServices.findById(props.description[props.description.length - 1]).then((demand: any) => {
-                        navigate('/' + props.type + '/view/' + props.description[props.description.length - 1] + "?" + demand.demandVersion, { replace: true });
-                    })
-                } else {
-                    navigate('/' + props.type + '/view/' + props.description[props.description.length - 1], { replace: true });
-                }
+        send("/api/notification/" + worker.id, props.id);
+        if (props.type !== "presentation" && props.type !== "chat") {
+            if (props.type === "demand") {
+                DemandServices.findById(props.description[props.description.length - 1]).then((demand: any) => {
+                    navigate('/' + props.type + '/view/' + props.description[props.description.length - 1] + "?" + demand.demandVersion, { replace: true });
+                })
+            } else {
+                navigate('/' + props.type + '/view/' + props.description[props.description.length - 1], { replace: true });
+            }
 
-            } else if (props.type === "chat") {
-                navigate('/messages/message/' + props.description[props.description.length - 1], { replace: true });
-            }
-            else {
-                navigate('/demands/1')
-                localStorage.setItem("presentation", "true")
-            }
-        }).catch((error: any) => {
-            console.log(error)
-        })
+        } else if (props.type === "chat") {
+            navigate('/messages/message/' + props.description[props.description.length - 1], { replace: true });
+        }
+        else {
+            navigate('/demands/1')
+            localStorage.setItem("presentation", "true")
+        }
     }
 
     return (

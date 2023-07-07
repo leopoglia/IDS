@@ -416,8 +416,8 @@ export default function ViewDemand() {
             ServicesDemand.approve(demandCode, worker.id);
             send("/api/worker/" + demand.requesterRegistration.workerCode, setDefaultNotification());
             notifyUtil.success(t("demandApproved"));
-            getDemand();
             setActionsDemand(0);
+            getDemand();
         }).catch((error: any) => {
             notifyUtil.error(t("somethingWrong"));
         })
@@ -436,6 +436,7 @@ export default function ViewDemand() {
     // Devolver demanda (Analista)
     function giveBack() {
         ServicesDemand.updateStatus(demandCode, "BacklogEdit").then((response: any) => {
+            console.log(setGiveBackNotification());
             send("/api/worker/" + demand.requesterRegistration.workerCode, setGiveBackNotification());
             notifyUtil.success(t("demandReturned"));
             getDemand();

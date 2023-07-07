@@ -7,6 +7,7 @@ type MyContextType = {
     name: string,
     email: string,
     language: string,
+    notification: number,
     voiceCommand: boolean,
     pounds: boolean,
     screenReader: boolean,

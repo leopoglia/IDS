@@ -17,9 +17,11 @@ export default function Nav() {
     const navigate = useNavigate();
 
     const url = window.location.pathname.split("/")[1]; // Pega a url atual e separa por "/" e pega o primeiro item do array (que é a página atual)
-    const worker = useContext(UserContext).worker; // Pega o usuário logado
+    const { worker, setWorker }= useContext(UserContext); // Pega o usuário logado
+
+
     const [numNotification, setNumNotification] = useState(0); // Quantidade de notificações não lidas
-    let [notification, setNotification] = useState([]); // Notificações do usuário
+    const [notification, setNotification] = useState([]); // Notificações do usuário
     const [nav, setNav] = useState(localStorage.getItem("nav") || "nav");  // Estado do menu
     const [messagesOn, setMessagesOn] = useState(false); // Se tiver true, mostra as mensagens para o solicitante
     const [subscribeId, setSubscribeId] = useState(null); // Id do subscribe
@@ -57,6 +59,7 @@ export default function Nav() {
             }
 
             setNumNotification(numNotificationVisualized);
+            setWorker({ ...worker, notification: numNotificationVisualized });
         }).catch((error) => {
             console.log(error);
         });
@@ -243,15 +246,13 @@ export default function Nav() {
                 }
 
 
-
-
                 <Tooltip title={nav !== "nav-open" ? t("notifications") : ""} placement="right">
 
                     <Link to={"/notifications/" + worker.id}>
                         <li id={hover("notifications")}>
-                            {numNotification > 0 &&
+                            {worker.notification > 0 &&
                                 <li className="booble">
-                                    <span>{numNotification}</span>
+                                    <span>{worker.notification}</span>
                                 </li>
                             }
 

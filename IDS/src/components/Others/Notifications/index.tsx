@@ -17,7 +17,7 @@ export default function Notifications() {
     const [notifications, setNotifications]: any = useState([]);
     const [haveNotification, setHaveNotification]: any = useState(0);
     const [loading, setLoading] = useState(true);
-    const worker = useContext(UserContext).worker;
+    const { worker, setWorker } = useContext(UserContext);
     const { t } = useTranslation();
 
     const [search, setSearch]: any = useState(""); // Retorno do campo de busca de demandas
@@ -48,8 +48,6 @@ export default function Notifications() {
     }, [alterate, stompClient, notifications2])
 
     const selectAll = () => {
-
-
         if (checked === false) {
             for (let i = 0; i < notifications.length; i++) {
                 notifications[i].checked = true
@@ -80,6 +78,10 @@ export default function Notifications() {
         for (let i = 0; i < notifications.length; i++) {
             if (notifications[i].checked === true) {
                 await Services.delete(notifications[i].notificationCode)
+
+                if (notifications[i].visualized === false) {
+                    setWorker({ ...worker, notification: worker.notification - 1 })
+                }
             }
         }
         setAlterate(!alterate)

@@ -12,7 +12,7 @@ export default function Notification(props: any) {
     const { send, subscribe, stompClient }: any = useContext(WebSocketContext);
     const navigate = useNavigate();
     const [checked, setChecked] = useState(false)
-    const worker = useContext(UserContext).worker;
+    const { worker, setWorker } = useContext(UserContext);
     const [subscribeId, setSubscribeId] = useState(null);
     const [notifications, setNotifications]: any = useState([]); // Notificações do usuário
 
@@ -70,7 +70,15 @@ export default function Notification(props: any) {
 
     // Quando o usuário clica na notificação, ela é marcada como visualizada e ele é redirecionado para a página da notificação
     function viewNotification() {
+
         send("/api/notification/" + worker.id, props.id);
+
+
+        if(props.view === false){
+            setWorker({ ...worker, notification: worker.notification - 1 })
+        }
+
+
         if (props.type !== "presentation" && props.type !== "chat") {
             if (props.type === "demand") {
                 DemandServices.findById(props.description[props.description.length - 1]).then((demand: any) => {

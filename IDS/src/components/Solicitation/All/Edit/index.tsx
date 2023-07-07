@@ -245,7 +245,7 @@ export default function Edit() {
 		if (editType === "costcenter") {
 			ServicesDemand.updateCostCenter(demandCode, costsCentersId).then((response: any) => {
 
-				navigate("/proposal/view/" + demandCode);
+				navigate("/proposal/view/" + code);
 			})
 		} else if (expenseType === "recurrent" || expenseType === "internal" || expenseType === "expenses") {
 
@@ -256,6 +256,10 @@ export default function Edit() {
 
 			if (localStorage.getItem("centerOfCustProposalexpenses") !== null) {
 				costCentersCode = JSON.parse(localStorage.getItem("centerOfCustProposalexpenses") || '[]');
+			} else if(localStorage.getItem("centerOfCustProposalrecurrent") !== null) {
+				costCentersCode = JSON.parse(localStorage.getItem("centerOfCustProposalrecurrent") || '[]');
+			} else if(localStorage.getItem("centerOfCustProposalinternal") !== null) {
+				costCentersCode = JSON.parse(localStorage.getItem("centerOfCustProposalinternal") || '[]');
 			} else {
 				costCentersCode = costsCentersId;
 			}
@@ -264,7 +268,7 @@ export default function Edit() {
 				expensesCostCenter.push({ costCenter: { costCenterCode: costCentersCode[j].costCenterCode } });
 			}
 
-			ExpensesService.findByProposal(demandCode).then((expenses: any) => {
+			ExpensesService.findByProposal(code).then((expenses: any) => {
 
 				expenses.map((expense: any) => {
 
@@ -272,7 +276,7 @@ export default function Edit() {
 
 						if (expensesCostCenter.length > 0) {
 
-							ExpensesService.update(expenseType, demandCode, costCentersCode, expenseListStorage, expensesCostCenter, expense.expensesCode).then((expenseses: any) => {
+							ExpensesService.update(expenseType, code, costCentersCode, expenseListStorage, expensesCostCenter, expense.expensesCode).then((expenseses: any) => {
 
 								if (minuteEdit?.split("=")[0] === "minute") {
 									navigate("/minutes/create/" + minuteEdit.split("=")[1]);

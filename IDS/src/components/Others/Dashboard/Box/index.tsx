@@ -40,8 +40,6 @@ export default function Box(props: any) {
                 );
             }
 
-            console.log(datesFormated)
-
             const dateLastMonth = new Date();
             dateLastMonth.setMonth(dateLastMonth.getMonth() - 1);
 

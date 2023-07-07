@@ -23,32 +23,35 @@ export default function Dashboard() {
     const [proposalDates, setProposalDates]: any = useState([]);
     const [agendaDates, setAgendaDates]: any = useState([]);
 
-    const [demandsRanked, setDemandsRankes] = useState(0);
-    const [demandsApproved, setDemandsApproved] = useState(0);
-    const [demandsCompleted, setDemandsCompleted] = useState(0);
-    const [demandsCanceled, setDemandsCanceled] = useState(0);
-    const [proposal, setProposal] = useState(0);
-    const [agendas, setAgendas] = useState(0);
-    const [minutes, setMinutes] = useState(0);
+    const [demandsRanked, setDemandsRankes]:any = useState([]);
+    const [demandsApproved, setDemandsApproved]:any = useState([]);
+    const [demandsCompleted, setDemandsCompleted]:any = useState([]);
+    const [demandsCanceled, setDemandsCanceled]:any = useState([]);
+    const [proposal, setProposal]:any = useState([]);
+    const [agendas, setAgendas]:any = useState([]);
+    const [minutes, setMinutes]:any = useState([]);
 
     async function getDemands() {
         await ServicesDemand.findAllByVersion().then((response: any) => {
             setDemands(response?.length);
             let dates: any = [];
 
-
             for (let i = 0; i < response.length; i++) {
                 if (response[i].demandStatus === "BacklogRanked") {
-                    setDemandsRankes(demandsRanked + 1);
+                    demandsRanked.push(response[i].demandDate)
+                    setDemandsRankes(demandsRanked);
                 }
                 if (response[i].demandStatus === "BacklogRankApproved") {
-                    setDemandsApproved(demandsApproved + 1);
+                    demandsApproved.push(response[i].demandDate)
+                    setDemandsApproved(demandsApproved);                   
                 }
                 if (response[i].demandStatus === "BacklogComplement") {
-                    setDemandsCompleted(demandsCompleted + 1);
+                    demandsCompleted.push(response[i].demandDate)
+                    setDemandsCompleted(demandsCompleted);
                 }
                 if (response[i].demandStatus === "Cancelled") {
-                    setDemandsCanceled(demandsCanceled + 1);
+                    demandsCanceled.push(response[i].demandDate)
+                    setDemandsCanceled(demandsCanceled);
                 }
                 
                 dates.push(othersUtil.removeZeroDate(othersUtil.formatDate(response[i].demandDate)));
@@ -69,7 +72,6 @@ export default function Dashboard() {
                 dates.push(response[i].proposalDate);
             }
 
-            console.log(dates)
             setProposalDates(dates);
 
         }).catch((error) => {
@@ -110,7 +112,7 @@ export default function Dashboard() {
     const listDashBoard = [
         {
             title: t("createdDemands"),
-            number: demands,
+            number: demandsDates,
             icon: "check",
         },
         {
@@ -135,12 +137,12 @@ export default function Dashboard() {
         },
         {
             title: t("proposalsCreated"),
-            number: proposal,
+            number: proposalDates,
             icon: "check",
         },
         {
             title: t("agendasCreated"),
-            number: agendas,
+            number: agendaDates,
             icon: "check",
         }
     ]

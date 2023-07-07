@@ -281,5 +281,6 @@
     "score": "Score",
     "dates": "Date",
     "code": "Code",
-    "Director":"Director"
+    "Director":"Director",
+    "delete": "Delete"
 }

@@ -280,5 +280,6 @@
     "score": "Score",
     "dates": "Fecha",
     "code": "Código",
-    "Director":"Director"
+    "Director":"Director",
+    "delete": "Eliminar"
 }

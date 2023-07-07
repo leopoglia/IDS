@@ -6,7 +6,6 @@ import MinuteService from "../services/minuteService";
 
 const othersUtil = {
 
-
     // Função para mostrar o navigator
     synthesis: (text: string, reader: boolean) => {
 
@@ -253,8 +252,6 @@ const othersUtil = {
 
         return day + "/" + month + "/" + year;
     }
-
-
 }
 
 export default othersUtil;

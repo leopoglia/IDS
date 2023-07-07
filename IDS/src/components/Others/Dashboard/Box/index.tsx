@@ -33,11 +33,14 @@ export default function Box(props: any) {
             let datesFormated: any = [];
             dateLastWeek.setDate(dateLastWeek.getDate() - 7);
 
+
             for (let i = 0; i < props.dates.length; i++) {
                 datesFormated.push(
                     new Date(othersUtil.removeZeroDate(othersUtil.formatDate(props.dates[i])))
                 );
             }
+
+            console.log(datesFormated)
 
             const dateLastMonth = new Date();
             dateLastMonth.setMonth(dateLastMonth.getMonth() - 1);

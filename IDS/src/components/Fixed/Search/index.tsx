@@ -27,9 +27,6 @@ export default function Search(props: any) {
     const [name, setName] = useState<string | undefined>("")
     const [type, setType] = useState<string>("")
 
-    useEffect(() => {
-        callback(props.name, props.type);
-    }, [props.name, props.type])
 
     useEffect(() => {
         if (props.setName !== undefined && props.setType !== undefined) {

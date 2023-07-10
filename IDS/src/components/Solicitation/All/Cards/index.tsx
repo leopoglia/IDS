@@ -55,10 +55,6 @@ export default function Demands() {
 
         if (url[3] === "demands") {
 
-            console.log("search ==> " + search)
-            console.log("typeFilter ==> " + typeFilter)
-            console.log("filterOn ==> " + filterOn)
-
             if (search === "" && typeFilter === "" && nameFilter === "") {
                 getDemands(); // Busca as demandas cadastradas
             } else {

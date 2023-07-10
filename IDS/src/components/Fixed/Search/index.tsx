@@ -123,7 +123,7 @@ export default function Search(props: any) {
                             <ButtonTableList icon="table_rows" sendData={sendData} />
                         }
 
-                        {props.name !== undefined &&
+                        {props.title !== "selectProposal"  &&
                             <>
                                 <ButtonTableList icon="swap_vert" sendFilter={() => sendFilter("order")} />
 

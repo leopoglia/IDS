@@ -256,9 +256,9 @@ export default function Edit() {
 
 			if (localStorage.getItem("centerOfCustProposalexpenses") !== null) {
 				costCentersCode = JSON.parse(localStorage.getItem("centerOfCustProposalexpenses") || '[]');
-			} else if(localStorage.getItem("centerOfCustProposalrecurrent") !== null) {
+			} else if (localStorage.getItem("centerOfCustProposalrecurrent") !== null) {
 				costCentersCode = JSON.parse(localStorage.getItem("centerOfCustProposalrecurrent") || '[]');
-			} else if(localStorage.getItem("centerOfCustProposalinternal") !== null) {
+			} else if (localStorage.getItem("centerOfCustProposalinternal") !== null) {
 				costCentersCode = JSON.parse(localStorage.getItem("centerOfCustProposalinternal") || '[]');
 			} else {
 				costCentersCode = costsCentersId;
@@ -646,8 +646,8 @@ export default function Edit() {
 							<div className="box">
 
 								<div className="display-flex-space-between">
-									{minuteEdit ? (
-										<Link to={"/proposal/execution-costs/add-expense/" + demandCode + "?" + expenseType + "?" + minuteEdit}>
+									{(expenseType === "internal" || expenseType === "recurrent" || expenseType === "expenses") ? (
+										<Link to={"/proposal/execution-costs/add-expense/" + code + "?" + expenseType}>
 											<button className="btn-secondary">{t("addExpense")}</button>
 										</Link>
 									) :

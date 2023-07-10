@@ -73,7 +73,7 @@ export default function ViewDemand() {
         demandStatus: "", demandType: "", demandDescription: "", demandDate: "",
         classification: { classificationCode: "", classificationName: "" },
         realBenefit: { realBenefitCode: "", realCurrency: 0, realMonthlyValue: 0 },
-        potentialBenefit: { potencialBenefitCode: "", potentialCurrency: 0, potentialMonthlyValue: 0 },
+        potentialBenefit: { potencialBenefitCode: "", potentialCurrency: 0, potentialMonthlyValue: 0, potentialBenefitDescription: "" },
         qualitativeBenefit: { qualitativeBenefitCode: "", qualitativeBenefitDescription: "" },
         demandAttachment: { demandAttachmentCode: "", dice: "", type: "", name: "" }, demandCode: 0,
     });
@@ -843,7 +843,9 @@ export default function ViewDemand() {
 
                                                         <span className="desc">{t("description")}:</span>
 
-                                                        <div className="text-information">{HtmlReactParser(demand.potentialBenefit.potentialBenefitDescription)}</div>
+                                                        {demand.potentialBenefit.potentialBenefitDescription !== "" && (
+                                                            <div className="text-information">{HtmlReactParser(demand.potentialBenefit.potentialBenefitDescription)}</div>
+                                                        )}
                                                     </div>
                                                 </div>
 
@@ -1115,27 +1117,39 @@ export default function ViewDemand() {
                                                                                 ) : val?.proposalStatus === "ApprovedComission" && val?.published === true && minute.length !== 0 ? (
                                                                                     <div className="display-flex-align-center">
 
-                                                                                        <div className="proposal-status mr20">
-                                                                                            {t("published")}: {val?.published === true ? t("yes") : t("no")}
-                                                                                        </div>
-
-                                                                                        <div className="proposal-status mr20">
-                                                                                            {t("status")}: {t(val?.proposalStatus)}
-                                                                                        </div>
-                                                                                        <Link to={"/proposal/dg-opinion/" + val.proposalCode + "?" + agenda.agendaCode}>
+                                                                                        <Link to={"/proposal/dg-opinion/" + val.proposalCode + "?" + agenda.agendaCode} className="mr20">
                                                                                             <button className="btn-primary">{t("insertDGOpnion")}</button>
                                                                                         </Link>
+
+                                                                                        <div className="display-flex-space-between w320px">
+
+                                                                                            <div className="proposal-status mr20">
+                                                                                                <span>
+                                                                                                    {t("status")}: {t(val?.proposalStatus)}
+                                                                                                </span>
+                                                                                            </div>
+
+                                                                                            <div className="proposal-status mr20">
+                                                                                                <span>
+                                                                                                    {t("published")}: {val?.published === true ? t("yes") : t("no")}
+                                                                                                </span>
+                                                                                            </div>
+                                                                                        </div>
 
                                                                                     </div>
                                                                                 ) : (
                                                                                     <div className="display-flex-space-between w320px">
 
                                                                                         <div className="proposal-status">
-                                                                                            {t("status")}: {t(val?.proposalStatus)}
+                                                                                            <span>
+                                                                                                {t("status")}: {t(val?.proposalStatus)}
+                                                                                            </span>
                                                                                         </div>
 
                                                                                         <div className="proposal-status ml20 mr20">
-                                                                                            {t("published")}: {val?.published === true ? t("yes") : t("no")}
+                                                                                            <span>
+                                                                                                {t("published")}: {val?.published === true ? t("yes") : t("no")}
+                                                                                            </span>
                                                                                         </div>
                                                                                     </div>
                                                                                 )}
@@ -1179,27 +1193,38 @@ export default function ViewDemand() {
                                                                                 ) : val?.proposalStatus === "ApprovedComission" && val?.published === true && minute.length !== 0 ? (
                                                                                     <div className="display-flex-align-center">
 
-                                                                                        <div className="proposal-status mr20">
-                                                                                            {t("published")}: {val?.published === true ? t("yes") : t("no")}
-                                                                                        </div>
-
-                                                                                        <div className="proposal-status mr20">
-                                                                                            {t("status")}: {t(val?.proposalStatus)}
-                                                                                        </div>
-                                                                                        <Link to={"/proposal/dg-opinion/" + val.proposalCode + "?" + agenda.agendaCode}>
+                                                                                        <Link to={"/proposal/dg-opinion/" + val.proposalCode + "?" + agenda.agendaCode} className="mr20">
                                                                                             <button className="btn-primary">{t("insertDGOpnion")}</button>
                                                                                         </Link>
+
+                                                                                        <div className="display-flex-space-between w320px">
+                                                                                            <div className="proposal-status mr20">
+                                                                                                <span>
+                                                                                                    {t("published")}: {val?.published === true ? t("yes") : t("no")}
+                                                                                                </span>
+                                                                                            </div>
+
+                                                                                            <div className="proposal-status mr20">
+                                                                                                <span>
+                                                                                                    {t("status")}: {t(val?.proposalStatus)}
+                                                                                                </span>
+                                                                                            </div>
+                                                                                        </div>
 
                                                                                     </div>
                                                                                 ) : (
                                                                                     <div className="display-flex-space-between w320px">
 
                                                                                         <div className="proposal-status">
-                                                                                            {t("status")}: {t(val?.proposalStatus)}
+                                                                                            <span>
+                                                                                                {t("status")}: {t(val?.proposalStatus)}
+                                                                                            </span>
                                                                                         </div>
 
                                                                                         <div className="proposal-status ml20 mr20">
-                                                                                            {t("published")}: {val?.published === true ? t("yes") : t("no")}
+                                                                                            <span>
+                                                                                                {t("published")}: {val?.published === true ? t("yes") : t("no")}
+                                                                                            </span>
                                                                                         </div>
                                                                                     </div>
                                                                                 )}
@@ -1333,7 +1358,9 @@ export default function ViewDemand() {
                                                     <div className="display-grid display-flex-end minute-date">
                                                         <div className="display-flex-space-between w100">
                                                             <span>ATA Nº:&nbsp;</span>
-                                                            {minute.agenda.sequentialNumber + "/" + minute.agenda.agendaDate.split("/")[2]}
+                                                            <span>
+                                                                {minute.agenda.sequentialNumber + "/" + minute.agenda.agendaDate.split("/")[2]}
+                                                            </span>
                                                         </div>
 
                                                         <div className="display-flex-space-between w100">

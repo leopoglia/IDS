@@ -185,7 +185,7 @@
     height: 60px !important;
 }
 
-.view-demand .h50{
+.view-demand .h50 {
     height: 50px !important;
 }
 
@@ -247,7 +247,7 @@
     border-radius: var(--r);
 }
 
-.profile-worker{
+.profile-worker {
     width: 25px;
     min-width: 25px;
     height: 25px;
@@ -532,7 +532,7 @@
     margin-right: 5px;
 }
 
-.view-demand .box-pre-infos{
+.view-demand .box-pre-infos {
     border: 1px solid var(--greyC4);
     border-radius: var(--r);
     margin-right: 10px;
@@ -544,10 +544,11 @@
 
 }
 
-.view-demand .box-pre-infos *{
+.view-demand .box-pre-infos * {
     margin: 0px;
 }
 
-.view-demand .openProposal, .view-demand .openProposal .btn-secondary{
+.view-demand .openProposal,
+.view-demand .openProposal .btn-secondary {
     margin: 0px !important;
 }

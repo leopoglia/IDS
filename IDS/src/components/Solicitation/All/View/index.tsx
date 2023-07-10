@@ -333,8 +333,6 @@ export default function ViewDemand() {
 
             ServicesMinute.findByAgenda(response[0].agendaCode).then((minute: any) => {
 
-                console.log(minute)
-
                 response[0].minutePublished = minute[1];
                 response[0].minuteNotPublished = minute[0];
                 response[0].minuteDG = minute[2];
@@ -387,14 +385,18 @@ export default function ViewDemand() {
                 await ServicesExpenses.findByProposal(response?.agenda?.proposals[i]?.proposalCode).then((expenses: any) => {
 
                     if (expenses.length > 0) {
-                        for (let i = 0; i < expenses.length; i++) {
+                        for (let j = 0; j < expenses.length; j++) {
 
-                            if (expenses[i].expensesType === "recurrent") {
-                                response.agenda.proposals[i].expenseRecurrent = expenses[i];
-                            } else if (expenses[i].expensesType === "internal") {
-                                response.agenda.proposals[i].expenseInternal = expenses[i];
-                            } else if (expenses[i].expensesType === "expenses") {
-                                response.agenda.proposals[i].expenseValue = expenses[i];
+                            console.log("expenses ==> " ,expenses[j])
+
+                            if (expenses[j].proposal.proposalCode === response?.agenda?.proposals[i].proposalCode) {
+                                if (expenses[j].expensesType === "recurrent") {
+                                    response.agenda.proposals[i].expenseRecurrent = expenses[j];
+                                } else if (expenses[j].expensesType === "internal") {
+                                    response.agenda.proposals[i].expenseInternal = expenses[j];
+                                } else if (expenses[j].expensesType === "expenses") {
+                                    response.agenda.proposals[i].expenseValue = expenses[j];
+                                }
                             }
                         }
                     }
@@ -1372,7 +1374,7 @@ export default function ViewDemand() {
 
                                                                     {val?.expenseValue?.expensesCode > 0 ? (<Expenses type="expenses" proposalExpense={val?.expenseValue} />) : (null)}
 
-                                                                    {val?.expenseRecurrent?.expensesCode > 0 ? (<Expenses type="internal" proposalExpense={val?.expenseRecurrent} />) : (null)}
+                                                                    {val?.expenseInternal?.expensesCode > 0 ? (<Expenses type="internal" proposalExpense={val?.expenseInternal} />) : (null)}
 
 
 

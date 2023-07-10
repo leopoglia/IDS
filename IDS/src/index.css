@@ -402,6 +402,10 @@ textarea {
   width: 0px !important;
 }
 
+.MuiAutocomplete-popper *{
+  font-size: var(--p) !important;
+}
+
 
 .darkmode .css-1qqsdnr-MuiAutocomplete-root .MuiOutlinedInput-root .MuiAutocomplete-input,
 .darkmode .css-17o42pk-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root,

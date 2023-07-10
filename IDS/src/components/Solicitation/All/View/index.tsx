@@ -387,7 +387,7 @@ export default function ViewDemand() {
                     if (expenses.length > 0) {
                         for (let j = 0; j < expenses.length; j++) {
 
-                            console.log("expenses ==> " ,expenses[j])
+                            console.log("expenses ==> ", expenses[j])
 
                             if (expenses[j].proposal.proposalCode === response?.agenda?.proposals[i].proposalCode) {
                                 if (expenses[j].expensesType === "recurrent") {
@@ -823,7 +823,11 @@ export default function ViewDemand() {
 
                                                         <div className="display-flex-center">
                                                             <span className="bold-text">{t("monthlyValue")}: </span>
-                                                            {demand.potentialBenefit.potentialCurrency}
+
+                                                            <span>
+                                                                {demand.potentialBenefit.potentialCurrency}
+                                                            </span>
+
 
                                                             <div className="text-information">{demand.potentialBenefit.potentialMonthlyValue.toLocaleString()}</div>
 

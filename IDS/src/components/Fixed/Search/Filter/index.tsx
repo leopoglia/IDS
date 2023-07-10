@@ -44,7 +44,7 @@ export default function Filter(props: any) {
             return (
                 <div className="send-filter">
                     <div className="hr" />
-                    <SelectStatus status={status} setStatus={setStatus} onChange={onButtonPressSelect} array={arraySelect} />
+                    <SelectStatus status={status} setStatus={setStatus} onChange={onButtonPressSelect} array={arraySelect}/>
                 </div>
             )
 

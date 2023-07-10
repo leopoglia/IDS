@@ -75,7 +75,8 @@
     "approved": "批准",
     "rejected": "拒絕",
     "pending": "待定",
-    "myDemands": "我的請求",
+    "myDemands": "請求者",
+    "home": "我的請求",
     "manager": "經理",
     "forum": "論壇",
     "departament": "部門",
@@ -283,5 +284,7 @@
     "dates": "日期",
     "code": "代碼",
     "Director":"導演",
-    "delete": "刪除"
+    "delete": "刪除",
+    "department": "部門",
+    "code-demand": "代碼"
 }

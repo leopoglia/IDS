@@ -75,7 +75,7 @@
     "approved": "Approved",
     "rejected": "Rejected",
     "pending": "Pending",
-    "myDemands": "My demands",
+    "myDemands": "Requester",
     "manager": "Manager",
     "forum": "Forum",
     "departament": "Departament",
@@ -282,5 +282,8 @@
     "dates": "Date",
     "code": "Code",
     "Director":"Director",
-    "delete": "Delete"
+    "delete": "Delete",
+    "department": "Department",
+    "home": "My demands",
+    "code-demand": "Code"
 }

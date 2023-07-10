@@ -291,5 +291,8 @@
     "dates": "Data",
     "code": "Código",
     "Director":"Diretor",
-    "delete": "Excluir"
+    "delete": "Excluir",
+    "department": "Departamento",
+    "home": "Solicitante",
+    "code-demand": "Código"
 }

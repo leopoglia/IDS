@@ -76,6 +76,7 @@
     "rejected": "Rechazada",
     "pending": "Pendiente",
     "myDemands": "Mis demandas",
+    "home": "Solicitante",
     "manager": "Gerente",
     "forum": "Foro",
     "departament": "Departamento",
@@ -281,5 +282,7 @@
     "dates": "Fecha",
     "code": "Código",
     "Director":"Director",
-    "delete": "Eliminar"
+    "delete": "Eliminar",
+    "department": "Departamento",
+    "code-demand": "Código"
 }

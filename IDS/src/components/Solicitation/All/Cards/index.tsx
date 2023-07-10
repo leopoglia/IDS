@@ -54,7 +54,12 @@ export default function Demands() {
         setLoading(true);
 
         if (url[3] === "demands") {
-            if (search === "" && filterOn === false) {
+
+            console.log("search ==> " + search)
+            console.log("typeFilter ==> " + typeFilter)
+            console.log("filterOn ==> " + filterOn)
+
+            if (search === "" && typeFilter === "" && nameFilter === "") {
                 getDemands(); // Busca as demandas cadastradas
             } else {
                 if (nameFilter !== "score" && nameFilter !== "dates" && nameFilter !== "code") {
@@ -77,7 +82,6 @@ export default function Demands() {
                         setLoading(false);
                     });
                 } else {
-
                     ServicesDemand.order(nameFilter, typeFilter).then(async (demands: any) => {
                         setDemands(demands);
                         setLoading(false);
@@ -117,7 +121,6 @@ export default function Demands() {
                     });
                 } else {
                     ServicesAgenda.order(nameFilter, typeFilter).then((agendas: any) => {
-                        console.log(agendas)
                         setAgendas(agendas);
                     });
                 }
@@ -262,7 +265,6 @@ export default function Demands() {
     const callback = (name: string, type: string) => {
         setName(name)
         setType(type)
-        console.log(name)
     }
 
     const noResult = () => {

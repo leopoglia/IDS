@@ -95,7 +95,7 @@ export default function Search(props: any) {
 
                 {props.name !== "" && props.type !== "" && props.name !== undefined &&
                     <div className="display-flex filter-export">
-                        <div className="filters-on" onClick={() => { callback("", ""); props.onClick("", "") }}>
+                        <div className="filters-on" onClick={() => { callback("", ""); props.onClick("", ""); props.setName(""); props.setFilterOn("") }}>
                             <div className="display-flex"><span>{props.name} - {t(props.type)}</span><span className="material-symbols-outlined size-20">close</span></div>
                         </div>
 

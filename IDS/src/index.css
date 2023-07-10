@@ -704,6 +704,10 @@ label, span{
   color: var(--blue19) !important;
 }
 
+.introjs-tooltiptext{
+  font-size: var(--p);
+}
+
 @media(max-width: 1280px) {
 
   .container {

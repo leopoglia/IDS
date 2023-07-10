@@ -108,6 +108,8 @@ const othersUtil = {
                     filteredSolicitations.push(solicitations[i]);
                 } else if (typeFilter === "department" && solicitations[i]?.requesterRegistration.department === nameFilter) {
                     filteredSolicitations.push(solicitations[i]);
+                } else if (nameFilter === "dates" || nameFilter === "code" || nameFilter === "score") {
+                    filteredSolicitations = solicitations;
                 }
             }
             DemandService.saveExcel(filteredSolicitations).then((response: any) => {
@@ -139,6 +141,8 @@ const othersUtil = {
                     filteredSolicitations.push(solicitations[i]);
                 } else if (typeFilter === "department" && solicitations[i].demand?.requesterRegistration.department === nameFilter) {
                     filteredSolicitations.push(solicitations[i]);
+                } else if (nameFilter === "dates" || nameFilter === "code" || nameFilter === "score") {
+                    filteredSolicitations = solicitations;
                 }
             }
             ProposalService.saveExcel(filteredSolicitations).then((response: any) => {
@@ -167,6 +171,8 @@ const othersUtil = {
                             filteredSolicitations.push(solicitations[i]);
                         }
                     }
+                } else if (nameFilter === "dates" || nameFilter === "code" || nameFilter === "score") {
+                    filteredSolicitations = solicitations;
                 }
             }
             AgendaService.saveExcel(filteredSolicitations).then((response: any) => {
@@ -199,6 +205,8 @@ const othersUtil = {
                     filteredSolicitations.push(solicitations[i]);
                 } else if (typeFilter === "date" && dateFormat.includes(nameFilter.split("-").reverse().join(""))) {
                     filteredSolicitations.push(solicitations[i]);
+                } else if (nameFilter === "dates" || nameFilter === "code" || nameFilter === "score") {
+                    filteredSolicitations = solicitations;
                 }
             }
             MinuteService.saveExcel(filteredSolicitations).then((response: any) => {

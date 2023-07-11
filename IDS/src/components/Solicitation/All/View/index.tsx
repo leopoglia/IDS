@@ -59,12 +59,11 @@ export default function ViewDemand() {
     const [beneficiariesBu, setBeneficiariesBu]: any = useState([]); // Dados dos beneficiários da BU
     const [comission, setComission]: any = useState([]); // Dados da comissão
     const [subscribeId, setSubscribeId] = useState(null);
-    let notification = {}; // Notificações do usuário
     const [pendingMinute, setPendingMinute]: any = useState(0); // Quantidade de propostas pendentes
     const [approvedDG, setApprovedDG]: any = useState(0); // Quantidade de propostas aprovadas pelo DG
-
-
     const { send, subscribe, stompClient }: any = useContext(WebSocketContext);
+
+    let notification = {}; // Notificações do usuário
 
 
     // Dados da demanda

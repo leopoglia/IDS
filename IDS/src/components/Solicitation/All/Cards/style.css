@@ -148,6 +148,15 @@
     border-bottom: none !important;
 }
 
+@media(max-height: 768px){
+
+    .boxNoPadding{
+        min-height: calc(100vh - 220px) !important;
+        max-height: calc(100vh - 220px) !important;
+    }
+
+}
+
 @media (max-width: 768px) {
     .minute {
         width: 90%;

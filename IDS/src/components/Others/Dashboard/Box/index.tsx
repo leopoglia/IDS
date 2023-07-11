@@ -118,7 +118,7 @@ export default function Box(props: any) {
                                 <span className="material-symbols-outlined">
                                     trending_up
                                 </span>
-                                <p>{weekPercent}%</p>
+                                <p>{weekPercent?.toFixed(2)}%</p>
                             </div>
 
                             <div className="display-flex-center">
@@ -126,7 +126,7 @@ export default function Box(props: any) {
                                 <span className="material-symbols-outlined">
                                     trending_up
                                 </span>
-                                <p>{monthPercent}%</p>
+                                <p>{monthPercent?.toFixed(2)}%</p>
                             </div>
 
                             <div className="display-flex-center">
@@ -134,7 +134,7 @@ export default function Box(props: any) {
                                 <span className="material-symbols-outlined">
                                     trending_up
                                 </span>
-                                <p>{yearPercent}%</p>
+                                <p>{yearPercent?.toFixed(2)}%</p>
                             </div>
                         </div>
                     </div>

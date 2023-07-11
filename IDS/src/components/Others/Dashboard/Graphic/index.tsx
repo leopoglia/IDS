@@ -130,30 +130,28 @@ export default function Graphic(props: any) {
             }
         }
 
-        if (totalMonths >= 10) {
-            // Adiciona o nome do mês atual ao array
-            const nameCurrentMonth = "Prev";
+        // Adiciona o nome do mês atual ao array
+        const nameCurrentMonth = "Prev";
 
-            let monthNumber: any = [];
-            await ServicesWorker.graphic(monthNames10).then((res: any) => {
-                monthNumber = res.forecast;
-            });
+        let monthNumber: any = [];
+        await ServicesWorker.graphic(monthNames10).then((res: any) => {
+            monthNumber = res.forecast;
+        });
 
-            // const monthNumber = monthNames[currenDate.getMonth() + 1].numbers;
+        // const monthNumber = monthNames[currenDate.getMonth() + 1].numbers;
 
-            const month = { month: nameCurrentMonth, numbers: monthNumber };
-            monthNames7.push(month);
-            setPrev(true);
-        }
+        const month = { month: nameCurrentMonth, numbers: monthNumber };
+        monthNames7.push(month);
+        setPrev(true);
+
 
 
         for (let i = 0; i < monthNames7.length; i++) {
             setTotalNumbersPrefix(totalNumbersPrefix + monthNames7[i].numbers)
         }
 
-        if (totalNumbersPrefix >= 0) {
-            setLabels(monthNames7);
-        }
+        setLabels(monthNames7);
+
     }
 
 

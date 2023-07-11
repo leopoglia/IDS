@@ -56,6 +56,13 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden !important;
+    font-size: var(--pp) !important;
+    display: flex;
+    align-items: center;
+}
+
+.demand .score .mr20 {
+    margin-top: 4px;
 }
 
 .demand .score .material-symbols-outlined{

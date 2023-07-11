@@ -372,8 +372,10 @@ export default function CompareDemands() {
 
             <div className='question'>
                 <div className='modal-question'>
+                    <span>
+                        Essas demandas tem a mesma finalidade?
+                    </span>
 
-                    Essas demandas tem a mesma finalidade?
 
                     <div className='display-flex'>
                         <button className="btn-secondary">

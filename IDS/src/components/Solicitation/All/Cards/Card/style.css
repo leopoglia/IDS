@@ -21,6 +21,7 @@
     max-width: 510px !important;
     text-overflow: ellipsis !important;
     overflow: hidden !important;
+    font-size: initial;
 }
 
 .demand section .display-flex,

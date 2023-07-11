@@ -420,6 +420,11 @@ textarea {
   background-color: var(--greyC4) !important;
 }
 
+.Toastify div,
+.MuiFormControl-root  *{
+  font-size: var(--p) !important;
+}
+
 
 table,
 tbody {

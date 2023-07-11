@@ -7,6 +7,10 @@
     background-color: var(--greyF7);
 }
 
+.notification-last{
+    border-bottom: 0px !important;
+}
+
 .notification-background-true:hover,
 .notification-background-false:hover{
     background-color: var(--blueF4);

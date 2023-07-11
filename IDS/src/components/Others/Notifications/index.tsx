@@ -120,6 +120,52 @@ export default function Notifications() {
         }
     }, [checked, updateCheckeds])
 
+    const filteredNotifications = notifications.filter((notification: any) => {
+        if (search === "") {
+            return notification;
+        } else if (notification.description.toLowerCase().includes(search.toLowerCase())) {
+            return notification;
+        }
+    });
+
+    const lastNotificationIndex = filteredNotifications.length - 1;
+
+    const mappedNotifications = filteredNotifications.map((notification: any, index: any) => {
+        if (notification.worker.workerCode === worker.id) {
+            if (index === lastNotificationIndex) {
+                return (
+                    <Notification
+                        last={true}
+                        key={notification.notificationCode}
+                        onClick={() => { selection(notification.notificationCode) }}
+                        checked={notification.checked}
+                        id={notification.notificationCode}
+                        description={notification.description}
+                        date={notification.date}
+                        icon={notification.icon}
+                        view={notification.visualized}
+                        type={notification.type}
+                    />
+                );
+            } else {
+                return (
+                    <Notification
+                        key={notification.notificationCode}
+                        onClick={() => { selection(notification.notificationCode) }}
+                        checked={notification.checked}
+                        id={notification.notificationCode}
+                        description={notification.description}
+                        date={notification.date}
+                        icon={notification.icon}
+                        view={notification.visualized}
+                        type={notification.type}
+                    />
+                );
+            }
+        } else if (notification.worker.workerCode === worker.id) {
+            setHaveNotification(haveNotification + 1);
+        }
+    });
 
 
     return (
@@ -166,49 +212,22 @@ export default function Notifications() {
 
                         </div>
 
-                        {
-                            loading === true ? (
-                                <Load />
-                            ) :
-                                notifications.length > 0 ? (
 
-                                    notifications.filter((notification: any) => {
-
-
-                                        if (search === "") {
-                                            return notification
-                                        } else if (notification.description.toLowerCase().includes(search.toLowerCase())) {
-                                            return notification
-                                        }
-
-                                    }).map((notification: any) => {
-                                        if (notification.worker.workerCode === worker.id) {
-                                            return (
-                                                <Notification
-                                                    key={notification.notificationCode}
-                                                    onClick={() => { selection(notification.notificationCode) }}
-                                                    checked={notification.checked}
-                                                    id={notification.notificationCode}
-                                                    description={notification.description}
-                                                    date={notification.date}
-                                                    icon={notification.icon}
-                                                    view={notification.visualized}
-                                                    type={notification.type}
-                                                />
-                                            )
-                                        }
-                                        if (notification.worker.workerCode === worker.id) {
-                                            setHaveNotification(haveNotification + 1)
-                                        }
-
-                                    })
-                                ) : (
-                                    <div className="no-results">
-                                        <span className="material-symbols-outlined">notifications</span>
-                                        <h1>{t("noResults")}</h1>
-                                    </div>
-                                )
-                        }
+                        <div className="box-content">
+                            {
+                                loading === true ? (
+                                    <Load />
+                                ) :
+                                    notifications.length > 0 ? (
+                                        mappedNotifications
+                                    ) : (
+                                        <div className="no-results">
+                                            <span className="material-symbols-outlined">notifications</span>
+                                            <h1>{t("noResults")}</h1>
+                                        </div>
+                                    )
+                            }
+                        </div>
 
 
                     </div>

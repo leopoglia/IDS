@@ -98,7 +98,7 @@ export default function Notification(props: any) {
     }
 
     return (
-        <div className={"display-flex-center notification-background-" + props.view}>
+        <div className={"display-flex-center notification-background-" + props.view + " notification-" + (props.last === true ? "last" : "")}>
             <div className="notification-checkbox">
                 <label className="checkbox checkbox-message">
                     <input type="checkbox" onClick={() => { props.onClick(); setChecked(!checked) }} checked={checked} />

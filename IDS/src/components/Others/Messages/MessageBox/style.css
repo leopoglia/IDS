@@ -67,6 +67,7 @@
 .message-false .date-horary .date {
     margin-right: 15px;
     margin-left: 15px;
+    white-space: nowrap;
 }
 
 .new-message-info{

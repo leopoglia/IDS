@@ -2,12 +2,22 @@ const url = "http://localhost:8443/api/realbenefit"
 
 const Services = {
 
-    save: function (realMonthlyValue: Number, realBenefitDescription: String, realCurrency: String) {
+    save: function (realMonthlyValue: any, realBenefitDescription: String, realCurrency: String) {
         return new Promise((resolve, reject) => {
-            
+
+            let realMonthlyValueAux: any = 0.0
+
+            if (realCurrency === "R$") {
+                realMonthlyValueAux = realMonthlyValue.replace("R$", "").replace(".", "").replace(",", ".")
+            } else if (realCurrency === "$") {
+                realMonthlyValueAux = realMonthlyValue.replace("$", "").replace(".", "").replace(",", ".")
+            } else if (realCurrency === "€") {
+                realMonthlyValueAux = realMonthlyValue.replace("€", "").replace(".", "").replace(",", ".")
+            }
+
             fetch(url, {
                 method: 'POST', body: JSON.stringify({
-                    realMonthlyValue: realMonthlyValue,
+                    realMonthlyValue: Number.parseFloat(realMonthlyValueAux),
                     realBenefitDescription: realBenefitDescription,
                     realCurrency: realCurrency
                 }), headers: { 'Content-Type': 'application/json' }, credentials: 'include'

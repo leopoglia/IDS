@@ -77,9 +77,8 @@ export default function CreateDemands2() {
         }
 
 
-
-        let realBenefits: any = await RealServices.save(Number.parseFloat(realMonthlyValue), realBenefitDescription, realCurrencyFinal);
-        let potentialBenefits: any = await PotentialServices.save(Number.parseFloat(potentialMonthlyValue), potentialBenefitDescription, legalObrigation, potentialCurrencyFinal);
+        let realBenefits: any = await RealServices.save(realMonthlyValue, realBenefitDescription, realCurrencyFinal);
+        let potentialBenefits: any = await PotentialServices.save(potentialMonthlyValue, potentialBenefitDescription, legalObrigation, potentialCurrencyFinal);
         let qualitativeBenefits: any = await QualitativeServices.save(frequencyOfUse, qualitativeBenefitDescription, interalControlsRequirements);
 
         localStorage.setItem("realBenefits", JSON.stringify(realBenefits));
@@ -101,6 +100,7 @@ export default function CreateDemands2() {
             navigate('/demand/create/3');
         }
     }
+
 
     return (
         <div className="create-demands-2">
@@ -129,7 +129,7 @@ export default function CreateDemands2() {
                     <div className="flex">
                         <div className="display-grid w100">
 
-                            <Input type="number" label="monthlyValue" setValue={setRealMonthlyValue} value={realMonthlyValue} required="true" />
+                            <Input type="number" label="monthlyValue" setValue={setRealMonthlyValue} value={realMonthlyValue} currency={realCurrency}  required="true" />
 
                         </div>
                         <SelectCoin setrealCurrency={setrealCurrency} type="real" value={realCurrency} />
@@ -160,7 +160,7 @@ export default function CreateDemands2() {
                         <div className="flex">
                             <div className="display-grid w100">
 
-                                <Input type="number" label="monthlyValue" setValue={setPotentialMonthlyValue} value={potentialMonthlyValue} required="true" />
+                                <Input type="number" label="monthlyValue" setValue={setPotentialMonthlyValue} value={potentialMonthlyValue} currency={potentialCurrency} required="true" />
                             </div>
                             <SelectCoin setPotentialCurrency={setPotentialCurrency} type="potencial" value={potentialCurrency} />
                         </div>

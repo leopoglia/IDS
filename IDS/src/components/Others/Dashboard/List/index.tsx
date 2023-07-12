@@ -56,9 +56,6 @@ export default function List(props: any) {
             const actualYear = datesFormated.filter(
                 (date: any) => date.getFullYear() === dateActual.getFullYear()
             );
-            
-            console.log('lastWeek', lastWeek);
-            console.log('acutalWeek', actualWeek)
 
             const weekPercent =
                 ((actualWeek.length - lastWeek.length) / lastWeek.length) * 100;

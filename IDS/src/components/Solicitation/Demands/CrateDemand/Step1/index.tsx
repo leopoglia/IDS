@@ -184,19 +184,19 @@ export default function CreateDemands1() {
                     </div>
 
                     <div className="text-area">
-                        <Label title="objective" required="true" textInfo="Digite o objetivo que você deseja realizando a demanda" />
+                        <Label title="objective" required="true" />
 
                         <Editor handleChange={handleChange} type={"objective"} content={objective} />
                     </div>
 
                     <div className="text-area">
-                        <Label title="currentSituation" required="true" textInfo="Digite o situação atual" />
+                        <Label title="currentSituation" required="true" />
 
                         <Editor handleChange={handleChange} type={"currentSituation"} content={currentSituation} />
                     </div>
            
                     <div className="display-grid">
-                        <Label title="costCenter" required="true" textInfo="Digite o centro de custo que ira pagar" />
+                        <Label title="costCenter" required="true" />
 
                         <div className="display-flex">
                             <SelectCenterCost setCostCenter={setCostCenter} costCenter={costCenter} addCostCenter={addCostCenter} />

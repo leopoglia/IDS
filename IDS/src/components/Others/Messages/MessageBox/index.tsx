@@ -24,15 +24,6 @@ export default function Message(props: any) {
     const [messages, setMessages]:any = useState([]);
 
     useEffect(() => {
-        const newMessage = (response:any) => {
-            const messageReceived = JSON.parse(response.body);
-            setMessages((previousMessages:any) => [...previousMessages, messageReceived]);
-        }
-
-        if (stompClient && !subscribeMessage) {
-            setSubscribeMessage(subscribe("/" + demandCode + "/chat", newMessage));
-        }
-
         ServicesDemand.findById(props.message?.demandCode).then((response: any) => {
             setRequester(response?.requesterRegistration);
             setImageRequester(response?.requesterRegistration?.workerName.substring(0, 1));
@@ -40,10 +31,10 @@ export default function Message(props: any) {
             setDemandCode(response.demandCode);
         })
 
-        ServicesMessage.findSender(worker.id, props.message?.demandCode).then((response: any) => {
+        ServicesMessage.findSender(worker.id, demandCode).then((response: any) => {
             setSender(response);
         })
-    }, [props, numViewed, messages]);
+    }, [props, numViewed]);
 
     useEffect(() => {
         ServicesMessage.notViewed(worker.id, demandCode).then((response: any) => {

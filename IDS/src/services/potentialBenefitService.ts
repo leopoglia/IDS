@@ -4,14 +4,19 @@ const Services = {
     save: function (potentialMonthlyValue: any, potentialBenefitDescription: String, legalObrigation: Boolean, potentialCurrency: String) {
         return new Promise((resolve, reject) => {
 
+            console.log(potentialMonthlyValue)
+
+
             let realMonthlyValueAux: any = 0.0
 
-            if (potentialCurrency === "R$") {
-                realMonthlyValueAux = potentialMonthlyValue.replace("R$", "").replace(".", "").replace(",", ".")
-            } else if (potentialCurrency === "$") {
-                realMonthlyValueAux = potentialMonthlyValue.replace("$", "").replace(".", "").replace(",", ".")
-            } else if (potentialCurrency === "€") {
-                realMonthlyValueAux = potentialMonthlyValue.replace("€", "").replace(".", "").replace(",", ".")
+            if (typeof potentialMonthlyValue === typeof String) {
+                if (potentialCurrency === "R$") {
+                    realMonthlyValueAux = potentialMonthlyValue.replace("R$", "").replace(".", "").replace(",", ".")
+                } else if (potentialCurrency === "$") {
+                    realMonthlyValueAux = potentialMonthlyValue.replace("$", "").replace(".", "").replace(",", ".")
+                } else if (potentialCurrency === "€") {
+                    realMonthlyValueAux = potentialMonthlyValue.replace("€", "").replace(".", "").replace(",", ".")
+                }
             }
 
             fetch(url, {

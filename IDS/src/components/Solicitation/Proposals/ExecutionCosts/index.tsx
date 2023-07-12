@@ -139,7 +139,6 @@ export default function ExecutionCosts() {
         let centerOfCustProposalInternal: any = localStorage.getItem('centerOfCustProposalinternal') || [];
 
 
-
         if (centerOfCustProposalInternal !== undefined && centerOfCustProposalInternal !== null) {
             typeExpenses.push("internal");
         }
@@ -259,7 +258,6 @@ export default function ExecutionCosts() {
 
                 </div>
 
-
                 <div className="demands-footer">
                     <Link to={"/proposal/informations/" + demandCode}>
                         <button className="btn-secondary">{t("return")}</button>
@@ -275,7 +273,6 @@ export default function ExecutionCosts() {
                     </div>
                 </div>
             </div>
-
         </div>
     );
 }

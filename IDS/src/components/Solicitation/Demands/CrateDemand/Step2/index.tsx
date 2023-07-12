@@ -129,7 +129,7 @@ export default function CreateDemands2() {
                     <div className="flex">
                         <div className="display-grid w100">
 
-                            <Input type="number" label="monthlyValue" setValue={setRealMonthlyValue} value={realMonthlyValue} currency={realCurrency}  required="true" />
+                            <Input type="coin" label="monthlyValue" setValue={setRealMonthlyValue} value={realMonthlyValue} currency={realCurrency}  required="true" />
 
                         </div>
                         <SelectCoin setrealCurrency={setrealCurrency} type="real" value={realCurrency} />
@@ -160,7 +160,7 @@ export default function CreateDemands2() {
                         <div className="flex">
                             <div className="display-grid w100">
 
-                                <Input type="number" label="monthlyValue" setValue={setPotentialMonthlyValue} value={potentialMonthlyValue} currency={potentialCurrency} required="true" />
+                                <Input type="coin" label="monthlyValue" setValue={setPotentialMonthlyValue} value={potentialMonthlyValue} currency={potentialCurrency} required="true" />
                             </div>
                             <SelectCoin setPotentialCurrency={setPotentialCurrency} type="potencial" value={potentialCurrency} />
                         </div>

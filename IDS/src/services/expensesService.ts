@@ -3,15 +3,24 @@ const url = "http://localhost:8443/api/expenses";
 
 const Services = {
     save: function (expenseName: String, proposal: any, expense: any, expensesCostCenters: any) {
+
+
+
         return new Promise((resolve, reject) => {
             let expenses = [];
             let expensesCostCentersNew = [];
 
             for (let i = 0; i < expense.length; i++) {
                 if (expense[i].expenseType === expenseName) {
+                    let hourValue = Number.parseFloat(expense[i].hourValue);
+                    expense[i].hourValue = hourValue;
+
                     expenses.push(expense[i]);
                 }
             }
+
+            console.log(expenses)
+
             for (let i = 0; i < expensesCostCenters.length; i++) {
                 expensesCostCentersNew.push({ "costCenter": { "costCenterCode": expensesCostCenters[i].costCenterCode }, "percent": expensesCostCenters[i].percent })
             }

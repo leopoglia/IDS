@@ -189,10 +189,11 @@
     "demandsViewDemands": "Demandas > Visualizar Demandas",
     "demandEditDemand": "Demanda > Editar demanda",
     "user": "Usuário",
-    "BacklogRanked": "Backlog",
-    "BacklogRankApproved": "Backlog",
-    "BacklogComplement": "Backlog",
-    "BacklogEdit": "Backlog",
+    "Backlog": "Criada",
+    "BacklogRanked": "Classificada",
+    "BacklogRankApproved": "Aprovada Gerente",
+    "BacklogComplement": "Complementada",
+    "BacklogEdit": "Esperando edição",
     "responsibleAnalyst": "Analista responsável",
     "noProposal": "Nenhuma proposta",
     "sequentialNumber": "Número sequencial",
@@ -294,5 +295,7 @@
     "delete": "Excluir",
     "department": "Departamento",
     "home": "Solicitante",
-    "code-demand": "Código"
+    "code-demand": "Código",
+    "Cancelled": "Cancelada",
+    "Assesment": "Proposta gerada"
 }

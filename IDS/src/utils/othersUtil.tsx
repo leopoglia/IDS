@@ -269,6 +269,42 @@ const othersUtil = {
 
         return month + "/" + day + "/" + year;
     },
+
+    deformatCoin: (currency: any, value: any) => {
+        if (currency === "R$") {
+            return value.replace("R$", "").replace(".", "").replace(",", ".")
+        } else if (currency === "$") {
+            return value.replace("$", "").replace(".", "").replace(",", ".")
+        } else if (currency === "€") {
+            return value.replace("€", "").replace(".", "").replace(",", ".")
+        }
+    },
+
+    formatCoin: (currency: any, value: any) => {
+        if (currency === "R$") {
+            return "R$" + value.replace(".", ",").replace(",", ".")
+        } else if (currency === "$") {
+            return "$" + value.replace(".", ",").replace(",", ".")
+        } else if (currency === "€") {
+            return "€" + value.replace(".", ",").replace(",", ".")
+        }
+    },
+
+    demandsOfWorker: (demands: any, worker: any) => {
+
+        console.log(demands.filter((demand: any) => {
+            if (worker.office === "business" && demand.demandStatus === "BacklogRanked" || worker.office !== "business") {
+                return demand;
+            }
+        }))
+
+        return demands = demands.filter((demand: any) => {
+            if (worker.office === "business" && demand.demandStatus === "BacklogRanked" || worker.office !== "business") {
+                return demand;
+            }
+        })
+
+    },
 }
 
 export default othersUtil;

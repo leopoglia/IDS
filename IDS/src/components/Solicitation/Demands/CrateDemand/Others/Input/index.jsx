@@ -108,7 +108,7 @@ export default function Input(props) {
             <div className={"input " + props.background + " outlined-" + outlined + " icon-" + (props.icon !== undefined ? "true" : "false")} onClick={() => setOutlined(true)} onMouseOut={() => setOutlined(false)}>
                 <span className="material-symbols-outlined">{props.icon}</span>
 
-                {props.type !== "number" ?
+                {props.type !== "coin" ?
                     <input value={props.value} type={props.type} placeholder={props.placeholder} onChange={onChange} required={props.required} ref={props.ref} disabled={props.disabled} />
                     :
                     <IntlCurrencyInput

@@ -7,6 +7,7 @@ import SelectAddExpense from "./SelectAddExpense";
 import notifyUtil from "../../../../utils/notifyUtil";
 import "./style.css";
 import Input from "../../Demands/CrateDemand/Others/Input";
+import othersUtil from "../../../../utils/othersUtil";
 
 
 export default function AddExpense() {
@@ -20,9 +21,9 @@ export default function AddExpense() {
     const [expenseProfile, setExpenseProfile] = useState('');
     const [amountOfHours, setAmountOfHours]: any = useState('');
     const [hourValue, setHourValue]: any = useState('');
-    const totalValue = amountOfHours * hourValue;
+    const totalValue = Number.parseFloat(othersUtil.deformatCoin("R$", amountOfHours)) * Number.parseFloat(othersUtil.deformatCoin("R$", hourValue));
 
-    const expense = { expenseType: expenseType, expenseProfile: expenseProfile, amountOfHours: amountOfHours, hourValue: hourValue, totalValue: totalValue };
+    const expense = { expenseType: expenseType, expenseProfile: expenseProfile, amountOfHours: amountOfHours, hourValue: othersUtil.deformatCoin("R$", hourValue), totalValue: totalValue };
     const [expenseList, setExpenseList]: any = useState([]);
 
     useEffect(() => {
@@ -96,11 +97,11 @@ export default function AddExpense() {
                             <label>{t("unitValue")} *</label>
                         )}
 
-                        <Input type="number" value={hourValue} setValue={setHourValue} />
+                        <Input type="coin" value={hourValue} setValue={setHourValue} />
 
                     </div>
                     
-                    <Input label="expenseTotalValue" type="number" value={totalValue} disabled={true} />
+                    <Input label="expenseTotalValue" type="coin" value={totalValue} disabled={true} />
 
 
                 </div>

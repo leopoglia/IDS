@@ -176,7 +176,6 @@ const Services = {
     },
     findByDepartment: function (department: any, page: Number, size: Number) {
         return new Promise((resolve, reject) => {
-            console.log("department: " + department)
             fetch(url + "/" + department + "/page?page=" + page + "&size=" + size, {
                 method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); })

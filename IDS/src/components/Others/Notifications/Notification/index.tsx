@@ -69,9 +69,9 @@ export default function Notification(props: any) {
     }
 
     // Quando o usuário clica na notificação, ela é marcada como visualizada e ele é redirecionado para a página da notificação
-    function viewNotification() {
+    async function viewNotification() {
 
-        send("/api/notification/" + worker.id, props.id);
+        await Services.updateNotificationVisualized(props.id);
 
 
         if(props.view === false){

@@ -90,7 +90,13 @@ export default function Notifications() {
     const updateNotificationVisualized = async () => {
         for (let i = 0; i < notifications.length; i++) {
             if (notifications[i].checked === true) {
+                console.log(notifications[i].notificationCode)
                 await Services.updateNotificationVisualized(notifications[i].notificationCode)
+
+                if (notifications[i].visualized === false) {
+                    setWorker({ ...worker, notification: worker.notification - 1 })
+                }
+
                 setAlterate(!alterate)
             }
         }

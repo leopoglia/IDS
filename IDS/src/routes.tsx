@@ -70,6 +70,7 @@ export default function Router() {
                         const worker = {
                             id: response.workerCode,
                             office: response.workerOffice,
+                            department: response.department,
                             name: response.workerName,
                             email: response.corporateEmail,
                             language: response.language,

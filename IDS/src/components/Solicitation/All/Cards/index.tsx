@@ -143,7 +143,7 @@ export default function Demands() {
             localStorage.removeItem("route");
             Notification.success(t("demandCreateSuccess"));
         }
-    }, [url[3], page, search, table, nameFilter, typeFilter, worker.office])
+    }, [url[3], page, search, table, nameFilter, typeFilter, worker.office, worker.department])
 
 
     // Buscar as demandas cadastradas
@@ -179,8 +179,9 @@ export default function Demands() {
                 });
             }
         } else {
+            console.log(worker.department)
             if (table === false) {
-                findDemands = await ServicesDemand.findByDepartment(page, 5).then(async (res: any) => {
+                findDemands = await ServicesDemand.findByDepartment(worker.department, page, 5).then(async (res: any) => {
                     let demandsContent = res.content; // Atualiza o estado das demandas
     
                     let proposalsContent: any = await ServicesProposal.findAll(); // Busca as propostas cadastradas
@@ -189,7 +190,7 @@ export default function Demands() {
                     setPages(res.totalPages); // Atualiza o estado das páginas
                 });
             } else {
-                findDemands = await ServicesDemand.findByDepartment(page, 9).then(async (res: any) => {
+                findDemands = await ServicesDemand.findByDepartment(worker.department, page, 9).then(async (res: any) => {
                     let demandsContent = res.content; // Atualiza o estado das demandas
                     let totalDemands: any = 0;
     

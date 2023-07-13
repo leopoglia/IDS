@@ -34,6 +34,7 @@ export default function Demands() {
     const [table, setTableList] = useState(false); // Estado para mostrar a tabela de demandas
     const [search, setSearch]: any = useState(""); // Retorno do campo de busca de demandas
     const [pages, setPages] = useState(0); // Quantidade de páginas
+    const [calendar, setCalendar] = useState(false); // Estado para mostrar o calendário
 
     const [demands, setDemands] = useState([]);
     const [proposals, setProposals] = useState([]);
@@ -446,8 +447,12 @@ export default function Demands() {
             ) : (url[3] === "agendas") ? (
                 <div className="agendas">
 
+                    { calendar &&
+                        <Calendar setCalendar={setCalendar} calendar={calendar} />
+                    }
+
                     <div className="container">
-                        <Search setSearch={setSearch} search={search} solicitation={agendas} solicitationType="agenda" onClick={callback} name={nameFilter} type={typeFilter} setTipe={setType} setTable={setTable} setName={setName} setType={setType} nav={t("agendaViewAgenda")} title="agendas" button="createAgenda" link="/agenda/create" />
+                        <Search setSearch={setSearch} search={search} solicitation={agendas} solicitationType="agenda" onClick={callback} name={nameFilter} type={typeFilter} setTipe={setType} setTable={setTable} setCalendar={setCalendar} calendar={calendar} setName={setName} setType={setType} nav={t("agendaViewAgenda")} title="agendas" button="createAgenda" link="/agenda/create" />
                         <div className={"container-background boxNoPadding-" + table}>
                             {
                                 agendas

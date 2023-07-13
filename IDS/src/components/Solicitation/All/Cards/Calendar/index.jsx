@@ -5,7 +5,7 @@ import ServicesAgendas from '../../../../../services/agendaService';
 import './style.css'
 
 
-export default function Calendarer() {
+export default function Calendarer(props) {
 
     useEffect(() => {
         ServicesAgendas.findAll().then(res => {
@@ -36,7 +36,7 @@ export default function Calendarer() {
             <div className='header-calendar display-flex-space-between'>
                 <span className='title'>Calendário</span>
 
-                <span className='material-symbols-outlined'>close</span>
+                <span className='material-symbols-outlined' onClick={() => props.setCalendar(!props.calendar)}>close</span>
             </div>
 
             <Calendar

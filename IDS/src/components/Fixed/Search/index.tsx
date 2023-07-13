@@ -82,11 +82,12 @@ export default function Search(props: any) {
     }
 
 
+    console.log(props.calendar)
+
+
     return (
         <div className="search">
             <Title nav={props.nav} title={props.title} />
-
-
 
             <div className="section">
 
@@ -123,11 +124,17 @@ export default function Search(props: any) {
                             <ButtonTableList icon="table_rows" sendData={sendData} />
                         }
 
-                        {props.title !== "selectProposal"  &&
+                        {props.title !== "selectProposal" &&
                             <>
                                 <ButtonTableList icon="swap_vert" sendFilter={() => sendFilter("order")} />
 
                                 <ButtonTableList icon="filter_alt" sendFilter={() => sendFilter("filter")} />
+
+
+                                {props?.setCalendar !== undefined &&
+                                    <ButtonTableList icon="calendar_month" setCalendar={props.setCalendar} calendar={props.calendar} />
+
+                                }
                             </>
                         }
 

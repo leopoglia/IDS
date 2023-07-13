@@ -179,7 +179,7 @@ export default function Demands() {
             }
         } else {
             if (table === false) {
-                findDemands = await ServicesDemand.findByDepartment(worker.office, page, 5).then(async (res: any) => {
+                findDemands = await ServicesDemand.findByDepartment(page, 5).then(async (res: any) => {
                     let demandsContent = res.content; // Atualiza o estado das demandas
     
                     let proposalsContent: any = await ServicesProposal.findAll(); // Busca as propostas cadastradas
@@ -188,7 +188,7 @@ export default function Demands() {
                     setPages(res.totalPages); // Atualiza o estado das páginas
                 });
             } else {
-                findDemands = await ServicesDemand.findByDepartment(worker.office, page, 9).then(async (res: any) => {
+                findDemands = await ServicesDemand.findByDepartment(page, 9).then(async (res: any) => {
                     let demandsContent = res.content; // Atualiza o estado das demandas
                     let totalDemands: any = 0;
     

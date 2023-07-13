@@ -174,6 +174,15 @@ const Services = {
                 .catch(reject)
         })
     },
+    findByDepartment: function (department: any ,page: Number, size: Number) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/" + department + "/page?page=" + page + "&size=" + size, {
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(reject)
+        })
+    },
     saveExcel: function (demands: any) {
         return new Promise((resolve, reject) => {
             fetch(url + "/filter", {
@@ -268,6 +277,15 @@ const Services = {
     findAllByVersion: function () {
         return new Promise((resolve, reject) => {
             fetch(url + "/version", {
+                method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
+            }).then(function (result) { return result.json(); })
+                .then(resolve)
+                .catch(reject)
+        })
+    },
+    findAllManager: function (page: Number, size: Number) {
+        return new Promise((resolve, reject) => {
+            fetch(url + "/manager/page?page=" + page + "&size=" + size, {
                 method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); })
                 .then(resolve)

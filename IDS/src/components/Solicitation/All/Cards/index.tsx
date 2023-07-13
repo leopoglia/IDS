@@ -147,34 +147,95 @@ export default function Demands() {
 
     // Buscar as demandas cadastradas
     async function getDemands() {
-
-        if (table === false) {
-            findDemands = await ServicesDemand.findByPage(page, 5).then(async (res: any) => {
-                let demandsContent = res.content; // Atualiza o estado das demandas
-
-                let proposalsContent: any = await ServicesProposal.findAll(); // Busca as propostas cadastradas
-                addProposal(demandsContent, proposalsContent); // Adiciona as propostas nas demandas
-                setLoadingFalse(res); // Desativa o loading
-                setPages(res.totalPages); // Atualiza o estado das páginas
-            });
+        if(worker.office !== "business"){
+            if(worker.office !== "requester"){
+            if (table === false) {
+                findDemands = await ServicesDemand.findByPage(page, 5).then(async (res: any) => {
+                    let demandsContent = res.content; // Atualiza o estado das demandas
+    
+                    let proposalsContent: any = await ServicesProposal.findAll(); // Busca as propostas cadastradas
+                    addProposal(demandsContent, proposalsContent); // Adiciona as propostas nas demandas
+                    setLoadingFalse(res); // Desativa o loading
+                    setPages(res.totalPages); // Atualiza o estado das páginas
+                });
+            } else {
+                findDemands = await ServicesDemand.findByPage(page, 9).then(async (res: any) => {
+                    let demandsContent = res.content; // Atualiza o estado das demandas
+                    let totalDemands: any = 0;
+    
+                    await ServicesProposal.findAll().then((res: any) => {
+                        totalDemands = res.length;
+                    })
+    
+                    if (demandsContent.length === 0) {
+                        navigate("/demands/" + (Math.ceil((totalDemands / 9) + 1)));
+                        setLoading(false);
+                    }
+    
+                    let proposalsContent: any = await ServicesProposal.findAll();
+                    addProposal(demandsContent, proposalsContent);
+                    setPages(res.totalPages); // Atualiza o estado das páginas
+                });
+            }
         } else {
-            findDemands = await ServicesDemand.findByPage(page, 9).then(async (res: any) => {
-                let demandsContent = res.content; // Atualiza o estado das demandas
-                let totalDemands: any = 0;
-
-                await ServicesProposal.findAll().then((res: any) => {
-                    totalDemands = res.length;
-                })
-
-                if (demandsContent.length === 0) {
-                    navigate("/demands/" + (Math.ceil((totalDemands / 9) + 1)));
-                    setLoading(false);
-                }
-
-                let proposalsContent: any = await ServicesProposal.findAll();
-                addProposal(demandsContent, proposalsContent);
-                setPages(res.totalPages); // Atualiza o estado das páginas
-            });
+            if (table === false) {
+                findDemands = await ServicesDemand.findByDepartment(worker.office, page, 5).then(async (res: any) => {
+                    let demandsContent = res.content; // Atualiza o estado das demandas
+    
+                    let proposalsContent: any = await ServicesProposal.findAll(); // Busca as propostas cadastradas
+                    addProposal(demandsContent, proposalsContent); // Adiciona as propostas nas demandas
+                    setLoadingFalse(res); // Desativa o loading
+                    setPages(res.totalPages); // Atualiza o estado das páginas
+                });
+            } else {
+                findDemands = await ServicesDemand.findByDepartment(worker.office, page, 9).then(async (res: any) => {
+                    let demandsContent = res.content; // Atualiza o estado das demandas
+                    let totalDemands: any = 0;
+    
+                    await ServicesProposal.findAll().then((res: any) => {
+                        totalDemands = res.length;
+                    })
+    
+                    if (demandsContent.length === 0) {
+                        navigate("/demands/" + (Math.ceil((totalDemands / 9) + 1)));
+                        setLoading(false);
+                    }
+    
+                    let proposalsContent: any = await ServicesProposal.findAll();
+                    addProposal(demandsContent, proposalsContent);
+                    setPages(res.totalPages); // Atualiza o estado das páginas
+                });
+            }
+        }
+        } else{
+            if (table === false) {
+                findDemands = await ServicesDemand.findAllManager(page, 5).then(async (res: any) => {
+                    let demandsContent = res.content; // Atualiza o estado das demandas
+    
+                    let proposalsContent: any = await ServicesProposal.findAll(); // Busca as propostas cadastradas
+                    addProposal(demandsContent, proposalsContent); // Adiciona as propostas nas demandas
+                    setLoadingFalse(res); // Desativa o loading
+                    setPages(res.totalPages); // Atualiza o estado das páginas
+                });
+            } else {
+                findDemands = await ServicesDemand.findAllManager(page, 9).then(async (res: any) => {
+                    let demandsContent = res.content; // Atualiza o estado das demandas
+                    let totalDemands: any = 0;
+    
+                    await ServicesProposal.findAll().then((res: any) => {
+                        totalDemands = res.length;
+                    })
+    
+                    if (demandsContent.length === 0) {
+                        navigate("/demands/" + (Math.ceil((totalDemands / 9) + 1)));
+                        setLoading(false);
+                    }
+    
+                    let proposalsContent: any = await ServicesProposal.findAll();
+                    addProposal(demandsContent, proposalsContent);
+                    setPages(res.totalPages); // Atualiza o estado das páginas
+                });
+            }
         }
 
         return findDemands;

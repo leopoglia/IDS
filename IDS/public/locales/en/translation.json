@@ -285,5 +285,9 @@
     "delete": "Delete",
     "department": "Department",
     "home": "My demands",
-    "code-demand": "Code"
+    "code-demand": "Code",
+    "today": "Today",
+    "day": "Day",
+    "month": "Month",
+    "week": "Week"
 }

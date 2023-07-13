@@ -286,5 +286,9 @@
     "Director":"導演",
     "delete": "刪除",
     "department": "部門",
-    "code-demand": "代碼"
+    "code-demand": "代碼",
+    "today": "今天",
+    "day": "天",
+    "month": "月",
+    "week": "週"
 }

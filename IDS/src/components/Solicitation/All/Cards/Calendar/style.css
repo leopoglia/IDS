@@ -108,3 +108,7 @@
     padding: 10px 3px;
     border-bottom: 1px solid var(--greyC4) !important;
 }
+
+.calendar tr{
+    height: none;
+}

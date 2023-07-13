@@ -1,5 +1,6 @@
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next';
 import moment from 'moment'
 import ServicesAgendas from '../../../../../services/agendaService';
 import './style.css'
@@ -24,11 +25,12 @@ export default function Calendarer(props) {
             setEvents(events)
         })
 
-    }, [])
+    }, []);
 
 
     const localizer = momentLocalizer(moment);
     const [events, setEvents] = useState([])
+    const { t } = useTranslation();
 
     const MyCalendar = () => (
         <div className="myCustomHeight">
@@ -44,6 +46,17 @@ export default function Calendarer(props) {
                 events={events}
                 startAccessor="start"
                 endAccessor="end"
+                messages={{
+                    month: t('month'),
+                    day:  t('day'),
+                    today:  t('today'),
+                    week: t('week'),
+                    agenda: t('agenda'),
+                    date: t('date'),
+                    time: t('time'),
+                    previous: "<",
+                    next: ">",
+                }}
             />
         </div>
     )

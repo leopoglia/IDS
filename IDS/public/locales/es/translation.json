@@ -284,5 +284,9 @@
     "Director":"Director",
     "delete": "Eliminar",
     "department": "Departamento",
-    "code-demand": "Código"
+    "code-demand": "Código",
+    "today": "Hoy",
+    "day": "Día",
+    "month": "Mes",
+    "week": "Semana"
 }

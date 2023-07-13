@@ -297,5 +297,9 @@
     "home": "Solicitante",
     "code-demand": "Código",
     "Cancelled": "Cancelada",
-    "Assesment": "Proposta gerada"
+    "Assesment": "Proposta gerada",
+    "today": "Hoje",
+    "day": "Dia",
+    "month": "Mês",
+    "week": "Semana"
 }

@@ -69,8 +69,9 @@ export default function Table(props: any) {
 
                             <tr>
                                 {props.items.map((item: any, index: any) => {
+
                                     if (item.length > 30) {
-                                        if (item.includes("http://") || item.includes("https://")) {
+                                        if (item.includes("http://") || item.includes("https://") || item.includes("www.") || item.includes(".com") || item.includes(".br")) {
                                             return (
                                                 <Tooltip title={item} arrow>
                                                     <td className="td-left" key={index}>
@@ -90,12 +91,12 @@ export default function Table(props: any) {
                                             )
                                         }
                                     } else {
-                                        if (item.includes("http://") || item.includes("https://")) {
+                                        if (item.includes("http://") || item.includes("https://") || item.includes("www.") || item.includes(".com") || item.includes(".br")) {
                                             return (
                                                 <td key={index}>
-                                                    <Link to={item}>
-                                                        <span>{item}</span>
-                                                    </Link>
+                                                    <a href={item} target="_blank" rel="noreferrer">
+                                                        {item}
+                                                    </a>
                                                 </td>
                                             )
                                         } else {

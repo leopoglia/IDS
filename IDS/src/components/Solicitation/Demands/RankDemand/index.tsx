@@ -257,7 +257,7 @@ export default function RankDemand() {
                             <div className="hr" />
 
                             <div className="display-grid">
-                                <Input type="text" label="ppmCode" value={linkEpicJira} SetValue={setPpmCode} />
+                                <Input type="text" label="ppmCode" value={ppmCode} SetValue={setPpmCode} />
                             </div>
                             <div className="display-grid mt10 mb10">
                                 <Input type="text" label="linkEpicJira" value={linkEpicJira} SetValue={setLinkEpicJira} />

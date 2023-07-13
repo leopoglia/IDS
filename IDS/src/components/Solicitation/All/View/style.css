@@ -552,3 +552,7 @@
 .view-demand .openProposal .btn-secondary {
     margin: 0px !important;
 }
+
+.classification .color-link{
+    color: var(--blue) !important; 
+}

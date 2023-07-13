@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -6,8 +7,9 @@ import TextField from '@mui/material/TextField';
 import ServicesDemand from '../../../../../services/demandService';
 
 export default function SelectLabels(props: any) {
-    
+
     const [status, SetStatus] = useState([]);
+    const { t } = useTranslation();
 
     useEffect(() => {
         SetStatus(props.array);
@@ -15,7 +17,6 @@ export default function SelectLabels(props: any) {
 
 
     const handleChange = (event: any, type: string) => {
-        
         if (type === 'text') {
             props.setStatus(event.target.value);
             props.onChange();

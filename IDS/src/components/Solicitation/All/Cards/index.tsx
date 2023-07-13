@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { Steps } from "intro.js-react";
 
 import Search from "../../../Fixed/Search";
 import Demand from "./Card";
@@ -15,9 +16,9 @@ import Notification from "../../../../utils/notifyUtil";
 import othersUtil from "../../../../utils/othersUtil";
 import filtersUtil from "../../../../utils/filtersUtil";
 import "./style.css"
-import { Steps } from "intro.js-react";
 import UserContext from "../../../../context/userContext";
 import presentationUtil from "../../../../utils/presentationUtil";
+import Calendar from "./Calendar";
 
 
 export default function Demands() {
@@ -297,6 +298,8 @@ export default function Demands() {
 
     return (
         <div className="solicitation">
+
+            <Calendar />
 
             {(url[3] === "demands") ? (
 

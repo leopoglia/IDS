@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { WebSocketContext } from '../../../../services/webSocketService';
+
 import ButtonActionAnalyst from "./Others/ButtonActionAnalyst";
 import Title from "../../../Fixed/Search/Title";
 import ServicesDemand from "../../../../services/demandService";
@@ -579,6 +580,7 @@ export default function ViewDemand() {
 
     return (
         <div className="view-demand">
+
             {load ?
                 <div>
                     <div className="container">
@@ -604,8 +606,6 @@ export default function ViewDemand() {
                         {
                             url === "demand" || url === "proposal" ? (
                                 <div>
-
-
                                     <div className="container">
 
                                         <div className="background-title">
@@ -1482,7 +1482,6 @@ export default function ViewDemand() {
             {false &&
                 <CompareDemands />
             }
-
 
         </div >
     );

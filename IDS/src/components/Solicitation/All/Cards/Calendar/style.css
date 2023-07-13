@@ -1,10 +1,95 @@
 @import "react-big-calendar/lib/css/react-big-calendar.css";
 
 
-.rbc-event{
+.calendar {
+    position: absolute;
+    width: 100%;
+    background-color: rgba(61, 61, 61, 0.26);
+}
+
+.calendar .header-calendar{
+    padding: 20px 0px;
+}
+
+.calendar .header-calendar .title{
+    font-size: var(--g);
+    color: var(--grey59);
+}
+
+.calendar .myCustomHeight {
+    height: calc(100vh - 240px) !important;
+    position: relative;
+    z-index: 100;
+    background-color: var(--white);
+    padding: 40px;
+    padding-top: 0px;
+    padding-bottom: 100px;
+    border-radius: var(--r);
+}
+
+.rbc-event {
     background-color: var(--blue);
 }
 
-.rbc-event:focus{
+.rbc-event:focus {
     background-color: var(--blue00) !important;
+}
+
+.rbc-calendar div {
+    border: none;
+    font-size: var(--p);
+    font-weight: 100 !important;
+}
+
+.rbc-off-range-bg {
+    background-color: var(--greyE5) !important;
+}
+
+.rbc-month-view {
+    border: 1px solid var(--greyC4) !important;
+    border-radius: var(--r);
+}
+
+.rbc-day-bg+.rbc-day-bg,
+.rbc-header+.rbc-header {
+    border-left: 1px solid var(--greyC4) !important;
+}
+
+.rbc-month-row+.rbc-month-row {
+    border-top: 1px solid var(--greyC4) !important;
+}
+
+.rbc-event:focus,
+.rbc-day-slot .rbc-background-event:focus {
+    outline: none !important;
+}
+
+.rbc-today {
+    background-color: var(--blueF4);
+}
+
+.rbc-button-link {
+    color: var(--grey3d) !important;
+}
+
+.rbc-btn-group button {
+    background-color: var(--greyF7) !important;
+    color: var(--grey59) !important;
+    border: 1px solid var(--greyC4) !important;
+    cursor: pointer;
+}
+
+.rbc-btn-group button:hover {
+    background-color: var(--greyE5) !important;
+}
+
+.rbc-toolbar button:active,
+.rbc-toolbar button.rbc-active {
+    background-color: var(--greyE5) !important;
+    box-shadow: none;
+}
+
+.rbc-header {
+    padding: 10px 3px;
+    border-bottom: 1px solid var(--greyC4) !important;
 }

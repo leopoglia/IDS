@@ -149,19 +149,6 @@
     border-bottom: none !important;
 }
 
-.calendar{
-    position: absolute;
-    width: 100%;
-}
-
-
-.calendar .myCustomHeight{
-    height: calc(100vh - 330px) !important;
-    position: relative;
-    z-index: 100;
-    background-color: var(--white);
-}
-
 @media(max-height: 768px){
 
     .boxNoPadding{

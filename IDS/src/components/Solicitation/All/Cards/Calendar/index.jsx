@@ -9,7 +9,7 @@ export default function Calendarer() {
 
     useEffect(() => {
         ServicesAgendas.findAll().then(res => {
-         
+
             let events = res.map((agenda, index) => {
                 return {
                     id: index,
@@ -32,6 +32,13 @@ export default function Calendarer() {
 
     const MyCalendar = () => (
         <div className="myCustomHeight">
+
+            <div className='header-calendar display-flex-space-between'>
+                <span className='title'>Calendário</span>
+
+                <span className='material-symbols-outlined'>close</span>
+            </div>
+
             <Calendar
                 localizer={localizer}
                 events={events}

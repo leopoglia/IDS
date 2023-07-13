@@ -1,11 +1,11 @@
 const url = "http://localhost:8443/api/reproach";
 
 const Services = {
-    save: function(reproachDescription: String, demand: any){
+    save: function(reproachDescription: String, demand: any, demandVersion: any){
         return new Promise((resolve, reject) => {
         fetch(url, {
             method: 'POST', body: JSON.stringify({
-                demand: {demandCode: demand},
+                demand: {demandCode: demand, demandVersion: demandVersion},
                 reproachDescription: reproachDescription
             }), headers: { 'Content-Type': 'application/json' }, credentials: 'include'
         }).then(function (result) { return result.json(); })

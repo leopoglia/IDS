@@ -94,3 +94,11 @@
     align-items: flex-end !important;
     justify-content: flex-end !important;
 }
+
+.create-agenda .background-title .btn-unique{
+    min-width: 45px !important;
+}
+
+.create-agenda .background-title .btn-unique span{
+    margin: 0 !important;
+}

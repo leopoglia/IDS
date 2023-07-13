@@ -12,6 +12,7 @@ import "./style.css";
 import Input from "../../Demands/CrateDemand/Others/Input";
 import UserContext from "../../../../context/userContext";
 import notifyUtil from "../../../../utils/notifyUtil";
+import Calendar from "../../All/Cards/Calendar";
 
 export default function CreateAgenda() {
 
@@ -25,6 +26,7 @@ export default function CreateAgenda() {
     const [dateInitial, setDateInitial] = useState(`${data.getFullYear()}-${("0" + (data.getMonth() + 1)).slice(-2)}-${("0" + data.getDate()).slice(-2)}T${("0" + data.getHours()).slice(-2)}:${("0" + data.getMinutes()).slice(-2)}`);
     const [dateFinal, setDateFinal] = useState(`${data.getFullYear()}-${("0" + (data.getMonth() + 1)).slice(-2)}-${("0" + data.getDate()).slice(-2)}T${("0" + data.getHours()).slice(-2)}:${("0" + data.getMinutes()).slice(-2)}`);
     const [sequentialNumber, setSequentialNumber] = useState(0);
+    const [calendar, setCalendar] = useState(false);
 
     const worker: any = useContext(UserContext).worker;
 
@@ -136,9 +138,34 @@ export default function CreateAgenda() {
     return (
         <div className="create-agenda">
 
+            {calendar &&
+                <Calendar setCalendar={setCalendar} calendar={calendar} />
+            }
+
+
             <div className="container">
                 <div className="background-title">
                     <Title title={t("createAgenda")} nav={t("agendaCreateAgenda")} />
+
+
+                    <div className="display-flex">
+                        <button className="btn-unique btn-secondary mr5" onClick={() => setCalendar(!calendar)}>
+                            <span className="material-symbols-outlined">
+                                calendar_month
+                            </span>
+                        </button>
+
+
+                        {edit === undefined ?
+                            <div className="display-flex-end">
+                                <button onClick={saveAgenda} className="btn-primary">{t("save")}</button>
+                            </div>
+                            :
+                            <div className="display-flex-end">
+                                <button onClick={editAgenda} className="btn-primary">{t("edit")}</button>
+                            </div>
+                        }
+                    </div>
                 </div>
 
                 <div className="box">
@@ -221,16 +248,6 @@ export default function CreateAgenda() {
 
 
                 </div>
-
-                {edit === undefined ?
-                    <div className="display-flex-end">
-                        <button onClick={saveAgenda} className="btn-primary">{t("save")}</button>
-                    </div>
-                    :
-                    <div className="display-flex-end">
-                        <button onClick={editAgenda} className="btn-primary">{t("edit")}</button>
-                    </div>
-                }
 
             </div>
 

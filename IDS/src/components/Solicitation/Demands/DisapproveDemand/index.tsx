@@ -18,7 +18,8 @@ export default function DisapproveDemand() {
 
     const navigate = useNavigate();
     const [disapprovalReason, setDisapprovalReason]: any = useState(""); // Motivo de reprovação
-    const demandCode: any =  parseInt(useParams().id || "null");
+    const demandCode: any = parseInt(window.location.href.split("/")[5]);
+
     let demandVersion: any;
     let notification = {}; // Notificações do usuário
     const { send, subscribe, stompClient }: any = useContext(WebSocketContext);
@@ -37,17 +38,21 @@ export default function DisapproveDemand() {
     }, [stompClient]);
 
     // Função para reprovar demanda
-    function disapproveDemand() {
-        Services.save(disapprovalReason, demandCode).then((response) => {
+    async function disapproveDemand() {
+        await Services.save(disapprovalReason, demandCode, demandVersion).then((response) => {
             send("/api/worker/" + demand.requesterRegistration.workerCode, setReproveNotification());
         }).catch((error) => {
             console.log(error);
         }
         );
-        DemandService.updateStatus(demandCode, "Cancelled").then((response) => {
+
+        await DemandService.updateStatus(demandCode, "Cancelled").then((response) => {
         }).catch((error) => {
             console.log(error);
         });
+
+        localStorage.setItem('route', 'reprove')
+        navigate('/demand/view/' + demandCode + "?" + demandVersion);
     }
 
     const setReproveNotification = () => {
@@ -88,8 +93,6 @@ export default function DisapproveDemand() {
             notifyUtil.error(t("fillAllFields"))
         } else {
             disapproveDemand();
-            localStorage.setItem('route', 'reprove')
-            navigate('/demand/view/' + demandCode + "?" + demandVersion);
         }
     }
 

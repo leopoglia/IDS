@@ -142,7 +142,7 @@ export default function Demands() {
             localStorage.removeItem("route");
             Notification.success(t("demandCreateSuccess"));
         }
-    }, [url[3], page, search, table, nameFilter, typeFilter])
+    }, [url[3], page, search, table, nameFilter, typeFilter, worker.office])
 
 
     // Buscar as demandas cadastradas

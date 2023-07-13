@@ -1,0 +1,10 @@
+@import "react-big-calendar/lib/css/react-big-calendar.css";
+
+
+.rbc-event{
+    background-color: var(--blue);
+}
+
+.rbc-event:focus{
+    background-color: var(--blue00) !important;
+}

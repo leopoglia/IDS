@@ -33,56 +33,74 @@ export default function Input(props) {
 
     useEffect(() => {
 
-        if (props?.currency === "$") {
-            setCurrencyConfig({
-                locale: "en-US",
-                formats: {
-                    number: {
-                        BRL: {
-                            style: "currency",
-                            currency: "USD",
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2,
+        if (props.type === "coin") {
+            if (props?.currency === "$") {
+                setCurrencyConfig({
+                    locale: "en-US",
+                    formats: {
+                        number: {
+                            BRL: {
+                                style: "currency",
+                                currency: "USD",
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2,
+                            },
                         },
                     },
-                },
-            })
-        } else if (props?.currency === "€") {
-            setCurrencyConfig({
-                locale: "en-US",
-                formats: {
-                    number: {
-                        BRL: {
-                            style: "currency",
-                            currency: "EUR",
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2,
+                })
+            } else if (props?.currency === "€") {
+                setCurrencyConfig({
+                    locale: "en-US",
+                    formats: {
+                        number: {
+                            BRL: {
+                                style: "currency",
+                                currency: "EUR",
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2,
+                            },
                         },
                     },
-                },
-            })
+                })
 
-        } else {
-            setCurrencyConfig({
-                locale: "pt-BR",
-                formats: {
-                    number: {
-                        BRL: {
-                            style: "currency",
-                            currency: "BRL",
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2,
+            } else {
+                setCurrencyConfig({
+                    locale: "pt-BR",
+                    formats: {
+                        number: {
+                            BRL: {
+                                style: "currency",
+                                currency: "BRL",
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2,
+                            },
                         },
                     },
-                },
-            })
+                })
+            }
+
+            if (props.value !== undefined || props.value !== null) {
+                let value;
+                // inserir R$ ou $ ou € na frente
+                if (props?.currency === "$") {
+                    value = "$" + props?.value?.replace("R$", "").replace("€", "").replace("$", "");
+                } else if (props?.currency === "€") {
+                    value = "€" + props?.value?.replace("R$", "").replace("€", "").replace("$", "");
+                } else if (props?.currency === "R$") {
+                    value = "R$" + props?.value?.replace("R$", "").replace("€", "").replace("$", "");
+                }
+
+                console.log(value)
+
+                let e = { target: { value: value } };
+                onChange(e);
+            }
         }
 
     }, [props.currency])
 
 
     const onChange = (e) => {
-
         if (props?.handle !== undefined) {
             props?.handle(e.target.value, props.label);
         } else {

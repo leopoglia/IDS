@@ -299,7 +299,7 @@ export default function Demands() {
     return (
         <div className="solicitation">
 
-            <Calendar />
+            {/* <Calendar /> */}
 
             {(url[3] === "demands") ? (
 

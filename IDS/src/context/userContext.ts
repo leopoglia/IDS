@@ -4,6 +4,7 @@ type MyContextType = {
   worker: {
     id: string,
     office: string,
+    department: string,
     name: string,
     email: string,
     language: string,

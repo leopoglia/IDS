@@ -4,12 +4,9 @@ const Services = {
     save: function (potentialMonthlyValue: any, potentialBenefitDescription: String, legalObrigation: Boolean, potentialCurrency: String) {
         return new Promise((resolve, reject) => {
 
-            console.log(potentialMonthlyValue)
-
-
             let realMonthlyValueAux: any = 0.0
 
-            if (typeof potentialMonthlyValue === typeof String) {
+            if (typeof potentialMonthlyValue === typeof "string") {
                 if (potentialCurrency === "R$") {
                     realMonthlyValueAux = potentialMonthlyValue.replace("R$", "").replace(".", "").replace(",", ".")
                 } else if (potentialCurrency === "$") {
@@ -18,6 +15,7 @@ const Services = {
                     realMonthlyValueAux = potentialMonthlyValue.replace("€", "").replace(".", "").replace(",", ".")
                 }
             }
+
 
             fetch(url, {
                 method: 'POST', body: JSON.stringify({

@@ -5,12 +5,10 @@ const Services = {
     save: function (realMonthlyValue: any, realBenefitDescription: String, realCurrency: String) {
         return new Promise((resolve, reject) => {
 
-            console.log(realMonthlyValue)
-
+  
             let realMonthlyValueAux: any = 0.0
 
-
-            if (typeof realMonthlyValue === typeof String) {
+            if (typeof realMonthlyValue === typeof "string") {
                 if (realCurrency === "R$") {
                     realMonthlyValueAux = realMonthlyValue.replace("R$", "").replace(".", "").replace(",", ".")
                 } else if (realCurrency === "$") {

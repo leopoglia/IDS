@@ -31,7 +31,7 @@ const Services = {
                 .catch(resolve)
         })
     },
-    findByDemandCode: function (demandCode: string) {
+    findByDemandCode: function (demandCode: any) {
         return new Promise((resolve, reject) => {
             fetch(url + "/demand/" + demandCode, {
                 method: 'GET', headers: { 'Content-Type': 'application/json' }, credentials: 'include'

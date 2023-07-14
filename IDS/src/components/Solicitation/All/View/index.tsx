@@ -23,6 +23,7 @@ import CompareDemands from "./Others/CompareDemands";
 
 import "./style.css";
 import othersUtil from "../../../../utils/othersUtil";
+import ModalInfoCancelled from "./Others/ModalInfoCancelled";
 
 
 
@@ -38,6 +39,7 @@ export default function ViewDemand() {
     const demandVersion: any = window.location.href.split("?")[1]; // Buscar versão da demanda
     const viewDemand: string = window.location.href.split("?")[2]; // Verificar se é uma demanda para visualização
     const [load, setLoad] = useState(true); // Carregamento da página
+    const [modalCancelled, setModalCancelled] = useState(false); // Modal de cancelamento
 
     // Botões superiores
     // 0 - Sem botões  
@@ -648,12 +650,25 @@ export default function ViewDemand() {
                                                         (demand.demandStatus !== "Cancelled") ? (
                                                             <ButtonsActions demand={demand} proposal={proposal} workerId={workerId} actionsDemand={actionsDemand} approveDemand={approveDemand} giveBack={giveBack} generatePDF={generatePDF} />
                                                         ) : (
-                                                            <button className="btn-primary mw100">
-                                                                <span className="material-symbols-outlined">
-                                                                    download
-                                                                </span>
-                                                                <span>{t("generatePDF")}</span>
-                                                            </button>
+                                                            <div className="display-flex">
+                                                                <button className="btn-secondary btn-unique" onClick={() => setModalCancelled(!modalCancelled)}>
+                                                                    <span className="material-symbols-outlined">
+                                                                        info
+                                                                    </span>
+                                                                </button>
+
+                                                                <button className="btn-primary mw100">
+                                                                    <span className="material-symbols-outlined">
+                                                                        download
+                                                                    </span>
+                                                                    <span>{t("generatePDF")}</span>
+                                                                </button>
+
+                                                                {modalCancelled &&
+                                                                    <ModalInfoCancelled setModalCancelled={setModalCancelled} />
+                                                                }
+                                                                
+                                                            </div>
                                                         )
                                                     ) : demand?.demandCode !== 0 ? (
                                                         <button className="btn-primary mw100">

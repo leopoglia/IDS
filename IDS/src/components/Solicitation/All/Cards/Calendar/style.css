@@ -40,6 +40,7 @@
     padding-top: 0px;
     padding-bottom: 100px;
     border-radius: var(--r);
+    box-shadow: rgba(0, 0, 0, 0.11) 0px 0px 4.475px 0px, rgba(0, 0, 0, 0.13) 0px 4.4px 9.9px 0px;
 }
 
 .rbc-event {

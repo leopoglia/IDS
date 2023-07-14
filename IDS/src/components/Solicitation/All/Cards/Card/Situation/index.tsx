@@ -46,7 +46,7 @@ export default function Situation(props: any) {
             return (<div className="situation-backlog-complement">25%</div>);
         } else if (props.situation === "Assesment") {
             return (<div className="situation-assesment">30%</div>);
-        } else if (props.situation === "Business Case") {
+        } else if (props.situation === "BusinessCase") {
             return (<div className="situation-business-case">40%</div>);
         } else if (props.situation === "To-do") {
             return (<div className="situation-to-do">60%</div>);

@@ -121,7 +121,7 @@ export default function Expenses(props: any) {
 
                                                         <td>{props.realCurrency} {proposalExpense.hourValue}</td>
 
-                                                        <td>{props.realCurrency} {proposalExpense.totalValue}</td>
+                                                        <td>{props.realCurrency} {proposalExpense.totalValue?.toFixed(2)}</td>
 
                                                     </tr>
                                                 )

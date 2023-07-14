@@ -1,6 +1,7 @@
 import { Calendar, momentLocalizer } from 'react-big-calendar'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router';
 import moment from 'moment'
 import ServicesAgendas from '../../../../../services/agendaService';
 import './style.css'
@@ -8,12 +9,18 @@ import './style.css'
 
 export default function Calendarer(props) {
 
+    const localizer = momentLocalizer(moment);
+    const [events, setEvents] = useState([])
+    const { t } = useTranslation();
+    const navigate = useNavigate();
+
     useEffect(() => {
         ServicesAgendas.findAll().then(res => {
 
             let events = res.map((agenda, index) => {
                 return {
                     id: index,
+                    code: agenda.agendaCode,
                     title: agenda.commission.commissionName,
                     start: new Date(agenda.initialDate),
                     end: new Date(agenda.finalDate),
@@ -27,10 +34,11 @@ export default function Calendarer(props) {
 
     }, []);
 
+    const handleSelectEvent = useCallback(
+        (event) => navigate("/agenda/view/" + event.code),
+        []
+    )
 
-    const localizer = momentLocalizer(moment);
-    const [events, setEvents] = useState([])
-    const { t } = useTranslation();
 
     const MyCalendar = () => (
         <div className="myCustomHeight">
@@ -46,10 +54,11 @@ export default function Calendarer(props) {
                 events={events}
                 startAccessor="start"
                 endAccessor="end"
+                onSelectEvent={handleSelectEvent}
                 messages={{
                     month: t('month'),
-                    day:  t('day'),
-                    today:  t('today'),
+                    day: t('day'),
+                    today: t('today'),
                     week: t('week'),
                     agenda: t('schedule'),
                     date: t('date'),

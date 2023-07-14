@@ -108,19 +108,6 @@ export default function Demand(props: any) {
                     </Link>
                 </div>
             );
-        } else if (props.situation === "Cancelled") {
-
-            return (
-                <div className="openProposal">
-                    <Tooltip title={t("rejected")} placement="left" arrow>
-                        <button className="btn-secondary btn-unique">
-                            <span className="material-symbols-outlined">
-                                info
-                            </span>
-                        </button>
-                    </Tooltip>
-                </div>
-            );
         } else if (props.situation === "BacklogEdit") {
             return (
                 <div className="openProposal">

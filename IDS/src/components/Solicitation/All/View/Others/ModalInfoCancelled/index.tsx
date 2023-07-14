@@ -1,13 +1,14 @@
 import { t } from "i18next";
 import { useEffect, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
+import { useTranslation } from "react-i18next";
 
-import ServicesDemand from "../../../../../../services/demandService";
 import ServicesReproach from "../../../../../../services/reproachService";
 import "../ModalChangeStatus/style.css";
 
 export default function ModalInfoCancelled(props: any) {
 
+    const { t } = useTranslation();
     const demandCode: any = JSON.parse(window.location.pathname.split("/")[3]);
     const [reproach, setReproach] = useState<any>();
 
@@ -20,7 +21,7 @@ export default function ModalInfoCancelled(props: any) {
 
 
     return (
-        <div className="modalChangeStatus">
+        <div className="modalChangeStatus modalInfoCancelled">
             <div className="modal">
                 <div className="modal-header">
                     <p>{t("reasonForDisapproval")}</p>
@@ -35,10 +36,10 @@ export default function ModalInfoCancelled(props: any) {
                 </div>
 
                 <div className="change">
-                    {
-                        reproach?.reproachDescription
-                    }
 
+                    <span className="reproachDescription">{reproach?.reproachDescription}</span>
+
+                    <span>{t("repprover")}: {reproach?.worker.workerName}</span>
 
                 </div>
             </div>

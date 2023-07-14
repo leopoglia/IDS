@@ -84,3 +84,20 @@
     position: relative !important;
     z-index: 100;
 }
+
+.modalInfoCancelled .reproachDescription{
+    display: block;
+    width: 100% !important;
+    height: 220px !important;
+    font-size: calc(var(--p) + 2px) !important;
+    overflow: auto !important;
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    word-break: break-all !important;
+    margin-left: 0px !important;
+    margin-bottom: 10px;
+}
+
+.modalInfoCancelled .modal{
+    padding-top: 8px !important;
+}

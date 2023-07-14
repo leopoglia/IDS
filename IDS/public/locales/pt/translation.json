@@ -276,7 +276,7 @@
     "AnalystGiveBack": "Um Analista devolveu a demanda ",
     "AnalystReproveDemand": "Um Analista reprovou a demanda ",
     "BusinessManagerReproveDemand": "Um Gerente de Negócio reprovou a demanda ",
-    "ITReproveDemand": "Um Analista de TI reprovou a demanda ",
+    "ITReproveDemand": "Um Analista reprovou a demanda ",
     "AnalystRankDemand": "Um Analista classificou a demanda ",
     "waiting": "Aguardando",
     "finished": "Finalizada",
@@ -301,5 +301,6 @@
     "today": "Hoje",
     "day": "Dia",
     "month": "Mês",
-    "week": "Semana"
+    "week": "Semana",
+    "schedule": "Agenda"
 }

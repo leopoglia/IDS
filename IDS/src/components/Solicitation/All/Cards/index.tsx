@@ -480,6 +480,7 @@ export default function Demands() {
 
                             {(agendas.filter((val: any) => { if (filtersUtil.agenda(nameFilter, typeFilter, search, val)) { return true } else { return false } }).length === 0 && loading === false ? noResult() : null)}
 
+
                             {agendas.length === 0 && loading === true && <Load />}
 
                         </div>

@@ -12,7 +12,7 @@ import ProposalService from "../../../../services/proposalService";
 export default function CommissionOpinion() {
 
     const navigate = useNavigate();
-    const proposalCode: any =  parseInt(useParams().id || "null");
+    const proposalCode: any = parseInt(useParams().id || "null");
     const typeMinute: any = window.location.href.split("/")[4];
     const agendaCode = parseInt(window.location.href.split("?")[1]);
 
@@ -38,8 +38,10 @@ export default function CommissionOpinion() {
 
                 <div className="background-title">
 
-                    <Title title={t("commissionOpinion")} nav={t("proposalComissionOpinion")} />
-
+                    {typeMinute === "dg-opinion" ?
+                        <Title title={t("dgOpinion")} nav={t("proposalDgOpinion")} /> :
+                        <Title title={t("commissionOpinion")} nav={t("proposalComissionOpinion")} />
+                    }
 
                 </div>
 
@@ -50,7 +52,7 @@ export default function CommissionOpinion() {
                     <div className="display-flex">
                         <div className="display-grid">
                             <label htmlFor="yes">{t("approve")}</label>
-                            <input type="radio" id="yes" name="parecer" onChange={(e) => {  typeMinute === "dg-opinion" ?  setProposalStatus("ApprovedDG") : setProposalStatus("ApprovedComission") }} />
+                            <input type="radio" id="yes" name="parecer" onChange={(e) => { typeMinute === "dg-opinion" ? setProposalStatus("ApprovedDG") : setProposalStatus("ApprovedComission") }} />
                         </div>
 
                         <div className="display-grid">

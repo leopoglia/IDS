@@ -560,3 +560,8 @@
 .classification .color-link{
     color: var(--blue) !important; 
 }
+
+.view-demand .dg-material{
+    position: absolute;
+    font-size: 9px !important;
+}

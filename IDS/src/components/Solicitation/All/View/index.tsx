@@ -40,6 +40,7 @@ export default function ViewDemand() {
     const viewDemand: string = window.location.href.split("?")[2]; // Verificar se é uma demanda para visualização
     const [load, setLoad] = useState(true); // Carregamento da página
     const [modalCancelled, setModalCancelled] = useState(false); // Modal de cancelamento
+    const [modalDG, setModalDG] = useState(false); // Modal de aprovação do DG
 
     // Botões superiores
     // 0 - Sem botões  
@@ -1176,14 +1177,32 @@ export default function ViewDemand() {
                                                                             <>
                                                                                 <div className="w20px ml10 display-flex-align-center">
                                                                                     <button className="btn-secondary btn-unique" onClick={() => setModalCancelled(!modalCancelled)}>
+                                                                                        <span className="dg-material">DG</span>
                                                                                         <span className="material-symbols-outlined">
-                                                                                            description
+                                                                                            draft
                                                                                         </span>
                                                                                     </button>
                                                                                 </div>
 
                                                                                 {modalCancelled &&
                                                                                     <ModalInfoCancelled setModalCancelled={setModalCancelled} title={"commissionOpinion"} descriptive={val?.commissionOpinion} type="opinion" />
+                                                                                }
+                                                                            </>
+                                                                        }
+
+                                                                        {val?.dgOpinion &&
+                                                                            <>
+                                                                                <div className="w20px ml10 display-flex-align-center">
+                                                                                    <button className="btn-secondary btn-unique" onClick={() => setModalDG(!modalDG)}>
+                                                                                        <span className="dg-material">D</span>
+                                                                                        <span className="material-symbols-outlined">
+                                                                                            draft
+                                                                                        </span>
+                                                                                    </button>
+                                                                                </div>
+
+                                                                                {modalDG &&
+                                                                                    <ModalInfoCancelled setModalCancelled={setModalDG} title={"dgOpinion"} descriptive={val?.dgOpinion} type="opinion" />
                                                                                 }
                                                                             </>
                                                                         }
@@ -1267,15 +1286,35 @@ export default function ViewDemand() {
                                                                         {val?.commissionOpinion &&
                                                                             <>
                                                                                 <div className="w20px ml10 display-flex-align-center">
-                                                                                    <button className="btn-secondary btn-unique" onClick={() => setModalCancelled(!modalCancelled)}>
+                                                                                    <button className="btn-secondary btn-unique" onClick={() => setModalDG(!modalDG)}>
+                                                                                        <span className="dg-material">D</span>
+
                                                                                         <span className="material-symbols-outlined">
-                                                                                            description
+                                                                                            draft
                                                                                         </span>
                                                                                     </button>
                                                                                 </div>
 
                                                                                 {modalCancelled &&
                                                                                     <ModalInfoCancelled setModalCancelled={setModalCancelled} title={"commissionOpinion"} descriptive={val?.commissionOpinion} type="opinion" />
+                                                                                }
+                                                                            </>
+                                                                        }
+
+                                                                        {val?.dgOpinion &&
+                                                                            <>
+                                                                                <div className="w20px ml10 display-flex-align-center">
+                                                                                    <button className="btn-secondary btn-unique" onClick={() => setModalCancelled(!modalCancelled)}>
+                                                                                        <span className="dg-material">C</span>
+
+                                                                                        <span className="material-symbols-outlined">
+                                                                                            draft
+                                                                                        </span>
+                                                                                    </button>
+                                                                                </div>
+
+                                                                                {modalDG &&
+                                                                                    <ModalInfoCancelled setModalCancelled={setModalDG} title={"dgOpinion"} descriptive={val?.dgOpinion} type="opinion" />
                                                                                 }
                                                                             </>
                                                                         }

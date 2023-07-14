@@ -106,7 +106,6 @@ const filtersUtil = {
 
             }
         }
-
         return false;
     },
 

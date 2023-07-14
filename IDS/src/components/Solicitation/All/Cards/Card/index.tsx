@@ -13,6 +13,7 @@ export default function Demand(props: any) {
     const worker: any = useContext(UserContext).worker;
     const [urlFinal, setUrlFinal] = useState(props.type === "demand" ? "?" + props.demandVersion : "");
     const [formatDate, setFormatDate] = useState("");
+    const [reproachDescription, setReproachDescription] = useState("");
 
     useEffect(() => {
         if (props.type === "agenda") {
@@ -34,7 +35,12 @@ export default function Demand(props: any) {
 
             setFormatDate(`${day}/${month}/${year}`);
         }
-    }, [props.year, props.date])
+
+        console.log(props.reproachDescription);
+        setReproachDescription(props.reproachDescription);
+
+
+    }, [props.year, props.date, props.reproachDescription])
 
 
     const information = () => {
@@ -103,12 +109,25 @@ export default function Demand(props: any) {
                 </div>
             );
         } else if (props.situation === "Cancelled") {
+
             return (
                 <div className="openProposal">
-                    <Tooltip title={t("openProposal")} placement="left" arrow>
+                    <Tooltip title={t("reasonForDisapproval") + ": " + reproachDescription} placement="left" arrow>
                         <button className="btn-secondary btn-unique">
                             <span className="material-symbols-outlined">
                                 info
+                            </span>
+                        </button>
+                    </Tooltip>
+                </div>
+            );
+        } else if (props.situation === "BacklogEdit") {
+            return (
+                <div className="openProposal">
+                    <Tooltip title={t("BacklogEdit")} placement="left" arrow>
+                        <button className="btn-secondary btn-unique">
+                            <span className="material-symbols-outlined">
+                                warning
                             </span>
                         </button>
                     </Tooltip>

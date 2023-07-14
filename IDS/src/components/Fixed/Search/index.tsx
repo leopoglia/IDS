@@ -81,10 +81,6 @@ export default function Search(props: any) {
         props.onClick(name, type)
     }
 
-
-    console.log(props.calendar)
-
-
     return (
         <div className="search">
             <Title nav={props.nav} title={props.title} />

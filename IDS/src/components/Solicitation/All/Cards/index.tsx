@@ -4,13 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { Steps } from "intro.js-react";
 
 import Search from "../../../Fixed/Search";
-import Demand from "./Card";
+import Card from "./Card";
 import Footer from "../../../Fixed/Footer";
 import Load from "../../../Fixed/Load";
 import ServicesDemand from "../../../../services/demandService";
 import ServicesProposal from "../../../../services/proposalService";
 import ServicesAgenda from "../../../../services/agendaService";
 import ServicesMinute from "../../../../services/minuteService";
+import ServicesReproach from "../../../../services/reproachService";
 import Presentation from "./Presentation";
 import Notification from "../../../../utils/notifyUtil";
 import othersUtil from "../../../../utils/othersUtil";
@@ -19,6 +20,7 @@ import "./style.css"
 import UserContext from "../../../../context/userContext";
 import presentationUtil from "../../../../utils/presentationUtil";
 import Calendar from "./Calendar";
+
 
 
 export default function Demands() {
@@ -46,7 +48,6 @@ export default function Demands() {
     const [typeFilter, setType] = useState<string>(""); // Busca qual filtro foi selecionado
     const [filterOn, setFilterOn] = useState(false);
 
-
     const [demandsSize, setDemandsSize] = useState(0);
     const [loading, setLoading] = useState(true);
 
@@ -71,9 +72,20 @@ export default function Demands() {
                                             demand.forum = agenda.commission;
                                         }
                                     });
-                                    return demand;
+
+
                                 }
+                                return demand;
                             });
+                        });
+
+                        await demands.map(async (demand: any) => {
+                            if (demand.demandStatus === "Cancelled") {
+                                await ServicesReproach.findByDemandCode(demand.demandCode).then((reproach: any) => {
+                                    demand.reproachDescription = reproach?.reproachDescription;
+                                })
+                            }
+                            return demand;
                         });
 
                         setDemands(demands);
@@ -148,72 +160,72 @@ export default function Demands() {
 
     // Buscar as demandas cadastradas
     async function getDemands() {
-        if(worker.office !== "business"){
-            if(worker.office !== "requester"){
-            if (table === false) {
-                findDemands = await ServicesDemand.findByPage(page, 5).then(async (res: any) => {
-                    let demandsContent = res.content; // Atualiza o estado das demandas
-    
-                    let proposalsContent: any = await ServicesProposal.findAll(); // Busca as propostas cadastradas
-                    addProposal(demandsContent, proposalsContent); // Adiciona as propostas nas demandas
-                    setLoadingFalse(res); // Desativa o loading
-                    setPages(res.totalPages); // Atualiza o estado das páginas
-                });
+        if (worker.office !== "business") {
+            if (worker.office !== "requester") {
+                if (table === false) {
+                    findDemands = await ServicesDemand.findByPage(page, 5).then(async (res: any) => {
+                        let demandsContent = res.content; // Atualiza o estado das demandas
+
+                        let proposalsContent: any = await ServicesProposal.findAll(); // Busca as propostas cadastradas
+                        addProposal(demandsContent, proposalsContent); // Adiciona as propostas nas demandas
+                        setLoadingFalse(res); // Desativa o loading
+                        setPages(res.totalPages); // Atualiza o estado das páginas
+                    });
+                } else {
+                    findDemands = await ServicesDemand.findByPage(page, 9).then(async (res: any) => {
+                        let demandsContent = res.content; // Atualiza o estado das demandas
+                        let totalDemands: any = 0;
+
+                        await ServicesProposal.findAll().then((res: any) => {
+                            totalDemands = res.length;
+                        })
+
+                        if (demandsContent.length === 0) {
+                            navigate("/demands/" + (Math.ceil((totalDemands / 9) + 1)));
+                            setLoading(false);
+                        }
+
+                        let proposalsContent: any = await ServicesProposal.findAll();
+                        addProposal(demandsContent, proposalsContent);
+                        setPages(res.totalPages); // Atualiza o estado das páginas
+                    });
+                }
             } else {
-                findDemands = await ServicesDemand.findByPage(page, 9).then(async (res: any) => {
-                    let demandsContent = res.content; // Atualiza o estado das demandas
-                    let totalDemands: any = 0;
-    
-                    await ServicesProposal.findAll().then((res: any) => {
-                        totalDemands = res.length;
-                    })
-    
-                    if (demandsContent.length === 0) {
-                        navigate("/demands/" + (Math.ceil((totalDemands / 9) + 1)));
-                        setLoading(false);
-                    }
-    
-                    let proposalsContent: any = await ServicesProposal.findAll();
-                    addProposal(demandsContent, proposalsContent);
-                    setPages(res.totalPages); // Atualiza o estado das páginas
-                });
+                console.log(worker.department)
+                if (table === false) {
+                    findDemands = await ServicesDemand.findByDepartment(worker.department, page, 5).then(async (res: any) => {
+                        let demandsContent = res.content; // Atualiza o estado das demandas
+
+                        let proposalsContent: any = await ServicesProposal.findAll(); // Busca as propostas cadastradas
+                        addProposal(demandsContent, proposalsContent); // Adiciona as propostas nas demandas
+                        setLoadingFalse(res); // Desativa o loading
+                        setPages(res.totalPages); // Atualiza o estado das páginas
+                    });
+                } else {
+                    findDemands = await ServicesDemand.findByDepartment(worker.department, page, 9).then(async (res: any) => {
+                        let demandsContent = res.content; // Atualiza o estado das demandas
+                        let totalDemands: any = 0;
+
+                        await ServicesProposal.findAll().then((res: any) => {
+                            totalDemands = res.length;
+                        })
+
+                        if (demandsContent.length === 0) {
+                            navigate("/demands/" + (Math.ceil((totalDemands / 9) + 1)));
+                            setLoading(false);
+                        }
+
+                        let proposalsContent: any = await ServicesProposal.findAll();
+                        addProposal(demandsContent, proposalsContent);
+                        setPages(res.totalPages); // Atualiza o estado das páginas
+                    });
+                }
             }
         } else {
-            console.log(worker.department)
-            if (table === false) {
-                findDemands = await ServicesDemand.findByDepartment(worker.department, page, 5).then(async (res: any) => {
-                    let demandsContent = res.content; // Atualiza o estado das demandas
-    
-                    let proposalsContent: any = await ServicesProposal.findAll(); // Busca as propostas cadastradas
-                    addProposal(demandsContent, proposalsContent); // Adiciona as propostas nas demandas
-                    setLoadingFalse(res); // Desativa o loading
-                    setPages(res.totalPages); // Atualiza o estado das páginas
-                });
-            } else {
-                findDemands = await ServicesDemand.findByDepartment(worker.department, page, 9).then(async (res: any) => {
-                    let demandsContent = res.content; // Atualiza o estado das demandas
-                    let totalDemands: any = 0;
-    
-                    await ServicesProposal.findAll().then((res: any) => {
-                        totalDemands = res.length;
-                    })
-    
-                    if (demandsContent.length === 0) {
-                        navigate("/demands/" + (Math.ceil((totalDemands / 9) + 1)));
-                        setLoading(false);
-                    }
-    
-                    let proposalsContent: any = await ServicesProposal.findAll();
-                    addProposal(demandsContent, proposalsContent);
-                    setPages(res.totalPages); // Atualiza o estado das páginas
-                });
-            }
-        }
-        } else{
             if (table === false) {
                 findDemands = await ServicesDemand.findAllManager(page, 5).then(async (res: any) => {
                     let demandsContent = res.content; // Atualiza o estado das demandas
-    
+
                     let proposalsContent: any = await ServicesProposal.findAll(); // Busca as propostas cadastradas
                     addProposal(demandsContent, proposalsContent); // Adiciona as propostas nas demandas
                     setLoadingFalse(res); // Desativa o loading
@@ -223,16 +235,16 @@ export default function Demands() {
                 findDemands = await ServicesDemand.findAllManager(page, 9).then(async (res: any) => {
                     let demandsContent = res.content; // Atualiza o estado das demandas
                     let totalDemands: any = 0;
-    
+
                     await ServicesProposal.findAll().then((res: any) => {
                         totalDemands = res.length;
                     })
-    
+
                     if (demandsContent.length === 0) {
                         navigate("/demands/" + (Math.ceil((totalDemands / 9) + 1)));
                         setLoading(false);
                     }
-    
+
                     let proposalsContent: any = await ServicesProposal.findAll();
                     addProposal(demandsContent, proposalsContent);
                     setPages(res.totalPages); // Atualiza o estado das páginas
@@ -286,7 +298,7 @@ export default function Demands() {
 
     // Função para adicionar o código da proposta na demanda
     const addProposal = async (demandsContent: any, proposalsContent: any) => {
-        await demandsContent.map((demand: any) => {
+        await demandsContent.map(async (demand: any) => {
             if (demand.demandStatus === "Assesment") {
                 proposalsContent.map(async (proposal: any) => {
 
@@ -299,8 +311,19 @@ export default function Demands() {
                     }
                 })
             }
+
             return demand;
         })
+
+        await demandsContent.map(async (demand: any) => {
+            if (demand.demandStatus === "Cancelled") {
+                await ServicesReproach.findByDemandCode(demand.demandCode).then((reproach: any) => {
+                    demand.reproachDescription = reproach?.reproachDescription;
+                })
+            }
+            return demand;
+        });
+
         setDemands(demandsContent); // Atualiza o estado das demandas
         setLoading(false); // Desativa o loading
     }
@@ -382,19 +405,24 @@ export default function Demands() {
                                 demands.filter((val: any) => {
                                     if (filtersUtil.demand(nameFilter, typeFilter, search, val)) { return true } else { return false }
                                 }).map((val: any, index: number) => {
+
+                                    console.log("val ==> ", val.reproachDescription)
+
                                     if (index === demands.length - 1 && index === 8) {
+
+
                                         return (
                                             <div className="demand-last">
-                                                <Demand key={index} id={index} demandCode={val.demandCode} listDirection={table} name={val.demandTitle}
+                                                <Card key={index} id={index} demandCode={val.demandCode} listDirection={table} name={val.demandTitle}
                                                     requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus}
-                                                    proposalCode={val.proposalCode} demandVersion={val.demandVersion} score={val?.score} type="demand" />
+                                                    proposalCode={val.proposalCode} demandVersion={val.demandVersion} score={val?.score} reproachDescription={val.reproachDescription} type="demand" />
                                             </div>
                                         )
                                     } else {
                                         return (
-                                            <Demand key={index} id={index} demandCode={val.demandCode} listDirection={table} name={val.demandTitle}
+                                            <Card key={index} id={index} demandCode={val.demandCode} listDirection={table} name={val.demandTitle}
                                                 requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus}
-                                                proposalCode={val.proposalCode} demandVersion={val.demandVersion} score={val?.score} type="demand" />
+                                                proposalCode={val.proposalCode} demandVersion={val.demandVersion} score={val?.score} reproachDescription={val.reproachDescription} type="demand" />
                                         )
                                     }
                                 })
@@ -425,7 +453,7 @@ export default function Demands() {
                                 proposals.filter((val: any) => {
                                     if (filtersUtil.proposal(nameFilter, typeFilter, search, val)) { return true } else { return false }
                                 }).map((val: any, index: any) => (
-                                    <Demand
+                                    <Card
                                         key={index} listDirection={table} demandCode={val.proposalCode}
                                         name={val.demand?.demandTitle} requester={val.demand?.requesterRegistration.workerName} analyst={val.responsibleAnalyst?.workerName}
                                         date={val.demand?.demandDate} situation={val.proposalStatus} type="proposal"
@@ -448,7 +476,7 @@ export default function Demands() {
             ) : (url[3] === "agendas") ? (
                 <div className="agendas">
 
-                    { calendar &&
+                    {calendar &&
                         <Calendar setCalendar={setCalendar} calendar={calendar} />
                     }
 
@@ -461,7 +489,7 @@ export default function Demands() {
                                         if (filtersUtil.agenda(nameFilter, typeFilter, search, val)) { return true } else { return false }
                                     })
                                     .map((val: any, index: any) => (
-                                        <Demand
+                                        <Card
                                             key={index} val={val.agendaCode} agenda={val} listDirection={table}
                                             name={(val.commission.commissionName.split("–")[1]).toUpperCase() + " – " + val.agendaDate} demandCode={val.agendaCode} date={val.agendaDate}
                                             requester={val.analistRegistry?.workerName}
@@ -496,7 +524,7 @@ export default function Demands() {
                                         if (filtersUtil.minutes(nameFilter, typeFilter, search, val, t)) { return true } else { return false }
                                     })
                                     .map((val: any, index: any) => (
-                                        <Demand
+                                        <Card
                                             key={index}
                                             listDirection={table}
                                             name={(t(val.minuteType) + " – " + val.agenda.commission.commissionName.split("–")[1]).toUpperCase()}

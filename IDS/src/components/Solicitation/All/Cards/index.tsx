@@ -57,7 +57,6 @@ export default function Demands() {
         setLoading(true);
 
         if (url[3] === "demands") {
-
             if (search === "" && typeFilter === "" && nameFilter === "") {
                 getDemands(); // Busca as demandas cadastradas
             } else {
@@ -82,7 +81,8 @@ export default function Demands() {
                         await demands.map(async (demand: any) => {
                             if (demand.demandStatus === "Cancelled") {
                                 await ServicesReproach.findByDemandCode(demand.demandCode).then((reproach: any) => {
-                                    demand.reproachDescription = reproach?.reproachDescription;
+                                    console.log(reproach);
+                                    demand.reproachDescription = reproach.reproachDescription;
                                 })
                             }
                             return demand;
@@ -191,7 +191,6 @@ export default function Demands() {
                     });
                 }
             } else {
-                console.log(worker.department)
                 if (table === false) {
                     findDemands = await ServicesDemand.findByDepartment(worker.department, page, 5).then(async (res: any) => {
                         let demandsContent = res.content; // Atualiza o estado das demandas
@@ -298,6 +297,7 @@ export default function Demands() {
 
     // Função para adicionar o código da proposta na demanda
     const addProposal = async (demandsContent: any, proposalsContent: any) => {
+
         await demandsContent.map(async (demand: any) => {
             if (demand.demandStatus === "Assesment") {
                 proposalsContent.map(async (proposal: any) => {
@@ -311,14 +311,13 @@ export default function Demands() {
                     }
                 })
             }
-
             return demand;
         })
 
         await demandsContent.map(async (demand: any) => {
             if (demand.demandStatus === "Cancelled") {
                 await ServicesReproach.findByDemandCode(demand.demandCode).then((reproach: any) => {
-                    demand.reproachDescription = reproach?.reproachDescription;
+                    demand.reproachDescription = reproach.reproachDescription;
                 })
             }
             return demand;
@@ -406,7 +405,7 @@ export default function Demands() {
                                     if (filtersUtil.demand(nameFilter, typeFilter, search, val)) { return true } else { return false }
                                 }).map((val: any, index: number) => {
 
-                                    console.log("val ==> ", val.reproachDescription)
+                                    console.log(index , " == val ==> ", val.reproachDescription)
 
                                     if (index === demands.length - 1 && index === 8) {
 

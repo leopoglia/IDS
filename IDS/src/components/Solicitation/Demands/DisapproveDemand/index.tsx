@@ -26,6 +26,7 @@ export default function DisapproveDemand() {
     const [subscribeId, setSubscribeId] = useState(null);
     const [demand, setDemand]: any = useState({});
     const workerOffice: any = useContext(UserContext).worker.office;
+    const worker:any = useContext(UserContext).worker;
 
     useEffect(() => {
         DemandService.findById(demandCode).then((response: any) => {
@@ -39,7 +40,7 @@ export default function DisapproveDemand() {
 
     // Função para reprovar demanda
     async function disapproveDemand() {
-        await Services.save(disapprovalReason, demandCode, demandVersion).then((response) => {
+        await Services.save(disapprovalReason, demandCode, demandVersion, worker.id).then((response) => {
             send("/api/worker/" + demand.requesterRegistration.workerCode, setReproveNotification());
         }).catch((error) => {
             console.log(error);

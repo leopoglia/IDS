@@ -35,6 +35,10 @@
     left: 0;
 }
 
+.situation-current .header-table{
+    position: inherit !important;
+}
+
 
 .view-demand .description {
     padding: 10px;

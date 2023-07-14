@@ -51,7 +51,7 @@ export default function Calendarer(props) {
                     day:  t('day'),
                     today:  t('today'),
                     week: t('week'),
-                    agenda: t('agenda'),
+                    agenda: t('schedule'),
                     date: t('date'),
                     time: t('time'),
                     previous: "<",

@@ -112,7 +112,7 @@ export default function Demand(props: any) {
 
             return (
                 <div className="openProposal">
-                    <Tooltip title={t("reasonForDisapproval") + ": " + reproachDescription} placement="left" arrow>
+                    <Tooltip title={t("rejected")} placement="left" arrow>
                         <button className="btn-secondary btn-unique">
                             <span className="material-symbols-outlined">
                                 info

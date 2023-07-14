@@ -3,6 +3,7 @@
 const filtersUtil = {
 
     demand: (nameFilter: any, typeFilter: any, search: any, val: any): any => {
+        
         if (
             (nameFilter === "" || nameFilter === undefined) &&
             (typeFilter === "" || typeFilter === undefined) &&

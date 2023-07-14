@@ -51,7 +51,6 @@ export default function Demands() {
     const [demandsSize, setDemandsSize] = useState(0);
     const [loading, setLoading] = useState(true);
 
-
     // Entra na página e busca as demandas cadastradas
     useEffect(() => {
         setLoading(true);
@@ -62,6 +61,7 @@ export default function Demands() {
             } else {
                 if (nameFilter !== "score" && nameFilter !== "dates" && nameFilter !== "code") {
                     ServicesDemand.findAll().then(async (demands: any) => {
+
                         await demands.map(async (demand: any) => {
                             await ServicesProposal.findByDemandCode(demand.demandCode).then(async (proposal: any) => {
                                 if (proposal?.demand?.demandCode === demand?.demandCode) {
@@ -71,21 +71,9 @@ export default function Demands() {
                                             demand.forum = agenda.commission;
                                         }
                                     });
-
-
                                 }
                                 return demand;
                             });
-                        });
-
-                        await demands.map(async (demand: any) => {
-                            if (demand.demandStatus === "Cancelled") {
-                                await ServicesReproach.findByDemandCode(demand.demandCode).then((reproach: any) => {
-                                    console.log(reproach);
-                                    demand.reproachDescription = reproach.reproachDescription;
-                                })
-                            }
-                            return demand;
                         });
 
                         setDemands(demands);
@@ -160,6 +148,7 @@ export default function Demands() {
 
     // Buscar as demandas cadastradas
     async function getDemands() {
+
         if (worker.office !== "business") {
             if (worker.office !== "requester") {
                 if (table === false) {
@@ -314,15 +303,6 @@ export default function Demands() {
             return demand;
         })
 
-        await demandsContent.map(async (demand: any) => {
-            if (demand.demandStatus === "Cancelled") {
-                await ServicesReproach.findByDemandCode(demand.demandCode).then((reproach: any) => {
-                    demand.reproachDescription = reproach.reproachDescription;
-                })
-            }
-            return demand;
-        });
-
         setDemands(demandsContent); // Atualiza o estado das demandas
         setLoading(false); // Desativa o loading
     }
@@ -405,8 +385,6 @@ export default function Demands() {
                                     if (filtersUtil.demand(nameFilter, typeFilter, search, val)) { return true } else { return false }
                                 }).map((val: any, index: number) => {
 
-                                    console.log(index , " == val ==> ", val.reproachDescription)
-
                                     if (index === demands.length - 1 && index === 8) {
 
 
@@ -414,14 +392,14 @@ export default function Demands() {
                                             <div className="demand-last">
                                                 <Card key={index} id={index} demandCode={val.demandCode} listDirection={table} name={val.demandTitle}
                                                     requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus}
-                                                    proposalCode={val.proposalCode} demandVersion={val.demandVersion} score={val?.score} reproachDescription={val.reproachDescription} type="demand" />
+                                                    proposalCode={val.proposalCode} demandVersion={val.demandVersion} score={val?.score} type="demand" />
                                             </div>
                                         )
                                     } else {
                                         return (
                                             <Card key={index} id={index} demandCode={val.demandCode} listDirection={table} name={val.demandTitle}
                                                 requester={val?.requesterRegistration?.workerName} date={val.demandDate} situation={val.demandStatus}
-                                                proposalCode={val.proposalCode} demandVersion={val.demandVersion} score={val?.score} reproachDescription={val.reproachDescription} type="demand" />
+                                                proposalCode={val.proposalCode} demandVersion={val.demandVersion} score={val?.score} type="demand" />
                                         )
                                     }
                                 })

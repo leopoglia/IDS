@@ -21,7 +21,7 @@ export default function AddExpense() {
     const [expenseProfile, setExpenseProfile] = useState('');
     const [amountOfHours, setAmountOfHours]: any = useState('');
     const [hourValue, setHourValue]: any = useState('');
-    const totalValue = Number.parseFloat(othersUtil.deformatCoin("R$", amountOfHours)) * Number.parseFloat(othersUtil.deformatCoin("R$", hourValue));
+    const totalValue = Number.parseFloat(othersUtil.deformatCoin("R$", amountOfHours)) * Number.parseFloat(othersUtil.deformatCoin("R$", hourValue)) || 0;
 
     const expense = { expenseType: expenseType, expenseProfile: expenseProfile, amountOfHours: amountOfHours, hourValue: othersUtil.deformatCoin("R$", hourValue), totalValue: totalValue };
     const [expenseList, setExpenseList]: any = useState([]);

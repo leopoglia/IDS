@@ -272,21 +272,21 @@ const othersUtil = {
 
     deformatCoin: (currency: any, value: any) => {
         if (currency === "R$") {
-            return value.replace("R$", "").replace(".", "").replace(",", ".")
+            return value?.replace("R$", "").replace(".", "").replace(",", ".")
         } else if (currency === "$") {
-            return value.replace("$", "").replace(".", "").replace(",", ".")
+            return value?.replace("$", "").replace(".", "").replace(",", ".")
         } else if (currency === "€") {
-            return value.replace("€", "").replace(".", "").replace(",", ".")
+            return value?.replace("€", "").replace(".", "").replace(",", ".")
         }
     },
 
     formatCoin: (currency: any, value: any) => {
         if (currency === "R$") {
-            return "R$" + value.replace(".", ",").replace(",", ".")
+            return "R$" + value?.replace(".", ",").replace(",", ".")
         } else if (currency === "$") {
-            return "$" + value.replace(".", ",").replace(",", ".")
+            return "$" + value?.replace(".", ",").replace(",", ".")
         } else if (currency === "€") {
-            return "€" + value.replace(".", ",").replace(",", ".")
+            return "€" + value?.replace(".", ",").replace(",", ".")
         }
     },
 

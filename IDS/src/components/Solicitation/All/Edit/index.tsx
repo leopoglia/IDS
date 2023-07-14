@@ -449,7 +449,7 @@ export default function Edit() {
 
 								<div className="flex">
 
-									<Input label="monthlyValue" type="coin" value={realBenefitValue} setValue={setRealBenefitValue} />
+									<Input label="monthlyValue" type="coin" value={realBenefitValue} setValue={setRealBenefitValue} currency={realCurrency} edit={true} />
 
 									<SelectCoin setrealCurrency={setrealCurrency} type="real" value={realCurrency} currency={realCurrency} />
 								</div>
@@ -476,8 +476,7 @@ export default function Edit() {
 								<div>
 									<div className="flex">
 
-										<Input label="monthlyValue" type="coin" value={potentialBenefitValue} setValue={setPotentialBenefitValue} required={true} />
-
+										<Input label="monthlyValue" type="coin" value={potentialBenefitValue} setValue={setPotentialBenefitValue} currency={potentialCurrency} required={true} edit={true} />
 
 										<SelectCoin setPotentialCurrency={setPotentialCurrency} type="potencial" value={potentialCurrency} currency={potentialCurrency} />
 									</div>

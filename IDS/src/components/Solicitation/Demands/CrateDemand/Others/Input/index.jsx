@@ -81,16 +81,26 @@ export default function Input(props) {
 
             if (props.value !== undefined || props.value !== null) {
                 let value;
-                // inserir R$ ou $ ou € na frente
-                if (props?.currency === "$") {
-                    value = "$" + props?.value?.replace("R$", "").replace("€", "").replace("$", "");
-                } else if (props?.currency === "€") {
-                    value = "€" + props?.value?.replace("R$", "").replace("€", "").replace("$", "");
-                } else if (props?.currency === "R$") {
-                    value = "R$" + props?.value?.replace("R$", "").replace("€", "").replace("$", "");
-                }
 
-                console.log(value)
+                // inserir R$ ou $ ou € na frente
+
+                if (props?.edit !== true) {
+                    if (props?.currency === "$") {
+                        value = "$" + props?.value?.replace("R$", "").replace("€", "").replace("$", "");
+                    } else if (props?.currency === "€") {
+                        value = "€" + props?.value?.replace("R$", "").replace("€", "").replace("$", "");
+                    } else if (props?.currency === "R$") {
+                        value = "R$" + props?.value?.replace("R$", "").replace("€", "").replace("$", "");
+                    }
+                } else{
+                    if (props?.currency === "$") {
+                        value = "$" + props?.value;
+                    } else if (props?.currency === "€") {
+                        value = "€" + props?.value;
+                    } else if (props?.currency === "R$") {
+                        value = "R$" + props?.value;
+                    }
+                }
 
                 let e = { target: { value: value } };
                 onChange(e);

@@ -6,8 +6,10 @@ import Title from "../../Fixed/Search/Title";
 import Footer from "../../Fixed/Footer";
 import UserContext from "../../../context/userContext";
 import WorkerService from "../../../services/workerService";
+import ColorsService from "../../../services/colorsService";
 import Slider from "./Slider";
 import "./style.css"
+import Color from "./Color";
 
 
 export default function Configuration() {
@@ -28,7 +30,7 @@ export default function Configuration() {
     const [fontSize, setFontSize] = useState(0); // Tamanho da fonte
     const [darkMode, setDarkMode] = useState(false); // Estado do darkMode
     const [squareStyleLayout, setSquareStyleLayout] = useState(false); // Estado do layout quadrado
-
+    const [colors, setColors]: any = useState({}); // Cores
 
 
     // Atualiza o estado do utilizador
@@ -40,6 +42,7 @@ export default function Configuration() {
         setDarkMode(worker?.darkmode);
         setSquareStyleLayout(worker?.square);
         setFontSize(worker?.fontSize);
+        setColors(worker?.colors);
     }, [worker])
 
     useEffect(() => {
@@ -112,9 +115,23 @@ export default function Configuration() {
     // Atualiza o estado do leitor de tela
     const handleScreenReading = async (event: any) => {
         await WorkerService.updateScreenReader(worker.id, event.target.checked).then((response: any) => {
+
             setScreenReading(response.screenReader);
             setWorker({ ...worker, screenReader: response.screenReader });
         })
+    }
+
+    const handleColor = async () => {
+
+        console.log(worker.colors.colorsCode);
+        console.log(worker.colors);
+
+        ColorsService.update(worker.colors.colorsCode, worker.colors).then((response: any) => {
+            console.log(response)
+            setColors(response);
+            setWorker({ ...worker, colors: response });
+        })
+
     }
 
 
@@ -202,24 +219,27 @@ export default function Configuration() {
                                             <label htmlFor="switch" />
                                         </div>
                                     </div>
-                                    {/* 
+
                                     <div className="display-flex">
                                         <span className="subtitle-confuration">{t("colors")}</span>
 
                                         <div className="colors-configuration ml10">
-                                            <div className="color color-1"></div>
-                                            <div className="color color-2"></div>
-                                            <div className="color color-3"></div>
-                                            <div className="color color-4"></div>
-                                            <div className="color color-5"></div>
-                                            <div className="color color-6"></div>
-                                            <div className="color color-7"></div>
-                                            <div className="color color-8"></div>
-                                            <div className="color color-9"></div>
+                                            {[colors?.color1, colors?.color2, colors?.color3, colors?.color4, colors?.color5, colors?.color6, colors?.color7, colors?.color8, colors?.color9].map((color, index) => {
+                                                return <Color color={color} id={index + 1} />
+                                            })}
 
 
+                                            <div className="display-flex">
+                                                <span className="material-symbols-outlined" onClick={() => handleColor()}>
+                                                    done
+                                                </span>
+
+                                                <span className="material-symbols-outlined">
+                                                    restart_alt
+                                                </span>
+                                            </div>
                                         </div>
-                                    </div> */}
+                                    </div>
                                 </div>
 
                             </div>

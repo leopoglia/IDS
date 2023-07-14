@@ -61,7 +61,7 @@
 }
 
 .configuration .colors-configuration {
-    width: 220px;
+    width: 300px;
     height: 30px;
     border-radius: var(--r);
     display: flex;
@@ -70,48 +70,17 @@
     padding: 5px;
 }
 
+.configuration .colors-configuration button{
+    width: min-content;
+    border-radius: var(--r);
+    border: none;
+}
+
 .configuration .colors-configuration .color {
     width: 20px;
     height: 20px;
     border-radius: calc(var(--r) - 2px);
 }
-
-.configuration .colors-configuration .color-1 {
-    background-color: var(--blue);
-}
-
-.configuration .colors-configuration .color-2 {
-    background-color: var(--blue19);
-}
-
-.configuration .colors-configuration .color-3 {
-    background-color: var(--blue00);
-}
-
-.configuration .colors-configuration .color-4 {
-    background-color: var(--blue44);
-}
-
-.configuration .colors-configuration .color-5 {
-    background-color: var(--blue64);
-}
-
-.configuration .colors-configuration .color-6 {
-    background-color: var(--greyC4);
-}
-
-.configuration .colors-configuration .color-7 {
-    background-color: var(--green);
-}
-
-.configuration .colors-configuration .color-8 {
-    background-color: var(--red);
-}
-
-.configuration .colors-configuration .color-9 {
-    background-color: var(--orange);
-}
-
 
 .configuration .box #image-profile:hover {
     background-color: var(--blue);
@@ -347,6 +316,18 @@
 
 .configuration .switch-slider-fontSize {
     margin-left: 15px
+}
+
+.configuration .colors-configuration label{
+    z-index: 100;
+}
+
+.configuration .colors-configuration input{
+    width: 0px;
+    height: 0px;
+    color: none;
+    margin-left: -40px;
+    margin-top: 16px;
 }
 
 

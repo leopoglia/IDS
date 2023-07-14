@@ -44,7 +44,7 @@ import { ToastContainer } from "react-toastify";
 export default function Router() {
 
     // Contexto do usuário
-    const [worker, setWorker]: any = useState({ id: "", office: "", name: "", email: "", language: "", voiceCommand: false, pounds: false, screenReader: false, darkmode: false, square: false, fontSize: 24, workerPhoto: null });
+    const [worker, setWorker]: any = useState({ id: "", office: "", name: "", email: "", language: "", voiceCommand: false, pounds: false, screenReader: false, darkmode: false, square: false, fontSize: 24, workerPhoto: null, colors: {} });
 
     useEffect(() => {
 
@@ -80,7 +80,8 @@ export default function Router() {
                             darkmode: response.darkmode,
                             square: response.square,
                             fontSize: response.fontSize,
-                            workerPhoto: response.workerPhoto
+                            workerPhoto: response.workerPhoto,
+                            colors: response.colors
                         }
 
                         if (response.darkmode === true) {
@@ -100,6 +101,16 @@ export default function Router() {
                         document.documentElement.style.setProperty('--m', response.fontSize - 6 + "px");
                         document.documentElement.style.setProperty('--p', response.fontSize - 11 + "px");
                         document.documentElement.style.setProperty('--pp', response.fontSize - 12 + "px");
+
+                        document.documentElement.style.setProperty('--blue', response.colors.color1);
+                        document.documentElement.style.setProperty('--blue19', response.colors.color2);
+                        document.documentElement.style.setProperty('--blue00', response.colors.color3);
+                        document.documentElement.style.setProperty('--blue44', response.colors.color4);
+                        document.documentElement.style.setProperty('--blue64', response.colors.color5);
+                        document.documentElement.style.setProperty('--greyC4', response.colors.color6);
+                        document.documentElement.style.setProperty('--green', response.colors.color7);
+                        document.documentElement.style.setProperty('--red', response.colors.color8);
+                        document.documentElement.style.setProperty('--orange', response.colors.color9);
 
 
                         setWorker(worker); // Seta os dados do usuário no context

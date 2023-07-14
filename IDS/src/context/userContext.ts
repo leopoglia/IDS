@@ -16,7 +16,8 @@ type MyContextType = {
     square: boolean,
     fontSize: number,
     workerPhoto: any,
-    presentation: boolean
+    presentation: boolean,
+    colors: {};
   },
   setWorker: any
 };

@@ -1177,7 +1177,7 @@ export default function ViewDemand() {
                                                                             <>
                                                                                 <div className="w20px ml10 display-flex-align-center">
                                                                                     <button className="btn-secondary btn-unique" onClick={() => setModalCancelled(!modalCancelled)}>
-                                                                                        <span className="dg-material">DG</span>
+                                                                                        <span className="dg-material">C</span>
                                                                                         <span className="material-symbols-outlined">
                                                                                             draft
                                                                                         </span>
@@ -1286,8 +1286,8 @@ export default function ViewDemand() {
                                                                         {val?.commissionOpinion &&
                                                                             <>
                                                                                 <div className="w20px ml10 display-flex-align-center">
-                                                                                    <button className="btn-secondary btn-unique" onClick={() => setModalDG(!modalDG)}>
-                                                                                        <span className="dg-material">D</span>
+                                                                                    <button className="btn-secondary btn-unique" onClick={() => setModalCancelled(!modalCancelled)}>
+                                                                                        <span className="dg-material">C</span>
 
                                                                                         <span className="material-symbols-outlined">
                                                                                             draft
@@ -1304,8 +1304,8 @@ export default function ViewDemand() {
                                                                         {val?.dgOpinion &&
                                                                             <>
                                                                                 <div className="w20px ml10 display-flex-align-center">
-                                                                                    <button className="btn-secondary btn-unique" onClick={() => setModalCancelled(!modalCancelled)}>
-                                                                                        <span className="dg-material">C</span>
+                                                                                    <button className="btn-secondary btn-unique" onClick={() => setModalDG(!modalDG)}>
+                                                                                        <span className="dg-material">D</span>
 
                                                                                         <span className="material-symbols-outlined">
                                                                                             draft

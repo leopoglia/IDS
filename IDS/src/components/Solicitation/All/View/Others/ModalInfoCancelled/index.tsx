@@ -13,10 +13,11 @@ export default function ModalInfoCancelled(props: any) {
     const [reproach, setReproach] = useState<any>();
 
     useEffect(() => {
-        ServicesReproach.findByDemandCode(demandCode).then((response) => {
-            setReproach(response);
-        })
-
+        if (props.type === "dissapproval") {
+            ServicesReproach.findByDemandCode(demandCode).then((response) => {
+                setReproach(response);
+            })
+        }
     }, []);
 
 
@@ -24,11 +25,11 @@ export default function ModalInfoCancelled(props: any) {
         <div className="modalChangeStatus modalInfoCancelled">
             <div className="modal">
                 <div className="modal-header">
-                    <p>{t("reasonForDisapproval")}</p>
+                    <p>{t(props.title)}</p>
 
-                    <button className="closeModal">
+                    <button className="closeModal" onClick={() => props.setModalCancelled(false)}>
 
-                        <span onClick={() => props.setModalCancelled(false)} className="material-symbols-outlined">
+                        <span className="material-symbols-outlined">
                             close
                         </span>
 
@@ -37,9 +38,17 @@ export default function ModalInfoCancelled(props: any) {
 
                 <div className="change">
 
-                    <span className="reproachDescription">{reproach?.reproachDescription}</span>
+                    {props.type === "dissapproval" &&
+                        <>
+                            <span className="reproachDescription">{reproach?.reproachDescription}</span>
 
-                    <span>{t("repprover")}: {reproach?.worker.workerName}</span>
+                            <span>{t("repprover")}: {reproach?.worker.workerName}</span>
+                        </>
+                    }
+
+                    {props.type === "opinion" &&
+                        <span className="reproachDescription">{props.descriptive}</span>
+                    }
 
                 </div>
             </div>

@@ -665,9 +665,9 @@ export default function ViewDemand() {
                                                                 </button>
 
                                                                 {modalCancelled &&
-                                                                    <ModalInfoCancelled setModalCancelled={setModalCancelled} />
+                                                                    <ModalInfoCancelled setModalCancelled={setModalCancelled} title={"reasonForDisapproval"} type="dissapproval" />
                                                                 }
-                                                                
+
                                                             </div>
                                                         )
                                                     ) : demand?.demandCode !== 0 ? (
@@ -1171,6 +1171,23 @@ export default function ViewDemand() {
 
                                                                         </div>
 
+                                                                        {val?.commissionOpinion &&
+
+                                                                            <>
+                                                                                <div className="w20px ml10 display-flex-align-center">
+                                                                                    <button className="btn-secondary btn-unique" onClick={() => setModalCancelled(!modalCancelled)}>
+                                                                                        <span className="material-symbols-outlined">
+                                                                                            description
+                                                                                        </span>
+                                                                                    </button>
+                                                                                </div>
+
+                                                                                {modalCancelled &&
+                                                                                    <ModalInfoCancelled setModalCancelled={setModalCancelled} title={"commissionOpinion"} descriptive={val?.commissionOpinion} type="opinion" />
+                                                                                }
+                                                                            </>
+                                                                        }
+
                                                                         <div className="w20px ml10 display-flex-align-center">
                                                                             <Link to={"/proposal/view/" + val.proposalCode}>
                                                                                 <button className="btn-secondary btn-unique">
@@ -1245,6 +1262,23 @@ export default function ViewDemand() {
                                                                             </div>
 
                                                                         </div>
+
+
+                                                                        {val?.commissionOpinion &&
+                                                                            <>
+                                                                                <div className="w20px ml10 display-flex-align-center">
+                                                                                    <button className="btn-secondary btn-unique" onClick={() => setModalCancelled(!modalCancelled)}>
+                                                                                        <span className="material-symbols-outlined">
+                                                                                            description
+                                                                                        </span>
+                                                                                    </button>
+                                                                                </div>
+
+                                                                                {modalCancelled &&
+                                                                                    <ModalInfoCancelled setModalCancelled={setModalCancelled} title={"commissionOpinion"} descriptive={val?.commissionOpinion} type="opinion" />
+                                                                                }
+                                                                            </>
+                                                                        }
 
                                                                         <div className="w20px ml10 display-flex-align-center">
                                                                             <Link to={"/proposal/view/" + val.proposalCode}>

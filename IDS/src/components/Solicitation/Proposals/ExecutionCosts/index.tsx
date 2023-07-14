@@ -206,21 +206,21 @@ export default function ExecutionCosts() {
 
                             <div>
                                 <Tooltip title={totalsCosts} arrow>
-                                    <span>{t("totalsCosts")}: {realCurrency} {totalsCosts}</span>
+                                    <span>{t("totalsCosts")}: {realCurrency} {totalsCosts?.toFixed(2)}</span>
                                 </Tooltip>
 
                                 <Tooltip title={externalCosts} arrow>
-                                    <span>{t("expenses")}: {realCurrency} {externalCosts}</span>
+                                    <span>{t("expenses")}: {realCurrency} {externalCosts?.toFixed(2)}</span>
                                 </Tooltip>
                             </div>
 
                             <div>
                                 <Tooltip title={externalCosts} arrow>
-                                    <span>{t("recurrent")}: {realCurrency} {externalCosts}</span>
+                                    <span>{t("recurrent")}: {realCurrency} {externalCosts?.toFixed(2)}</span>
                                 </Tooltip>
 
                                 <Tooltip title={internalCosts} arrow>
-                                    <span>{t("internal")}: {realCurrency} {internalCosts}</span>
+                                    <span>{t("internal")}: {realCurrency} {internalCosts?.toFixed(2)}</span>
                                 </Tooltip>
                             </div>
 

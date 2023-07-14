@@ -698,7 +698,7 @@ export default function ViewDemand() {
                                                         </div>
                                                     ) : (
                                                         <div className="display-flex-align-center h50">
-                                                            <div className="code-date">{t("date")}:  {othersUtil.formatDate(proposal?.proposalDate)}</div>
+                                                            <div className="code-date">{t("date")}:  {othersUtil.addZeroDate(proposal?.proposalDate)}</div>
                                                             <div className="code">{proposal.proposalCode}</div>
                                                         </div>
                                                     )}

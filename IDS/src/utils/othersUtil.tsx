@@ -261,6 +261,22 @@ const othersUtil = {
         return day + "/" + month + "/" + year;
     },
 
+    addZeroDate: (date: any) => {
+        let dateSplit = date.split("/");
+        let day = dateSplit[0];
+        let month = dateSplit[1];
+        let year = dateSplit[2];
+
+        if (day.length === 1) {
+            day = "0" + day;
+        }
+        if (month.length === 1) {
+            month = "0" + month;
+        }
+        
+        return day + "/" + month + "/" + year;
+    },
+
     invertMonthWithDay: (date: any) => {
         let dateSplit = date.split("/");
         let day = dateSplit[0];

@@ -279,7 +279,7 @@ export default function Demands() {
 
     // Função para deixar o loading falso quando tiver carregado
     async function setLoadingFalse(res: any) {
-        if (res.content.length === 0) {
+        if (res?.content?.length === 0) {
             setLoading(false);
         }
     }
@@ -308,12 +308,15 @@ export default function Demands() {
     }
 
     const addAgenda = async (proposalContent: any) => {
-        proposalContent.map(async (proposal: any) => {
-            await ServicesAgenda.findByProposals(proposal.proposalCode).then((agenda: any) => {
-                proposal.forum = agenda.commission;
+
+        if (proposalContent.length !== undefined) {
+            proposalContent.map(async (proposal: any) => {
+                await ServicesAgenda.findByProposals(proposal.proposalCode).then((agenda: any) => {
+                    proposal.forum = agenda.commission;
+                })
+                return proposal;
             })
-            return proposal;
-        })
+        }
 
         setProposals(proposalContent);
         setLoading(false);

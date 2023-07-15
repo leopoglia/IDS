@@ -9,9 +9,12 @@ import {
     Filler,
     Legend,
 } from 'chart.js';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { Line } from 'react-chartjs-2';
+import UserContext from '../../../../context/userContext';
 import ServicesWorker from '../../../../services/workerService';
+
+
 
 ChartJS.register(
     CategoryScale,
@@ -34,7 +37,7 @@ export const options = {
             display: false,
             text: 'Chart.js Line Chart',
         },
-    },
+    },   
 };
 
 
@@ -43,6 +46,7 @@ export default function Graphic(props: any) {
     let [labels, setLabels]: any = useState([]);
     const [prev, setPrev] = useState(false);
     const [totalNumbersPrefix, setTotalNumbersPrefix] = useState(0);
+    const { worker } = useContext<any>(UserContext);
 
     useEffect(() => {
         getMonthName();
@@ -164,8 +168,8 @@ export default function Graphic(props: any) {
                 fill: true,
                 label: "",
                 data: labels.map((val: any) => val.numbers),
-                borderColor: '#00579D',
-                backgroundColor: '#1976d2d1',
+                borderColor: worker?.colors?.color1,
+                backgroundColor: worker?.colors?.color2,
             },
         ],
     };

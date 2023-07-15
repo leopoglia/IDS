@@ -61,7 +61,7 @@
 }
 
 .configuration .colors-configuration {
-    width: 300px;
+    width: 330px;
     height: 30px;
     border-radius: var(--r);
     display: flex;
@@ -327,9 +327,12 @@
     height: 0px;
     color: none;
     margin-left: -40px;
-    margin-top: 16px;
+    margin-top: 16.5px;
 }
 
+.configuration .color-10{
+    border: 1px solid var(--greyC4);
+}
 
 @media (max-width: 1380px) {
     .configuration .background-configurations {

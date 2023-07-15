@@ -18,7 +18,7 @@ export default function Color(props: any) {
         console.log(props.id)
 
         setColor(color);
-        
+
         setWorker({
             ...worker,
             colors: {
@@ -55,6 +55,9 @@ export default function Color(props: any) {
             case 9:
                 document.documentElement.style.setProperty('--orange', color);
                 break;
+            case 10:
+                document.documentElement.style.setProperty('--white2', color);
+                break;
         }
 
     }
@@ -62,8 +65,8 @@ export default function Color(props: any) {
 
     return (
         <>
-            <label htmlFor={'color-' + props.color} style={{ background: color }} className={"color color-" + props.color} onClick={() => setColorSelected(!colorSelected)}></label>
-            <input type="color" id={"color-" + props.color} value={props.color} onChange={(e) => changeColor(e.target.value)} />
+            <label htmlFor={'color-' + props.id} style={{ background: color }} className={"color color-" + props.id} onClick={() => setColorSelected(!colorSelected)}></label>
+            <input type="color" id={"color-" + props.id} value={props.color} onChange={(e) => changeColor(e.target.value)} />
         </>
     )
 }

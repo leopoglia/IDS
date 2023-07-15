@@ -123,15 +123,32 @@ export default function Configuration() {
 
     const handleColor = async () => {
 
-        console.log(worker.colors.colorsCode);
-        console.log(worker.colors);
-
         ColorsService.update(worker.colors.colorsCode, worker.colors).then((response: any) => {
-            console.log(response)
             setColors(response);
             setWorker({ ...worker, colors: response });
         })
 
+    }
+
+    const resetColor = async () => {
+
+        ColorsService.update(worker.colors.colorsCode,
+            {
+                color1: "#00579D",
+                color2: "#1976d2",
+                color3: "#0090c5",
+                color4: "#448dca",
+                color5: "#64C3D5",
+                color6: "#C4C4C4",
+                color7: "#36802d",
+                color8: "#d33649",
+                color9: "#f6921d",
+                color10: "#FFFFFF"
+            }).then((response: any) => {
+                setColors(response);
+                setWorker({ ...worker, colors: response });
+                othersUtil.updateColor({colors: response});
+            })
     }
 
 
@@ -224,7 +241,7 @@ export default function Configuration() {
                                         <span className="subtitle-confuration">{t("colors")}</span>
 
                                         <div className="colors-configuration ml10">
-                                            {[colors?.color1, colors?.color2, colors?.color3, colors?.color4, colors?.color5, colors?.color6, colors?.color7, colors?.color8, colors?.color9].map((color, index) => {
+                                            {[colors?.color1, colors?.color2, colors?.color3, colors?.color4, colors?.color5, colors?.color6, colors?.color7, colors?.color8, colors?.color9, colors?.color10].map((color, index) => {
                                                 return <Color color={color} id={index + 1} />
                                             })}
 
@@ -234,7 +251,7 @@ export default function Configuration() {
                                                     done
                                                 </span>
 
-                                                <span className="material-symbols-outlined">
+                                                <span className="material-symbols-outlined" onClick={() => resetColor()}>
                                                     restart_alt
                                                 </span>
                                             </div>

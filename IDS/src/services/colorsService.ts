@@ -14,7 +14,8 @@ const Services = {
                     color6: colors.color6,
                     color7: colors.color7,
                     color8: colors.color8,
-                    color9: colors.color9
+                    color9: colors.color9,
+                    color10: colors.color10
                 }), headers: { 'Content-Type': 'application/json' }, credentials: 'include'
             }).then(function (result) { return result.json(); })
                 .then(resolve)

@@ -147,7 +147,7 @@ export default function Configuration() {
             }).then((response: any) => {
                 setColors(response);
                 setWorker({ ...worker, colors: response });
-                othersUtil.updateColor({colors: response});
+                othersUtil.updateColor({ colors: response });
             })
     }
 
@@ -186,7 +186,13 @@ export default function Configuration() {
                         <div className="box-configurations">
                             <div className="change-configuration">
                                 <div className="flex">
-                                    <span className="title-confuration">{t("password")}</span>
+
+                                    <div className="display-flex">
+                                        <span className="material-symbols-outlined ml0 mr5">
+                                            key
+                                        </span>
+                                        <span className="title-confuration">{t("password")}</span>
+                                    </div>
                                     <span className="material-symbols-outlined">
                                         edit
                                     </span>
@@ -200,7 +206,12 @@ export default function Configuration() {
                             </div>
 
                             <div className="change-configuration">
-                                <span className="title-confuration">{t("notifications")}</span>
+                                <div className="display-flex">
+                                    <span className="material-symbols-outlined ml0 mr5">
+                                        notifications
+                                    </span>
+                                    <span className="title-confuration">{t("notifications")}</span>
+                                </div>
 
                                 <div className="display-flex">
                                     <span className="subtitle-confuration">{t("messagesNotify")}</span>
@@ -215,7 +226,12 @@ export default function Configuration() {
                             </div>
 
                             <div className="change-configuration">
-                                <span className="title-confuration">{t("style")}</span>
+                                <div className="display-flex">
+                                    <span className="material-symbols-outlined ml0 mr5">
+                                        tune
+                                    </span>
+                                    <span className="title-confuration">{t("style")}</span>
+                                </div>
 
                                 <div className="display-flex">
                                     <div className="display-flex mr20">

@@ -296,5 +296,6 @@
     "schedule": "Schedule",
     "repprover": "Repprover",
     "custom": "Custom",
-    "filterCustom": "Filter custom"
+    "filterCustom": "Filter custom",
+    "filter": "Filter"
 }

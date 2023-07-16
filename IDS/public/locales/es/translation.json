@@ -295,5 +295,6 @@
     "schedule": "Cronograma",
     "repprover": "Reprobado",
     "custom": "Personalizado",
-    "filterCustom": "Filtro personalizado"
+    "filterCustom": "Filtro personalizado",
+    "filter": "Filtrar"
 }

@@ -297,5 +297,6 @@
     "schedule": "日程",
     "repprover": "拒絕",
     "custom": "自定義",
-    "filterCustom": "自定義篩選"
+    "filterCustom": "自定義篩選",
+    "filter": "過濾"
 }

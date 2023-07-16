@@ -308,5 +308,6 @@
     "schedule": "Agenda",
     "repprover": "Reprovador",
     "custom": "Personalizado",
-    "filterCustom": "Filtro personalizado"
+    "filterCustom": "Filtro personalizado",
+    "filter": "Filtrar"
 }

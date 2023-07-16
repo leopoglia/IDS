@@ -22,7 +22,7 @@ export default function CustomFilter(props: any) {
             <div className="modal">
                 <div className='header-calendar display-flex-space-between mb3'>
                     <div className="display-flex-align-center">
-                        <span className="material-symbols-outlined mr10">
+                        <span className="material-symbols-outlined">
                             tune
                         </span>
 
@@ -37,17 +37,19 @@ export default function CustomFilter(props: any) {
 
                     <Input type="text" label="manager" value={manager} setValue={setManager} />
 
-                    <Input type="text" label="forum" value={forum} setValue={setForum} />
-
                     <Input type="text" label="departament" value={departament} setValue={setDepartament} />
 
-                    <Input type="text" label="size" value={size} setValue={setSize} />
+                    <div className="mb10">
+                        <label htmlFor="">{t("size")}</label>
+                        <SelectStatus status={size} setStatus={setSize} array={["Muito pequeno", "Pequeno", "Médio", "Grande", "Muito grande"]} />
+                    </div>
 
                     <Input type="text" label="ppmCode" value={ppmCode} setValue={setPpmCode} />
 
-                    <Input type="text" label="demandCode"  value={demandCode} setValue={setDemandCode} />
+                    <Input type="text" label="demandCode" value={demandCode} setValue={setDemandCode} />
 
-                    <Input type="text" label="status" value={status} setValue={setStatus} />
+                    <label htmlFor="">{t("status")}</label>
+                    <SelectStatus status={status} setStatus={setStatus} array={["Backlog", "BacklogRanked", "BacklogEdit", "BacklogRankApproved", "BacklogComplement", "Assesment"]} />
 
                 </div>
 

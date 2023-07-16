@@ -128,7 +128,7 @@ export default function Input(props) {
     return (
         <div className="display-block w100 input-background">
             {props.label !== undefined ?
-                <Label title={props.label} required="true" textInfo="Digite o centro de custo que ira pagar" />
+                <Label title={props.label} required={props.required} textInfo="Digite o centro de custo que ira pagar" />
                 : null
             }
 

@@ -98,8 +98,17 @@
     margin-right: 5px;
 }
 
+.custom-filter .select-cost-center{
+    border: 1px solid var(--greyC4);
+    border-radius: var(--r);
+}
+
 .custom-filter .filters-custom .input{
     z-index: 200;
+}
+
+.custom-filter .material-symbols-outlined{
+    margin: 0px;
 }
 
 .custom-filter .btn-primary{
@@ -111,6 +120,11 @@
 
 .custom-filter .font-p{
     font-size: calc(var(--p) + 2px) !important;
+    margin-left: 10px !important;
+}
+
+.custom-filter .label label{
+    color: var(--grey3d)
 }
 
 .custom-filter .input-background{

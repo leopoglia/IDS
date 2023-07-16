@@ -66,11 +66,6 @@ export default function Demands() {
                             await ServicesProposal.findByDemandCode(demand.demandCode).then(async (proposal: any) => {
                                 if (proposal?.demand?.demandCode === demand?.demandCode) {
                                     demand.proposal = proposal;
-                                    await ServicesAgenda.findByProposals(proposal.proposalCode).then((agenda: any) => {
-                                        if (demand.demandCode === proposal.demand.demandCode) {
-                                            demand.forum = agenda.commission;
-                                        }
-                                    });
                                 }
                                 return demand;
                             });
@@ -92,14 +87,6 @@ export default function Demands() {
             } else {
                 if (nameFilter !== "score" && nameFilter !== "dates" && nameFilter !== "code") {
                     ServicesProposal.findAll().then(async (proposals: any) => {
-                        await proposals.map(async (proposal: any) => {
-
-                            await ServicesAgenda.findByProposals(proposal.proposalCode).then((agenda: any) => {
-                                proposal.forum = agenda.commission;
-                            });
-                            return proposals;
-                        });
-
                         setProposals(proposals);
                         setLoading(false);
                     });

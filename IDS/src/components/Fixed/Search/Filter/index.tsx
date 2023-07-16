@@ -160,11 +160,6 @@ export default function Filter(props: any) {
                                 <span className="font-p">{t("manager")}</span>
                             </div>
 
-                            <div className="li" onClick={() => { setFilter(true); setType("forum") }}>
-                                <span className="material-symbols-outlined">workspaces</span>
-                                <span className="font-p">{t("forum")}</span>
-                            </div>
-
                             <div className="li" onClick={() => { setFilter(true); setType("department") }}>
                                 <span className="material-symbols-outlined">location_on</span>
                                 <span className="font-p">{t("departament")}</span>
@@ -219,11 +214,6 @@ export default function Filter(props: any) {
                     <div className="li" onClick={() => { setFilter(true); setType("manager") }}>
                         <span className="material-symbols-outlined">manage_accounts</span>
                         <span className="font-p">{t("manager")}</span>
-                    </div>
-
-                    <div className="li" onClick={() => { setFilter(true); setType("forum") }}>
-                        <span className="material-symbols-outlined">workspaces</span>
-                        <span className="font-p">{t("forum")}</span>
                     </div>
 
                     <div className="li" onClick={() => { setFilter(true); setType("department") }}>

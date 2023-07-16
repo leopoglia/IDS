@@ -224,6 +224,7 @@
     "demandReproved": "需求拒絕成功",
     "demandEdited": "需求編輯成功",
     "demandReturned": "需求退回成功",
+    "demandCancelled": "需求取消成功",
     "somethingWrong": "出了點問題",
     "fillAllFields": "請填寫所有字段",
     "change-history": "變更歷史",

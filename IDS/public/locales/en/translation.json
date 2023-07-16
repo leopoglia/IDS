@@ -223,6 +223,7 @@
     "demandReproved": "Demand reproved successfully!",
     "demandEdited": "Demand edited successfully!",
     "demandReturned": "Demand returned successfully!",
+    "demandCancelled": "Demand cancelled successfully!",
     "somethingWrong": "Something went wrong!",
     "fillAllFields": "Please fill all fields",
     "change-history": "Change History",

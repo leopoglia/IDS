@@ -10,6 +10,7 @@ import ServicesProposal from "../../../../services/proposalService";
 import ServicesAgenda from "../../../../services/agendaService";
 import ServicesExpenses from "../../../../services/expensesService";
 import ServicesMinute from "../../../../services/minuteService";
+import ServicesSimilarity from "../../../../services/similarityService";
 import Footer from "../../../Fixed/Footer";
 import HtmlReactParser from 'html-react-parser';
 import UserContext from "../../../../context/userContext";
@@ -65,6 +66,7 @@ export default function ViewDemand() {
     const [subscribeId, setSubscribeId] = useState(null);
     const [pendingMinute, setPendingMinute]: any = useState(0); // Quantidade de propostas pendentes
     const [approvedDG, setApprovedDG]: any = useState(0); // Quantidade de propostas aprovadas pelo DG
+    const [similarity, setSimilarity]: any = useState([]); // Similaridade aberta caso tenha alguma demanda parecida
     const { send, subscribe, stompClient }: any = useContext(WebSocketContext);
 
     let notification = {}; // Notificações do usuário
@@ -189,6 +191,16 @@ export default function ViewDemand() {
                 if (response.demandStatus === "Backlog" && response.classification !== undefined) {
                     // Seta botões superiores de Reprovar ou Classificar para o analista
                     setActionsDemand(2)
+
+                    ServicesSimilarity.compare(demandCode).then((similarity: any) => {
+                        console.log(response)
+
+                        if (similarity.similarityValue > 70) {
+                            setSimilarity(similarity);
+                        }
+
+                    })
+
                 } else if (response.demandStatus === "BacklogRankApproved") {
                     // Seta botões superiores de Complementar para o analista
                     setActionsDemand(4)
@@ -1567,8 +1579,8 @@ export default function ViewDemand() {
 
             {url !== "agenda" ? (<Footer />) : null}
 
-            {false &&
-                <CompareDemands />
+            {similarity.similarityValue > 70 &&
+                <CompareDemands similarity={similarity} setSimilarity={setSimilarity} workerCode={worker.id} />
             }
 
         </div >

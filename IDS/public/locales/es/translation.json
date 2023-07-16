@@ -223,6 +223,7 @@
     "demandReproved": "Demanda reprobada con éxito",
     "demandEdited": "Demanda editada con éxito",
     "demandReturned": "Demanda devuelta con éxito",
+    "demandCancelled": "Demanda cancelada con éxito",
     "somethingWrong": "Algo salió mal",
     "fillAllFields": "llene todos los campos",
     "change-history": "Cambia la historia",

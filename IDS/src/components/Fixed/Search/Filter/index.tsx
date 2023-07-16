@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import SelectStatus from "./SelectStatus";
 import UserContext from "../../../../context/userContext";
 import "./style.css";
+import CustomFilter from "./CustomFilter";
 
 export default function Filter(props: any) {
 
@@ -15,6 +16,7 @@ export default function Filter(props: any) {
     const [filter, setFilter]: any = useState(false); // Estado do filtro
     const [type, setType] = useState<string>("");
     const [status, setStatus] = useState<string>("");
+    const [customFilter, setCustomFilter] = useState<boolean>(false); // Estado do filtro personalizado
 
 
     const sendFilter = () => {
@@ -44,7 +46,7 @@ export default function Filter(props: any) {
             return (
                 <div className="send-filter">
                     <div className="hr" />
-                    <SelectStatus status={status} setStatus={setStatus} onChange={onButtonPressSelect} array={arraySelect}/>
+                    <SelectStatus status={status} setStatus={setStatus} onChange={onButtonPressSelect} array={arraySelect} />
                 </div>
             )
 
@@ -190,7 +192,18 @@ export default function Filter(props: any) {
                         <span className="font-p">{t("status")}</span>
                     </div>
 
+                    {worker?.office !== "requester" &&
+                        <div className="li" onClick={() => { setCustomFilter(true) }}>
+                            <span className="material-symbols-outlined">tune</span>
+                            <span className="font-p">{t("custom")}</span>
+                        </div>
+                    }
+
                     {sendFilter()}
+
+                    {customFilter === true &&
+                        <CustomFilter setCustomFilter={setCustomFilter} customFilter={customFilter} />
+                    }
 
                 </div>
             )

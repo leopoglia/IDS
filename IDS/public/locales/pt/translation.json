@@ -306,5 +306,7 @@
     "month": "Mês",
     "week": "Semana",
     "schedule": "Agenda",
-    "repprover": "Reprovador"
+    "repprover": "Reprovador",
+    "custom": "Personalizado",
+    "filterCustom": "Filtro personalizado"
 }

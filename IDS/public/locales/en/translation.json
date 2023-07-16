@@ -294,5 +294,7 @@
     "month": "Month",
     "week": "Week",
     "schedule": "Schedule",
-    "repprover": "Repprover"
+    "repprover": "Repprover",
+    "custom": "Custom",
+    "filterCustom": "Filter custom"
 }

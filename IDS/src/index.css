@@ -521,7 +521,8 @@ label, span{
 .notification-false::-webkit-scrollbar,
 .container-background::-webkit-scrollbar,
 .ql-editor::-webkit-scrollbar,
-.modalInfoCancelled .reproachDescription::-webkit-scrollbar {
+.modalInfoCancelled .reproachDescription::-webkit-scrollbar,
+.filters-custom::-webkit-scrollbar {
   width: 10px;
   height: 4px;
 }
@@ -531,11 +532,13 @@ label, span{
 .chat-box .chats::-webkit-scrollbar,
 .false::-webkit-scrollbar,
 .ql-editor::-webkit-scrollbar,
-.modalInfoCancelled .reproachDescription::-webkit-scrollbar {
+.modalInfoCancelled .reproachDescription::-webkit-scrollbar,
+.filters-custom::-webkit-scrollbar {
   width: 6px;
 }
 
-.container-background::-webkit-scrollbar-thumb {
+.container-background::-webkit-scrollbar-thumb,
+.filters-custom::-webkit-scrollbar-thumb {
   border-radius: 10px
 }
 
@@ -549,7 +552,8 @@ label, span{
 .chat-box .chats::-webkit-scrollbar-thumb,
 .false::-webkit-scrollbar-thumb,
 .ql-editor::-webkit-scrollbar-thumb,
-.modalInfoCancelled .reproachDescription::-webkit-scrollbar-thumb {
+.modalInfoCancelled .reproachDescription::-webkit-scrollbar-thumb,
+.filters-custom::-webkit-scrollbar-thumb {
   background-color: var(--greyD9);
 }
 
@@ -563,7 +567,8 @@ label, span{
 .chat-box .chats::-webkit-scrollbar-thumb:hover,
 .false::-webkit-scrollbar-thumb:hover,
 .ql-editor::-webkit-scrollbar-thumb:hover,
-.modalInfoCancelled .reproachDescription::-webkit-scrollbar-thumb:hover {
+.modalInfoCancelled .reproachDescription::-webkit-scrollbar-thumb:hover,
+.filters-custom::-webkit-scrollbar-thumb:hover {
   background-color: var(--greyC4);
 }
 

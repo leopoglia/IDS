@@ -293,5 +293,7 @@
     "month": "Mes",
     "week": "Semana",
     "schedule": "Cronograma",
-    "repprover": "Reprobado"
+    "repprover": "Reprobado",
+    "custom": "Personalizado",
+    "filterCustom": "Filtro personalizado"
 }

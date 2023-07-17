@@ -83,6 +83,8 @@
     "size": "Tamaño",
     "ppmCode": "Código PPM",
     "demandCode": "Código demanda",
+    "proposalCode": "Código propuesta",
+    "minuteCode": "Código acta",
     "status": "Estado",
     "demandView": "Demanda > Ver Demanda",
     "generatePDF": "Generar PDF",

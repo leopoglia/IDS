@@ -122,15 +122,15 @@ export default function Search(props: any) {
 
                         {props.title !== "selectProposal" &&
                             <>
-                                <ButtonTableList icon="swap_vert" sendFilter={() => sendFilter("order")} />
-
-                                <ButtonTableList icon="filter_alt" sendFilter={() => sendFilter("filter")} />
-
 
                                 {props?.setCalendar !== undefined &&
                                     <ButtonTableList icon="calendar_month" setCalendar={props.setCalendar} calendar={props.calendar} />
 
                                 }
+                                
+                                <ButtonTableList icon="swap_vert" sendFilter={() => sendFilter("order")} />
+
+                                <ButtonTableList icon="filter_alt" sendFilter={() => sendFilter("filter")} />
                             </>
                         }
 

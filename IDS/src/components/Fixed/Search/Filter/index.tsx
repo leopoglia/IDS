@@ -236,7 +236,19 @@ export default function Filter(props: any) {
                         <span className="font-p">{t("codeProposal")}</span>
                     </div>
 
+                    {worker?.office !== "requester" &&
+                        <div className="li" onClick={() => { setCustomFilter(true) }}>
+                            <span className="material-symbols-outlined">tune</span>
+                            <span className="font-p">{t("custom")}</span>
+                        </div>
+                    }
+
+                    {customFilter === true &&
+                        <CustomFilter setCustomFilter={setCustomFilter} customFilter={customFilter} />
+                    }
+
                     {sendFilter()}
+
 
                 </div>
             )
@@ -253,6 +265,17 @@ export default function Filter(props: any) {
                         <span className="material-symbols-outlined">draft</span>
                         <span className="font-p">{t("codeProposal")}</span>
                     </div>
+
+                    {worker?.office !== "requester" &&
+                        <div className="li" onClick={() => { setCustomFilter(true) }}>
+                            <span className="material-symbols-outlined">tune</span>
+                            <span className="font-p">{t("custom")}</span>
+                        </div>
+                    }
+
+                    {customFilter === true &&
+                        <CustomFilter setCustomFilter={setCustomFilter} customFilter={customFilter} />
+                    }
 
                     {sendFilter()}
 
@@ -276,6 +299,17 @@ export default function Filter(props: any) {
                         <span className="material-symbols-outlined">draft</span>
                         <span className="font-p">{t("codeMinutes")}</span>
                     </div>
+
+                    {worker?.office !== "requester" &&
+                        <div className="li" onClick={() => { setCustomFilter(true) }}>
+                            <span className="material-symbols-outlined">tune</span>
+                            <span className="font-p">{t("custom")}</span>
+                        </div>
+                    }
+
+                    {customFilter === true &&
+                        <CustomFilter setCustomFilter={setCustomFilter} customFilter={customFilter} />
+                    }
 
                     {sendFilter()}
 

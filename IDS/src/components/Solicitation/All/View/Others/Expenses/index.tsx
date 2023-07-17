@@ -11,7 +11,7 @@ export default function Expenses(props: any) {
 
     const [totalAmountOfHours, setTotalAmountOfHours] = useState("");
     const [totalHourValue, setTotalHourValue] = useState("");
-    const [totalValue, setTotalValue] = useState("");
+    const [totalValue, setTotalValue]: any = useState(0);
     const [expense, setExpense] = useState([] as any);
     const demandCode = parseInt(useParams().id || "null");
 

@@ -82,6 +82,7 @@
     "size": "Size",
     "ppmCode": "PPM code",
     "demandCode": "Demand code",
+    "proposalCode": "Proposal code",
     "status": "Status",
     "demandViewDemand": "Demand > View Demand",
     "generatePDF": "Generate PDF",

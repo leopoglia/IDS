@@ -83,6 +83,7 @@
     "size": "尺寸",
     "ppmCode": "PPM 代碼",
     "demandCode": "需求代碼",
+    "proposalCode": "提案代碼",
     "status": "狀態",
     "demandViewDemand": "需求 > 查看需求",
     "generatePDF": "生成 PDF",

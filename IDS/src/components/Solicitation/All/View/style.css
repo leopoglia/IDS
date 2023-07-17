@@ -565,3 +565,10 @@
     position: absolute;
     font-size: 9px !important;
 }
+
+.agenda-demand-title{
+    width: 400px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

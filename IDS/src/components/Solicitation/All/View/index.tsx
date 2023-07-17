@@ -1127,7 +1127,7 @@ export default function ViewDemand() {
                                                                                 {val.proposalCode}
                                                                             </div>
 
-                                                                            <span>
+                                                                            <span className="agenda-demand-title">
                                                                                 {val.demand.demandTitle}
                                                                             </span>
 
@@ -1238,7 +1238,7 @@ export default function ViewDemand() {
                                                                                 {val.proposalCode}
                                                                             </div>
 
-                                                                            <span>
+                                                                            <span className="agenda-demand-title">
                                                                                 {val.demand.demandTitle}
                                                                             </span>
 

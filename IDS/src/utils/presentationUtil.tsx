@@ -60,7 +60,7 @@ const presentationUtil = {
 
         if (type === "demands") {
             if (e === 6) {
-                navigate("/demand/workflow/1");
+                navigate("/demand/workflow/3");
                 localStorage.setItem("presentantion", "true");
             }
         } 

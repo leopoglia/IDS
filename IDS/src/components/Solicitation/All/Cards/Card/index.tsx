@@ -6,6 +6,7 @@ import { Tooltip } from "@mui/material";
 import Situation from "./Situation/index";
 import UserContext from "../../../../../context/userContext";
 import "./style.css";
+import othersUtil from "../../../../../utils/othersUtil";
 
 export default function Demand(props: any) {
 
@@ -13,7 +14,6 @@ export default function Demand(props: any) {
     const worker: any = useContext(UserContext).worker;
     const [urlFinal, setUrlFinal] = useState(props.type === "demand" ? "?" + props.demandVersion : "");
     const [formatDate, setFormatDate] = useState("");
-    const [reproachDescription, setReproachDescription] = useState("");
 
     useEffect(() => {
         if (props.type === "agenda") {
@@ -36,11 +36,7 @@ export default function Demand(props: any) {
             setFormatDate(`${day}/${month}/${year}`);
         }
 
-        console.log(props.reproachDescription);
-        setReproachDescription(props.reproachDescription);
-
-
-    }, [props.year, props.date, props.reproachDescription])
+    }, [props.year, props.date])
 
 
     const information = () => {
@@ -77,7 +73,7 @@ export default function Demand(props: any) {
                 (<div className="infos">
                     <div className="code">{props.demandCode}</div>
                     <div className="number-sequential"><p>{t("sequentialNumber")}: {props.number}</p></div>
-                    <div><p>{t("date")}: {formatDate}</p></div>
+                    <div><p>{t("date")}: {othersUtil.addZeroDate(props.date)}</p></div>
                     <div className="analyst"><p>{t("Director")}: {props.director}</p></div>
                 </div>)
             )

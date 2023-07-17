@@ -95,7 +95,7 @@ export default function CompareDemands(props: any) {
                                     <p className="title">{demand.demandTitle}</p>
                                 </Tooltip>
                                 <div className="display-flex-align-center h50">
-                                    <div className="code-date">{t("date")}:  {othersUtil.formatDate(demand?.demandDate)}</div>
+                                    {/* <div className="code-date">{t("date")}:  {othersUtil.formatDate(demand?.demandDate)}</div> */}
                                     <div className="code">{demand.demandCode}</div>
                                 </div>
                             </div>
@@ -256,7 +256,7 @@ export default function CompareDemands(props: any) {
                                     <p className="title">{demandCompare.demandTitle}</p>
                                 </Tooltip>
                                 <div className="display-flex-align-center h50">
-                                    <div className="code-date">{t("date")}:  {othersUtil.formatDate(demandCompare?.demandDate)}</div>
+                                    {/* <div className="code-date">{t("date")}:  {othersUtil.formatDate(demandCompare?.demandDate)}</div> */}
                                     <div className="code">{demandCompare.demandCode}</div>
                                 </div>
                             </div>

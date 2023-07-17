@@ -34,11 +34,15 @@ export default function Box(props: any) {
             dateLastWeek.setDate(dateLastWeek.getDate() - 7);
 
 
+            console.log(props.dates)
+
             for (let i = 0; i < props.dates.length; i++) {
                 datesFormated.push(
-                    new Date(othersUtil.removeZeroDate(othersUtil.formatDate(props.dates[i])))
+                    new Date(othersUtil.invertMonthWithDay(othersUtil.addZeroDate(props.dates[i])))
                 );
             }
+
+            console.log(datesFormated)
 
             const dateLastMonth = new Date();
             dateLastMonth.setMonth(dateLastMonth.getMonth() - 1);
@@ -53,6 +57,8 @@ export default function Box(props: any) {
             const actualWeek = datesFormated.filter(
                 (date: any) => date >= dateLastWeek
             );
+
+            console.log(actualWeek)
 
             const lastMonth = datesFormated.filter(
                 (date: any) =>
@@ -81,6 +87,9 @@ export default function Box(props: any) {
                 ((actualMonth.length - lastMonth.length) / lastMonth.length) * 100;
             const yearPercent =
                 ((actualYear.length - lastYear.length) / lastYear.length) * 100;
+
+
+            console.log(actualWeek)
 
             setWeekPercent(weekPercent === Infinity ? 0 : weekPercent);
             setMonthPercent(monthPercent === Infinity ? 0 : monthPercent);

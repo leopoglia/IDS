@@ -172,8 +172,6 @@ const Services = {
 
     graphic: function (array: any) {
 
-        console.log(array)
-
         var numbersArray = array.map((obj: { numbers: any; }) => obj.numbers);
 
         return new Promise((resolve, reject) => {

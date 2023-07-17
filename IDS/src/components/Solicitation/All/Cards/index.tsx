@@ -58,8 +58,6 @@ export default function Demands() {
 
         if (url[3] === "demands") {
 
-            console.log(!othersUtil.verifyObject(customFilterObject))
-
             if (search === "" && typeFilter === "" && nameFilter === "" && !othersUtil.verifyObject(customFilterObject)) {
 
                 getDemands(); // Busca as demandas cadastradas

@@ -18,7 +18,7 @@ export default function List(props: any) {
 
             for (let i = 0; i < props.number.length; i++) {
                 datesFormated.push(
-                    new Date(othersUtil.removeZeroDate(othersUtil.formatDate(props.number[i])))
+                    new Date(props.number[i])
                 );
             }
 

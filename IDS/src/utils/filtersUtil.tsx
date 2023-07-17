@@ -180,10 +180,6 @@ const filtersUtil = {
 
             for (let i = 0; i < Object.keys(customFilterObject).length; i++) {
 
-
-                console.log("customFilterObject" , customFilterObject)
-
-
                 if (val?.initialDate?.split("T")[0] === customFilterObject?.dateMeeting || customFilterObject.dateMeeting === "") {
                     totalFilter++;
                 }
@@ -191,6 +187,20 @@ const filtersUtil = {
                 if (val?.proposalCode === parseInt(customFilterObject.proposalCode) || customFilterObject.proposalCode === "") {
                     totalFilter++;
                 }
+
+
+                let totalProposals = 0;
+                for (let i = 0; i < val.proposals.length; i++) {
+
+                    if (val.proposals[i].proposalCode === parseInt(customFilterObject.proposalCode)) {
+                        totalProposals++;
+                    }    
+                }
+
+                if (totalProposals > 0 || customFilterObject.proposalCode === "") {
+                    totalFilter++;
+                }
+
 
                 if (val?.commission?.commissionAcronym === customFilterObject.forum || customFilterObject.forum === "") {
                     totalFilter++;
@@ -250,7 +260,31 @@ const filtersUtil = {
 
         if (othersUtil.verifyObject(customFilterObject)) {
 
+            let totalFilter = 0;
 
+            for (let i = 0; i < Object.keys(customFilterObject).length; i++) {
+
+                if (val.minuteStartDate.split("/")[0] + "0" + val.minuteStartDate.split("/")[1] + val.minuteStartDate.split("/")[2] === customFilterObject?.solicitationDate || customFilterObject.solicitationDate === "") {
+                    totalFilter++;
+                }
+
+                if (val?.minuteCode === parseInt(customFilterObject.minuteNumber) || customFilterObject.minuteNumber === "") {
+                    totalFilter++;
+                }
+
+                if (val.minuteCode === customFilterObject.minuteCode || customFilterObject.minuteCode === "") {
+                    totalFilter++;
+                }
+
+
+
+                if (totalFilter === Object.keys(customFilterObject).length) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            }
 
 
         }

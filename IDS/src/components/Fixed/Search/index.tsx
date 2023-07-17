@@ -30,7 +30,9 @@ export default function Search(props: any) {
 
 
     useEffect(() => {
-        props.setCustomFilterObject(customFilterObject);
+        if (props.setCustomFilterObject) {
+            props.setCustomFilterObject(customFilterObject);
+        }
     }, [customFilterObject])
 
 

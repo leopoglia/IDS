@@ -8,6 +8,7 @@ import Table from '../Table';
 import { Link } from 'react-router-dom';
 import othersUtil from '../../../../../../utils/othersUtil';
 import notifyUtil from '../../../../../../utils/notifyUtil';
+import { Tooltip } from '@mui/material';
 
 
 export default function CompareDemands(props: any) {
@@ -90,7 +91,9 @@ export default function CompareDemands(props: any) {
                     <>
                         <div className='box'>
                             <div className="display-flex-space-between display-solicitation-demand">
-                                <p className="title">{demand.demandTitle}</p>
+                                <Tooltip title={demand.demandTitle} placement="top" arrow={true}>
+                                    <p className="title">{demand.demandTitle}</p>
+                                </Tooltip>
                                 <div className="display-flex-align-center h50">
                                     <div className="code-date">{t("date")}:  {othersUtil.formatDate(demand?.demandDate)}</div>
                                     <div className="code">{demand.demandCode}</div>
@@ -249,7 +252,9 @@ export default function CompareDemands(props: any) {
 
                         <div className='box'>
                             <div className="display-flex-space-between display-solicitation-demand">
-                                <p className="title">{demandCompare.demandTitle}</p>
+                                <Tooltip title={demandCompare.demandTitle} placement="top" arrow={true}>
+                                    <p className="title">{demandCompare.demandTitle}</p>
+                                </Tooltip>
                                 <div className="display-flex-align-center h50">
                                     <div className="code-date">{t("date")}:  {othersUtil.formatDate(demandCompare?.demandDate)}</div>
                                     <div className="code">{demandCompare.demandCode}</div>

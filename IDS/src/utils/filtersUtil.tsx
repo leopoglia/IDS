@@ -9,7 +9,6 @@ const filtersUtil = {
 
             let totalFilter = 0;
 
-
             for (let i = 0; i < Object.keys(customFilterObject).length; i++) {
 
                 if (val.requesterRegistration.workerName.toUpperCase().includes(customFilterObject?.requester?.toUpperCase()) || customFilterObject.requester === "") {
@@ -39,9 +38,6 @@ const filtersUtil = {
                 if (val?.demandStatus.toUpperCase().includes(customFilterObject?.status?.toUpperCase()) || customFilterObject.status === "") {
                     totalFilter++;
                 }
-
-                console.log(customFilterObject)
-                console.log("totalFilter => ", totalFilter , " === customFilterObject.length" , Object.keys(customFilterObject).length); 
 
                 if (totalFilter === Object.keys(customFilterObject).length) {
                     return true;
@@ -105,9 +101,41 @@ const filtersUtil = {
 
         if (othersUtil.verifyObject(customFilterObject)) {
 
+            let totalFilter = 0;
 
+            for (let i = 0; i < Object.keys(customFilterObject).length; i++) {
 
+                if (val?.demand?.requesterRegistration.workerName.toUpperCase().includes(customFilterObject?.requester?.toUpperCase()) || customFilterObject.requester === "") {
+                    totalFilter++;
+                }
 
+                if (val?.demand?.approver?.workerName?.toUpperCase().includes(customFilterObject?.manager?.toUpperCase()) || customFilterObject.manager === "") {
+                    totalFilter++;
+                }
+
+                if (val?.demand?.requesterRegistration.department.toUpperCase().includes(customFilterObject?.departament?.toUpperCase()) || customFilterObject.departament === "") {
+                    totalFilter++;
+                }
+
+                if (val?.demand?.classification?.classificationSize.toUpperCase() === customFilterObject?.size?.toUpperCase() || customFilterObject.size === "") {
+                    totalFilter++;
+                }
+
+                if (val?.demand?.classification?.ppmCode.toUpperCase().includes(customFilterObject?.ppmCode?.toUpperCase()) || customFilterObject.ppmCode === "") {
+                    totalFilter++;
+                }
+
+                if (val?.proposalCode === parseInt(customFilterObject.proposalCode) || customFilterObject.proposalCode === "") {
+                    totalFilter++;
+                }
+
+                if (totalFilter === Object.keys(customFilterObject).length) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            }
         }
 
 
@@ -148,7 +176,35 @@ const filtersUtil = {
 
         if (othersUtil.verifyObject(customFilterObject)) {
 
+            let totalFilter = 0;
 
+            for (let i = 0; i < Object.keys(customFilterObject).length; i++) {
+
+
+                console.log("customFilterObject" , customFilterObject)
+
+
+                if (val?.initialDate?.split("T")[0] === customFilterObject?.dateMeeting || customFilterObject.dateMeeting === "") {
+                    totalFilter++;
+                }
+
+                if (val?.proposalCode === parseInt(customFilterObject.proposalCode) || customFilterObject.proposalCode === "") {
+                    totalFilter++;
+                }
+
+                if (val?.commission?.commissionAcronym === customFilterObject.forum || customFilterObject.forum === "") {
+                    totalFilter++;
+                }
+
+
+
+                if (totalFilter === Object.keys(customFilterObject).length) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            }
 
 
         }

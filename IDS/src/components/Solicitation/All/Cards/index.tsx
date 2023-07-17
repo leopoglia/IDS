@@ -57,14 +57,15 @@ export default function Demands() {
         setLoading(true);
 
         if (url[3] === "demands") {
-            if (search === "" && typeFilter === "" && nameFilter === "" && !othersUtil.verifyObject(customFilterObject)) {
 
-                console.log(othersUtil.verifyObject(customFilterObject))
-                console.log(customFilterObject)
+            console.log(!othersUtil.verifyObject(customFilterObject))
+
+            if (search === "" && typeFilter === "" && nameFilter === "" && !othersUtil.verifyObject(customFilterObject)) {
 
                 getDemands(); // Busca as demandas cadastradas
             } else {
                 if (nameFilter !== "score" && nameFilter !== "dates" && nameFilter !== "code" && othersUtil.verifyObject(customFilterObject)) {
+
                     ServicesDemand.findAll().then(async (demands: any) => {
 
                         await demands.map(async (demand: any) => {
@@ -77,6 +78,7 @@ export default function Demands() {
                         });
 
                         setDemands(demands);
+                        setPages(0);
                         setLoading(false);
                     });
                 } else {
@@ -87,10 +89,10 @@ export default function Demands() {
                 }
             }
         } else if (url[3] === "proposals") {
-            if (search === "" && typeFilter === "") {
+            if (search === "" && typeFilter === "" && !othersUtil.verifyObject(customFilterObject)) {
                 getProposals(); // Busca as demandas cadastradas
             } else {
-                if (nameFilter !== "score" && nameFilter !== "dates" && nameFilter !== "code") {
+                if (nameFilter !== "score" && nameFilter !== "dates" && nameFilter !== "code" && othersUtil.verifyObject(customFilterObject)) {
                     ServicesProposal.findAll().then(async (proposals: any) => {
                         setProposals(proposals);
                         setLoading(false);
@@ -102,10 +104,10 @@ export default function Demands() {
                 }
             }
         } else if (url[3] === "agendas") {
-            if (search === "" && typeFilter === "") {
+            if (search === "" && typeFilter === "" && !othersUtil.verifyObject(customFilterObject)) {
                 getAgendas(); // Busca as demandas cadastradas
             } else {
-                if (nameFilter !== "dates" && nameFilter !== "code") {
+                if (nameFilter !== "dates" && nameFilter !== "code" && othersUtil.verifyObject(customFilterObject)) {
                     ServicesAgenda.findAll().then((agendas: any) => {
                         setAgendas(agendas);
                     });
@@ -116,10 +118,10 @@ export default function Demands() {
                 }
             }
         } else if (url[3] === "minutes") {
-            if (search === "" && typeFilter === "") {
+            if (search === "" && typeFilter === "" && !othersUtil.verifyObject(customFilterObject)) {
                 getMinutes(); // Busca as demandas cadastradas
             } else {
-                if (nameFilter !== "dates" && nameFilter !== "code") {
+                if (nameFilter !== "dates" && nameFilter !== "code" && othersUtil.verifyObject(customFilterObject)) {
                     ServicesMinute.findAll().then((minutes: any) => {
                         setMinutes(minutes);
                     });

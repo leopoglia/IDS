@@ -19,7 +19,6 @@ export default function Filter(props: any) {
     const [customFilter, setCustomFilter] = useState<boolean>(false); // Estado do filtro personalizado
     const [customFilterObject, setCustomFilterObject] = useState<any>({}); // Objeto com o filtro personalizado
 
-
     const sendFilter = () => {
 
         // Se o tipo for diferente de status, size, date, forum ou home, retorna o input normal de pesquisa
@@ -121,7 +120,7 @@ export default function Filter(props: any) {
 
     useEffect(() => {
         if (props.filter) {
-            props?.setCustomFilterObject(customFilterObject)
+            props?.setCustomFilterObject(customFilterObject);
         }
     }, [customFilterObject])
 

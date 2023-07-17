@@ -94,9 +94,6 @@ const filtersUtil = {
             return true;
         }
 
-
-        console.log(val.initialDate.split("T")[0] + " === " + nameFilter)
-
         if (typeFilter === "date" && val?.initialDate?.split("T")[0] === nameFilter) {
             return true;
         }

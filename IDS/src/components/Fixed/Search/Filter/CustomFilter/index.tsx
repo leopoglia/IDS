@@ -23,6 +23,44 @@ export default function CustomFilter(props: any) {
     const [solicitationDate, setSolicitationDate] = useState('')
     const [minuteCode, setMinuteCode] = useState('')
 
+    const sendFilter = () => {
+
+        if(type === "demands"){
+            props.setCustomFilterObject({
+                requester,
+                manager,
+                departament,
+                size,
+                ppmCode,
+                demandCode,
+                status
+            })
+        } else if(type === "proposals"){
+            props.setCustomFilterObject({
+                requester,
+                manager,
+                departament,
+                size,
+                ppmCode,
+                forum
+            })
+        } else if(type === "agendas"){
+            props.setCustomFilterObject({
+                forum,
+                proposalCode
+            })
+        } else if(type === "minutes"){
+            props.setCustomFilterObject({
+                minuteNumber,
+                solicitationDate,
+                minuteCode
+            })
+        }
+
+
+
+    }
+
     return (
         <div className="background-modal custom-filter">
             <div className="modal">
@@ -50,7 +88,7 @@ export default function CustomFilter(props: any) {
 
                             <div className="mb10">
                                 <label htmlFor="">{t("size")}</label>
-                                <SelectStatus status={size} setStatus={setSize} array={["Muito pequeno", "Pequeno", "Médio", "Grande", "Muito grande"]} />
+                                <SelectStatus status={size} setStatus={setSize} onChange={(e:any) => setSize(e) } array={["Muito pequeno", "Pequeno", "Médio", "Grande", "Muito grande"]} />
                             </div>
 
                             <Input type="text" label="ppmCode" value={ppmCode} setValue={setPpmCode} />
@@ -66,7 +104,7 @@ export default function CustomFilter(props: any) {
                     {type === "demands" &&
                         <>
                             < label htmlFor="">{t("status")}</label>
-                            <SelectStatus status={status} setStatus={setStatus} array={["Backlog", "BacklogRanked", "BacklogEdit", "BacklogRankApproved", "BacklogComplement", "Assesment"]} />
+                            <SelectStatus status={status} setStatus={setStatus} onChange={(e:any) => setStatus(e) } array={["Backlog", "BacklogRanked", "BacklogEdit", "BacklogRankApproved", "BacklogComplement", "Assesment"]} />
                         </>
                     }
 
@@ -74,7 +112,7 @@ export default function CustomFilter(props: any) {
                         <>
                             <div className="mb10">
                                 < label htmlFor="">{t("forum")}</label>
-                                <SelectStatus status={forum} setStatus={setForum} array={["CPVM", "CPGCI", "CPGPR", "CGPN", "CTI", "CWBS", "DTI"]} />
+                                <SelectStatus status={forum} setStatus={setForum} onChange={(e:any) => setForum(e) } array={["CPVM", "CPGCI", "CPGPR", "CGPN", "CTI", "CWBS", "DTI"]} />
                             </div>
 
                             <Input type="text" label="proposalCode" value={proposalCode} setValue={setProposalCode} />
@@ -93,7 +131,7 @@ export default function CustomFilter(props: any) {
                     }
                 </div>
 
-                <button className="btn-primary w100">
+                <button className="btn-primary w100" onClick={sendFilter}>
                     {t("filter")}
                 </button>
 

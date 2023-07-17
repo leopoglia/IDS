@@ -17,6 +17,7 @@ export default function Filter(props: any) {
     const [type, setType] = useState<string>("");
     const [status, setStatus] = useState<string>("");
     const [customFilter, setCustomFilter] = useState<boolean>(false); // Estado do filtro personalizado
+    const [customFilterObject, setCustomFilterObject] = useState<any>({}); // Objeto com o filtro personalizado
 
 
     const sendFilter = () => {
@@ -115,9 +116,13 @@ export default function Filter(props: any) {
 
             setFilter(true);
         }
-
-
     }
+
+
+    useEffect(() => {
+        console.log("customFilterObject", customFilterObject)
+    } , [customFilterObject])
+
 
     const inputName = useRef<HTMLInputElement>(null) // Referência do input de pesquisa
 
@@ -197,7 +202,7 @@ export default function Filter(props: any) {
                     {sendFilter()}
 
                     {customFilter === true &&
-                        <CustomFilter setCustomFilter={setCustomFilter} customFilter={customFilter} />
+                        <CustomFilter setCustomFilter={setCustomFilter} customFilter={customFilter} setCustomFilterObject={setCustomFilterObject} />
                     }
 
                 </div>
@@ -244,7 +249,7 @@ export default function Filter(props: any) {
                     }
 
                     {customFilter === true &&
-                        <CustomFilter setCustomFilter={setCustomFilter} customFilter={customFilter} />
+                        <CustomFilter setCustomFilter={setCustomFilter} customFilter={customFilter} setCustomFilterObject={setCustomFilterObject} />
                     }
 
                     {sendFilter()}
@@ -279,7 +284,7 @@ export default function Filter(props: any) {
                     }
 
                     {customFilter === true &&
-                        <CustomFilter setCustomFilter={setCustomFilter} customFilter={customFilter} />
+                        <CustomFilter setCustomFilter={setCustomFilter} customFilter={customFilter} setCustomFilterObject={setCustomFilterObject} />
                     }
 
                     {sendFilter()}
@@ -313,7 +318,7 @@ export default function Filter(props: any) {
                     }
 
                     {customFilter === true &&
-                        <CustomFilter setCustomFilter={setCustomFilter} customFilter={customFilter} />
+                        <CustomFilter setCustomFilter={setCustomFilter} customFilter={customFilter} setCustomFilterObject={setCustomFilterObject} />
                     }
 
                     {sendFilter()}

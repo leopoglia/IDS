@@ -87,6 +87,7 @@
     z-index: 6;
     padding: 20px 12px !important;
     overflow: hidden;
+    box-shadow: none;
 }
 
 .custom-filter .filters-custom{

@@ -26,6 +26,12 @@ export default function Search(props: any) {
     const [typeFilter, setTypeFilter] = useState(""); // Estado do tipo de filtro (filtro ou ordenar)
     const [name, setName] = useState<string | undefined>("")
     const [type, setType] = useState<string>("")
+    const [customFilterObject, setCustomFilterObject] = useState<any>({})
+
+
+    useEffect(() => {
+        props.setCustomFilterObject(customFilterObject);
+    }, [customFilterObject])
 
 
     useEffect(() => {
@@ -99,6 +105,18 @@ export default function Search(props: any) {
                     </div>
                 }
 
+                {othersUtil.verifyObject(customFilterObject) &&
+                    <div className="display-flex filter-export">
+                        <div className="filters-on" onClick={() => { setCustomFilterObject({}) }}>
+                            <div className="display-flex"><span>{t("filterCustom")}</span><span className="material-symbols-outlined size-20">close</span></div>
+                        </div>
+
+                        <button onClick={() => othersUtil.excel(props.solicitation, props.solicitationType, props.name, props.type)} className="btn-secondary export-spreadsheet">
+                            <img src="/attachment/excel.png" alt="" />
+                        </button>
+                    </div>
+                }
+
                 <Input background={"input-search"} setValue={props.setSearch} value={props.search} icon={"search"} type="text" placeholder={search()} required={true} />
 
 
@@ -127,7 +145,7 @@ export default function Search(props: any) {
                                     <ButtonTableList icon="calendar_month" setCalendar={props.setCalendar} calendar={props.calendar} />
 
                                 }
-                                
+
                                 <ButtonTableList icon="swap_vert" sendFilter={() => sendFilter("order")} />
 
                                 <ButtonTableList icon="filter_alt" sendFilter={() => sendFilter("filter")} />
@@ -137,7 +155,7 @@ export default function Search(props: any) {
                     </div>
 
                     <div className="background-filter" onClick={onButtonPress}>
-                        {filter && <Filter onClick={callback} type={typeFilter} setName={setName} setType={setType} />}
+                        {filter && <Filter onClick={callback} type={typeFilter} setName={setName} setType={setType} filter={filter} setCustomFilterObject={setCustomFilterObject} />}
                     </div>
                 </div>
             </div>

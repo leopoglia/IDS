@@ -335,7 +335,19 @@ const othersUtil = {
         document.documentElement.style.setProperty('--red', response.colors.color8);
         document.documentElement.style.setProperty('--orange', response.colors.color9);
         document.documentElement.style.setProperty('--white2', response.colors.color10);
-    }
+    },
+
+    verifyObject: (object: any) => {
+
+        for(let i = 0; i < Object.keys(object).length; i++) {
+
+            if(object[Object.keys(object)[i]] !== undefined) {
+                return true;
+            }
+        }
+
+        return false;
+    },
 }
 
 export default othersUtil;

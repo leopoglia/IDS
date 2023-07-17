@@ -3,7 +3,58 @@ import othersUtil from "./othersUtil";
 
 const filtersUtil = {
 
-    demand: (nameFilter: any, typeFilter: any, search: any, val: any): any => {
+    demand: (nameFilter: any, typeFilter: any, search: any, val: any, customFilterObject: any): any => {
+
+        if (othersUtil.verifyObject(customFilterObject)) {
+
+            let totalFilter = 0;
+
+
+            for (let i = 0; i < Object.keys(customFilterObject).length; i++) {
+
+                if (val.requesterRegistration.workerName.toUpperCase().includes(customFilterObject?.requester?.toUpperCase()) || customFilterObject.requester === "") {
+                    totalFilter++;
+                }
+
+                if (val?.approver?.workerName?.toUpperCase().includes(customFilterObject?.manager?.toUpperCase()) || customFilterObject.manager === "") {
+                    totalFilter++;
+                }
+
+                if (val?.requesterRegistration.department.toUpperCase().includes(customFilterObject?.departament?.toUpperCase()) || customFilterObject.departament === "") {
+                    totalFilter++;
+                }
+
+                if (val?.classification?.classificationSize.toUpperCase() === customFilterObject?.size?.toUpperCase() || customFilterObject.size === "") {
+                    totalFilter++;
+                }
+
+                if (val?.classification?.ppmCode.toUpperCase().includes(customFilterObject?.ppmCode?.toUpperCase()) || customFilterObject.ppmCode === "") {
+                    totalFilter++;
+                }
+
+                if (val?.demandCode === parseInt(customFilterObject.demandCode) || customFilterObject.demandCode === "") {
+                    totalFilter++;
+                }
+
+                if (val?.demandStatus.toUpperCase().includes(customFilterObject?.status?.toUpperCase()) || customFilterObject.status === "") {
+                    totalFilter++;
+                }
+
+                console.log(customFilterObject)
+                console.log("totalFilter => ", totalFilter , " === customFilterObject.length" , Object.keys(customFilterObject).length); 
+
+                if (totalFilter === Object.keys(customFilterObject).length) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            }
+        }
+
+
+
+
 
         if (
             (nameFilter === "" || nameFilter === undefined) &&
@@ -23,6 +74,8 @@ const filtersUtil = {
 
         if (typeFilter === "requester" && val.requesterRegistration.workerName.toUpperCase().includes(nameFilter.toUpperCase())) {
             return true;
+        } else if (typeFilter === "manager" && val?.approver?.workerName?.toUpperCase().includes(nameFilter.toUpperCase())) {
+            return true;
         } else if (typeFilter === "status" && val?.demandStatus.toUpperCase() === nameFilter.toUpperCase()) {
             return true;
         } else if (typeFilter === "size" && val?.classification?.classificationSize.toUpperCase() === nameFilter.toUpperCase()) {
@@ -41,10 +94,23 @@ const filtersUtil = {
             return true;
         }
 
+
+
+
+
         return false;
     },
 
-    proposal: (nameFilter: any, typeFilter: any, search: any, val: any): any => {
+    proposal: (nameFilter: any, typeFilter: any, search: any, val: any, customFilterObject: any): any => {
+
+        if (othersUtil.verifyObject(customFilterObject)) {
+
+
+
+
+        }
+
+
         if (
             (nameFilter === "" || nameFilter === undefined) &&
             (typeFilter === "" || typeFilter === undefined) &&
@@ -63,6 +129,8 @@ const filtersUtil = {
             return true;
         } else if (typeFilter === "ppm" && val.demand?.classification.ppmCode.toUpperCase() === nameFilter.toUpperCase()) {
             return true;
+        } else if (typeFilter === "manager" && val.demand?.approver?.workerName?.toUpperCase().includes(nameFilter.toUpperCase())) {
+            return true;
         } else if (typeFilter === "code-proposal" && val.proposalCode === parseInt(nameFilter)) {
             return true;
         } else if (typeFilter === "department" && val.demand?.requesterRegistration.department === nameFilter) {
@@ -76,7 +144,14 @@ const filtersUtil = {
         return false;
     },
 
-    agenda: (nameFilter: any, typeFilter: any, search: any, val: any): any => {
+    agenda: (nameFilter: any, typeFilter: any, search: any, val: any, customFilterObject: any): any => {
+
+        if (othersUtil.verifyObject(customFilterObject)) {
+
+
+
+
+        }
 
         if (
             (nameFilter === "" || nameFilter === undefined) &&
@@ -115,7 +190,15 @@ const filtersUtil = {
         return false;
     },
 
-    minutes: (nameFilter: any, typeFilter: any, search: any, val: any, t: any): any => {
+    minutes: (nameFilter: any, typeFilter: any, search: any, val: any, t: any, customFilterObject: any): any => {
+
+        if (othersUtil.verifyObject(customFilterObject)) {
+
+
+
+
+        }
+
         if (
             (nameFilter === "" || nameFilter === undefined) &&
             (typeFilter === "" || typeFilter === undefined) &&

@@ -7,7 +7,6 @@ import Input from "../../../../Solicitation/Demands/CrateDemand/Others/Input"
 export default function CustomFilter(props: any) {
 
     const { t } = useTranslation();
-
     const type = window.location.href.split('/')[3];
 
     const [requester, setRequester] = useState('')

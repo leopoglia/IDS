@@ -47,6 +47,7 @@ export default function Demands() {
     const [nameFilter, setName] = useState<string>(""); // Busca o que foi digitado no input do filtro
     const [typeFilter, setType] = useState<string>(""); // Busca qual filtro foi selecionado
     const [filterOn, setFilterOn] = useState(false);
+    const [customFilterObject, setCustomFilterObject] = useState<any>({}); // Busca o objeto de filtro personalizado
 
     const [demandsSize, setDemandsSize] = useState(0);
     const [loading, setLoading] = useState(true);
@@ -56,10 +57,14 @@ export default function Demands() {
         setLoading(true);
 
         if (url[3] === "demands") {
-            if (search === "" && typeFilter === "" && nameFilter === "") {
+            if (search === "" && typeFilter === "" && nameFilter === "" && !othersUtil.verifyObject(customFilterObject)) {
+
+                console.log(othersUtil.verifyObject(customFilterObject))
+                console.log(customFilterObject)
+
                 getDemands(); // Busca as demandas cadastradas
             } else {
-                if (nameFilter !== "score" && nameFilter !== "dates" && nameFilter !== "code") {
+                if (nameFilter !== "score" && nameFilter !== "dates" && nameFilter !== "code" && othersUtil.verifyObject(customFilterObject)) {
                     ServicesDemand.findAll().then(async (demands: any) => {
 
                         await demands.map(async (demand: any) => {
@@ -130,7 +135,7 @@ export default function Demands() {
             localStorage.removeItem("route");
             Notification.success(t("demandCreateSuccess"));
         }
-    }, [url[3], page, search, table, nameFilter, typeFilter, worker.office, worker.department])
+    }, [url[3], page, search, table, nameFilter, typeFilter, worker.office, worker.department, customFilterObject])
 
 
     // Buscar as demandas cadastradas
@@ -366,13 +371,13 @@ export default function Demands() {
 
                     <div className="container">
 
-                        <Search setSearch={setSearch} search={search} solicitationType="demand" onClick={callback} name={nameFilter} solicitation={demands} type={typeFilter} setTable={setTable} setName={setName} setType={setType} setFilterOn={setFilterOn} nav={t("demandsViewDemands")} title="demands" button="createDemand" link="/demand/create/1" />
+                        <Search setSearch={setSearch} search={search} solicitationType="demand" onClick={callback} name={nameFilter} solicitation={demands} type={typeFilter} setTable={setTable} setName={setName} setType={setType} setFilterOn={setFilterOn} nav={t("demandsViewDemands")} setCustomFilterObject={setCustomFilterObject} customFilterObject={customFilterObject} title="demands" button="createDemand" link="/demand/create/1" />
                         <div className={"container-background boxNoPadding-" + table}>
 
 
                             {
                                 demands.filter((val: any) => {
-                                    if (filtersUtil.demand(nameFilter, typeFilter, search, val)) { return true } else { return false }
+                                    if (filtersUtil.demand(nameFilter, typeFilter, search, val, customFilterObject)) { return true } else { return false }
                                 }).map((val: any, index: number) => {
 
                                     if (index === demands.length - 1 && index === 8) {
@@ -396,7 +401,7 @@ export default function Demands() {
 
                             }
 
-                            {(demands.filter((val: any) => { if (filtersUtil.demand(nameFilter, typeFilter, search, val)) { return true } else { return false } }).length === 0 && loading === false ? noResult() : null)}
+                            {(demands.filter((val: any) => { if (filtersUtil.demand(nameFilter, typeFilter, search, val, customFilterObject)) { return true } else { return false } }).length === 0 && loading === false ? noResult() : null)}
 
                             {demands.length === 0 && loading === true && <Load />}
 
@@ -414,11 +419,11 @@ export default function Demands() {
                 <div className="proposals">
 
                     <div className="container">
-                        <Search setSearch={setSearch} solicitation={proposals} solicitationType="proposal" search={search} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} setName={setName} setType={setType} nav={t("proposalViewProposal")} title="proposals" button="createProposal" link="/demands/1" />
+                        <Search setSearch={setSearch} solicitation={proposals} solicitationType="proposal" search={search} onClick={callback} name={nameFilter} type={typeFilter} setTable={setTable} setName={setName} setType={setType} nav={t("proposalViewProposal")} setCustomFilterObject={setCustomFilterObject} customFilterObject={customFilterObject} title="proposals" button="createProposal" link="/demands/1" />
                         <div className={"container-background boxNoPadding-" + table}>
                             {
                                 proposals.filter((val: any) => {
-                                    if (filtersUtil.proposal(nameFilter, typeFilter, search, val)) { return true } else { return false }
+                                    if (filtersUtil.proposal(nameFilter, typeFilter, search, val, customFilterObject)) { return true } else { return false }
                                 }).map((val: any, index: any) => (
                                     <Card
                                         key={index} listDirection={table} demandCode={val.proposalCode}
@@ -428,7 +433,7 @@ export default function Demands() {
                                 ))
                             }
 
-                            {(proposals.filter((val: any) => { if (filtersUtil.proposal(nameFilter, typeFilter, search, val)) { return true } else { return false } }).length === 0 && loading === false ? noResult() : null)}
+                            {(proposals.filter((val: any) => { if (filtersUtil.proposal(nameFilter, typeFilter, search, val, customFilterObject)) { return true } else { return false } }).length === 0 && loading === false ? noResult() : null)}
 
 
                             {proposals.length === 0 && loading === true && <Load />}
@@ -448,12 +453,12 @@ export default function Demands() {
                     }
 
                     <div className="container">
-                        <Search setSearch={setSearch} search={search} solicitation={agendas} solicitationType="agenda" onClick={callback} name={nameFilter} type={typeFilter} setTipe={setType} setTable={setTable} setCalendar={setCalendar} calendar={calendar} setName={setName} setType={setType} nav={t("agendaViewAgenda")} title="agendas" button="createAgenda" link="/agenda/create" />
+                        <Search setSearch={setSearch} search={search} solicitation={agendas} solicitationType="agenda" onClick={callback} name={nameFilter} type={typeFilter} setTipe={setType} setTable={setTable} setCalendar={setCalendar} calendar={calendar} setName={setName} setType={setType} nav={t("agendaViewAgenda")} setCustomFilterObject={setCustomFilterObject} customFilterObject={customFilterObject} title="agendas" button="createAgenda" link="/agenda/create" />
                         <div className={"container-background boxNoPadding-" + table}>
                             {
                                 agendas
                                     .filter((val: any) => {
-                                        if (filtersUtil.agenda(nameFilter, typeFilter, search, val)) { return true } else { return false }
+                                        if (filtersUtil.agenda(nameFilter, typeFilter, search, val, customFilterObject)) { return true } else { return false }
                                     })
                                     .map((val: any, index: any) => (
                                         <Card
@@ -465,7 +470,7 @@ export default function Demands() {
                                     ))
                             }
 
-                            {(agendas.filter((val: any) => { if (filtersUtil.agenda(nameFilter, typeFilter, search, val)) { return true } else { return false } }).length === 0 && loading === false ? noResult() : null)}
+                            {(agendas.filter((val: any) => { if (filtersUtil.agenda(nameFilter, typeFilter, search, val, customFilterObject)) { return true } else { return false } }).length === 0 && loading === false ? noResult() : null)}
 
 
                             {agendas.length === 0 && loading === true && <Load />}
@@ -484,12 +489,12 @@ export default function Demands() {
 
                     <div className="container">
 
-                        <Search onClick={callback} setSearch={setSearch} solicitation={minutes} solicitationType="minute" search={search} name={nameFilter} type={typeFilter} nav={t("minuteViewMinute")} title="minutes" button="createMinute" link="/agendas/1" setTable={setTable} setName={setName} setType={setType} />
+                        <Search onClick={callback} setSearch={setSearch} solicitation={minutes} solicitationType="minute" search={search} name={nameFilter} type={typeFilter} nav={t("minuteViewMinute")} setCustomFilterObject={setCustomFilterObject} customFilterObject={customFilterObject} title="minutes" button="createMinute" link="/agendas/1" setTable={setTable} setName={setName} setType={setType} />
                         <div className={"container-background boxNoPadding-" + table}>
                             {
                                 minutes
                                     .filter((val: any) => {
-                                        if (filtersUtil.minutes(nameFilter, typeFilter, search, val, t)) { return true } else { return false }
+                                        if (filtersUtil.minutes(nameFilter, typeFilter, search, val, t, customFilterObject)) { return true } else { return false }
                                     })
                                     .map((val: any, index: any) => (
                                         <Card
@@ -509,7 +514,7 @@ export default function Demands() {
 
                             {minutes.length === 0 && loading === true && <Load />}
 
-                            {(minutes.filter((val: any) => { if (filtersUtil.minutes(nameFilter, typeFilter, search, val, t)) { return true } else { return false } }).length === 0 && loading === false ? noResult() : null)}
+                            {(minutes.filter((val: any) => { if (filtersUtil.minutes(nameFilter, typeFilter, search, val, t, customFilterObject)) { return true } else { return false } }).length === 0 && loading === false ? noResult() : null)}
 
                         </div>
                         {othersUtil.footer(url, demands, proposals, agendas, minutes, search, typeFilter, pages, page, navigate, demandsSize, table)}

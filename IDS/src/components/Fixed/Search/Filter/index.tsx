@@ -120,8 +120,10 @@ export default function Filter(props: any) {
 
 
     useEffect(() => {
-        console.log("customFilterObject", customFilterObject)
-    } , [customFilterObject])
+        if (props.filter) {
+            props?.setCustomFilterObject(customFilterObject)
+        }
+    }, [customFilterObject])
 
 
     const inputName = useRef<HTMLInputElement>(null) // Referência do input de pesquisa

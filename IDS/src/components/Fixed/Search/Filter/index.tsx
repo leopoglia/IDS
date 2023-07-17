@@ -261,6 +261,11 @@ export default function Filter(props: any) {
                         <span className="font-p">{t("forum")}</span>
                     </div>
 
+                    <div className="li" onClick={() => { setFilter(true); setType("date") }}>
+                        <span className="material-symbols-outlined">calendar_month</span>
+                        <span className="font-p">{t("dateMeeting")}</span>
+                    </div>
+
                     <div className="li" onClick={() => { setFilter(true); setType("code-agendas") }}>
                         <span className="material-symbols-outlined">draft</span>
                         <span className="font-p">{t("codeProposal")}</span>

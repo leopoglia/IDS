@@ -1,9 +1,10 @@
+import othersUtil from "./othersUtil";
 
 
 const filtersUtil = {
 
     demand: (nameFilter: any, typeFilter: any, search: any, val: any): any => {
-        
+
         if (
             (nameFilter === "" || nameFilter === undefined) &&
             (typeFilter === "" || typeFilter === undefined) &&
@@ -12,8 +13,8 @@ const filtersUtil = {
             return true;
         }
 
-        if(val === undefined) return false
-        if(nameFilter === undefined) return false
+        if (val === undefined) return false
+        if (nameFilter === undefined) return false
 
 
         if (search !== "" && val.demandTitle.toUpperCase().includes(search.toUpperCase())) {
@@ -36,7 +37,7 @@ const filtersUtil = {
             return true;
         } else if (typeFilter === "forum" && val?.forum?.commissionAcronym === nameFilter) {
             return true;
-        } else if(nameFilter === "dates" || nameFilter === "score" || nameFilter === "code"){
+        } else if (nameFilter === "dates" || nameFilter === "score" || nameFilter === "code") {
             return true;
         }
 
@@ -68,7 +69,7 @@ const filtersUtil = {
             return true;
         } else if (typeFilter === "forum" && val?.forum?.commissionAcronym === nameFilter) {
             return true;
-        } else if(nameFilter === "dates" || nameFilter === "score" || nameFilter === "code"){
+        } else if (nameFilter === "dates" || nameFilter === "score" || nameFilter === "code") {
             return true;
         }
 
@@ -92,7 +93,15 @@ const filtersUtil = {
         if (typeFilter === "forum" && val?.commission?.commissionAcronym === nameFilter) {
             return true;
         }
-        if(nameFilter === "dates" || nameFilter === "score" || nameFilter === "code"){
+
+
+        console.log(val.initialDate.split("T")[0] + " === " + nameFilter)
+
+        if (typeFilter === "date" && val?.initialDate?.split("T")[0] === nameFilter) {
+            return true;
+        }
+
+        if (nameFilter === "dates" || nameFilter === "score" || nameFilter === "code") {
             return true;
         }
 
@@ -133,7 +142,7 @@ const filtersUtil = {
             return true;
         } else if (typeFilter === "date" && dateFormat.includes(nameFilter.split("-").reverse().join(""))) {
             return true;
-        } else if(nameFilter === "dates" || nameFilter === "score" || nameFilter === "code"){
+        } else if (nameFilter === "dates" || nameFilter === "score" || nameFilter === "code") {
             return true;
         }
 

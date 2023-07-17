@@ -253,7 +253,7 @@ export default function Configuration() {
                                         </div>
                                     </div>
 
-                                    <div className="display-flex">
+                                    {/* <div className="display-flex">
                                         <span className="subtitle-confuration">{t("colors")}</span>
 
                                         <div className="colors-configuration ml10">
@@ -272,7 +272,7 @@ export default function Configuration() {
                                                 </span>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
 
                             </div>

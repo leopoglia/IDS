@@ -34,9 +34,9 @@ export default function Box(props: any) {
             dateLastWeek.setDate(dateLastWeek.getDate() - 7);
 
 
-            console.log(props.dates)
-
             for (let i = 0; i < props.dates.length; i++) {
+
+
                 datesFormated.push(
                     new Date(othersUtil.invertMonthWithDay(othersUtil.addZeroDate(props.dates[i])))
                 );

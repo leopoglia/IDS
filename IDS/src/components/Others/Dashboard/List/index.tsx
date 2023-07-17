@@ -17,9 +17,11 @@ export default function List(props: any) {
 
 
             for (let i = 0; i < props.number.length; i++) {
+
                 datesFormated.push(
-                    new Date(props.number[i])
+                    new Date(othersUtil.invertMonthWithDay(othersUtil.addZeroDate(props.number[i])))
                 );
+
             }
 
             const dateLastMonth = new Date();
